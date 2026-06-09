@@ -1294,3 +1294,91 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   border-bottom: 1px solid var(--border);
   margin-bottom: 2px;
 }
+
+/* ══════════════════════════════════════════════════════════
+   v21 — 하이브리드 레이아웃: 텍스트 전폭 세로형 카드 (.mob-card-v)
+   English · History · Economy · Inbox → 썸네일 없이 100% 폭 사용
+   흰 배경 + 파란 왼쪽 accent border · 볼드 제목 · 불릿 · 해시태그
+══════════════════════════════════════════════════════════ */
+
+/* 카드 베이스 (.mob-card) 상속 + 왼쪽 파란 accent */
+.mob-card-v {
+  border-left   : 3px solid var(--accent);
+  padding       : 14px 15px 12px 14px;
+}
+
+/* ── 상단 행: 카테고리 아이콘·이름·날짜 (좌) + 복사·삭제 (우) ── */
+.mob-card-v-top {
+  display        : flex;
+  align-items    : center;
+  justify-content: space-between;
+  margin-bottom  : 8px;
+}
+.mob-card-v-cat {
+  font-size    : 11px; font-weight: 700;
+  color        : var(--accent);
+  letter-spacing: .03em;
+  display      : flex; align-items: center; gap: 3px;
+  flex         : 1; min-width: 0;
+  overflow     : hidden; white-space: nowrap; text-overflow: ellipsis;
+}
+.mob-card-v-acts {
+  display    : flex; align-items: center; gap: 1px;
+  flex-shrink: 0; margin-left: 6px;
+}
+.mob-card-v-copy,
+.mob-card-v-del {
+  display    : flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%;
+  color: #c0c8d8; font-size: 14px;
+  border: none; background: none; cursor: pointer;
+  transition: background .15s, color .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mob-card-v-copy:active { background: #eff6ff; color: var(--accent); }
+.mob-card-v-del:active  { background: #fee2e2; color: #ef4444; }
+
+/* ── 볼드 제목 ── */
+.mob-card-v-title {
+  font-size    : 16px; font-weight: 800;
+  color        : var(--text-1); line-height: 1.35;
+  margin-bottom: 9px;
+  word-break   : keep-all;
+}
+
+/* ── 불릿 본문 (line-height 1.6) ── */
+.mob-card-v-body {
+  list-style   : none; padding: 0; margin: 0 0 10px;
+  display      : flex; flex-direction: column; gap: 6px;
+}
+.mob-card-v-body li {
+  display      : flex; align-items: baseline; gap: 7px;
+  font-size    : 13.5px; color: var(--text-2); line-height: 1.6;
+  word-break   : keep-all;
+}
+.mob-card-v-body li::before {
+  content      : '•';
+  color        : var(--accent); font-weight: 800; font-size: 15px;
+  flex-shrink  : 0; line-height: 1.3;
+}
+
+/* 뜻 / 뉘앙스 / 예문 / 연습 라벨 칩 */
+.mob-card-v-b-label {
+  font-size  : 10px; font-weight: 800;
+  color      : #fff; background: var(--accent);
+  padding    : 1px 6px; border-radius: 4px;
+  flex-shrink: 0; line-height: 1.7; white-space: nowrap;
+}
+
+/* ── 해시태그 칩 행 ── */
+.mob-card-v-tags {
+  display    : flex; flex-wrap: wrap; gap: 5px;
+  margin-top : 2px;
+}
+.mob-card-v-tag {
+  font-size    : 11px; font-weight: 600;
+  color        : var(--accent2);
+  background   : #f0f0ff;
+  padding      : 2px 9px; border-radius: 20px;
+  letter-spacing: .02em;
+}

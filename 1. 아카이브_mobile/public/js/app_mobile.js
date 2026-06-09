@@ -295,11 +295,8 @@ const Mob = {
         item.thumbnail || m.thumbnail || item.imageUrl) {
       return this._cardH(item, m);
     }
-    // 영어 표현 → 세로형 가독성 카드 (표현 강조 + 불릿)
-    const cat = item.category || item.shelf;
-    if (cat === 'en') return this._cardEnglish(item);
-    // 그 외 텍스트 → 가로형 카드
-    return this._cardH(item, m);
+    // 텍스트 지식 (English · History · Economy · Inbox) → 전폭 세로형 카드 v21
+    return this._cardV(item, m);
   },
 
   /** 영어 표현 텍스트 파싱: "[토픽] 표현 / 뜻: / 뉘앙스: / 예문: / 연습:" */
@@ -341,6 +338,80 @@ const Mob = {
         <div class="mob-card-h-title mob-en-h-expr">${expr}</div>
         <div class="mob-card-h-summary mob-en-h-meaning">${meaning}</div>
       </div>
+    </div>`;
+  },
+
+  /**
+   * 전폭 세로형 카드 v21 — 텍스트 지식 (English · History · Economy · Inbox)
+   * 흰 배경 + 파란 왼쪽 border · 카테고리칩+날짜 · 복사/삭제 · 볼드 제목 · 불릿 · 해시태그
+   */
+  _cardV(item, m = {}) {
+    const cat    = item.category || item.shelf || 'inbox';
+    const id     = item._id || item.id || '';
+    const rawD   = item.createdAt || item.savedAt || '';
+    const dateStr = rawD
+      ? (() => { const d = new Date(rawD); return isNaN(d) ? '오늘' : `${d.getMonth()+1}/${d.getDate()}`; })()
+      : '오늘';
+
+    const catIconMap = { en:'🌐', history:'🏛️', economy:'📈', inbox:'📌', youtube:'▶️' };
+    const catIcon  = catIconMap[cat] || '💡';
+    const catLabel = this._catLabel(cat);
+
+    /* ── 제목 & 불릿 생성 ── */
+    let title   = '';
+    let bullets = [];
+
+    if (cat === 'en') {
+      const p = this._parseEnglishText(item.text);
+      title   = p.expression || item.title || '영어 표현';
+      if (p.meaning)  bullets.push(`<span class="mob-card-v-b-label">뜻</span> ${p.meaning}`);
+      if (p.nuance)   bullets.push(`<span class="mob-card-v-b-label">뉘앙스</span> ${p.nuance}`);
+      if (p.example)  bullets.push(`<span class="mob-card-v-b-label">예문</span> <em>${p.example}</em>`);
+      if (p.practice) bullets.push(`<span class="mob-card-v-b-label">연습</span> ${p.practice}`);
+    } else {
+      title = m.title || item.title || (item.text || '').slice(0, 80) || '제목 없음';
+      const raw = m.summary || item.summary || (item.text || '').slice(0, 300) || '';
+      /* 줄바꿈 우선 → 없으면 마침표 기준 분리 */
+      const rawLines = raw.includes('\n')
+        ? raw.split('\n').map(l => l.trim()).filter(Boolean)
+        : raw.split(/[.。]\s+/).map(l => l.trim()).filter(Boolean);
+      bullets = rawLines.slice(0, 4).map(l => l.replace(/[.。!?！？]$/, '').trim()).filter(Boolean);
+    }
+
+    /* ── 해시태그 ── */
+    const kws = (m.keywords || item.keywords || []).slice(0, 3);
+    const defaultTagMap = { en:'#영어표현', history:'#역사', economy:'#경제', inbox:'#메모' };
+    const tags = kws.length
+      ? kws.map(k => '#' + k)
+      : [defaultTagMap[cat] || '#지식', '#서재저장'];
+
+    /* ── HTML 조합 ── */
+    const bulletsHTML = bullets.length
+      ? `<ul class="mob-card-v-body">${bullets.map(b => `<li>${b}</li>`).join('')}</ul>`
+      : '';
+
+    const tagsHTML = tags.length
+      ? `<div class="mob-card-v-tags">${tags.map(t => `<span class="mob-card-v-tag">${t}</span>`).join('')}</div>`
+      : '';
+
+    return `
+    <div class="mob-card mob-card-v" data-id="${id}">
+      <div class="mob-card-v-top">
+        <span class="mob-card-v-cat">${catIcon} ${catLabel} · ${dateStr}</span>
+        <div class="mob-card-v-acts">
+          <button class="mob-card-v-copy" data-action="copy"
+                  onclick="event.stopPropagation();Mob._copyItemText('${id}')" title="복사">
+            <i class="ti ti-copy"></i>
+          </button>
+          <button class="mob-card-v-del" data-action="delete"
+                  onclick="event.stopPropagation()" title="삭제">
+            <i class="ti ti-trash"></i>
+          </button>
+        </div>
+      </div>
+      <div class="mob-card-v-title">${title}</div>
+      ${bulletsHTML}
+      ${tagsHTML}
     </div>`;
   },
 

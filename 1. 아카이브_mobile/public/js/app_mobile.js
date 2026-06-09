@@ -416,34 +416,63 @@ const Mob = {
     </div>`;
   },
 
-  /** 배달 피드 — 언어 표현 카드 (어휘 전체 + 개별 저장) */
+  /** 배달 피드 — 언어 표현 카드 (요일 테마 + 개별 저장 + 대화문 아코디언) */
   _cardFeedLanguage(item) {
-    const entries = item.vocabEntries || [];
-    const subId   = item.subId || '';
-    const date    = item.date  || '';
-    const langIcon = item.label?.includes('중국') ? '🇨🇳'
-                   : item.label?.includes('일본') ? '🇯🇵' : '📚';
+    const entries  = item.vocabEntries || [];
+    const subId    = item.subId || '';
+    const date     = item.date  || '';
+    const theme    = item.theme || item.subCategory || '';
+    const dayOfWeek = item.dayOfWeek || '';
+    const langIcon = item.label?.includes('중국') ? '🇨🇳' : '🇺🇸';
 
-    const vocabHTML = entries.map((e, i) => `
+    const vocabHTML = entries.map((e, i) => {
+      const uid = `dlg_${subId}_${i}_${Date.now()}`;
+      const dialogueLines = (e.dialogue || '').replace(/\\n/g, '\n').split('\n').map(l => l.trim()).filter(Boolean);
+      const dialogueHTML = dialogueLines.map(l => {
+        if (l.startsWith('甲:') || l.startsWith('乙:') || l.startsWith('A:') || l.startsWith('B:')) {
+          const speaker = l.split(':')[0];
+          const text = l.slice(speaker.length + 1).trim();
+          return `<div class="mob-dlg-line"><span class="mob-dlg-speaker">${speaker}</span><span class="mob-dlg-text">${text}</span></div>`;
+        }
+        if (l.startsWith('[해석:') || l.startsWith('[解:')) {
+          return `<div class="mob-dlg-translation">${l.replace(/^\[해석:|^\[解:/, '').replace(/\]$/, '').trim()}</div>`;
+        }
+        return `<div class="mob-dlg-line"><span class="mob-dlg-text">${l}</span></div>`;
+      }).join('');
+
+      return `
       <div class="mob-feed-vocab-item">
         <div class="mob-feed-vocab-row1">
+          <span class="mob-feed-vocab-num">${i + 1}</span>
           <span class="mob-feed-vocab-expr">${e.expression || ''}</span>
           <button class="mob-feed-entry-save-btn"
                   data-sub="${subId}" data-idx="${i}"
                   onclick="event.stopPropagation();Mob._saveVocabEntry(this)"
-                  title="이 표현만 서재에 저장">
+                  title="💾 내 서재에 저장">
             <i class="ti ti-bookmark"></i>
           </button>
         </div>
-        <span class="mob-feed-vocab-meaning">${e.meaning || ''}</span>
-        ${e.nuance ? `<span class="mob-feed-vocab-nuance">${e.nuance}</span>` : ''}
-        ${e.sourceSentence ? `<div class="mob-feed-vocab-ex">"${e.sourceSentence}"</div>` : ''}
-      </div>`).join('');
+        <div class="mob-feed-vocab-meaning-row">
+          <span class="mob-feed-vocab-meaning">${e.meaning || ''}</span>
+          ${e.nuance ? `<span class="mob-feed-vocab-nuance">${e.nuance}</span>` : ''}
+        </div>
+        ${e.sourceSentence ? `<div class="mob-feed-vocab-ex"><i class="ti ti-quote"></i> ${e.sourceSentence}</div>` : ''}
+        ${e.practiceSentence ? `<div class="mob-feed-vocab-practice"><i class="ti ti-pencil"></i> ${e.practiceSentence}</div>` : ''}
+        ${dialogueHTML ? `
+        <button class="mob-feed-dlg-toggle" onclick="event.stopPropagation();Mob._toggleDialogue(this)" data-uid="${uid}">
+          💬 대화문 보기 <i class="ti ti-chevron-down"></i>
+        </button>
+        <div class="mob-feed-dialogue" id="${uid}" hidden>
+          ${dialogueHTML}
+        </div>` : ''}
+      </div>`;
+    }).join('');
 
     return `
     <div class="mob-card mob-card-feed" data-id="">
       <div class="mob-feed-card-hd">
         <span class="mob-feed-badge mob-feed-badge-lang">${langIcon} ${item.label || '표현'}</span>
+        ${dayOfWeek ? `<span class="mob-feed-day-theme">${dayOfWeek}요일 · ${theme}</span>` : ''}
         <span class="mob-feed-card-date">${date}</span>
       </div>
       <div class="mob-card-title">${item.title || '오늘의 표현'}</div>
@@ -453,9 +482,27 @@ const Mob = {
         <button class="mob-feed-save-btn" onclick="event.stopPropagation();Mob._saveFeedToArchive('${subId}','${date}',this)">
           <i class="ti ti-device-floppy"></i> 전체 저장
         </button>
-        <span class="mob-feed-ai-tag">${item.aiGenerated ? '✨ AI 생성' : '📋 Mock'}</span>
+        <span class="mob-feed-ai-tag">${item.aiGenerated ? '✨ AI 생성' : '📋 샘플'}</span>
       </div>
     </div>`;
+  },
+
+  /** 대화문 아코디언 토글 */
+  _toggleDialogue(btn) {
+    const uid = btn.dataset.uid;
+    const dlgEl = uid ? document.getElementById(uid) : btn.nextElementSibling;
+    if (!dlgEl) return;
+    const isHidden = dlgEl.hidden;
+    dlgEl.hidden = !isHidden;
+    const icon = btn.querySelector('i');
+    if (icon) {
+      icon.className = isHidden ? 'ti ti-chevron-up' : 'ti ti-chevron-down';
+    }
+    btn.classList.toggle('open', isHidden);
+    btn.innerHTML = btn.innerHTML.replace(
+      isHidden ? '대화문 보기' : '대화문 닫기',
+      isHidden ? '대화문 닫기' : '대화문 보기'
+    );
   },
 
   /** 어휘 표현 항목 1개만 서재에 저장 */
@@ -537,35 +584,75 @@ const Mob = {
     </div>`;
   },
 
-  /** 배달 피드 — 시황 리포트 카드 */
+  /** 배달 피드 — 시황 리포트 카드 (증시 지표 배너 + 3줄 요약 + 체크포인트) */
   _cardFeedMarket(item) {
-    const terms = (item.aiEconomicKnowledge || []).slice(0, 2);
-    const subId = item.subId || '';
-    const date  = item.date  || '';
+    const terms      = (item.aiEconomicKnowledge || []).slice(0, 3);
+    const indicators = item.indicators || [];
+    const subId      = item.subId || '';
+    const date       = item.date  || '';
+    const isUS       = (item.label || '').includes('미국') || (item.subId || '').includes('us');
 
-    const report = (item.report || '').replace(/#{1,3} /g, '').slice(0, 220);
+    // 증시 지표 배너
+    const indHTML = indicators.length ? `
+    <div class="mob-feed-indicators">
+      ${indicators.map(ind => `
+        <div class="mob-feed-ind-item ${ind.dir || ''}">
+          <div class="mob-feed-ind-name">${ind.name}</div>
+          <div class="mob-feed-ind-value">${ind.value}</div>
+          <div class="mob-feed-ind-change">${ind.dir === 'up' ? '▲' : '▼'} ${ind.change}</div>
+        </div>`).join('')}
+    </div>` : '';
 
+    // 3줄 요약
+    const summary3Lines = (item.summary3 || '').replace(/\\n/g, '\n').split('\n').filter(l => l.trim());
+    const summary3HTML = summary3Lines.length ? `
+    <div class="mob-feed-summary3">
+      ${summary3Lines.map(l => `<div class="mob-feed-s3-line">${l.trim()}</div>`).join('')}
+    </div>` : '';
+
+    // 오늘 장 체크포인트
+    const checkpoints = item.checkpoints || [];
+    const checkHTML = checkpoints.length ? `
+    <div class="mob-feed-checkpoints">
+      <div class="mob-feed-check-label"><i class="ti ti-checkbox"></i> 오늘 장 필수 체크</div>
+      ${checkpoints.map((c, i) => `
+        <div class="mob-feed-check-item">
+          <span class="mob-feed-check-num">${i + 1}</span>
+          <span>${c}</span>
+        </div>`).join('')}
+    </div>` : '';
+
+    // 핵심 경제 용어
     const termsHTML = terms.map(t => `
       <div class="mob-feed-econ-item">
         <span class="mob-feed-econ-term">${t.term || ''}</span>
         <span class="mob-feed-econ-importance">${t.importance || ''}</span>
+        ${t.connection ? `<span class="mob-feed-econ-connection">${t.connection}</span>` : ''}
       </div>`).join('');
 
     return `
-    <div class="mob-card mob-card-feed" data-id="">
+    <div class="mob-card mob-card-feed mob-card-feed-market" data-id="">
       <div class="mob-feed-card-hd">
-        <span class="mob-feed-badge mob-feed-badge-market">📈 ${item.label || '시황'}</span>
+        <span class="mob-feed-badge mob-feed-badge-market">${isUS ? '🇺🇸' : '🇰🇷'} ${item.label || '시황'}</span>
         <span class="mob-feed-card-date">${date}</span>
       </div>
       <div class="mob-card-title">${item.title || '오늘의 시황'}</div>
       <div class="mob-card-summary">${item.summary || ''}</div>
-      ${report ? `<div class="mob-feed-report">${report}…</div>` : ''}
-      ${termsHTML ? `<div class="mob-feed-econ-list"><div class="mob-feed-econ-label">📌 핵심 용어</div>${termsHTML}</div>` : ''}
+
+      ${indHTML}
+      ${summary3HTML}
+      ${checkHTML}
+
+      ${termsHTML ? `<div class="mob-feed-econ-list">
+        <div class="mob-feed-econ-label"><i class="ti ti-bookmark"></i> 오늘의 핵심 용어</div>
+        ${termsHTML}
+      </div>` : ''}
+
       <div class="mob-feed-card-ft">
         <button class="mob-feed-save-btn" onclick="event.stopPropagation();Mob._saveFeedToArchive('${subId}','${date}',this)">
           <i class="ti ti-device-floppy"></i> 서재에 저장
         </button>
-        <span class="mob-feed-ai-tag">${item.aiGenerated ? '✨ AI 생성' : '📋 Mock'}</span>
+        <span class="mob-feed-ai-tag">${item.aiGenerated ? '✨ AI 생성' : '📋 샘플'}</span>
       </div>
     </div>`;
   },
@@ -901,11 +988,15 @@ const Mob = {
     }
   },
 
-  /* 배달 설정 패널 렌더링 */
+  /* 배달 설정 패널 렌더링 — 4개 토글만 표시 */
   _renderDeliverySettings(data) {
     const user  = data?.user  || {};
     const feeds = data?.available_feeds || [];
     const enabled = new Set(user.enabled_feeds || []);
+
+    // 허용 ID: 4가지만 표시 (jp_expr, fr_expr 등 제외)
+    const ALLOWED_IDS = ['en_expr', 'zh_expr', 'us_market', 'kr_market'];
+    const filteredFeeds = feeds.filter(f => ALLOWED_IDS.includes(f.id));
 
     /* 배달 시간 */
     const timeInput = el('dpDeliveryTime');
@@ -913,24 +1004,38 @@ const Mob = {
 
     /* 구독 피드 토글 목록 */
     const subsList = el('dpSubsList');
-    if (subsList && feeds.length) {
-      subsList.innerHTML = feeds.map(sub => `
-        <div class="mvw-dp-sub-item">
-          <div class="mvw-dp-sub-info">
-            <span class="mvw-dp-sub-icon">${sub.icon || '📌'}</span>
-            <div class="mvw-dp-sub-text">
-              <div class="mvw-dp-sub-name">${sub.label}</div>
-              <div class="mvw-dp-sub-desc">${sub.desc || ''}</div>
+    if (subsList) {
+      if (filteredFeeds.length) {
+        // 구분선: 언어 학습 / 시황 분석
+        const langFeeds   = filteredFeeds.filter(f => f.type === 'language' || f.id.includes('expr'));
+        const marketFeeds = filteredFeeds.filter(f => f.type === 'market'   || f.id.includes('market'));
+
+        const renderFeedRow = sub => `
+          <div class="mvw-dp-sub-item">
+            <div class="mvw-dp-sub-info">
+              <span class="mvw-dp-sub-icon">${sub.icon || '📌'}</span>
+              <div class="mvw-dp-sub-text">
+                <div class="mvw-dp-sub-name">${sub.label}</div>
+                <div class="mvw-dp-sub-desc">${sub.desc || ''}</div>
+              </div>
             </div>
-          </div>
-          <label class="mvw-dp-toggle">
-            <input type="checkbox" id="sub_${sub.id}"
-                   ${enabled.has(sub.id) ? 'checked' : ''}/>
-            <span class="mvw-dp-toggle-track">
-              <span class="mvw-dp-toggle-thumb"></span>
-            </span>
-          </label>
-        </div>`).join('');
+            <label class="mvw-dp-toggle">
+              <input type="checkbox" id="sub_${sub.id}"
+                     ${enabled.has(sub.id) ? 'checked' : ''}/>
+              <span class="mvw-dp-toggle-track">
+                <span class="mvw-dp-toggle-thumb"></span>
+              </span>
+            </label>
+          </div>`;
+
+        subsList.innerHTML = `
+          <div class="mvw-dp-group-label">🎓 언어 학습</div>
+          ${langFeeds.map(renderFeedRow).join('')}
+          <div class="mvw-dp-group-label">📊 시황 분석</div>
+          ${marketFeeds.map(renderFeedRow).join('')}`;
+      } else {
+        subsList.innerHTML = `<div style="padding:12px 0;font-size:13px;color:var(--text-3)">설정 로드 실패</div>`;
+      }
     }
 
     /* 상태 칩 업데이트 */

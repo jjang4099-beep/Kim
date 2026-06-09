@@ -1097,3 +1097,200 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   font-size  : 13px; font-weight: 600; color: #7e22ce; line-height: 1.5;
 }
 .mob-delivery-reminder-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+/* ══════════════════════════════════════════════════════════
+   v20 — 언어 피드 고도화: 번호 · 대화문 아코디언
+══════════════════════════════════════════════════════════ */
+
+/* 표현 번호 */
+.mob-feed-vocab-num {
+  flex-shrink : 0;
+  width       : 20px; height: 20px; border-radius: 50%;
+  background  : var(--accent); color: #fff;
+  font-size   : 11px; font-weight: 800;
+  display     : flex; align-items: center; justify-content: center;
+  margin-right: 2px;
+}
+
+/* 표현 + 저장 버튼 row (번호 포함) */
+.mob-feed-vocab-row1 {
+  display     : flex;
+  align-items : center;
+  gap         : 5px;
+  margin-bottom: 3px;
+}
+
+/* 뜻 + 뉘앙스 row */
+.mob-feed-vocab-meaning-row {
+  display        : flex;
+  flex-direction : column;
+  gap            : 2px;
+  padding-left   : 26px;  /* 번호 너비만큼 들여쓰기 */
+  margin-bottom  : 3px;
+}
+
+/* 예문 (sourceSentence) */
+.mob-feed-vocab-ex {
+  display     : flex; align-items: flex-start; gap: 5px;
+  font-size   : 11.5px; color: #64748b; font-style: italic;
+  margin-top  : 4px;
+  padding     : 5px 8px 5px 26px;
+  background  : #f8fafc;
+  border-radius: 6px;
+  line-height : 1.5;
+}
+.mob-feed-vocab-ex i { font-size: 11px; flex-shrink: 0; margin-top: 2px; color: var(--text-3); }
+
+/* 연습 문장 (practiceSentence) */
+.mob-feed-vocab-practice {
+  display     : flex; align-items: flex-start; gap: 5px;
+  font-size   : 11.5px; color: #0369a1;
+  margin-top  : 3px;
+  padding     : 5px 8px 5px 26px;
+  background  : #f0f9ff;
+  border-radius: 6px;
+  line-height : 1.5;
+}
+.mob-feed-vocab-practice i { font-size: 11px; flex-shrink: 0; margin-top: 2px; color: #0284c7; }
+
+/* 요일/테마 칩 */
+.mob-feed-day-theme {
+  font-size  : 11px; font-weight: 700;
+  color      : #4f46e5;
+  background : #eef2ff;
+  padding    : 2px 8px; border-radius: 20px;
+  flex-shrink: 0;
+}
+
+/* ── 대화문 아코디언 토글 버튼 ── */
+.mob-feed-dlg-toggle {
+  display     : inline-flex; align-items: center; gap: 5px;
+  margin-top  : 6px;
+  margin-left : 0;
+  font-size   : 12px; font-weight: 700; color: #4f46e5;
+  background  : #eef2ff; border-radius: 20px;
+  padding     : 5px 12px; border: none; cursor: pointer;
+  transition  : background .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mob-feed-dlg-toggle:active     { background: #e0e7ff; }
+.mob-feed-dlg-toggle.open       { background: #dbeafe; color: var(--accent); }
+.mob-feed-dlg-toggle i          { font-size: 13px; transition: transform .2s; }
+.mob-feed-dlg-toggle.open i     { transform: rotate(180deg); }
+
+/* ── 대화문 패널 (아코디언 내용) ── */
+.mob-feed-dialogue {
+  margin-top   : 6px;
+  padding      : 10px 12px 10px 14px;
+  background   : #f0f9ff;
+  border-left  : 3px solid #3b82f6;
+  border-radius: 0 8px 8px 0;
+  display      : flex; flex-direction: column; gap: 5px;
+  animation    : fadeSlideIn .2s ease;
+}
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.mob-dlg-line {
+  display    : flex; align-items: flex-start; gap: 6px;
+  font-size  : 12.5px; line-height: 1.55;
+}
+.mob-dlg-speaker {
+  flex-shrink : 0; min-width: 18px;
+  font-weight : 800; color: #1d4ed8; font-size: 12px;
+}
+.mob-dlg-text { color: var(--text-1); }
+.mob-dlg-translation {
+  margin-top   : 6px; padding-top: 6px;
+  border-top   : 1px dashed #93c5fd;
+  font-size    : 11.5px; color: #64748b; font-style: italic; line-height: 1.55;
+}
+
+/* ══════════════════════════════════════════════════════════
+   v20 — 시황 피드 고도화: 증시 지표 배너 · 3줄 요약 · 체크포인트
+══════════════════════════════════════════════════════════ */
+.mob-card-feed-market { border-left-color: #059669; }
+
+/* ── 증시 지표 배너 ── */
+.mob-feed-indicators {
+  display     : flex; flex-wrap: wrap; gap: 6px;
+  margin      : 8px 0 10px;
+  padding     : 10px 12px;
+  background  : #f0fdf4;
+  border-radius: 10px;
+  border      : 1px solid #bbf7d0;
+}
+.mob-feed-ind-item {
+  flex        : 1 1 calc(50% - 6px);
+  min-width   : 120px;
+  display     : flex; flex-direction: column; gap: 1px;
+  padding     : 6px 10px;
+  background  : #fff;
+  border-radius: 8px;
+  border      : 1px solid #d1fae5;
+}
+.mob-feed-ind-name  { font-size: 10.5px; color: var(--text-3); font-weight: 700; letter-spacing: .04em; }
+.mob-feed-ind-value { font-size: 14px; font-weight: 800; color: var(--text-1); font-family: 'DM Sans', sans-serif; }
+.mob-feed-ind-change {
+  font-size  : 12px; font-weight: 700;
+}
+.mob-feed-ind-item.up   .mob-feed-ind-change { color: #dc2626; }  /* 한국식: 상승=빨강 */
+.mob-feed-ind-item.down .mob-feed-ind-change { color: #2563eb; }  /* 하락=파랑 */
+
+/* ── 3줄 요약 ── */
+.mob-feed-summary3 {
+  margin      : 6px 0 8px;
+  padding     : 10px 12px;
+  background  : #f0fdf4;
+  border-radius: 8px;
+  display     : flex; flex-direction: column; gap: 5px;
+}
+.mob-feed-s3-line {
+  font-size  : 13px; color: var(--text-2); line-height: 1.55;
+  word-break : keep-all;
+}
+
+/* ── 오늘 장 체크포인트 ── */
+.mob-feed-checkpoints {
+  margin      : 6px 0 8px;
+  padding     : 10px 12px;
+  background  : #fffbeb;
+  border-radius: 8px;
+  border      : 1px solid #fde68a;
+}
+.mob-feed-check-label {
+  font-size  : 10.5px; font-weight: 800; color: #b45309;
+  text-transform: uppercase; letter-spacing: .06em;
+  display    : flex; align-items: center; gap: 4px;
+  margin-bottom: 7px;
+}
+.mob-feed-check-label i { font-size: 13px; }
+.mob-feed-check-item {
+  display    : flex; align-items: flex-start; gap: 8px;
+  margin-bottom: 5px; font-size: 12.5px; color: var(--text-1); line-height: 1.5;
+}
+.mob-feed-check-item:last-child { margin-bottom: 0; }
+.mob-feed-check-num {
+  flex-shrink : 0;
+  width: 18px; height: 18px; border-radius: 50%;
+  background  : #f59e0b; color: #fff;
+  font-size   : 10px; font-weight: 800;
+  display     : flex; align-items: center; justify-content: center;
+  margin-top  : 1px;
+}
+
+/* 경제 용어 connection 라인 */
+.mob-feed-econ-connection {
+  font-size   : 11px; color: #64748b; line-height: 1.45;
+  padding-top : 2px; border-top: 1px dashed var(--border); margin-top: 3px;
+}
+
+/* ── 배달 설정 그룹 레이블 ── */
+.mvw-dp-group-label {
+  font-size  : 10px; font-weight: 800; color: var(--text-3);
+  text-transform: uppercase; letter-spacing: .06em;
+  padding    : 12px 0 5px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2px;
+}

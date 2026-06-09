@@ -374,65 +374,125 @@ function safeParseJSON(text) {
 //  피드 콘텐츠 생성 엔진 (구독 타입별)
 // ══════════════════════════════════════════════════
 
+// ──────────────────────────────────────────────────
+//  요일별 테마 매핑
+// ──────────────────────────────────────────────────
+const WEEKDAY_THEMES = {
+  en: {
+    0: '비즈니스 소통 & 피드백',
+    1: '비즈니스 미팅 & 회의 진행',
+    2: '협상 & 제안 스킬',
+    3: '네트워킹 & 관계 구축',
+    4: '이메일 & 보고서 작성',
+    5: '마케팅 & 프레젠테이션',
+    6: '비즈니스 전략 & 리더십'
+  },
+  zh: {
+    0: '비즈니스 관계 & 접대',
+    1: '비즈니스 기초 인사 & 소개',
+    2: '협상 & 가격 협의',
+    3: '회의 진행 & 의견 표현',
+    4: '이메일 & 커뮤니케이션',
+    5: '비즈니스 성과 & 결론',
+    6: '중국 비즈니스 문화 & 에티켓'
+  }
+};
+
 /**
- * 영어/언어 표현 피드 생성
+ * 영어/언어 표현 피드 생성 — 요일별 테마 + 실전 대화문 포함
  */
 async function generateLanguageFeed(sub, user) {
-  const count   = sub.options?.count || 10;
-  const topic   = sub.topic || '비즈니스 영어';
+  const count   = sub.options?.count || 7;
   const lang    = sub.lang || '영어';
+  const langKey = lang.includes('중국') ? 'zh' : 'en';
 
-  const prompt = `당신은 성재님의 개인 학습 수석 비서입니다. 바쁜 직장인인 성재님이 1분 안에 핵심을 소화할 수 있도록 오늘의 ${lang} 표현을 엄선합니다.
-오늘의 주제: "${topic}"
+  // 요일별 테마 자동 결정 (0=일요일)
+  const dow      = new Date().getDay();
+  const theme    = WEEKDAY_THEMES[langKey][dow] || sub.topic || `비즈니스 ${lang}`;
+  const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
+  const dayKr    = dayNames[dow];
 
-다음 형식의 JSON 배열만 반환하세요 (다른 텍스트 없이):
+  const dialogueInstruction = lang === '영어'
+    ? `"dialogue": "A: (상황 세팅 1줄)\\nB: (표현 사용 1줄)\\nA: (자연스러운 반응 1줄)"`
+    : `"dialogue": "甲: (상황 세팅 1줄)\\n乙: (표현 사용 중국어 1줄)\\n甲: (반응 1줄)\\n[해석: 전체 대화 한국어 번역]"`;
+
+  const prompt = `당신은 성재님의 개인 학습 수석 비서입니다. 바쁜 직장인인 성재님이 아침 5분 안에 오늘의 ${lang} 표현을 완벽히 소화할 수 있도록 엄선합니다.
+
+오늘(${dayKr}요일) 테마: "${theme}"
+
+다음 JSON 배열만 반환하세요 (마크다운 코드블록 없이):
 [
   {
     "expression": "${lang} 표현 원문",
-    "meaning": "한국어 뜻 (간결하게)",
-    "nuance": "뉘앙스 — 한국인이 실수하기 쉬운 포인트 위주",
-    "sourceSentence": "실제 비즈니스 현장 예문 (원어)",
-    "practiceSentence": "직장인이 내일 바로 쓸 수 있는 연습 문장"
+    "meaning": "한국어 뜻 (간결, 10자 이내)",
+    "nuance": "뉘앙스 — 한국인이 실수하기 쉬운 포인트 또는 사용 맥락 (1~2문장)",
+    "sourceSentence": "실제 비즈니스 현장 예문 (원어, 자연스러운 문장)",
+    "practiceSentence": "성재님이 내일 회의/이메일에서 바로 쓸 수 있는 연습 문장",
+    ${dialogueInstruction}
   }
 ]
 
 조건:
 - 정확히 ${count}개 표현 생성
-- 주제와 밀접하게 연관된 실전 표현만 선별
-- practiceSentence는 회의·이메일·보고 등 실제 직장 상황에 맞게`;
+- 오늘 테마 "${theme}"에 딱 맞는 실전 표현만 선별
+- dialogue는 실제 비즈니스 현장에서 바로 쓸 수 있는 짧은 대화문 (3~4줄)
+- practiceSentence는 실제 직장 상황(회의·이메일·보고·협상)에 맞게 구체적으로`;
 
-  const raw  = await callGemini(prompt, 3000);
-  const entries = safeParseJSON(raw) || generateMockLanguageEntries(topic, count);
+  const raw     = await callGemini(prompt, 4000);
+  const entries = safeParseJSON(raw) || generateMockLanguageEntries(theme, count, lang);
 
   return {
     type:        'language',
     category:    sub.category || 'en',
-    subCategory: topic,
+    subCategory: theme,
     label:       sub.label,
-    title:       `오늘의 ${topic}: ${entries[0]?.expression || '핵심 표현'} 외 ${entries.length - 1}개`,
-    summary:     `${topic} 분야 핵심 ${lang} 표현 ${entries.length}선`,
+    title:       `[${dayKr}] ${theme}: ${entries[0]?.expression || '핵심 표현'} 외 ${entries.length - 1}개`,
+    summary:     `${dayKr}요일 테마 — ${theme} 핵심 ${lang} 표현 ${entries.length}선`,
     report:      '',
+    theme,
+    dayOfWeek:   dayKr,
     vocabEntries: entries,
     aiGenerated: !!process.env.GEMINI_API_KEY
   };
 }
 
 /**
- * 시황/경제 리포트 피드 생성
+ * 시황/경제 리포트 피드 생성 — 증시 지표 배너 + 3줄 요약 + 체크포인트 포함
  */
 async function generateMarketFeed(sub, user) {
   const topic = sub.topic || '증시 전반';
   const isUS  = sub.id === 'us_market';
 
-  const prompt = `당신은 성재님의 개인 학습 수석 비서입니다. 바쁜 직장인인 성재님이 1분 안에 오늘의 ${isUS ? '미국' : '한국'} 시장 흐름을 파악할 수 있도록 핵심만 전달합니다.
+  const indicatorSpec = isUS
+    ? `"indicators": [
+        {"name":"S&P 500","value":"XXXX.XX","change":"+X.XX%","dir":"up|down"},
+        {"name":"나스닥","value":"XXXXX.XX","change":"+X.XX%","dir":"up|down"},
+        {"name":"다우 지수","value":"XXXXX","change":"+X.XX%","dir":"up|down"},
+        {"name":"미 국채 10년물","value":"X.XX%","change":"+X bp","dir":"up|down"},
+        {"name":"VIX 공포지수","value":"XX.X","change":"-X.X","dir":"up|down"}
+      ]`
+    : `"indicators": [
+        {"name":"코스피","value":"XXXX.XX","change":"+X.XX%","dir":"up|down"},
+        {"name":"코스닥","value":"XXX.XX","change":"+X.XX%","dir":"up|down"},
+        {"name":"원/달러","value":"XXXX","change":"+XX원","dir":"up|down"}
+      ]`;
+
+  const prompt = `당신은 성재님의 개인 학습 수석 비서입니다. 바쁜 직장인인 성재님이 아침 2분 안에 오늘의 ${isUS ? '미국' : '한국'} 시장 핵심을 완벽히 파악할 수 있도록 구성합니다.
 오늘 날짜: ${toDateStr()}
 분석 주제: ${topic}
 
 다음 JSON 형식으로만 응답하세요 (마크다운 코드블록 없이 순수 JSON):
 {
-  "title": "오늘의 시황 제목 (20자 이내, 핵심 키워드 포함)",
-  "summary": "핵심 요약 — 바쁜 직장인이 1문장으로 오늘 흐름을 파악할 수 있게",
-  "report": "마크다운 형식 시황 분석 (300~400자, ## 소제목 활용, 실전 투자 인사이트 포함)",
+  "title": "오늘의 시황 제목 (20자 이내, 오늘 핵심 흐름 키워드 포함)",
+  "summary": "한 줄 핵심 요약 — 바쁜 직장인이 1문장으로 오늘 시장 흐름 파악",
+  ${indicatorSpec},
+  "summary3": "• 오늘 시장 핵심 흐름 1줄\\n• 주목할 섹터 또는 이슈 1줄\\n• 투자자 포지셔닝 인사이트 1줄",
+  "checkpoints": [
+    "오늘 장 체크포인트 1 (구체적 수치 또는 이벤트)",
+    "오늘 장 체크포인트 2",
+    "오늘 장 체크포인트 3"
+  ],
+  "report": "## 시장 흐름\\n분석 (150자)\\n\\n## 오늘의 투자 인사이트\\n실전 포인트 (150자)",
   "aiEconomicKnowledge": [
     {
       "term": "오늘 시장의 핵심 경제 용어",
@@ -443,21 +503,26 @@ async function generateMarketFeed(sub, user) {
 }
 
 조건:
+- indicators 값은 오늘 날짜(${toDateStr()}) 기준 AI가 추정하는 대표적 수치로 작성 (실시간 아님을 알고 있음)
+- dir은 반드시 "up" 또는 "down" 중 하나
 - aiEconomicKnowledge는 반드시 3개
-- report는 오늘 날짜 기준 가상 시나리오로 작성 (실시간 데이터 미반영 명시 불필요)
-- 자전거 타면서도 2분 안에 읽을 수 있는 밀도로`;
+- summary3의 각 줄은 반드시 "• " 로 시작
+- checkpoints는 반드시 3개, 오늘 실제로 확인해야 할 구체적 내용`;
 
   const raw    = await callGemini(prompt, 4096);
-  const parsed = safeParseJSON(raw) || generateMockMarketReport(sub, topic);
+  const parsed = safeParseJSON(raw) || generateMockMarketReport(sub, topic, isUS);
 
   return {
     type:               'market',
     category:           sub.category || 'economy',
     subCategory:        topic,
     label:              sub.label,
-    title:              parsed.title  || `${isUS ? '미국' : '한국'} 시황`,
-    summary:            parsed.summary || '',
-    report:             parsed.report  || '',
+    title:              parsed.title       || `${isUS ? '미국' : '한국'} 시황`,
+    summary:            parsed.summary     || '',
+    indicators:         parsed.indicators  || [],
+    summary3:           parsed.summary3    || '',
+    checkpoints:        parsed.checkpoints || [],
+    report:             parsed.report      || '',
     aiEconomicKnowledge: parsed.aiEconomicKnowledge || [],
     aiGenerated:        !!process.env.GEMINI_API_KEY
   };
@@ -498,24 +563,47 @@ async function generateFeedForSubscription(sub, user) {
 //  Mock 폴백 (Gemini API 키 없을 때)
 // ──────────────────────────────────────────────────
 
-function generateMockLanguageEntries(topic, count) {
-  const samples = [
-    { expression: 'touch base', meaning: '연락하다, 간단히 소통하다', nuance: '짧게 확인할 때', sourceSentence: "Let's touch base tomorrow.", practiceSentence: "I'll touch base with the team." },
-    { expression: 'get the ball rolling', meaning: '일을 시작하다', nuance: '첫 발을 뗄 때', sourceSentence: "Let's get the ball rolling.", practiceSentence: "We need to get the ball rolling on this." },
-    { expression: 'on the same page', meaning: '의견이 일치하다', nuance: '팀 내 합의 확인', sourceSentence: "Are we all on the same page?", practiceSentence: "Let's make sure we're on the same page." },
-    { expression: 'think outside the box', meaning: '창의적으로 생각하다', nuance: '혁신적 접근 요청 시', sourceSentence: "We need to think outside the box.", practiceSentence: "Think outside the box for this project." },
-    { expression: 'keep in the loop', meaning: '계속 공유하다', nuance: '정보 업데이트 요청', sourceSentence: "Keep me in the loop.", practiceSentence: "I'll keep you in the loop on developments." }
+function generateMockLanguageEntries(topic, count, lang) {
+  const isZh = (lang || '').includes('중국');
+  const samples = isZh ? [
+    { expression: '您好', meaning: '안녕하세요', nuance: '공식적인 비즈니스 인사', sourceSentence: '您好，我是金成在。', practiceSentence: '您好，很高兴认识您。', dialogue: '甲: 您好！\n乙: 您好，很高兴认识您。\n甲: 我是韩国公司的代表。\n[해석: 안녕하세요! / 안녕하세요, 만나서 반갑습니다. / 저는 한국 회사 대표입니다.]' },
+    { expression: '请多关照', meaning: '잘 부탁드립니다', nuance: '처음 만났을 때 관용적으로 사용', sourceSentence: '以后请多关照。', practiceSentence: '这次合作请多关照。', dialogue: '甲: 这次由我负责。\n乙: 请多关照！\n甲: 我们一起努力。\n[해석: 이번에 제가 담당합니다. / 잘 부탁드립니다! / 함께 노력합시다.]' },
+    { expression: '没问题', meaning: '문제없습니다', nuance: '승낙·확인할 때 가장 많이 쓰임', sourceSentence: '这个要求没问题。', practiceSentence: '交货期三天，没问题吗？', dialogue: '甲: 能在周五前完成吗？\n乙: 没问题，我来安排。\n甲: 太好了，谢谢。\n[해석: 금요일 전에 완료 가능한가요? / 문제없습니다, 제가 준비할게요. / 좋습니다, 감사합니다.]' }
+  ] : [
+    { expression: 'touch base', meaning: '연락하다', nuance: '짧게 상황을 확인할 때 사용. "contact"보다 가볍고 친근한 뉘앙스', sourceSentence: "Let's touch base tomorrow morning.", practiceSentence: "I'll touch base with the client before the meeting.", dialogue: "A: Do you have an update on the proposal?\nB: Not yet, let me touch base with Sarah.\nA: Great, let me know what you find out." },
+    { expression: 'get the ball rolling', meaning: '시작하다', nuance: '첫 발을 내딛을 때. "start"보다 더 역동적인 느낌', sourceSentence: "Let's get the ball rolling on the Q3 campaign.", practiceSentence: "We should get the ball rolling on this project now.", dialogue: "A: The deadline is approaching.\nB: You're right. Let's get the ball rolling.\nA: I'll schedule a kickoff meeting." },
+    { expression: 'on the same page', meaning: '의견 일치', nuance: '팀 내 공통 이해 확인. 회의 시작/끝에 자주 사용', sourceSentence: "Are we all on the same page about the launch date?", practiceSentence: "Before we proceed, let's make sure we're on the same page.", dialogue: "A: So we're aiming for a July launch?\nB: I thought it was August.\nA: Let's make sure we're on the same page — I'll send a summary." },
+    { expression: 'circle back', meaning: '재논의하다', nuance: '나중에 다시 돌아올 것임을 시사. 현안을 잠시 미룰 때', sourceSentence: "Let's circle back on the budget after lunch.", practiceSentence: "Can we circle back to this point at the end of the meeting?", dialogue: "A: Should we address the pricing issue now?\nB: We don't have all the data yet. Let's circle back on that.\nA: Agreed. I'll add it to next week's agenda." },
+    { expression: 'take this offline', meaning: '별도로 논의하다', nuance: '회의 중 특정 이슈를 개별적으로 처리하자고 제안할 때', sourceSentence: "This is getting complex — let's take this offline.", practiceSentence: "Can we take this offline and set up a separate call?", dialogue: "A: This technical issue needs more time.\nB: Agreed. Let's take this offline.\nA: I'll send you a calendar invite." }
   ];
   return samples.slice(0, Math.min(count, samples.length));
 }
 
-function generateMockMarketReport(sub, topic) {
+function generateMockMarketReport(sub, topic, isUS) {
+  const indicators = isUS ? [
+    { name: 'S&P 500',     value: '5,234.18', change: '+0.87%', dir: 'up'   },
+    { name: '나스닥',       value: '16,428.82', change: '+1.24%', dir: 'up'   },
+    { name: '다우 지수',    value: '39,112.16', change: '+0.43%', dir: 'up'   },
+    { name: '미 국채 10년물', value: '4.31%',  change: '+3 bp',  dir: 'up'   },
+    { name: 'VIX 공포지수', value: '14.2',    change: '-0.8',   dir: 'down' }
+  ] : [
+    { name: '코스피',   value: '2,634.70', change: '+0.52%', dir: 'up'   },
+    { name: '코스닥',   value: '872.45',   change: '+0.34%', dir: 'up'   },
+    { name: '원/달러', value: '1,352',    change: '+3원',   dir: 'up'   }
+  ];
   return {
-    title: `${sub.label} — AI 키 미설정`,
-    summary: 'GEMINI_API_KEY를 설정하면 실시간 AI 시황 분석을 받을 수 있습니다.',
-    report: `## ${topic}\n\n**GEMINI_API_KEY를 환경변수에 설정하면** 매일 아침 자동으로 AI가 분석한 시황 리포트를 받을 수 있습니다.\n\n현재는 Mock 데이터로 표시됩니다.`,
+    title: `${sub.label} — AI 키 미설정 (샘플)`,
+    summary: 'GEMINI_API_KEY를 설정하면 매일 아침 AI가 분석한 실제 시황 리포트를 받을 수 있습니다.',
+    indicators,
+    summary3: '• .env 파일에 GEMINI_API_KEY를 추가하세요\n• 서버를 재시작하면 즉시 AI 분석이 활성화됩니다\n• 아래는 샘플 데이터입니다 — 실제 수치가 아닙니다',
+    checkpoints: [
+      'GEMINI_API_KEY 환경변수 설정 확인',
+      '서버 재시작 후 "지금 생성" 버튼 클릭',
+      '배달탭 새로고침으로 AI 생성 결과 확인'
+    ],
+    report: `## ${topic}\n\n**GEMINI_API_KEY를 환경변수에 설정하면** 매일 아침 자동으로 AI가 분석한 시황 리포트를 받을 수 있습니다.\n\n## 설정 방법\n1. .env 파일에 GEMINI_API_KEY 추가\n2. 서버 재시작`,
     aiEconomicKnowledge: [
-      { term: 'API 키 설정', importance: '.env 파일에 GEMINI_API_KEY를 추가하세요.', connection: '설정 후 앱을 재시작하면 즉시 활성화됩니다.' }
+      { term: 'API 키 설정', importance: '.env 파일에 GEMINI_API_KEY를 추가하세요. 이후 서버를 재시작하면 즉시 활성화됩니다.', connection: '설정 완료 후 "지금 생성" 버튼을 눌러 바로 AI 시황 리포트를 받아보세요.' }
     ]
   };
 }

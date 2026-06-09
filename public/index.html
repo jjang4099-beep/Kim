@@ -1,0 +1,579 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SJ 지식 서재</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Noto+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
+  <link rel="stylesheet" href="css/style.css?v=13"/>
+</head>
+<body>
+
+<!-- ══ 앱 껍데기 ══ -->
+<div class="app">
+
+  <!-- 헤더 -->
+  <header class="topbar">
+    <div class="logo">
+      <span class="logo-icon">⊞</span>
+      <span class="logo-text">SJ Archive</span>
+      <span class="logo-sub">SJ Knowledge Library</span>
+    </div>
+    <nav class="topbar-nav" aria-label="주요 서가">
+      <button class="shelf-tab active" data-shelf="all"     onclick="Library.selectShelf(this)">All</button>
+      <button class="shelf-tab"        data-shelf="en"      onclick="Library.selectShelf(this)">English</button>
+      <button class="shelf-tab"        data-shelf="history" onclick="Library.selectShelf(this)">History</button>
+      <button class="shelf-tab"        data-shelf="economy" onclick="Library.selectShelf(this)">Economy</button>
+      <button class="shelf-tab"        data-shelf="youtube" onclick="Library.selectShelf(this)">YouTube</button>
+      <button class="shelf-tab"        data-shelf="inbox"   onclick="Library.selectShelf(this)">Inbox</button>
+    </nav>
+    <div class="topbar-right">
+      <button class="hdr-btn" id="streakBtn" title="연속 학습일">
+        <i class="ti ti-flame"></i> <span id="streakNum">0</span>일
+      </button>
+      <button class="hdr-btn" onclick="Library.openCatManager()" title="카테고리 관리">
+        <i class="ti ti-adjustments-horizontal"></i> 관리
+      </button>
+      <!-- <button class="hdr-btn" onclick="Library.openYearEnd()" title="연말 결산">
+        <i class="ti ti-trophy"></i> 결산
+      </button> -->
+    </div>
+  </header>
+
+  <!-- 3열 레이아웃 -->
+  <div class="layout">
+
+    <!-- ── 좌측: 서재 탐색 패널 ── -->
+    <aside class="panel-left" aria-label="서재 탐색">
+
+      <!-- 지식 운동 링 -->
+      <div class="workout-card">
+        <div class="wk-ring-wrap">
+          <svg class="wk-ring" viewBox="0 0 56 56" aria-hidden="true">
+            <circle cx="28" cy="28" r="22" class="ring-track"/>
+            <circle cx="28" cy="28" r="22" class="ring-fill" id="ringFill"
+              stroke-dasharray="138.2" stroke-dashoffset="138.2"/>
+          </svg>
+          <span class="wk-num" id="todayNum">0</span>
+        </div>
+        <div class="wk-text">
+          <div class="wk-label">오늘의 운동량</div>
+          <div class="wk-sub" id="wkSub">지식을 저장해 보세요</div>
+        </div>
+      </div>
+
+      <!-- 미니 통계 -->
+      <div class="mini-stats">
+        <div class="ms-item"><span class="ms-n" id="msWeek">0</span><span class="ms-l">이번 주</span></div>
+        <div class="ms-sep"></div>
+        <div class="ms-item"><span class="ms-n" id="msTotal">0</span><span class="ms-l">전체</span></div>
+        <div class="ms-sep"></div>
+        <div class="ms-item"><span class="ms-n" id="msStreak">0</span><span class="ms-l">연속일</span></div>
+      </div>
+
+      <!-- 잔디 -->
+      <div class="grass-wrap">
+        <div class="grass-label">최근 84일 학습 기록</div>
+        <div class="grass-grid" id="grassGrid" role="img" aria-label="학습 잔디"></div>
+        <div class="grass-legend">
+          <span class="gl-item"><span class="gl-dot"></span>0</span>
+          <span class="gl-item"><span class="gl-dot lv1"></span>1</span>
+          <span class="gl-item"><span class="gl-dot lv2"></span>3</span>
+          <span class="gl-item"><span class="gl-dot lv3"></span>5+</span>
+        </div>
+      </div>
+
+      <!-- 서가별 권수 -->
+      <div class="shelf-stats">
+        <div class="ss-title">서가 현황</div>
+        <div class="ss-item" onclick="Library.selectShelfById('en')">
+          <span class="ss-icon en">En</span>
+          <span class="ss-name">English</span>
+          <span class="ss-cnt" id="sc-en">0</span>
+        </div>
+        <div class="ss-item" onclick="Library.selectShelfById('history')">
+          <span class="ss-icon hi">Hi</span>
+          <span class="ss-name">History</span>
+          <span class="ss-cnt" id="sc-history">0</span>
+        </div>
+        <div class="ss-item" onclick="Library.selectShelfById('economy')">
+          <span class="ss-icon ec">Ec</span>
+          <span class="ss-name">Economy</span>
+          <span class="ss-cnt" id="sc-economy">0</span>
+        </div>
+        <div class="ss-item inbox" onclick="Library.selectShelfById('inbox')">
+          <span class="ss-icon gn">In</span>
+          <span class="ss-name">Inbox</span>
+          <span class="ss-cnt" id="sc-inbox">0</span>
+        </div>
+      </div>
+
+      <!-- 🎁 지식 배달 전용 메뉴 -->
+      <button class="sidebar-btn sidebar-btn-feed" onclick="Library.openDailyFeedView()">
+        <span class="sbf-gift">🎁</span> 오늘의 지식 배달
+        <span class="sbf-badge" id="feedMenuBadge" hidden></span>
+      </button>
+
+      <!-- 주간 브리핑 버튼 -->
+      <button class="sidebar-btn" onclick="Library.openWeekly()">
+        <i class="ti ti-book-2"></i> 주간 지식 브리핑
+      </button>
+
+    </aside>
+
+    <!-- ── 중앙: 서가 메인 ── -->
+    <main class="panel-main" id="panelMain">
+
+      <!-- 서가 헤더 -->
+      <div class="shelf-header">
+        <div>
+          <h1 class="shelf-title" id="shelfTitle">All</h1>
+          <p  class="shelf-desc"  id="shelfDesc">모든 지식이 모인 서재의 전경</p>
+        </div>
+        <button class="add-btn" onclick="Library.openCapture()" title="새 지식 추가" aria-label="새 지식 추가">
+          <i class="ti ti-plus"></i> 지식 추가
+        </button>
+      </div>
+
+      <!-- 📄 맞춤형 지식 보고서 인쇄 바 -->
+      <div class="report-bar no-print">
+        <div class="rb-left">
+          <i class="ti ti-printer rb-ico"></i>
+          <span class="rb-label">기간별 보고서</span>
+          <input type="date" id="rpStart" class="rb-date" aria-label="시작일">
+          <span class="rb-tilde">~</span>
+          <input type="date" id="rpEnd" class="rb-date" aria-label="종료일">
+          <div class="rb-presets">
+            <button type="button" onclick="Library.setReportRange(7)">최근 1주</button>
+            <button type="button" onclick="Library.setReportRange(21)">최근 3주</button>
+            <button type="button" onclick="Library.setReportRange(60)">지난 2달</button>
+          </div>
+        </div>
+        <button class="rb-print-btn" onclick="Library.openPrintReport()">
+          <i class="ti ti-file-type-pdf"></i> 맞춤형 지식 보고서 인쇄 (PDF)
+        </button>
+      </div>
+
+      <!-- 태그 필터바 -->
+      <div class="tag-filter-bar" id="tagFilterBar" hidden></div>
+
+      <!-- 통찰 카드 배너 (항목이 있을 때만 표시) -->
+      <div class="insight-banner" id="insightBanner" hidden>
+        <div class="ib-header">
+          <i class="ti ti-sparkles ib-icon"></i>
+          <span class="ib-label">서재 사서의 발견</span>
+          <button class="ib-close" onclick="document.getElementById('insightBanner').hidden=true" aria-label="닫기">×</button>
+        </div>
+        <div class="ib-title"  id="ibTitle"></div>
+        <div class="ib-body"   id="ibBody"></div>
+      </div>
+
+      <!-- 서가 뷰 -->
+      <div class="bookshelf" id="bookshelf">
+        <!-- JS로 렌더링 -->
+      </div>
+
+    </main>
+
+    <!-- ── 우측: 타임머신 & 부가 패널 ── -->
+    <aside class="panel-right" aria-label="타임머신 위젯">
+
+      <!-- 타임머신 위젯 -->
+      <section class="timemachine-card">
+        <div class="tm-header">
+          <i class="ti ti-hourglass tm-icon"></i>
+          <div>
+            <div class="tm-title">과거의 내가 보낸 지식</div>
+            <div class="tm-sub">7일 이전의 지식 복습</div>
+          </div>
+          <button class="tm-refresh" onclick="Library.loadTimeMachine()" title="새로 섞기" aria-label="새로 섞기">
+            <i class="ti ti-refresh"></i>
+          </button>
+        </div>
+        <div class="tm-list" id="tmList">
+          <div class="tm-empty"><i class="ti ti-clock"></i><p>7일이 지난 지식이 없습니다</p></div>
+        </div>
+      </section>
+
+      <!-- 최근 통찰 -->
+      <section class="insight-panel">
+        <div class="ip-header">
+          <i class="ti ti-bulb ip-icon"></i>
+          <span class="ip-title">AI 사서의 통찰</span>
+        </div>
+        <div class="ip-list" id="ipList">
+          <div class="ip-empty"><p>영어와 역사 지식이 쌓이면<br>AI가 연결고리를 발견합니다</p></div>
+        </div>
+      </section>
+
+    </aside>
+
+  </div><!-- /.layout -->
+</div><!-- /.app -->
+
+<!-- ══ 지식 추가 모달 ══ -->
+<div class="modal-overlay" id="captureOverlay" hidden>
+  <div class="modal-box capture-box" role="dialog" aria-modal="true" aria-label="새 지식 추가">
+    <div class="mb-header">
+      <div class="mb-title">새 지식을 서재에 꽂다</div>
+      <button class="mb-close" onclick="Library.closeCapture()" aria-label="닫기"><i class="ti ti-x"></i></button>
+    </div>
+    <textarea class="cap-input" id="capInput" rows="4"
+      placeholder="영어 표현, 역사 구절, 경제 기사, 유튜브 링크를 붙여 넣으세요.&#10;AI가 자동으로 서가를 결정합니다."
+      onkeydown="Library.handleCapKey(event)"></textarea>
+    <div class="cap-ai" id="capAI" hidden>
+      <span class="ai-dot"></span><span class="ai-dot"></span><span class="ai-dot"></span>
+      <span id="capAIMsg">사서가 분류 중입니다...</span>
+    </div>
+    <div class="cap-footer">
+      <div class="cap-meta">
+        <label class="cap-lbl">출처
+          <select id="capSource" class="cap-select">
+            <option value="manual">직접 입력</option>
+            <option value="HelloTalk">HelloTalk</option>
+            <option value="교보 e-Book">교보 e-Book</option>
+            <option value="경제 기사">경제 기사</option>
+            <option value="YouTube">YouTube</option>
+            <option value="Chrome 확장">Chrome 확장</option>
+            <option value="웹훅">웹훅</option>
+          </select>
+        </label>
+        <span class="cap-hint"><i class="ti ti-keyboard"></i> Ctrl+Enter로 저장</span>
+      </div>
+      <div class="cap-actions">
+        <button class="btn-ghost" onclick="Library.closeCapture()">취소</button>
+        <button class="btn-shelve" id="capBtn" onclick="Library.capture()">
+          <i class="ti ti-books"></i> 서가에 꽂기
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 주간 브리핑 모달 ══ -->
+<div class="modal-overlay" id="weeklyOverlay" hidden>
+  <div class="modal-box weekly-box" role="dialog" aria-modal="true" aria-label="주간 지식 브리핑">
+    <div class="mb-header">
+      <div class="mb-title" id="weeklyHeadline">주간 지식 브리핑</div>
+      <button class="mb-close" onclick="Library.closeWeekly()" aria-label="닫기"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="weekly-loading" id="weeklyLoading"><div class="spin-ring"></div><p>사서가 브리핑을 준비 중입니다...</p></div>
+    <div class="weekly-content" id="weeklyContent" hidden>
+      <div class="wk-meta" id="weeklyMeta"></div>
+      <blockquote class="wk-story" id="weeklyStory"></blockquote>
+      <div class="wk-insight-row">
+        <div class="wki-label"><i class="ti ti-arrows-exchange"></i> 지식 연결</div>
+        <div class="wki-body" id="weeklyInsight"></div>
+      </div>
+      <div class="wk-phrase-row">
+        <div class="wkp-label">이번 주의 문장</div>
+        <div class="wkp-body" id="weeklyPhrase"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 연말 결산 모달 ══ -->
+<div class="modal-overlay" id="yearEndOverlay" hidden>
+  <div class="modal-box yr-box" role="dialog" aria-modal="true" aria-label="연말 지식 결산">
+    <div class="mb-header yr-header">
+      <div class="yr-hd-left">
+        <span class="yr-badge" id="yrBadgeYear">2026</span>
+        <div>
+          <div class="mb-title">지식 발자국 결산</div>
+          <div class="yr-subtitle">Knowledge Year-End Review</div>
+        </div>
+      </div>
+      <!-- X 버튼: 무조건 닫힘 -->
+      <button class="mb-close" id="yrCloseBtn" onclick="Library.closeYearEnd()" aria-label="닫기"><i class="ti ti-x"></i></button>
+    </div>
+
+    <div class="yr-loading" id="yrLoading"><div class="spin-ring"></div><p>연간 지식 서재를 분석 중입니다...</p></div>
+
+    <div class="yr-content" id="yrContent" hidden>
+
+      <!-- 숫자 통계 -->
+      <div class="yr-nums" id="yrNums"></div>
+
+      <!-- 3대 키워드 -->
+      <section class="yr-section">
+        <div class="yr-sec-lbl">올해를 빛낸 3대 키워드</div>
+        <div class="yr-kw-row" id="yrKwRow"></div>
+      </section>
+
+      <!-- 학습 점유율 도넛 -->
+      <section class="yr-section">
+        <div class="yr-sec-lbl">서가별 학습 점유율</div>
+        <div class="yr-chart-area">
+          <canvas id="yrDonut" width="140" height="140" aria-label="서가 점유율 도넛 차트"></canvas>
+          <div class="yr-legend" id="yrLegend"></div>
+        </div>
+      </section>
+
+      <!-- 베스트 문장 -->
+      <section class="yr-section">
+        <div class="yr-sec-lbl">올해의 베스트 지식 문장</div>
+        <div class="yr-best" id="yrBest"></div>
+      </section>
+
+      <!-- AI 분석 -->
+      <section class="yr-section yr-ai">
+        <div class="yr-sec-lbl"><i class="ti ti-sparkles"></i> 서재 사서의 연간 총평</div>
+        <p  class="yr-ai-summary"  id="yrAiSummary"></p>
+        <p  class="yr-ai-insight"  id="yrAiInsight"></p>
+        <blockquote class="yr-ai-letter" id="yrAiLetter"></blockquote>
+        <div class="yr-mock-note" id="yrMockNote" hidden>
+          <i class="ti ti-info-circle"></i>
+          <span><code>ANTHROPIC_API_KEY</code> 설정 시 Claude AI 실제 분석으로 전환됩니다.</span>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══ 카테고리 관리 모달 ══ -->
+<div class="modal-overlay" id="catManagerOverlay" hidden>
+  <div class="modal-box cat-manager-box" role="dialog" aria-modal="true">
+    <div class="mb-header">
+      <div class="mb-title">카테고리 관리</div>
+      <button class="mb-close" onclick="Library.closeCatManager()" aria-label="닫기"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="cat-manager-body">
+      <div class="cat-section-label">현재 카테고리</div>
+      <div id="catList" class="cat-list"></div>
+      <div class="cat-section-label" style="margin-top:20px">새 카테고리 추가</div>
+      <div class="cat-add-row">
+        <input class="cat-input" id="newCatName" type="text" placeholder="카테고리 이름 (예: Reading, Science...)" maxlength="30"/>
+        <input class="cat-color-input" id="newCatColor" type="color" value="#6B7280" title="컬러 선택"/>
+        <button class="btn-shelve" onclick="Library.addCat()"><i class="ti ti-plus"></i> 추가</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 카드 상세 모달 ══ -->
+<div class="modal-overlay" id="detailOverlay" hidden>
+  <div class="modal-box detail-box" role="dialog" aria-modal="true" id="detailBox">
+    <!-- JS가 innerHTML로 렌더링 -->
+  </div>
+</div>
+
+<!-- ══ Inbox 처리 모달 (미처리 → 지식 승인) ══ -->
+<div class="modal-overlay" id="inboxProcessOverlay" hidden>
+  <div class="modal-box inbox-process-box" role="dialog" aria-modal="true" aria-label="지식으로 승인하기">
+    <div class="mb-header">
+      <div class="mb-title">✍️ 내 생각을 더해 지식으로 승인하기</div>
+      <button class="mb-close" onclick="Library.closeInboxProcess()" aria-label="닫기"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="ip-body">
+
+      <!-- AI가 파악한 내용 (참고용) -->
+      <div class="ip-section ip-ai-section">
+        <div class="ip-section-label"><i class="ti ti-robot"></i> AI 요약 (참고용)</div>
+        <div class="ip-ai-summary" id="ipAiSummary"></div>
+        <div id="ipSourceWrap" hidden>
+          <a class="ip-source-link" id="ipSourceLink" href="#" target="_blank" rel="noopener">
+            <i class="ti ti-external-link"></i><span id="ipSourceLinkText"></span>
+          </a>
+        </div>
+        <details class="ip-orig-details">
+          <summary>원문 보기</summary>
+          <div class="ip-orig-text" id="ipOrigText"></div>
+        </details>
+      </div>
+
+      <!-- 핵심: 내 생각 입력 -->
+      <div class="ip-section ip-insight-section">
+        <div class="ip-section-label insight-label">
+          <i class="ti ti-bulb"></i> 나의 생각 · 해석 · 핵심 메모
+          <span class="ip-optional">선택</span>
+        </div>
+        <textarea class="ip-insight-input" id="ipInsightInput" rows="5"
+          placeholder="이 내용을 읽고 무엇을 느꼈나요? 어떤 맥락에서 중요한가요?&#10;비워 두면 AI 요약의 첫 줄이 자동으로 들어갑니다."></textarea>
+      </div>
+
+      <!-- 카테고리 선택 -->
+      <div class="ip-section ip-cat-section">
+        <div class="ip-section-label"><i class="ti ti-folder"></i> 서가 배정</div>
+        <select class="ip-cat-select" id="ipCatSelect" onchange="Library.onInboxCatChange()"></select>
+      </div>
+
+      <!-- 세부 분류 (Sub-category) -->
+      <div class="ip-section ip-sub-section">
+        <div class="ip-section-label"><i class="ti ti-sitemap"></i> 세부 분류 <span class="ip-optional">선택</span></div>
+        <div class="ip-sub-list" id="ipSubList"><!-- JS 렌더 (칩) --></div>
+        <div class="ip-sub-add">
+          <input type="text" class="ip-sub-input" id="ipSubNewInput"
+            placeholder="새 세부 분류 입력 (예: 구문, 단어)"
+            onkeydown="if(event.key==='Enter'){event.preventDefault();Library.addInboxSub();}">
+          <button class="ip-sub-add-btn" onclick="Library.addInboxSub()">
+            <i class="ti ti-plus"></i> 추가
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <div class="ip-footer">
+      <div class="ip-title-preview" id="ipTitle"></div>
+      <div class="ip-actions">
+        <button class="btn-ghost" onclick="Library.closeInboxProcess()">나중에</button>
+        <button class="btn-publish" id="ipPublishBtn" onclick="Library.publishItem()">
+          <i class="ti ti-books"></i> 서재에 꽂기
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 데일리 피드 구독 설정 모달 ══ -->
+<!-- ══ 🎁 지식 배달 전용 풀스크린 뷰 (매거진) ══ -->
+<div class="modal-overlay feed-overlay" id="feedOverlay" hidden>
+  <div class="feed-shell" role="dialog" aria-modal="true" aria-label="오늘의 지식 배달">
+    <header class="feed-hero">
+      <div class="feed-hero-inner">
+        <div class="feed-hero-text">
+          <div class="feed-kicker">DAILY KNOWLEDGE DELIVERY</div>
+          <h1 class="feed-hero-title"><span class="feed-gift">🎁</span> 오늘의 지식 배달</h1>
+          <p class="feed-hero-sub" id="feedHeroSub">내가 설정한 조건에 맞춰 배달된 오늘의 학습</p>
+        </div>
+        <div class="feed-hero-actions">
+          <button class="feed-hbtn" onclick="Library.loadDailyFeed(true)" title="새로고침"><i class="ti ti-refresh"></i></button>
+          <button class="feed-hbtn" onclick="Library.openFeedSettings()" title="구독 설정"><i class="ti ti-settings"></i> 구독 설정</button>
+          <button class="feed-hbtn feed-hclose" onclick="Library.closeDailyFeedView()" title="닫기"><i class="ti ti-x"></i></button>
+        </div>
+      </div>
+    </header>
+    <div class="feed-magazine" id="feedMagazine"><!-- JS 렌더 --></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="feedSettingsOverlay" hidden>
+  <div class="modal-box feed-settings-box" role="dialog" aria-modal="true" aria-label="구독 설정">
+    <div class="mb-header">
+      <div class="mb-title">🔔 데일리 피드 구독 설정</div>
+      <button class="mb-close" onclick="Library.closeFeedSettings()" aria-label="닫기"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="fs-body">
+      <p class="fs-desc">대분류·세부 주제와 분량을 직접 골라 나만의 지식 배달을 구성하세요.</p>
+      <div class="fs-list" id="fsList"><!-- JS 렌더 --></div>
+    </div>
+    <div class="fs-footer">
+      <button class="btn-ghost" onclick="Library.closeFeedSettings()">닫기</button>
+      <button class="btn-publish" onclick="Library.saveFeedSettings()">
+        <i class="ti ti-device-floppy"></i> 저장하고 새로고침
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 심층 지식 대시보드 모달 ══ -->
+<div class="modal-overlay" id="graphOverlay" hidden>
+  <div class="knowledge-dashboard" role="dialog" aria-modal="true" aria-label="심층 지식 대시보드">
+
+    <!-- 헤더 바 -->
+    <div class="kd-topbar">
+      <div class="kd-topbar-left">
+        <span class="kd-badge" id="kdCatBadge"></span>
+        <span class="kd-topbar-title" id="kdTopTitle"></span>
+      </div>
+      <div class="kd-topbar-right">
+        <button class="kd-close-btn" onclick="Library.closeGraph()" aria-label="닫기">
+          <i class="ti ti-x"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- 2분할 바디 -->
+    <div class="kd-body">
+
+      <!-- ── 왼쪽: AI 심층 분석 리포트 ── -->
+      <div class="kd-left" id="kdLeft">
+        <div class="kd-left-header">
+          <div class="kd-yt-thumb-wrap" id="kdYtThumbWrap" hidden>
+            <img class="kd-yt-thumb" id="kdYtThumb" src="" alt="" loading="lazy">
+            <a class="kd-yt-play-overlay" id="kdYtPlayOverlay" href="#" target="_blank" rel="noopener">
+              <span class="kd-yt-play-icon"><i class="ti ti-player-play-filled"></i></span>
+            </a>
+          </div>
+          <h2 class="kd-title" id="kdTitle"></h2>
+          <a class="kd-source-link" id="kdSourceLink" href="#" target="_blank" rel="noopener" hidden>
+            <i class="ti ti-external-link"></i><span id="kdSourceText"></span>
+          </a>
+          <a class="kd-yt-btn" id="kdYtBtn" href="#" target="_blank" rel="noopener" hidden>
+            <i class="ti ti-brand-youtube"></i> 📺 원본 영상 보기
+          </a>
+        </div>
+        <div class="kd-analysis-body" id="kdAnalysisBody">
+          <!-- mdToHtml 결과 렌더링 -->
+        </div>
+      </div>
+
+      <!-- ── 오른쪽: 나의 인사이트 + 연관 지식 ── -->
+      <div class="kd-right" id="kdRight">
+
+        <!-- 나의 인사이트 편집기 -->
+        <div class="kd-insight-editor">
+          <div class="kd-section-label">
+            <i class="ti ti-bulb"></i> 나의 인사이트
+            <span class="kd-insight-hint">저장하면 카드에 굵게 표시됩니다</span>
+          </div>
+          <textarea class="kd-insight-input" id="kdInsightInput"
+            placeholder="이 지식에서 무엇을 느꼈나요?&#10;나만의 언어로 핵심을 정제해 보세요."></textarea>
+          <div class="kd-insight-actions">
+            <span class="kd-char-count" id="kdCharCount">0자</span>
+            <button class="kd-save-btn" id="kdSaveBtn" onclick="Library.saveDashInsight()">
+              <i class="ti ti-device-floppy"></i> 저장
+            </button>
+          </div>
+        </div>
+
+        <!-- 연관 지식 리스트 -->
+        <div class="kd-related-section">
+          <div class="kd-section-label">
+            <i class="ti ti-link"></i> 연관 지식
+            <span class="kd-related-count" id="kdRelatedCount"></span>
+          </div>
+          <div class="kd-related-list" id="kdRelatedList">
+            <!-- JS 렌더 -->
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /.kd-body -->
+  </div><!-- /.knowledge-dashboard -->
+</div>
+
+<!-- ══ 맞춤형 지식 보고서 인쇄 뷰 ══ -->
+<div class="modal-overlay print-overlay" id="printOverlay" hidden>
+  <div class="print-shell">
+    <div class="print-toolbar no-print">
+      <div class="pt-info" id="ptInfo">보고서</div>
+      <div class="pt-actions">
+        <button class="pt-btn pt-print" onclick="window.print()">
+          <i class="ti ti-printer"></i> 인쇄 / PDF 저장
+        </button>
+        <button class="pt-btn pt-close" onclick="Library.closePrintReport()">
+          <i class="ti ti-x"></i> 닫기
+        </button>
+      </div>
+    </div>
+    <div class="print-scroll">
+      <div class="print-page" id="printContent"><!-- JS 렌더 --></div>
+    </div>
+  </div>
+</div>
+
+<!-- 토스트 -->
+<div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+<script src="js/app.js?v=12"></script>
+</body>
+</html>
+
+
+
+

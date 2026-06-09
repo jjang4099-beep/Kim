@@ -1,0 +1,554 @@
+[
+  {
+    "id": "28d6fc77-10b5-473c-acbb-9a45f1c7a3f8",
+    "type": "text",
+    "title": "Skdk",
+    "text": "Skdk",
+    "aiSummary": "",
+    "aiAnalysis": "",
+    "analysisStatus": "none",
+    "thumbnailUrl": "",
+    "summary": "",
+    "myInsight": "",
+    "subCategory": "",
+    "status": "inbox",
+    "originalUrl": null,
+    "sourceUrl": null,
+    "category": "en",
+    "shelf": "en",
+    "keywords": [],
+    "tags": [],
+    "extras": {},
+    "classifier": "rules(high)",
+    "source": "manual",
+    "date": "2026-06-08",
+    "time": "00:21",
+    "createdAt": "2026-06-07T15:21:15.395Z",
+    "updatedAt": "2026-06-07T15:21:15.395Z",
+    "insights": []
+  },
+  {
+    "id": "6b61bc4d-a42b-4e3f-b561-f77f3a8e6e90",
+    "type": "text",
+    "title": "call it a day",
+    "text": "call it a day — 오늘 일을 마치다",
+    "aiSummary": "## 📌 핵심 표현\n**call it a day** — 오늘 일을 마치다\n\n업무를 마무리하고 퇴근하거나 작업을 중단할 때 사용합니다.\n\n## 📝 예문\n\n- 원문: We've made great progress, so let's call it a day.\n- 응용: It's already 8 PM; let's call it a day and finish tomorrow.",
+    "aiAnalysis": "## 📌 핵심 표현\n**call it a day** — 오늘 일을 마치다\n\n업무를 마무리하고 퇴근하거나 작업을 중단할 때 사용합니다.\n\n## 📝 예문\n\n- 원문: We've made great progress, so let's call it a day.\n- 응용: It's already 8 PM; let's call it a day and finish tomorrow.",
+    "analysisStatus": "done",
+    "summary": "오늘 일을 마치다",
+    "myInsight": "",
+    "subCategory": "비즈니스 영어",
+    "status": "active",
+    "originalUrl": null,
+    "sourceUrl": null,
+    "category": "en",
+    "shelf": "en",
+    "keywords": [],
+    "tags": [
+      "#데일리피드",
+      "#낱개저장"
+    ],
+    "extras": {
+      "vocabEntries": [
+        {
+          "expression": "call it a day",
+          "meaning": "오늘 일을 마치다",
+          "nuance": "업무를 마무리하고 퇴근하거나 작업을 중단할 때 사용합니다.",
+          "sourceSentence": "We've made great progress, so let's call it a day.",
+          "practiceSentence": "It's already 8 PM; let's call it a day and finish tomorrow."
+        }
+      ]
+    },
+    "classifier": "daily-feed-single",
+    "source": "daily-feed",
+    "date": "2026-06-07",
+    "time": "23:23",
+    "createdAt": "2026-06-07T14:23:19.427Z",
+    "updatedAt": "2026-06-07T14:23:19.427Z",
+    "publishedAt": "2026-06-07T14:23:19.427Z",
+    "insights": [],
+    "thumbnailUrl": ""
+  },
+  {
+    "id": "60f9cf6e-f655-44f4-84d5-4b5f9da4d05a",
+    "type": "text",
+    "title": "get the ball rolling",
+    "text": "get the ball rolling — 일을 시작하다, 착수하다",
+    "aiSummary": "## 📌 핵심 표현\n**get the ball rolling** — 일을 시작하다, 착수하다\n\n어떤 프로젝트나 활동의 첫 단추를 꿸 때 씁니다.\n\n## 📝 예문\n\n- 원문: We need to get the ball rolling on the new product launch.\n- 응용: Let's get the ball rolling by scheduling the kickoff meeting.",
+    "aiAnalysis": "## 📌 핵심 표현\n**get the ball rolling** — 일을 시작하다, 착수하다\n\n어떤 프로젝트나 활동의 첫 단추를 꿸 때 씁니다.\n\n## 📝 예문\n\n- 원문: We need to get the ball rolling on the new product launch.\n- 응용: Let's get the ball rolling by scheduling the kickoff meeting.",
+    "analysisStatus": "done",
+    "summary": "일을 시작하다, 착수하다",
+    "myInsight": "",
+    "subCategory": "비즈니스 영어",
+    "status": "active",
+    "originalUrl": null,
+    "sourceUrl": null,
+    "category": "en",
+    "shelf": "en",
+    "keywords": [],
+    "tags": [
+      "#데일리피드",
+      "#낱개저장"
+    ],
+    "extras": {
+      "vocabEntries": [
+        {
+          "expression": "get the ball rolling",
+          "meaning": "일을 시작하다, 착수하다",
+          "nuance": "어떤 프로젝트나 활동의 첫 단추를 꿸 때 씁니다.",
+          "sourceSentence": "We need to get the ball rolling on the new product launch.",
+          "practiceSentence": "Let's get the ball rolling by scheduling the kickoff meeting."
+        }
+      ]
+    },
+    "classifier": "daily-feed-single",
+    "source": "daily-feed",
+    "date": "2026-06-07",
+    "time": "23:23",
+    "createdAt": "2026-06-07T14:23:18.184Z",
+    "updatedAt": "2026-06-07T14:23:18.184Z",
+    "publishedAt": "2026-06-07T14:23:18.184Z",
+    "insights": [],
+    "thumbnailUrl": ""
+  },
+  {
+    "id": "6aa72695-7190-4e9b-bc0f-6400bad33eec",
+    "type": "text",
+    "title": "hit a snag",
+    "text": "hit a snag — 예상치 못한 문제에 부딪히다",
+    "aiSummary": "## 📌 핵심 표현\n**hit a snag** — 예상치 못한 문제에 부딪히다\n\n작은 장애물이나 예기치 않은 어려움을 만났을 때 사용합니다.\n\n## 📝 예문\n\n- 원문: We hit a snag with the software integration this morning.\n- 응용: We hit a snag, but we have a backup plan.",
+    "aiAnalysis": "## 📌 핵심 표현\n**hit a snag** — 예상치 못한 문제에 부딪히다\n\n작은 장애물이나 예기치 않은 어려움을 만났을 때 사용합니다.\n\n## 📝 예문\n\n- 원문: We hit a snag with the software integration this morning.\n- 응용: We hit a snag, but we have a backup plan.",
+    "analysisStatus": "done",
+    "summary": "예상치 못한 문제에 부딪히다",
+    "myInsight": "",
+    "subCategory": "비즈니스 영어",
+    "status": "active",
+    "originalUrl": null,
+    "sourceUrl": null,
+    "category": "en",
+    "shelf": "en",
+    "keywords": [],
+    "tags": [
+      "#데일리피드",
+      "#낱개저장"
+    ],
+    "extras": {
+      "vocabEntries": [
+        {
+          "expression": "hit a snag",
+          "meaning": "예상치 못한 문제에 부딪히다",
+          "nuance": "작은 장애물이나 예기치 않은 어려움을 만났을 때 사용합니다.",
+          "sourceSentence": "We hit a snag with the software integration this morning.",
+          "practiceSentence": "We hit a snag, but we have a backup plan."
+        }
+      ]
+    },
+    "classifier": "daily-feed-single",
+    "source": "daily-feed",
+    "date": "2026-06-07",
+    "time": "23:15",
+    "createdAt": "2026-06-07T14:15:59.713Z",
+    "updatedAt": "2026-06-07T14:15:59.713Z",
+    "publishedAt": "2026-06-07T14:15:59.713Z",
+    "insights": [],
+    "thumbnailUrl": ""
+  },
+  {
+    "id": "90cbd7b1-3c18-4564-8320-e193ad3e0aa3",
+    "type": "text",
+    "title": "cut to the chase",
+    "text": "cut to the chase — 본론으로 들어가다",
+    "aiSummary": "## 📌 핵심 표현\n**cut to the chase** — 본론으로 들어가다\n\n불필요한 서론을 생략하고 핵심만 말할 때 사용합니다.\n\n## 📝 예문\n\n- 원문: Let's cut to the chase and discuss the budget cuts.\n- 응용: I don't have much time, so please cut to the chase.",
+    "aiAnalysis": "## 📌 핵심 표현\n**cut to the chase** — 본론으로 들어가다\n\n불필요한 서론을 생략하고 핵심만 말할 때 사용합니다.\n\n## 📝 예문\n\n- 원문: Let's cut to the chase and discuss the budget cuts.\n- 응용: I don't have much time, so please cut to the chase.",
+    "analysisStatus": "done",
+    "summary": "본론으로 들어가다",
+    "myInsight": "",
+    "subCategory": "비즈니스 영어",
+    "status": "active",
+    "originalUrl": null,
+    "sourceUrl": null,
+    "category": "en",
+    "shelf": "en",
+    "keywords": [],
+    "tags": [
+      "#데일리피드",
+      "#낱개저장"
+    ],
+    "extras": {
+      "vocabEntries": [
+        {
+          "expression": "cut to the chase",
+          "meaning": "본론으로 들어가다",
+          "nuance": "불필요한 서론을 생략하고 핵심만 말할 때 사용합니다.",
+          "sourceSentence": "Let's cut to the chase and discuss the budget cuts.",
+          "practiceSentence": "I don't have much time, so please cut to the chase."
+        }
+      ]
+    },
+    "classifier": "daily-feed-single",
+    "source": "daily-feed",
+    "date": "2026-06-07",
+    "time": "19:32",
+    "createdAt": "2026-06-07T10:32:49.079Z",
+    "updatedAt": "2026-06-07T10:32:49.079Z",
+    "publishedAt": "2026-06-07T10:32:49.079Z",
+    "insights": [],
+    "thumbnailUrl": ""
+  },
+  {
+    "id": "c27f33e9-0ad4-4299-9790-77197099c2c8",
+    "type": "text",
+    "title": "비농업 고용지수",
+    "text": "비농업 고용지수 — 미국 노동부가 매월 발표하는 지표로, 농가를 제외한 전 산업의 고용 변화를 나타냅니다. 이는 미국 소비 지출의 원천이 되는 고용 상태를 보여주기 때문에 연준의 통화정책 결정에 가장 직접적인 영향을 미치는 핵심 지표입니다.",
+    "aiSummary": "## 📌 경제 핵심 개념\n**비농업 고용지수**\n\n### 왜 중요한가?\n미국 노동부가 매월 발표하는 지표로, 농가를 제외한 전 산업의 고용 변화를 나타냅니다. 이는 미국 소비 지출의 원천이 되는 고용 상태를 보여주기 때문에 연준의 통화정책 결정에 가장 직접적인 영향을 미치는 핵심 지표입니다.\n\n### 이 시황과의 연결\n오늘 브리핑에서 고용 지표의 완만한 둔화가 국채 금리 하락과 증시 상승을 이끈 직접적인 원인으로 작용했습니다.",
+    "aiAnalysis": "## 📌 경제 핵심 개념\n**비농업 고용지수**\n\n### 왜 중요한가?\n미국 노동부가 매월 발표하는 지표로, 농가를 제외한 전 산업의 고용 변화를 나타냅니다. 이는 미국 소비 지출의 원천이 되는 고용 상태를 보여주기 때문에 연준의 통화정책 결정에 가장 직접적인 영향을 미치는 핵심 지표입니다.\n\n### 이 시황과의 연결\n오늘 브리핑에서 고용 지표의 완만한 둔화가 국채 금리 하락과 증시 상승을 이끈 직접적인 원인으로 작용했습니다.",
+    "analysisStatus": "done",
+    "summary": "미국 노동부가 매월 발표하는 지표로, 농가를 제외한 전 산업의 고용 변화를 나타냅니다. 이는 미국 소비 지출의 원천이 되는 고용 상태를 보여주기 때문에 연준의 통화정책 결정에 가장 직접적인 영향을 미치는 핵심 지표입니다.",
+    "myInsight": "",
+    "subCategory": "증시 전반",
+    "status": "active",
+    "originalUrl": null,
+    "sourceUrl": null,
+    "category": "economy",
+    "shelf": "economy",
+    "keywords": [
+      "비농업 고용지수"
+    ],
+    "tags": [
+      "#데일리피드",
+      "#경제지식",
+      "#낱개저장"
+    ],
+    "extras": {
+      "economicKnowledge": {
+        "term": "비농업 고용지수",
+        "importance": "미국 노동부가 매월 발표하는 지표로, 농가를 제외한 전 산업의 고용 변화를 나타냅니다. 이는 미국 소비 지출의 원천이 되는 고용 상태를 보여주기 때문에 연준의 통화정책 결정에 가장 직접적인 영향을 미치는 핵심 지표입니다.",
+        "connection": "오늘 브리핑에서 고용 지표의 완만한 둔화가 국채 금리 하락과 증시 상승을 이끈 직접적인 원인으로 작용했습니다."
+      }
+    },
+    "classifier": "daily-feed-eco-single",
+    "source": "daily-feed",
+    "date": "2026-06-07",
+    "time": "18:19",
+    "createdAt": "2026-06-07T09:19:00.443Z",
+    "updatedAt": "2026-06-07T09:19:00.443Z",
+    "publishedAt": "2026-06-07T09:19:00.443Z",
+    "insights": [],
+    "thumbnailUrl": ""
+  },
+  {
+    "id": "a08c1338-b3fe-4206-84f8-5e0ca4e48d2a",
+    "type": "text",
+    "title": "touch base",
+    "text": "touch base — 연락하다, 잠깐 이야기하다",
+    "aiSummary": "## 📌 핵심 표현\n**touch base** — 연락하다, 잠깐 이야기하다\n\n진행 상황을 확인하거나 짧게 소통할 때 사용합니다.\n\n## 📝 예문\n\n- 원문: Let's touch base later this afternoon to discuss the project.\n- 응용: I'll touch base with the marketing team regarding the new campaign.",
+    "aiAnalysis": "## 📌 핵심 표현\n**touch base** — 연락하다, 잠깐 이야기하다\n\n진행 상황을 확인하거나 짧게 소통할 때 사용합니다.\n\n## 📝 예문\n\n- 원문: Let's touch base later this afternoon to discuss the project.\n- 응용: I'll touch base with the marketing team regarding the new campaign.",
+    "analysisStatus": "done",
+    "summary": "연락하다, 잠깐 이야기하다",
+    "myInsight": "",
+    "subCategory": "비즈니스 영어",
+    "status": "active",
+    "originalUrl": null,
+    "sourceUrl": null,
+    "category": "en",
+    "shelf": "en",
+    "keywords": [],
+    "tags": [
+      "#데일리피드",
+      "#낱개저장"
+    ],
+    "extras": {
+      "vocabEntries": [
+        {
+          "expression": "touch base",
+          "meaning": "연락하다, 잠깐 이야기하다",
+          "nuance": "진행 상황을 확인하거나 짧게 소통할 때 사용합니다.",
+          "sourceSentence": "Let's touch base later this afternoon to discuss the project.",
+          "practiceSentence": "I'll touch base with the marketing team regarding the new campaign."
+        }
+      ]
+    },
+    "classifier": "daily-feed-single",
+    "source": "daily-feed",
+    "date": "2026-06-07",
+    "time": "18:01",
+    "createdAt": "2026-06-07T09:01:44.462Z",
+    "updatedAt": "2026-06-07T09:01:44.462Z",
+    "publishedAt": "2026-06-07T09:01:44.462Z",
+    "insights": [],
+    "thumbnailUrl": ""
+  },
+  {
+    "id": "172e6c1f-34e4-4833-8e5a-bd247e902822",
+    "type": "text",
+    "title": "오늘의 비즈니스 영어: 효율적인 협업과 프로젝트 관리",
+    "text": "touch base — 연락하다, 잠깐 이야기하다\nget the ball rolling — 일을 시작하다, 착수하다\non the same page — 의견이 일치하다, 같은 생각을 하다\ncall it a day — 오늘 일을 마치다\nthink outside the box — 창의적으로 생각하다\nkeep someone in the loop — 진행 상황을 계속 공유하다\nbring to the table — 기여하다, 유용한 것을 제공하다\nhit a snag — 예상치 못한 문제에 부딪히다\ncut to the chase — 본론으로 들어가다\ngo the extra mile — 기대 이상으로 노력하다",
+    "aiSummary": "원활한 업무 소통과 프로젝트 성공을 위한 필수 비즈니스 표현 10선\n\n## 📖 짧은 지문\n\nTo get the ball rolling on our new project, we need to ensure everyone is on the same page. Although we hit a snag during the initial phase, the team is ready to go the extra mile to meet the deadline. Let's touch base tomorrow to discuss how we can think outside the box to overcome these challenges.\n\n> 새 프로젝트를 시작하기 위해 우리는 모두가 같은 방향을 바라보고 있는지 확인할 필요가 있습니다. 초기 단계에서 예상치 못한 문제에 부딪혔지만, 팀은 마감 기한을 맞추기 위해 기대 이상으로 노력할 준비가 되어 있습니다. 내일 다시 연락하여 이러한 도전 과제들을 해결하기 위해 어떻게 창의적으로 생각할 수 있을지 논의합시다.\n\n## 💬 실전 대화문\n\n**A**: Hi, let's touch base on the Q3 report before we call it a day.\n  _(안녕하세요, 퇴근하기 전에 3분기 보고서에 대해 잠깐 이야기 나누시죠.)_\n\n**B**: Sure. I think we hit a snag with the data collection, but I have a solution.\n  _(네. 데이터 수집 과정에서 예상치 못한 문제가 있었는데, 해결책이 있습니다.)_\n\n**A**: That's great. Let's cut to the chase—what do you propose?\n  _(잘됐네요. 본론으로 들어가서, 어떤 제안을 하시나요?)_\n\n**B**: We should think outside the box and use the new AI tool to automate the process.\n  _(관습에서 벗어나 새로운 AI 도구를 사용해 과정을 자동화하는 것을 제안합니다.)_\n\n**A**: I like that. It really shows what you bring to the table.\n  _(좋네요. 당신이 어떤 기여를 할 수 있는지 잘 보여주는군요.)_\n\n**B**: Thanks. I'll keep you in the loop as I start the implementation.\n  _(감사합니다. 구현을 시작하면서 계속 진행 상황을 공유하겠습니다.)_\n\n**A**: Perfect. Let's get the ball rolling tomorrow morning.\n  _(완벽해요. 내일 아침에 바로 시작합시다.)_",
+    "summary": "원활한 업무 소통과 프로젝트 성공을 위한 필수 비즈니스 표현 10선",
+    "myInsight": "",
+    "subCategory": "비즈니스 영어",
+    "status": "active",
+    "originalUrl": null,
+    "sourceUrl": null,
+    "category": "en",
+    "shelf": "en",
+    "keywords": [],
+    "tags": [
+      "#데일리피드",
+      "#영어 표현 배달"
+    ],
+    "extras": {
+      "vocabEntries": [
+        {
+          "expression": "touch base",
+          "meaning": "연락하다, 잠깐 이야기하다",
+          "nuance": "진행 상황을 확인하거나 짧게 소통할 때 사용합니다.",
+          "sourceSentence": "Let's touch base later this afternoon to discuss the project.",
+          "practiceSentence": "I'll touch base with the marketing team regarding the new campaign."
+        },
+        {
+          "expression": "get the ball rolling",
+          "meaning": "일을 시작하다, 착수하다",
+          "nuance": "어떤 프로젝트나 활동의 첫 단추를 꿸 때 씁니다.",
+          "sourceSentence": "We need to get the ball rolling on the new product launch.",
+          "practiceSentence": "Let's get the ball rolling by scheduling the kickoff meeting."
+        },
+        {
+          "expression": "on the same page",
+          "meaning": "의견이 일치하다, 같은 생각을 하다",
+          "nuance": "팀원들이 서로 같은 정보를 공유하고 이해하고 있음을 강조합니다.",
+          "sourceSentence": "I want to make sure we are all on the same page before we proceed.",
+          "practiceSentence": "Regular meetings help keep everyone on the same page."
+        },
+        {
+          "expression": "call it a day",
+          "meaning": "오늘 일을 마치다",
+          "nuance": "업무를 마무리하고 퇴근하거나 작업을 중단할 때 사용합니다.",
+          "sourceSentence": "We've made great progress, so let's call it a day.",
+          "practiceSentence": "It's already 8 PM; let's call it a day and finish tomorrow."
+        },
+        {
+          "expression": "think outside the box",
+          "meaning": "창의적으로 생각하다",
+          "nuance": "관습에 얽매이지 않고 혁신적인 아이디어를 낼 때 씁니다.",
+          "sourceSentence": "We need to think outside the box to solve this budget issue.",
+          "practiceSentence": "Our team is encouraged to think outside the box during brainstorming."
+        },
+        {
+          "expression": "keep someone in the loop",
+          "meaning": "진행 상황을 계속 공유하다",
+          "nuance": "특정 인물에게 정보를 지속적으로 업데이트해 줄 때 사용합니다.",
+          "sourceSentence": "Please keep me in the loop regarding any changes to the schedule.",
+          "practiceSentence": "I will keep the manager in the loop as the project develops."
+        },
+        {
+          "expression": "bring to the table",
+          "meaning": "기여하다, 유용한 것을 제공하다",
+          "nuance": "협상이나 팀 프로젝트에서 자신의 강점이나 가치를 보여줄 때 씁니다.",
+          "sourceSentence": "What unique skills do you bring to the table for this role?",
+          "practiceSentence": "She brings years of experience to the table."
+        },
+        {
+          "expression": "hit a snag",
+          "meaning": "예상치 못한 문제에 부딪히다",
+          "nuance": "작은 장애물이나 예기치 않은 어려움을 만났을 때 사용합니다.",
+          "sourceSentence": "We hit a snag with the software integration this morning.",
+          "practiceSentence": "We hit a snag, but we have a backup plan."
+        },
+        {
+          "expression": "cut to the chase",
+          "meaning": "본론으로 들어가다",
+          "nuance": "불필요한 서론을 생략하고 핵심만 말할 때 사용합니다.",
+          "sourceSentence": "Let's cut to the chase and discuss the budget cuts.",
+          "practiceSentence": "I don't have much time, so please cut to the chase."
+        },
+        {
+          "expression": "go the extra mile",
+          "meaning": "기대 이상으로 노력하다",
+          "nuance": "맡은 일보다 더 많은 노력을 기울여 최선을 다할 때 씁니다.",
+          "sourceSentence": "Our team is willing to go the extra mile to satisfy the client.",
+          "practiceSentence": "He always goes the extra mile to ensure quality work."
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "A",
+          "line": "Hi, let's touch base on the Q3 report before we call it a day.",
+          "ko": "안녕하세요, 퇴근하기 전에 3분기 보고서에 대해 잠깐 이야기 나누시죠."
+        },
+        {
+          "speaker": "B",
+          "line": "Sure. I think we hit a snag with the data collection, but I have a solution.",
+          "ko": "네. 데이터 수집 과정에서 예상치 못한 문제가 있었는데, 해결책이 있습니다."
+        },
+        {
+          "speaker": "A",
+          "line": "That's great. Let's cut to the chase—what do you propose?",
+          "ko": "잘됐네요. 본론으로 들어가서, 어떤 제안을 하시나요?"
+        },
+        {
+          "speaker": "B",
+          "line": "We should think outside the box and use the new AI tool to automate the process.",
+          "ko": "관습에서 벗어나 새로운 AI 도구를 사용해 과정을 자동화하는 것을 제안합니다."
+        },
+        {
+          "speaker": "A",
+          "line": "I like that. It really shows what you bring to the table.",
+          "ko": "좋네요. 당신이 어떤 기여를 할 수 있는지 잘 보여주는군요."
+        },
+        {
+          "speaker": "B",
+          "line": "Thanks. I'll keep you in the loop as I start the implementation.",
+          "ko": "감사합니다. 구현을 시작하면서 계속 진행 상황을 공유하겠습니다."
+        },
+        {
+          "speaker": "A",
+          "line": "Perfect. Let's get the ball rolling tomorrow morning.",
+          "ko": "완벽해요. 내일 아침에 바로 시작합시다."
+        }
+      ],
+      "paragraph": "To get the ball rolling on our new project, we need to ensure everyone is on the same page. Although we hit a snag during the initial phase, the team is ready to go the extra mile to meet the deadline. Let's touch base tomorrow to discuss how we can think outside the box to overcome these challenges.",
+      "paragraphKo": "새 프로젝트를 시작하기 위해 우리는 모두가 같은 방향을 바라보고 있는지 확인할 필요가 있습니다. 초기 단계에서 예상치 못한 문제에 부딪혔지만, 팀은 마감 기한을 맞추기 위해 기대 이상으로 노력할 준비가 되어 있습니다. 내일 다시 연락하여 이러한 도전 과제들을 해결하기 위해 어떻게 창의적으로 생각할 수 있을지 논의합시다."
+    },
+    "classifier": "daily-feed",
+    "source": "daily-feed",
+    "date": "2026-06-07",
+    "time": "14:05",
+    "createdAt": "2026-06-07T05:05:49.943Z",
+    "updatedAt": "2026-06-07T05:05:49.943Z",
+    "publishedAt": "2026-06-07T05:05:49.943Z",
+    "insights": [],
+    "analysisStatus": "done",
+    "aiAnalysis": "원활한 업무 소통과 프로젝트 성공을 위한 필수 비즈니스 표현 10선\n\n## 📖 짧은 지문\n\nTo get the ball rolling on our new project, we need to ensure everyone is on the same page. Although we hit a snag during the initial phase, the team is ready to go the extra mile to meet the deadline. Let's touch base tomorrow to discuss how we can think outside the box to overcome these challenges.\n\n> 새 프로젝트를 시작하기 위해 우리는 모두가 같은 방향을 바라보고 있는지 확인할 필요가 있습니다. 초기 단계에서 예상치 못한 문제에 부딪혔지만, 팀은 마감 기한을 맞추기 위해 기대 이상으로 노력할 준비가 되어 있습니다. 내일 다시 연락하여 이러한 도전 과제들을 해결하기 위해 어떻게 창의적으로 생각할 수 있을지 논의합시다.\n\n## 💬 실전 대화문\n\n**A**: Hi, let's touch base on the Q3 report before we call it a day.\n  _(안녕하세요, 퇴근하기 전에 3분기 보고서에 대해 잠깐 이야기 나누시죠.)_\n\n**B**: Sure. I think we hit a snag with the data collection, but I have a solution.\n  _(네. 데이터 수집 과정에서 예상치 못한 문제가 있었는데, 해결책이 있습니다.)_\n\n**A**: That's great. Let's cut to the chase—what do you propose?\n  _(잘됐네요. 본론으로 들어가서, 어떤 제안을 하시나요?)_\n\n**B**: We should think outside the box and use the new AI tool to automate the process.\n  _(관습에서 벗어나 새로운 AI 도구를 사용해 과정을 자동화하는 것을 제안합니다.)_\n\n**A**: I like that. It really shows what you bring to the table.\n  _(좋네요. 당신이 어떤 기여를 할 수 있는지 잘 보여주는군요.)_\n\n**B**: Thanks. I'll keep you in the loop as I start the implementation.\n  _(감사합니다. 구현을 시작하면서 계속 진행 상황을 공유하겠습니다.)_\n\n**A**: Perfect. Let's get the ball rolling tomorrow morning.\n  _(완벽해요. 내일 아침에 바로 시작합시다.)_",
+    "thumbnailUrl": ""
+  },
+  {
+    "id": "97c93e52-bd73-47cf-a786-c1a555b6b2a9",
+    "type": "url",
+    "title": "키키 파머: 과잉 수행의 굴레에서 벗어나기",
+    "text": "## 📌 핵심 요약\n\n엔터테이너 키키 파머는 가족을 빈곤에서 구원했던 '과잉 수행(hyper-functioning)' 능력이 역설적으로 자신의 삶을 억압하는 굴레가 되었음을 고백합니다. 그녀는 무대 위와 밖에서 끊임없이 연기해야 했던 강박을 분석하며, 타인의 기대에 부응하는 삶에서 벗어나 진정한 자아를 회복하는 과정을 공유합니다. 본 강연은 생존 기제가 어떻게 성인이 된 이후의 정체성을 가로막는지에 대한 깊은 통찰을 제공합니다.\n\n## 🔑 주요 논거 및 메커니즘\n\n첫째, '과잉 수행'의 생존 전략적 기원을 지적합니다. 빈곤이라는 환경에서 살아남기 위해 습득한 완벽주의와 끊임없는 성취 지향적 태도는 초기에는 가족을 부양하는 강력한 엔진이 되었으나, 성인이 된 후에는 스스로를 쉼 없이 몰아붙이는 심리적 감옥으로 작용했습니다.\n\n둘째, '연기(Acting)'와 '실존(Living)'의 경계 붕괴를 다룹니다. 대중의 기대에 부응하기 위해 구축한 페르소나가 일상까지 침범하면서, 본연의 감정과 욕구를 억압하게 되는 메커니즘을 설명합니다. 이는 자신의 가치를 오직 '생산성'과 '타인의 인정'에서만 찾는 위험성을 경고합니다.\n\n셋째, 해방을 위한 의도적 멈춤의 가치를 강조합니다. 키키 파머는 단순히 일을 줄이는 것을 넘어, '무엇을 하지 않아도 괜찮다'는 허용을 통해 자신의 존재 가치를 재정의하는 과정을 제시합니다. 이는 수행 능력을 내려놓는 것이 곧 실패가 아니라, 더 건강한 삶을 위한 필수적 전환임을 시사합니다.\n\n## 💡 생각할 거리\n\n우리는 사회적 성공을 위해 '나'라는 사람을 얼마나 많은 페르소나로 파편화하고 있는가? 생존을 위해 장착했던 방어 기제가 현재의 성장을 저해하고 있지는 않은지 점검할 필요가 있습니다. 이는 심리학적 관점에서의 '자기 자비(Self-compassion)'와 경제학적 관점에서의 '효율성 추구'가 충돌하는 지점으로, 현대인이 겪는 번아웃의 근본 원인을 개인의 성취가 아닌 존재론적 측면에서 재해석하게 합니다.",
+    "aiSummary": "## 📌 핵심 요약\n\n엔터테이너 키키 파머는 가족을 빈곤에서 구원했던 '과잉 수행(hyper-functioning)' 능력이 역설적으로 자신의 삶을 억압하는 굴레가 되었음을 고백합니다. 그녀는 무대 위와 밖에서 끊임없이 연기해야 했던 강박을 분석하며, 타인의 기대에 부응하는 삶에서 벗어나 진정한 자아를 회복하는 과정을 공유합니다. 본 강연은 생존 기제가 어떻게 성인이 된 이후의 정체성을 가로막는지에 대한 깊은 통찰을 제공합니다.\n\n## 🔑 주요 논거 및 메커니즘\n\n첫째, '과잉 수행'의 생존 전략적 기원을 지적합니다. 빈곤이라는 환경에서 살아남기 위해 습득한 완벽주의와 끊임없는 성취 지향적 태도는 초기에는 가족을 부양하는 강력한 엔진이 되었으나, 성인이 된 후에는 스스로를 쉼 없이 몰아붙이는 심리적 감옥으로 작용했습니다.\n\n둘째, '연기(Acting)'와 '실존(Living)'의 경계 붕괴를 다룹니다. 대중의 기대에 부응하기 위해 구축한 페르소나가 일상까지 침범하면서, 본연의 감정과 욕구를 억압하게 되는 메커니즘을 설명합니다. 이는 자신의 가치를 오직 '생산성'과 '타인의 인정'에서만 찾는 위험성을 경고합니다.\n\n셋째, 해방을 위한 의도적 멈춤의 가치를 강조합니다. 키키 파머는 단순히 일을 줄이는 것을 넘어, '무엇을 하지 않아도 괜찮다'는 허용을 통해 자신의 존재 가치를 재정의하는 과정을 제시합니다. 이는 수행 능력을 내려놓는 것이 곧 실패가 아니라, 더 건강한 삶을 위한 필수적 전환임을 시사합니다.\n\n## 💡 생각할 거리\n\n우리는 사회적 성공을 위해 '나'라는 사람을 얼마나 많은 페르소나로 파편화하고 있는가? 생존을 위해 장착했던 방어 기제가 현재의 성장을 저해하고 있지는 않은지 점검할 필요가 있습니다. 이는 심리학적 관점에서의 '자기 자비(Self-compassion)'와 경제학적 관점에서의 '효율성 추구'가 충돌하는 지점으로, 현대인이 겪는 번아웃의 근본 원인을 개인의 성취가 아닌 존재론적 측면에서 재해석하게 합니다.",
+    "summary": "생존을 위한 '과잉 수행'이 어떻게 삶을 억압하는지, 진정한 자아를 찾는 법을 고찰합니다.",
+    "myInsight": "생존을 위한 '과잉 수행'이 어떻게 삶을 억압하는지, 진정한 자아를 찾는 법을 고찰합니다.",
+    "subCategory": "",
+    "status": "active",
+    "originalUrl": "https://www.ted.com/talks/keke_palmer_how_i_set_myself_free",
+    "sourceUrl": "https://www.ted.com/talks/keke_palmer_how_i_set_myself_free",
+    "category": "youtube",
+    "shelf": "youtube",
+    "keywords": [
+      "키키 파머",
+      "과잉 수행",
+      "자기 해방",
+      "번아웃",
+      "정체성"
+    ],
+    "tags": [
+      "#KekePalmer",
+      "#TEDTalk",
+      "#자기계발",
+      "#심리",
+      "#번아웃극복"
+    ],
+    "extras": {},
+    "classifier": "url-scrape",
+    "source": "manual",
+    "date": "2026-06-07",
+    "time": "14:02",
+    "createdAt": "2026-06-07T05:01:55.356Z",
+    "updatedAt": "2026-06-07T05:02:35.666Z",
+    "insights": [],
+    "publishedAt": "2026-06-07T05:02:35.666Z",
+    "analysisStatus": "done",
+    "aiAnalysis": "## 📌 핵심 요약\n\n엔터테이너 키키 파머는 가족을 빈곤에서 구원했던 '과잉 수행(hyper-functioning)' 능력이 역설적으로 자신의 삶을 억압하는 굴레가 되었음을 고백합니다. 그녀는 무대 위와 밖에서 끊임없이 연기해야 했던 강박을 분석하며, 타인의 기대에 부응하는 삶에서 벗어나 진정한 자아를 회복하는 과정을 공유합니다. 본 강연은 생존 기제가 어떻게 성인이 된 이후의 정체성을 가로막는지에 대한 깊은 통찰을 제공합니다.\n\n## 🔑 주요 논거 및 메커니즘\n\n첫째, '과잉 수행'의 생존 전략적 기원을 지적합니다. 빈곤이라는 환경에서 살아남기 위해 습득한 완벽주의와 끊임없는 성취 지향적 태도는 초기에는 가족을 부양하는 강력한 엔진이 되었으나, 성인이 된 후에는 스스로를 쉼 없이 몰아붙이는 심리적 감옥으로 작용했습니다.\n\n둘째, '연기(Acting)'와 '실존(Living)'의 경계 붕괴를 다룹니다. 대중의 기대에 부응하기 위해 구축한 페르소나가 일상까지 침범하면서, 본연의 감정과 욕구를 억압하게 되는 메커니즘을 설명합니다. 이는 자신의 가치를 오직 '생산성'과 '타인의 인정'에서만 찾는 위험성을 경고합니다.\n\n셋째, 해방을 위한 의도적 멈춤의 가치를 강조합니다. 키키 파머는 단순히 일을 줄이는 것을 넘어, '무엇을 하지 않아도 괜찮다'는 허용을 통해 자신의 존재 가치를 재정의하는 과정을 제시합니다. 이는 수행 능력을 내려놓는 것이 곧 실패가 아니라, 더 건강한 삶을 위한 필수적 전환임을 시사합니다.\n\n## 💡 생각할 거리\n\n우리는 사회적 성공을 위해 '나'라는 사람을 얼마나 많은 페르소나로 파편화하고 있는가? 생존을 위해 장착했던 방어 기제가 현재의 성장을 저해하고 있지는 않은지 점검할 필요가 있습니다. 이는 심리학적 관점에서의 '자기 자비(Self-compassion)'와 경제학적 관점에서의 '효율성 추구'가 충돌하는 지점으로, 현대인이 겪는 번아웃의 근본 원인을 개인의 성취가 아닌 존재론적 측면에서 재해석하게 합니다.",
+    "thumbnailUrl": ""
+  },
+  {
+    "id": "38bcd61d-5f74-4d8f-a5d1-9c0abd1c997e",
+    "type": "url",
+    "title": "The simple habit for a happier social li",
+    "text": "We are wired for connection, and yet many of us spend most of our lives avoiding it, says behavioral scientist Nicholas Epley. Drawing on decades of research into happiness, loneliness and well-being, he reveals why we consistently underestimate how receptive others are to connecting — and invites us to seize the small moments that lead to a more social life.",
+    "aiSummary": "We are wired for connection, and yet many of us spend most of our lives avoiding it, says behavioral scientist Nicholas Epley. Drawing on decades of research into happiness, loneliness and well-being, he reveals why we consistently underestimate how receptive others are to connecting — and invites us to seize the small moments that lead to a more social life.",
+    "summary": "We are wired for connection, and yet many of us spend most of our lives avoiding it, says behavioral scientist Nicholas Epley. Drawing on decades of research into happiness, loneliness and well-being, he reveals why we consistently underestimate how receptive others are to connecting — and invites us to seize the small moments that lead to a more social life.",
+    "myInsight": "Ted",
+    "status": "active",
+    "originalUrl": "https://www.ted.com/talks/nicholas_epley_the_simple_habit_for_a_happier_social_life",
+    "sourceUrl": "https://www.ted.com/talks/nicholas_epley_the_simple_habit_for_a_happier_social_life",
+    "category": "en",
+    "shelf": "inbox",
+    "keywords": [],
+    "tags": [],
+    "extras": {},
+    "classifier": "url-scrape",
+    "source": "manual",
+    "date": "2026-06-07",
+    "time": "12:39",
+    "createdAt": "2026-06-07T03:38:42.888Z",
+    "updatedAt": "2026-06-07T03:41:09.195Z",
+    "insights": [],
+    "publishedAt": "2026-06-07T03:39:24.588Z",
+    "subCategory": "",
+    "analysisStatus": "done",
+    "aiAnalysis": "We are wired for connection, and yet many of us spend most of our lives avoiding it, says behavioral scientist Nicholas Epley. Drawing on decades of research into happiness, loneliness and well-being, he reveals why we consistently underestimate how receptive others are to connecting — and invites us to seize the small moments that lead to a more social life.",
+    "thumbnailUrl": ""
+  },
+  {
+    "id": "bc936075-4ee2-480d-8cfe-a6cf0535b2e9",
+    "type": "url",
+    "title": "이미 공항 환율은 1,600원 뚫었다...경제 위기의 전조 증상? [지금",
+    "text": "올해 2분기 평균 원·달러 환율이 외환위기 이후 최고 수준까지 올랐습니다.6일 야간 거래에서 원·달러 환율은 1,550원을 돌파하고 1,561.5원까지 올랐다가 1,559원으로 거래를 마쳤습니다.이는 글로벌 금융위기 때인 2009년 3월 이후 17년 3개월 만에 가장 높은 수치입니...",
+    "aiSummary": "올해 2분기 평균 원·달러 환율이 외환위기 이후 최고 수준까지 올랐습니다.6일 야간 거래에서 원·달러 환율은 1,550원을 돌파하고 1,561.5원까지 올랐다가 1,559원으로 거래를 마쳤습니다.이는 글로벌 금융위기 때인 2009년 3월 이후 17년 3개월 만에 가장 높은 수치입니...",
+    "summary": "올해 2분기 평균 원·달러 환율이 외환위기 이후 최고 수준까지 올랐습니다.6일 야간 거래에서 원·달러 환율은 1,550원을 돌파하고 1,561.5원까지 올랐다가 1,559원으로 거래를 마쳤습니다.이는 글로벌 금융위기 때인 2009년 3월 이후 17년 3개월 만에 가장 높은 수치입니...",
+    "myInsight": "원달러 환율 1550원",
+    "status": "active",
+    "originalUrl": "https://www.youtube.com/watch?v=Vu5KyEcFD0g",
+    "sourceUrl": "https://www.youtube.com/watch?v=Vu5KyEcFD0g",
+    "category": "youtube",
+    "shelf": "youtube",
+    "keywords": [],
+    "tags": [],
+    "extras": {},
+    "classifier": "url-scrape",
+    "source": "manual",
+    "date": "2026-06-07",
+    "time": "12:37",
+    "createdAt": "2026-06-07T03:36:55.202Z",
+    "updatedAt": "2026-06-07T03:37:29.226Z",
+    "insights": [],
+    "publishedAt": "2026-06-07T03:37:29.226Z",
+    "subCategory": "",
+    "analysisStatus": "done",
+    "aiAnalysis": "올해 2분기 평균 원·달러 환율이 외환위기 이후 최고 수준까지 올랐습니다.6일 야간 거래에서 원·달러 환율은 1,550원을 돌파하고 1,561.5원까지 올랐다가 1,559원으로 거래를 마쳤습니다.이는 글로벌 금융위기 때인 2009년 3월 이후 17년 3개월 만에 가장 높은 수치입니...",
+    "thumbnailUrl": "https://i.ytimg.com/vi/Vu5KyEcFD0g/hqdefault.jpg",
+    "videoId": "Vu5KyEcFD0g"
+  },
+  {
+    "id": "cf2208bd-1244-4372-a53b-2b7d7885aead",
+    "type": "url",
+    "title": "Arirang TV",
+    "text": "Korea for the World, the World for Korea! 한국을 대표하는 글로벌 방송!\nAs a global broadcast representing Korea, Arirang TV strives to promote the right understanding of Korea around the world and bring the global community closer through TV and radio.\n아리랑국제방송은 한국을 대표하는 글로벌 방송으로서 전 세계를 대상으로 TV와 Radio를 통해 한국에 대한 국제 사회의 올바른 이해 증진과 지구촌을 더욱 가깝게 만드는 일에 힘쓰고 있습니다.",
+    "aiSummary": "Korea for the World, the World for Korea! 한국을 대표하는 글로벌 방송!\nAs a global broadcast representing Korea, Arirang TV strives to promote the right understanding of Korea around the world and bring the global community closer through TV and radio.\n아리랑국제방송은 한국을 대표하는 글로벌 방송으로서 전 세계를 대상으로 TV와 Radio를 통해 한국에 대한 국제 사회의 올바른 이해 증진과 지구촌을 더욱 가깝게 만드는 일에 힘쓰고 있습니다.",
+    "summary": "Korea for the World, the World for Korea! 한국을 대표하는 글로벌 방송!\nAs a global broadcast representing Korea, Arirang TV strives to promote the right understanding of Korea around the world and bring the global community closer through TV and radio.\n아리랑국제방송은 한국을 대표하는 글로벌 방송으로서 전 세계를 대상으로 TV와 Radio를 통해 한국에 대한 국제 사회의 올바른 이해 증진과 지구촌을 더욱 가깝게 만드는 일에 힘쓰고 있습니다.",
+    "myInsight": "As a global broadcast representing Korea, Arirang TV",
+    "status": "active",
+    "originalUrl": "https://www.arirang.com/news/view?id=296918&lang=en",
+    "sourceUrl": "https://www.arirang.com/news/view?id=296918&lang=en",
+    "category": "inbox",
+    "shelf": "inbox",
+    "keywords": [],
+    "tags": [],
+    "extras": {},
+    "classifier": "url-scrape",
+    "source": "manual",
+    "date": "2026-06-07",
+    "time": "08:53",
+    "createdAt": "2026-06-06T23:52:52.962Z",
+    "updatedAt": "2026-06-06T23:53:14.932Z",
+    "insights": [],
+    "publishedAt": "2026-06-06T23:53:14.932Z",
+    "subCategory": "",
+    "analysisStatus": "done",
+    "aiAnalysis": "Korea for the World, the World for Korea! 한국을 대표하는 글로벌 방송!\nAs a global broadcast representing Korea, Arirang TV strives to promote the right understanding of Korea around the world and bring the global community closer through TV and radio.\n아리랑국제방송은 한국을 대표하는 글로벌 방송으로서 전 세계를 대상으로 TV와 Radio를 통해 한국에 대한 국제 사회의 올바른 이해 증진과 지구촌을 더욱 가깝게 만드는 일에 힘쓰고 있습니다.",
+    "thumbnailUrl": ""
+  }
+]

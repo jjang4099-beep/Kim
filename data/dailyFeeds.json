@@ -1,0 +1,186 @@
+{
+  "2026-06-07": {
+    "en_expr": {
+      "id": "2026-06-07::en_expr",
+      "date": "2026-06-07",
+      "subId": "en_expr",
+      "label": "영어 표현 배달",
+      "type": "language",
+      "category": "en",
+      "subCategory": "비즈니스 영어",
+      "topic": "비즈니스 영어",
+      "options": {
+        "count": 10,
+        "includeParagraph": true,
+        "includeDialogue": true
+      },
+      "savedItemId": "172e6c1f-34e4-4833-8e5a-bd247e902822",
+      "createdAt": "2026-06-07T05:05:07.420Z",
+      "title": "오늘의 비즈니스 영어: 효율적인 협업과 프로젝트 관리",
+      "summary": "원활한 업무 소통과 프로젝트 성공을 위한 필수 비즈니스 표현 10선",
+      "report": "",
+      "vocabEntries": [
+        {
+          "expression": "touch base",
+          "meaning": "연락하다, 잠깐 이야기하다",
+          "nuance": "진행 상황을 확인하거나 짧게 소통할 때 사용합니다.",
+          "sourceSentence": "Let's touch base later this afternoon to discuss the project.",
+          "practiceSentence": "I'll touch base with the marketing team regarding the new campaign."
+        },
+        {
+          "expression": "get the ball rolling",
+          "meaning": "일을 시작하다, 착수하다",
+          "nuance": "어떤 프로젝트나 활동의 첫 단추를 꿸 때 씁니다.",
+          "sourceSentence": "We need to get the ball rolling on the new product launch.",
+          "practiceSentence": "Let's get the ball rolling by scheduling the kickoff meeting."
+        },
+        {
+          "expression": "on the same page",
+          "meaning": "의견이 일치하다, 같은 생각을 하다",
+          "nuance": "팀원들이 서로 같은 정보를 공유하고 이해하고 있음을 강조합니다.",
+          "sourceSentence": "I want to make sure we are all on the same page before we proceed.",
+          "practiceSentence": "Regular meetings help keep everyone on the same page."
+        },
+        {
+          "expression": "call it a day",
+          "meaning": "오늘 일을 마치다",
+          "nuance": "업무를 마무리하고 퇴근하거나 작업을 중단할 때 사용합니다.",
+          "sourceSentence": "We've made great progress, so let's call it a day.",
+          "practiceSentence": "It's already 8 PM; let's call it a day and finish tomorrow."
+        },
+        {
+          "expression": "think outside the box",
+          "meaning": "창의적으로 생각하다",
+          "nuance": "관습에 얽매이지 않고 혁신적인 아이디어를 낼 때 씁니다.",
+          "sourceSentence": "We need to think outside the box to solve this budget issue.",
+          "practiceSentence": "Our team is encouraged to think outside the box during brainstorming."
+        },
+        {
+          "expression": "keep someone in the loop",
+          "meaning": "진행 상황을 계속 공유하다",
+          "nuance": "특정 인물에게 정보를 지속적으로 업데이트해 줄 때 사용합니다.",
+          "sourceSentence": "Please keep me in the loop regarding any changes to the schedule.",
+          "practiceSentence": "I will keep the manager in the loop as the project develops."
+        },
+        {
+          "expression": "bring to the table",
+          "meaning": "기여하다, 유용한 것을 제공하다",
+          "nuance": "협상이나 팀 프로젝트에서 자신의 강점이나 가치를 보여줄 때 씁니다.",
+          "sourceSentence": "What unique skills do you bring to the table for this role?",
+          "practiceSentence": "She brings years of experience to the table."
+        },
+        {
+          "expression": "hit a snag",
+          "meaning": "예상치 못한 문제에 부딪히다",
+          "nuance": "작은 장애물이나 예기치 않은 어려움을 만났을 때 사용합니다.",
+          "sourceSentence": "We hit a snag with the software integration this morning.",
+          "practiceSentence": "We hit a snag, but we have a backup plan."
+        },
+        {
+          "expression": "cut to the chase",
+          "meaning": "본론으로 들어가다",
+          "nuance": "불필요한 서론을 생략하고 핵심만 말할 때 사용합니다.",
+          "sourceSentence": "Let's cut to the chase and discuss the budget cuts.",
+          "practiceSentence": "I don't have much time, so please cut to the chase."
+        },
+        {
+          "expression": "go the extra mile",
+          "meaning": "기대 이상으로 노력하다",
+          "nuance": "맡은 일보다 더 많은 노력을 기울여 최선을 다할 때 씁니다.",
+          "sourceSentence": "Our team is willing to go the extra mile to satisfy the client.",
+          "practiceSentence": "He always goes the extra mile to ensure quality work."
+        }
+      ],
+      "paragraph": "To get the ball rolling on our new project, we need to ensure everyone is on the same page. Although we hit a snag during the initial phase, the team is ready to go the extra mile to meet the deadline. Let's touch base tomorrow to discuss how we can think outside the box to overcome these challenges.",
+      "paragraphKo": "새 프로젝트를 시작하기 위해 우리는 모두가 같은 방향을 바라보고 있는지 확인할 필요가 있습니다. 초기 단계에서 예상치 못한 문제에 부딪혔지만, 팀은 마감 기한을 맞추기 위해 기대 이상으로 노력할 준비가 되어 있습니다. 내일 다시 연락하여 이러한 도전 과제들을 해결하기 위해 어떻게 창의적으로 생각할 수 있을지 논의합시다.",
+      "dialogue": [
+        {
+          "speaker": "A",
+          "line": "Hi, let's touch base on the Q3 report before we call it a day.",
+          "ko": "안녕하세요, 퇴근하기 전에 3분기 보고서에 대해 잠깐 이야기 나누시죠."
+        },
+        {
+          "speaker": "B",
+          "line": "Sure. I think we hit a snag with the data collection, but I have a solution.",
+          "ko": "네. 데이터 수집 과정에서 예상치 못한 문제가 있었는데, 해결책이 있습니다."
+        },
+        {
+          "speaker": "A",
+          "line": "That's great. Let's cut to the chase—what do you propose?",
+          "ko": "잘됐네요. 본론으로 들어가서, 어떤 제안을 하시나요?"
+        },
+        {
+          "speaker": "B",
+          "line": "We should think outside the box and use the new AI tool to automate the process.",
+          "ko": "관습에서 벗어나 새로운 AI 도구를 사용해 과정을 자동화하는 것을 제안합니다."
+        },
+        {
+          "speaker": "A",
+          "line": "I like that. It really shows what you bring to the table.",
+          "ko": "좋네요. 당신이 어떤 기여를 할 수 있는지 잘 보여주는군요."
+        },
+        {
+          "speaker": "B",
+          "line": "Thanks. I'll keep you in the loop as I start the implementation.",
+          "ko": "감사합니다. 구현을 시작하면서 계속 진행 상황을 공유하겠습니다."
+        },
+        {
+          "speaker": "A",
+          "line": "Perfect. Let's get the ball rolling tomorrow morning.",
+          "ko": "완벽해요. 내일 아침에 바로 시작합시다."
+        }
+      ],
+      "savedEntries": {
+        "0": "a08c1338-b3fe-4206-84f8-5e0ca4e48d2a",
+        "1": "60f9cf6e-f655-44f4-84d5-4b5f9da4d05a",
+        "3": "6b61bc4d-a42b-4e3f-b561-f77f3a8e6e90",
+        "7": "6aa72695-7190-4e9b-bc0f-6400bad33eec",
+        "8": "90cbd7b1-3c18-4564-8320-e193ad3e0aa3"
+      }
+    },
+    "us_market": {
+      "id": "2026-06-07::us_market",
+      "date": "2026-06-07",
+      "subId": "us_market",
+      "label": "미국 시황 요약",
+      "type": "market",
+      "category": "economy",
+      "subCategory": "증시 전반",
+      "topic": "증시 전반",
+      "options": {
+        "count": 5,
+        "includeParagraph": true,
+        "includeDialogue": false
+      },
+      "savedItemId": null,
+      "createdAt": "2026-06-07T09:12:04.163Z",
+      "title": "미 고용 둔화에 금리 인하 기대감 확산, 뉴욕증시 상승 마감",
+      "summary": "고용 지표 완화로 국채 금리가 하락하며 기술주 중심의 상승세 시현.",
+      "report": "## 📊 시장 개요\n\n오늘 뉴욕증시는 노동시장 과열 완화 신호에 따른 금리 인하 기대감으로 일제히 상승 마감했습니다. 다우존스 산업평균지수는 전일 대비 0.35% 상승한 38,980선에 마감했고, S&P 500 지수는 0.52% 오른 5,350선, 기술주 중심의 나스닥 지수는 0.81% 상승한 16,820선으로 거래를 마쳤습니다. 미 국채 10년물 금리는 고용 지표 발표 직후 전일 대비 5bp 하락한 4.28%로 내려앉았으며, 달러인덱스(DXY) 역시 통화 긴축 우려 완화로 인해 104.10선으로 하락 조정되었습니다.\n\n## 🔑 핵심 동인\n\n이번 증시 상승의 결정적 요인은 미국 노동부가 발표한 비농업 고용자 수(Non-farm Payrolls)의 완만한 둔화입니다. 5월 비농업 신규 고용은 시장 예상치인 18만 명을 하회한 16만 5천 명 증가에 그쳤고, 실업률은 4.0%로 소폭 상승하며 노동시장 과열이 식어가고 있음을 증명했습니다. 이에 따라 시카고상품거래소(CME) 페드워치 상의 9월 기준금리 인하 확률은 기존 55% 수준에서 68%로 급등하며 기술주와 성장주에 우호적인 유동성 환경을 조성했습니다.\n\n## 💡 체크포인트\n\n향후 시장의 핵심 분수령은 차주 예정된 소비자물가지수(CPI) 발표와 연방공개시장위원회(FOMC) 정례회의가 될 것입니다. 고용 둔화가 확인된 만큼 물가 지표마저 하향 안정세를 보인다면 연준의 금리 인하 경로는 더욱 명확해질 전망입니다. 다만, 투자자들은 고용 둔화가 급격한 경기 침체(Hard Landing)의 전조가 아닌, 완만한 경기 연착륙(Soft Landing) 과정인지 여부를 고용률과 소비 지출 데이터를 통해 지속적으로 검증해야 합니다.",
+      "aiEconomicKnowledge": [
+        {
+          "term": "비농업 고용지수",
+          "importance": "미국 노동부가 매월 발표하는 지표로, 농가를 제외한 전 산업의 고용 변화를 나타냅니다. 이는 미국 소비 지출의 원천이 되는 고용 상태를 보여주기 때문에 연준의 통화정책 결정에 가장 직접적인 영향을 미치는 핵심 지표입니다.",
+          "connection": "오늘 브리핑에서 고용 지표의 완만한 둔화가 국채 금리 하락과 증시 상승을 이끈 직접적인 원인으로 작용했습니다."
+        },
+        {
+          "term": "CME 페드워치",
+          "importance": "시카고상품거래소 그룹이 제공하는 도구로, 연방기금금리 선물의 가격을 바탕으로 시장이 예상하는 연준의 금리 변동 확률을 보여줍니다. 글로벌 투자자들이 통화정책의 방향성을 예측하는 객관적 척도로 활용합니다.",
+          "connection": "고용 지표 발표 이후 시장이 예측하는 9월 금리 인하 확률이 68%로 상승했음을 보여주는 지표로 인용되었습니다."
+        },
+        {
+          "term": "경기 연착륙",
+          "importance": "과열된 경기를 진정시키기 위해 금리를 인상했을 때, 극심한 경기 침체나 실업률 급증을 초래하지 않고 안정 상태로 복귀하는 현상입니다. 중앙은행이 통화 긴축 정책을 시행할 때 지향하는 가장 이상적인 시나리오입니다.",
+          "connection": "고용 둔화가 경기 침체 우려로 번지지 않고 적절한 수준에서 통제되는지 판단하는 기준 개념으로 제시되었습니다."
+        }
+      ],
+      "vocabEntries": [],
+      "paragraph": "",
+      "paragraphKo": "",
+      "dialogue": [],
+      "savedEcoEntries": {
+        "0": "c27f33e9-0ad4-4299-9790-77197099c2c8"
+      }
+    }
+  }
+}

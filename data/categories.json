@@ -1,0 +1,46 @@
+[
+  {
+    "id": "en",
+    "label": "English",
+    "color": "#2563EB",
+    "icon": "ti-language",
+    "builtIn": true,
+    "subCategories": [
+      "비즈니스 영어"
+    ]
+  },
+  {
+    "id": "history",
+    "label": "History",
+    "color": "#D97706",
+    "icon": "ti-building-monument",
+    "builtIn": true,
+    "subCategories": []
+  },
+  {
+    "id": "economy",
+    "label": "Economy",
+    "color": "#059669",
+    "icon": "ti-trending-up",
+    "builtIn": true,
+    "subCategories": [
+      "증시 전반"
+    ]
+  },
+  {
+    "id": "youtube",
+    "label": "YouTube",
+    "color": "#DC2626",
+    "icon": "ti-brand-youtube",
+    "builtIn": true,
+    "subCategories": []
+  },
+  {
+    "id": "inbox",
+    "label": "Inbox",
+    "color": "#7C3AED",
+    "icon": "ti-inbox",
+    "builtIn": true,
+    "subCategories": []
+  }
+]

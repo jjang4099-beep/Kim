@@ -1,0 +1,86 @@
+[
+  {
+    "id": "us_market",
+    "label": "미국 시황 요약",
+    "type": "market",
+    "lang": "",
+    "category": "economy",
+    "enabled": true,
+    "icon": "ti-flag",
+    "desc": "간밤 미국 증시·경제 핵심",
+    "topic": "증시 전반",
+    "topicOptions": [
+      "증시 전반",
+      "산업·섹터",
+      "거시 지표"
+    ],
+    "options": {
+      "count": 5,
+      "includeParagraph": true,
+      "includeDialogue": false
+    }
+  },
+  {
+    "id": "kr_market",
+    "label": "한국 시황 요약",
+    "type": "market",
+    "lang": "",
+    "category": "economy",
+    "enabled": false,
+    "icon": "ti-building-bank",
+    "desc": "오늘 코스피·환율·금리",
+    "topic": "증시 전반",
+    "topicOptions": [
+      "증시 전반",
+      "산업·섹터",
+      "거시 지표"
+    ],
+    "options": {
+      "count": 5,
+      "includeParagraph": true,
+      "includeDialogue": false
+    }
+  },
+  {
+    "id": "en_expr",
+    "label": "영어 표현 배달",
+    "type": "language",
+    "lang": "영어",
+    "category": "en",
+    "enabled": true,
+    "icon": "ti-language",
+    "desc": "맞춤 영어 표현",
+    "topic": "비즈니스 영어",
+    "topicOptions": [
+      "비즈니스 영어",
+      "일상 회화",
+      "테크 시사"
+    ],
+    "options": {
+      "count": 10,
+      "includeParagraph": true,
+      "includeDialogue": true
+    }
+  },
+  {
+    "id": "cn_phrase",
+    "label": "중국어 표현 배달",
+    "type": "language",
+    "lang": "중국어",
+    "category": "en",
+    "enabled": false,
+    "icon": "ti-message-language",
+    "desc": "맞춤 중국어 표현",
+    "topic": "일상 회화",
+    "topicOptions": [
+      "일상 회화",
+      "여행 중국어",
+      "비즈니스 중국어"
+    ],
+    "options": {
+      "count": 5,
+      "includeParagraph": false,
+      "includeDialogue": false
+    }
+  }
+]

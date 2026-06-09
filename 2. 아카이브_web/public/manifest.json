@@ -1,0 +1,54 @@
+{
+  "name": "SJ 지식 서재",
+  "short_name": "SJ 서재",
+  "description": "매일 아침 AI가 큐레이션하는 나만의 지식 서재",
+  "start_url": "/?view=mobile&utm_source=pwa",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "lang": "ko",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "share_target": {
+    "action": "/share-handler",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text":  "text",
+      "url":   "url"
+    }
+  },
+  "shortcuts": [
+    {
+      "name": "지식 추가",
+      "short_name": "추가",
+      "description": "새 지식을 빠르게 서재에 저장",
+      "url": "/?view=mobile&action=add",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "오늘의 배달",
+      "short_name": "배달",
+      "description": "오늘의 AI 지식 배달 확인",
+      "url": "/?view=mobile&action=feed",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "categories": ["education", "productivity", "news"],
+  "prefer_related_applications": false
+}

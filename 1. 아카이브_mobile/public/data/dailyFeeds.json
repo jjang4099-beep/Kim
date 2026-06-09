@@ -1,0 +1,168 @@
+{
+  "2026-06-08": {
+    "en_expr": {
+      "id": "2026-06-08::en_expr",
+      "date": "2026-06-08",
+      "subId": "en_expr",
+      "createdAt": "2026-06-08T14:18:44.597Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "language",
+      "category": "en",
+      "subCategory": "비즈니스 영어",
+      "label": "영어 표현",
+      "title": "오늘의 비즈니스 영어: Circle back 외 4개",
+      "summary": "비즈니스 영어 분야 핵심 영어 표현 5선",
+      "report": "",
+      "vocabEntries": [
+        {
+          "expression": "Circle back",
+          "meaning": "나중에 다시 논의하다/연락하다 (다시 다루다)",
+          "nuance": "특정 주제나 안건에 대해 지금 당장 결정하거나 깊이 논의하기 어렵거나, 추가 정보가 필요할 때 '나중에 다시 이야기하자'는 의미로 사용합니다. 단순히 '다시 이야기하다'가 아니라, '지금은 잠시 미루고 나중에 다시 돌아와서 논의하자'는 뉘앙스가 강합니다. 회의 중 특정 주제가 길어지거나 다른 아젠다로 넘어가야 할 때 유용하게 쓰입니다.",
+          "sourceSentence": "Let's circle back to the budget discussion once we have the final numbers from the sales team.",
+          "practiceSentence": "이 부분은 자료가 더 필요하니, 다음 주에 다시 모여서 circle back 하는 게 좋겠습니다."
+        },
+        {
+          "expression": "Touch base",
+          "meaning": "간단히 연락하다/확인하다 (잠시 이야기하다)",
+          "nuance": "길고 정식적인 미팅이 아니라, 짧게 연락해서 상황을 확인하거나 정보를 공유할 때 씁니다. 'Let's have a quick chat'이나 'Let's connect briefly'와 유사하지만, 좀 더 비즈니스적인 맥락에서 자주 사용됩니다. 바쁘거나 이동 중인 동료에게 부담 없이 연락할 때 유용합니다.",
+          "sourceSentence": "I'll touch base with you tomorrow morning to see how the project is progressing.",
+          "practiceSentence": "오후에 잠깐 시간 괜찮으실 때 touch base 해서 최종 보고서 초안에 대해 이야기 나눌 수 있을까요?"
+        },
+        {
+          "expression": "Leverage (동사)",
+          "meaning": "활용하다, 지렛대 효과를 이용하다 (강점을 이용하다)",
+          "nuance": "단순히 '사용하다(use)'가 아니라, 가지고 있는 자원, 기술, 강점 등을 최대한으로 활용하여 이점이나 영향력을 얻을 때 사용합니다. '강점을 지렛대 삼아 극대화하다'는 뉘앙스가 강합니다. 특히 전략적인 활용을 강조할 때 많이 쓰이며, 긍정적인 맥락에서 사용됩니다.",
+          "sourceSentence": "We need to leverage our strong brand reputation to enter new markets.",
+          "practiceSentence": "이번 프로젝트에서는 우리 팀의 강점인 데이터 분석 능력을 최대한 leverage 해야 합니다."
+        },
+        {
+          "expression": "Align on / Get alignment",
+          "meaning": "~에 대해 합의하다, 의견을 일치시키다",
+          "nuance": "단순히 '동의하다(agree)'를 넘어, 여러 이해관계자나 팀원들이 특정 목표, 전략, 방향 등에 대해 '공통의 이해를 가지고 한 방향으로 정렬하다'는 의미가 강합니다. 의견 조율을 통해 다 함께 같은 목표를 향해 나아가자는 뉘앙스를 포함합니다. 특히 팀워크나 프로젝트의 성공을 위해 필수적인 개념으로 강조됩니다.",
+          "sourceSentence": "Before we proceed, let's make sure everyone is aligned on the project's key objectives.",
+          "practiceSentence": "마케팅팀과 개발팀 모두 새로운 기능 출시 일정에 대해 align 되어야 합니다."
+        },
+        {
+          "expression": "Bandwidth (비유적 의미)",
+          "meaning": "처리 능력, 여력, 시간적/정신적 자원",
+          "nuance": "원래는 네트워크 통신량을 의미하지만, 비즈니스에서는 '어떤 일을 처리할 수 있는 시간, 에너지, 자원의 여유'를 비유적으로 나타냅니다. 'I don't have the bandwidth'는 '시간/여력이 안 된다'는 의미로, 정중하게 거절하거나 현재 업무 과부하 상태임을 표현할 때 사용됩니다. '내 여력'을 말할 때 My bandwidth라고 합니다.",
+          "sourceSentence": "I don't have the bandwidth to take on another project right now.",
+          "practiceSentence": "현재 여러 프로젝트를 동시에 진행 중이라, 새로운 업무를 맡을 bandwidth가 부족합니다."
+        }
+      ],
+      "aiGenerated": true
+    },
+    "us_market": {
+      "id": "2026-06-08::us_market",
+      "date": "2026-06-08",
+      "subId": "us_market",
+      "createdAt": "2026-06-08T14:18:58.342Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "market",
+      "category": "economy",
+      "subCategory": "미국 증시 · 경제",
+      "label": "미국 시황",
+      "title": "혼조세 증시, AI 강세 지속",
+      "summary": "미 증시는 최신 인플레이션 데이터 소화하며 혼조세를 보였습니다. AI 관련 기술주는 강세를 이어갔으나, 금리 인하 기대감 속 경기 둔화 우려도 상존했습니다.",
+      "report": "## 인플레이션 완화 신호\n오늘 미국 증시는 최신 소비자 물가 지수(CPI) 데이터 발표 후 혼조세를 보였습니다. CPI는 예상치에 부합하며 인플레이션 완화 신호를 보였으나, 여전히 연준 목표치 상회. 시장은 하반기 금리 인하 기대감을 유지했으나, 연준의 신중한 태도에 대한 경계심도 공존합니다.\n\n## AI 및 기술주 강세\n기술 섹터, 특히 AI 인프라 관련 기업들은 견고한 실적 전망에 힘입어 상승세를 주도했습니다. 반면, 경기 민감주는 경제 성장 둔화 가능성에 대한 우려로 압박을 받았습니다. 투자자들은 기업 실적 발표 시즌을 앞두고 개별 기업의 펀더멘털에 더욱 집중하는 모습입니다.",
+      "aiEconomicKnowledge": [
+        {
+          "term": "소비자 물가 지수 (CPI)",
+          "importance": "오늘 CPI 데이터가 인플레이션 완화 신호를 보였지만, 여전히 연준 목표치를 상회하여 시장의 금리 인하 기대감과 연준의 신중한 태도 사이의 긴장을 반영합니다. 이는 향후 통화 정책 방향을 가늠하는 핵심 지표입니다.",
+          "connection": "우리가 마트에서 사는 물건이나 서비스의 가격이 얼마나 올랐는지 보여주는 지표예요. 이 숫자가 너무 높으면 돈의 가치가 떨어져서 물건 값이 비싸지는 거고, 중앙은행은 이걸 잡으려고 노력해요."
+        },
+        {
+          "term": "금리 인하 (Rate Cut)",
+          "importance": "시장은 인플레이션 완화 신호에 따라 연준의 하반기 금리 인하를 강하게 기대하고 있습니다. 금리 인하는 기업의 자금 조달 비용을 낮추고 소비를 촉진하여 경제 활동을 활성화할 수 있습니다.",
+          "connection": "은행 이자율이 내려가는 것을 의미해요. 이자율이 낮아지면 기업들은 돈을 빌려 투자하기 쉬워지고, 우리도 대출 부담이 줄어들어 소비를 더 많이 하게 되어 경제가 활발해질 수 있어요."
+        },
+        {
+          "term": "경기 민감주 (Cyclical Stocks)",
+          "importance": "AI 기술주가 강세를 보인 반면, 경기 민감주는 경제 성장 둔화 우려로 압박을 받았습니다. 이는 현재 시장이 경기 회복에 대한 확신보다는 미래 성장 동력에 더 주목하고 있음을 보여줍니다.",
+          "connection": "경기가 좋을 때 실적이 크게 좋아지고, 경기가 나쁠 때는 실적이 크게 나빠지는 회사들의 주식이에요. 예를 들어 자동차, 건설, 여행 같은 산업의 회사들이 여기에 해당돼요. 경제 상황에 따라 주가가 오르내리는 폭이 커요."
+        }
+      ],
+      "aiGenerated": true
+    }
+  },
+  "2026-06-09": {
+    "en_expr": {
+      "id": "2026-06-09::en_expr",
+      "date": "2026-06-09",
+      "subId": "en_expr",
+      "createdAt": "2026-06-08T20:23:41.778Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "language",
+      "category": "en",
+      "subCategory": "비즈니스 영어",
+      "label": "영어 표현",
+      "title": "오늘의 비즈니스 영어: touch base 외 4개",
+      "summary": "비즈니스 영어 분야 핵심 영어 표현 5선",
+      "report": "",
+      "vocabEntries": [
+        {
+          "expression": "touch base",
+          "meaning": "연락하다, 간단히 소통하다",
+          "nuance": "짧게 확인할 때",
+          "sourceSentence": "Let's touch base tomorrow.",
+          "practiceSentence": "I'll touch base with the team."
+        },
+        {
+          "expression": "get the ball rolling",
+          "meaning": "일을 시작하다",
+          "nuance": "첫 발을 뗄 때",
+          "sourceSentence": "Let's get the ball rolling.",
+          "practiceSentence": "We need to get the ball rolling on this."
+        },
+        {
+          "expression": "on the same page",
+          "meaning": "의견이 일치하다",
+          "nuance": "팀 내 합의 확인",
+          "sourceSentence": "Are we all on the same page?",
+          "practiceSentence": "Let's make sure we're on the same page."
+        },
+        {
+          "expression": "think outside the box",
+          "meaning": "창의적으로 생각하다",
+          "nuance": "혁신적 접근 요청 시",
+          "sourceSentence": "We need to think outside the box.",
+          "practiceSentence": "Think outside the box for this project."
+        },
+        {
+          "expression": "keep in the loop",
+          "meaning": "계속 공유하다",
+          "nuance": "정보 업데이트 요청",
+          "sourceSentence": "Keep me in the loop.",
+          "practiceSentence": "I'll keep you in the loop on developments."
+        }
+      ],
+      "aiGenerated": false
+    },
+    "us_market": {
+      "id": "2026-06-09::us_market",
+      "date": "2026-06-09",
+      "subId": "us_market",
+      "createdAt": "2026-06-08T20:23:41.780Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "market",
+      "category": "economy",
+      "subCategory": "미국 증시 · 경제",
+      "label": "미국 시황",
+      "title": "미국 시황 — AI 키 미설정",
+      "summary": "GEMINI_API_KEY를 설정하면 실시간 AI 시황 분석을 받을 수 있습니다.",
+      "report": "## 미국 증시 · 경제\n\n**GEMINI_API_KEY를 환경변수에 설정하면** 매일 아침 자동으로 AI가 분석한 시황 리포트를 받을 수 있습니다.\n\n현재는 Mock 데이터로 표시됩니다.",
+      "aiEconomicKnowledge": [
+        {
+          "term": "API 키 설정",
+          "importance": ".env 파일에 GEMINI_API_KEY를 추가하세요.",
+          "connection": "설정 후 앱을 재시작하면 즉시 활성화됩니다."
+        }
+      ],
+      "aiGenerated": false
+    }
+  }
+}

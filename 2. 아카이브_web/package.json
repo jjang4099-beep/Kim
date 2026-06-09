@@ -1,0 +1,22 @@
+{
+  "name": "sj-archive-web",
+  "version": "1.0.0",
+  "description": "SJ 지식 서재 — 웹 PC 버전",
+  "main": "public/server.js",
+  "scripts": {
+    "start": "node public/server.js",
+    "dev": "nodemon public/server.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "body-parser": "^2.2.2",
+    "cheerio": "^1.2.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "multer": "^2.1.1",
+    "node-cron": "^4.2.1",
+    "uuid": "^14.0.0",
+    "web-push": "^3.6.7"
+  }
+}

@@ -1,0 +1,90 @@
+[
+  {
+    "id": "e24adaec-80b4-4b2b-a65b-81bab83df052",
+    "text": "[비즈니스 영어] Circle back\n뜻: (나중에) 다시 논의하다, 다시 다루다, 다시 연락하다\n뉘앙스: 현재는 다른 논의에 집중하거나, 정보가 부족하여 지금 당장 결정하기 어려울 때, 나중에 다시 이 주제로 돌아와 논의하자는 의미입니다. 'Let's discuss it later'보다 좀 더 세련되고, 다시 논의할 의지가 있음을 명확히 보여줍니다.\n예문: We don't have all the data yet, so let's circle back to this point next week.\n연습: This topic requires more research, so let's circle back to it in our next meeting.",
+    "category": "en",
+    "shelf": "en",
+    "keywords": [],
+    "summary": "",
+    "classifier": "manual",
+    "source": "daily-feed-entry",
+    "date": "2026-06-08",
+    "time": "23:10",
+    "createdAt": "2026-06-08T14:10:55.298Z",
+    "updatedAt": "2026-06-08T14:10:55.298Z",
+    "insights": []
+  },
+  {
+    "id": "496c6848-6637-47fe-84bd-e85b744f212b",
+    "text": "[비즈니스 영어] on the same page\n뜻: 생각이 일치하다, 같은 이해를 하고 있다\n뉘앙스: 상대방이 내 말을 이해했는지 확인할 때 'Do you understand?'라고 하면 다소 무례하거나 가르치려는 조로 들릴 수 있습니다. 대신 'Are we on the same page?'를 쓰면 '우리가 서로 같은 방향으로 이해하고 있죠?'라는 뜻의 정중하고 프로페셔널한 표현이 됩니다.\n예문: Before we move forward, I want to make sure we are all on the same page.\n연습: Let's have a quick meeting tomorrow to ensure everyone is on the same page regarding the launch date.",
+    "category": "en",
+    "shelf": "en",
+    "keywords": [],
+    "summary": "",
+    "classifier": "manual",
+    "source": "daily-feed-entry",
+    "date": "2026-06-08",
+    "time": "22:53",
+    "createdAt": "2026-06-08T13:53:44.143Z",
+    "updatedAt": "2026-06-08T13:53:44.143Z",
+    "insights": []
+  },
+  {
+    "id": "a82aac87-e034-484b-8b08-14b185aad4b5",
+    "text": "[비즈니스 영어] touch base\n뜻: ~와 연락을 취하다, 간단히 상황을 맞추다\n뉘앙스: 한국인들은 흔히 'contact'나 'meet'을 자주 쓰지만, 'touch base'는 '가볍게 안부를 묻거나 짧게 진행 상황을 업데이트하다'라는 뜻으로 부담 없이 연락할 때 아주 자주 쓰입니다. 격식 있는 비즈니스 이메일과 구어체 모두에 유용합니다.\n예문: I just wanted to touch base and see how the project is coming along.\n연습: Let's touch base next Monday to discuss the client's feedback.",
+    "category": "en",
+    "shelf": "en",
+    "keywords": [],
+    "summary": "",
+    "classifier": "manual",
+    "source": "daily-feed-entry",
+    "date": "2026-06-08",
+    "time": "22:53",
+    "createdAt": "2026-06-08T13:53:42.724Z",
+    "updatedAt": "2026-06-08T13:53:42.724Z",
+    "insights": []
+  },
+  {
+    "id": "e4232930-9f8f-4bd8-b984-24f0fdbc0a73",
+    "type": "youtube",
+    "text": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "category": "youtube",
+    "shelf": "youtube",
+    "source": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "title": "Rick Astley - Never Gonna Give You Up (Official Video) (4K Remaster)",
+    "thumbnail": "https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
+    "channelName": "Rick Astley",
+    "keywords": [],
+    "summary": "\"Rick Astley - Never Gonna Give You Up (Official Video) (4K Remaster)\" — Rick Astley 영상",
+    "analysis": {
+      "title": "Rick Astley - Never Gonna Give You Up (Official Video) (4K Remaster)",
+      "summary": "\"Rick Astley - Never Gonna Give You Up (Official Video) (4K Remaster)\" — Rick Astley 영상",
+      "keywords": []
+    },
+    "classifier": "youtube-oembed",
+    "date": "2026-06-08",
+    "time": "22:19",
+    "createdAt": "2026-06-08T13:19:22.413Z",
+    "updatedAt": "2026-06-08T13:19:22.413Z",
+    "insights": []
+  },
+  {
+    "id": "2ed0ed34-7365-4c6e-b361-e526914d0c6b",
+    "text": "https://www.youtube.com/watch?v=pcTf_fm7B_U",
+    "category": "youtube",
+    "shelf": "youtube",
+    "keywords": [
+      "유튜브",
+      "동영상",
+      "링크"
+    ],
+    "summary": "유튜브 영상 링크",
+    "classifier": "claude",
+    "source": "manual",
+    "date": "2026-06-08",
+    "time": "22:03",
+    "createdAt": "2026-06-08T13:03:33.430Z",
+    "updatedAt": "2026-06-08T13:03:33.430Z",
+    "insights": []
+  }
+]

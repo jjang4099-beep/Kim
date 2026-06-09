@@ -1,0 +1,58 @@
+[
+  {
+    "id": "en_expr",
+    "type": "language",
+    "label": "영어 표현",
+    "category": "en",
+    "topic": "비즈니스 영어",
+    "lang": "영어",
+    "options": { "count": 5 },
+    "enabled": true,
+    "desc": "매일 아침 실용 비즈니스 영어 표현 5선",
+    "icon": "🇺🇸"
+  },
+  {
+    "id": "zh_expr",
+    "type": "language",
+    "label": "중국어 표현",
+    "category": "en",
+    "topic": "비즈니스 중국어",
+    "lang": "중국어",
+    "options": { "count": 5 },
+    "enabled": false,
+    "desc": "매일 아침 실용 비즈니스 중국어 표현 5선",
+    "icon": "🇨🇳"
+  },
+  {
+    "id": "jp_expr",
+    "type": "language",
+    "label": "일본어 표현",
+    "category": "en",
+    "topic": "비즈니스 일본어",
+    "lang": "일본어",
+    "options": { "count": 5 },
+    "enabled": false,
+    "desc": "매일 아침 실용 비즈니스 일본어 표현 5선",
+    "icon": "🇯🇵"
+  },
+  {
+    "id": "us_market",
+    "type": "market",
+    "label": "미국 시황",
+    "category": "economy",
+    "topic": "미국 증시 · 경제",
+    "enabled": true,
+    "desc": "매일 아침 미국 시장 AI 분석 리포트",
+    "icon": "📈"
+  },
+  {
+    "id": "kr_market",
+    "type": "market",
+    "label": "한국 시황",
+    "category": "economy",
+    "topic": "한국 증시 · 코스피 · 코스닥",
+    "enabled": false,
+    "desc": "매일 아침 한국 시장 AI 분석 리포트",
+    "icon": "🇰🇷"
+  }
+]

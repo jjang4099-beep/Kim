@@ -1405,6 +1405,14 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 .mvw-level-item input[type="radio"] { display: none; }
 .mvw-level-item small { font-size: 10px; opacity: .8; }
 
+/* 시황 테마 설명 힌트 */
+.mvw-theme-item-hint {
+  font-size   : 11px; color: var(--text-3); line-height: 1.45;
+  padding     : 2px 11px 7px 38px;  /* checkbox 너비만큼 들여쓰기 */
+  margin-top  : -4px;
+  word-break  : keep-all;
+}
+
 /* 저장 버튼 */
 .mvw-en-save-btn {
   display       : flex; align-items: center; justify-content: center; gap: 6px;

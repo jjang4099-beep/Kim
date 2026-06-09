@@ -409,30 +409,41 @@ const EN_THEME_LABELS = {
   drama_spoken     : '미드 구어체 & 슬랭'
 };
 
+/* 중국어 테마 ID → 한국어 레이블 매핑 */
+const ZH_THEME_LABELS = {
+  biz_hsk     : '비즈니스 HSK 실무 어휘',
+  biz_trip    : '중국 출장 & 식사 접대',
+  daily_shop  : '일상 회화 & 쇼핑',
+  drama_slang : '중드 & 유행어'
+};
+
 async function generateLanguageFeed(sub, user) {
   const lang    = sub.lang || '영어';
   const langKey = lang.includes('중국') ? 'zh' : 'en';
 
-  /* ── 영어 표현: 사용자 상세 설정 우선 적용 ── */
-  const enCfg  = (langKey === 'en' && user?.feed_settings?.en_expr) || {};
-  const count  = enCfg.count  || sub.options?.count || 7;
-  const level  = enCfg.level  || 'intermediate';  // 'intermediate' | 'advanced'
+  /* ── 사용자 상세 설정 우선 적용 (영어/중국어 공통) ── */
+  const feedSettingKey = langKey === 'en' ? 'en_expr' : 'zh_expr';
+  const feedCfg        = user?.feed_settings?.[feedSettingKey] || {};
+  const defCount       = langKey === 'zh' ? 5 : 7;
+  const count          = feedCfg.count || sub.options?.count || defCount;
+  const level          = feedCfg.level || 'intermediate';
 
-  // 요일별 테마 자동 결정 (0=일요일)
+  /* 요일별 테마 자동 결정 (0=일요일) */
   const dow      = new Date().getDay();
   const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
   const dayKr    = dayNames[dow];
 
-  /* 사용자가 집중 테마를 선택했으면 해당 테마 중 요일 순환, 없으면 기존 요일 테마 */
+  /* 사용자 집중 테마 → 요일 순환, 없으면 기본 요일 테마 */
+  const themeLabels = langKey === 'en' ? EN_THEME_LABELS : ZH_THEME_LABELS;
   let theme;
-  if (langKey === 'en' && enCfg.themes && enCfg.themes.length > 0) {
-    const labels = enCfg.themes.map(t => EN_THEME_LABELS[t]).filter(Boolean);
-    theme = labels[dow % labels.length]; // 요일별 순환
+  if (feedCfg.themes && feedCfg.themes.length > 0) {
+    const labels = feedCfg.themes.map(t => themeLabels[t]).filter(Boolean);
+    theme = labels[dow % labels.length];
   } else {
     theme = WEEKDAY_THEMES[langKey][dow] || sub.topic || `비즈니스 ${lang}`;
   }
 
-  /* 난이도 설명 주입 */
+  /* 난이도 설명 */
   const levelDesc = level === 'advanced'
     ? '원어민 수준의 고급(Advanced) 뉘앙스 표현 — 관용구·비유적 표현·고급 어휘 중심'
     : '직장인 필수 비즈니스 초중급(Intermediate) 표현 — 실전에서 바로 쓸 수 있는 핵심 어휘';
@@ -503,11 +514,37 @@ async function generateMarketFeed(sub, user) {
         {"name":"원/달러","value":"XXXX","change":"+XX원","dir":"up|down"}
       ]`;
 
+  /* ── 사용자 시황 분석 집중도 설정 ── */
+  const marketCfg       = user?.feed_settings?.[sub.id] || {};
+  const isMarketCentric = marketCfg.is_market_centric !== false;  /* 기본 true */
+  const isMacroCentric  = marketCfg.is_macro_centric  !== false;  /* 기본 true */
+
+  /* 분석 방향 지시문 생성 */
+  let focusInstruction;
+  if (isMarketCentric && isMacroCentric) {
+    focusInstruction =
+      `분석 방향: 주요 지수·종목 데이터(증시 중심)와 연준 금리·환율·지정학적 리스크 등 ` +
+      `거시경제(Macro) 흐름을 결합한 종합 리포트를 작성하세요.`;
+  } else if (isMarketCentric) {
+    focusInstruction =
+      `분석 방향: 증시 애널리스트 관점에서 주요 지수(${isUS ? 'S&P500, 나스닥, 다우' : '코스피, 코스닥'}), ` +
+      `등락률, 주요 섹터·종목 움직임 위주의 드라이한 데이터 중심 요약을 작성하세요. ` +
+      `거시경제 서사보다 숫자와 지표에 집중하세요.`;
+  } else if (isMacroCentric) {
+    focusInstruction =
+      `분석 방향: 거시경제 이코노미스트 관점에서 ${isUS ? '미 연준(Fed) 금리 전망, 달러 인덱스' : '한국은행 기준금리, 원/달러 환율'}, ` +
+      `유가, 채권 수익률 곡선, 지정학적 리스크 등 글로벌 경제 흐름을 깊이 있는 서사형으로 분석하세요. ` +
+      `지수 숫자보다 경제 흐름의 이야기에 집중하세요.`;
+  } else {
+    focusInstruction = `분석 방향: 시장 전반의 핵심 흐름을 균형 있게 요약하세요.`;
+  }
+
   // ※ 날짜를 넣지 않음 — 미래 날짜를 감지한 Gemini가 거부 JSON을 생성하는 현상 방지
   const prompt = `당신은 성재님의 개인 경제·투자 학습 비서입니다.
 바쁜 직장인인 성재님이 2분 안에 ${isUS ? '미국' : '한국'} 시장 핵심을 파악하고 경제 공부를 할 수 있는 학습 리포트를 만들어 주세요.
 
 [맥락] 분석 주제: ${topic} / 교육용 콘텐츠 (실제 투자 조언 아님)
+[${focusInstruction}]
 
 다음 JSON 형식으로만 응답하세요 (순수 JSON, 마크다운 코드블록 없이):
 {
@@ -1272,36 +1309,70 @@ app.patch('/api/user/settings', (req, res) => {
 });
 
 /**
- * PATCH /api/delivery-settings/english
+ * PATCH /api/delivery-settings/english  (하위 호환 유지)
  * Body: { count, themes, level }
- * 영어 표현 배달 상세 설정 저장
  */
 app.patch('/api/delivery-settings/english', (req, res) => {
   const users = readUsers();
   if (!users.length) return res.status(404).json({ success: false, error: '유저 없음' });
+  const user = users[0];
+  if (!user.feed_settings) user.feed_settings = {};
+  const { count, themes, level } = req.body;
+  user.feed_settings.en_expr = {
+    count : [5,7,10].includes(Number(count)) ? Number(count) : 7,
+    themes: Array.isArray(themes) ? themes : [],
+    level : ['intermediate','advanced'].includes(level) ? level : 'intermediate'
+  };
+  user.updated_at = new Date().toISOString();
+  writeUsers(users);
+  res.json({ success: true, settings: user.feed_settings.en_expr });
+});
+
+/**
+ * PATCH /api/delivery-settings/all
+ * Body: { feedId, settings }
+ * feedId: 'en_expr' | 'zh_expr' | 'us_market' | 'kr_market'
+ * settings: 피드별 상세 설정 오브젝트
+ *
+ * 영어/중국어: { count, themes[], level }
+ * 시황:       { is_market_centric, is_macro_centric }
+ */
+app.patch('/api/delivery-settings/all', (req, res) => {
+  const users = readUsers();
+  if (!users.length) return res.status(404).json({ success: false, error: '유저 없음' });
 
   const user = users[0];
-  const { count, themes, level } = req.body;
-
-  /* 유효성 검사 */
-  const validCounts = [5, 7, 10];
-  const validLevels = ['intermediate', 'advanced'];
-  const validThemes = ['business_meeting', 'office_email', 'daily_travel', 'drama_spoken'];
-
-  const safeCount  = validCounts.includes(Number(count))  ? Number(count)    : 7;
-  const safeLevel  = validLevels.includes(level)          ? level            : 'intermediate';
-  const safeThemes = Array.isArray(themes)
-    ? themes.filter(t => validThemes.includes(t))
-    : [];
-
-  /* feed_settings.en_expr 저장 */
   if (!user.feed_settings) user.feed_settings = {};
-  user.feed_settings.en_expr = { count: safeCount, themes: safeThemes, level: safeLevel };
+
+  const { feedId, settings } = req.body;
+  const VALID_FEED_IDS = ['en_expr', 'zh_expr', 'us_market', 'kr_market'];
+  if (!VALID_FEED_IDS.includes(feedId)) {
+    return res.status(400).json({ success: false, error: '유효하지 않은 feedId' });
+  }
+
+  /* 피드 타입별 유효성 검사 */
+  if (feedId === 'en_expr' || feedId === 'zh_expr') {
+    const validLangThemes = feedId === 'en_expr'
+      ? ['business_meeting', 'office_email', 'daily_travel', 'drama_spoken']
+      : ['biz_hsk', 'biz_trip', 'daily_shop', 'drama_slang'];
+    user.feed_settings[feedId] = {
+      count : [5,7,10].includes(Number(settings.count)) ? Number(settings.count) : (feedId === 'zh_expr' ? 5 : 7),
+      themes: Array.isArray(settings.themes) ? settings.themes.filter(t => validLangThemes.includes(t)) : [],
+      level : ['intermediate','advanced'].includes(settings.level) ? settings.level : 'intermediate'
+    };
+  } else {
+    /* 시황 피드 */
+    user.feed_settings[feedId] = {
+      is_market_centric: settings.is_market_centric !== false,
+      is_macro_centric : settings.is_macro_centric  !== false
+    };
+  }
+
   user.updated_at = new Date().toISOString();
   writeUsers(users);
 
-  console.log(`[영어설정] count=${safeCount} level=${safeLevel} themes=${safeThemes.join(',')}`);
-  res.json({ success: true, settings: user.feed_settings.en_expr });
+  console.log(`[배달설정/${feedId}] ${JSON.stringify(user.feed_settings[feedId])}`);
+  res.json({ success: true, feedId, settings: user.feed_settings[feedId] });
 });
 
 // ══════════════════════════════════════════════════

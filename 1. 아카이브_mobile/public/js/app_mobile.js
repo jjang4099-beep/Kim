@@ -1077,12 +1077,15 @@ const Mob = {
     }
   },
 
-  /* 배달 설정 패널 렌더링 — 토글 + 영어 상세 설정 아코디언 */
+  /* ══════════════════════════════════════════
+     배달 설정 패널 렌더링 v25
+     — 영어·중국어·미국시황·한국시황 4종 아코디언
+  ══════════════════════════════════════════ */
   _renderDeliverySettings(data) {
     const user    = data?.user  || {};
     const feeds   = data?.available_feeds || [];
     const enabled = new Set(user.enabled_feeds || []);
-    const enCfg   = user.feed_settings?.en_expr || {};
+    const cfg     = user.feed_settings || {};   /* { en_expr:{}, zh_expr:{}, us_market:{}, kr_market:{} } */
 
     /* 배달 시간 */
     const timeInput = el('dpDeliveryTime');
@@ -1094,112 +1097,145 @@ const Mob = {
     const langFeeds   = filtered.filter(f => f.type === 'language' || f.id.includes('expr'));
     const marketFeeds = filtered.filter(f => f.type === 'market'   || f.id.includes('market'));
 
-    /* 일반 토글 행 */
-    const renderToggleRow = sub => `
-      <div class="mvw-dp-sub-item">
-        <div class="mvw-dp-sub-info">
+    /* ── 공통: 아코디언 행 + 패널 래퍼 생성기 ── */
+    const wrapPanel = (sub, badgeTxt, panelBody) => `
+      <div class="mvw-dp-sub-item mvw-dp-sub-item--cfg" id="${sub.id}Row">
+        <div class="mvw-dp-sub-info" style="cursor:pointer"
+             onclick="Mob._toggleFeedDetail('${sub.id}')">
           <span class="mvw-dp-sub-icon">${sub.icon || '📌'}</span>
           <div class="mvw-dp-sub-text">
-            <div class="mvw-dp-sub-name">${sub.label}</div>
+            <div class="mvw-dp-sub-name">${sub.label}
+              <span class="mvw-en-cfg-badge" id="${sub.id}Badge">${badgeTxt}</span>
+            </div>
             <div class="mvw-dp-sub-desc">${sub.desc || ''}</div>
           </div>
-        </div>
-        <label class="mvw-dp-toggle">
-          <input type="checkbox" id="sub_${sub.id}" ${enabled.has(sub.id) ? 'checked' : ''}/>
-          <span class="mvw-dp-toggle-track"><span class="mvw-dp-toggle-thumb"></span></span>
-        </label>
-      </div>`;
-
-    /* 영어 표현 행 — 설정 아코디언 포함 */
-    const enRow = sub => {
-      const c = enCfg.count  || 7;
-      const l = enCfg.level  || 'intermediate';
-      const t = enCfg.themes || [];
-      const themeOpts = [
-        { val:'business_meeting', label:'💼 비즈니스 미팅' },
-        { val:'office_email',     label:'📧 오피스 이메일' },
-        { val:'daily_travel',     label:'✈️ 일상/여행 회화' },
-        { val:'drama_spoken',     label:'🎬 미드 구어체' }
-      ];
-      return `
-      <div class="mvw-dp-sub-item mvw-dp-sub-item--en" id="enExprRow">
-        <div class="mvw-dp-sub-info" style="cursor:pointer" onclick="Mob._toggleEnDetail()">
-          <span class="mvw-dp-sub-icon">${sub.icon || '🇺🇸'}</span>
-          <div class="mvw-dp-sub-text">
-            <div class="mvw-dp-sub-name">${sub.label} <span class="mvw-en-cfg-badge" id="enCfgBadge">${c}개 · ${l === 'advanced' ? '고급' : '초중급'}</span></div>
-            <div class="mvw-dp-sub-desc">${sub.desc || ''}</div>
-          </div>
-          <i class="ti ti-chevron-down mvw-en-detail-chevron" id="enDetailChevron"></i>
+          <i class="ti ti-chevron-down mvw-en-detail-chevron" id="${sub.id}Chevron"></i>
         </div>
         <label class="mvw-dp-toggle" style="flex-shrink:0">
           <input type="checkbox" id="sub_${sub.id}" ${enabled.has(sub.id) ? 'checked' : ''}/>
           <span class="mvw-dp-toggle-track"><span class="mvw-dp-toggle-thumb"></span></span>
         </label>
       </div>
-      <!-- 상세 설정 아코디언 패널 -->
-      <div class="mvw-en-panel" id="enDetailPanel">
+      <div class="mvw-en-panel" id="${sub.id}Panel">
         <div class="mvw-en-inner">
-
-          <!-- 배달 개수 -->
-          <div class="mvw-en-section">
-            <div class="mvw-en-section-title">📦 배달 개수</div>
-            <div class="mvw-chip-group" id="enCountChips">
-              ${[5,7,10].map(n => `
-              <button class="mvw-chip-btn${c===n?' active':''}" data-val="${n}"
-                      onclick="Mob._selectChip(this,'enCountChips')">${n}개</button>`).join('')}
-            </div>
-          </div>
-
-          <!-- 집중 테마 -->
-          <div class="mvw-en-section">
-            <div class="mvw-en-section-title">🎯 집중 테마 <span class="mvw-en-note">중복 선택 가능</span></div>
-            <div class="mvw-theme-list">
-              ${themeOpts.map(o => `
-              <label class="mvw-theme-item">
-                <input type="checkbox" value="${o.val}" ${t.includes(o.val)?'checked':''}/>
-                <span class="mvw-theme-item-txt">${o.label}</span>
-              </label>`).join('')}
-            </div>
-          </div>
-
-          <!-- 난이도 -->
-          <div class="mvw-en-section">
-            <div class="mvw-en-section-title">📊 난이도</div>
-            <div class="mvw-level-group">
-              <label class="mvw-level-item${l==='intermediate'?' active':''}">
-                <input type="radio" name="enLevel" value="intermediate" ${l==='intermediate'?'checked':''}
-                       onchange="this.closest('.mvw-level-group').querySelectorAll('.mvw-level-item').forEach(x=>x.classList.remove('active'));this.closest('.mvw-level-item').classList.add('active')"/>
-                <span>🌱 초중급 <small>(Intermediate)</small></span>
-              </label>
-              <label class="mvw-level-item${l==='advanced'?' active':''}">
-                <input type="radio" name="enLevel" value="advanced" ${l==='advanced'?'checked':''}
-                       onchange="this.closest('.mvw-level-group').querySelectorAll('.mvw-level-item').forEach(x=>x.classList.remove('active'));this.closest('.mvw-level-item').classList.add('active')"/>
-                <span>🔥 고급 <small>(Advanced)</small></span>
-              </label>
-            </div>
-          </div>
-
-          <!-- 저장 버튼 -->
-          <button class="mvw-en-save-btn" id="enSaveBtn" onclick="Mob._saveEnglishSettings()">
+          ${panelBody}
+          <button class="mvw-en-save-btn" id="${sub.id}SaveBtn"
+                  onclick="Mob._saveFeedSettings('${sub.id}')">
             <i class="ti ti-device-floppy"></i> 상세 옵션 저장
           </button>
-
         </div>
       </div>`;
+
+    /* ── 언어 피드(영어/중국어) 패널 본문 ── */
+    const langPanelBody = (feedId, themeOpts, defCount) => {
+      const c = cfg[feedId]?.count  || defCount;
+      const l = cfg[feedId]?.level  || 'intermediate';
+      const t = cfg[feedId]?.themes || [];
+      return `
+        <div class="mvw-en-section">
+          <div class="mvw-en-section-title">📦 배달 개수</div>
+          <div class="mvw-chip-group" id="${feedId}CountChips">
+            ${[5,7,10].map(n => `
+            <button class="mvw-chip-btn${c===n?' active':''}" data-val="${n}"
+                    onclick="Mob._selectChip(this,'${feedId}CountChips')">${n}개</button>`).join('')}
+          </div>
+        </div>
+        <div class="mvw-en-section">
+          <div class="mvw-en-section-title">🎯 집중 테마
+            <span class="mvw-en-note">중복 선택 가능</span></div>
+          <div class="mvw-theme-list">
+            ${themeOpts.map(o => `
+            <label class="mvw-theme-item">
+              <input type="checkbox" value="${o.val}" ${t.includes(o.val)?'checked':''}/>
+              <span class="mvw-theme-item-txt">${o.label}</span>
+            </label>`).join('')}
+          </div>
+        </div>
+        <div class="mvw-en-section">
+          <div class="mvw-en-section-title">📊 난이도</div>
+          <div class="mvw-level-group">
+            <label class="mvw-level-item${l==='intermediate'?' active':''}">
+              <input type="radio" name="${feedId}Level" value="intermediate"
+                     ${l==='intermediate'?'checked':''}
+                     onchange="this.closest('.mvw-level-group').querySelectorAll('.mvw-level-item').forEach(x=>x.classList.remove('active'));this.closest('.mvw-level-item').classList.add('active')"/>
+              <span>🌱 초중급 <small>(Intermediate)</small></span>
+            </label>
+            <label class="mvw-level-item${l==='advanced'?' active':''}">
+              <input type="radio" name="${feedId}Level" value="advanced"
+                     ${l==='advanced'?'checked':''}
+                     onchange="this.closest('.mvw-level-group').querySelectorAll('.mvw-level-item').forEach(x=>x.classList.remove('active'));this.closest('.mvw-level-item').classList.add('active')"/>
+              <span>🔥 고급 <small>(Advanced)</small></span>
+            </label>
+          </div>
+        </div>`;
     };
 
+    /* ── 시황 피드(미국/한국) 패널 본문 ── */
+    const marketPanelBody = (feedId) => {
+      const mc = cfg[feedId]?.is_market_centric !== false;  /* 기본 true */
+      const ma = cfg[feedId]?.is_macro_centric  !== false;  /* 기본 true */
+      return `
+        <div class="mvw-en-section">
+          <div class="mvw-en-section-title">🎯 분석 집중도
+            <span class="mvw-en-note">중복 선택 가능</span></div>
+          <div class="mvw-theme-list">
+            <label class="mvw-theme-item">
+              <input type="checkbox" value="market_centric" ${mc?'checked':''}/>
+              <span class="mvw-theme-item-txt">📊 증시/데이터 중심</span>
+            </label>
+            <div class="mvw-theme-item-hint">주요 지수·등락률·주요 종목 움직임 위주 드라이한 데이터 요약</div>
+            <label class="mvw-theme-item">
+              <input type="checkbox" value="macro_centric" ${ma?'checked':''}/>
+              <span class="mvw-theme-item-txt">🌐 거시경제(Macro) 중심</span>
+            </label>
+            <div class="mvw-theme-item-hint">연준 금리·환율·유가·채권·지정학적 리스크 등 경제 흐름 서사형 분석</div>
+          </div>
+        </div>`;
+    };
+
+    /* ── 배지 텍스트 계산 ── */
+    const langBadge   = (id, def) => {
+      const c = cfg[id]?.count || def;
+      const l = cfg[id]?.level || 'intermediate';
+      return `${c}개 · ${l === 'advanced' ? '고급' : '초중급'}`;
+    };
+    const marketBadge = (id) => {
+      const mc = cfg[id]?.is_market_centric !== false;
+      const ma = cfg[id]?.is_macro_centric  !== false;
+      if (mc && ma) return '증시+Macro';
+      if (mc)       return '증시 중심';
+      if (ma)       return 'Macro 중심';
+      return '테마 없음';
+    };
+
+    /* ── 테마 옵션 상수 ── */
+    const EN_THEMES = [
+      { val:'business_meeting', label:'💼 비즈니스 미팅'   },
+      { val:'office_email',     label:'📧 오피스 이메일'   },
+      { val:'daily_travel',     label:'✈️ 일상/여행 회화'  },
+      { val:'drama_spoken',     label:'🎬 미드 구어체'     }
+    ];
+    const ZH_THEMES = [
+      { val:'biz_hsk',     label:'💼 비즈니스 HSK 실무'   },
+      { val:'biz_trip',    label:'✈️ 출장/식사 접대'       },
+      { val:'daily_shop',  label:'🛍️ 일상 회화 및 쇼핑'   },
+      { val:'drama_slang', label:'🎬 중드/유행어'          }
+    ];
+
+    /* ── 렌더링 ── */
     const subsList = el('dpSubsList');
     if (!subsList) return;
 
     if (filtered.length) {
-      const en    = langFeeds.find(f => f.id === 'en_expr');
-      const other = langFeeds.filter(f => f.id !== 'en_expr');
+      const en = langFeeds.find(f => f.id === 'en_expr');
+      const zh = langFeeds.find(f => f.id === 'zh_expr');
+
       subsList.innerHTML = `
         <div class="mvw-dp-group-label">🎓 언어 학습</div>
-        ${en ? enRow(en) : ''}
-        ${other.map(renderToggleRow).join('')}
+        ${en ? wrapPanel(en, langBadge('en_expr', 7),  langPanelBody('en_expr', EN_THEMES, 7)) : ''}
+        ${zh ? wrapPanel(zh, langBadge('zh_expr', 5),  langPanelBody('zh_expr', ZH_THEMES, 5)) : ''}
         <div class="mvw-dp-group-label">📊 시황 분석</div>
-        ${marketFeeds.map(renderToggleRow).join('')}`;
+        ${marketFeeds.map(mf => wrapPanel(mf, marketBadge(mf.id), marketPanelBody(mf.id))).join('')}`;
     } else {
       subsList.innerHTML = `<div style="padding:12px 0;font-size:13px;color:var(--text-3)">설정 로드 실패</div>`;
     }
@@ -1209,48 +1245,62 @@ const Mob = {
     if (chip) chip.textContent = `배달: ${user.delivery_time || '07:30'}`;
   },
 
-  /* 영어 상세 설정 패널 토글 */
-  _toggleEnDetail() {
-    const panel   = el('enDetailPanel');
-    const chevron = el('enDetailChevron');
+  /* ── 피드별 상세 패널 토글 (범용) ── */
+  _toggleFeedDetail(feedId) {
+    const panel   = el(`${feedId}Panel`);
+    const chevron = el(`${feedId}Chevron`);
     if (!panel) return;
     const open = panel.classList.toggle('open');
     if (chevron) chevron.style.transform = open ? 'rotate(180deg)' : '';
   },
 
-  /* 칩 단일 선택 토글 */
+  /* ── 칩 단일 선택 (범용) ── */
   _selectChip(btn, groupId) {
     el(groupId)?.querySelectorAll('.mvw-chip-btn')
       .forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
   },
 
-  /* 영어 상세 설정 저장 */
-  async _saveEnglishSettings() {
-    const countBtn = el('enCountChips')?.querySelector('.mvw-chip-btn.active');
-    const count    = countBtn ? Number(countBtn.dataset.val) : 7;
+  /* ── 피드 상세 설정 저장 (영어·중국어·미국시황·한국시황 통합) ── */
+  async _saveFeedSettings(feedId) {
+    let settings = {};
 
-    const themeBoxes = document.querySelectorAll('#enDetailPanel .mvw-theme-list input[type="checkbox"]:checked');
-    const themes     = [...themeBoxes].map(cb => cb.value);
+    if (feedId === 'en_expr' || feedId === 'zh_expr') {
+      const countBtn = el(`${feedId}CountChips`)?.querySelector('.mvw-chip-btn.active');
+      settings.count  = countBtn ? Number(countBtn.dataset.val) : (feedId === 'zh_expr' ? 5 : 7);
+      settings.themes = [...document.querySelectorAll(
+        `#${feedId}Panel .mvw-theme-list input[type="checkbox"]:checked`)].map(cb => cb.value);
+      const lvl       = document.querySelector(`#${feedId}Panel input[name="${feedId}Level"]:checked`);
+      settings.level  = lvl?.value || 'intermediate';
+    } else {
+      /* 시황 피드 */
+      const checked = [...document.querySelectorAll(
+        `#${feedId}Panel .mvw-theme-list input[type="checkbox"]:checked`)].map(cb => cb.value);
+      settings.is_market_centric = checked.includes('market_centric');
+      settings.is_macro_centric  = checked.includes('macro_centric');
+    }
 
-    const levelRadio = document.querySelector('#enDetailPanel input[name="enLevel"]:checked');
-    const level      = levelRadio?.value || 'intermediate';
-
-    const btn = el('enSaveBtn');
+    const btn = el(`${feedId}SaveBtn`);
     if (btn) { btn.disabled = true; btn.innerHTML = '<span class="mob-spin"></span> 저장 중…'; }
 
     try {
-      await fetchJSON('/api/delivery-settings/english', {
+      await fetchJSON('/api/delivery-settings/all', {
         method : 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body   : JSON.stringify({ count, themes, level })
+        body   : JSON.stringify({ feedId, settings })
       });
 
-      /* 배지 업데이트 */
-      const badge = el('enCfgBadge');
-      if (badge) badge.textContent = `${count}개 · ${level === 'advanced' ? '고급' : '초중급'}`;
-
-      toast('✅ 영어 배달 설정이 맞춤형으로 고도화되었습니다.', 'ok', 4000);
+      /* 배지 실시간 업데이트 */
+      const badge = el(`${feedId}Badge`);
+      if (badge) {
+        if (feedId === 'en_expr' || feedId === 'zh_expr') {
+          badge.textContent = `${settings.count}개 · ${settings.level === 'advanced' ? '고급' : '초중급'}`;
+        } else {
+          const { is_market_centric: mc, is_macro_centric: ma } = settings;
+          badge.textContent = (mc && ma) ? '증시+Macro' : mc ? '증시 중심' : ma ? 'Macro 중심' : '테마 없음';
+        }
+      }
+      toast('✅ 배달 설정이 맞춤형으로 고도화되었습니다.', 'ok', 4000);
     } catch {
       toast('설정 저장 실패', 'err');
     } finally {

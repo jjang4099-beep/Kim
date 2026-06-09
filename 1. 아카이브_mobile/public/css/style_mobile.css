@@ -1338,13 +1338,17 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 .mob-card-v-copy:active { background: #eff6ff; color: var(--accent); }
 .mob-card-v-del:active  { background: #fee2e2; color: #ef4444; }
 
-/* ── 볼드 제목 ── */
+/* ── 볼드 제목 (셰브론 포함 flex) ── */
 .mob-card-v-title {
   font-size    : 16px; font-weight: 800;
   color        : var(--text-1); line-height: 1.35;
-  margin-bottom: 9px;
+  margin-bottom: 0;
   word-break   : keep-all;
+  display      : flex; align-items: flex-start;
+  justify-content: space-between; gap: 8px;
+  cursor       : pointer;
 }
+.mob-card-v-title-txt { flex: 1; min-width: 0; }
 
 /* ── 불릿 본문 (line-height 1.6) ── */
 .mob-card-v-body {
@@ -1382,3 +1386,41 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   padding      : 2px 9px; border-radius: 20px;
   letter-spacing: .02em;
 }
+
+/* ══════════════════════════════════════════════════════════
+   v22 — 카드 아코디언: 기본 접힘, 클릭 시 펼침
+══════════════════════════════════════════════════════════ */
+
+/* 셰브론 아이콘 */
+.mob-card-v-chevron {
+  font-size    : 15px;
+  color        : var(--text-3);
+  flex-shrink  : 0;
+  margin-top   : 2px;
+  transition   : transform .25s ease;
+  pointer-events: none;
+}
+.mob-card-v.expanded .mob-card-v-chevron {
+  transform    : rotate(180deg);
+}
+
+/* 상세 내용 — 기본 접힘, 펼칠 때 최대 높이 전환 */
+.mob-card-v-detail {
+  overflow     : hidden;
+  max-height   : 0;
+  transition   : max-height .28s cubic-bezier(.4,0,.2,1);
+}
+.mob-card-v.expanded .mob-card-v-detail {
+  max-height   : 900px;
+}
+/* 접혔을 때 불릿 상단 여백이 남지 않도록 초기화 */
+.mob-card-v-detail .mob-card-v-body   { margin-top: 10px; }
+.mob-card-v-detail .mob-card-v-tags   { margin-top: 8px;  }
+
+/* 데일리 배달 카드: mob-card-v 상속, 인디고 accent 유지 */
+.mob-card-v.mob-card-delivery { border-left-color: var(--accent2); }
+
+/* 배달 카드 상세 내용 — mob-card-v 패딩 내에서 마진 조정 */
+.mob-card-v .mob-delivery-summary3   { margin: 8px 0 10px; }
+.mob-card-v .mob-delivery-concepts   { margin: 0 0 10px; }
+.mob-card-v .mob-delivery-reminder   { margin: 0; }

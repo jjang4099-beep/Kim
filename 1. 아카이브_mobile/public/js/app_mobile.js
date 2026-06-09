@@ -268,6 +268,11 @@ const Mob = {
         if (action === 'copy')   this._copyItemText(id);
         return;
       }
+      /* .mob-card-v: 클릭 시 상세 내용 펼치기/접기 (아코디언) */
+      if (card.classList.contains('mob-card-v')) {
+        card.classList.toggle('expanded');
+        return;
+      }
       const id = card.dataset.id;
       if (id) this.openDetail(id);
     };
@@ -399,19 +404,24 @@ const Mob = {
       <div class="mob-card-v-top">
         <span class="mob-card-v-cat">${catIcon} ${catLabel} · ${dateStr}</span>
         <div class="mob-card-v-acts">
-          <button class="mob-card-v-copy" data-action="copy"
+          <button class="mob-card-v-copy"
                   onclick="event.stopPropagation();Mob._copyItemText('${id}')" title="복사">
             <i class="ti ti-copy"></i>
           </button>
-          <button class="mob-card-v-del" data-action="delete"
-                  onclick="event.stopPropagation()" title="삭제">
+          <button class="mob-card-v-del"
+                  onclick="event.stopPropagation();Mob._deleteItem('${id}',this.closest('.mob-card'))" title="삭제">
             <i class="ti ti-trash"></i>
           </button>
         </div>
       </div>
-      <div class="mob-card-v-title">${title}</div>
-      ${bulletsHTML}
-      ${tagsHTML}
+      <div class="mob-card-v-title">
+        <span class="mob-card-v-title-txt">${title}</span>
+        <i class="ti ti-chevron-down mob-card-v-chevron"></i>
+      </div>
+      <div class="mob-card-v-detail">
+        ${bulletsHTML}
+        ${tagsHTML}
+      </div>
     </div>`;
   },
 
@@ -615,7 +625,7 @@ const Mob = {
     }
   },
 
-  /** 오늘의 지식 배달 카드 (type: 'daily_delivery') */
+  /** 오늘의 지식 배달 카드 (type: 'daily_delivery') — v22 컴팩트 + 아코디언 */
   _cardDailyDelivery(item) {
     const id       = item._id || item.id || '';
     const title    = item.title   || '오늘의 지식';
@@ -624,6 +634,10 @@ const Mob = {
     const reminder = item.reminder || item.summary || '';
     const cat      = item.category || 'inbox';
     const catLabel = this._catLabel(cat);
+    const rawD     = item.createdAt || item.savedAt || '';
+    const dateStr  = rawD
+      ? (() => { const d = new Date(rawD); return isNaN(d) ? '오늘' : `${d.getMonth()+1}/${d.getDate()}`; })()
+      : '오늘';
 
     const conceptsHTML = concepts.slice(0, 3).map(c => `
       <div class="mob-delivery-concept">
@@ -632,26 +646,23 @@ const Mob = {
       </div>`).join('');
 
     return `
-    <div class="mob-card mob-card-delivery" data-id="${id}">
-      <div class="mob-delivery-header">
-        <div class="mob-delivery-ph">
-          <span class="mob-delivery-ph-icon">🎁</span>
-        </div>
-        <div class="mob-delivery-header-body">
-          <span class="mob-card-cat">${catLabel}</span>
-          <div class="mob-delivery-title">${title}</div>
-        </div>
+    <div class="mob-card mob-card-v mob-card-delivery" data-id="${id}">
+      <div class="mob-card-v-top">
+        <span class="mob-card-v-cat">🎁 데일리 배달 · ${catLabel} · ${dateStr}</span>
       </div>
-      <div class="mob-delivery-section-label">지식 핵심 요약</div>
-      <div class="mob-delivery-summary3">${summary3.replace(/\n/g, '<br>')}</div>
-      ${conceptsHTML ? `
-      <div class="mob-delivery-section-label">필수 개념 및 용어</div>
-      <div class="mob-delivery-concepts">${conceptsHTML}</div>` : ''}
-      ${reminder ? `
-      <div class="mob-delivery-reminder">
-        <span class="mob-delivery-reminder-icon">✨</span>
-        <span>${reminder}</span>
-      </div>` : ''}
+      <div class="mob-card-v-title">
+        <span class="mob-card-v-title-txt">${title}</span>
+        <i class="ti ti-chevron-down mob-card-v-chevron"></i>
+      </div>
+      <div class="mob-card-v-detail">
+        ${summary3 ? `<div class="mob-delivery-summary3">${summary3.replace(/\n/g, '<br>')}</div>` : ''}
+        ${conceptsHTML ? `<div class="mob-delivery-concepts">${conceptsHTML}</div>` : ''}
+        ${reminder ? `
+        <div class="mob-delivery-reminder">
+          <span class="mob-delivery-reminder-icon">✨</span>
+          <span>${reminder}</span>
+        </div>` : ''}
+      </div>
     </div>`;
   },
 

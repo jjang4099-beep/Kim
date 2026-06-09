@@ -1077,59 +1077,185 @@ const Mob = {
     }
   },
 
-  /* 배달 설정 패널 렌더링 — 4개 토글만 표시 */
+  /* 배달 설정 패널 렌더링 — 토글 + 영어 상세 설정 아코디언 */
   _renderDeliverySettings(data) {
-    const user  = data?.user  || {};
-    const feeds = data?.available_feeds || [];
+    const user    = data?.user  || {};
+    const feeds   = data?.available_feeds || [];
     const enabled = new Set(user.enabled_feeds || []);
-
-    // 허용 ID: 4가지만 표시 (jp_expr, fr_expr 등 제외)
-    const ALLOWED_IDS = ['en_expr', 'zh_expr', 'us_market', 'kr_market'];
-    const filteredFeeds = feeds.filter(f => ALLOWED_IDS.includes(f.id));
+    const enCfg   = user.feed_settings?.en_expr || {};
 
     /* 배달 시간 */
     const timeInput = el('dpDeliveryTime');
     if (timeInput) timeInput.value = user.delivery_time || '07:30';
 
-    /* 구독 피드 토글 목록 */
-    const subsList = el('dpSubsList');
-    if (subsList) {
-      if (filteredFeeds.length) {
-        // 구분선: 언어 학습 / 시황 분석
-        const langFeeds   = filteredFeeds.filter(f => f.type === 'language' || f.id.includes('expr'));
-        const marketFeeds = filteredFeeds.filter(f => f.type === 'market'   || f.id.includes('market'));
+    /* 허용 피드: 4종 */
+    const ALLOWED_IDS = ['en_expr', 'zh_expr', 'us_market', 'kr_market'];
+    const filtered    = feeds.filter(f => ALLOWED_IDS.includes(f.id));
+    const langFeeds   = filtered.filter(f => f.type === 'language' || f.id.includes('expr'));
+    const marketFeeds = filtered.filter(f => f.type === 'market'   || f.id.includes('market'));
 
-        const renderFeedRow = sub => `
-          <div class="mvw-dp-sub-item">
-            <div class="mvw-dp-sub-info">
-              <span class="mvw-dp-sub-icon">${sub.icon || '📌'}</span>
-              <div class="mvw-dp-sub-text">
-                <div class="mvw-dp-sub-name">${sub.label}</div>
-                <div class="mvw-dp-sub-desc">${sub.desc || ''}</div>
-              </div>
+    /* 일반 토글 행 */
+    const renderToggleRow = sub => `
+      <div class="mvw-dp-sub-item">
+        <div class="mvw-dp-sub-info">
+          <span class="mvw-dp-sub-icon">${sub.icon || '📌'}</span>
+          <div class="mvw-dp-sub-text">
+            <div class="mvw-dp-sub-name">${sub.label}</div>
+            <div class="mvw-dp-sub-desc">${sub.desc || ''}</div>
+          </div>
+        </div>
+        <label class="mvw-dp-toggle">
+          <input type="checkbox" id="sub_${sub.id}" ${enabled.has(sub.id) ? 'checked' : ''}/>
+          <span class="mvw-dp-toggle-track"><span class="mvw-dp-toggle-thumb"></span></span>
+        </label>
+      </div>`;
+
+    /* 영어 표현 행 — 설정 아코디언 포함 */
+    const enRow = sub => {
+      const c = enCfg.count  || 7;
+      const l = enCfg.level  || 'intermediate';
+      const t = enCfg.themes || [];
+      const themeOpts = [
+        { val:'business_meeting', label:'💼 비즈니스 미팅' },
+        { val:'office_email',     label:'📧 오피스 이메일' },
+        { val:'daily_travel',     label:'✈️ 일상/여행 회화' },
+        { val:'drama_spoken',     label:'🎬 미드 구어체' }
+      ];
+      return `
+      <div class="mvw-dp-sub-item mvw-dp-sub-item--en" id="enExprRow">
+        <div class="mvw-dp-sub-info" style="cursor:pointer" onclick="Mob._toggleEnDetail()">
+          <span class="mvw-dp-sub-icon">${sub.icon || '🇺🇸'}</span>
+          <div class="mvw-dp-sub-text">
+            <div class="mvw-dp-sub-name">${sub.label} <span class="mvw-en-cfg-badge" id="enCfgBadge">${c}개 · ${l === 'advanced' ? '고급' : '초중급'}</span></div>
+            <div class="mvw-dp-sub-desc">${sub.desc || ''}</div>
+          </div>
+          <i class="ti ti-chevron-down mvw-en-detail-chevron" id="enDetailChevron"></i>
+        </div>
+        <label class="mvw-dp-toggle" style="flex-shrink:0">
+          <input type="checkbox" id="sub_${sub.id}" ${enabled.has(sub.id) ? 'checked' : ''}/>
+          <span class="mvw-dp-toggle-track"><span class="mvw-dp-toggle-thumb"></span></span>
+        </label>
+      </div>
+      <!-- 상세 설정 아코디언 패널 -->
+      <div class="mvw-en-panel" id="enDetailPanel">
+        <div class="mvw-en-inner">
+
+          <!-- 배달 개수 -->
+          <div class="mvw-en-section">
+            <div class="mvw-en-section-title">📦 배달 개수</div>
+            <div class="mvw-chip-group" id="enCountChips">
+              ${[5,7,10].map(n => `
+              <button class="mvw-chip-btn${c===n?' active':''}" data-val="${n}"
+                      onclick="Mob._selectChip(this,'enCountChips')">${n}개</button>`).join('')}
             </div>
-            <label class="mvw-dp-toggle">
-              <input type="checkbox" id="sub_${sub.id}"
-                     ${enabled.has(sub.id) ? 'checked' : ''}/>
-              <span class="mvw-dp-toggle-track">
-                <span class="mvw-dp-toggle-thumb"></span>
-              </span>
-            </label>
-          </div>`;
+          </div>
 
-        subsList.innerHTML = `
-          <div class="mvw-dp-group-label">🎓 언어 학습</div>
-          ${langFeeds.map(renderFeedRow).join('')}
-          <div class="mvw-dp-group-label">📊 시황 분석</div>
-          ${marketFeeds.map(renderFeedRow).join('')}`;
-      } else {
-        subsList.innerHTML = `<div style="padding:12px 0;font-size:13px;color:var(--text-3)">설정 로드 실패</div>`;
-      }
+          <!-- 집중 테마 -->
+          <div class="mvw-en-section">
+            <div class="mvw-en-section-title">🎯 집중 테마 <span class="mvw-en-note">중복 선택 가능</span></div>
+            <div class="mvw-theme-list">
+              ${themeOpts.map(o => `
+              <label class="mvw-theme-item">
+                <input type="checkbox" value="${o.val}" ${t.includes(o.val)?'checked':''}/>
+                <span class="mvw-theme-item-txt">${o.label}</span>
+              </label>`).join('')}
+            </div>
+          </div>
+
+          <!-- 난이도 -->
+          <div class="mvw-en-section">
+            <div class="mvw-en-section-title">📊 난이도</div>
+            <div class="mvw-level-group">
+              <label class="mvw-level-item${l==='intermediate'?' active':''}">
+                <input type="radio" name="enLevel" value="intermediate" ${l==='intermediate'?'checked':''}
+                       onchange="this.closest('.mvw-level-group').querySelectorAll('.mvw-level-item').forEach(x=>x.classList.remove('active'));this.closest('.mvw-level-item').classList.add('active')"/>
+                <span>🌱 초중급 <small>(Intermediate)</small></span>
+              </label>
+              <label class="mvw-level-item${l==='advanced'?' active':''}">
+                <input type="radio" name="enLevel" value="advanced" ${l==='advanced'?'checked':''}
+                       onchange="this.closest('.mvw-level-group').querySelectorAll('.mvw-level-item').forEach(x=>x.classList.remove('active'));this.closest('.mvw-level-item').classList.add('active')"/>
+                <span>🔥 고급 <small>(Advanced)</small></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 저장 버튼 -->
+          <button class="mvw-en-save-btn" id="enSaveBtn" onclick="Mob._saveEnglishSettings()">
+            <i class="ti ti-device-floppy"></i> 상세 옵션 저장
+          </button>
+
+        </div>
+      </div>`;
+    };
+
+    const subsList = el('dpSubsList');
+    if (!subsList) return;
+
+    if (filtered.length) {
+      const en    = langFeeds.find(f => f.id === 'en_expr');
+      const other = langFeeds.filter(f => f.id !== 'en_expr');
+      subsList.innerHTML = `
+        <div class="mvw-dp-group-label">🎓 언어 학습</div>
+        ${en ? enRow(en) : ''}
+        ${other.map(renderToggleRow).join('')}
+        <div class="mvw-dp-group-label">📊 시황 분석</div>
+        ${marketFeeds.map(renderToggleRow).join('')}`;
+    } else {
+      subsList.innerHTML = `<div style="padding:12px 0;font-size:13px;color:var(--text-3)">설정 로드 실패</div>`;
     }
 
-    /* 상태 칩 업데이트 */
+    /* 상태 칩 */
     const chip = el('dpStatusChip');
     if (chip) chip.textContent = `배달: ${user.delivery_time || '07:30'}`;
+  },
+
+  /* 영어 상세 설정 패널 토글 */
+  _toggleEnDetail() {
+    const panel   = el('enDetailPanel');
+    const chevron = el('enDetailChevron');
+    if (!panel) return;
+    const open = panel.classList.toggle('open');
+    if (chevron) chevron.style.transform = open ? 'rotate(180deg)' : '';
+  },
+
+  /* 칩 단일 선택 토글 */
+  _selectChip(btn, groupId) {
+    el(groupId)?.querySelectorAll('.mvw-chip-btn')
+      .forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  },
+
+  /* 영어 상세 설정 저장 */
+  async _saveEnglishSettings() {
+    const countBtn = el('enCountChips')?.querySelector('.mvw-chip-btn.active');
+    const count    = countBtn ? Number(countBtn.dataset.val) : 7;
+
+    const themeBoxes = document.querySelectorAll('#enDetailPanel .mvw-theme-list input[type="checkbox"]:checked');
+    const themes     = [...themeBoxes].map(cb => cb.value);
+
+    const levelRadio = document.querySelector('#enDetailPanel input[name="enLevel"]:checked');
+    const level      = levelRadio?.value || 'intermediate';
+
+    const btn = el('enSaveBtn');
+    if (btn) { btn.disabled = true; btn.innerHTML = '<span class="mob-spin"></span> 저장 중…'; }
+
+    try {
+      await fetchJSON('/api/delivery-settings/english', {
+        method : 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify({ count, themes, level })
+      });
+
+      /* 배지 업데이트 */
+      const badge = el('enCfgBadge');
+      if (badge) badge.textContent = `${count}개 · ${level === 'advanced' ? '고급' : '초중급'}`;
+
+      toast('✅ 영어 배달 설정이 맞춤형으로 고도화되었습니다.', 'ok', 4000);
+    } catch {
+      toast('설정 저장 실패', 'err');
+    } finally {
+      if (btn) { btn.disabled = false; btn.innerHTML = '<i class="ti ti-device-floppy"></i> 상세 옵션 저장'; }
+    }
   },
 
   /* 배달 설정 저장 */

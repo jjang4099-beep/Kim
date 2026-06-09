@@ -401,16 +401,41 @@ const WEEKDAY_THEMES = {
 /**
  * 영어/언어 표현 피드 생성 — 요일별 테마 + 실전 대화문 포함
  */
+/* 영어 테마 ID → 한국어 레이블 매핑 */
+const EN_THEME_LABELS = {
+  business_meeting : '비즈니스 미팅 & 회의 진행',
+  office_email     : '이메일 & 보고서 작성',
+  daily_travel     : '일상/여행 회화',
+  drama_spoken     : '미드 구어체 & 슬랭'
+};
+
 async function generateLanguageFeed(sub, user) {
-  const count   = sub.options?.count || 7;
   const lang    = sub.lang || '영어';
   const langKey = lang.includes('중국') ? 'zh' : 'en';
 
+  /* ── 영어 표현: 사용자 상세 설정 우선 적용 ── */
+  const enCfg  = (langKey === 'en' && user?.feed_settings?.en_expr) || {};
+  const count  = enCfg.count  || sub.options?.count || 7;
+  const level  = enCfg.level  || 'intermediate';  // 'intermediate' | 'advanced'
+
   // 요일별 테마 자동 결정 (0=일요일)
   const dow      = new Date().getDay();
-  const theme    = WEEKDAY_THEMES[langKey][dow] || sub.topic || `비즈니스 ${lang}`;
   const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
   const dayKr    = dayNames[dow];
+
+  /* 사용자가 집중 테마를 선택했으면 해당 테마 중 요일 순환, 없으면 기존 요일 테마 */
+  let theme;
+  if (langKey === 'en' && enCfg.themes && enCfg.themes.length > 0) {
+    const labels = enCfg.themes.map(t => EN_THEME_LABELS[t]).filter(Boolean);
+    theme = labels[dow % labels.length]; // 요일별 순환
+  } else {
+    theme = WEEKDAY_THEMES[langKey][dow] || sub.topic || `비즈니스 ${lang}`;
+  }
+
+  /* 난이도 설명 주입 */
+  const levelDesc = level === 'advanced'
+    ? '원어민 수준의 고급(Advanced) 뉘앙스 표현 — 관용구·비유적 표현·고급 어휘 중심'
+    : '직장인 필수 비즈니스 초중급(Intermediate) 표현 — 실전에서 바로 쓸 수 있는 핵심 어휘';
 
   const dialogueInstruction = lang === '영어'
     ? `"dialogue": "A: (상황 세팅 1줄)\\nB: (표현 사용 1줄)\\nA: (자연스러운 반응 1줄)"`
@@ -418,7 +443,8 @@ async function generateLanguageFeed(sub, user) {
 
   const prompt = `당신은 성재님의 개인 학습 수석 비서입니다. 바쁜 직장인인 성재님이 아침 5분 안에 오늘의 ${lang} 표현을 완벽히 소화할 수 있도록 엄선합니다.
 
-오늘(${dayKr}요일) 테마: "${theme}"
+오늘(${dayKr}요일) 집중 테마: "${theme}"
+난이도: ${levelDesc}
 
 다음 JSON 배열만 반환하세요 (마크다운 코드블록 없이):
 [
@@ -434,7 +460,7 @@ async function generateLanguageFeed(sub, user) {
 
 조건:
 - 정확히 ${count}개 표현 생성
-- 오늘 테마 "${theme}"에 딱 맞는 실전 표현만 선별
+- 집중 테마 "${theme}" + 난이도(${level === 'advanced' ? '고급' : '초중급'})에 딱 맞는 실전 표현만 선별
 - dialogue는 실제 비즈니스 현장에서 바로 쓸 수 있는 짧은 대화문 (3~4줄)
 - practiceSentence는 실제 직장 상황(회의·이메일·보고·협상)에 맞게 구체적으로`;
 
@@ -1216,7 +1242,8 @@ app.get('/api/user/settings', (req, res) => {
       name:           user.name,
       delivery_time:  user.delivery_time,
       timezone:       user.timezone,
-      enabled_feeds:  [...enabled]
+      enabled_feeds:  [...enabled],
+      feed_settings:  user.feed_settings || {}
     },
     available_feeds: subs.map(s => ({
       id: s.id, label: s.label, type: s.type,
@@ -1242,6 +1269,39 @@ app.patch('/api/user/settings', (req, res) => {
 
   console.log(`[유저설정] 업데이트 — 배달시간: ${user.delivery_time}, 피드: ${(user.enabled_feeds||[]).join(',')}`);
   res.json({ success: true, user });
+});
+
+/**
+ * PATCH /api/delivery-settings/english
+ * Body: { count, themes, level }
+ * 영어 표현 배달 상세 설정 저장
+ */
+app.patch('/api/delivery-settings/english', (req, res) => {
+  const users = readUsers();
+  if (!users.length) return res.status(404).json({ success: false, error: '유저 없음' });
+
+  const user = users[0];
+  const { count, themes, level } = req.body;
+
+  /* 유효성 검사 */
+  const validCounts = [5, 7, 10];
+  const validLevels = ['intermediate', 'advanced'];
+  const validThemes = ['business_meeting', 'office_email', 'daily_travel', 'drama_spoken'];
+
+  const safeCount  = validCounts.includes(Number(count))  ? Number(count)    : 7;
+  const safeLevel  = validLevels.includes(level)          ? level            : 'intermediate';
+  const safeThemes = Array.isArray(themes)
+    ? themes.filter(t => validThemes.includes(t))
+    : [];
+
+  /* feed_settings.en_expr 저장 */
+  if (!user.feed_settings) user.feed_settings = {};
+  user.feed_settings.en_expr = { count: safeCount, themes: safeThemes, level: safeLevel };
+  user.updated_at = new Date().toISOString();
+  writeUsers(users);
+
+  console.log(`[영어설정] count=${safeCount} level=${safeLevel} themes=${safeThemes.join(',')}`);
+  res.json({ success: true, settings: user.feed_settings.en_expr });
 });
 
 // ══════════════════════════════════════════════════

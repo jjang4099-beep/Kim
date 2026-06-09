@@ -1296,6 +1296,129 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 }
 
 /* ══════════════════════════════════════════════════════════
+   v24 — 영어 표현 상세 설정 패널 (아코디언)
+══════════════════════════════════════════════════════════ */
+
+/* 영어 행 — 설정 클릭 영역 hover */
+.mvw-dp-sub-item--en .mvw-dp-sub-info { gap: 10px; }
+.mvw-dp-sub-item--en .mvw-dp-sub-info:hover .mvw-dp-sub-name { color: var(--accent); }
+
+/* 설정 배지 (개수 · 난이도) */
+.mvw-en-cfg-badge {
+  display       : inline-block;
+  font-size     : 10px; font-weight: 700;
+  color         : var(--accent); background: #eff6ff;
+  padding       : 1px 7px; border-radius: 20px;
+  margin-left   : 6px; vertical-align: middle;
+  letter-spacing: .02em;
+}
+
+/* 셰브론 */
+.mvw-en-detail-chevron {
+  font-size  : 14px; color: var(--text-3); flex-shrink: 0;
+  transition : transform .25s ease; margin-left: auto; margin-right: 10px;
+}
+
+/* 아코디언 패널 */
+.mvw-en-panel {
+  overflow   : hidden;
+  max-height : 0;
+  transition : max-height .32s cubic-bezier(.4,0,.2,1);
+}
+.mvw-en-panel.open { max-height: 700px; }
+
+/* 패널 내부 — 연한 배경 박스 */
+.mvw-en-inner {
+  margin     : 4px 0 10px;
+  padding    : 14px 14px 12px;
+  background : #f8faff;
+  border-radius: 10px;
+  border     : 1px solid #dbeafe;
+  display    : flex; flex-direction: column; gap: 14px;
+}
+
+/* 섹션 레이블 */
+.mvw-en-section-title {
+  font-size   : 11px; font-weight: 800; color: var(--accent);
+  letter-spacing: .04em; margin-bottom: 8px;
+  display     : flex; align-items: center; gap: 5px;
+}
+.mvw-en-note {
+  font-size  : 10px; font-weight: 600;
+  color      : var(--text-3); background: #f1f5f9;
+  padding    : 1px 6px; border-radius: 10px; margin-left: 4px;
+}
+
+/* 배달 개수 칩 */
+.mvw-chip-group { display: flex; gap: 7px; flex-wrap: wrap; }
+.mvw-chip-btn {
+  padding       : 5px 16px; border-radius: 20px;
+  font-size     : 13px; font-weight: 700;
+  border        : 1.5px solid var(--border);
+  background    : var(--surface); color: var(--text-2);
+  cursor        : pointer; transition: all .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mvw-chip-btn.active {
+  background    : var(--accent); color: #fff;
+  border-color  : var(--accent);
+}
+.mvw-chip-btn:active { transform: scale(.95); }
+
+/* 집중 테마 체크박스 리스트 */
+.mvw-theme-list {
+  display       : flex; flex-direction: column; gap: 6px;
+}
+.mvw-theme-item {
+  display       : flex; align-items: center; gap: 10px;
+  padding       : 8px 11px; border-radius: 8px;
+  background    : var(--surface);
+  border        : 1.5px solid var(--border);
+  cursor        : pointer;
+  transition    : border-color .15s, background .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mvw-theme-item:has(input:checked) {
+  border-color  : var(--accent); background: #eff6ff;
+}
+.mvw-theme-item input[type="checkbox"] {
+  width : 16px; height: 16px; accent-color: var(--accent);
+  flex-shrink: 0;
+}
+.mvw-theme-item-txt { font-size: 13.5px; font-weight: 600; color: var(--text-1); }
+
+/* 난이도 라디오 토글 */
+.mvw-level-group { display: flex; gap: 8px; }
+.mvw-level-item {
+  flex          : 1;
+  display       : flex; align-items: center; justify-content: center; gap: 7px;
+  padding       : 9px 10px; border-radius: 8px;
+  font-size     : 13px; font-weight: 600; color: var(--text-2);
+  background    : var(--surface); border: 1.5px solid var(--border);
+  cursor        : pointer;
+  transition    : all .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mvw-level-item.active {
+  background    : var(--accent); color: #fff; border-color: var(--accent);
+}
+.mvw-level-item input[type="radio"] { display: none; }
+.mvw-level-item small { font-size: 10px; opacity: .8; }
+
+/* 저장 버튼 */
+.mvw-en-save-btn {
+  display       : flex; align-items: center; justify-content: center; gap: 6px;
+  width         : 100%; padding: 10px;
+  background    : var(--accent-g); color: #fff;
+  font-size     : 13.5px; font-weight: 700;
+  border        : none; border-radius: 8px; cursor: pointer;
+  transition    : opacity .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mvw-en-save-btn:active { opacity: .85; }
+.mvw-en-save-btn:disabled { opacity: .6; cursor: default; }
+
+/* ══════════════════════════════════════════════════════════
    v21 — 하이브리드 레이아웃: 텍스트 전폭 세로형 카드 (.mob-card-v)
    English · History · Economy · Inbox → 썸네일 없이 100% 폭 사용
    흰 배경 + 파란 왼쪽 accent border · 볼드 제목 · 불릿 · 해시태그

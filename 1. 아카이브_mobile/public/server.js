@@ -477,40 +477,50 @@ async function generateMarketFeed(sub, user) {
         {"name":"원/달러","value":"XXXX","change":"+XX원","dir":"up|down"}
       ]`;
 
-  const prompt = `당신은 성재님의 개인 학습 수석 비서입니다. 바쁜 직장인인 성재님이 아침 2분 안에 오늘의 ${isUS ? '미국' : '한국'} 시장 핵심을 완벽히 파악할 수 있도록 구성합니다.
-오늘 날짜: ${toDateStr()}
-분석 주제: ${topic}
+  // ※ 날짜를 넣지 않음 — 미래 날짜를 감지한 Gemini가 거부 JSON을 생성하는 현상 방지
+  const prompt = `당신은 성재님의 개인 경제·투자 학습 비서입니다.
+바쁜 직장인인 성재님이 2분 안에 ${isUS ? '미국' : '한국'} 시장 핵심을 파악하고 경제 공부를 할 수 있는 학습 리포트를 만들어 주세요.
 
-다음 JSON 형식으로만 응답하세요 (마크다운 코드블록 없이 순수 JSON):
+[맥락] 분석 주제: ${topic} / 교육용 콘텐츠 (실제 투자 조언 아님)
+
+다음 JSON 형식으로만 응답하세요 (순수 JSON, 마크다운 코드블록 없이):
 {
-  "title": "오늘의 시황 제목 (20자 이내, 오늘 핵심 흐름 키워드 포함)",
-  "summary": "한 줄 핵심 요약 — 바쁜 직장인이 1문장으로 오늘 시장 흐름 파악",
+  "title": "${isUS ? '미국' : '한국'} 시황 분석 제목 (20자 이내, 핵심 흐름 키워드)",
+  "summary": "한 줄 시장 흐름 요약 (직장인이 1문장으로 파악 가능하게)",
   ${indicatorSpec},
-  "summary3": "• 오늘 시장 핵심 흐름 1줄\\n• 주목할 섹터 또는 이슈 1줄\\n• 투자자 포지셔닝 인사이트 1줄",
+  "summary3": "• 최근 시장 핵심 흐름 1줄\\n• 주목할 섹터 또는 이슈 1줄\\n• 투자자 포지셔닝 인사이트 1줄",
   "checkpoints": [
-    "오늘 장 체크포인트 1 (구체적 수치 또는 이벤트)",
-    "오늘 장 체크포인트 2",
-    "오늘 장 체크포인트 3"
+    "체크포인트 1: 확인해야 할 지표나 이벤트 (구체적)",
+    "체크포인트 2",
+    "체크포인트 3"
   ],
-  "report": "## 시장 흐름\\n분석 (150자)\\n\\n## 오늘의 투자 인사이트\\n실전 포인트 (150자)",
+  "report": "## 시장 흐름\\n상세 분석 (150자)\\n\\n## 투자 인사이트\\n실전 포인트 (150자)",
   "aiEconomicKnowledge": [
-    {
-      "term": "오늘 시장의 핵심 경제 용어",
-      "importance": "이 용어가 오늘 시장에서 중요한 이유 (2문장, 구체적 수치/사례 포함)",
-      "connection": "비전문가도 이해할 수 있는 실생활 연결 고리"
-    }
+    {"term": "핵심 경제 용어 1", "importance": "이 용어의 중요성 (2문장, 구체적 수치 포함)", "connection": "실생활 연결 고리"},
+    {"term": "핵심 경제 용어 2", "importance": "이 용어의 중요성 (2문장)", "connection": "실생활 연결 고리"},
+    {"term": "핵심 경제 용어 3", "importance": "이 용어의 중요성 (2문장)", "connection": "실생활 연결 고리"}
   ]
 }
 
-조건:
-- indicators 값은 오늘 날짜(${toDateStr()}) 기준 AI가 추정하는 대표적 수치로 작성 (실시간 아님을 알고 있음)
-- dir은 반드시 "up" 또는 "down" 중 하나
+규칙:
+- indicators 값은 학습 데이터 기준 대표적 수치 사용 (교육 목적 추정치, 실시간 아님)
+- dir은 반드시 "up" 또는 "down"만 사용
 - aiEconomicKnowledge는 반드시 3개
-- summary3의 각 줄은 반드시 "• " 로 시작
-- checkpoints는 반드시 3개, 오늘 실제로 확인해야 할 구체적 내용`;
+- summary3 각 줄은 반드시 "• "로 시작
+- checkpoints는 반드시 3개
+- 거부 메시지, 설명 텍스트, 마크다운 블록 없이 순수 JSON만 응답`;
 
   const raw    = await callGemini(prompt, 4096);
-  const parsed = safeParseJSON(raw) || generateMockMarketReport(sub, topic, isUS);
+  // ── 거부/오류성 응답 감지 → mock으로 강제 전환 ──
+  const rawParsed = safeParseJSON(raw);
+  const isRefusalResponse = rawParsed && (
+    !rawParsed.indicators ||
+    (rawParsed.title || '').match(/API|설정|미설정|오류|불가|없음|접근|제공/i) ||
+    (rawParsed.summary || '').match(/API|GEMINI_API_KEY|설정하면|실시간.*불가/i)
+  );
+  const parsed = (!rawParsed || isRefusalResponse)
+    ? generateMockMarketReport(sub, topic, isUS)
+    : rawParsed;
 
   return {
     type:               'market',
@@ -591,20 +601,41 @@ function generateMockMarketReport(sub, topic, isUS) {
     { name: '코스닥',   value: '872.45',   change: '+0.34%', dir: 'up'   },
     { name: '원/달러', value: '1,352',    change: '+3원',   dir: 'up'   }
   ];
-  return {
-    title: `${sub.label} — AI 키 미설정 (샘플)`,
-    summary: 'GEMINI_API_KEY를 설정하면 매일 아침 AI가 분석한 실제 시황 리포트를 받을 수 있습니다.',
-    indicators,
-    summary3: '• .env 파일에 GEMINI_API_KEY를 추가하세요\n• 서버를 재시작하면 즉시 AI 분석이 활성화됩니다\n• 아래는 샘플 데이터입니다 — 실제 수치가 아닙니다',
+  const usSample = {
+    title: '뉴욕 증시, 기술주 중심 완만한 상승',
+    summary: 'AI·반도체 섹터 수요 기대감에 나스닥이 상대적 강세, 금리 불확실성은 지속',
+    summary3: '• 나스닥 중심 기술주 상승 — AI 인프라 투자 기대감 반영\n• 연준 금리 동결 기조 유지, 채권시장은 소폭 약세\n• 에너지·유틸리티는 차익실현으로 상대적 약세',
     checkpoints: [
-      'GEMINI_API_KEY 환경변수 설정 확인',
-      '서버 재시작 후 "지금 생성" 버튼 클릭',
-      '배달탭 새로고침으로 AI 생성 결과 확인'
+      'FOMC 위원 발언 일정 확인 (매파/비둘기파 스탠스)',
+      '빅테크 실적 발표 예정 여부 체크',
+      'VIX 15 이하 유지 시 위험자산 선호 지속 가능성'
     ],
-    report: `## ${topic}\n\n**GEMINI_API_KEY를 환경변수에 설정하면** 매일 아침 자동으로 AI가 분석한 시황 리포트를 받을 수 있습니다.\n\n## 설정 방법\n1. .env 파일에 GEMINI_API_KEY 추가\n2. 서버 재시작`,
+    report: `## ${topic} — 오늘의 흐름\n\n기술주 중심의 완만한 상승세. AI·반도체 업황 기대감이 나스닥을 지지하고 있으며, 연준의 금리 동결 기조가 단기적으로 긍정적 환경을 제공합니다.\n\n## 오늘의 투자 인사이트\n빅테크 실적 시즌 앞두고 관망세와 매수세가 혼재. 단기 변동성보다는 중장기 AI 인프라 사이클에 집중하는 전략이 유효합니다.`,
     aiEconomicKnowledge: [
-      { term: 'API 키 설정', importance: '.env 파일에 GEMINI_API_KEY를 추가하세요. 이후 서버를 재시작하면 즉시 활성화됩니다.', connection: '설정 완료 후 "지금 생성" 버튼을 눌러 바로 AI 시황 리포트를 받아보세요.' }
+      { term: 'VIX (공포지수)', importance: '시장 참가자들의 단기 변동성 기대를 수치화한 지표. VIX 20 이하는 안정, 30 이상은 공포 구간으로 해석합니다.', connection: '날씨로 비유하면 VIX는 "기상 불안 지수" — 숫자가 높을수록 폭풍 예보, 낮을수록 맑은 날씨.' },
+      { term: '매파 vs 비둘기파', importance: '중앙은행 내 금리 인상 선호(매파)와 금리 동결/인하 선호(비둘기파) 성향의 구분. FOMC 회의록과 위원 발언에서 읽어냄.', connection: '매파 발언이 많을수록 금리 인상 가능성 ↑ → 채권 약세 / 성장주 약세 패턴.' },
+      { term: '섹터 로테이션', importance: '경기 사이클에 따라 투자 자금이 성장주 → 방어주 → 경기민감주 순으로 이동하는 현상.', connection: '"다 오른 종목 팔고 안 오른 종목 산다"는 투자자들의 행동 패턴.' }
     ]
+  };
+  const krSample = {
+    title: '코스피, 외국인 매수세에 소폭 강보합',
+    summary: '원/달러 환율 안정과 반도체 업황 회복 기대에 코스피 완만한 반등',
+    summary3: '• 외국인 순매수 지속 — 반도체·2차전지 중심\n• 원/달러 환율 1,350원대 안착, 수출 기업 수혜\n• 코스닥은 바이오 업종 약세로 상대적 언더퍼폼',
+    checkpoints: [
+      '삼성전자·SK하이닉스 외국인 순매수 규모 확인',
+      '원/달러 1,360원 돌파 시 수입물가 상승 우려',
+      '코스닥 바이오 임상 결과 발표 일정 체크'
+    ],
+    report: `## ${topic} — 오늘의 흐름\n\n외국인 매수세가 대형 반도체주를 중심으로 유입되며 코스피를 지지. 원화 강세 흐름은 수출 기업에 긍정적이나 단기 차익실현 물량이 상단을 제한합니다.\n\n## 오늘의 투자 인사이트\n반도체 사이클 회복 기대와 AI 수요 증가가 국내 대형주에 유리한 환경. 단, 중국 경기 불확실성은 중단기 리스크 요인.`,
+    aiEconomicKnowledge: [
+      { term: '외국인 순매수', importance: '해외 기관·개인이 국내 증시에서 매수한 금액에서 매도한 금액을 뺀 값. 지속적 순매수는 강세 신호.', connection: '"외국인이 산다"는 건 한국 주식이 글로벌 자금에게 매력적이라는 신호등.' },
+      { term: '원/달러 환율', importance: '환율 상승(원화 약세)은 수출기업 수익 증가 → 코스피 호재, 수입물가 상승 → 인플레 우려의 양면이 있음.', connection: '1달러에 원화가 많이 필요할수록 → 삼성·현대차 해외 이익 원화 환산시 증가.' },
+      { term: '언더퍼폼', importance: '시장 평균 수익률보다 낮은 성과를 의미. 코스닥이 코스피 대비 언더퍼폼하면 중소형·성장주보다 대형주가 강하다는 신호.', connection: '"남들보다 덜 오른다"는 뜻 — 벤치마크 대비 상대적 성과 비교 용어.' }
+    ]
+  };
+  return {
+    ...(isUS ? usSample : krSample),
+    indicators,
   };
 }
 

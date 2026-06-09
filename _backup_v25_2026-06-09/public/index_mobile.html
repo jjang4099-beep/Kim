@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+  <meta name="apple-mobile-web-app-title" content="아카이브"/>
+  <link rel="apple-touch-icon" href="/icons/icon.svg"/>
+  <link rel="manifest" href="/manifest.json"/>
+  <meta name="theme-color" content="#2563eb"/>
+  <title>아카이브</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
+  <link rel="stylesheet" href="css/style_mobile.css?v=25"/>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     상단 헤더
+══════════════════════════════════════════════════════ -->
+<header class="mob-topbar">
+  <div class="mob-topbar-left">
+    <svg class="mob-parthenon" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M16 1 L31 9 L1 9 Z" fill="#2563eb"/>
+      <rect x="1" y="9" width="30" height="3" fill="#2563eb"/>
+      <rect x="2.5"  y="12" width="3" height="11" fill="#2563eb" rx="0.4"/>
+      <rect x="8"    y="12" width="3" height="11" fill="#2563eb" rx="0.4"/>
+      <rect x="13.5" y="12" width="3" height="11" fill="#2563eb" rx="0.4"/>
+      <rect x="19"   y="12" width="3" height="11" fill="#2563eb" rx="0.4"/>
+      <rect x="24.5" y="12" width="3" height="11" fill="#2563eb" rx="0.4"/>
+      <rect x="0" y="23" width="32" height="2.5" fill="#2563eb" rx="0.5"/>
+      <rect x="0" y="25.5" width="32" height="2.5" fill="#1d4ed8" rx="0.5"/>
+    </svg>
+    <span class="mob-title" id="mobHeaderTitle">아카이브</span>
+  </div>
+  <div class="mob-topbar-right" id="mobHeaderActions">
+    <button class="mob-icon-btn" id="mobSearchBtn" title="검색" onclick="Mob.openSearch()">
+      <i class="ti ti-search"></i>
+    </button>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════════════════
+     카테고리 탭 벨트
+══════════════════════════════════════════════════════ -->
+<nav class="mob-tabs" id="mobTabs">
+  <button class="mob-tab active" data-cat="all"     onclick="Mob.setTab('all',this)">전체</button>
+  <button class="mob-tab"        data-cat="en"      onclick="Mob.setTab('en',this)">English</button>
+  <button class="mob-tab"        data-cat="history" onclick="Mob.setTab('history',this)">History</button>
+  <button class="mob-tab"        data-cat="economy" onclick="Mob.setTab('economy',this)">Economy</button>
+  <button class="mob-tab"        data-cat="youtube" onclick="Mob.setTab('youtube',this)">YouTube</button>
+  <button class="mob-tab"        data-cat="inbox"   onclick="Mob.setTab('inbox',this)">임시서랍</button>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════
+     메인 콘텐츠 — SPA 뷰 컨테이너
+══════════════════════════════════════════════════════ -->
+<main class="mob-main" id="mobMain">
+
+  <!-- ── 뷰 1: 홈 ── -->
+  <div class="mob-view active" id="viewHome">
+    <div id="mobFeed">
+      <div class="mob-loading" id="mobLoading">
+        <span class="mob-spin"></span> 불러오는 중…
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 뷰 2: 배달 ── -->
+  <div class="mob-view" id="viewFeed">
+    <div class="mvw-section-hd" id="feedViewHd">
+      <div class="mvw-section-hd-left">
+        <i class="ti ti-gift" style="font-size:20px;color:var(--accent)"></i>
+        <div>
+          <div class="mvw-section-hd-title">오늘의 지식 배달</div>
+          <div class="mvw-section-hd-sub" id="feedViewDate">날짜 로딩 중…</div>
+        </div>
+      </div>
+      <button class="mvw-icon-btn" onclick="Mob._loadFeedView(true)" title="새로고침">
+        <i class="ti ti-refresh"></i>
+      </button>
+    </div>
+    <div class="mvw-content" id="mobFeedViewContent">
+      <div class="mob-loading"><span class="mob-spin"></span> 피드 불러오는 중…</div>
+    </div>
+  </div>
+
+  <!-- ── 뷰 3: AI 복습 요약 ── -->
+  <div class="mob-view" id="viewSummary">
+    <div class="mvw-summary-wrap">
+
+      <!-- 서재 지식 검색 -->
+      <div class="mvw-sum-search-wrap">
+        <div class="mvw-sum-search-label">
+          <i class="ti ti-search"></i> 내 서재 지식 검색
+        </div>
+        <div class="mvw-sum-search-bar">
+          <input type="text" id="sumSearchInput"
+            placeholder="제목·요약 키워드로 검색…"
+            autocomplete="off"
+            enterkeyhint="search"
+            oninput="Mob._onSumSearchInput(this.value)"
+            onkeydown="if(event.key==='Enter') Mob.doSumSearch()"/>
+          <button class="mvw-sum-search-btn" onclick="Mob.doSumSearch()" aria-label="검색">
+            <i class="ti ti-search"></i>
+          </button>
+        </div>
+        <div class="mvw-sum-search-results" id="sumSearchResults" hidden></div>
+      </div>
+
+      <div class="mvw-sum-divider">
+        <span>또는 기간별 AI 요약 생성</span>
+      </div>
+
+      <div class="mvw-sum-hero">
+        <i class="ti ti-brain" style="font-size:28px;color:#6366f1"></i>
+        <div>
+          <div class="mvw-sum-hero-title">AI 복습 요약</div>
+          <div class="mvw-sum-hero-sub">기간과 분야를 선택하고 AI 요약을 생성하세요</div>
+        </div>
+      </div>
+
+      <!-- 기간 선택 -->
+      <div class="mob-sum-row">
+        <span class="mob-sum-label"><i class="ti ti-calendar-event"></i> 기간</span>
+        <select class="mob-sum-select" id="sumPeriod" onchange="Mob._updateSummaryHint()">
+          <option value="today">오늘</option>
+          <option value="3days">최근 3일</option>
+          <option value="1week" selected>지난 1주일</option>
+          <option value="1month">이번 달 전체</option>
+        </select>
+      </div>
+
+      <!-- 카테고리 칩 -->
+      <div class="mob-sum-row mob-sum-row-chips">
+        <span class="mob-sum-label"><i class="ti ti-folders"></i> 분야</span>
+        <div class="mob-sum-chips" id="mobSumChips">
+          <button class="mob-sum-chip active" data-cat="all">전체</button>
+          <button class="mob-sum-chip" data-cat="en">English</button>
+          <button class="mob-sum-chip" data-cat="history">History</button>
+          <button class="mob-sum-chip" data-cat="economy">Economy</button>
+          <button class="mob-sum-chip" data-cat="youtube">YouTube</button>
+          <button class="mob-sum-chip" data-cat="inbox">서랍</button>
+        </div>
+      </div>
+
+      <div class="mob-sum-modal-hint">
+        <i class="ti ti-info-circle"></i>
+        <span id="mobSumHint">지난 1주일 · 전체 분야</span>
+      </div>
+
+      <button class="mob-sum-generate-btn" id="mobSumBtn" onclick="Mob.generateSummary()">
+        <i class="ti ti-sparkles"></i>
+        <span>AI 요약 생성</span>
+      </button>
+
+      <div class="mob-sum-result" id="mobSumResult" hidden></div>
+
+    </div>
+  </div>
+
+  <!-- ── 뷰 4: 학습 관리 ── -->
+  <div class="mob-view" id="viewManage">
+    <div class="mvw-manage-wrap">
+
+      <!-- 배달 설정 패널 -->
+      <div class="mvw-section-block mvw-delivery-panel" id="deliveryPanel">
+        <div class="mvw-block-title">
+          <i class="ti ti-gift"></i> 지식 배달 설정
+          <span class="mvw-dp-status-chip" id="dpStatusChip">로딩 중…</span>
+        </div>
+
+        <div class="mvw-dp-time-row">
+          <label class="mvw-dp-label" for="dpDeliveryTime">
+            <i class="ti ti-clock"></i> 배달 시간
+          </label>
+          <input type="time" id="dpDeliveryTime" class="mvw-dp-time-input" value="07:30"/>
+        </div>
+
+        <div class="mvw-dp-subs-label">받을 지식 선택</div>
+        <div class="mvw-dp-subs-list" id="dpSubsList">
+          <div class="mob-loading" style="padding:12px 0"><span class="mob-spin"></span></div>
+        </div>
+
+        <div class="mvw-dp-actions">
+          <button class="mvw-dp-save-btn" id="dpSaveBtn"
+                  onclick="Mob._saveDeliverySettings()">
+            <i class="ti ti-device-floppy"></i> 설정 저장
+          </button>
+          <button class="mvw-dp-gen-btn" id="dpGenBtn"
+                  onclick="Mob._generateFeedNow()">
+            <i class="ti ti-refresh"></i> 지금 생성
+          </button>
+        </div>
+      </div>
+
+      <!-- 통계 카드 -->
+      <div class="mvw-stats-row">
+        <div class="mvw-stat-card">
+          <div class="mvw-stat-num" id="statTotal">—</div>
+          <div class="mvw-stat-label"><i class="ti ti-books"></i> 총 지식</div>
+        </div>
+        <div class="mvw-stat-card mvw-stat-streak">
+          <div class="mvw-stat-num">🔥 <span id="statStreak">—</span></div>
+          <div class="mvw-stat-label"><i class="ti ti-flame"></i> 연속 학습</div>
+        </div>
+        <div class="mvw-stat-card mvw-stat-today">
+          <div class="mvw-stat-num" id="statTodayCount">—</div>
+          <div class="mvw-stat-label"><i class="ti ti-calendar-plus"></i> 오늘 추가</div>
+        </div>
+      </div>
+
+      <div class="mvw-section-block">
+        <div class="mvw-block-title"><i class="ti ti-chart-bar"></i> 최근 7일 활동</div>
+        <div class="mvw-weekly-bars" id="statWeekly">
+          <div class="mob-loading" style="padding:16px 0"><span class="mob-spin"></span></div>
+        </div>
+      </div>
+
+      <div class="mvw-section-block">
+        <div class="mvw-block-title"><i class="ti ti-chart-donut"></i> 분야별 분포</div>
+        <div class="mvw-cat-list" id="statCatBars">
+          <div class="mob-loading" style="padding:16px 0"><span class="mob-spin"></span></div>
+        </div>
+      </div>
+
+      <div class="mvw-section-block">
+        <div class="mvw-block-title"><i class="ti ti-clock"></i> 최근 추가한 지식</div>
+        <div class="mvw-recent-list" id="statRecentList">
+          <div class="mob-loading" style="padding:16px 0"><span class="mob-spin"></span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- ══════════════════════════════════════════════════════
+     하단 5버튼 네비게이션 바
+══════════════════════════════════════════════════════ -->
+<nav class="mob-bottom-nav">
+
+  <!-- 홈 -->
+  <button class="mob-nav-btn active" id="bnHome" onclick="Mob.switchView('home',this)">
+    <i class="ti ti-home"></i>
+    <span>홈</span>
+  </button>
+
+  <!-- 배달 (뱃지 포함) -->
+  <button class="mob-nav-btn" id="bnFeed" onclick="Mob.switchView('feed',this)">
+    <div class="mob-nav-icon-wrap">
+      <i class="ti ti-gift"></i>
+      <span class="mob-nav-badge" id="mobFeedBadge" hidden></span>
+    </div>
+    <span>배달</span>
+  </button>
+
+  <!-- 추가 (중앙 플로팅) -->
+  <button class="mob-nav-btn mob-nav-add" id="bnAdd" onclick="Mob.openAdd()">
+    <i class="ti ti-plus"></i>
+    <span>추가</span>
+  </button>
+
+  <!-- 요약 -->
+  <button class="mob-nav-btn" id="bnSummary" onclick="Mob.switchView('summary',this)">
+    <i class="ti ti-notes"></i>
+    <span>요약</span>
+  </button>
+
+  <!-- 관리 -->
+  <button class="mob-nav-btn" id="bnManage" onclick="Mob.switchView('manage',this)">
+    <i class="ti ti-chart-bar"></i>
+    <span>관리</span>
+  </button>
+
+</nav>
+
+<!-- ══════════════════════════════════════════════════════
+     검색 오버레이
+══════════════════════════════════════════════════════ -->
+<div class="mob-search-overlay" id="mobSearchOverlay" aria-hidden="true">
+  <div class="mob-search-ov-top">
+    <button class="mob-icon-btn" onclick="Mob.closeSearch()" aria-label="검색 닫기">
+      <i class="ti ti-arrow-left"></i>
+    </button>
+    <div class="mob-search-inner">
+      <i class="ti ti-search"></i>
+      <input type="text" id="mobSearchInput" placeholder="지식 검색…" autocomplete="off"
+        oninput="Mob.onSearchInput(this.value)" enterkeyhint="search"/>
+      <button class="mob-clear-btn" id="mobSearchClear" onclick="Mob.clearSearch()"
+        aria-label="검색어 지우기" hidden>
+        <i class="ti ti-x"></i>
+      </button>
+    </div>
+  </div>
+  <div class="mob-search-results" id="mobSearchResults">
+    <div class="mob-search-hint">
+      <i class="ti ti-search" style="font-size:36px;color:#d1d5db"></i>
+      <p>검색어를 입력하세요</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     모달: 지식 상세
+══════════════════════════════════════════════════════ -->
+<div class="mob-modal" id="mobDetailModal" hidden>
+  <div class="mob-modal-sheet" id="mobDetailSheet">
+    <div class="mob-modal-handle"></div>
+    <div class="mob-modal-header">
+      <span class="mob-modal-badge" id="mobDetailBadge"></span>
+      <button class="mob-modal-close" onclick="Mob.closeDetail()">
+        <i class="ti ti-x"></i>
+      </button>
+    </div>
+    <div class="mob-modal-body" id="mobDetailBody"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     모달: 지식 추가
+══════════════════════════════════════════════════════ -->
+<div class="mob-modal" id="mobAddModal" hidden>
+  <div class="mob-modal-sheet mob-add-sheet">
+    <div class="mob-modal-handle"></div>
+    <div class="mob-modal-header">
+      <span class="mob-modal-title">지식 추가</span>
+      <button class="mob-modal-close" onclick="Mob.closeAdd()">
+        <i class="ti ti-x"></i>
+      </button>
+    </div>
+
+    <!-- 탭 모드 선택 -->
+    <div class="mob-add-mode-bar">
+      <button class="mob-add-mode-btn active" id="mobAddTabText"
+        onclick="Mob.switchAddTab('text',this)">
+        <i class="ti ti-pencil"></i> 텍스트
+      </button>
+      <button class="mob-add-mode-btn" id="mobAddTabImage"
+        onclick="Mob.switchAddTab('image',this)">
+        <i class="ti ti-camera"></i> 사진 분석
+      </button>
+    </div>
+
+    <!-- 텍스트 패널 -->
+    <div class="mob-modal-body" id="mobAddTextPane">
+      <textarea id="mobAddInput" class="mob-add-input"
+        placeholder="유튜브 URL, 기사 링크, 또는 메모를 붙여넣으세요…" rows="4"></textarea>
+      <button class="mob-add-submit" onclick="Mob.submitAdd()">
+        <i class="ti ti-sparkles"></i> AI 분석하여 서재에 저장
+      </button>
+      <div class="mob-add-status" id="mobAddStatus" hidden></div>
+    </div>
+
+    <!-- 사진 분석 패널 -->
+    <div class="mob-modal-body" id="mobAddImagePane" hidden>
+      <input type="file" id="mobImageInput" accept="image/*"
+        style="display:none" onchange="Mob.handleImageSelect(this)"/>
+
+      <div class="mob-img-pick-area" id="mobImgPickArea" onclick="el('mobImageInput').click()">
+        <i class="ti ti-camera-plus"></i>
+        <p>탭하여 사진 촬영 또는 갤러리에서 선택</p>
+        <span>JPG · PNG · WEBP · 최대 10MB</span>
+      </div>
+
+      <div class="mob-img-preview-row" id="mobImgPreviewRow" hidden>
+        <div class="mob-img-thumb-wrap">
+          <img id="mobImgPreviewImg" src="" alt="미리보기"/>
+          <button class="mob-img-reset-btn" onclick="Mob.resetImageInput()" title="다시 선택">
+            <i class="ti ti-refresh"></i>
+          </button>
+        </div>
+        <div class="mob-img-memo-wrap">
+          <label class="mob-img-memo-label">
+            <i class="ti ti-message-chatbot"></i> AI에게 질문 (선택)
+          </label>
+          <textarea id="mobImgMemo" class="mob-img-memo"
+            placeholder="예: 이 수식을 단계별로 설명해줘…" rows="4"></textarea>
+        </div>
+      </div>
+
+      <button class="mob-add-submit mob-img-submit" id="mobImgSubmitBtn"
+        onclick="Mob.submitImageAnalysis()" hidden>
+        <i class="ti ti-eye-spark"></i> AI 비서에게 분석 요청
+      </button>
+      <div class="mob-add-status" id="mobImgStatus" hidden></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 토스트 -->
+<div class="mob-toast" id="mobToast" hidden></div>
+
+<script src="js/app_mobile.js?v=25"></script>
+<script src="js/pwa.js?v=1"></script>
+</body>
+</html>

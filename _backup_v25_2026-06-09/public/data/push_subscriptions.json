@@ -1,0 +1,14 @@
+[
+  {
+    "userId": "sj",
+    "subscription": {
+      "endpoint": "https://fcm.googleapis.com/fcm/send/eRJBiv3n5nY:APA91bGcrIwSkZl9ylw42sxsYQ8Qej0wv14sr8pUsbVZ9oawidYfDvZWHxnDSrBeVDIDTuxJpD3S5FVnQ4ie0E7DGEs8-Z8GPPZaDbJ_eV6xkXvamRullgEX8_8gBTcrXiMh2STBUgF7",
+      "expirationTime": null,
+      "keys": {
+        "p256dh": "BELLwmIqKyRbMiM33KOKXyI7S6cxQE-Y3H56p6MsgSLCwE7lps2GVMpjzHi95Yr9usrwH3myH0sUsgXA99WhkeE",
+        "auth": "PjOnKy4-0nT7xfl0y1HoDA"
+      }
+    },
+    "createdAt": "2026-06-08T13:03:29.582Z"
+  }
+]

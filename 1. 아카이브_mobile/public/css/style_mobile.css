@@ -1352,9 +1352,12 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 
 /* ── 불릿 본문 (line-height 1.6) ── */
 .mob-card-v-body {
-  list-style   : none; padding: 0; margin: 0 0 10px;
+  list-style   : none; padding: 0; margin: 10px 0 0;
   display      : flex; flex-direction: column; gap: 6px;
 }
+/* detail 안 첫 번째 불릿은 위 여백 유지 */
+.mob-card-v-detail .mob-card-v-body { margin-top: 8px; }
+.mob-card-v-detail .mob-card-v-tags { margin-top: 8px; }
 .mob-card-v-body li {
   display      : flex; align-items: baseline; gap: 7px;
   font-size    : 13.5px; color: var(--text-2); line-height: 1.6;
@@ -1413,9 +1416,12 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 .mob-card-v.expanded .mob-card-v-detail {
   max-height   : 900px;
 }
-/* 접혔을 때 불릿 상단 여백이 남지 않도록 초기화 */
-.mob-card-v-detail .mob-card-v-body   { margin-top: 10px; }
-.mob-card-v-detail .mob-card-v-tags   { margin-top: 8px;  }
+/* detail 안 불릿·태그 상단 여백 (body에서 이미 선언했으나 특이도 보강) */
+.mob-card-v-detail > .mob-card-v-body:first-child { margin-top: 8px; }
+
+/* detail이 없는 카드(no-detail): 제목 cursor default, 셰브론 없음 */
+.mob-card-v.no-detail               { cursor: default; }
+.mob-card-v.no-detail .mob-card-v-title { cursor: default; }
 
 /* 데일리 배달 카드: mob-card-v 상속, 인디고 accent 유지 */
 .mob-card-v.mob-card-delivery { border-left-color: var(--accent2); }

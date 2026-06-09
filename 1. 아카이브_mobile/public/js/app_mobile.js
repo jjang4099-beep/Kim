@@ -268,9 +268,9 @@ const Mob = {
         if (action === 'copy')   this._copyItemText(id);
         return;
       }
-      /* .mob-card-v: 클릭 시 상세 내용 펼치기/접기 (아코디언) */
+      /* .mob-card-v: 클릭 시 상세 내용 펼치기/접기 (no-detail이면 건너뜀) */
       if (card.classList.contains('mob-card-v')) {
-        card.classList.toggle('expanded');
+        if (!card.classList.contains('no-detail')) card.classList.toggle('expanded');
         return;
       }
       const id = card.dataset.id;
@@ -362,25 +362,29 @@ const Mob = {
     const catIcon  = catIconMap[cat] || '💡';
     const catLabel = this._catLabel(cat);
 
-    /* ── 제목 & 불릿 생성 ── */
-    let title   = '';
-    let bullets = [];
+    /* ── 제목 & 불릿 생성 (preview = 항상 보임 / detail = 접힐 때 숨김) ── */
+    let title          = '';
+    let previewBullets = [];   // 접혔을 때도 보임 (뜻 + 예문)
+    let detailBullets  = [];   // 펼쳤을 때만 보임 (뉘앙스 + 연습 + 나머지)
 
     if (cat === 'en') {
       const p = this._parseEnglishText(item.text);
-      title   = p.expression || item.title || '영어 표현';
-      if (p.meaning)  bullets.push(`<span class="mob-card-v-b-label">뜻</span> ${p.meaning}`);
-      if (p.nuance)   bullets.push(`<span class="mob-card-v-b-label">뉘앙스</span> ${p.nuance}`);
-      if (p.example)  bullets.push(`<span class="mob-card-v-b-label">예문</span> <em>${p.example}</em>`);
-      if (p.practice) bullets.push(`<span class="mob-card-v-b-label">연습</span> ${p.practice}`);
+      title = p.expression || item.title || '영어 표현';
+      /* 뜻·예문 → preview / 뉘앙스·연습 → detail */
+      if (p.meaning)  previewBullets.push(`<span class="mob-card-v-b-label">뜻</span> ${p.meaning}`);
+      if (p.example)  previewBullets.push(`<span class="mob-card-v-b-label">예문</span> <em>${p.example}</em>`);
+      if (p.nuance)   detailBullets.push(`<span class="mob-card-v-b-label">뉘앙스</span> ${p.nuance}`);
+      if (p.practice) detailBullets.push(`<span class="mob-card-v-b-label">연습</span> ${p.practice}`);
     } else {
       title = m.title || item.title || (item.text || '').slice(0, 80) || '제목 없음';
       const raw = m.summary || item.summary || (item.text || '').slice(0, 300) || '';
-      /* 줄바꿈 우선 → 없으면 마침표 기준 분리 */
       const rawLines = raw.includes('\n')
         ? raw.split('\n').map(l => l.trim()).filter(Boolean)
         : raw.split(/[.。]\s+/).map(l => l.trim()).filter(Boolean);
-      bullets = rawLines.slice(0, 4).map(l => l.replace(/[.。!?！？]$/, '').trim()).filter(Boolean);
+      const allBullets = rawLines.slice(0, 4).map(l => l.replace(/[.。!?！？]$/, '').trim()).filter(Boolean);
+      /* 첫 1줄 preview, 나머지 detail */
+      previewBullets = allBullets.slice(0, 1);
+      detailBullets  = allBullets.slice(1);
     }
 
     /* ── 해시태그 ── */
@@ -391,16 +395,19 @@ const Mob = {
       : [defaultTagMap[cat] || '#지식', '#서재저장'];
 
     /* ── HTML 조합 ── */
-    const bulletsHTML = bullets.length
-      ? `<ul class="mob-card-v-body">${bullets.map(b => `<li>${b}</li>`).join('')}</ul>`
-      : '';
+    const mkUL = (arr) =>
+      `<ul class="mob-card-v-body">${arr.map(b => `<li>${b}</li>`).join('')}</ul>`;
 
-    const tagsHTML = tags.length
+    const previewHTML = previewBullets.length ? mkUL(previewBullets) : '';
+    const tagsHTML    = tags.length
       ? `<div class="mob-card-v-tags">${tags.map(t => `<span class="mob-card-v-tag">${t}</span>`).join('')}</div>`
       : '';
+    /* detail: 나머지 불릿 + 해시태그 (내용 없으면 빈 div → 셰브론 숨김) */
+    const detailInner = (detailBullets.length ? mkUL(detailBullets) : '') + tagsHTML;
+    const hasDetail   = detailBullets.length > 0 || tags.length > 0;
 
     return `
-    <div class="mob-card mob-card-v" data-id="${id}">
+    <div class="mob-card mob-card-v${hasDetail ? '' : ' no-detail'}" data-id="${id}">
       <div class="mob-card-v-top">
         <span class="mob-card-v-cat">${catIcon} ${catLabel} · ${dateStr}</span>
         <div class="mob-card-v-acts">
@@ -416,11 +423,11 @@ const Mob = {
       </div>
       <div class="mob-card-v-title">
         <span class="mob-card-v-title-txt">${title}</span>
-        <i class="ti ti-chevron-down mob-card-v-chevron"></i>
+        ${hasDetail ? '<i class="ti ti-chevron-down mob-card-v-chevron"></i>' : ''}
       </div>
+      ${previewHTML}
       <div class="mob-card-v-detail">
-        ${bulletsHTML}
-        ${tagsHTML}
+        ${detailInner}
       </div>
     </div>`;
   },

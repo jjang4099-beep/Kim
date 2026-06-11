@@ -329,6 +329,114 @@ async function callGemini(prompt, maxOutputTokens = 4096, retryCount = 0) {
   }
 }
 
+// ══════════════════════════════════════════════════
+//  Claude API — 피드 생성 전용 래퍼 (Gemini 실패 시 자동 백업)
+// ══════════════════════════════════════════════════
+
+/**
+ * Claude API를 callGemini와 동일한 인터페이스로 호출한다.
+ * 외부 SDK 없이 Node.js 내장 https 모듈만 사용 (추가 의존성 없음).
+ * @param {string} prompt
+ * @param {number} maxOutputTokens
+ * @returns {Promise<string|null>}
+ */
+async function callClaudeForFeed(prompt, maxOutputTokens = 4096) {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) {
+    console.warn('[Claude백업] ANTHROPIC_API_KEY 미설정 — 스킵');
+    return null;
+  }
+
+  const https    = require('https');
+  const model    = process.env.CLAUDE_MODEL || 'claude-sonnet-4-5';
+  const bodyObj  = {
+    model,
+    max_tokens: Math.min(maxOutputTokens, 8192),
+    messages: [{ role: 'user', content: prompt }]
+  };
+  const body = JSON.stringify(bodyObj);
+
+  console.log(`[Claude백업] 호출 시작 — model: ${model}, maxTokens: ${maxOutputTokens}`);
+
+  return new Promise(resolve => {
+    const req = https.request(
+      {
+        hostname: 'api.anthropic.com',
+        path:     '/v1/messages',
+        method:   'POST',
+        headers: {
+          'Content-Type':      'application/json',
+          'x-api-key':         apiKey,
+          'anthropic-version': '2023-06-01',
+          'Content-Length':    Buffer.byteLength(body)
+        }
+      },
+      res => {
+        let raw = '';
+        res.on('data', chunk => { raw += chunk; });
+        res.on('end', () => {
+          try {
+            const json = JSON.parse(raw);
+            // API 오류 응답 처리 (예: 401, 429, 500)
+            if (json.error) {
+              console.error(`[Claude백업] API 오류 (${json.error.type}): ${json.error.message?.slice(0, 200)}`);
+              resolve(null);
+              return;
+            }
+            const text = json.content?.[0]?.text || null;
+            if (text) {
+              console.log('[Claude백업] ✅ 응답 수신 완료');
+            } else {
+              console.warn('[Claude백업] 응답 본문 없음:', raw.slice(0, 200));
+            }
+            resolve(text);
+          } catch (e) {
+            console.error('[Claude백업] JSON 파싱 오류:', e.message);
+            resolve(null);
+          }
+        });
+      }
+    );
+    req.on('error', e => {
+      console.error('[Claude백업] 네트워크 오류:', e.message);
+      resolve(null);
+    });
+    req.setTimeout(60000, () => {
+      console.error('[Claude백업] 요청 타임아웃 (60s)');
+      req.destroy();
+      resolve(null);
+    });
+    req.write(body);
+    req.end();
+  });
+}
+
+/**
+ * ★ AI 통합 호출 함수 — 3단계 자동 전환
+ *
+ *  [1순위] Google Gemini API
+ *    → 실패(null 반환) 시
+ *  [2순위] Anthropic Claude API (자동 스위칭)
+ *    → 실패(null 반환) 시
+ *  [3순위] 각 생성 함수의 Mock 폴백 (기존 로직 유지)
+ *
+ * callGemini와 동일한 인터페이스: (prompt, maxOutputTokens) → string | null
+ */
+async function callAI(prompt, maxOutputTokens = 4096) {
+  // ── 1순위: Gemini ──
+  const geminiResult = await callGemini(prompt, maxOutputTokens);
+  if (geminiResult !== null) return geminiResult;
+
+  // ── 2순위: Claude 백업 ──
+  console.log('[AI엔진] ⚡ Gemini 실패 → Claude API 백업 전환 🔄');
+  const claudeResult = await callClaudeForFeed(prompt, maxOutputTokens);
+  if (claudeResult !== null) return claudeResult;
+
+  // ── 3순위: Mock (null 반환 → 각 생성 함수에서 Mock 처리) ──
+  console.warn('[AI엔진] ❌ Gemini & Claude 모두 실패 → Mock 데이터로 폴백');
+  return null;
+}
+
 function fixJsonControlChars(str) {
   // JSON 문자열 내부의 실제 제어 문자(개행·탭 등)를 JSON 이스케이프로 변환
   let result = '';
@@ -475,7 +583,7 @@ async function generateLanguageFeed(sub, user) {
 - dialogue는 실제 비즈니스 현장에서 바로 쓸 수 있는 짧은 대화문 (3~4줄)
 - practiceSentence는 실제 직장 상황(회의·이메일·보고·협상)에 맞게 구체적으로`;
 
-  const raw     = await callGemini(prompt, 4000);
+  const raw     = await callAI(prompt, 4000);
   const entries = safeParseJSON(raw) || generateMockLanguageEntries(theme, count, lang);
 
   return {
@@ -489,7 +597,7 @@ async function generateLanguageFeed(sub, user) {
     theme,
     dayOfWeek:   dayKr,
     vocabEntries: entries,
-    aiGenerated: !!process.env.GEMINI_API_KEY
+    aiGenerated: !!(process.env.GEMINI_API_KEY || process.env.ANTHROPIC_API_KEY)
   };
 }
 
@@ -573,7 +681,7 @@ async function generateMarketFeed(sub, user) {
 - checkpoints는 반드시 3개
 - 거부 메시지, 설명 텍스트, 마크다운 블록 없이 순수 JSON만 응답`;
 
-  const raw    = await callGemini(prompt, 4096);
+  const raw    = await callAI(prompt, 4096);
   // ── 거부/오류성 응답 감지 → mock으로 강제 전환 ──
   const rawParsed = safeParseJSON(raw);
   const isRefusalResponse = rawParsed && (
@@ -597,7 +705,7 @@ async function generateMarketFeed(sub, user) {
     checkpoints:        parsed.checkpoints || [],
     report:             parsed.report      || '',
     aiEconomicKnowledge: parsed.aiEconomicKnowledge || [],
-    aiGenerated:        !!process.env.GEMINI_API_KEY
+    aiGenerated:        !!(process.env.GEMINI_API_KEY || process.env.ANTHROPIC_API_KEY)
   };
 }
 
@@ -640,11 +748,11 @@ ${eraInstruction}
 - lesson은 현대 직장 생활·비즈니스에 연결되는 실용적 교훈
 - 거부 메시지, 설명 텍스트, 마크다운 블록 없이 순수 JSON만 응답`;
 
-  const raw    = await callGemini(prompt, 2000);
+  const raw    = await callAI(prompt, 2000);
   const parsed = safeParseJSON(raw);
 
   if (!parsed || !parsed.title) {
-    console.warn('[인문학/역사] Gemini 파싱 실패 — Mock 대체');
+    console.warn('[인문학/역사] AI 파싱 실패 — Mock 대체');
     return generateMockHistoryFeed(era);
   }
 
@@ -661,7 +769,7 @@ ${eraInstruction}
     summary3:    parsed.summary3  || '',
     behindStory: parsed.behindStory || '',
     lesson:      parsed.lesson     || '',
-    aiGenerated: !!process.env.GEMINI_API_KEY
+    aiGenerated: !!(process.env.GEMINI_API_KEY || process.env.ANTHROPIC_API_KEY)
   };
 }
 
@@ -688,11 +796,11 @@ async function generateQuoteFeed(sub) {
 - application은 직장/자기계발에 연결되는 실용적 방법
 - 거부 메시지, 마크다운 없이 순수 JSON만 응답`;
 
-  const raw    = await callGemini(prompt, 1500);
+  const raw    = await callAI(prompt, 1500);
   const parsed = safeParseJSON(raw);
 
   if (!parsed || !parsed.quote) {
-    console.warn('[인문학/명언] Gemini 파싱 실패 — Mock 대체');
+    console.warn('[인문학/명언] AI 파싱 실패 — Mock 대체');
     return generateMockQuoteFeed(sub);
   }
 
@@ -711,7 +819,7 @@ async function generateQuoteFeed(sub) {
     context:     parsed.context     || '',
     behindStory: parsed.behindStory || '',
     application: parsed.application || '',
-    aiGenerated: !!process.env.GEMINI_API_KEY
+    aiGenerated: !!(process.env.GEMINI_API_KEY || process.env.ANTHROPIC_API_KEY)
   };
 }
 
@@ -738,11 +846,11 @@ async function generateIdiomFeed(sub) {
 - behindStory는 원전에서 잘 드러나지 않는 흥미로운 뒷이야기
 - 거부 메시지, 마크다운 없이 순수 JSON만 응답`;
 
-  const raw    = await callGemini(prompt, 1500);
+  const raw    = await callAI(prompt, 1500);
   const parsed = safeParseJSON(raw);
 
   if (!parsed || !parsed.idiom) {
-    console.warn('[인문학/고사성어] Gemini 파싱 실패 — Mock 대체');
+    console.warn('[인문학/고사성어] AI 파싱 실패 — Mock 대체');
     return generateMockIdiomFeed(sub);
   }
 
@@ -760,7 +868,7 @@ async function generateIdiomFeed(sub) {
     story:       parsed.story       || '',
     behindStory: parsed.behindStory || '',
     application: parsed.application || '',
-    aiGenerated: !!process.env.GEMINI_API_KEY
+    aiGenerated: !!(process.env.GEMINI_API_KEY || process.env.ANTHROPIC_API_KEY)
   };
 }
 
@@ -1057,8 +1165,8 @@ ${corpus}
 JSON 배열로만 응답 (마크다운 코드블록 없이):
 [{"title":"카드 제목(20자 이내)","category":"en|economy|history|youtube|inbox","summary3":"• 요약1\\n• 요약2\\n• 요약3","concepts":[{"term":"개념 또는 영어 표현","desc":"설명 1~2문장"},{"term":"개념2","desc":"설명"}],"reminder":"오늘 하루 실전 적용 한 줄"}]`;
 
-  console.log('[배달생성] Gemini 호출 시작...');
-  const raw   = await callGemini(prompt, 3000);
+  console.log('[배달생성] AI 호출 시작 (Gemini → Claude 자동 전환 대기)...');
+  const raw   = await callAI(prompt, 3000);
   const cards = safeParseJSON(raw);
 
   if (!Array.isArray(cards) || !cards.length) {

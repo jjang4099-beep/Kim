@@ -10,11 +10,13 @@
 
 'use strict';
 
-const CACHE_NAME    = 'sj-library-v27';
+/* ★ 배포 시 index_mobile.html의 ?v=XX와 함께 반드시 올려야 함
+   — 이 파일이 바뀌어야 브라우저가 새 SW를 설치하고 구 캐시를 비움 */
+const CACHE_NAME    = 'sj-library-v31';
 const STATIC_ASSETS = [
   '/index_mobile.html',
-  '/css/style_mobile.css?v=27',
-  '/js/app_mobile.js?v=27',
+  '/css/style_mobile.css?v=31',
+  '/js/app_mobile.js?v=31',
   '/js/pwa.js?v=1',
   '/manifest.json',
   '/icons/icon.svg',
@@ -71,22 +73,32 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // 정적 자산: Cache-First
+  // ★ HTML(페이지 이동): Network-First — 항상 최신 버전 먼저, 오프라인일 때만 캐시
+  //   (Cache-First로 두면 새 배포가 영원히 반영되지 않는 업데이트 갇힘 발생)
+  if (event.request.mode === 'navigate' || event.request.destination === 'document') {
+    event.respondWith(
+      fetch(event.request).then(res => {
+        if (res.ok) {
+          const clone = res.clone();
+          caches.open(CACHE_NAME).then(c => c.put(event.request, clone));
+        }
+        return res;
+      }).catch(() => caches.match(event.request)
+        .then(c => c || caches.match('/index_mobile.html')))
+    );
+    return;
+  }
+
+  // 정적 자산(CSS/JS/이미지): Cache-First — URL에 ?v=버전이 붙어 있어 안전
   event.respondWith(
     caches.match(event.request).then(cached => {
       if (cached) return cached;
       return fetch(event.request).then(res => {
-        // 성공한 GET 응답을 캐시에 추가
         if (event.request.method === 'GET' && res.ok) {
           const clone = res.clone();
           caches.open(CACHE_NAME).then(c => c.put(event.request, clone));
         }
         return res;
-      }).catch(() => {
-        // 오프라인 폴백: index_mobile.html
-        if (event.request.destination === 'document') {
-          return caches.match('/index_mobile.html');
-        }
       });
     })
   );

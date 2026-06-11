@@ -67,6 +67,14 @@ function parseFeedsArray(data) {
   return [];
 }
 
+/* 로컬 타임존 기준 YYYY-MM-DD (toISOString은 UTC라 한국 새벽에 하루 어긋남) */
+function toLocalDateStr(d = new Date()) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+
 /* ──────────────────────────────────────────────
    배달 피드 칩 라벨 맵 (subId → 표시 정보)
 ────────────────────────────────────────────── */
@@ -1321,8 +1329,8 @@ const Mob = {
     if (startEl && !startEl.value) {
       const today = new Date();
       const week  = new Date(today); week.setDate(today.getDate() - 6);
-      startEl.value = week.toISOString().slice(0, 10);
-      endEl.value   = today.toISOString().slice(0, 10);
+      startEl.value = toLocalDateStr(week);
+      endEl.value   = toLocalDateStr(today);
     }
 
     if (state.libraryLoaded && !forceRefresh) return;
@@ -1450,8 +1458,8 @@ const Mob = {
     const from  = new Date(today); from.setDate(today.getDate() - (days - 1));
     const startEl = el('libAiStart');
     const endEl   = el('libAiEnd');
-    if (startEl) startEl.value = from.toISOString().slice(0, 10);
-    if (endEl)   endEl.value   = today.toISOString().slice(0, 10);
+    if (startEl) startEl.value = toLocalDateStr(from);
+    if (endEl)   endEl.value   = toLocalDateStr(today);
   },
 
   /* 날짜 직접 변경 시 간편 칩 해제 */

@@ -306,10 +306,17 @@ async function callGemini(prompt, maxOutputTokens = 4096, retryCount = 0) {
     const genAI = new GoogleGenerativeAI(apiKey);
     const modelName = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
     const model = genAI.getGenerativeModel({ model: modelName });
-    const result = await model.generateContent({
-      contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      generationConfig: { maxOutputTokens, temperature: 0.7 }
-    });
+    /* 25초 타임아웃 — SDK 자체 타임아웃 없으므로 race 처리 */
+    const timeoutP = new Promise((_, rej) =>
+      setTimeout(() => rej(new Error('Gemini 응답 타임아웃 (25s)')), 25000)
+    );
+    const result = await Promise.race([
+      model.generateContent({
+        contents: [{ role: 'user', parts: [{ text: prompt }] }],
+        generationConfig: { maxOutputTokens, temperature: 0.7 }
+      }),
+      timeoutP
+    ]);
     const finishReason = result.response.candidates?.[0]?.finishReason;
     if (finishReason && finishReason !== 'STOP') {
       console.warn('[Gemini] finishReason:', finishReason);
@@ -1073,21 +1080,22 @@ async function buildDailyFeeds(user, force = false) {
     return {};
   }
 
-  console.log(`[스케줄러] 유저 "${user.name}" 피드 생성 시작: ${subs.map(s=>s.id).join(', ')}`);
+  console.log(`[스케줄러] 유저 "${user.name}" 피드 병렬 생성 시작: ${subs.map(s=>s.id).join(', ')}`);
   const startedAt = Date.now();
   const results   = {};
 
-  for (const sub of subs) {
+  /* 병렬 생성 — 순차(O(n×t)) → 병렬(O(t)) */
+  await Promise.allSettled(subs.map(async sub => {
     try {
       console.log(`  → [${sub.id}] 생성 중…`);
-      const feed   = await generateFeedForSubscription(sub, user);
+      const feed = await generateFeedForSubscription(sub, user);
       results[sub.id] = feed;
       saveTodayFeed(today, sub.id, feed);
       console.log(`  ✓ [${sub.id}] 생성 완료 (${feed.vocabEntries?.length || 0}개 항목)`);
     } catch (e) {
       console.error(`  ✗ [${sub.id}] 생성 실패:`, e.message);
     }
-  }
+  }));
 
   const elapsed = ((Date.now() - startedAt) / 1000).toFixed(1);
   console.log(`[스케줄러] 피드 생성 완료 — ${Object.keys(results).length}개, ${elapsed}초 소요`);
@@ -1780,9 +1788,9 @@ app.get('/api/daily-feed', async (req, res) => {
         });
       }
 
-      // 새로 활성화된 피드가 캐시에 없음 → 누락분만 추가 생성
-      console.log(`[피드API] ⚡ 누락 피드 감지: [${missingSubs.map(s => s.id).join(', ')}] — 추가 생성 시작`);
-      for (const sub of missingSubs) {
+      // 새로 활성화된 피드가 캐시에 없음 → 누락분 병렬 생성
+      console.log(`[피드API] ⚡ 누락 피드 감지: [${missingSubs.map(s => s.id).join(', ')}] — 병렬 생성 시작`);
+      await Promise.allSettled(missingSubs.map(async sub => {
         try {
           console.log(`  → [${sub.id}] 누락 피드 생성 중…`);
           const feed = await generateFeedForSubscription(sub, user);
@@ -1791,7 +1799,7 @@ app.get('/api/daily-feed', async (req, res) => {
         } catch (e) {
           console.error(`  ✗ [${sub.id}] 누락 피드 생성 실패:`, e.message);
         }
-      }
+      }));
       // 전체 캐시(기존 + 새로 생성) 반환
       const allCached = Object.values(getTodayFeeds(today) || {});
       return res.json({

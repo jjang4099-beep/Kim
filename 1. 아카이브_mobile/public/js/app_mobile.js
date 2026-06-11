@@ -1107,8 +1107,8 @@ const Mob = {
     const content = el('mobFeedViewContent');
     const dateEl  = el('feedViewDate');
     if (!content) return;
+
     if (state.feedLoaded && !forceRefresh) {
-      /* 이미 로드됐더라도 pendingFeedFilter가 있으면 해당 칩 활성화 */
       if (state.pendingFeedFilter) {
         state.activeFeedFilter  = state.pendingFeedFilter;
         state.pendingFeedFilter = null;
@@ -1124,10 +1124,29 @@ const Mob = {
     content.innerHTML = `<div class="mob-loading"><span class="mob-spin"></span> 불러오는 중…</div>`;
 
     try {
-      const data = await fetchJSON('/api/daily-feed', {}, 60000);
+      /* ── 1단계: 캐시 상태 빠른 확인 (8초 타임아웃) ── */
+      let allReady = false;
+      try {
+        const status = await fetchJSON('/api/daily-feed/status', {}, 8000);
+        allReady = !!status?.allReady;
+      } catch { /* 상태 확인 실패해도 계속 진행 */ }
+
+      /* ── 2단계: 캐시 있으면 빠른 경로, 없으면 생성 안내 후 대기 ── */
+      if (!allReady) {
+        content.innerHTML = `<div class="mob-loading">
+          <span class="mob-spin"></span>
+          <span style="display:block;margin-top:8px;font-size:13px;color:var(--text-2)">
+            AI 피드 생성 중…<br>
+            <small style="color:var(--text-3)">최초 생성은 30~60초 걸릴 수 있어요</small>
+          </span>
+        </div>`;
+      }
+
+      /* 캐시 히트면 20초, 생성 필요하면 120초 */
+      const timeoutMs = allReady ? 20000 : 120000;
+      const data = await fetchJSON('/api/daily-feed', {}, timeoutMs);
       state.feedItems = parseFeedsArray(data.items ?? data.feeds ?? data);
 
-      /* 홈에서 넘어온 필터 적용 */
       if (state.pendingFeedFilter) {
         state.activeFeedFilter  = state.pendingFeedFilter;
         state.pendingFeedFilter = null;
@@ -1137,10 +1156,29 @@ const Mob = {
       state.feedLoaded = true;
       const badge = el('mobFeedBadge');
       if (badge) badge.hidden = true;
-    } catch {
-      content.innerHTML = `<div class="mob-loading" style="color:#ef4444">
-        <i class="ti ti-alert-circle"></i> 피드 불러오기 실패
-      </div>`;
+
+    } catch (e) {
+      const isTimeout = e?.name === 'AbortError' || (e?.message || '').includes('abort');
+      content.innerHTML = `
+        <div class="mob-loading" style="color:#ef4444;gap:12px">
+          <i class="ti ti-alert-circle" style="font-size:28px"></i>
+          <span style="font-size:13.5px;font-weight:600">
+            ${isTimeout ? '피드 생성 시간 초과' : '피드 불러오기 실패'}
+          </span>
+          <span style="font-size:12px;color:var(--text-3)">
+            ${isTimeout ? '서버가 바쁘거나 AI 응답이 지연됐어요.' : (e?.message || '')}
+          </span>
+          <button onclick="Mob._loadFeedView(true)"
+            style="margin-top:4px;padding:8px 20px;border-radius:8px;border:none;
+                   background:#6366f1;color:#fff;font-size:13px;font-weight:600;cursor:pointer">
+            🔄 다시 시도
+          </button>
+          <button onclick="Mob.switchView('manage',el('bnManage'))"
+            style="padding:6px 16px;border-radius:8px;border:1.5px solid var(--border);
+                   background:transparent;color:var(--text-2);font-size:12px;cursor:pointer">
+            관리탭에서 지금 생성
+          </button>
+        </div>`;
     }
   },
 

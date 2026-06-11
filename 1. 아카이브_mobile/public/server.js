@@ -1371,6 +1371,19 @@ app.patch('/api/delivery-settings/all', (req, res) => {
   user.updated_at = new Date().toISOString();
   writeUsers(users);
 
+  /* ── 설정 변경 시 오늘 해당 피드 캐시 삭제 → 배달탭 진입 시 새 설정으로 재생성 ── */
+  try {
+    const todayKey   = toDateStr();
+    const allFeeds   = readDailyFeeds();
+    if (allFeeds[todayKey] && allFeeds[todayKey][feedId]) {
+      delete allFeeds[todayKey][feedId];
+      writeDailyFeeds(allFeeds);
+      console.log(`[배달설정/${feedId}] ✅ 오늘 캐시 삭제 완료 → 재생성 예정`);
+    }
+  } catch (cacheErr) {
+    console.warn('[배달설정] 캐시 삭제 실패 (무시):', cacheErr.message);
+  }
+
   console.log(`[배달설정/${feedId}] ${JSON.stringify(user.feed_settings[feedId])}`);
   res.json({ success: true, feedId, settings: user.feed_settings[feedId] });
 });

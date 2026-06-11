@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════════
-   SJ 지식 서재 — style_mobile.css  v16
+   SJ 지식 서재 — style_mobile.css  v26
    2026 · 가로형 카드 완전 리팩토링 · 5버튼 탭 정리
 ══════════════════════════════════════════════════════════ */
 
@@ -1178,14 +1178,14 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 .mob-feed-dlg-toggle i          { font-size: 13px; transition: transform .2s; }
 .mob-feed-dlg-toggle.open i     { transform: rotate(180deg); }
 
-/* ── 대화문 패널 (아코디언 내용) ── */
+/* ── 대화문 패널 (아코디언 내용) — v26 은은한 음영 배경 박스 ── */
 .mob-feed-dialogue {
   margin-top   : 6px;
-  padding      : 10px 12px 10px 14px;
-  background   : #f0f9ff;
-  border-left  : 3px solid #3b82f6;
-  border-radius: 0 8px 8px 0;
-  display      : flex; flex-direction: column; gap: 5px;
+  padding      : 12px 14px;
+  background   : #f9f9f9;
+  border-radius: 10px;
+  box-shadow   : inset 0 0 0 1.5px #e5e7eb, 0 2px 8px rgba(0,0,0,.06);
+  display      : flex; flex-direction: column; gap: 6px;
   animation    : fadeSlideIn .2s ease;
 }
 @keyframes fadeSlideIn {
@@ -1561,3 +1561,237 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 .mob-card-v .mob-delivery-summary3   { margin: 8px 0 10px; }
 .mob-card-v .mob-delivery-concepts   { margin: 0 0 10px; }
 .mob-card-v .mob-delivery-reminder   { margin: 0; }
+
+/* ══════════════════════════════════════════════════════════
+   v26 — 오늘의 지식 배달 카드 프리미엄 리디자인 (mob-dlv-card)
+   기존 mob-card-delivery 폐기 → mob-dlv-card 신규 디자인 시스템
+══════════════════════════════════════════════════════════ */
+
+/* 카드 베이스: .mob-card 상속 + 프리미엄 오버라이드 */
+.mob-dlv-card {
+  padding      : 0;
+  cursor       : default;
+  border-left  : 3px solid var(--accent);
+  background   : linear-gradient(160deg, #fafbff 0%, #f5f8ff 100%);
+  border-top   : 1px solid #e4edff;
+  border-right : 1px solid #e4edff;
+  border-bottom: 1px solid #e4edff;
+  overflow     : hidden;
+}
+
+/* ── 상단 배지 행 ── */
+.mob-dlv-badge-row {
+  display        : flex;
+  align-items    : center;
+  justify-content: space-between;
+  padding        : 10px 14px 8px;
+  border-bottom  : 1px solid #eef3ff;
+}
+
+.mob-dlv-badge {
+  display      : inline-flex; align-items: center; gap: 5px;
+  font-size    : 11px; font-weight: 700;
+  color        : var(--accent);
+  background   : #e8efff;
+  padding      : 4px 10px; border-radius: 99px;
+  letter-spacing: .03em; flex-shrink: 0;
+}
+
+.mob-dlv-badge-right {
+  display    : flex; align-items: center; gap: 8px;
+}
+
+.mob-dlv-date {
+  font-size : 11px; color: var(--text-3); font-weight: 600;
+}
+
+.mob-dlv-save-btn {
+  display    : flex; align-items: center; justify-content: center;
+  width      : 28px; height: 28px; border-radius: 8px;
+  background : #eff6ff; color: var(--accent);
+  font-size  : 14px; border: none; cursor: pointer;
+  transition : background .15s, color .15s, transform .1s;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.mob-dlv-save-btn:active   { background: var(--accent); color: #fff; transform: scale(.9); }
+.mob-dlv-save-btn:disabled { opacity: .5; cursor: default; }
+
+/* ── 타이틀 행 (클릭 시 아코디언 토글) ── */
+.mob-dlv-title-row {
+  display        : flex;
+  align-items    : center;
+  justify-content: space-between;
+  gap            : 8px;
+  padding        : 10px 14px 7px;
+  cursor         : pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mob-dlv-title-txt {
+  font-size  : 17px; font-weight: 800; color: var(--text-1);
+  line-height: 1.35; word-break: keep-all; flex: 1; min-width: 0;
+}
+
+/* ── 셰브론 아이콘 ── */
+.mob-dlv-chevron {
+  font-size  : 17px; color: var(--text-3); flex-shrink: 0;
+  transition : transform .25s cubic-bezier(.4,0,.2,1);
+  pointer-events: none;
+}
+.mob-dlv-card.expanded .mob-dlv-chevron { transform: rotate(180deg); }
+
+/* ── 미니 키워드 칩 행 (항상 보임 — 접힌 상태에서도 힌트 노출) ── */
+.mob-dlv-kw-row {
+  display  : flex; flex-wrap: wrap; gap: 6px;
+  padding  : 0 14px 10px;
+}
+
+.mob-dlv-kw-chip {
+  font-size  : 12px; font-weight: 700;
+  color      : #4f46e5; background: #eef2ff;
+  padding    : 3px 10px; border-radius: 99px;
+  letter-spacing: .01em; border: 1px solid #ddd6fe;
+}
+
+/* ── 아코디언 상세 영역 ── */
+.mob-dlv-detail {
+  overflow   : hidden;
+  max-height : 0;
+  transition : max-height .32s cubic-bezier(.4,0,.2,1);
+}
+.mob-dlv-card.expanded .mob-dlv-detail { max-height: 1400px; }
+
+/* ── 3줄 핵심 요약 박스 ── */
+.mob-dlv-summary3 {
+  margin       : 10px 14px 8px;
+  padding      : 11px 13px;
+  background   : #f0f4ff;
+  border-radius: 10px;
+  border       : 1px solid #dbeafe;
+  display      : flex; flex-direction: column; gap: 7px;
+}
+
+.mob-dlv-s3-line {
+  display    : flex; align-items: flex-start; gap: 8px;
+  font-size  : 13.5px; color: var(--text-2); line-height: 1.6;
+  word-break : keep-all;
+}
+
+.mob-dlv-s3-dot {
+  flex-shrink: 0; width: 6px; height: 6px;
+  border-radius: 50%; background: var(--accent);
+  margin-top : 7px;
+}
+
+/* ── 핵심 개념 카드 ── */
+.mob-dlv-concepts {
+  margin   : 0 14px 8px;
+  display  : flex; flex-direction: column; gap: 6px;
+}
+
+.mob-dlv-concept {
+  background   : #fff; border-radius: 8px;
+  padding      : 9px 12px;
+  border       : 1px solid #e8efff;
+  display      : flex; flex-direction: column; gap: 3px;
+  box-shadow   : 0 1px 4px rgba(37,99,235,.06);
+}
+
+.mob-dlv-concept-term {
+  font-size : 13.5px; font-weight: 800;
+  color     : #4f46e5;
+  font-family: 'DM Sans', sans-serif; letter-spacing: .2px;
+}
+
+.mob-dlv-concept-desc {
+  font-size : 12.5px; color: var(--text-2); line-height: 1.55; word-break: keep-all;
+}
+
+/* ── 한 줄 리마인드 ── */
+.mob-dlv-reminder {
+  display      : flex; align-items: flex-start; gap: 8px;
+  margin       : 0 14px 14px;
+  padding      : 10px 12px;
+  background   : #fdf4ff;
+  border-radius: 10px;
+  border-left  : 3px solid #a855f7;
+  font-size    : 13px; font-weight: 600; color: #7e22ce;
+  line-height  : 1.55; word-break: keep-all;
+}
+.mob-dlv-reminder-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+/* ══════════════════════════════════════════════════════════
+   v26 — 언어 피드 카드 고도화: [뜻][예문] 뱃지 레이아웃
+══════════════════════════════════════════════════════════ */
+
+/* 뜻 / 예문 배지 칩 */
+.mob-feed-vocab-badge {
+  flex-shrink  : 0;
+  display      : inline-flex; align-items: center; justify-content: center;
+  font-size    : 10px; font-weight: 800;
+  padding      : 2px 7px; border-radius: 4px;
+  white-space  : nowrap; letter-spacing: .02em;
+  margin-top   : 2px;
+}
+.mob-feed-vocab-badge-mean { background: var(--accent);  color: #fff; }
+.mob-feed-vocab-badge-ex   { background: #4f46e5;        color: #fff; }
+
+/* 뜻+예문 badge-row 레이아웃 */
+.mob-feed-vocab-body-rows {
+  display      : flex; flex-direction: column; gap: 5px;
+  padding-left : 26px;   /* 번호 아이콘 너비 들여쓰기 */
+  margin-top   : 4px;
+}
+
+.mob-feed-vocab-badge-row {
+  display    : flex; align-items: flex-start; gap: 7px;
+}
+
+/* 뜻 텍스트 */
+.mob-feed-vocab-meaning {
+  font-size  : 13px; color: var(--text-1); line-height: 1.55; flex: 1; word-break: keep-all;
+}
+
+/* 예문 텍스트 */
+.mob-feed-vocab-ex-txt {
+  font-size  : 12.5px; color: #475569; line-height: 1.55;
+  flex       : 1; font-style: italic; word-break: keep-all;
+}
+
+/* 뉘앙스 라인 */
+.mob-feed-vocab-nuance-line {
+  font-size  : 11.5px; color: var(--text-3); font-style: italic;
+  line-height: 1.5; word-break: keep-all;
+}
+
+/* 연습 문장 */
+.mob-feed-vocab-practice-line {
+  display    : flex; align-items: flex-start; gap: 5px;
+  font-size  : 12px; color: #0369a1;
+  padding    : 5px 9px;
+  background : #f0f9ff; border-radius: 6px;
+  line-height: 1.5; word-break: keep-all;
+}
+.mob-feed-vocab-practice-line i { font-size: 11px; flex-shrink: 0; margin-top: 2px; color: #0284c7; }
+
+/* ── 대화문 화자 A/B 구분 투명도 ── */
+.mob-dlg-a { }
+.mob-dlg-b { opacity: .72; }
+.mob-dlg-a .mob-dlg-speaker { color: #1d4ed8; font-weight: 800; }
+.mob-dlg-b .mob-dlg-speaker { color: #7c3aed; font-weight: 800; }
+
+/* 대화문 토글 버튼 v26 */
+.mob-feed-dlg-toggle {
+  display     : inline-flex; align-items: center; gap: 6px;
+  margin-top  : 8px;
+  font-size   : 12px; font-weight: 700; color: #4f46e5;
+  background  : #eef2ff; border-radius: 20px;
+  padding     : 5px 12px; border: none; cursor: pointer;
+  transition  : background .15s, color .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mob-feed-dlg-toggle:active { background: #e0e7ff; }
+.mob-feed-dlg-toggle.open   { background: #dbeafe; color: var(--accent); }
+.mob-feed-dlg-toggle i      { font-size: 13px; transition: transform .22s ease; }
+.mob-feed-dlg-toggle.open i { transform: rotate(180deg); }

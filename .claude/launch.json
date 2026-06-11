@@ -2,9 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "sj-archive",
+      "name": "sj-mobile",
       "runtimeExecutable": "node",
       "runtimeArgs": ["public/server.js"],
+      "cwd": "1. 아카이브_mobile",
       "port": 3000,
       "autoPort": false
     }

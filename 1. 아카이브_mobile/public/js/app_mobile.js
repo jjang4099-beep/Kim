@@ -1,5 +1,5 @@
 /**
- * SJ 서재 — app_mobile.js v11
+ * SJ 서재 — app_mobile.js v26
  * 5-button SPA Bottom Nav
  * + 홈 날짜 섹션 분리 (오늘 / 지난 지식)
  * + Smart Empty View
@@ -268,6 +268,11 @@ const Mob = {
         if (action === 'copy')   this._copyItemText(id);
         return;
       }
+      /* .mob-dlv-card: 데일리 배달 카드 프리미엄 아코디언 */
+      if (card.classList.contains('mob-dlv-card')) {
+        card.classList.toggle('expanded');
+        return;
+      }
       /* .mob-card-v: 클릭 시 상세 내용 펼치기/접기 (no-detail이면 건너뜀) */
       if (card.classList.contains('mob-card-v')) {
         if (!card.classList.contains('no-detail')) card.classList.toggle('expanded');
@@ -517,10 +522,15 @@ const Mob = {
       const uid = `dlg_${subId}_${i}_${Date.now()}`;
       const dialogueLines = (e.dialogue || '').replace(/\\n/g, '\n').split('\n').map(l => l.trim()).filter(Boolean);
       const dialogueHTML = dialogueLines.map(l => {
-        if (l.startsWith('甲:') || l.startsWith('乙:') || l.startsWith('A:') || l.startsWith('B:')) {
-          const speaker = l.split(':')[0];
-          const text = l.slice(speaker.length + 1).trim();
-          return `<div class="mob-dlg-line"><span class="mob-dlg-speaker">${speaker}</span><span class="mob-dlg-text">${text}</span></div>`;
+        if (/^(A|B|甲|乙):/.test(l)) {
+          const colonIdx = l.indexOf(':');
+          const speaker  = l.slice(0, colonIdx).trim();
+          const txt      = l.slice(colonIdx + 1).trim();
+          const isA      = speaker === 'A' || speaker === '甲';
+          return `<div class="mob-dlg-line ${isA ? 'mob-dlg-a' : 'mob-dlg-b'}">
+            <span class="mob-dlg-speaker">${speaker}</span>
+            <span class="mob-dlg-text">${txt}</span>
+          </div>`;
         }
         if (l.startsWith('[해석:') || l.startsWith('[解:')) {
           return `<div class="mob-dlg-translation">${l.replace(/^\[해석:|^\[解:/, '').replace(/\]$/, '').trim()}</div>`;
@@ -540,15 +550,26 @@ const Mob = {
             <i class="ti ti-bookmark"></i>
           </button>
         </div>
-        <div class="mob-feed-vocab-meaning-row">
-          <span class="mob-feed-vocab-meaning">${e.meaning || ''}</span>
-          ${e.nuance ? `<span class="mob-feed-vocab-nuance">${e.nuance}</span>` : ''}
+        <div class="mob-feed-vocab-body-rows">
+          <div class="mob-feed-vocab-badge-row">
+            <span class="mob-feed-vocab-badge mob-feed-vocab-badge-mean">뜻</span>
+            <span class="mob-feed-vocab-meaning">${e.meaning || ''}</span>
+          </div>
+          ${e.nuance ? `<div class="mob-feed-vocab-nuance-line">${e.nuance}</div>` : ''}
+          ${e.sourceSentence ? `
+          <div class="mob-feed-vocab-badge-row">
+            <span class="mob-feed-vocab-badge mob-feed-vocab-badge-ex">예문</span>
+            <span class="mob-feed-vocab-ex-txt">${e.sourceSentence}</span>
+          </div>` : ''}
+          ${e.practiceSentence ? `
+          <div class="mob-feed-vocab-practice-line">
+            <i class="ti ti-pencil-plus"></i>
+            <span>${e.practiceSentence}</span>
+          </div>` : ''}
         </div>
-        ${e.sourceSentence ? `<div class="mob-feed-vocab-ex"><i class="ti ti-quote"></i> ${e.sourceSentence}</div>` : ''}
-        ${e.practiceSentence ? `<div class="mob-feed-vocab-practice"><i class="ti ti-pencil"></i> ${e.practiceSentence}</div>` : ''}
         ${dialogueHTML ? `
         <button class="mob-feed-dlg-toggle" onclick="event.stopPropagation();Mob._toggleDialogue(this)" data-uid="${uid}">
-          💬 대화문 보기 <i class="ti ti-chevron-down"></i>
+          실전 대화문 보기 👇 <i class="ti ti-chevron-down"></i>
         </button>
         <div class="mob-feed-dialogue" id="${uid}" hidden>
           ${dialogueHTML}
@@ -632,45 +653,112 @@ const Mob = {
     }
   },
 
-  /** 오늘의 지식 배달 카드 (type: 'daily_delivery') — v22 컴팩트 + 아코디언 */
+  /** 오늘의 지식 배달 카드 (type: 'daily_delivery') — v26 프리미엄 아카이브 리포트 */
   _cardDailyDelivery(item) {
     const id       = item._id || item.id || '';
     const title    = item.title   || '오늘의 지식';
-    const summary3 = (item.summary3 || item.text || '').replace(/\\n/g, '\n');
     const concepts = item.concepts || [];
+    const summary3 = (item.summary3 || item.text || '').replace(/\\n/g, '\n');
     const reminder = item.reminder || item.summary || '';
     const cat      = item.category || 'inbox';
     const catLabel = this._catLabel(cat);
     const rawD     = item.createdAt || item.savedAt || '';
-    const dateStr  = rawD
+
+    const catIconMap = { en:'🌐', history:'🏛️', economy:'📈', inbox:'📌', youtube:'▶️' };
+    const catIcon    = catIconMap[cat] || '💡';
+
+    const DOW     = ['일','월','화','수','목','금','토'];
+    const dateStr = rawD
       ? (() => { const d = new Date(rawD); return isNaN(d) ? '오늘' : `${d.getMonth()+1}/${d.getDate()}`; })()
       : '오늘';
+    const dayName = rawD
+      ? (() => { const d = new Date(rawD); return isNaN(d) ? '' : DOW[d.getDay()] + '요일'; })()
+      : '';
 
+    /* 미니 키워드 칩 — concepts 첫 2개 term, 접혔을 때도 항상 노출 */
+    const kwChips = concepts.slice(0, 2)
+      .filter(c => c.term)
+      .map(c => `<span class="mob-dlv-kw-chip">${c.term}</span>`)
+      .join('');
+
+    /* 3줄 요약 bullet 파싱 */
+    const s3Lines = summary3
+      .split('\n')
+      .map(l => l.trim().replace(/^[•\-·]\s*/, ''))
+      .filter(Boolean);
+    const s3HTML = s3Lines.map(l => `
+      <div class="mob-dlv-s3-line">
+        <span class="mob-dlv-s3-dot"></span>
+        <span>${l}</span>
+      </div>`).join('');
+
+    /* 핵심 개념 카드 */
     const conceptsHTML = concepts.slice(0, 3).map(c => `
-      <div class="mob-delivery-concept">
-        <span class="mob-delivery-concept-term">${c.term || ''}</span>
-        <span class="mob-delivery-concept-desc">${c.desc || ''}</span>
+      <div class="mob-dlv-concept">
+        <span class="mob-dlv-concept-term">${c.term || ''}</span>
+        <span class="mob-dlv-concept-desc">${c.desc || ''}</span>
       </div>`).join('');
 
     return `
-    <div class="mob-card mob-card-v mob-card-delivery" data-id="${id}">
-      <div class="mob-card-v-top">
-        <span class="mob-card-v-cat">🎁 데일리 배달 · ${catLabel} · ${dateStr}</span>
+    <div class="mob-card mob-dlv-card" data-id="${id}">
+      <div class="mob-dlv-badge-row">
+        <span class="mob-dlv-badge">${catIcon} ${dayName ? dayName + ' · ' : ''}${catLabel}</span>
+        <div class="mob-dlv-badge-right">
+          <span class="mob-dlv-date">${dateStr}</span>
+          <button class="mob-dlv-save-btn"
+                  onclick="event.stopPropagation();Mob._saveDeliveryCard('${id}',this)"
+                  title="서재에 저장">
+            <i class="ti ti-bookmark"></i>
+          </button>
+        </div>
       </div>
-      <div class="mob-card-v-title">
-        <span class="mob-card-v-title-txt">${title}</span>
-        <i class="ti ti-chevron-down mob-card-v-chevron"></i>
+      <div class="mob-dlv-title-row">
+        <span class="mob-dlv-title-txt">${title}</span>
+        <i class="ti ti-chevron-down mob-dlv-chevron"></i>
       </div>
-      <div class="mob-card-v-detail">
-        ${summary3 ? `<div class="mob-delivery-summary3">${summary3.replace(/\n/g, '<br>')}</div>` : ''}
-        ${conceptsHTML ? `<div class="mob-delivery-concepts">${conceptsHTML}</div>` : ''}
+      ${kwChips ? `<div class="mob-dlv-kw-row">${kwChips}</div>` : ''}
+      <div class="mob-dlv-detail">
+        ${s3HTML ? `<div class="mob-dlv-summary3">${s3HTML}</div>` : ''}
+        ${conceptsHTML ? `<div class="mob-dlv-concepts">${conceptsHTML}</div>` : ''}
         ${reminder ? `
-        <div class="mob-delivery-reminder">
-          <span class="mob-delivery-reminder-icon">✨</span>
+        <div class="mob-dlv-reminder">
+          <span class="mob-dlv-reminder-icon">✨</span>
           <span>${reminder}</span>
         </div>` : ''}
       </div>
     </div>`;
+  },
+
+  /** 데일리 배달 카드 → 서재에 복사 저장 */
+  async _saveDeliveryCard(id, btn) {
+    const item = state.items.find(i => (i._id || i.id) === id);
+    if (!item) { toast('데이터를 찾을 수 없습니다', 'err'); return; }
+
+    btn.disabled  = true;
+    btn.innerHTML = '<span class="mob-spin"></span>';
+
+    try {
+      const text = [
+        item.title || '오늘의 지식',
+        item.summary3 || '',
+        ...(item.concepts || []).map(c => `▸ ${c.term}: ${c.desc}`),
+        item.reminder ? `✨ ${item.reminder}` : ''
+      ].filter(Boolean).join('\n');
+
+      await fetchJSON('/api/items', {
+        method : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify({ text, category: item.category || 'inbox', source: 'daily-delivery' })
+      });
+
+      btn.innerHTML = '<i class="ti ti-check"></i>';
+      btn.style.color = '#16a34a';
+      toast(`"${item.title}" 서재에 저장됐습니다!`, 'ok');
+    } catch {
+      btn.disabled  = false;
+      btn.innerHTML = '<i class="ti ti-bookmark"></i>';
+      toast('저장 실패', 'err');
+    }
   },
 
   /** 배달 피드 — 시황 리포트 카드 (증시 지표 배너 + 3줄 요약 + 체크포인트) */
@@ -1300,7 +1388,8 @@ const Mob = {
           badge.textContent = (mc && ma) ? '증시+Macro' : mc ? '증시 중심' : ma ? 'Macro 중심' : '테마 없음';
         }
       }
-      toast('✅ 배달 설정이 맞춤형으로 고도화되었습니다.', 'ok', 4000);
+      state.feedLoaded = false;  /* 다음 배달탭 진입 시 최신 설정으로 강제 재생성 */
+      toast('✅ 설정 저장! 배달탭에서 새 피드를 확인하세요.', 'ok', 4000);
     } catch {
       toast('설정 저장 실패', 'err');
     } finally {

@@ -300,6 +300,7 @@ const Mob = {
     if (type === 'daily_delivery') return this._cardDailyDelivery(item);
     if (type === 'language')       return this._cardFeedLanguage(item);
     if (type === 'market')         return this._cardFeedMarket(item);
+    if (type === 'humanities')     return this._cardFeedHumanities(item);
     // 유튜브·이미지·썸네일 보유 → 가로형 썸네일 카드 (기존 유지)
     if (type === 'youtube' || type === 'image_analysis' ||
         item.thumbnail || m.thumbnail || item.imageUrl) {
@@ -651,6 +652,141 @@ const Mob = {
       btn.innerHTML = '<i class="ti ti-bookmark"></i>';
       toast('저장 실패', 'err');
     }
+  },
+
+  // ══════════════════════════════════════════════
+  //  인문학 피드 카드 렌더러 — v27
+  //  역사(history) / 명언(quote) / 고사성어(idiom)
+  // ══════════════════════════════════════════════
+
+  /** 인문학 피드 카드 — subType 기반 분기 */
+  _cardFeedHumanities(item) {
+    const subType = item.subType || '';
+    if (subType === 'history') return this._cardHumHistory(item);
+    if (subType === 'quote')   return this._cardHumQuote(item);
+    if (subType === 'idiom')   return this._cardHumIdiom(item);
+    /* 알 수 없는 서브타입 폴백 */
+    return `<div class="mob-card mob-hum-card"><div class="mob-hum-content"><div class="mob-hum-title">${item.title || '인문학 지식'}</div></div></div>`;
+  },
+
+  /** 역사 지식 한줌 카드 */
+  _cardHumHistory(item) {
+    /* 3줄 요약 파싱 */
+    const s3Lines = (item.summary3 || '').replace(/\\n/g, '\n')
+      .split('\n').map(l => l.trim().replace(/^[•\-·]\s*/, '')).filter(Boolean);
+    const s3HTML = s3Lines.map(l => `
+      <div class="mob-hum-s3-line">
+        <span class="mob-hum-s3-dot"></span>
+        <span>${l}</span>
+      </div>`).join('');
+
+    const behindBlock = item.behindStory ? `
+      <button class="mob-hum-behind-btn"
+              onclick="event.stopPropagation();Mob._toggleBehindStory(this)">
+        비하인드 스토리 보기 🕵️ <i class="ti ti-chevron-down"></i>
+      </button>
+      <div class="mob-hum-behind-panel">
+        <div class="mob-hum-behind-txt">${item.behindStory}</div>
+      </div>` : '';
+
+    return `
+    <div class="mob-card mob-hum-card">
+      <div class="mob-hum-badge-row">
+        <span class="mob-hum-badge">🏛️ 역사 · ${item.era || '역사'}</span>
+        <span class="mob-hum-period">${item.period || ''}</span>
+      </div>
+      <div class="mob-hum-content">
+        <div class="mob-hum-title">${item.title || '오늘의 역사'}</div>
+        ${s3HTML ? `<div class="mob-hum-s3-block">${s3HTML}</div>` : ''}
+        ${item.lesson ? `
+        <div class="mob-hum-lesson">
+          <i class="ti ti-bulb" style="flex-shrink:0;font-size:15px;margin-top:1px;color:#d97706"></i>
+          <span>${item.lesson}</span>
+        </div>` : ''}
+      </div>
+      ${behindBlock}
+    </div>`;
+  },
+
+  /** 오늘의 명언 카드 */
+  _cardHumQuote(item) {
+    const behindBlock = item.behindStory ? `
+      <button class="mob-hum-behind-btn"
+              onclick="event.stopPropagation();Mob._toggleBehindStory(this)">
+        비하인드 스토리 보기 🕵️ <i class="ti ti-chevron-down"></i>
+      </button>
+      <div class="mob-hum-behind-panel">
+        <div class="mob-hum-behind-txt">${item.behindStory}</div>
+        ${item.context ? `<div class="mob-hum-behind-context">📍 맥락: ${item.context}</div>` : ''}
+      </div>` : '';
+
+    return `
+    <div class="mob-card mob-hum-card mob-hum-quote-card">
+      <div class="mob-hum-badge-row">
+        <span class="mob-hum-badge">💡 오늘의 명언</span>
+        <span class="mob-hum-author-badge">${item.author || ''}</span>
+      </div>
+      <div class="mob-hum-quote-wrap">
+        <div class="mob-hum-quote-marks">"</div>
+        <div class="mob-hum-quote-txt">${item.quoteKo || item.quote || ''}</div>
+        ${item.quote && item.quoteKo ? `<div class="mob-hum-quote-orig">${item.quote}</div>` : ''}
+        <div class="mob-hum-author-info">${item.authorInfo || item.author || ''}</div>
+      </div>
+      ${item.application ? `
+      <div class="mob-hum-content">
+        <div class="mob-hum-application">
+          <i class="ti ti-sparkles" style="flex-shrink:0;font-size:14px;margin-top:1px"></i>
+          <span>${item.application}</span>
+        </div>
+      </div>` : ''}
+      ${behindBlock}
+    </div>`;
+  },
+
+  /** 오늘의 고사성어 카드 */
+  _cardHumIdiom(item) {
+    const behindBlock = item.behindStory ? `
+      <button class="mob-hum-behind-btn"
+              onclick="event.stopPropagation();Mob._toggleBehindStory(this)">
+        비하인드 스토리 보기 🕵️ <i class="ti ti-chevron-down"></i>
+      </button>
+      <div class="mob-hum-behind-panel">
+        <div class="mob-hum-behind-txt">${item.behindStory}</div>
+      </div>` : '';
+
+    return `
+    <div class="mob-card mob-hum-card mob-hum-idiom-card">
+      <div class="mob-hum-badge-row">
+        <span class="mob-hum-badge">📜 고사성어</span>
+        <span class="mob-hum-hanja">${item.hanja || ''}</span>
+      </div>
+      <div class="mob-hum-content">
+        <div class="mob-hum-idiom-title">${item.idiom || item.title || ''}</div>
+        ${item.meaning ? `<div class="mob-hum-meaning">${item.meaning}</div>` : ''}
+        ${item.origin ? `<div class="mob-hum-origin"><i class="ti ti-book-2" style="font-size:11px;color:#d97706"></i> ${item.origin}</div>` : ''}
+        ${item.story ? `
+        <div class="mob-hum-s3-block">
+          <div class="mob-hum-idiom-story">${item.story}</div>
+        </div>` : ''}
+        ${item.application ? `
+        <div class="mob-hum-application">
+          <i class="ti ti-sparkles" style="flex-shrink:0;font-size:14px;margin-top:1px"></i>
+          <span>${item.application}</span>
+        </div>` : ''}
+      </div>
+      ${behindBlock}
+    </div>`;
+  },
+
+  /** 비하인드 스토리 아코디언 토글 */
+  _toggleBehindStory(btn) {
+    const panel = btn.nextElementSibling;
+    if (!panel) return;
+    const isOpen = panel.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    btn.innerHTML = isOpen
+      ? '비하인드 스토리 접기 👆 <i class="ti ti-chevron-up"></i>'
+      : '비하인드 스토리 보기 🕵️ <i class="ti ti-chevron-down"></i>';
   },
 
   /** 오늘의 지식 배달 카드 (type: 'daily_delivery') — v26 프리미엄 아카이브 리포트 */
@@ -1179,11 +1315,12 @@ const Mob = {
     const timeInput = el('dpDeliveryTime');
     if (timeInput) timeInput.value = user.delivery_time || '07:30';
 
-    /* 허용 피드: 4종 */
-    const ALLOWED_IDS = ['en_expr', 'zh_expr', 'us_market', 'kr_market'];
-    const filtered    = feeds.filter(f => ALLOWED_IDS.includes(f.id));
-    const langFeeds   = filtered.filter(f => f.type === 'language' || f.id.includes('expr'));
-    const marketFeeds = filtered.filter(f => f.type === 'market'   || f.id.includes('market'));
+    /* 허용 피드: 7종 (언어 2 + 시황 2 + 인문학 3) */
+    const ALLOWED_IDS = ['en_expr', 'zh_expr', 'us_market', 'kr_market', 'hist_daily', 'quote_daily', 'idiom_daily'];
+    const filtered         = feeds.filter(f => ALLOWED_IDS.includes(f.id));
+    const langFeeds        = filtered.filter(f => f.type === 'language'   || f.id.includes('expr'));
+    const marketFeeds      = filtered.filter(f => f.type === 'market'     || f.id.includes('market'));
+    const humanitiesFeeds  = filtered.filter(f => f.type === 'humanities' || ['hist_daily','quote_daily','idiom_daily'].includes(f.id));
 
     /* ── 공통: 아코디언 행 + 패널 래퍼 생성기 ── */
     const wrapPanel = (sub, badgeTxt, panelBody) => `
@@ -1295,6 +1432,7 @@ const Mob = {
       if (ma)       return 'Macro 중심';
       return '테마 없음';
     };
+    const histBadge   = () => cfg['hist_daily']?.era || '상관없음';
 
     /* ── 테마 옵션 상수 ── */
     const EN_THEMES = [
@@ -1310,20 +1448,66 @@ const Mob = {
       { val:'drama_slang', label:'🎬 중드/유행어'          }
     ];
 
+    /* ── 역사 피드 패널 본문 ── */
+    const histPanelBody = () => {
+      const era = cfg['hist_daily']?.era || '상관없음';
+      const opts = [
+        { val: '한국사',  label: '🇰🇷 한국사' },
+        { val: '세계사',  label: '🌍 세계사'  },
+        { val: '상관없음', label: '🔀 상관없음' }
+      ];
+      return `
+        <div class="mvw-en-section">
+          <div class="mvw-en-section-title">🗓️ 역사 시대 선호</div>
+          <div class="mvw-level-group">
+            ${opts.map(o => `
+            <label class="mvw-level-item${era === o.val ? ' active' : ''}">
+              <input type="radio" name="hist_dailyEra" value="${o.val}"
+                     ${era === o.val ? 'checked' : ''}
+                     onchange="this.closest('.mvw-level-group').querySelectorAll('.mvw-level-item').forEach(x=>x.classList.remove('active'));this.closest('.mvw-level-item').classList.add('active')"/>
+              <span>${o.label}</span>
+            </label>`).join('')}
+          </div>
+        </div>`;
+    };
+
+    /* ── 간단 구독 행 (설정 없는 피드용 — toggle 만) ── */
+    const wrapSimpleSub = (sub) => `
+      <div class="mvw-dp-sub-item" id="${sub.id}Row">
+        <div class="mvw-dp-sub-info">
+          <span class="mvw-dp-sub-icon">${sub.icon || '📌'}</span>
+          <div class="mvw-dp-sub-text">
+            <div class="mvw-dp-sub-name">${sub.label}</div>
+            <div class="mvw-dp-sub-desc">${sub.desc || ''}</div>
+          </div>
+        </div>
+        <label class="mvw-dp-toggle" style="flex-shrink:0">
+          <input type="checkbox" id="sub_${sub.id}" ${enabled.has(sub.id) ? 'checked' : ''}/>
+          <span class="mvw-dp-toggle-track"><span class="mvw-dp-toggle-thumb"></span></span>
+        </label>
+      </div>`;
+
     /* ── 렌더링 ── */
     const subsList = el('dpSubsList');
     if (!subsList) return;
 
     if (filtered.length) {
-      const en = langFeeds.find(f => f.id === 'en_expr');
-      const zh = langFeeds.find(f => f.id === 'zh_expr');
+      const en   = langFeeds.find(f => f.id === 'en_expr');
+      const zh   = langFeeds.find(f => f.id === 'zh_expr');
+      const hist = humanitiesFeeds.find(f => f.id === 'hist_daily');
+      const quot = humanitiesFeeds.find(f => f.id === 'quote_daily');
+      const idio = humanitiesFeeds.find(f => f.id === 'idiom_daily');
 
       subsList.innerHTML = `
         <div class="mvw-dp-group-label">🎓 언어 학습</div>
         ${en ? wrapPanel(en, langBadge('en_expr', 7),  langPanelBody('en_expr', EN_THEMES, 7)) : ''}
         ${zh ? wrapPanel(zh, langBadge('zh_expr', 5),  langPanelBody('zh_expr', ZH_THEMES, 5)) : ''}
         <div class="mvw-dp-group-label">📊 시황 분석</div>
-        ${marketFeeds.map(mf => wrapPanel(mf, marketBadge(mf.id), marketPanelBody(mf.id))).join('')}`;
+        ${marketFeeds.map(mf => wrapPanel(mf, marketBadge(mf.id), marketPanelBody(mf.id))).join('')}
+        <div class="mvw-dp-group-label">🏛️ 인문학</div>
+        ${hist ? wrapPanel(hist, histBadge(), histPanelBody()) : ''}
+        ${quot ? wrapSimpleSub(quot) : ''}
+        ${idio ? wrapSimpleSub(idio) : ''}`;
     } else {
       subsList.innerHTML = `<div style="padding:12px 0;font-size:13px;color:var(--text-3)">설정 로드 실패</div>`;
     }
@@ -1360,12 +1544,19 @@ const Mob = {
         `#${feedId}Panel .mvw-theme-list input[type="checkbox"]:checked`)].map(cb => cb.value);
       const lvl       = document.querySelector(`#${feedId}Panel input[name="${feedId}Level"]:checked`);
       settings.level  = lvl?.value || 'intermediate';
-    } else {
+    } else if (feedId === 'us_market' || feedId === 'kr_market') {
       /* 시황 피드 */
       const checked = [...document.querySelectorAll(
         `#${feedId}Panel .mvw-theme-list input[type="checkbox"]:checked`)].map(cb => cb.value);
       settings.is_market_centric = checked.includes('market_centric');
       settings.is_macro_centric  = checked.includes('macro_centric');
+    } else if (feedId === 'hist_daily') {
+      /* 역사 피드 — 시대 선호 */
+      const eraInput = document.querySelector(`#hist_dailyPanel input[name="hist_dailyEra"]:checked`);
+      settings.era   = eraInput?.value || '상관없음';
+    } else {
+      /* quote_daily, idiom_daily — 상세 설정 없음 */
+      settings = {};
     }
 
     const btn = el(`${feedId}SaveBtn`);
@@ -1383,9 +1574,11 @@ const Mob = {
       if (badge) {
         if (feedId === 'en_expr' || feedId === 'zh_expr') {
           badge.textContent = `${settings.count}개 · ${settings.level === 'advanced' ? '고급' : '초중급'}`;
-        } else {
+        } else if (feedId === 'us_market' || feedId === 'kr_market') {
           const { is_market_centric: mc, is_macro_centric: ma } = settings;
           badge.textContent = (mc && ma) ? '증시+Macro' : mc ? '증시 중심' : ma ? 'Macro 중심' : '테마 없음';
+        } else if (feedId === 'hist_daily') {
+          badge.textContent = settings.era || '상관없음';
         }
       }
       state.feedLoaded = false;  /* 다음 배달탭 진입 시 최신 설정으로 강제 재생성 */

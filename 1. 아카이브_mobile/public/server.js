@@ -601,6 +601,242 @@ async function generateMarketFeed(sub, user) {
   };
 }
 
+// ══════════════════════════════════════════════════
+//  ★ 인문학 피드 생성 엔진 (역사 / 명언 / 고사성어) — v27
+// ══════════════════════════════════════════════════
+
+/**
+ * 역사 지식 한줌 피드 생성
+ * user.feed_settings.hist_daily.era: '한국사' | '세계사' | '상관없음'
+ */
+async function generateHistoryFeed(sub, user) {
+  const cfg = user?.feed_settings?.['hist_daily'] || {};
+  const era = cfg.era || '상관없음';
+
+  const eraInstruction = era === '한국사'
+    ? '반드시 한반도·한국사(고조선부터 현대까지) 사건·인물·흐름에서 주제를 선택하세요.'
+    : era === '세계사'
+    ? '반드시 세계사(한국 제외 전세계) 사건·인물·흐름에서 주제를 선택하세요.'
+    : '한국사와 세계사 중 오늘에 가장 흥미롭고 임팩트 있는 주제를 자유롭게 선택하세요.';
+
+  const prompt = `당신은 성재님의 역사 학습 수석 비서입니다. 바쁜 직장인인 성재님이 아침 2분 만에 흥미로운 역사 사실을 소화할 수 있도록 엄선합니다.
+
+${eraInstruction}
+
+다음 JSON 형식으로만 응답하세요 (순수 JSON, 마크다운 코드블록 없이):
+{
+  "title": "역사 사건·인물·흐름 제목 (20자 이내, 임팩트 있게)",
+  "era": "한국사 또는 세계사 (두 단어 중 하나)",
+  "period": "구체적 시대 (예: 조선 중기, 1차 세계대전, 르네상스)",
+  "summary": "핵심 한 줄 요약 (30자 이내)",
+  "summary3": "• 핵심 사실 1줄\\n• 핵심 사실 2줄\\n• 핵심 사실 3줄",
+  "behindStory": "교과서에 없는 뒷이야기 또는 의외의 반전 사실 (2~3문장, 구체적으로)",
+  "lesson": "이 역사에서 오늘날 직장인 성재님이 배울 수 있는 현대적 교훈 (1문장)"
+}
+
+규칙:
+- summary3 각 줄은 반드시 "• "로 시작
+- behindStory는 교과서에 없는 흥미로운 뒷이야기 — 구체적 숫자·이름·일화 포함
+- lesson은 현대 직장 생활·비즈니스에 연결되는 실용적 교훈
+- 거부 메시지, 설명 텍스트, 마크다운 블록 없이 순수 JSON만 응답`;
+
+  const raw    = await callGemini(prompt, 2000);
+  const parsed = safeParseJSON(raw);
+
+  if (!parsed || !parsed.title) {
+    console.warn('[인문학/역사] Gemini 파싱 실패 — Mock 대체');
+    return generateMockHistoryFeed(era);
+  }
+
+  return {
+    type:        'humanities',
+    subType:     'history',
+    subId:       sub.id,
+    label:       sub.label,
+    category:    'history',
+    era:         parsed.era    || era,
+    period:      parsed.period || '',
+    title:       parsed.title  || '오늘의 역사',
+    summary:     parsed.summary   || '',
+    summary3:    parsed.summary3  || '',
+    behindStory: parsed.behindStory || '',
+    lesson:      parsed.lesson     || '',
+    aiGenerated: !!process.env.GEMINI_API_KEY
+  };
+}
+
+/**
+ * 오늘의 명언 피드 생성
+ */
+async function generateQuoteFeed(sub) {
+  const prompt = `당신은 성재님의 인문학 학습 수석 비서입니다. 오늘 성재님의 하루를 풍요롭게 만들 명언을 엄선합니다.
+
+다음 JSON 형식으로만 응답하세요 (순수 JSON, 마크다운 코드블록 없이):
+{
+  "quote": "원문 명언 (영어·독일어·프랑스어·라틴어 등 원어 그대로)",
+  "quoteKo": "자연스러운 한국어 번역",
+  "author": "명사 이름 (한국어 표기)",
+  "authorInfo": "소개 1문장 (생몰 연도 + 직업/분야 포함)",
+  "context": "이 명언이 나온 맥락·상황 (1~2문장)",
+  "behindStory": "일반인이 잘 모르는 이 명언의 탄생 배경 또는 명사의 삶에서 나온 흥미로운 에피소드 (2~3문장)",
+  "application": "오늘 성재님이 직장 생활이나 자기계발에 바로 적용할 수 있는 방법 (1문장)"
+}
+
+규칙:
+- 너무 진부하지 않은 명언 — 깊이 있는 통찰을 담은 것으로 선별
+- behindStory는 교과서에 없는 흥미로운 배경 이야기 (구체적 에피소드 포함)
+- application은 직장/자기계발에 연결되는 실용적 방법
+- 거부 메시지, 마크다운 없이 순수 JSON만 응답`;
+
+  const raw    = await callGemini(prompt, 1500);
+  const parsed = safeParseJSON(raw);
+
+  if (!parsed || !parsed.quote) {
+    console.warn('[인문학/명언] Gemini 파싱 실패 — Mock 대체');
+    return generateMockQuoteFeed(sub);
+  }
+
+  const titlePreview = (parsed.quoteKo || parsed.quote).slice(0, 28);
+  return {
+    type:        'humanities',
+    subType:     'quote',
+    subId:       sub.id,
+    label:       sub.label,
+    category:    'inbox',
+    title:       `"${titlePreview}…" — ${parsed.author || ''}`,
+    quote:       parsed.quote       || '',
+    quoteKo:     parsed.quoteKo     || '',
+    author:      parsed.author      || '',
+    authorInfo:  parsed.authorInfo  || '',
+    context:     parsed.context     || '',
+    behindStory: parsed.behindStory || '',
+    application: parsed.application || '',
+    aiGenerated: !!process.env.GEMINI_API_KEY
+  };
+}
+
+/**
+ * 오늘의 고사성어 피드 생성
+ */
+async function generateIdiomFeed(sub) {
+  const prompt = `당신은 성재님의 인문학 학습 수석 비서입니다. 오늘 성재님이 마음에 새길 고사성어 한 편을 엄선합니다.
+
+다음 JSON 형식으로만 응답하세요 (순수 JSON, 마크다운 코드블록 없이):
+{
+  "idiom": "고사성어 한글 독음 (예: 새옹지마)",
+  "hanja": "한자 표기 (예: 塞翁之馬)",
+  "meaning": "뜻 풀이 한 문장 (쉽고 명확하게)",
+  "origin": "출처: 어느 고전(사기, 논어, 맹자 등)에서 비롯됐는지",
+  "story": "유래 설화 또는 원전 맥락 요약 (2~3문장, 구체적 인물·상황 포함)",
+  "behindStory": "교과서에 없는 이 고사성어의 탄생 배경 또는 원전의 흥미로운 맥락 (2~3문장)",
+  "application": "오늘 성재님의 직장·인간관계에서 쓸 수 있는 상황 (1문장, '예: ～할 때 …' 형식)"
+}
+
+규칙:
+- 너무 유명한 것보다 깊이 있는 고사성어도 좋음 (단, 한자 독음이 명확한 것)
+- story는 구체적인 인물·국가·시대 묘사 포함
+- behindStory는 원전에서 잘 드러나지 않는 흥미로운 뒷이야기
+- 거부 메시지, 마크다운 없이 순수 JSON만 응답`;
+
+  const raw    = await callGemini(prompt, 1500);
+  const parsed = safeParseJSON(raw);
+
+  if (!parsed || !parsed.idiom) {
+    console.warn('[인문학/고사성어] Gemini 파싱 실패 — Mock 대체');
+    return generateMockIdiomFeed(sub);
+  }
+
+  return {
+    type:        'humanities',
+    subType:     'idiom',
+    subId:       sub.id,
+    label:       sub.label,
+    category:    'history',
+    title:       `${parsed.idiom || ''} (${parsed.hanja || ''})`,
+    idiom:       parsed.idiom       || '',
+    hanja:       parsed.hanja       || '',
+    meaning:     parsed.meaning     || '',
+    origin:      parsed.origin      || '',
+    story:       parsed.story       || '',
+    behindStory: parsed.behindStory || '',
+    application: parsed.application || '',
+    aiGenerated: !!process.env.GEMINI_API_KEY
+  };
+}
+
+/**
+ * 인문학 피드 타입 디스패처 (역사 / 명언 / 고사성어)
+ */
+async function generateHumanitiesFeed(sub, user) {
+  const subType = sub.subType || '';
+  if (subType === 'history' || sub.id === 'hist_daily') {
+    return generateHistoryFeed(sub, user);
+  }
+  if (subType === 'quote' || sub.id === 'quote_daily') {
+    return generateQuoteFeed(sub);
+  }
+  if (subType === 'idiom' || sub.id === 'idiom_daily') {
+    return generateIdiomFeed(sub);
+  }
+  // 알 수 없는 인문학 서브타입 → 기본 반환
+  return {
+    type: 'humanities', subType: 'unknown', subId: sub.id,
+    label: sub.label, title: sub.label,
+    summary: '준비 중입니다.', aiGenerated: false
+  };
+}
+
+// ──────────────────────────────────────────────────
+//  인문학 Mock 폴백 (Gemini API 키 없을 때)
+// ──────────────────────────────────────────────────
+
+function generateMockHistoryFeed(era) {
+  return {
+    type: 'humanities', subType: 'history', subId: 'hist_daily',
+    label: '역사 지식 한줌', category: 'history',
+    era: (era === '세계사') ? '세계사' : '한국사',
+    period: '조선 중기',
+    title: '이순신의 백의종군과 명량 대첩',
+    summary: '역경을 딛고 피어난 불굴의 리더십',
+    summary3: '• 1597년 정유재란 당시 이순신은 백의종군 중에도 전략을 멈추지 않았다\n• 단 12척의 배로 133척의 왜선을 격퇴한 명량대첩은 세계 해전 역사의 기적\n• 죽기를 각오하면 반드시 살 길이 있다(必死卽生)는 철학이 승리의 원동력',
+    behindStory: '이순신이 명량대첩 전날 밤 선조에게 "신에게는 아직 12척의 배가 있습니다"라고 장계를 올렸지만, 실제로 선조는 이순신에게 육군 합류를 명했습니다. 이순신이 이를 정중히 거부하고 해전을 선택한 배경에는, 제해권을 잃으면 보급선이 끊겨 전쟁 자체가 불가능하다는 냉철한 전략적 판단이 있었습니다. 당시 조정에서 이순신을 반역죄로 또다시 몰려던 세력도 있었다는 기록이 남아 있습니다.',
+    lesson: '최악의 조건에서도 주어진 자원으로 최선의 결과를 만드는 것이 진정한 리더십입니다.',
+    aiGenerated: false
+  };
+}
+
+function generateMockQuoteFeed(sub) {
+  return {
+    type: 'humanities', subType: 'quote', subId: 'quote_daily',
+    label: '오늘의 명언', category: 'inbox',
+    title: '"할 수 있다고 생각하든 없다고 생각하든, 둘 다 옳다" — 헨리 포드',
+    quote: "Whether you think you can, or you think you can't — you're right.",
+    quoteKo: '당신이 할 수 있다고 생각하든, 할 수 없다고 생각하든 — 둘 다 맞다.',
+    author: '헨리 포드',
+    authorInfo: '헨리 포드 (1863–1947), 포드 자동차 창업자이자 대량생산 시스템의 아버지.',
+    context: '포드는 자동차 왕이 되기 전 수차례 사업에 실패했으며, 이 말은 자서전 인터뷰에서 나왔습니다.',
+    behindStory: '포드가 이 명언을 남기게 된 배경에는 자신의 세 번의 파산 경험이 있습니다. 포드는 실패할 때마다 "해낼 수 있다"는 믿음만으로 재기했고, 반대로 자신을 의심하는 직원들이 실제로 성과를 내지 못하는 것을 반복해 목격했습니다. 이 경험에서 나온 실용적 통찰이 세계에서 가장 유명한 동기부여 명언이 됐습니다.',
+    application: '오늘 어려운 과제 앞에서 "못 할 것 같다"는 생각이 든다면, 그 생각 자체가 실패의 절반임을 기억하세요.',
+    aiGenerated: false
+  };
+}
+
+function generateMockIdiomFeed(sub) {
+  return {
+    type: 'humanities', subType: 'idiom', subId: 'idiom_daily',
+    label: '오늘의 고사성어', category: 'history',
+    title: '와신상담 (臥薪嘗膽)',
+    idiom: '와신상담',
+    hanja: '臥薪嘗膽',
+    meaning: '원수를 갚거나 목적 달성을 위해 온갖 고난을 견디며 분발함',
+    origin: '사마천의 《사기》 월왕구천세가(越王勾踐世家)에서 유래',
+    story: '춘추시대 오나라 왕 부차는 패배의 굴욕을 잊지 않기 위해 매일 가시 방석(薪) 위에서 잠을 잤습니다. 월나라 왕 구천은 부차에게 항복 후 3년간 노예처럼 살다 귀국해, 쓸개(膽)를 핥으며 복수의 불씨를 키웠습니다. 결국 구천은 22년 후 오나라를 멸망시켰습니다.',
+    behindStory: '와신상담의 주인공 구천은 항복 후 오나라에서 부차의 말을 돌보는 마부 일까지 했습니다. 흥미로운 점은 부차가 구천을 귀국시킨 이유가, 구천의 신하 범려가 절세미녀 서시(西施)를 바쳐 부차의 눈을 멀게 했기 때문이라는 설도 있다는 것입니다. 이 와신상담의 고사는 훗날 일본의 무사도에도 영향을 줬다는 역사적 기록이 있습니다.',
+    application: '예: 장기 프로젝트가 번번이 실패해도 포기하지 마세요 — 와신상담의 자세로 실력을 쌓다 보면 반드시 기회가 옵니다.',
+    aiGenerated: false
+  };
+}
+
 /**
  * 구독 타입을 보고 적합한 생성 함수 호출
  */
@@ -620,6 +856,8 @@ async function generateFeedForSubscription(sub, user) {
     content = await generateLanguageFeed(sub, user);
   } else if (sub.type === 'market') {
     content = await generateMarketFeed(sub, user);
+  } else if (sub.type === 'humanities') {
+    content = await generateHumanitiesFeed(sub, user);
   } else {
     // 알 수 없는 타입 → 기본 텍스트 리포트
     content = {
@@ -1345,7 +1583,7 @@ app.patch('/api/delivery-settings/all', (req, res) => {
   if (!user.feed_settings) user.feed_settings = {};
 
   const { feedId, settings } = req.body;
-  const VALID_FEED_IDS = ['en_expr', 'zh_expr', 'us_market', 'kr_market'];
+  const VALID_FEED_IDS = ['en_expr', 'zh_expr', 'us_market', 'kr_market', 'hist_daily', 'quote_daily', 'idiom_daily'];
   if (!VALID_FEED_IDS.includes(feedId)) {
     return res.status(400).json({ success: false, error: '유효하지 않은 feedId' });
   }
@@ -1360,12 +1598,20 @@ app.patch('/api/delivery-settings/all', (req, res) => {
       themes: Array.isArray(settings.themes) ? settings.themes.filter(t => validLangThemes.includes(t)) : [],
       level : ['intermediate','advanced'].includes(settings.level) ? settings.level : 'intermediate'
     };
-  } else {
+  } else if (feedId === 'us_market' || feedId === 'kr_market') {
     /* 시황 피드 */
     user.feed_settings[feedId] = {
       is_market_centric: settings.is_market_centric !== false,
       is_macro_centric : settings.is_macro_centric  !== false
     };
+  } else if (feedId === 'hist_daily') {
+    /* 역사 피드 — 시대 선호 */
+    user.feed_settings[feedId] = {
+      era: ['한국사', '세계사', '상관없음'].includes(settings.era) ? settings.era : '상관없음'
+    };
+  } else {
+    /* quote_daily, idiom_daily — 별도 상세 설정 없음 */
+    user.feed_settings[feedId] = {};
   }
 
   user.updated_at = new Date().toISOString();

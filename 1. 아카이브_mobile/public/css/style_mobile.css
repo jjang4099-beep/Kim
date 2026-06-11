@@ -1795,3 +1795,214 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 .mob-feed-dlg-toggle.open   { background: #dbeafe; color: var(--accent); }
 .mob-feed-dlg-toggle i      { font-size: 13px; transition: transform .22s ease; }
 .mob-feed-dlg-toggle.open i { transform: rotate(180deg); }
+
+/* ══════════════════════════════════════════════════════════
+   v27 — 인문학 피드 카드 (역사 / 명언 / 고사성어)
+   공통 베이스: Amber/Warm 계열 크림·황갈 톤
+══════════════════════════════════════════════════════════ */
+
+/* ── 카드 베이스 ── */
+.mob-hum-card {
+  padding      : 0;
+  cursor       : default;
+  border-left  : 3px solid #d97706;
+  background   : linear-gradient(160deg, #fffdf7 0%, #fdf9f0 100%);
+  border-top   : 1px solid #fde68a;
+  border-right : 1px solid #fde68a;
+  border-bottom: 1px solid #fde68a;
+  overflow     : hidden;
+}
+
+/* ── 상단 배지 행 ── */
+.mob-hum-badge-row {
+  display        : flex;
+  align-items    : center;
+  justify-content: space-between;
+  padding        : 10px 14px 8px;
+  border-bottom  : 1px solid #fde68a;
+}
+
+.mob-hum-badge {
+  display      : inline-flex; align-items: center; gap: 5px;
+  font-size    : 11px; font-weight: 700;
+  color        : #92400e;
+  background   : #fef3c7;
+  padding      : 4px 10px; border-radius: 99px;
+  letter-spacing: .03em; flex-shrink: 0;
+}
+
+/* 역사: 시대 텍스트 */
+.mob-hum-period {
+  font-size  : 11px; color: #78716c; font-weight: 600;
+  letter-spacing: .02em;
+}
+
+/* 명언: 저자 배지 */
+.mob-hum-author-badge {
+  font-size  : 11px; color: #92400e; font-weight: 700;
+}
+
+/* 고사성어: 한자 */
+.mob-hum-hanja {
+  font-size  : 14px; color: #78716c; font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+/* ── 카드 본문 공통 패딩 래퍼 ── */
+.mob-hum-content {
+  padding: 12px 14px;
+}
+
+/* ── 제목 (역사·고사성어 공통) ── */
+.mob-hum-title {
+  font-size  : 17px; font-weight: 800; color: var(--text-1);
+  line-height: 1.35; word-break: keep-all; margin-bottom: 10px;
+}
+
+/* ── 3줄 요약 박스 (역사 카드) ── */
+.mob-hum-s3-block {
+  display      : flex; flex-direction: column; gap: 6px;
+  padding      : 10px 12px;
+  background   : #fef9f0;
+  border-radius: 8px;
+  border       : 1px solid #fde68a;
+  margin-bottom: 10px;
+}
+
+.mob-hum-s3-line {
+  display    : flex; align-items: flex-start; gap: 8px;
+  font-size  : 13.5px; color: var(--text-2); line-height: 1.6;
+  word-break : keep-all;
+}
+
+.mob-hum-s3-dot {
+  flex-shrink : 0; width: 6px; height: 6px;
+  border-radius: 50%; background: #d97706; margin-top: 7px;
+}
+
+/* 고사성어 설화 본문 */
+.mob-hum-idiom-story {
+  font-size  : 13px; color: var(--text-2); line-height: 1.7;
+  word-break : keep-all;
+}
+
+/* ── 교훈 / 실전 적용 박스 ── */
+.mob-hum-lesson {
+  display      : flex; align-items: flex-start; gap: 8px;
+  padding      : 9px 12px;
+  background   : #fff7ed;
+  border-left  : 3px solid #f59e0b;
+  border-radius: 0 8px 8px 0;
+  font-size    : 13px; font-weight: 600; color: #78350f;
+  line-height  : 1.55; word-break: keep-all;
+  margin-bottom: 2px;
+}
+
+/* ── 활용법 칩 (명언·고사성어 공통) ── */
+.mob-hum-application {
+  display      : flex; align-items: flex-start; gap: 7px;
+  padding      : 9px 12px;
+  background   : #fef3c7;
+  border-radius: 8px;
+  font-size    : 13px; font-weight: 600; color: #92400e;
+  line-height  : 1.55; word-break: keep-all;
+}
+.mob-hum-application i { color: #d97706; flex-shrink: 0; margin-top: 1px; }
+
+/* ── 고사성어 출처 라인 ── */
+.mob-hum-origin {
+  display      : flex; align-items: center; gap: 5px;
+  font-size    : 12px; color: #78716c;
+  padding      : 5px 10px;
+  background   : #fef9f0;
+  border-radius: 6px;
+  border-left  : 2px solid #d97706;
+  margin-bottom: 8px; word-break: keep-all;
+}
+
+/* ── 명언 카드 전용 ── */
+.mob-hum-quote-wrap { padding: 12px 14px 8px; }
+
+.mob-hum-quote-marks {
+  font-size  : 52px; line-height: 1; color: #d97706;
+  opacity    : 0.25; margin-bottom: -16px;
+  font-family: Georgia, 'Noto Serif KR', serif;
+  user-select: none;
+}
+
+.mob-hum-quote-txt {
+  font-size  : 16px; font-weight: 700; color: var(--text-1);
+  line-height: 1.65; word-break: keep-all; padding: 0 4px 6px;
+}
+
+.mob-hum-quote-orig {
+  font-size  : 12.5px; color: var(--text-3); font-style: italic;
+  padding    : 0 4px; margin-bottom: 8px; word-break: keep-all;
+  line-height: 1.5;
+}
+
+.mob-hum-author-info {
+  font-size  : 12px; color: #78716c;
+  padding    : 6px 10px;
+  background : #fef9f0;
+  border-radius: 6px;
+  margin-bottom: 2px; word-break: keep-all; line-height: 1.5;
+}
+
+/* ── 고사성어 대형 제목 ── */
+.mob-hum-idiom-title {
+  font-size  : 26px; font-weight: 900; color: #92400e;
+  letter-spacing: 0.06em; margin-bottom: 6px;
+  font-family: 'Noto Serif KR', serif;
+}
+
+/* ── 고사성어 뜻풀이 ── */
+.mob-hum-meaning {
+  font-size  : 14px; color: var(--text-2); line-height: 1.6;
+  padding    : 4px 0 8px; word-break: keep-all;
+}
+
+/* ══════════════════════════════════════════════
+   비하인드 스토리 아코디언 버튼 + 패널
+   크림색 배경 (#fdfbf7) — 따뜻하고 비밀스러운 느낌
+══════════════════════════════════════════════ */
+
+.mob-hum-behind-btn {
+  display      : flex; align-items: center; gap: 6px;
+  width        : 100%; padding: 10px 14px; margin: 0;
+  background   : #fdf5e0;
+  border       : none; border-top: 1px solid #fde68a;
+  font-size    : 12.5px; font-weight: 700; color: #92400e;
+  cursor       : pointer; text-align: left;
+  transition   : background 0.15s, color 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mob-hum-behind-btn i         { font-size: 14px; margin-left: auto; transition: transform .22s ease; }
+.mob-hum-behind-btn:active    { background: #fde68a; }
+.mob-hum-behind-btn.open      { background: #fde68a; color: #78350f; }
+.mob-hum-behind-btn.open i    { transform: rotate(180deg); }
+
+/* 비하인드 패널 — max-height 전환 애니메이션 */
+.mob-hum-behind-panel {
+  max-height   : 0;
+  overflow     : hidden;
+  transition   : max-height .35s cubic-bezier(.4,0,.2,1);
+  background   : #fdfbf7;   /* ★ 크림색 — 비밀스러운 뒷이야기 분위기 */
+  border-top   : 0 solid #fde68a;
+}
+.mob-hum-behind-panel.open {
+  max-height   : 800px;
+  border-top   : 1px solid #fde68a;
+}
+
+.mob-hum-behind-txt {
+  padding    : 12px 14px;
+  font-size  : 13px; color: var(--text-2);
+  line-height: 1.75; word-break: keep-all;
+}
+
+.mob-hum-behind-context {
+  padding      : 0 14px 12px;
+  font-size    : 12px; color: var(--text-3);
+  font-style   : italic; line-height: 1.6; word-break: keep-all;
+}

@@ -42,5 +42,38 @@
     "enabled": false,
     "desc": "코스피 · 코스닥 · 환율 지표 + AI 시황 분석 리포트",
     "icon": "🇰🇷"
+  },
+  {
+    "id": "hist_daily",
+    "type": "humanities",
+    "subType": "history",
+    "label": "역사 지식 한줌",
+    "category": "history",
+    "topic": "한국사 · 세계사",
+    "enabled": false,
+    "desc": "1분 만에 읽는 흥미로운 역사 팩트 + 비하인드 스토리",
+    "icon": "🏛️"
+  },
+  {
+    "id": "quote_daily",
+    "type": "humanities",
+    "subType": "quote",
+    "label": "오늘의 명언",
+    "category": "inbox",
+    "topic": "글로벌 명사 명언",
+    "enabled": false,
+    "desc": "가슴에 새기는 오늘의 명언 + 탄생 비하인드",
+    "icon": "💡"
+  },
+  {
+    "id": "idiom_daily",
+    "type": "humanities",
+    "subType": "idiom",
+    "label": "오늘의 고사성어",
+    "category": "history",
+    "topic": "한자 성어와 삶의 지혜",
+    "enabled": false,
+    "desc": "한자 성어 뜻풀이 + 유래 설화 + 비하인드 이야기",
+    "icon": "📜"
   }
 ]

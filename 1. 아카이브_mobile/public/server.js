@@ -551,6 +551,33 @@ const ZH_THEME_LABELS = {
   drama_slang : '중드 & 유행어'
 };
 
+/**
+ * ★ 최근 N일간 배달된 표현/제목 수집 — AI 프롬프트 중복 방지용
+ * @param {string} subId      구독 ID (en_expr, hist_daily 등)
+ * @param {number} days       조회 기간 (기본 14일)
+ * @param {string} field      수집 필드: 'expressions' | 'titles'
+ * @returns {string[]}
+ */
+function getRecentDelivered(subId, days = 14, field = 'expressions') {
+  const all     = readDailyFeeds();
+  const cutoff  = new Date();
+  cutoff.setDate(cutoff.getDate() - days);
+  const cutoffStr = toDateStr(cutoff);
+
+  const collected = [];
+  for (const [date, feeds] of Object.entries(all)) {
+    if (date < cutoffStr) continue;
+    const feed = feeds?.[subId];
+    if (!feed) continue;
+    if (field === 'expressions' && Array.isArray(feed.vocabEntries)) {
+      feed.vocabEntries.forEach(e => { if (e.expression) collected.push(e.expression); });
+    } else if (field === 'titles' && feed.title) {
+      collected.push(feed.title);
+    }
+  }
+  return [...new Set(collected)];
+}
+
 async function generateLanguageFeed(sub, user) {
   const lang    = sub.lang || '영어';
   const langKey = lang.includes('중국') ? 'zh' : 'en';
@@ -607,7 +634,13 @@ async function generateLanguageFeed(sub, user) {
 - 정확히 ${count}개 표현 생성
 - 집중 테마 "${theme}" + 난이도(${level === 'advanced' ? '고급' : '초중급'})에 딱 맞는 실전 표현만 선별
 - dialogue는 실제 비즈니스 현장에서 바로 쓸 수 있는 짧은 대화문 (3~4줄)
-- practiceSentence는 실제 직장 상황(회의·이메일·보고·협상)에 맞게 구체적으로`;
+- practiceSentence는 실제 직장 상황(회의·이메일·보고·협상)에 맞게 구체적으로${(() => {
+    /* ★ 최근 14일 배달 표현 중복 금지 */
+    const recent = getRecentDelivered(sub.id, 14, 'expressions');
+    return recent.length
+      ? `\n- ★★ 절대 중복 금지: 아래 표현들은 최근 14일 내 이미 배달되었습니다. 이것들과 같거나 사실상 동일한 표현은 절대 포함하지 마세요. 덜 알려졌지만 실전에서 유용한 새로운 표현을 발굴하세요.\n  [최근 배달됨: ${recent.slice(0, 60).join(', ')}]`
+      : '';
+  })()}`;
 
   const raw    = await callAI(prompt, 4000);
   let entries  = safeParseJSON(raw);
@@ -781,7 +814,12 @@ ${eraInstruction}
 - summary3 각 줄은 반드시 "• "로 시작
 - behindStory는 교과서에 없는 흥미로운 뒷이야기 — 구체적 숫자·이름·일화 포함
 - lesson은 현대 직장 생활·비즈니스에 연결되는 실용적 교훈
-- 거부 메시지, 설명 텍스트, 마크다운 블록 없이 순수 JSON만 응답`;
+- 거부 메시지, 설명 텍스트, 마크다운 블록 없이 순수 JSON만 응답${(() => {
+    const recent = getRecentDelivered(sub.id, 14, 'titles');
+    return recent.length
+      ? `\n- ★★ 절대 중복 금지: 최근 14일 내 이미 다룬 주제 [${recent.slice(0, 20).join(' / ')}] 와 같거나 비슷한 주제는 피하고 완전히 새로운 주제를 선택하세요.`
+      : '';
+  })()}`;
 
   const raw    = await callAI(prompt, 2000);
   const parsed = safeParseJSON(raw);
@@ -829,7 +867,12 @@ async function generateQuoteFeed(sub) {
 - 너무 진부하지 않은 명언 — 깊이 있는 통찰을 담은 것으로 선별
 - behindStory는 교과서에 없는 흥미로운 배경 이야기 (구체적 에피소드 포함)
 - application은 직장/자기계발에 연결되는 실용적 방법
-- 거부 메시지, 마크다운 없이 순수 JSON만 응답`;
+- 거부 메시지, 마크다운 없이 순수 JSON만 응답${(() => {
+    const recent = getRecentDelivered(sub.id, 14, 'titles');
+    return recent.length
+      ? `\n- ★★ 절대 중복 금지: 최근 14일 내 이미 배달된 명언 [${recent.slice(0, 20).join(' / ')}] 과 같은 명언·같은 명사의 유사 명언은 피하세요.`
+      : '';
+  })()}`;
 
   const raw    = await callAI(prompt, 1500);
   const parsed = safeParseJSON(raw);
@@ -879,7 +922,12 @@ async function generateIdiomFeed(sub) {
 - 너무 유명한 것보다 깊이 있는 고사성어도 좋음 (단, 한자 독음이 명확한 것)
 - story는 구체적인 인물·국가·시대 묘사 포함
 - behindStory는 원전에서 잘 드러나지 않는 흥미로운 뒷이야기
-- 거부 메시지, 마크다운 없이 순수 JSON만 응답`;
+- 거부 메시지, 마크다운 없이 순수 JSON만 응답${(() => {
+    const recent = getRecentDelivered(sub.id, 14, 'titles');
+    return recent.length
+      ? `\n- ★★ 절대 중복 금지: 최근 14일 내 이미 배달된 고사성어 [${recent.slice(0, 20).join(' / ')}] 와 같은 것은 절대 선택하지 마세요.`
+      : '';
+  })()}`;
 
   const raw    = await callAI(prompt, 1500);
   const parsed = safeParseJSON(raw);
@@ -1683,6 +1731,10 @@ app.patch('/api/user/settings', (req, res) => {
   const user    = users[0];
   const allowed = ['delivery_time', 'enabled_feeds', 'name', 'timezone'];
   allowed.forEach(k => { if (req.body[k] !== undefined) user[k] = req.body[k]; });
+  /* 빈 문자열·중복 정리 (클라이언트 버그 방어) */
+  if (Array.isArray(user.enabled_feeds)) {
+    user.enabled_feeds = [...new Set(user.enabled_feeds.filter(f => f && f.trim()))];
+  }
   user.updated_at = new Date().toISOString();
   writeUsers(users);
 

@@ -79,8 +79,8 @@ function toLocalDateStr(d = new Date()) {
    배달 피드 칩 라벨 맵 (subId → 표시 정보)
 ────────────────────────────────────────────── */
 const FEED_CHIP_MAP = {
-  en_expr    : { icon: '🇺🇸', label: 'English',   color: '#4f46e5' },
-  zh_expr    : { icon: '🇨🇳', label: '중국어',     color: '#b45309' },
+  en_expr    : { icon: '🗽', label: 'English',   color: '#4f46e5' },
+  zh_expr    : { icon: '🐉', label: '중국어',     color: '#b45309' },
   us_market  : { icon: '📈',  label: '미국 시황', color: '#059669' },
   kr_market  : { icon: '📊',  label: '한국 시황', color: '#0891b2' },
   hist_daily : { icon: '🏛️',  label: '역사',      color: '#92400e' },
@@ -608,7 +608,7 @@ const Mob = {
     const date     = item.date  || '';
     const theme    = item.theme || item.subCategory || '';
     const dayOfWeek = item.dayOfWeek || '';
-    const langIcon = item.label?.includes('중국') ? '🇨🇳' : '🇺🇸';
+    const langIcon = item.label?.includes('중국') ? '🐉' : '🗽';
 
     const vocabHTML = entries.map((e, i) => {
       const uid = `dlg_${subId}_${i}_${Date.now()}`;
@@ -1037,7 +1037,7 @@ const Mob = {
     return `
     <div class="mob-card mob-card-feed mob-card-feed-market" data-id="">
       <div class="mob-feed-card-hd">
-        <span class="mob-feed-badge mob-feed-badge-market">${isUS ? '🇺🇸' : '🇰🇷'} ${item.label || '시황'}</span>
+        <span class="mob-feed-badge mob-feed-badge-market">${isUS ? '🗽' : '🐯'} ${item.label || '시황'}</span>
         <span class="mob-feed-card-date">${date}</span>
       </div>
       <div class="mob-card-title">${item.title || '오늘의 시황'}</div>
@@ -1417,7 +1417,9 @@ const Mob = {
 
       groups[dateKey].forEach(item => {
         const m       = item.analysis || {};
-        const title   = m.title   || item.title   || '제목 없음';
+        /* 제목 없으면 본문 첫 줄로 대체 */
+        const firstLine = (item.text || item.summary || '').split('\n').map(l => l.trim()).filter(Boolean)[0] || '';
+        const title   = m.title || item.title || firstLine.slice(0, 40) || '제목 없음';
         const sub     = (m.summary || item.summary || item.text || '').slice(0, 80);
         const cat     = this._catLabel(item.category || item.shelf || 'inbox');
         const type    = item.type || 'text';
@@ -1693,7 +1695,7 @@ const Mob = {
     const histPanelBody = () => {
       const era = cfg['hist_daily']?.era || '상관없음';
       const opts = [
-        { val: '한국사',  label: '🇰🇷 한국사' },
+        { val: '한국사',  label: '🐯 한국사' },
         { val: '세계사',  label: '🌍 세계사'  },
         { val: '상관없음', label: '🔀 상관없음' }
       ];
@@ -1834,7 +1836,8 @@ const Mob = {
   /* 배달 설정 저장 */
   async _saveDeliverySettings() {
     const delivTime = el('dpDeliveryTime')?.value || '07:30';
-    const cbs = document.querySelectorAll('#dpSubsList input[type="checkbox"]');
+    /* 구독 토글만 수집 — 상세 패널 안의 테마 체크박스(sub_ 접두사 없음)는 제외 */
+    const cbs = document.querySelectorAll('#dpSubsList input[type="checkbox"][id^="sub_"]');
     const enabled_feeds = [...cbs].filter(c => c.checked).map(c => c.id.replace('sub_',''));
 
     const btn = el('dpSaveBtn');
@@ -1973,7 +1976,9 @@ const Mob = {
     }
     container.innerHTML = recent.map(item => {
       const m     = item.analysis || {};
-      const title = m.title || item.title || '제목 없음';
+      const title = m.title || item.title
+                 || (item.text || item.summary || '').split('\n').map(l => l.trim()).filter(Boolean)[0]?.slice(0, 40)
+                 || '제목 없음';
       const icon  = TYPE_ICON[item.type || 'text'] || 'ti-file-text';
       const id    = item._id || item.id;
       return `
@@ -2136,7 +2141,7 @@ const Mob = {
 
     bodyEl.innerHTML = `
       ${imgSection}
-      <div class="mob-detail-title">${m.title || item.title || '제목 없음'}</div>
+      <div class="mob-detail-title">${m.title || item.title || (item.text || '').split('\n').map(l => l.trim()).filter(Boolean)[0]?.slice(0, 60) || '제목 없음'}</div>
       <div class="mob-detail-meta">
         <span class="mob-detail-meta-chip">${fmt(item.createdAt)}</span>
         ${sourceHostname ? `<span class="mob-detail-meta-chip">${sourceHostname}</span>` : ''}

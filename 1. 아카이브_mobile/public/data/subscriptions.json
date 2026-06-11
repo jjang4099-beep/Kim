@@ -9,7 +9,7 @@
     "options": { "count": 7 },
     "enabled": true,
     "desc": "요일별 테마 비즈니스 영어 표현 7선 + 실전 대화문",
-    "icon": "🇺🇸"
+    "icon": "🗽"
   },
   {
     "id": "zh_expr",
@@ -21,7 +21,7 @@
     "options": { "count": 5 },
     "enabled": false,
     "desc": "요일별 테마 비즈니스 중국어 표현 5선 + 실전 대화문",
-    "icon": "🇨🇳"
+    "icon": "🐉"
   },
   {
     "id": "us_market",
@@ -41,7 +41,7 @@
     "topic": "한국 증시 · 코스피 · 코스닥",
     "enabled": false,
     "desc": "코스피 · 코스닥 · 환율 지표 + AI 시황 분석 리포트",
-    "icon": "🇰🇷"
+    "icon": "🐯"
   },
   {
     "id": "hist_daily",

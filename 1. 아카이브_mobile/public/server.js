@@ -294,10 +294,19 @@ function isPreGenerationWindow(deliveryTime, triggerBefore = 60) {
 //  Gemini API 래퍼
 // ══════════════════════════════════════════════════
 
+/* Gemini 일일 쿼터 소진 시 일정 시간 호출 자체를 스킵 (Claude 직행) */
+let geminiCooldownUntil = 0;
+const GEMINI_COOLDOWN_MS = 10 * 60 * 1000;  // 10분
+
 async function callGemini(prompt, maxOutputTokens = 4096, retryCount = 0) {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     console.warn('[Gemini] GEMINI_API_KEY 미설정 — Mock 데이터로 대체');
+    return null;
+  }
+  if (Date.now() < geminiCooldownUntil) {
+    const remainMin = Math.ceil((geminiCooldownUntil - Date.now()) / 60000);
+    console.warn(`[Gemini] 쿼터 쿨다운 중 (약 ${remainMin}분 남음) — Claude 직행`);
     return null;
   }
 
@@ -323,15 +332,25 @@ async function callGemini(prompt, maxOutputTokens = 4096, retryCount = 0) {
     }
     return result.response.text();
   } catch (e) {
-    // 429 Rate limit: 잠시 대기 후 재시도 (최대 2회)
-    const is429 = e.message?.includes('429') || e.message?.includes('Too Many Requests');
+    const msg   = e.message || '';
+    const is429 = msg.includes('429') || msg.includes('Too Many Requests');
+
+    /* ★ 일일 쿼터 소진은 기다려도 안 풀림 → 재시도 없이 즉시 Claude 직행 + 10분 쿨다운 */
+    const isDailyQuota = is429 && (msg.includes('Quota exceeded') || msg.includes('free_tier') || msg.includes('quota'));
+    if (isDailyQuota) {
+      geminiCooldownUntil = Date.now() + GEMINI_COOLDOWN_MS;
+      console.warn('[Gemini] 일일 쿼터 소진 감지 — 10분간 Gemini 스킵, Claude 백업 직행');
+      return null;
+    }
+
+    // 분당 Rate limit: 잠시 대기 후 재시도 (최대 2회)
     if (is429 && retryCount < 2) {
       const waitSec = (retryCount + 1) * 15; // 15s, 30s
       console.warn(`[Gemini] 429 Rate limit — ${waitSec}초 대기 후 재시도 (${retryCount + 1}/2)`);
       await new Promise(r => setTimeout(r, waitSec * 1000));
       return callGemini(prompt, maxOutputTokens, retryCount + 1);
     }
-    console.error('[Gemini] API 오류:', e.message.slice(0, 500));
+    console.error('[Gemini] API 오류:', msg.slice(0, 500));
     return null;
   }
 }
@@ -590,8 +609,17 @@ async function generateLanguageFeed(sub, user) {
 - dialogue는 실제 비즈니스 현장에서 바로 쓸 수 있는 짧은 대화문 (3~4줄)
 - practiceSentence는 실제 직장 상황(회의·이메일·보고·협상)에 맞게 구체적으로`;
 
-  const raw     = await callAI(prompt, 4000);
-  const entries = safeParseJSON(raw) || generateMockLanguageEntries(theme, count, lang);
+  const raw    = await callAI(prompt, 4000);
+  let entries  = safeParseJSON(raw);
+  /* AI가 {entries:[...]} 형태로 감싸 반환하는 경우까지 흡수 */
+  if (entries && !Array.isArray(entries)) {
+    entries = Array.isArray(entries.entries) ? entries.entries
+            : Array.isArray(entries.expressions) ? entries.expressions
+            : null;
+  }
+  if (!Array.isArray(entries) || entries.length === 0) {
+    entries = generateMockLanguageEntries(theme, count, lang);
+  }
 
   return {
     type:        'language',
@@ -1838,6 +1866,22 @@ app.post('/api/daily-feed/generate', async (req, res) => {
 
   console.log('[피드API] 수동 재생성 요청');
   try {
+    /* force 재생성 시 구독 해제된 피드는 오늘 캐시에서 제거 (유령 피드 방지) */
+    if (force) {
+      const today      = toDateStr();
+      const all        = readDailyFeeds();
+      const enabledIds = new Set(getEnabledSubscriptions(user).map(s => s.id));
+      if (all[today]) {
+        for (const subId of Object.keys(all[today])) {
+          if (!enabledIds.has(subId)) {
+            delete all[today][subId];
+            console.log(`  🗑 [${subId}] 구독 해제됨 — 오늘 캐시에서 제거`);
+          }
+        }
+        writeDailyFeeds(all);
+      }
+    }
+
     await buildDailyFeeds(user, force);
     // 생성 후 오늘 전체 피드(기존 캐시 포함) 반환
     const allFeeds = getTodayFeeds(toDateStr()) || {};
@@ -2436,6 +2480,14 @@ app.post('/api/summarize-library', async (req, res) => {
   if (!startDate || !endDate) {
     return res.status(400).json({ success: false, error: '시작일/종료일이 필요합니다.' });
   }
+  /* 날짜 형식·순서 서버측 검증 (클라이언트 우회 호출 방어) */
+  const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+  if (!DATE_RE.test(startDate) || !DATE_RE.test(endDate)) {
+    return res.status(400).json({ success: false, error: '날짜 형식이 올바르지 않습니다. (YYYY-MM-DD)' });
+  }
+  if (startDate > endDate) {
+    return res.status(400).json({ success: false, error: '시작일이 종료일보다 늦을 수 없습니다.' });
+  }
 
   let items = readDB();
   items = items.filter(i => {
@@ -2770,7 +2822,7 @@ app.get('/health', (req, res) => {
   res.json({
     status:    'ok',
     service:   'SJ 지식 서재',
-    version:   'v27',
+    version:   'v30',
     timestamp: new Date().toISOString(),
     env: {
       gemini:    !!process.env.GEMINI_API_KEY,

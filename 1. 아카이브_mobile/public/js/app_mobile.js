@@ -48,7 +48,12 @@ async function fetchJSON(url, options = {}, timeoutMs = 25000) {
   try {
     const res = await fetch(url, { signal: ctrl.signal, ...options });
     clearTimeout(timer);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    if (!res.ok) {
+      /* 서버가 보낸 error 메시지를 살려서 유저에게 전달 */
+      let serverMsg = '';
+      try { serverMsg = (await res.json())?.error || ''; } catch {}
+      throw new Error(serverMsg || `HTTP ${res.status}`);
+    }
     return await res.json();
   } catch (e) {
     clearTimeout(timer);
@@ -236,8 +241,16 @@ const Mob = {
 
     /* ── 배달 피드 카테고리 미리보기 (1 per 구독, 클릭 시 배달탭 해당 필터로 이동) ── */
     if (hasFeedPreview) {
+      /* subId 기준 중복 제거 — 카테고리별 딱 1개만 보장 */
+      const seenSubs = new Set();
+      const previews = state.feedItems.filter(item => {
+        const key = item.subId || item.label || JSON.stringify(item).slice(0, 40);
+        if (seenSubs.has(key)) return false;
+        seenSubs.add(key);
+        return true;
+      });
       html += '<div class="mob-feed-preview-list">';
-      state.feedItems.forEach(item => { html += this._cardFeedPreview(item); });
+      previews.forEach(item => { html += this._cardFeedPreview(item); });
       html += '</div>';
     }
 
@@ -349,7 +362,7 @@ const Mob = {
       <div class="mob-fpc-left">
         <div class="mob-fpc-badge" style="color:${chip.color}">${chip.icon} ${chip.label}${extra}</div>
         <div class="mob-fpc-title">${title}</div>
-        ${summary ? `<div class="mob-fpc-summary">${summary.slice(0, 55)}…</div>` : ''}
+        ${summary ? `<div class="mob-fpc-summary">${summary.slice(0, 55)}${summary.length > 55 ? '…' : ''}</div>` : ''}
       </div>
       <i class="ti ti-chevron-right mob-fpc-arrow"></i>
     </button>`;
@@ -1245,8 +1258,9 @@ const Mob = {
                         onclick="Mob._onFeedChip('all', this)">전체</button>`;
     chips.forEach(c => {
       const isActive = activeFilter === c.subId;
+      /* inline style 금지 — active 토글 시 CSS 충돌 방지. 색상은 data 속성으로만 보관 */
       html += `<button class="mob-feed-chip${isActive ? ' active' : ''}"
-                       style="${isActive ? '' : `border-color:${c.color}22`}"
+                       data-color="${c.color}"
                        onclick="Mob._onFeedChip('${c.subId}', this)">
                  ${c.icon} ${c.label}
                </button>`;
@@ -1256,8 +1270,8 @@ const Mob = {
 
   /* 필터 칩 클릭 핸들러 */
   _onFeedChip(cat, chipEl) {
+    if (state.activeFeedFilter === cat) return;  /* 동일 칩 재클릭 시 불필요한 재렌더 방지 */
     state.activeFeedFilter = cat;
-    /* 칩 active 갱신 */
     el('feedFilterBar')?.querySelectorAll('.mob-feed-chip').forEach(c => {
       c.classList.toggle('active', c === chipEl);
     });
@@ -1367,7 +1381,13 @@ const Mob = {
     const DAY_KO = ['일', '월', '화', '수', '목', '금', '토'];
 
     let html = '';
-    Object.keys(groups).sort((a, b) => b.localeCompare(a)).forEach(dateKey => {
+    /* 날짜 내림차순 정렬 — '날짜 없음' 그룹은 항상 맨 뒤로 */
+    const sortedKeys = Object.keys(groups).sort((a, b) => {
+      if (a === '날짜 없음') return 1;
+      if (b === '날짜 없음') return -1;
+      return b.localeCompare(a);
+    });
+    sortedKeys.forEach(dateKey => {
       /* 날짜 헤더 */
       let headerLabel = dateKey;
       if (dateKey !== '날짜 없음') {

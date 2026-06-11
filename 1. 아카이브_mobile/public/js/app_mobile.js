@@ -86,9 +86,10 @@ const state = {
   selectedImageFile: null,
   feedLoaded       : false,
   feedItems        : [],
-  summaryChipBound : false,
-  activeFeedFilter : 'all',   // 배달탭 활성 필터 칩 (subId 또는 'all')
-  pendingFeedFilter: null,     // 홈→배달탭 이동 시 적용할 초기 필터
+  activeFeedFilter : 'all',
+  pendingFeedFilter: null,
+  libraryLoaded    : false,
+  libraryAIOpen    : false,
 };
 
 /* ──────────────────────────────────────────────
@@ -97,7 +98,7 @@ const state = {
 const VIEW_CONFIG = {
   home:    { el:'viewHome',    tabsVisible:true,  title:'아카이브',      showHeaderActions:true  },
   feed:    { el:'viewFeed',    tabsVisible:false, title:'지식 배달',     showHeaderActions:false },
-  summary: { el:'viewSummary', tabsVisible:false, title:'AI 복습 요약', showHeaderActions:false },
+  summary: { el:'viewSummary', tabsVisible:false, title:'내 서재',     showHeaderActions:false },
   manage:  { el:'viewManage',  tabsVisible:false, title:'학습 관리',    showHeaderActions:false },
 };
 
@@ -135,10 +136,7 @@ const Mob = {
 
     if (viewName === 'feed')    this._loadFeedView();
     if (viewName === 'manage')  this._loadManageView();
-    if (viewName === 'summary') {
-      this._initSummaryChips();
-      this._updateSummaryHint();
-    }
+    if (viewName === 'summary') this._loadLibraryView();
 
     state.currentView = viewName;
   },
@@ -1261,197 +1259,202 @@ const Mob = {
   openFeed() { this.switchView('feed', el('bnFeed')); },
 
   /* ══════════════════════════════════════════
-     요약 뷰
+     서재 뷰
   ══════════════════════════════════════════ */
-  _initSummaryChips() {
-    if (state.summaryChipBound) return;
-    state.summaryChipBound = true;
 
-    const container = el('mobSumChips');
-    if (!container) return;
+  async _loadLibraryView(forceRefresh) {
+    /* 날짜 인풋 초기화 (최초 1회) */
+    const startEl = el('libAiStart');
+    const endEl   = el('libAiEnd');
+    if (startEl && !startEl.value) {
+      const today = new Date();
+      const week  = new Date(today); week.setDate(today.getDate() - 6);
+      startEl.value = week.toISOString().slice(0, 10);
+      endEl.value   = today.toISOString().slice(0, 10);
+    }
 
-    container.addEventListener('click', e => {
-      const chip = e.target.closest('.mob-sum-chip');
-      if (!chip) return;
-      const cat = chip.dataset.cat;
-      if (cat === 'all') {
-        container.querySelectorAll('.mob-sum-chip').forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
-      } else {
-        const allChip = container.querySelector('[data-cat="all"]');
-        allChip?.classList.remove('active');
-        chip.classList.toggle('active');
-        const anyActive = container.querySelector('.mob-sum-chip.active:not([data-cat="all"])');
-        if (!anyActive) allChip?.classList.add('active');
+    if (state.libraryLoaded && !forceRefresh) return;
+
+    const timelineEl = el('libTimeline');
+    if (timelineEl) {
+      timelineEl.innerHTML = `<div class="mob-loading"><span class="mob-spin"></span> 서재 불러오는 중…</div>`;
+    }
+
+    try {
+      const data  = await fetchJSON('/api/items?limit=500&sort=desc', {}, 20000);
+      const items = parseFeedsArray(data.items ?? data);
+
+      /* state.items 에 병합 (상세 모달용) */
+      items.forEach(item => {
+        const id = item._id || item.id;
+        if (!state.items.find(i => (i._id || i.id) === id)) state.items.push(item);
+      });
+
+      this._renderLibraryTimeline(items);
+      state.libraryLoaded = true;
+    } catch (e) {
+      if (timelineEl) {
+        timelineEl.innerHTML = `<div class="mvw-lib-empty">
+          <i class="ti ti-alert-circle"></i> 서재를 불러오지 못했습니다.<br>
+          <small style="color:var(--text-3)">${e.message}</small>
+        </div>`;
       }
-      this._updateSummaryHint();
+    }
+  },
+
+  _renderLibraryTimeline(items) {
+    const timelineEl = el('libTimeline');
+    if (!timelineEl) return;
+
+    if (!items || items.length === 0) {
+      timelineEl.innerHTML = `<div class="mvw-lib-empty">
+        <i class="ti ti-books"></i><br>
+        아직 서재에 저장된 지식이 없어요.<br>
+        <small style="color:var(--text-3);margin-top:4px;display:block">
+          배달탭이나 카드에서 💾 버튼을 눌러 저장해보세요!
+        </small>
+      </div>`;
+      return;
+    }
+
+    /* 날짜별 그룹핑 */
+    const groups = {};
+    items.forEach(item => {
+      const raw  = item.createdAt || item.savedAt || item.date || '';
+      const dateKey = raw ? raw.slice(0, 10) : '날짜 없음';
+      if (!groups[dateKey]) groups[dateKey] = [];
+      groups[dateKey].push(item);
     });
+
+    const DAY_KO = ['일', '월', '화', '수', '목', '금', '토'];
+
+    let html = '';
+    Object.keys(groups).sort((a, b) => b.localeCompare(a)).forEach(dateKey => {
+      /* 날짜 헤더 */
+      let headerLabel = dateKey;
+      if (dateKey !== '날짜 없음') {
+        const d = new Date(dateKey + 'T00:00:00');
+        if (!isNaN(d)) {
+          const m   = d.getMonth() + 1;
+          const day = d.getDate();
+          const dow = DAY_KO[d.getDay()];
+          headerLabel = `${m}월 ${day}일 (${dow})`;
+        }
+      }
+
+      html += `<div class="mvw-lib-date-section">
+        <div class="mvw-lib-date-header">
+          <i class="ti ti-calendar-event"></i> ${headerLabel}
+          <span class="mvw-lib-date-count">${groups[dateKey].length}개</span>
+        </div>
+        <div class="mvw-lib-cards">`;
+
+      groups[dateKey].forEach(item => {
+        const m       = item.analysis || {};
+        const title   = m.title   || item.title   || '제목 없음';
+        const sub     = (m.summary || item.summary || item.text || '').slice(0, 80);
+        const cat     = this._catLabel(item.category || item.shelf || 'inbox');
+        const type    = item.type || 'text';
+        const typeIcon = { youtube:'ti-brand-youtube', image_analysis:'ti-photo-ai', text:'ti-file-text' }[type] || 'ti-file-text';
+        const id      = item._id || item.id;
+
+        html += `<div class="mvw-lib-card" data-id="${id}" onclick="Mob.openDetail('${id}')">
+          <div class="mvw-lib-card-icon"><i class="ti ${typeIcon}"></i></div>
+          <div class="mvw-lib-card-body">
+            <div class="mvw-lib-card-title">${title}</div>
+            ${sub ? `<div class="mvw-lib-card-sub">${sub}${sub.length >= 80 ? '…' : ''}</div>` : ''}
+          </div>
+          <span class="mvw-lib-card-cat">${cat}</span>
+        </div>`;
+      });
+
+      html += `</div></div>`;
+    });
+
+    timelineEl.innerHTML = html;
   },
 
-  _updateSummaryHint() {
-    const periodEl = el('sumPeriod');
-    const hintEl   = el('mobSumHint');
-    if (!periodEl || !hintEl) return;
-
-    const periodMap = { today:'오늘', '3days':'최근 3일', '1week':'지난 1주일', '1month':'이번 달 전체' };
-    const period    = periodMap[periodEl.value] || periodEl.value;
-
-    const activeChips = [...document.querySelectorAll('#mobSumChips .mob-sum-chip.active')];
-    const catText = activeChips.some(c => c.dataset.cat === 'all')
-      ? '전체 분야'
-      : activeChips.map(c => c.textContent.trim()).join(', ') || '전체 분야';
-
-    hintEl.textContent = `${period} · ${catText}`;
+  /* AI 아코디언 토글 */
+  _toggleLibraryAI() {
+    state.libraryAIOpen = !state.libraryAIOpen;
+    const panel   = el('libAiPanel');
+    const chevron = el('libAiChevron');
+    if (panel)   panel.classList.toggle('open', state.libraryAIOpen);
+    if (chevron) chevron.style.transform = state.libraryAIOpen ? 'rotate(180deg)' : '';
   },
 
-  openSummary() { this.switchView('summary', el('bnSummary')); },
+  /* 간편 기간 칩 클릭 */
+  _libPeriodChip(days, chipEl) {
+    document.querySelectorAll('.mvw-lib-qchip').forEach(c => c.classList.remove('active'));
+    chipEl.classList.add('active');
 
-  async generateSummary() {
-    const btn      = el('mobSumBtn');
-    const resultEl = el('mobSumResult');
-    const period   = el('sumPeriod')?.value || '1week';
+    const today = new Date();
+    const from  = new Date(today); from.setDate(today.getDate() - (days - 1));
+    const startEl = el('libAiStart');
+    const endEl   = el('libAiEnd');
+    if (startEl) startEl.value = from.toISOString().slice(0, 10);
+    if (endEl)   endEl.value   = today.toISOString().slice(0, 10);
+  },
 
-    const activeChips = [...document.querySelectorAll('#mobSumChips .mob-sum-chip.active')];
-    const categories  = activeChips.some(c => c.dataset.cat === 'all')
-      ? [] : activeChips.map(c => c.dataset.cat);
+  /* 날짜 직접 변경 시 간편 칩 해제 */
+  _libDateChanged() {
+    document.querySelectorAll('.mvw-lib-qchip').forEach(c => c.classList.remove('active'));
+  },
+
+  /* AI 리포트 생성 */
+  async generateLibrarySummary() {
+    const btn      = el('libAiRunBtn');
+    const resultEl = el('libAiResult');
+    const startDate = el('libAiStart')?.value;
+    const endDate   = el('libAiEnd')?.value;
+
+    if (!startDate || !endDate) {
+      toast('시작일과 종료일을 선택해주세요', 'err'); return;
+    }
+    if (startDate > endDate) {
+      toast('시작일이 종료일보다 늦을 수 없어요', 'err'); return;
+    }
 
     btn.disabled = true;
     btn.innerHTML = `<span class="mob-spin"></span> AI 분석 중…`;
-    if (resultEl) resultEl.hidden = true;
+    if (resultEl) resultEl.innerHTML = '';
 
     try {
-      const data = await fetchJSON('/api/summary', {
-        method: 'POST',
+      const data = await fetchJSON('/api/summarize-library', {
+        method : 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ period, categories })
+        body   : JSON.stringify({ startDate, endDate })
       }, 90000);
 
       if (!data.success) throw new Error(data.error || '분석 실패');
 
       const { report, keywords = [], itemCount = 0 } = data;
-      const kwHtml = keywords.map(k => `<span class="mob-sum-kw">${k}</span>`).join('');
+      const kwHtml = keywords.length
+        ? `<div class="mvw-lib-ai-kw-row">${keywords.map(k => `<span class="mvw-lib-ai-kw">${k}</span>`).join('')}</div>`
+        : '';
+
+      const reportHtml = report.replace(/\n/g, '<br>');
 
       resultEl.innerHTML = `
-        <div class="mob-sum-result-header">
-          <i class="ti ti-sparkles" style="color:#6366f1;font-size:18px"></i>
-          <span class="mob-sum-result-title">AI 복습 요약</span>
-          <span class="mob-sum-result-meta">${itemCount}개 항목</span>
-        </div>
-        <div class="mob-sum-result-report">${report}</div>
-        ${kwHtml ? `<div class="mob-sum-kw-row">${kwHtml}</div>` : ''}
-      `;
-      resultEl.hidden = false;
+        <div class="mvw-lib-ai-result-card">
+          <div class="mvw-lib-ai-result-header">
+            <i class="ti ti-sparkles"></i>
+            <span>AI 리포트</span>
+            <span class="mvw-lib-ai-result-meta">${startDate} ~ ${endDate} · ${itemCount}개 항목</span>
+          </div>
+          <div class="mvw-lib-ai-result-body">${reportHtml}</div>
+          ${kwHtml}
+        </div>`;
 
     } catch (e) {
-      toast('요약 생성 실패: ' + (e.message || '다시 시도해주세요'), 'err');
+      toast('리포트 생성 실패: ' + (e.message || '다시 시도해주세요'), 'err');
     } finally {
       btn.disabled = false;
-      btn.innerHTML = `<i class="ti ti-sparkles"></i><span>AI 요약 생성</span>`;
+      btn.innerHTML = `<i class="ti ti-rocket"></i> AI 리포트 생성`;
     }
   },
 
-  /* ══════════════════════════════════════════
-     ★ 요약 탭 — 서재 지식 검색
-  ══════════════════════════════════════════ */
-  _onSumSearchInput(val) {
-    /* 입력값이 없으면 결과 영역 숨기기 */
-    if (!val.trim()) {
-      const res = el('sumSearchResults');
-      if (res) res.hidden = true;
-    }
-  },
-
-  async doSumSearch() {
-    const input    = el('sumSearchInput');
-    const resultEl = el('sumSearchResults');
-    const q        = input?.value.trim();
-
-    if (!q) {
-      toast('검색어를 입력하세요');
-      return;
-    }
-
-    /* 로딩 표시 */
-    resultEl.hidden = false;
-    resultEl.innerHTML = `
-      <div class="mob-loading" style="padding:16px 0">
-        <span class="mob-spin"></span> 검색 중…
-      </div>`;
-
-    try {
-      const data  = await fetchJSON(
-        `/api/items?search=${encodeURIComponent(q)}&limit=50`, {}, 15000
-      );
-      const items = parseFeedsArray(data.items ?? data);
-      this._renderSumSearchResults(items, q);
-    } catch {
-      resultEl.innerHTML = `<div class="mvw-sum-no-result">
-        <i class="ti ti-alert-circle"></i> 검색 실패. 다시 시도해주세요.
-      </div>`;
-    }
-  },
-
-  _renderSumSearchResults(items, q) {
-    const resultEl = el('sumSearchResults');
-    if (!resultEl) return;
-
-    if (!items || items.length === 0) {
-      resultEl.innerHTML = `
-        <div class="mvw-sum-no-result">
-          <i class="ti ti-zoom-question"></i>
-          "<strong>${q}</strong>"에 해당하는 지식이 없어요
-        </div>`;
-      return;
-    }
-
-    const TYPE_ICON  = { youtube:'ti-brand-youtube', image_analysis:'ti-photo-ai', text:'ti-file-text' };
-    const TYPE_CLASS = { youtube:'yt', image_analysis:'img' };
-
-    const cardsHtml = items.map(item => {
-      const m         = item.analysis || {};
-      const title     = m.title   || item.title   || '제목 없음';
-      const sub       = (m.summary || item.summary || item.text || '').slice(0, 65);
-      const type      = item.type || 'text';
-      const icon      = TYPE_ICON[type]  || 'ti-file-text';
-      const iconClass = TYPE_CLASS[type] || '';
-      const catLabel  = this._catLabel(item.category || item.shelf);
-      const id        = item._id || item.id;
-
-      /* 검색어 하이라이트 (제목에만) */
-      const regex      = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
-      const titleHl    = title.replace(regex, '<mark style="background:#fef08a;border-radius:2px">$1</mark>');
-
-      /* 클릭 시 상세 모달 열기 위해 item 을 state에도 추가 */
-      return `
-      <div class="mvw-sum-result-card" data-id="${id}"
-        onclick="Mob._sumResultClick('${id}')">
-        <div class="mvw-sum-result-icon ${iconClass}">
-          <i class="ti ${icon}"></i>
-        </div>
-        <div class="mvw-sum-result-body">
-          <div class="mvw-sum-result-title">${titleHl}</div>
-          <div class="mvw-sum-result-sub">${sub}${sub.length >= 65 ? '…' : ''}</div>
-        </div>
-        <span class="mvw-sum-result-cat">${catLabel}</span>
-      </div>`;
-    }).join('');
-
-    resultEl.innerHTML = `
-      <div class="mvw-sum-result-count">${items.length}개 결과 · "<strong>${q}</strong>"</div>
-      ${cardsHtml}`;
-
-    /* state.items 에 없는 결과 항목 추가 (상세 모달용) */
-    items.forEach(item => {
-      const id = item._id || item.id;
-      if (!state.items.find(i => (i._id || i.id) === id)) {
-        state.items.push(item);
-      }
-    });
-  },
-
-  _sumResultClick(id) {
-    this.openDetail(id);
-  },
+  openSummary() { this.switchView('summary', el('bnSummary')); },
 
   /* ══════════════════════════════════════════
      관리 뷰 (통계 대시보드)

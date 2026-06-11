@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
-  <link rel="stylesheet" href="css/style_mobile.css?v=28"/>
+  <link rel="stylesheet" href="css/style_mobile.css?v=29"/>
 </head>
 <body>
 
@@ -99,76 +99,59 @@
     </div>
   </div>
 
-  <!-- ── 뷰 3: AI 복습 요약 ── -->
+  <!-- ── 뷰 3: 서재 ── -->
   <div class="mob-view" id="viewSummary">
-    <div class="mvw-summary-wrap">
+    <div class="mvw-library-wrap">
 
-      <!-- 서재 지식 검색 -->
-      <div class="mvw-sum-search-wrap">
-        <div class="mvw-sum-search-label">
-          <i class="ti ti-search"></i> 내 서재 지식 검색
-        </div>
-        <div class="mvw-sum-search-bar">
-          <input type="text" id="sumSearchInput"
-            placeholder="제목·요약 키워드로 검색…"
-            autocomplete="off"
-            enterkeyhint="search"
-            oninput="Mob._onSumSearchInput(this.value)"
-            onkeydown="if(event.key==='Enter') Mob.doSumSearch()"/>
-          <button class="mvw-sum-search-btn" onclick="Mob.doSumSearch()" aria-label="검색">
-            <i class="ti ti-search"></i>
-          </button>
-        </div>
-        <div class="mvw-sum-search-results" id="sumSearchResults" hidden></div>
-      </div>
-
-      <div class="mvw-sum-divider">
-        <span>또는 기간별 AI 요약 생성</span>
-      </div>
-
-      <div class="mvw-sum-hero">
-        <i class="ti ti-brain" style="font-size:28px;color:#6366f1"></i>
-        <div>
-          <div class="mvw-sum-hero-title">AI 복습 요약</div>
-          <div class="mvw-sum-hero-sub">기간과 분야를 선택하고 AI 요약을 생성하세요</div>
-        </div>
-      </div>
-
-      <!-- 기간 선택 -->
-      <div class="mob-sum-row">
-        <span class="mob-sum-label"><i class="ti ti-calendar-event"></i> 기간</span>
-        <select class="mob-sum-select" id="sumPeriod" onchange="Mob._updateSummaryHint()">
-          <option value="today">오늘</option>
-          <option value="3days">최근 3일</option>
-          <option value="1week" selected>지난 1주일</option>
-          <option value="1month">이번 달 전체</option>
-        </select>
-      </div>
-
-      <!-- 카테고리 칩 -->
-      <div class="mob-sum-row mob-sum-row-chips">
-        <span class="mob-sum-label"><i class="ti ti-folders"></i> 분야</span>
-        <div class="mob-sum-chips" id="mobSumChips">
-          <button class="mob-sum-chip active" data-cat="all">전체</button>
-          <button class="mob-sum-chip" data-cat="en">English</button>
-          <button class="mob-sum-chip" data-cat="history">History</button>
-          <button class="mob-sum-chip" data-cat="economy">Economy</button>
-          <button class="mob-sum-chip" data-cat="youtube">YouTube</button>
-          <button class="mob-sum-chip" data-cat="inbox">서랍</button>
-        </div>
-      </div>
-
-      <div class="mob-sum-modal-hint">
-        <i class="ti ti-info-circle"></i>
-        <span id="mobSumHint">지난 1주일 · 전체 분야</span>
-      </div>
-
-      <button class="mob-sum-generate-btn" id="mobSumBtn" onclick="Mob.generateSummary()">
-        <i class="ti ti-sparkles"></i>
-        <span>AI 요약 생성</span>
+      <!-- ★ AI 기간별 요약 아코디언 토글 버튼 -->
+      <button class="mvw-lib-ai-toggle" id="libAiToggle" onclick="Mob._toggleLibraryAI()">
+        <span class="mvw-lib-ai-toggle-icon"><i class="ti ti-sparkles"></i></span>
+        <span class="mvw-lib-ai-toggle-text">내 저장 지식 기간별 AI 요약하기</span>
+        <i class="ti ti-chevron-down mvw-lib-ai-chevron" id="libAiChevron"></i>
       </button>
 
-      <div class="mob-sum-result" id="mobSumResult" hidden></div>
+      <!-- 아코디언 패널 (평소 숨김, 열리면 slide-down) -->
+      <div class="mvw-lib-ai-panel" id="libAiPanel">
+        <div class="mvw-lib-ai-inner">
+
+          <!-- 간편 기간 칩 -->
+          <div class="mvw-lib-quick-chips">
+            <button class="mvw-lib-qchip active" data-days="7"
+                    onclick="Mob._libPeriodChip(7, this)">최근 1주일</button>
+            <button class="mvw-lib-qchip" data-days="30"
+                    onclick="Mob._libPeriodChip(30, this)">최근 1개월</button>
+          </div>
+
+          <!-- 직접 날짜 선택 -->
+          <div class="mvw-lib-ai-dates">
+            <label class="mvw-lib-date-label">
+              <span>시작일</span>
+              <input type="date" id="libAiStart" class="mvw-lib-date-input"
+                     onchange="Mob._libDateChanged()"/>
+            </label>
+            <span class="mvw-lib-date-sep">–</span>
+            <label class="mvw-lib-date-label">
+              <span>종료일</span>
+              <input type="date" id="libAiEnd" class="mvw-lib-date-input"
+                     onchange="Mob._libDateChanged()"/>
+            </label>
+          </div>
+
+          <!-- 생성 버튼 -->
+          <button class="mvw-lib-ai-run-btn" id="libAiRunBtn"
+                  onclick="Mob.generateLibrarySummary()">
+            <i class="ti ti-rocket"></i> AI 리포트 생성
+          </button>
+        </div>
+      </div>
+
+      <!-- AI 결과 카드 (동적 삽입) -->
+      <div id="libAiResult"></div>
+
+      <!-- 저장 지식 타임라인 -->
+      <div id="libTimeline">
+        <div class="mob-loading"><span class="mob-spin"></span> 서재 불러오는 중…</div>
+      </div>
 
     </div>
   </div>
@@ -276,10 +259,10 @@
     <span>추가</span>
   </button>
 
-  <!-- 요약 -->
+  <!-- 서재 -->
   <button class="mob-nav-btn" id="bnSummary" onclick="Mob.switchView('summary',this)">
-    <i class="ti ti-notes"></i>
-    <span>요약</span>
+    <i class="ti ti-books"></i>
+    <span>서재</span>
   </button>
 
   <!-- 관리 -->
@@ -407,7 +390,7 @@
 <!-- 토스트 -->
 <div class="mob-toast" id="mobToast" hidden></div>
 
-<script src="js/app_mobile.js?v=28"></script>
+<script src="js/app_mobile.js?v=29"></script>
 <script src="js/pwa.js?v=1"></script>
 </body>
 </html>

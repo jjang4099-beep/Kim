@@ -2419,6 +2419,97 @@ function generateMockImageAnalysis(filename, userHint) {
 // ══════════════════════════════════════════════════
 
 /**
+ * POST /api/summarize-library
+ * body: { startDate: "YYYY-MM-DD", endDate: "YYYY-MM-DD" }
+ * 서재에 저장된 지식을 기간 필터 후 AI로 요약 리포트 생성
+ */
+app.post('/api/summarize-library', async (req, res) => {
+  const { startDate, endDate } = req.body || {};
+  if (!startDate || !endDate) {
+    return res.status(400).json({ success: false, error: '시작일/종료일이 필요합니다.' });
+  }
+
+  let items = readDB();
+  items = items.filter(i => {
+    const d = (i.createdAt || i.savedAt || i.date || '').slice(0, 10);
+    return d >= startDate && d <= endDate;
+  });
+
+  const itemCount = items.length;
+  console.log(`[서재요약API] ${startDate}~${endDate}, 항목=${itemCount}`);
+
+  if (itemCount === 0) {
+    return res.json({
+      success  : true,
+      itemCount: 0,
+      report   : '해당 기간에 저장된 지식이 없습니다. 더 많은 지식을 서재에 저장해보세요!',
+      keywords : []
+    });
+  }
+
+  const corpus = items.slice(0, 80).map((item, idx) => {
+    const m       = item.analysis || {};
+    const title   = m.title   || item.title   || '';
+    const summary = (m.summary || item.summary || item.text || '').slice(0, 200);
+    const kws     = (m.keywords || item.keywords || []).slice(0, 3).join(', ');
+    return `[${idx + 1}] ${title}${summary ? ' — ' + summary : ''}${kws ? ' (키워드: ' + kws + ')' : ''}`;
+  }).join('\n');
+
+  const prompt = `당신은 유저의 개인 학습 비서입니다.
+아래는 유저가 ${startDate} ~ ${endDate} 기간 동안 서재에 저장한 지식 목록(${itemCount}개)입니다.
+
+---
+${corpus}
+---
+
+직장인에게 도움이 되는 관점에서 아래 형식의 한국어 마크다운 리포트를 작성해주세요:
+
+• 이 기간 학습의 핵심 패턴 1줄
+• 가장 중요한 인사이트 1~2줄
+• 실무에 바로 쓸 수 있는 제안 1줄
+
+[핵심 키워드 Top 5]: 가장 중요한 키워드나 표현 5개를 쉼표로 나열
+
+JSON 형식으로만 출력:
+{
+  "report": "• 핵심 패턴\\n• 인사이트\\n• 실무 제안",
+  "keywords": ["키워드1", "키워드2", "키워드3", "키워드4", "키워드5"]
+}`;
+
+  try {
+    const raw    = await callAI(prompt, 600);
+    const parsed = raw ? safeParseJSON(raw) : null;
+
+    if (parsed?.report) {
+      return res.json({
+        success  : true,
+        itemCount,
+        report   : parsed.report,
+        keywords : Array.isArray(parsed.keywords) ? parsed.keywords.slice(0, 5) : []
+      });
+    }
+
+    return res.json({
+      success  : true,
+      itemCount,
+      report   : raw?.slice(0, 800) || '요약 생성에 실패했습니다.',
+      keywords : []
+    });
+
+  } catch (e) {
+    console.error('[서재요약API] AI 호출 실패:', e.message);
+    /* 폴백: 목업 */
+    const topTitles = items.slice(0, 3).map(i => (i.analysis?.title || i.title || '').slice(0, 30)).filter(Boolean);
+    return res.json({
+      success  : true,
+      itemCount,
+      report   : `• 총 ${itemCount}개의 지식을 이 기간에 서재에 저장했습니다.\n• 주요 주제: ${topTitles.join(', ') || '다양한 분야'}\n• 저장된 지식을 주기적으로 복습해 장기 기억으로 전환해보세요.`,
+      keywords : []
+    });
+  }
+});
+
+/**
  * POST /api/analyze-image
  * Content-Type: multipart/form-data
  * Field: image (File), memo (string, optional)

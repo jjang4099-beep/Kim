@@ -2006,3 +2006,114 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   font-size    : 12px; color: var(--text-3);
   font-style   : italic; line-height: 1.6; word-break: keep-all;
 }
+
+/* ══════════════════════════════════════════════════════════
+   v28 — 배달탭 카테고리 필터 칩 바
+══════════════════════════════════════════════════════════ */
+
+.mob-feed-filter-bar {
+  position     : sticky;
+  top          : var(--topbar-h);
+  z-index      : 90;
+  display      : flex;
+  align-items  : center;
+  gap          : 8px;
+  padding      : 8px 12px;
+  background   : var(--surface);
+  border-bottom: 1px solid var(--border);
+  overflow-x   : auto;
+  overflow-y   : hidden;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width   : none;
+}
+.mob-feed-filter-bar::-webkit-scrollbar { display: none; }
+/* 칩 없을 때 공간 차지 안 함 */
+.mob-feed-filter-bar:empty { padding: 0; border: none; }
+
+.mob-feed-chip {
+  flex-shrink  : 0;
+  padding      : 6px 15px;
+  border-radius: 20px;
+  font-size    : 13px;
+  font-weight  : 600;
+  color        : var(--text-2);
+  background   : var(--bg);
+  border       : 1.5px solid var(--border);
+  cursor       : pointer;
+  white-space  : nowrap;
+  transition   : background .15s, color .15s, border-color .15s, transform .1s;
+}
+.mob-feed-chip.active {
+  background   : var(--accent);
+  color        : #fff;
+  border-color : var(--accent);
+}
+.mob-feed-chip:not(.active):active {
+  background   : var(--border);
+  transform    : scale(.97);
+}
+
+/* ══════════════════════════════════════════════════════════
+   v28 — 홈 화면 배달 피드 미리보기 섹션
+══════════════════════════════════════════════════════════ */
+
+.mob-feed-preview-list {
+  display       : flex;
+  flex-direction: column;
+  gap           : 7px;
+  padding       : 0 12px 8px;
+}
+
+/* 각 구독 카테고리 미리보기 카드 */
+.mob-feed-preview-card {
+  display        : flex;
+  align-items    : center;
+  justify-content: space-between;
+  padding        : 11px 14px;
+  background     : var(--surface);
+  border-radius  : 12px;
+  border         : 1px solid var(--border);
+  border-left-width: 3px;          /* JS에서 category 색상으로 override */
+  cursor         : pointer;
+  text-align     : left;
+  width          : 100%;
+  transition     : background .15s, transform .1s;
+}
+.mob-feed-preview-card:active {
+  background : var(--bg);
+  transform  : scale(.99);
+}
+.mob-fpc-left {
+  flex    : 1;
+  min-width: 0;
+}
+.mob-fpc-badge {
+  font-size  : 11.5px;
+  font-weight: 700;
+  margin-bottom: 3px;
+  letter-spacing: .01em;
+}
+.mob-fpc-title {
+  font-size     : 13.5px;
+  font-weight   : 600;
+  color         : var(--text-1);
+  overflow      : hidden;
+  text-overflow : ellipsis;
+  white-space   : nowrap;
+  line-height   : 1.4;
+}
+.mob-fpc-summary {
+  font-size    : 11.5px;
+  color        : var(--text-3);
+  margin-top   : 2px;
+  overflow     : hidden;
+  text-overflow: ellipsis;
+  white-space  : nowrap;
+}
+.mob-fpc-arrow {
+  color      : #9ca3af;
+  font-size  : 18px;
+  flex-shrink: 0;
+  margin-left: 8px;
+}

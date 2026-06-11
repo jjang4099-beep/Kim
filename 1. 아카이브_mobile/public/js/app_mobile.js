@@ -63,6 +63,19 @@ function parseFeedsArray(data) {
 }
 
 /* ──────────────────────────────────────────────
+   배달 피드 칩 라벨 맵 (subId → 표시 정보)
+────────────────────────────────────────────── */
+const FEED_CHIP_MAP = {
+  en_expr    : { icon: '🇺🇸', label: 'English',   color: '#4f46e5' },
+  zh_expr    : { icon: '🇨🇳', label: '중국어',     color: '#b45309' },
+  us_market  : { icon: '📈',  label: '미국 시황', color: '#059669' },
+  kr_market  : { icon: '📊',  label: '한국 시황', color: '#0891b2' },
+  hist_daily : { icon: '🏛️',  label: '역사',      color: '#92400e' },
+  quote_daily: { icon: '💡',  label: '명언',      color: '#7c3aed' },
+  idiom_daily: { icon: '📜',  label: '고사성어',  color: '#c2410c' },
+};
+
+/* ──────────────────────────────────────────────
    상태
 ────────────────────────────────────────────── */
 const state = {
@@ -74,6 +87,8 @@ const state = {
   feedLoaded       : false,
   feedItems        : [],
   summaryChipBound : false,
+  activeFeedFilter : 'all',   // 배달탭 활성 필터 칩 (subId 또는 'all')
+  pendingFeedFilter: null,     // 홈→배달탭 이동 시 적용할 초기 필터
 };
 
 /* ──────────────────────────────────────────────
@@ -138,10 +153,26 @@ const Mob = {
 
     try {
       const catParam = cat || state.currentCat;
-      const data = await fetchJSON(
-        `/api/items?category=${catParam}&limit=500`, {}, 25000
+
+      /* 아카이브 + 배달 피드 병렬 로딩 (배달 피드는 미로드 시에만 fetch) */
+      const [archiveRes, feedRes] = await Promise.allSettled([
+        fetchJSON(`/api/items?category=${catParam}&limit=500`, {}, 25000),
+        state.feedItems.length > 0
+          ? Promise.resolve(null)         /* 이미 로드됐으면 재사용 */
+          : fetchJSON('/api/daily-feed', {}, 90000)
+      ]);
+
+      state.items = parseFeedsArray(
+        archiveRes.status === 'fulfilled'
+          ? (archiveRes.value?.items ?? archiveRes.value)
+          : []
       );
-      state.items = parseFeedsArray(data.items ?? data);
+
+      /* 배달 피드 업데이트 (null은 "이미 있음" 신호라 건드리지 않음) */
+      if (feedRes.status === 'fulfilled' && feedRes.value !== null) {
+        state.feedItems = parseFeedsArray(feedRes.value?.feeds ?? feedRes.value ?? []);
+      }
+
       this.renderFeed(state.items);
     } catch (e) {
       if (feed) feed.innerHTML = `<div class="mob-loading" style="color:#ef4444">
@@ -198,13 +229,21 @@ const Mob = {
     let html = '';
 
     /* ── [오늘] 섹션 헤더 ── */
+    const hasFeedPreview = state.feedItems && state.feedItems.length > 0;
     html += `
       <div class="mob-section-hd today">
         <span>오늘 배달된 지식</span>
-        <span class="mob-section-badge">${todayItems.length}개</span>
+        <span class="mob-section-badge">${todayItems.length + (hasFeedPreview ? state.feedItems.length : 0)}개</span>
       </div>`;
 
-    if (todayItems.length === 0) {
+    /* ── 배달 피드 카테고리 미리보기 (1 per 구독, 클릭 시 배달탭 해당 필터로 이동) ── */
+    if (hasFeedPreview) {
+      html += '<div class="mob-feed-preview-list">';
+      state.feedItems.forEach(item => { html += this._cardFeedPreview(item); });
+      html += '</div>';
+    }
+
+    if (todayItems.length === 0 && !hasFeedPreview) {
       /* ── Smart Empty View ── */
       html += `
         <div class="mob-today-empty" id="todayEmptyBox">
@@ -217,8 +256,8 @@ const Mob = {
             <i class="ti ti-arrow-down"></i>&nbsp;지난 지식 바로보기
           </button>
         </div>`;
-    } else {
-      /* 오늘 아이템 그룹 컨테이너 */
+    } else if (todayItems.length > 0) {
+      /* 오늘 아카이브 아이템 (daily_delivery 등) */
       html += '<div class="mob-card-list">';
       todayItems.forEach(item => { html += this.cardHTML(item); });
       html += '</div>';
@@ -289,6 +328,39 @@ const Mob = {
     if (pastEl) {
       pastEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  },
+
+  /* ─────────────────────────────────────────────
+     홈 화면 배달 피드 미리보기 카드 (1 per 구독)
+     클릭 시 배달탭으로 이동하며 해당 칩 활성화
+  ───────────────────────────────────────────── */
+  _cardFeedPreview(item) {
+    const subId   = item.subId || '';
+    const chip    = FEED_CHIP_MAP[subId] || { icon: '📚', label: item.label || '지식', color: '#2563eb' };
+    const title   = item.title   || item.label || '오늘의 지식';
+    const summary = item.summary || '';
+    /* 영어/중국어는 표현 수도 표시 */
+    const extra = item.vocabEntries?.length
+      ? ` · ${item.vocabEntries.length}개 표현`
+      : '';
+
+    return `
+    <button class="mob-feed-preview-card"
+            style="border-left-color:${chip.color}"
+            onclick="event.stopPropagation();Mob._goToFeedFiltered('${subId}')">
+      <div class="mob-fpc-left">
+        <div class="mob-fpc-badge" style="color:${chip.color}">${chip.icon} ${chip.label}${extra}</div>
+        <div class="mob-fpc-title">${title}</div>
+        ${summary ? `<div class="mob-fpc-summary">${summary.slice(0, 55)}…</div>` : ''}
+      </div>
+      <i class="ti ti-chevron-right mob-fpc-arrow"></i>
+    </button>`;
+  },
+
+  /** 홈 미리보기 카드 클릭 → 배달탭으로 이동 + 해당 필터 활성화 */
+  _goToFeedFiltered(subId) {
+    state.pendingFeedFilter = subId || 'all';
+    this.switchView('feed', el('bnFeed'));
   },
 
   /* ──────────────────────────────────────────
@@ -1037,7 +1109,15 @@ const Mob = {
     const content = el('mobFeedViewContent');
     const dateEl  = el('feedViewDate');
     if (!content) return;
-    if (state.feedLoaded && !forceRefresh) return;
+    if (state.feedLoaded && !forceRefresh) {
+      /* 이미 로드됐더라도 pendingFeedFilter가 있으면 해당 칩 활성화 */
+      if (state.pendingFeedFilter) {
+        state.activeFeedFilter  = state.pendingFeedFilter;
+        state.pendingFeedFilter = null;
+        this._renderFeedView();
+      }
+      return;
+    }
 
     const today = new Date();
     if (dateEl) dateEl.textContent = today.toLocaleDateString('ko-KR',
@@ -1048,6 +1128,13 @@ const Mob = {
     try {
       const data = await fetchJSON('/api/daily-feed', {}, 60000);
       state.feedItems = parseFeedsArray(data.items ?? data.feeds ?? data);
+
+      /* 홈에서 넘어온 필터 적용 */
+      if (state.pendingFeedFilter) {
+        state.activeFeedFilter  = state.pendingFeedFilter;
+        state.pendingFeedFilter = null;
+      }
+
       this._renderFeedView();
       state.feedLoaded = true;
       const badge = el('mobFeedBadge');
@@ -1062,20 +1149,105 @@ const Mob = {
   _renderFeedView() {
     const content = el('mobFeedViewContent');
     if (!content) return;
+
     const items = state.feedItems;
     if (!items || items.length === 0) {
+      el('feedFilterBar').innerHTML = '';
       content.innerHTML = `<div class="mob-loading">
-        <i class="ti ti-mood-empty"></i> 오늘의 배달 피드가 없어요
+        <i class="ti ti-mood-empty"></i> 오늘의 배달 피드가 없어요.<br>
+        <small style="color:var(--text-3);margin-top:6px;display:block">관리탭 → 지금 생성을 눌러보세요!</small>
       </div>`;
       return;
     }
-    let html = '';
-    items.forEach(item => { html += this.cardHTML(item); });
-    content.innerHTML = html;
+
+    /* ── 필터 칩 바 빌드 ── */
+    el('feedFilterBar').innerHTML = this._buildFeedFilterBar(items);
+
+    /* ── 현재 필터에 맞는 아이템 렌더 ── */
+    this._renderFeedItems(state.activeFeedFilter);
+
+    /* ── 컨텐츠 영역 onclick 위임 (아코디언·비하인드·저장 등 기존 기능 전부 유지) ── */
     content.onclick = e => {
       const card = e.target.closest('.mob-card');
-      if (card?.dataset.id) this.openDetail(card.dataset.id);
+      if (!card) return;
+
+      /* mob-dlv-card: 데일리 배달 카드 아코디언 */
+      if (card.classList.contains('mob-dlv-card')) {
+        card.classList.toggle('expanded');
+        return;
+      }
+      /* mob-card-v: 세로형 아카이브 카드 */
+      if (card.classList.contains('mob-card-v')) {
+        if (!card.classList.contains('no-detail')) card.classList.toggle('expanded');
+        return;
+      }
+      /* 기타 archive 카드 → 상세 모달 */
+      const id = card.dataset.id;
+      if (id) this.openDetail(id);
     };
+  },
+
+  /* 배달탭 필터 칩 HTML 빌드 */
+  _buildFeedFilterBar(items) {
+    const seen  = new Set();
+    const chips = [];
+
+    items.forEach(item => {
+      const subId = item.subId || '';
+      if (subId && !seen.has(subId)) {
+        seen.add(subId);
+        const c = FEED_CHIP_MAP[subId] || { icon: '📚', label: item.label || subId };
+        chips.push({ subId, ...c });
+      }
+    });
+
+    if (chips.length === 0) return '';
+
+    const activeFilter = state.activeFeedFilter;
+
+    let html = `<button class="mob-feed-chip${activeFilter === 'all' ? ' active' : ''}"
+                        onclick="Mob._onFeedChip('all', this)">전체</button>`;
+    chips.forEach(c => {
+      const isActive = activeFilter === c.subId;
+      html += `<button class="mob-feed-chip${isActive ? ' active' : ''}"
+                       style="${isActive ? '' : `border-color:${c.color}22`}"
+                       onclick="Mob._onFeedChip('${c.subId}', this)">
+                 ${c.icon} ${c.label}
+               </button>`;
+    });
+    return html;
+  },
+
+  /* 필터 칩 클릭 핸들러 */
+  _onFeedChip(cat, chipEl) {
+    state.activeFeedFilter = cat;
+    /* 칩 active 갱신 */
+    el('feedFilterBar')?.querySelectorAll('.mob-feed-chip').forEach(c => {
+      c.classList.toggle('active', c === chipEl);
+    });
+    this._renderFeedItems(cat);
+  },
+
+  /* 현재 필터로 배달 피드 아이템 렌더 */
+  _renderFeedItems(filter) {
+    const content = el('mobFeedViewContent');
+    if (!content) return;
+
+    const items  = state.feedItems || [];
+    const filtered = filter === 'all'
+      ? items
+      : items.filter(item => (item.subId || '') === filter);
+
+    if (filtered.length === 0) {
+      content.innerHTML = `<div class="mob-loading">
+        <i class="ti ti-mood-empty"></i> 해당 카테고리 피드가 없어요
+      </div>`;
+      return;
+    }
+
+    let html = '';
+    filtered.forEach(item => { html += this.cardHTML(item); });
+    content.innerHTML = html;
   },
 
   async checkFeedBadge() {

@@ -1762,17 +1762,41 @@ app.get('/api/daily-feed', async (req, res) => {
 
   if (!user) return res.status(500).json({ success: false, error: '유저 설정 없음' });
 
-  // ── 캐시 히트 체크 ──
+  // ── 캐시 히트 체크 (활성화된 모든 피드가 캐시에 있어야 완전 히트) ──
   if (!force) {
-    const cached = getTodayFeeds(today);
+    const cached      = getTodayFeeds(today);
+    const enabledSubs = getEnabledSubscriptions(user);
+
     if (cached && Object.keys(cached).length > 0) {
-      const feeds = Object.values(cached);
-      console.log(`[피드API] ✅ 캐시 히트 — ${today} (${feeds.length}개 즉시 반환)`);
+      const missingSubs = enabledSubs.filter(s => !cached[s.id]);
+
+      if (!missingSubs.length) {
+        // 모든 활성화된 피드 캐시됨 → 즉시 반환
+        const feeds = Object.values(cached);
+        console.log(`[피드API] ✅ 캐시 완전 히트 — ${today} (${feeds.length}개 즉시 반환)`);
+        return res.json({
+          success: true, date: today, cached: true,
+          feeds:   Object.fromEntries(feeds.map((f, i) => [i, f]))
+        });
+      }
+
+      // 새로 활성화된 피드가 캐시에 없음 → 누락분만 추가 생성
+      console.log(`[피드API] ⚡ 누락 피드 감지: [${missingSubs.map(s => s.id).join(', ')}] — 추가 생성 시작`);
+      for (const sub of missingSubs) {
+        try {
+          console.log(`  → [${sub.id}] 누락 피드 생성 중…`);
+          const feed = await generateFeedForSubscription(sub, user);
+          saveTodayFeed(today, sub.id, feed);
+          console.log(`  ✓ [${sub.id}] 누락 피드 생성 완료`);
+        } catch (e) {
+          console.error(`  ✗ [${sub.id}] 누락 피드 생성 실패:`, e.message);
+        }
+      }
+      // 전체 캐시(기존 + 새로 생성) 반환
+      const allCached = Object.values(getTodayFeeds(today) || {});
       return res.json({
-        success:   true,
-        date:      today,
-        cached:    true,
-        feeds:     Object.fromEntries(feeds.map((f, i) => [i, f]))
+        success: true, date: today, cached: false,
+        feeds:   Object.fromEntries(allCached.map((f, i) => [i, f]))
       });
     }
   }
@@ -1806,8 +1830,16 @@ app.post('/api/daily-feed/generate', async (req, res) => {
 
   console.log('[피드API] 수동 재생성 요청');
   try {
-    const feeds = await buildDailyFeeds(user, force);
-    res.json({ success: true, date: toDateStr(), count: Object.keys(feeds).length, feeds });
+    await buildDailyFeeds(user, force);
+    // 생성 후 오늘 전체 피드(기존 캐시 포함) 반환
+    const allFeeds = getTodayFeeds(toDateStr()) || {};
+    const feedsArr = Object.values(allFeeds);
+    res.json({
+      success: true,
+      date:    toDateStr(),
+      count:   feedsArr.length,
+      feeds:   Object.fromEntries(feedsArr.map((f, i) => [i, f]))
+    });
   } catch (e) {
     res.status(500).json({ success: false, error: e.message });
   }

@@ -1625,10 +1625,13 @@ const Mob = {
         method : 'POST',
         headers: { 'Content-Type': 'application/json' },
         body   : JSON.stringify({ force: true })
-      }, 120000); /* Gemini 최대 2분 */
+      }, 180000); /* Gemini + Claude 백업 최대 3분 */
 
-      toast(`✅ ${data.count || 0}개 피드 생성 완료!`, 'ok');
-      state.feedLoaded = false; /* 다음 배달탭 진입 시 강제 리로드 */
+      state.feedLoaded = false; /* 배달탭 진입 시 서버에서 새 데이터 로드 */
+      toast(`✅ ${data.count || 0}개 피드 생성 완료! 배달탭으로 이동합니다 🚀`, 'ok', 3000);
+
+      /* 1초 후 배달탭으로 자동 이동 */
+      setTimeout(() => this.switchView('feed', el('bnFeed')), 1000);
     } catch {
       toast('피드 생성 실패 — API 키 또는 네트워크 확인', 'err');
     } finally {

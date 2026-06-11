@@ -2522,6 +2522,11 @@ app.get('/api/subscriptions', (req, res) => {
  * GET /health
  * Render.com 헬스체크 + 가동 상태 빠른 확인용
  */
+// 루트 접속 시 앱으로 자동 리다이렉트
+app.get('/', (req, res) => {
+  res.redirect('/index_mobile.html');
+});
+
 app.get('/health', (req, res) => {
   res.json({
     status:    'ok',

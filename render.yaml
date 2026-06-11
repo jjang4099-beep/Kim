@@ -1,0 +1,45 @@
+# ─────────────────────────────────────────────────────────────
+#  Render.com 배포 설정 — SJ 지식 서재
+#  문서: https://render.com/docs/blueprint-spec
+#
+#  ★ 무료 플랜 주의사항:
+#     • 15분 비활성 시 슬립(cold start ~30초)
+#     • 파일시스템 휘발성 — data/*.json 은 재시작 시 초기화
+#       → 데이터 영구 보존이 필요하면 Render Disk($7/월) 추가
+# ─────────────────────────────────────────────────────────────
+
+services:
+  - type: web
+    name: sj-archive
+    runtime: node
+    plan: free
+
+    # 빌드 커맨드: 의존성 설치
+    buildCommand: "npm --prefix '1. 아카이브_mobile' install"
+
+    # 시작 커맨드: 서버 실행
+    startCommand: "npm --prefix '1. 아카이브_mobile' start"
+
+    # 헬스체크 경로 (Render가 서비스 상태 확인)
+    healthCheckPath: /health
+
+    # 환경 변수 (Render 대시보드에서 실제 값 입력)
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+      # Gemini AI 피드 생성 키 (필수)
+      - key: GEMINI_API_KEY
+        sync: false
+
+      # Claude 분류 API 키 (선택)
+      - key: ANTHROPIC_API_KEY
+        sync: false
+
+      # Web Push VAPID 키 (선택 — 알림 기능 사용 시)
+      - key: PUBLIC_VAPID_KEY
+        sync: false
+      - key: PRIVATE_VAPID_KEY
+        sync: false
+      - key: VAPID_EMAIL
+        sync: false

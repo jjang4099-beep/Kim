@@ -10,14 +10,17 @@
 
 'use strict';
 
-const CACHE_NAME    = 'sj-library-v1';
+const CACHE_NAME    = 'sj-library-v27';
 const STATIC_ASSETS = [
-  '/',
   '/index_mobile.html',
-  '/css/style_mobile.css',
-  '/js/app_mobile.js',
+  '/css/style_mobile.css?v=27',
+  '/js/app_mobile.js?v=27',
+  '/js/pwa.js?v=1',
   '/manifest.json',
   '/icons/icon.svg',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png',
+  '/icons/apple-touch-icon.png',
   'https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap',
   'https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css'
 ];

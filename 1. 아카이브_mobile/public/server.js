@@ -2515,10 +2515,32 @@ app.get('/api/subscriptions', (req, res) => {
 });
 
 // ══════════════════════════════════════════════════
-//  서버 시작
+//  헬스체크 엔드포인트 (Render.com / 로드밸런서용)
 // ══════════════════════════════════════════════════
 
-app.listen(PORT, async () => {
+/**
+ * GET /health
+ * Render.com 헬스체크 + 가동 상태 빠른 확인용
+ */
+app.get('/health', (req, res) => {
+  res.json({
+    status:    'ok',
+    service:   'SJ 지식 서재',
+    version:   'v27',
+    timestamp: new Date().toISOString(),
+    env: {
+      gemini:    !!process.env.GEMINI_API_KEY,
+      claude:    !!process.env.ANTHROPIC_API_KEY,
+      push:      !!(process.env.PUBLIC_VAPID_KEY && process.env.PRIVATE_VAPID_KEY)
+    }
+  });
+});
+
+// ══════════════════════════════════════════════════
+//  서버 시작  (0.0.0.0 바인딩 — Render.com 필수)
+// ══════════════════════════════════════════════════
+
+app.listen(PORT, '0.0.0.0', async () => {
   console.log('\n┌──────────────────────────────────────────────────────┐');
   console.log('│      SJ 지식 서재 (Knowledge Library) v5              │');
   console.log(`│      http://localhost:${PORT}                           │`);

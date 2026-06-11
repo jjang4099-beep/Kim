@@ -5,7 +5,10 @@ node_modules/
 # 환경변수 (API 키 절대 올리면 안 됨)
 .env
 .env.local
-.env.*
+.env.production
+.env.development
+# .env.example 은 샘플 파일 — 실제 값 없으므로 커밋 허용
+!.env.example
 
 # 로그
 *.log

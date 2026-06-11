@@ -1,11 +1,15 @@
 {
   "name": "sj-archive-mobile",
-  "version": "1.0.0",
-  "description": "SJ 지식 서재 — 모바일 PWA",
+  "version": "27.0.0",
+  "description": "SJ 지식 서재 — 모바일 PWA (v27)",
   "main": "public/server.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "start": "node public/server.js",
-    "dev": "nodemon public/server.js"
+    "dev": "nodemon public/server.js",
+    "gen-icons": "node scripts/generate-icons.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

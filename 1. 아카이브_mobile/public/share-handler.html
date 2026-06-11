@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SJ 서재 — 공유 수집 중…</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      background: #f0f6ff;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      min-height: 100svh; padding: 20px;
+      color: #1e293b;
+    }
+    .card {
+      background: #fff; border-radius: 20px;
+      padding: 36px 28px; max-width: 340px; width: 100%;
+      box-shadow: 0 4px 24px rgba(37,99,235,.12);
+      text-align: center;
+    }
+    .icon { font-size: 48px; margin-bottom: 16px; }
+    h1 { font-size: 18px; font-weight: 800; color: #2563eb; margin-bottom: 8px; }
+    p  { font-size: 14px; color: #64748b; line-height: 1.6; }
+    .spinner {
+      width: 36px; height: 36px; border: 3px solid #dbeafe;
+      border-top-color: #2563eb; border-radius: 50%;
+      animation: spin .8s linear infinite; margin: 20px auto 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .redirect-msg { font-size: 12px; color: #94a3b8; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">📥</div>
+    <h1>인박스에 수집 중…</h1>
+    <p>공유된 내용을 SJ 서재 인박스에<br>저장하고 있습니다.</p>
+    <div class="spinner"></div>
+    <div class="redirect-msg" id="msg">잠시 후 앱으로 이동합니다.</div>
+  </div>
+
+  <script>
+    /**
+     * share-handler.html
+     * Service Worker가 설치되지 않은 경우의 폴백 페이지.
+     * SW가 설치됐다면 이 페이지는 표시되지 않고 SW의 fetch 핸들러가 처리합니다.
+     *
+     * 직접 여기로 왔다면 (SW 없는 첫 방문):
+     *   1. URL 파라미터에서 공유 내용 추출
+     *   2. /api/inbox 에 POST
+     *   3. 결과를 앱 메인 페이지로 전달
+     */
+    (async function () {
+      const params  = new URLSearchParams(location.search);
+      const title   = params.get('title') || '';
+      const text    = params.get('text')  || '';
+      const url     = params.get('url')   || '';
+      const content = url || text || title;
+
+      if (!content) {
+        document.getElementById('msg').textContent = '공유 내용이 없습니다.';
+        setTimeout(() => { location.href = '/index_mobile.html'; }, 1500);
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/inbox', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify({ text: content, source: 'share-sheet', title: title || undefined })
+        });
+        const data = await res.json();
+        if (data.success) {
+          location.href = '/index_mobile.html?share_ok=1';
+        } else {
+          throw new Error(data.error || 'API 오류');
+        }
+      } catch (e) {
+        document.getElementById('msg').textContent = '수집 실패: ' + e.message;
+        setTimeout(() => {
+          location.href = `/index_mobile.html?share_err=${encodeURIComponent(e.message)}`;
+        }, 2000);
+      }
+    })();
+  </script>
+</body>
+</html>

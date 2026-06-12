@@ -578,6 +578,58 @@ function getRecentDelivered(subId, days = 14, field = 'expressions') {
   return [...new Set(collected)];
 }
 
+/* ─────────────────────────────────────────────────────────────
+ *  Knowledge DB — 사전 생성 JSON 피드 로더 (언어·인문학 비용 0원)
+ * ───────────────────────────────────────────────────────────── */
+let _kdb = null;
+
+function loadKnowledgeDB() {
+  if (_kdb) return _kdb;
+  const dbDir = path.join(__dirname, 'data', 'knowledge_db');
+  const db = { english_expressions: [], chinese_expressions: [], idioms_and_quotes: [], history_facts: [] };
+  try {
+    if (!fs.existsSync(dbDir)) { _kdb = db; return db; }
+    const files = fs.readdirSync(dbDir).filter(f => f.endsWith('.json')).sort();
+    for (const file of files) {
+      try {
+        const batch = JSON.parse(fs.readFileSync(path.join(dbDir, file), 'utf8'));
+        for (const key of Object.keys(db)) {
+          if (Array.isArray(batch[key])) db[key].push(...batch[key]);
+        }
+      } catch (e) { console.warn(`[KnowledgeDB] ${file} 파싱 실패:`, e.message); }
+    }
+    console.log(`[KnowledgeDB] 로드 완료 EN:${db.english_expressions.length} ZH:${db.chinese_expressions.length} IQ:${db.idioms_and_quotes.length} HI:${db.history_facts.length}`);
+  } catch (e) { console.warn('[KnowledgeDB] 로드 실패:', e.message); }
+  _kdb = db;
+  return db;
+}
+
+function pickUnseenItems(pool, recentIds, count) {
+  const unseen = pool.filter(item => !recentIds.includes(item.id));
+  const src = unseen.length >= count ? unseen : pool;
+  const result = [], available = [...src];
+  for (let i = 0; i < Math.min(count, available.length); i++) {
+    const idx = Math.floor(Math.random() * available.length);
+    result.push(available.splice(idx, 1)[0]);
+  }
+  return result;
+}
+
+function getRecentDeliveredIDs(subId, days = 60) {
+  const all = readDailyFeeds();
+  const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - days);
+  const cutoffStr = toDateStr(cutoff);
+  const ids = [];
+  for (const [date, feeds] of Object.entries(all)) {
+    if (date < cutoffStr) continue;
+    const feed = feeds?.[subId];
+    if (!feed) continue;
+    if (Array.isArray(feed.vocabEntries)) feed.vocabEntries.forEach(e => { if (e.item_id) ids.push(e.item_id); });
+    if (feed.item_id) ids.push(feed.item_id);
+  }
+  return [...new Set(ids)];
+}
+
 async function generateLanguageFeed(sub, user) {
   const lang    = sub.lang || '영어';
   const langKey = lang.includes('중국') ? 'zh' : 'en';
@@ -588,6 +640,47 @@ async function generateLanguageFeed(sub, user) {
   const defCount       = langKey === 'zh' ? 5 : 7;
   const count          = feedCfg.count || sub.options?.count || defCount;
   const level          = feedCfg.level || 'intermediate';
+
+  /* ── DB-First: knowledge_db에서 먼저 시도 (비용 0원) ── */
+  {
+    const kdb  = loadKnowledgeDB();
+    const pool = langKey === 'en' ? kdb.english_expressions : kdb.chinese_expressions;
+    const lvlPool = level ? pool.filter(i => i.level === level) : pool;
+    const srcPool = lvlPool.length >= count ? lvlPool : pool;
+    if (srcPool.length >= count) {
+      const recentIds = getRecentDeliveredIDs(sub.id, 60);
+      const items = pickUnseenItems(srcPool, recentIds, count);
+      if (items.length >= count) {
+        const dow      = new Date().getDay();
+        const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
+        const dayKr    = dayNames[dow];
+        const theme    = items[0]?.theme || (langKey === 'en' ? '비즈니스 영어' : '비즈니스 중국어');
+        const vocabEntries = items.map(item => ({
+          item_id:          item.id,
+          expression:       item.expression,
+          meaning:          item.meaning,
+          nuance:           item.nuance            || '',
+          sourceSentence:   item.source_sentence   || item.sourceSentence   || '',
+          practiceSentence: item.practice_sentence || item.practiceSentence || '',
+          dialogue:         item.dialogue           || ''
+        }));
+        console.log(`[KnowledgeDB] 언어피드 DB 서빙 (${sub.id}) ${items.length}개`);
+        return {
+          type:        'language',
+          category:    sub.category || langKey,
+          subCategory: theme,
+          label:       sub.label,
+          title:       `[${dayKr}] ${theme}: ${vocabEntries[0]?.expression || '핵심 표현'} 외 ${vocabEntries.length - 1}개`,
+          summary:     `${dayKr}요일 — ${theme} 핵심 ${lang} 표현 ${vocabEntries.length}선`,
+          report:      '',
+          theme,
+          dayOfWeek:   dayKr,
+          vocabEntries,
+          aiGenerated: false
+        };
+      }
+    }
+  }
 
   /* 요일별 테마 자동 결정 (0=일요일) */
   const dow      = new Date().getDay();
@@ -1020,18 +1113,109 @@ async function generateIdiomFeed(sub) {
 
 /**
  * 인문학 피드 타입 디스패처 (역사 / 명언 / 고사성어)
+ * DB-First: knowledge_db에 항목이 있으면 AI 호출 없이 즉시 반환 (비용 0원)
+ * DB 항목 부족 시 기존 AI 생성 함수로 폴백
  */
 async function generateHumanitiesFeed(sub, user) {
   const subType = sub.subType || '';
+  const kdb     = loadKnowledgeDB();
+
+  /* ── 역사 피드 ── */
   if (subType === 'history' || sub.id === 'hist_daily') {
+    const cfg       = user?.feed_settings?.['hist_daily'] || {};
+    const eraFilter = cfg.era || '상관없음';
+    let pool = kdb.history_facts;
+    if (eraFilter !== '상관없음') {
+      const filtered = pool.filter(i => i.era === eraFilter);
+      if (filtered.length > 0) pool = filtered;
+    }
+    if (pool.length > 0) {
+      const recentIds = getRecentDeliveredIDs(sub.id, 60);
+      const [item]    = pickUnseenItems(pool, recentIds, 1);
+      if (item) {
+        console.log(`[KnowledgeDB] 역사피드 DB 서빙 (${item.id})`);
+        return {
+          type:        'humanities',
+          subType:     'history',
+          subId:       sub.id,
+          label:       sub.label,
+          category:    'history',
+          item_id:     item.id,
+          era:         item.era          || '세계사',
+          period:      item.period       || '',
+          title:       item.title        || '오늘의 역사',
+          summary:     item.summary      || '',
+          summary3:    item.summary3     || '',
+          behindStory: item.behind_story || '',
+          lesson:      item.lesson       || '',
+          aiGenerated: false
+        };
+      }
+    }
     return generateHistoryFeed(sub, user);
   }
+
+  /* ── 명언 피드 ── */
   if (subType === 'quote' || sub.id === 'quote_daily') {
+    const pool = kdb.idioms_and_quotes.filter(i => i.type === 'quote');
+    if (pool.length > 0) {
+      const recentIds = getRecentDeliveredIDs(sub.id, 60);
+      const [item]    = pickUnseenItems(pool, recentIds, 1);
+      if (item) {
+        console.log(`[KnowledgeDB] 명언피드 DB 서빙 (${item.id})`);
+        const titlePreview = (item.quote_ko || item.quote || '').slice(0, 28);
+        return {
+          type:        'humanities',
+          subType:     'quote',
+          subId:       sub.id,
+          label:       sub.label,
+          category:    'inbox',
+          item_id:     item.id,
+          title:       `"${titlePreview}…" — ${item.author || ''}`,
+          quote:       item.quote        || '',
+          quoteKo:     item.quote_ko     || '',
+          author:      item.author       || '',
+          authorInfo:  item.author_info  || '',
+          context:     item.context      || '',
+          behindStory: item.behind_story || '',
+          application: item.application  || '',
+          aiGenerated: false
+        };
+      }
+    }
     return generateQuoteFeed(sub);
   }
+
+  /* ── 고사성어 피드 ── */
   if (subType === 'idiom' || sub.id === 'idiom_daily') {
+    const pool = kdb.idioms_and_quotes.filter(i => i.type === 'idiom');
+    if (pool.length > 0) {
+      const recentIds = getRecentDeliveredIDs(sub.id, 60);
+      const [item]    = pickUnseenItems(pool, recentIds, 1);
+      if (item) {
+        console.log(`[KnowledgeDB] 고사성어피드 DB 서빙 (${item.id})`);
+        return {
+          type:        'humanities',
+          subType:     'idiom',
+          subId:       sub.id,
+          label:       sub.label,
+          category:    'history',
+          item_id:     item.id,
+          title:       `${item.idiom || ''} (${item.hanja || ''})`,
+          idiom:       item.idiom        || '',
+          hanja:       item.hanja        || '',
+          meaning:     item.meaning      || '',
+          origin:      item.origin       || '',
+          story:       item.story        || '',
+          behindStory: item.behind_story || '',
+          application: item.application  || '',
+          aiGenerated: false
+        };
+      }
+    }
     return generateIdiomFeed(sub);
   }
+
   // 알 수 없는 인문학 서브타입 → 기본 반환
   return {
     type: 'humanities', subType: 'unknown', subId: sub.id,

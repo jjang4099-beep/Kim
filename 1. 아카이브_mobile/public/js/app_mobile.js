@@ -103,6 +103,7 @@ const state = {
   pendingFeedFilter: null,
   libraryLoaded    : false,
   libraryAIOpen    : false,
+  libraryItems     : [],   // 서재 전체 아이템 (검색/필터용)
 };
 
 /* ──────────────────────────────────────────────
@@ -1350,6 +1351,14 @@ const Mob = {
         if (!state.items.find(i => (i._id || i.id) === id)) state.items.push(item);
       });
 
+      state.libraryItems = items;   // 검색 필터용 전체 보관
+
+      /* 검색창 초기화 */
+      const si = el('libSearchInput');
+      if (si) si.value = '';
+      const sc = el('libSearchClear');
+      if (sc) sc.hidden = true;
+
       this._renderLibraryTimeline(items);
       state.libraryLoaded = true;
     } catch (e) {
@@ -1362,18 +1371,20 @@ const Mob = {
     }
   },
 
-  _renderLibraryTimeline(items) {
+  _renderLibraryTimeline(items, searchQ) {
     const timelineEl = el('libTimeline');
     if (!timelineEl) return;
 
     if (!items || items.length === 0) {
-      timelineEl.innerHTML = `<div class="mvw-lib-empty">
-        <i class="ti ti-books"></i><br>
-        아직 서재에 저장된 지식이 없어요.<br>
-        <small style="color:var(--text-3);margin-top:4px;display:block">
-          배달탭이나 카드에서 💾 버튼을 눌러 저장해보세요!
-        </small>
-      </div>`;
+      timelineEl.innerHTML = searchQ
+        ? `<div class="mvw-lib-empty"><i class="ti ti-zoom-question"></i><br>"${searchQ}" 검색 결과 없음</div>`
+        : `<div class="mvw-lib-empty">
+            <i class="ti ti-books"></i><br>
+            아직 서재에 저장된 지식이 없어요.<br>
+            <small style="color:var(--text-3);margin-top:4px;display:block">
+              배달탭이나 카드에서 💾 버튼을 눌러 저장해보세요!
+            </small>
+          </div>`;
       return;
     }
 
@@ -1440,6 +1451,12 @@ const Mob = {
     });
 
     timelineEl.innerHTML = html;
+    if (searchQ) {
+      const cntEl = document.createElement('div');
+      cntEl.className = 'mvw-lib-search-count';
+      cntEl.textContent = `검색 결과 ${items.length}개`;
+      timelineEl.prepend(cntEl);
+    }
   },
 
   /* AI 아코디언 토글 */
@@ -1520,6 +1537,37 @@ const Mob = {
       btn.disabled = false;
       btn.innerHTML = `<i class="ti ti-rocket"></i> AI 리포트 생성`;
     }
+  },
+
+  /* ── 서재 인라인 실시간 검색 ── */
+  onLibrarySearch(val) {
+    const sc = el('libSearchClear');
+    if (sc) sc.hidden = !val;
+    clearTimeout(state.searchDebounce);
+    if (!val.trim()) { this._renderLibraryTimeline(state.libraryItems); return; }
+    state.searchDebounce = setTimeout(() => this._filterLibrary(val.trim()), 150);
+  },
+
+  clearLibrarySearch() {
+    const si = el('libSearchInput');
+    if (si) si.value = '';
+    const sc = el('libSearchClear');
+    if (sc) sc.hidden = true;
+    this._renderLibraryTimeline(state.libraryItems);
+  },
+
+  _filterLibrary(q) {
+    const qLow = q.toLowerCase();
+    const filtered = (state.libraryItems || []).filter(item => {
+      const m = item.analysis || {};
+      return [
+        m.title || item.title || '',
+        m.summary || item.summary || '',
+        item.text || '',
+        (m.keywords || item.keywords || []).join(' '),
+      ].some(f => f.toLowerCase().includes(qLow));
+    });
+    this._renderLibraryTimeline(filtered, q);
   },
 
   openSummary() { this.switchView('summary', el('bnSummary')); },
@@ -2109,67 +2157,339 @@ const Mob = {
   },
 
   /* ══════════════════════════════════════════
-     상세 모달
+     상세 모달 (v36 — 전면 강화)
   ══════════════════════════════════════════ */
   openDetail(id) {
-    const item = [...state.items, ...state.feedItems]
+    const item = [...state.items, ...state.feedItems, ...(state.libraryItems || [])]
       .find(i => (i._id || i.id) === id);
     if (!item) return;
 
-    const m       = item.analysis || {};
     const modal   = el('mobDetailModal');
     const badgeEl = el('mobDetailBadge');
     const bodyEl  = el('mobDetailBody');
 
-    badgeEl.textContent = this._catLabel(item.category || item.shelf);
+    badgeEl.textContent = this._catLabel(item.category || item.shelf || 'inbox');
+    bodyEl.innerHTML    = this._buildDetailBody(item, id);
+    modal.hidden        = false;
+    /* 시트 최상단으로 스크롤 */
+    el('mobDetailSheet')?.scrollTo({ top: 0, behavior: 'instant' });
+  },
 
-    const kws = (m.keywords || item.keywords || [])
-      .map(k => `<span class="mob-detail-kw-chip">${k}</span>`).join('');
+  /** 상세 모달 본문 HTML 빌더 — 타입별 풍부한 콘텐츠 */
+  _buildDetailBody(item, id) {
+    const m    = item.analysis || {};
+    const type = item.type || 'text';
+    const cat  = item.category || item.shelf || 'inbox';
 
-    const imgSection = (item.type === 'image_analysis' && item.imageUrl)
-      ? `<img src="${item.imageUrl}" alt="분석 이미지"
-          style="width:100%;border-radius:12px;margin-bottom:14px;object-fit:cover;max-height:200px"/>` : '';
+    /* 제목 결정 */
+    let titleStr = m.title || item.title || '';
+    if (!titleStr && cat === 'en') {
+      const p = this._parseEnglishText(item.text || '');
+      titleStr = p.expression || '';
+    }
+    if (!titleStr) {
+      titleStr = (item.text || item.summary || '').split('\n').map(l => l.trim()).filter(Boolean)[0]?.slice(0, 70) || '제목 없음';
+    }
 
-    const stepsSection = (m.steps && m.steps.length)
-      ? `<div class="mob-detail-section-title">핵심 단계</div>
-         <ol style="padding-left:18px;font-size:14px;color:var(--text-2);line-height:1.8">
-           ${m.steps.map(s => `<li>${s}</li>`).join('')}
-         </ol>` : '';
+    /* 날짜 · 출처 */
+    const dateStr = item.createdAt ? fmt(item.createdAt) : (item.savedAt ? fmt(item.savedAt) : '');
+    let srcHost = '';
+    try { srcHost = item.source ? new URL(item.source).hostname : ''; } catch {}
 
-    let sourceHostname = '';
-    try { sourceHostname = item.source ? new URL(item.source).hostname : ''; } catch {}
+    /* ── 타입별 본문 섹션 ── */
+    let body = '';
 
-    bodyEl.innerHTML = `
-      ${imgSection}
-      <div class="mob-detail-title">${m.title || item.title || (item.text || '').split('\n').map(l => l.trim()).filter(Boolean)[0]?.slice(0, 60) || '제목 없음'}</div>
-      <div class="mob-detail-meta">
-        <span class="mob-detail-meta-chip">${fmt(item.createdAt)}</span>
-        ${sourceHostname ? `<span class="mob-detail-meta-chip">${sourceHostname}</span>` : ''}
-      </div>
-      <div class="mob-detail-summary">${m.summary || item.summary || ''}</div>
-      ${kws ? `<div class="mob-detail-section-title">키워드</div>
-               <div class="mob-detail-kw-row">${kws}</div>` : ''}
-      ${stepsSection}
-      <div class="mob-detail-section-title">나의 인사이트</div>
+    if (type === 'daily_delivery') {
+      /* 오늘의 지식 배달 카드 */
+      const s3 = (item.summary3 || item.text || '').replace(/\\n/g, '\n')
+        .split('\n').map(l => l.trim().replace(/^[•\-·]\s*/, '')).filter(Boolean);
+      const concepts = (item.concepts || []).slice(0, 5);
+      if (s3.length) {
+        body += `<div class="mob-detail-section">
+          <div class="mob-detail-sec-label">핵심 요약</div>
+          ${s3.map(l => `<div class="mob-detail-bullet"><span class="mob-detail-bullet-dot"></span><span>${l}</span></div>`).join('')}
+        </div>`;
+      }
+      if (concepts.length) {
+        body += `<div class="mob-detail-section">
+          <div class="mob-detail-sec-label">핵심 개념</div>
+          ${concepts.map(c => `<div class="mob-detail-concept">
+            <span class="mob-detail-concept-term">${c.term || ''}</span>
+            <span class="mob-detail-concept-desc">${c.desc || ''}</span>
+          </div>`).join('')}
+        </div>`;
+      }
+      if (item.reminder) {
+        body += `<div class="mob-detail-reminder">✨ ${item.reminder}</div>`;
+      }
+
+    } else if (cat === 'en') {
+      /* 영어 표현 아이템 */
+      const p = this._parseEnglishText(item.text || '');
+      const fields = [
+        { label: '뜻',    val: p.meaning  },
+        { label: '뉘앙스', val: p.nuance   },
+        { label: '예문',  val: p.example  },
+        { label: '연습',  val: p.practice },
+      ].filter(f => f.val);
+      body += `<div class="mob-detail-en-expr">${p.expression || titleStr}</div>`;
+      if (fields.length) {
+        body += `<div class="mob-detail-section">
+          ${fields.map(f => `<div class="mob-detail-field-row">
+            <span class="mob-detail-field-label">${f.label}</span>
+            <span class="mob-detail-field-val">${f.val}</span>
+          </div>`).join('')}
+        </div>`;
+      }
+
+    } else if (type === 'language' && (item.vocabEntries || []).length) {
+      /* 서재에 저장된 언어 피드 (vocabEntries 보유) */
+      body += `<div class="mob-detail-section">
+        <div class="mob-detail-sec-label">표현 목록</div>
+        ${(item.vocabEntries || []).map(e => {
+          const dlgLines = (e.dialogue || '').replace(/\\n/g, '\n').split('\n').map(l => l.trim()).filter(Boolean);
+          const dlgHTML  = dlgLines.map(l => {
+            if (/^(A|B|甲|乙):/.test(l)) {
+              const ci = l.indexOf(':');
+              const sp = l.slice(0, ci).trim();
+              const isA = sp === 'A' || sp === '甲';
+              return `<div class="mob-dlg-line ${isA ? 'mob-dlg-a' : 'mob-dlg-b'}">
+                <span class="mob-dlg-speaker">${sp}</span>
+                <span class="mob-dlg-text">${l.slice(ci + 1).trim()}</span>
+              </div>`;
+            }
+            return `<div class="mob-dlg-line"><span class="mob-dlg-text">${l}</span></div>`;
+          }).join('');
+          return `<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)">
+            <div class="mob-detail-en-expr" style="font-size:18px;margin-bottom:8px">${e.expression || ''}</div>
+            ${[
+              { label:'뜻',   val: e.meaning },
+              { label:'뉘앙스', val: e.nuance },
+              { label:'예문',  val: e.sourceSentence },
+              { label:'연습',  val: e.practiceSentence },
+            ].filter(f => f.val).map(f => `<div class="mob-detail-field-row">
+              <span class="mob-detail-field-label">${f.label}</span>
+              <span class="mob-detail-field-val">${f.val}</span>
+            </div>`).join('')}
+            ${dlgHTML ? `<div class="mob-detail-dialogue-wrap">
+              <div class="mob-detail-sec-label" style="margin-top:10px">대화문</div>
+              <div class="mob-detail-dialogue">${dlgHTML}</div>
+            </div>` : ''}
+          </div>`;
+        }).join('')}
+      </div>`;
+
+    } else if (type === 'humanities') {
+      /* 서재에 저장된 인문학 피드 */
+      const sub = item.subType || '';
+      if (sub === 'history') {
+        const s3 = (item.summary3 || '').replace(/\\n/g, '\n').split('\n').map(l => l.trim().replace(/^[•\-·]\s*/, '')).filter(Boolean);
+        if (item.era || item.period) {
+          body += `<div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:10px">🏛️ ${[item.era, item.period].filter(Boolean).join(' · ')}</div>`;
+        }
+        if (s3.length) {
+          body += `<div class="mob-detail-section">
+            <div class="mob-detail-sec-label">3줄 핵심 요약</div>
+            ${s3.map(l => `<div class="mob-detail-bullet"><span class="mob-detail-bullet-dot"></span><span>${l}</span></div>`).join('')}
+          </div>`;
+        }
+        if (item.summary) {
+          body += `<div class="mob-detail-section">
+            <div class="mob-detail-sec-label">전체 내용</div>
+            <div class="mob-detail-full-text">${item.summary}</div>
+          </div>`;
+        }
+        if (item.lesson) {
+          body += `<div class="mob-detail-section">
+            <div class="mob-detail-sec-label">💡 교훈</div>
+            <div class="mob-detail-full-text">${item.lesson}</div>
+          </div>`;
+        }
+        if (item.behindStory) {
+          body += `<div class="mob-detail-section">
+            <div class="mob-detail-sec-label">🕵️ 비하인드 스토리</div>
+            <div class="mob-detail-full-text">${item.behindStory}</div>
+          </div>`;
+        }
+      } else if (sub === 'quote') {
+        body += `<div class="mob-detail-section">
+          <div class="mob-detail-full-text" style="font-size:17px;font-style:italic;color:var(--text-1);line-height:1.6">
+            "${item.quoteKo || item.quote || ''}"
+          </div>
+          ${item.quote && item.quoteKo ? `<div style="font-size:13px;color:var(--text-3);margin-top:6px">${item.quote}</div>` : ''}
+          <div style="font-size:12px;color:var(--text-3);margin-top:10px;font-weight:700">
+            — ${item.author || ''}${item.authorInfo ? ' · ' + item.authorInfo : ''}
+          </div>
+        </div>`;
+        if (item.meaning || item.context) {
+          body += `<div class="mob-detail-section">
+            ${item.meaning ? `<div class="mob-detail-sec-label">의미</div><div class="mob-detail-full-text">${item.meaning}</div>` : ''}
+            ${item.context ? `<div class="mob-detail-sec-label" style="margin-top:10px">맥락</div><div class="mob-detail-full-text">${item.context}</div>` : ''}
+          </div>`;
+        }
+        if (item.behindStory) {
+          body += `<div class="mob-detail-section">
+            <div class="mob-detail-sec-label">🕵️ 비하인드 스토리</div>
+            <div class="mob-detail-full-text">${item.behindStory}</div>
+          </div>`;
+        }
+        if (item.application) {
+          body += `<div class="mob-detail-section">
+            <div class="mob-detail-sec-label">✨ 적용</div>
+            <div class="mob-detail-full-text">${item.application}</div>
+          </div>`;
+        }
+      } else if (sub === 'idiom') {
+        body += `<div class="mob-detail-section">
+          <div class="mob-detail-en-expr" style="font-size:20px">${item.idiom || titleStr}</div>
+          ${item.hanja ? `<div style="font-size:13px;color:var(--text-3);margin-bottom:8px">${item.hanja}</div>` : ''}
+          ${item.meaning ? `<div class="mob-detail-full-text">${item.meaning}</div>` : ''}
+        </div>`;
+        if (item.origin || item.story) {
+          body += `<div class="mob-detail-section">
+            ${item.origin ? `<div class="mob-detail-sec-label">📖 유래</div><div class="mob-detail-full-text">${item.origin}</div>` : ''}
+            ${item.story  ? `<div class="mob-detail-sec-label" style="margin-top:10px">이야기</div><div class="mob-detail-full-text">${item.story}</div>` : ''}
+          </div>`;
+        }
+        if (item.behindStory) {
+          body += `<div class="mob-detail-section">
+            <div class="mob-detail-sec-label">🕵️ 비하인드 스토리</div>
+            <div class="mob-detail-full-text">${item.behindStory}</div>
+          </div>`;
+        }
+        if (item.application) {
+          body += `<div class="mob-detail-section">
+            <div class="mob-detail-sec-label">✨ 적용</div>
+            <div class="mob-detail-full-text">${item.application}</div>
+          </div>`;
+        }
+      }
+
+    } else if (type === 'image_analysis') {
+      if (item.imageUrl) {
+        body += `<img src="${item.imageUrl}" alt="분석 이미지"
+          style="width:100%;border-radius:12px;margin-bottom:0;object-fit:cover;max-height:220px;display:block"/>`;
+      }
+      const txt = m.summary || item.summary || item.text || '';
+      if (txt) {
+        body += `<div class="mob-detail-section">
+          <div class="mob-detail-sec-label">분석 결과</div>
+          <div class="mob-detail-full-text">${txt}</div>
+        </div>`;
+      }
+      if (m.steps?.length) {
+        body += `<div class="mob-detail-section">
+          <div class="mob-detail-sec-label">단계별 분석</div>
+          <ol style="padding-left:18px;font-size:14px;color:var(--text-2);line-height:1.8">
+            ${m.steps.map(s => `<li>${s}</li>`).join('')}
+          </ol>
+        </div>`;
+      }
+
+    } else {
+      /* 일반 텍스트 / YouTube / Economy / History 저장 항목 */
+      const full = m.summary || item.summary || item.text || '';
+      if (full) {
+        body += `<div class="mob-detail-section">
+          <div class="mob-detail-full-text">${full}</div>
+        </div>`;
+      }
+      if (m.steps?.length) {
+        body += `<div class="mob-detail-section">
+          <div class="mob-detail-sec-label">핵심 단계</div>
+          <ol style="padding-left:18px;font-size:14px;color:var(--text-2);line-height:1.8">
+            ${m.steps.map(s => `<li>${s}</li>`).join('')}
+          </ol>
+        </div>`;
+      }
+    }
+
+    /* 키워드 */
+    const kws = (m.keywords || item.keywords || []).slice(0, 6);
+    if (kws.length) {
+      body += `<div class="mob-detail-section">
+        <div class="mob-detail-sec-label">키워드</div>
+        <div class="mob-detail-kw-row">${kws.map(k => `<span class="mob-detail-kw-chip">${k}</span>`).join('')}</div>
+      </div>`;
+    }
+
+    /* 나의 인사이트 */
+    body += `<div class="mob-detail-section">
+      <div class="mob-detail-sec-label">나의 인사이트</div>
       <textarea class="mob-detail-insight-area" id="detailInsight"
         placeholder="이 지식에서 느낀 점, 적용 아이디어를 기록하세요…"
       >${item.myInsight || ''}</textarea>
+    </div>`;
+
+    /* 카테고리 이동 (숨김, 토글 방식) */
+    const CATS = [
+      { val:'en',      label:'English', icon:'🌐' },
+      { val:'history', label:'History', icon:'🏛️' },
+      { val:'economy', label:'Economy', icon:'📈' },
+      { val:'youtube', label:'YouTube', icon:'▶️' },
+      { val:'inbox',   label:'서랍',    icon:'📌' },
+    ];
+    const moveChips = CATS
+      .filter(c => c.val !== cat)
+      .map(c => `<button class="mob-detail-move-chip" onclick="Mob._moveCategory('${id}','${c.val}')">${c.icon} ${c.label}</button>`)
+      .join('');
+
+    /* 액션 버튼 */
+    const srcBtn = item.source
+      ? `<button class="mob-detail-action-btn" onclick="window.open('${item.source}','_blank')"
+           style="background:var(--bg);color:var(--text-2)">
+           <i class="ti ti-external-link"></i>
+         </button>` : '';
+
+    return `
+      <div class="mob-detail-meta-row">
+        ${dateStr ? `<span class="mob-detail-meta-chip">${dateStr}</span>` : ''}
+        ${srcHost  ? `<span class="mob-detail-meta-chip">${srcHost}</span>` : ''}
+      </div>
+      <div class="mob-detail-title">${titleStr}</div>
+      ${body}
+      <div class="mob-detail-move-section" id="detailMoveCat" hidden>
+        <div class="mob-detail-sec-label">카테고리 이동</div>
+        <div class="mob-detail-move-chips">${moveChips}</div>
+      </div>
       <div class="mob-detail-actions">
         <button class="mob-detail-action-btn primary" onclick="Mob._saveInsight('${id}')">
           <i class="ti ti-device-floppy"></i> 저장
         </button>
-        ${item.source ? `<button class="mob-detail-action-btn"
-          onclick="window.open('${item.source}','_blank')"
-          style="background:var(--bg);color:var(--text-2)">
-          <i class="ti ti-external-link"></i> 원문
-        </button>` : ''}
+        ${srcBtn}
+        <button class="mob-detail-action-btn" style="background:var(--bg);color:var(--text-2)"
+                onclick="Mob._toggleMoveCat('detailMoveCat')" title="카테고리 이동">
+          <i class="ti ti-folder-symlink"></i> 이동
+        </button>
         <button class="mob-detail-action-btn danger" onclick="Mob._deleteFromDetail('${id}')">
           <i class="ti ti-trash"></i>
         </button>
       </div>
     `;
+  },
 
-    modal.hidden = false;
+  _toggleMoveCat(panelId) {
+    const p = el(panelId);
+    if (p) p.hidden = !p.hidden;
+  },
+
+  async _moveCategory(id, newCat) {
+    try {
+      await fetchJSON(`/api/items/${id}`, {
+        method : 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify({ category: newCat, shelf: newCat })
+      });
+      /* 로컬 상태 반영 */
+      [state.items, state.libraryItems].forEach(arr => {
+        const found = (arr || []).find(i => (i._id || i.id) === id);
+        if (found) { found.category = newCat; found.shelf = newCat; }
+      });
+      toast(`✅ ${this._catLabel(newCat)}으로 이동됐습니다`, 'ok');
+      this.closeDetail();
+      if (state.currentView === 'home') this.renderFeed(state.items);
+      if (state.currentView === 'summary') { state.libraryLoaded = false; this._loadLibraryView(true); }
+    } catch { toast('이동 실패', 'err'); }
   },
 
   closeDetail() { el('mobDetailModal').hidden = true; },

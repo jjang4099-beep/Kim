@@ -148,6 +148,20 @@
       <!-- AI 결과 카드 (동적 삽입) -->
       <div id="libAiResult"></div>
 
+      <!-- 서재 인라인 실시간 검색창 -->
+      <div class="mvw-lib-search-wrap" id="libSearchWrap">
+        <div class="mvw-lib-search-inner">
+          <i class="ti ti-search mvw-lib-search-icon"></i>
+          <input type="text" id="libSearchInput" class="mvw-lib-search-input"
+                 placeholder="저장한 지식 검색…" autocomplete="off"
+                 oninput="Mob.onLibrarySearch(this.value)"/>
+          <button class="mvw-lib-search-clear" id="libSearchClear"
+                  onclick="Mob.clearLibrarySearch()" hidden>
+            <i class="ti ti-x"></i>
+          </button>
+        </div>
+      </div>
+
       <!-- 저장 지식 타임라인 -->
       <div id="libTimeline">
         <div class="mob-loading"><span class="mob-spin"></span> 서재 불러오는 중…</div>

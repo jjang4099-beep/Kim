@@ -34,7 +34,8 @@ const multer   = require('multer');
 const { v4: uuidv4 } = require('uuid');
 
 const PORT                   = process.env.PORT || 3000;
-const DB_PATH                = path.join(__dirname, 'data', 'archive.json');
+const SQLITE_PATH            = path.join(__dirname, 'data', 'archive.db');
+const ARCHIVE_JSON_PATH      = path.join(__dirname, 'data', 'archive.json');  // 마이그레이션 소스용
 const DAILY_FEEDS_PATH       = path.join(__dirname, 'data', 'dailyFeeds.json');
 const SUBSCRIPTIONS_PATH     = path.join(__dirname, 'data', 'subscriptions.json');
 const USERS_PATH             = path.join(__dirname, 'data', 'users.json');
@@ -75,7 +76,7 @@ app.use(express.static(__dirname));  // server.js가 public/ 안에 있으므로
 app.use('/uploads', express.static(UPLOADS_DIR));
 
 // ══════════════════════════════════════════════════
-//  범용 DB 헬퍼
+//  범용 JSON 헬퍼 (users, subscriptions, dailyFeeds 등 소형 파일용)
 // ══════════════════════════════════════════════════
 
 function readJSON(filePath, fallback = []) {
@@ -89,8 +90,190 @@ function writeJSON(filePath, data) {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
 }
 
-const readDB    = ()      => readJSON(DB_PATH, []);
-const writeDB   = (data)  => writeJSON(DB_PATH, data);
+// ══════════════════════════════════════════════════
+//  SQLite — 메인 아카이브 DB (archive.db)
+//  sql.js 사용 — 순수 JavaScript WASM, 네이티브 컴파일 불필요
+//  • items 테이블: id PK + 검색용 컬럼 + data(JSON 전문)
+//  • 서버 기동 시 archive.json이 있으면 원타임 마이그레이션
+//  • WAL 대신 직접 파일 저장 방식 (sql.js 특성상)
+// ══════════════════════════════════════════════════
+
+let _sqliteDb  = null;   // sql.js Database 인스턴스
+let _sqliteDir = path.dirname(SQLITE_PATH);
+
+async function initSQLiteDB() {
+  if (_sqliteDb) return;
+  fs.mkdirSync(_sqliteDir, { recursive: true });
+  const initSqlJs = require('sql.js');
+  const SQL       = await initSqlJs();
+  if (fs.existsSync(SQLITE_PATH)) {
+    const buf  = fs.readFileSync(SQLITE_PATH);
+    _sqliteDb  = new SQL.Database(buf);
+  } else {
+    _sqliteDb  = new SQL.Database();
+  }
+  _sqliteDb.run(`
+    CREATE TABLE IF NOT EXISTS items (
+      id         TEXT PRIMARY KEY,
+      category   TEXT NOT NULL DEFAULT 'inbox',
+      date       TEXT,
+      created_at TEXT,
+      data       TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_items_category   ON items(category);
+    CREATE INDEX IF NOT EXISTS idx_items_date       ON items(date);
+    CREATE INDEX IF NOT EXISTS idx_items_created_at ON items(created_at);
+  `);
+  _migrateFromJSON();
+  _persistDB();
+  console.log('[SQLite] DB 초기화 완료 →', SQLITE_PATH);
+}
+
+/** sql.js 인스턴스를 디스크에 저장 (write마다 호출) */
+function _persistDB() {
+  if (!_sqliteDb) return;
+  try {
+    const data = _sqliteDb.export();
+    fs.writeFileSync(SQLITE_PATH, Buffer.from(data));
+  } catch (e) {
+    console.warn('[SQLite] 디스크 저장 실패:', e.message);
+  }
+}
+
+function getSQLiteDB() {
+  if (!_sqliteDb) throw new Error('[SQLite] DB가 아직 초기화되지 않았습니다 (initSQLiteDB() 대기 중)');
+  return _sqliteDb;
+}
+
+/** SELECT → 여러 행 반환. params는 positional 배열 */
+function _sqlQuery(sql, params) {
+  const stmt = getSQLiteDB().prepare(sql);
+  stmt.bind(params || []);
+  const rows = [];
+  while (stmt.step()) rows.push(stmt.getAsObject());
+  stmt.free();
+  return rows;
+}
+
+/** SELECT → 첫 번째 행 반환 (없으면 null) */
+function _sqlGet(sql, params) {
+  const stmt = getSQLiteDB().prepare(sql);
+  stmt.bind(params || []);
+  const row = stmt.step() ? stmt.getAsObject() : null;
+  stmt.free();
+  return row;
+}
+
+function _migrateFromJSON() {
+  const result = _sqliteDb.exec('SELECT COUNT(*) AS c FROM items');
+  const count  = result[0]?.values[0][0] ?? 0;
+  if (count > 0) return;
+  if (!fs.existsSync(ARCHIVE_JSON_PATH)) return;
+  try {
+    const rows = JSON.parse(fs.readFileSync(ARCHIVE_JSON_PATH, 'utf-8'));
+    if (!Array.isArray(rows) || !rows.length) return;
+    const stmt = _sqliteDb.prepare(
+      'INSERT OR IGNORE INTO items (id, category, date, created_at, data) VALUES (?, ?, ?, ?, ?)'
+    );
+    for (const item of rows) {
+      stmt.run([
+        item.id        || uuidv4(),
+        item.category  || 'inbox',
+        item.date      || '',
+        item.createdAt || '',
+        JSON.stringify(item)
+      ]);
+    }
+    stmt.free();
+    console.log(`[SQLite] archive.json 마이그레이션 완료 (${rows.length}개)`);
+  } catch (e) {
+    console.warn('[SQLite] 마이그레이션 실패 (무시):', e.message);
+  }
+}
+
+/**
+ * 전체 아이템 배열 반환 (createdAt DESC)
+ * 기존 코드와 인터페이스 동일
+ */
+function readDB() {
+  const db     = getSQLiteDB();
+  const result = db.exec('SELECT data FROM items ORDER BY created_at DESC');
+  if (!result.length) return [];
+  return result[0].values.map(([data]) => {
+    const item = JSON.parse(data);
+    item.shelf = item.category || 'inbox';   // shelf 자동 동기화
+    return item;
+  });
+}
+
+/**
+ * 전체 배열을 트랜잭션으로 교체 (배치 작업용)
+ * 개별 수정에는 dbInsert / dbUpdate / dbDelete 사용 권장
+ */
+function writeDB(items) {
+  const db   = getSQLiteDB();
+  const stmt = db.prepare(
+    'INSERT OR REPLACE INTO items (id, category, date, created_at, data) VALUES (?, ?, ?, ?, ?)'
+  );
+  db.run('DELETE FROM items');
+  for (const item of items) {
+    item.shelf = item.category || 'inbox';
+    stmt.run([
+      item.id        || uuidv4(),
+      item.category  || 'inbox',
+      item.date      || '',
+      item.createdAt || new Date().toISOString(),
+      JSON.stringify(item)
+    ]);
+  }
+  stmt.free();
+  _persistDB();
+}
+
+/** 단일 아이템 삽입/교체 */
+function dbInsert(item) {
+  const db = getSQLiteDB();
+  item.shelf = item.category || 'inbox';
+  const stmt = db.prepare(
+    'INSERT OR REPLACE INTO items (id, category, date, created_at, data) VALUES (?, ?, ?, ?, ?)'
+  );
+  stmt.run([
+    item.id        || uuidv4(),
+    item.category  || 'inbox',
+    item.date      || '',
+    item.createdAt || new Date().toISOString(),
+    JSON.stringify(item)
+  ]);
+  stmt.free();
+  _persistDB();
+}
+
+/** 단일 아이템 업데이트 */
+function dbUpdate(item) {
+  const db = getSQLiteDB();
+  item.shelf = item.category || 'inbox';
+  const stmt = db.prepare(
+    'UPDATE items SET category=?, date=?, created_at=?, data=? WHERE id=?'
+  );
+  stmt.run([
+    item.category  || 'inbox',
+    item.date      || '',
+    item.createdAt || '',
+    JSON.stringify(item),
+    item.id
+  ]);
+  stmt.free();
+  _persistDB();
+}
+
+/** 단일 아이템 삭제 */
+function dbDelete(id) {
+  const db   = getSQLiteDB();
+  const stmt = db.prepare('DELETE FROM items WHERE id=?');
+  stmt.run([id]);
+  stmt.free();
+  _persistDB();
+}
 
 // ──────────────────────────────────────────────────
 //  Daily Feeds DB (data/dailyFeeds.json)
@@ -1457,7 +1640,10 @@ async function generateDailyDelivery(user, force = false) {
 
   // 이미 오늘 생성됐으면 스킵 (force 아닐 때)
   if (!force) {
-    const existing = readDB().filter(i => i.type === 'daily_delivery' && i.date === today);
+    const existing = _sqlQuery(
+      "SELECT data FROM items WHERE json_extract(data,'$.type')='daily_delivery' AND date=?",
+      [today]
+    ).map(r => JSON.parse(r.data));
     if (existing.length > 0) {
       console.log(`[배달생성] 오늘(${today}) 이미 생성된 지식 카드 ${existing.length}개 — 스킵`);
       return existing;
@@ -1465,12 +1651,13 @@ async function generateDailyDelivery(user, force = false) {
   }
 
   // 최근 7일 아카이브 (daily_delivery 제외, 최대 20개)
-  const weekAgo = new Date();
+  const weekAgo    = new Date();
   weekAgo.setDate(weekAgo.getDate() - 7);
-  const recentItems = readDB()
-    .filter(i => i.type !== 'daily_delivery')
-    .filter(i => new Date(i.createdAt) >= weekAgo)
-    .slice(0, 20);
+  const weekAgoStr = toDateStr(weekAgo);
+  const recentItems = _sqlQuery(
+    "SELECT data FROM items WHERE date >= ? AND json_extract(data,'$.type') != 'daily_delivery' ORDER BY created_at DESC LIMIT 20",
+    [weekAgoStr]
+  ).map(r => JSON.parse(r.data));
 
   if (!recentItems.length) {
     console.log('[배달생성] 최근 7일 아카이브 없음 — 배달 카드 생성 스킵');
@@ -1516,7 +1703,6 @@ JSON 배열로만 응답 (마크다운 코드블록 없이):
     id         : uuidv4(),
     type       : 'daily_delivery',
     category   : card.category || 'inbox',
-    shelf      : card.category || 'inbox',
     title      : card.title    || '오늘의 지식',
     text       : card.summary3 || '',
     summary    : card.reminder || '',
@@ -1534,7 +1720,13 @@ JSON 배열로만 응답 (마크다운 코드블록 없이):
     insights   : []
   }));
 
-  writeDB([...newCards, ...filtered]);
+  // force 모드: 기존 오늘 배달 카드 먼저 삭제
+  if (force) {
+    getSQLiteDB().run("DELETE FROM items WHERE json_extract(data,'$.type')='daily_delivery' AND date=?", [today]);
+    _persistDB();
+  }
+  // 각 카드를 개별 삽입
+  for (const card of newCards) dbInsert(card);
   console.log(`[배달생성] ✅ ${newCards.length}개 지식 카드 저장 완료 (${today})`);
   return newCards;
 }
@@ -1729,23 +1921,78 @@ async function generateYouTubeAnalysis(title, channelName) {
 //  서재 배치 엔진 (기존 유지)
 // ══════════════════════════════════════════════════
 
+/**
+ * inbox에 쌓인 아이템을 적절한 서가로 이동
+ *
+ * [1순위] Claude AI 분류 — 실시간 분석 (API 키 있을 때)
+ * [2순위] 규칙 기반 분류 — classifyByRules 결과 활용
+ * [3순위] 규칙 기반도 inbox인 경우 + 7일 경과 → 'economy'(일반 서가)로 강제 이동
+ *         Claude API 연동 실패·키 부재와 무관하게 반드시 작동하는 Failsafe
+ */
 async function reshelfOldInboxItems() {
-  const items   = readDB();
-  const targets = items.filter(i => i.category === 'inbox' && isOlderThanOneDay(i.createdAt));
+  const FORCE_RESHELVE_DAYS = 7;
+
+  const targets = _sqlQuery(
+    "SELECT data FROM items WHERE category='inbox' AND created_at < ?",
+    [new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()]
+  ).map(r => JSON.parse(r.data));
+
   if (!targets.length) return 0;
+
   let changed = 0;
   for (const item of targets) {
-    const c = await classifyWithClaude(item.text);
-    if (c && c.category !== 'inbox') {
-      item.category    = c.category;
-      item.keywords    = c.keywords.length ? c.keywords : item.keywords;
-      item.summary     = c.summary || item.summary;
-      item.classifier  = `reshelved:${c.classifier}`;
+    let newCategory = null;
+    let newKeywords = item.keywords;
+    let newSummary  = item.summary;
+    let classifier  = item.classifier;
+
+    // [1순위] Claude AI 분류
+    if (process.env.ANTHROPIC_API_KEY) {
+      try {
+        const c = await classifyWithClaude(item.text || '');
+        if (c && c.category !== 'inbox') {
+          newCategory = c.category;
+          newKeywords = c.keywords.length ? c.keywords : item.keywords;
+          newSummary  = c.summary || item.summary;
+          classifier  = `reshelved:${c.classifier}`;
+        }
+      } catch (e) {
+        console.warn('[서재배치] Claude 분류 실패 (규칙 기반으로 전환):', e.message);
+      }
+    }
+
+    // [2순위] 규칙 기반 분류
+    if (!newCategory) {
+      const ruled = classifyByRules(item.text || '');
+      if (ruled.category !== 'inbox') {
+        newCategory = ruled.category;
+        classifier  = `reshelved:rules(${ruled.confidence})`;
+      }
+    }
+
+    // [3순위] 7일 경과 Failsafe — API 상태와 무관하게 강제 이동
+    if (!newCategory) {
+      const daysOld = (Date.now() - new Date(item.createdAt).getTime()) / 86400000;
+      if (daysOld >= FORCE_RESHELVE_DAYS) {
+        newCategory = 'economy';   // 기본 서가 (일반 지식)
+        classifier  = `reshelved:force-fallback(${Math.floor(daysOld)}d)`;
+        console.log(`[서재배치] 강제 이동(Failsafe) — "${(item.text||'').slice(0,40)}" (${Math.floor(daysOld)}일 경과)`);
+      }
+    }
+
+    if (newCategory) {
+      item.category    = newCategory;
+      item.keywords    = newKeywords;
+      item.summary     = newSummary;
+      item.classifier  = classifier;
       item.reshelvedAt = new Date().toISOString();
+      item.updatedAt   = new Date().toISOString();
+      dbUpdate(item);
       changed++;
     }
   }
-  if (changed) { writeDB(items); console.log(`[서재배치] ${changed}개 항목 이동`); }
+
+  if (changed) console.log(`[서재배치] ${changed}개 항목 이동 완료`);
   return changed;
 }
 setInterval(reshelfOldInboxItems, 60 * 60 * 1000);
@@ -1889,7 +2136,6 @@ app.post('/api/inbox', async (req, res) => {
     id:         uuidv4(),
     text:       rawText,
     category:   'inbox',
-    shelf:      'inbox',
     keywords:   [],
     summary:    body.title ? `공유: ${body.title}` : '',
     classifier: 'inbox-direct',
@@ -1901,10 +2147,7 @@ app.post('/api/inbox', async (req, res) => {
     insights:   []
   };
 
-  const items = readDB();
-  items.unshift(newItem);
-  writeDB(items);
-
+  dbInsert(newItem);
   console.log(`[인박스] 수집: "${rawText.slice(0, 60)}" (${body.source || 'share-sheet'})`);
 
   // 즉시 201 반환 — AI 분류는 백그라운드로
@@ -1915,18 +2158,13 @@ app.post('/api/inbox', async (req, res) => {
     try {
       const c = await classify(rawText, null);
       if (c.category !== 'inbox') {
-        const db  = readDB();
-        const idx = db.findIndex(i => i.id === newItem.id);
-        if (idx !== -1) {
-          db[idx].category   = c.category;
-          db[idx].shelf      = c.category;
-          db[idx].keywords   = c.keywords;
-          db[idx].summary    = c.summary || db[idx].summary;
-          db[idx].classifier = `inbox-ai:${c.classifier}`;
-          db[idx].updatedAt  = new Date().toISOString();
-          writeDB(db);
-          console.log(`[인박스] AI 분류 완료: "${rawText.slice(0,40)}" → ${c.category}`);
-        }
+        newItem.category   = c.category;
+        newItem.keywords   = c.keywords;
+        newItem.summary    = c.summary || newItem.summary;
+        newItem.classifier = `inbox-ai:${c.classifier}`;
+        newItem.updatedAt  = new Date().toISOString();
+        dbUpdate(newItem);
+        console.log(`[인박스] AI 분류 완료: "${rawText.slice(0,40)}" → ${c.category}`);
       }
     } catch (e) {
       console.error('[인박스] AI 분류 실패:', e.message);
@@ -2244,7 +2482,6 @@ app.post('/api/daily-feed/:date/:subId/save', async (req, res) => {
     id:         uuidv4(),
     text:       text.slice(0, 2000),
     category:   feed.category || 'en',
-    shelf:      feed.category || 'en',
     keywords:   [feed.subCategory, date].filter(Boolean).slice(0, 3),
     summary:    feed.summary || feed.title || '',
     classifier: 'daily-feed',
@@ -2256,12 +2493,10 @@ app.post('/api/daily-feed/:date/:subId/save', async (req, res) => {
     createdAt:  now.toISOString(),
     updatedAt:  now.toISOString(),
     insights:   [],
-    feedData:   feed   // 원본 피드 데이터 보존
+    feedData:   feed
   };
 
-  const items = readDB();
-  items.unshift(newItem);
-  writeDB(items);
+  dbInsert(newItem);
 
   // dailyFeeds에 savedItemId 기록
   all[date][subId].savedItemId = newItem.id;
@@ -2307,12 +2542,11 @@ app.post('/api/archive/single', async (req, res) => {
     id:         uuidv4(),
     text,
     category:   feed.category || 'en',
-    shelf:      feed.category || 'en',
     keywords:   [entry.expression || entry.term, feed.subCategory].filter(Boolean).slice(0, 3),
     summary:    entry.meaning || entry.importance || '',
     classifier: 'daily-feed-single',
     source:     'daily-feed',
-    type:       feed.type === 'language' ? 'text' : 'text',
+    type:       'text',
     date:       toDateStr(now),
     time:       toTimeStr(now),
     createdAt:  now.toISOString(),
@@ -2320,9 +2554,7 @@ app.post('/api/archive/single', async (req, res) => {
     insights:   []
   };
 
-  const items = readDB();
-  items.unshift(newItem);
-  writeDB(items);
+  dbInsert(newItem);
 
   // savedEntries 기록
   if (!all[date][subId].savedEntries) all[date][subId].savedEntries = {};
@@ -2453,7 +2685,6 @@ app.post('/api/items', async (req, res) => {
       type       : 'youtube',
       text       : rawText,
       category   : 'youtube',
-      shelf      : 'youtube',
       source     : ytUrl,
       title      : rawTitle,
       thumbnail,
@@ -2469,62 +2700,115 @@ app.post('/api/items', async (req, res) => {
       insights   : []
     };
 
-    const items = readDB();
-    items.unshift(newItem);
-    writeDB(items);
+    dbInsert(newItem);
     console.log(`[저장] [youtube] "${rawTitle}"`);
     return res.status(201).json({ success: true, item: newItem });
   }
 
-  // ── 일반 텍스트/이미지 처리 ──
-  const now            = new Date();
-  const c              = await classify(rawText, manualCategory);
-  const shelf          = c.category === 'inbox' ? 'inbox' : c.category;
+  // ── 일반 텍스트 처리 ──
+  const now     = new Date();
+  const c       = await classify(rawText, manualCategory);
 
   const newItem = {
-    id: uuidv4(), text: rawText, category: c.category, shelf,
-    keywords: [...c.keywords, ...extraTags].slice(0, 6),
-    summary: c.summary, classifier: c.classifier, source,
-    date: toDateStr(now), time: toTimeStr(now),
-    createdAt: now.toISOString(), updatedAt: now.toISOString(), insights: []
+    id        : uuidv4(),
+    text      : rawText,
+    category  : c.category,
+    keywords  : [...c.keywords, ...extraTags].slice(0, 6),
+    summary   : c.summary,
+    classifier: c.classifier,
+    source,
+    date      : toDateStr(now),
+    time      : toTimeStr(now),
+    createdAt : now.toISOString(),
+    updatedAt : now.toISOString(),
+    insights  : []
   };
 
-  const items = readDB();
-  items.unshift(newItem);
-  writeDB(items);
+  dbInsert(newItem);
   console.log(`[저장] [${newItem.category}] "${rawText.slice(0,60)}"`);
 
-  const recentItems = items.slice(1, 30);
-  detectCrossInsight(newItem, recentItems).then(insight => {
-    if (!insight) return;
-    const db  = readDB();
-    const idx = db.findIndex(i => i.id === newItem.id);
-    if (idx !== -1) {
-      db[idx].insights.push({ id: uuidv4(), title: insight.title, body: insight.insight, createdAt: new Date().toISOString() });
-      writeDB(db);
-    }
-  }).catch(() => {});
+  // detectCrossInsight는 저장마다 호출하지 않음
+  // → 유저가 서재 탭에서 [AI 기간별 요약]을 명시적으로 요청할 때 POST /api/insights/detect 사용
 
   res.status(201).json({ success: true, item: newItem });
 });
 
+/**
+ * POST /api/insights/detect
+ * 서재 탭 [AI 기간별 요약] 버튼에서 명시적으로 호출할 때만 실행
+ * Body: { startDate?, endDate? }  — 생략 시 최근 30일
+ *
+ * en ↔ history 카테고리 간 교차 통찰을 배치로 감지해 각 아이템의 insights 배열에 누적
+ */
+app.post('/api/insights/detect', async (req, res) => {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return res.status(503).json({ success: false, error: 'ANTHROPIC_API_KEY 미설정 — 통찰 감지 불가' });
+  }
+
+  const { startDate, endDate } = req.body || {};
+  const now    = new Date();
+  const toDate = endDate   || toDateStr(now);
+  const fromDate = startDate || toDateStr(new Date(now.getTime() - 30 * 86400000));
+
+  const items = _sqlQuery(
+    "SELECT data FROM items WHERE date >= ? AND date <= ? AND category IN ('en','history') ORDER BY created_at DESC LIMIT 60",
+    [fromDate, toDate]
+  ).map(r => JSON.parse(r.data));
+
+  if (items.length < 2) {
+    return res.json({ success: true, detected: 0, message: '통찰 감지에 필요한 아이템이 부족합니다 (en·history 각 1개 이상 필요).' });
+  }
+
+  const enItems   = items.filter(i => i.category === 'en');
+  const histItems = items.filter(i => i.category === 'history');
+  if (!enItems.length || !histItems.length) {
+    return res.json({ success: true, detected: 0, message: 'en 또는 history 카테고리 아이템이 없어 교차 통찰을 생성할 수 없습니다.' });
+  }
+
+  // 최신 en 아이템 3개에 대해서만 교차 통찰 감지 (비용 절감)
+  let detected = 0;
+  const targets = enItems.slice(0, 3);
+
+  for (const target of targets) {
+    try {
+      const insight = await detectCrossInsight(target, histItems);
+      if (insight) {
+        target.insights = target.insights || [];
+        target.insights.push({
+          id        : uuidv4(),
+          title     : insight.title,
+          body      : insight.insight,
+          createdAt : new Date().toISOString()
+        });
+        target.updatedAt = new Date().toISOString();
+        dbUpdate(target);
+        detected++;
+      }
+    } catch (e) {
+      console.warn('[통찰감지] 항목 처리 실패 (계속):', e.message);
+    }
+  }
+
+  console.log(`[통찰감지] 배치 완료 — ${detected}/${targets.length}개 통찰 생성`);
+  res.json({ success: true, detected, scanned: targets.length, period: { from: fromDate, to: toDate } });
+});
+
 app.patch('/api/items/:id', (req, res) => {
   const items = readDB();
-  const idx   = items.findIndex(i => i.id === req.params.id);
-  if (idx === -1) return res.status(404).json({ success: false, error: '항목을 찾을 수 없습니다.' });
-  const allowed = ['category','shelf','keywords','summary','source','text','myInsight'];
-  allowed.forEach(k => { if (req.body[k] !== undefined) items[idx][k] = req.body[k]; });
-  items[idx].updatedAt = new Date().toISOString();
-  writeDB(items);
-  res.json({ success: true, item: items[idx] });
+  const item  = items.find(i => i.id === req.params.id);
+  if (!item) return res.status(404).json({ success: false, error: '항목을 찾을 수 없습니다.' });
+  const allowed = ['category', 'keywords', 'summary', 'source', 'text', 'myInsight'];
+  allowed.forEach(k => { if (req.body[k] !== undefined) item[k] = req.body[k]; });
+  // category 변경 시 shelf 자동 동기화 (dbUpdate 내부에서도 처리)
+  item.updatedAt = new Date().toISOString();
+  dbUpdate(item);
+  res.json({ success: true, item });
 });
 
 app.delete('/api/items/:id', (req, res) => {
-  let items  = readDB();
-  const prev = items.length;
-  items      = items.filter(i => i.id !== req.params.id);
-  if (items.length === prev) return res.status(404).json({ success: false, error: '항목을 찾을 수 없습니다.' });
-  writeDB(items);
+  const row = _sqlGet('SELECT id FROM items WHERE id=?', [req.params.id]);
+  if (!row) return res.status(404).json({ success: false, error: '항목을 찾을 수 없습니다.' });
+  dbDelete(req.params.id);
   res.json({ success: true });
 });
 
@@ -2939,8 +3223,7 @@ app.post('/api/analyze-image', upload.single('image'), async (req, res) => {
     const newItem = {
       id:           uuidv4(),
       type:         'image_analysis',
-      category:     'inbox',      // 이미지 분석은 기본 인박스
-      shelf:        'inbox',
+      category:     'inbox',
       title:        analysisResult.title || '사진 분석 결과',
       text:         analysisResult.summary || '',
       summary:      analysisResult.summary || '',
@@ -2960,9 +3243,7 @@ app.post('/api/analyze-image', upload.single('image'), async (req, res) => {
       insights:     []
     };
 
-    const items = readDB();
-    items.unshift(newItem);
-    writeDB(items);
+    dbInsert(newItem);
 
     console.log(`[이미지분석] 저장 완료: "${newItem.title}" → ${newItem.id}`);
 
@@ -3006,8 +3287,7 @@ app.get('/api/stats', (req, res) => {
     const ds = toDateStr(d);
     return { date: ds, count: daily[ds] || 0 };
   });
-  const shelfCounts = {};
-  items.forEach(i => { shelfCounts[i.shelf || i.category] = (shelfCounts[i.shelf || i.category] || 0) + 1; });
+  const shelfCounts = { ...counts };  // shelf === category (단일 필드 정책)
   res.json({ success: true, stats: { total: items.length, byCategory: counts, shelfCounts, todayCount, weekCount, streak, grassData } });
 });
 
@@ -3118,11 +3398,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/health', (req, res) => {
+  let dbItemCount = 0;
+  try { const r = _sqlGet('SELECT COUNT(*) AS c FROM items'); dbItemCount = r ? Number(r.c) : 0; } catch {}
   res.json({
     status:    'ok',
     service:   'SJ 지식 서재',
-    version:   'v30',
+    version:   'v35',
     timestamp: new Date().toISOString(),
+    db:        { type: 'sqlite', items: dbItemCount },
     env: {
       gemini:    !!process.env.GEMINI_API_KEY,
       claude:    !!process.env.ANTHROPIC_API_KEY,
@@ -3135,6 +3418,8 @@ app.get('/health', (req, res) => {
 //  서버 시작  (0.0.0.0 바인딩 — Render.com 필수)
 // ══════════════════════════════════════════════════
 
+// sql.js WASM 초기화는 async — DB 준비 후 listen
+initSQLiteDB().then(() => {
 app.listen(PORT, '0.0.0.0', async () => {
   console.log('\n┌──────────────────────────────────────────────────────┐');
   console.log('│      SJ 지식 서재 (Knowledge Library) v5              │');
@@ -3177,3 +3462,4 @@ app.listen(PORT, '0.0.0.0', async () => {
     console.log(`[시작] 오늘(${today}) 피드 캐시 존재 (${Object.keys(cached||{}).length}개) — 즉시 반환 준비 완료`);
   }
 });
+}).catch(e => { console.error('[SQLite] 초기화 실패 — 서버 종료:', e); process.exit(1); });

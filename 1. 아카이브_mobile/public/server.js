@@ -785,6 +785,20 @@ async function generateMarketFeed(sub, user) {
  * 역사 지식 한줌 피드 생성
  * user.feed_settings.hist_daily.era: '한국사' | '세계사' | '상관없음'
  */
+/* 역사: 주제 영역 회전 풀 */
+const HISTORY_ANGLES = [
+  '경제·화폐·무역의 역사',
+  '의학·전염병·과학 발견의 순간',
+  '외교·협상·동맹의 뒷이야기',
+  '발명·기술이 바꾼 일상',
+  '실패한 개혁·반면교사의 역사',
+  '무명의 영웅·재평가된 인물',
+  '음식·기호품이 움직인 역사',
+  '정보전·첩보·암호의 역사',
+  '법·제도·재판의 결정적 장면',
+  '예술·문화가 정치를 바꾼 순간'
+];
+
 async function generateHistoryFeed(sub, user) {
   const cfg = user?.feed_settings?.['hist_daily'] || {};
   const era = cfg.era || '상관없음';
@@ -795,9 +809,13 @@ async function generateHistoryFeed(sub, user) {
     ? '반드시 세계사(한국 제외 전세계) 사건·인물·흐름에서 주제를 선택하세요.'
     : '한국사와 세계사 중 오늘에 가장 흥미롭고 임팩트 있는 주제를 자유롭게 선택하세요.';
 
+  const angle = HISTORY_ANGLES[dayOfYearIndex() % HISTORY_ANGLES.length];
+
   const prompt = `당신은 성재님의 역사 학습 수석 비서입니다. 바쁜 직장인인 성재님이 아침 2분 만에 흥미로운 역사 사실을 소화할 수 있도록 엄선합니다.
 
 ${eraInstruction}
+★ 오늘의 관점 (반드시 이 각도에서 주제 선택): ${angle}
+★ 교과서 단골(세종대왕 한글 창제, 이순신 명량, 링컨 암살 등 누구나 아는 이야기)은 피하고, 역사 애호가도 "처음 듣는다"고 할 이야기를 발굴하세요.
 
 다음 JSON 형식으로만 응답하세요 (순수 JSON, 마크다운 코드블록 없이):
 {
@@ -846,11 +864,39 @@ ${eraInstruction}
   };
 }
 
+/* ── 날짜 기반 결정적 회전 인덱스 (이력이 없어도 날마다 다른 영역 보장) ── */
+function dayOfYearIndex() {
+  const now   = new Date();
+  const start = new Date(now.getFullYear(), 0, 0);
+  return Math.floor((now - start) / 86400000);
+}
+
+/* 명언: 명사 분야 회전 풀 */
+const QUOTE_DOMAINS = [
+  '고대 그리스·로마 철학자 (단, 너무 유명한 소크라테스 명언 제외)',
+  '동양 사상가 (공자·노자·장자 외에 덜 알려진 사상가 우선)',
+  '20세기 과학자 (아인슈타인 외 — 파인만, 퀴리, 보어 등)',
+  '예술가·음악가 (화가, 작곡가, 건축가)',
+  '문학가·소설가 (한국·일본·유럽·남미 작가 골고루)',
+  '기업가·혁신가 (잡스·머스크 제외, 덜 알려진 인물 우선)',
+  '역사 속 정치가·장군 (처칠 외 — 다양한 시대·문화권)',
+  '심리학자·사회학자 (프로이트 외 — 아들러, 융, 프랭클 등)',
+  '탐험가·모험가·스포츠인',
+  '여성 선구자 (과학·예술·인권 분야)'
+];
+
+/* 명언 단골 금지 목록 — 이력이 비어도 항상 금지 */
+const QUOTE_BANNED = '니체의 "괴물과 싸우는 사람…" / 잡스의 "Stay hungry…" / 아인슈타인의 "상상력이 지식보다…" / 만델라의 "불가능해 보이는 일도…" / 간디의 "세상의 변화를 원한다면…" / 처칠의 "성공은 끝이 아니며…" / 에디슨의 "천재는 1%의 영감…"';
+
 /**
  * 오늘의 명언 피드 생성
  */
 async function generateQuoteFeed(sub) {
+  const domain = QUOTE_DOMAINS[dayOfYearIndex() % QUOTE_DOMAINS.length];
+
   const prompt = `당신은 성재님의 인문학 학습 수석 비서입니다. 오늘 성재님의 하루를 풍요롭게 만들 명언을 엄선합니다.
+
+★ 오늘의 명사 분야 (반드시 이 분야에서 선택): ${domain}
 
 다음 JSON 형식으로만 응답하세요 (순수 JSON, 마크다운 코드블록 없이):
 {
@@ -867,10 +913,13 @@ async function generateQuoteFeed(sub) {
 - 너무 진부하지 않은 명언 — 깊이 있는 통찰을 담은 것으로 선별
 - behindStory는 교과서에 없는 흥미로운 배경 이야기 (구체적 에피소드 포함)
 - application은 직장/자기계발에 연결되는 실용적 방법
-- 거부 메시지, 마크다운 없이 순수 JSON만 응답${(() => {
+- 거부 메시지, 마크다운 없이 순수 JSON만 응답
+- ★★ 단골 금지: 아래 너무 유명한 명언들은 절대 선택하지 마세요.
+  [${QUOTE_BANNED}]
+- 교과서·SNS에서 흔히 보는 수준 말고, 해당 분야 전문가가 "오, 이건 몰랐다"라고 할 깊이의 명언을 발굴하세요${(() => {
     const recent = getRecentDelivered(sub.id, 14, 'titles');
     return recent.length
-      ? `\n- ★★ 절대 중복 금지: 최근 14일 내 이미 배달된 명언 [${recent.slice(0, 20).join(' / ')}] 과 같은 명언·같은 명사의 유사 명언은 피하세요.`
+      ? `\n- ★★ 최근 배달분 중복 금지: [${recent.slice(0, 20).join(' / ')}] 과 같은 명언·같은 명사의 유사 명언은 피하세요.`
       : '';
   })()}`;
 
@@ -901,11 +950,32 @@ async function generateQuoteFeed(sub) {
   };
 }
 
+/* 고사성어: 주제 영역 회전 풀 */
+const IDIOM_THEMES = [
+  '처세·인간관계의 지혜',
+  '리더십·통솔의 도',
+  '인내·끈기·역경 극복',
+  '전략·승부·판단력',
+  '배움·성장·자기수양',
+  '말과 신뢰·약속',
+  '겸손·자만 경계',
+  '우정·의리·사람 보는 눈',
+  '변화·혁신·시대 읽기',
+  '부귀·욕심·만족의 철학'
+];
+
+/* 고사성어 단골 금지 목록 */
+const IDIOM_BANNED = '새옹지마, 괄목상대, 각주구검, 온고지신, 와신상담, 권토중래, 타산지석, 청출어람, 대기만성, 고진감래, 사필귀정, 전화위복, 일석이조, 유비무환, 살신성인';
+
 /**
  * 오늘의 고사성어 피드 생성
  */
 async function generateIdiomFeed(sub) {
+  const theme = IDIOM_THEMES[dayOfYearIndex() % IDIOM_THEMES.length];
+
   const prompt = `당신은 성재님의 인문학 학습 수석 비서입니다. 오늘 성재님이 마음에 새길 고사성어 한 편을 엄선합니다.
+
+★ 오늘의 주제 영역 (반드시 이 주제에 맞는 고사성어 선택): ${theme}
 
 다음 JSON 형식으로만 응답하세요 (순수 JSON, 마크다운 코드블록 없이):
 {
@@ -919,13 +989,17 @@ async function generateIdiomFeed(sub) {
 }
 
 규칙:
-- 너무 유명한 것보다 깊이 있는 고사성어도 좋음 (단, 한자 독음이 명확한 것)
+- 깊이 있는 고사성어 선별 (단, 한자 독음이 명확한 것)
 - story는 구체적인 인물·국가·시대 묘사 포함
 - behindStory는 원전에서 잘 드러나지 않는 흥미로운 뒷이야기
-- 거부 메시지, 마크다운 없이 순수 JSON만 응답${(() => {
+- 거부 메시지, 마크다운 없이 순수 JSON만 응답
+- ★★ 단골 금지: 아래 너무 유명한 고사성어는 절대 선택하지 마세요.
+  [${IDIOM_BANNED}]
+- 한문 교과서 단골 말고, 사기·자치통감·세설신어 등 원전에서 덜 알려졌지만
+  직장인에게 와닿는 고사성어를 발굴하세요${(() => {
     const recent = getRecentDelivered(sub.id, 14, 'titles');
     return recent.length
-      ? `\n- ★★ 절대 중복 금지: 최근 14일 내 이미 배달된 고사성어 [${recent.slice(0, 20).join(' / ')}] 와 같은 것은 절대 선택하지 마세요.`
+      ? `\n- ★★ 최근 배달분 중복 금지: [${recent.slice(0, 20).join(' / ')}] 와 같은 것은 절대 선택하지 마세요.`
       : '';
   })()}`;
 

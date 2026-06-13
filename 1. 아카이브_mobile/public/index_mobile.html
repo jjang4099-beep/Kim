@@ -24,6 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
   <link rel="stylesheet" href="css/style_mobile.css?v=32"/>
+  <link rel="stylesheet" href="css/exam.css?v=2"/>
 </head>
 <body>
 
@@ -34,6 +35,27 @@
   <div class="splash-inner">
     <img src="/icons/archive-logo.svg" class="splash-logo" alt="Archive"/>
     <p class="splash-subtitle">나만의 지식 아카이브</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     모드 선택 온보딩 (최초 1회)
+══════════════════════════════════════════════════════ -->
+<div class="mob-onboarding" id="mobOnboarding" hidden>
+  <div class="mob-onboarding-card">
+    <div class="mob-onboarding-logo">
+      <img src="/icons/archive-logo.svg" style="width:64px;height:64px" alt="Archive"/>
+    </div>
+    <h2 class="mob-onboarding-title">어떻게 사용하실 건가요?</h2>
+    <button class="mob-mode-btn exam" onclick="Mob.setMode('exam')">
+      <span class="mob-mode-btn-title">📚 수험생 모드</span>
+      <span class="mob-mode-btn-sub">오답 분석 · 개념 배달 · 약점 관리</span>
+    </button>
+    <button class="mob-mode-btn work" onclick="Mob.setMode('work')">
+      <span class="mob-mode-btn-title">💼 직장인 모드</span>
+      <span class="mob-mode-btn-sub">시황 · 영어 · 인문학 지식 배달</span>
+    </button>
+    <p class="mob-mode-change-hint">설정에서 언제든 변경 가능해요</p>
   </div>
 </div>
 
@@ -74,6 +96,25 @@
 
   <!-- ── 뷰 1: 홈 ── -->
   <div class="mob-view active" id="viewHome">
+
+    <!-- 수험생 모드 D-day 헤더 (exam 모드에서만 표시) -->
+    <div class="exam-home-header" id="examHomeHeader" hidden>
+      <div class="exam-dday-block" onclick="ExamMob.openExamSettings()">
+        <span class="exam-dday-label" id="examDdayLabel">시험까지</span>
+        <span class="exam-dday-num" id="examDdayNum">D-?</span>
+      </div>
+      <div class="exam-today-stats">
+        <div class="exam-stat-chip" onclick="Mob.switchView('summary',el('bnSummary'))">
+          <i class="ti ti-refresh"></i>
+          <span id="examReviewDue">0</span>개 복습 대기
+        </div>
+        <div class="exam-stat-chip">
+          <i class="ti ti-flame"></i>
+          <span id="examStreak">0</span>일 연속
+        </div>
+      </div>
+    </div>
+
     <div id="mobFeed">
       <div class="mob-loading" id="mobLoading">
         <span class="mob-spin"></span> 불러오는 중…
@@ -105,6 +146,21 @@
   <!-- ── 뷰 3: 서재 ── -->
   <div class="mob-view" id="viewSummary">
     <div class="mvw-library-wrap">
+
+      <!-- 수험생 모드 — 오답/개념 탭 (exam 모드에서만 표시) -->
+      <div class="mvw-lib-type-tabs" id="libTypeTabs" hidden>
+        <button class="mvw-lib-type-tab active" data-type="wrong"
+                onclick="ExamMob.setLibType('wrong',this)">
+          <i class="ti ti-x"></i> 오답 노트
+        </button>
+        <button class="mvw-lib-type-tab" data-type="concept"
+                onclick="ExamMob.setLibType('concept',this)">
+          <i class="ti ti-bulb"></i> 개념 서재
+        </button>
+      </div>
+
+      <!-- 오답 노트 타임라인 (exam 모드) -->
+      <div id="wrongAnswerTimeline" hidden></div>
 
       <!-- 도메인 필터 — 8대 지식 온톨로지 -->
       <nav class="mob-tabs mob-tabs-lib" id="libFilterBar">
@@ -190,6 +246,43 @@
   <!-- ── 뷰 4: 학습 관리 ── -->
   <div class="mob-view" id="viewManage">
     <div class="mvw-manage-wrap">
+
+      <!-- 수험생 모드 전용 대시보드 (exam 모드에서만 표시) -->
+      <div class="mvw-section-block mvw-exam-block" id="examDashboard" hidden>
+
+        <!-- 모드 전환 버튼 -->
+        <button class="mvw-mode-switch-btn" onclick="Mob.setMode('work')">
+          <i class="ti ti-switch-horizontal"></i> 직장인 모드로 전환
+        </button>
+
+        <!-- D-day 설정 -->
+        <div class="mvw-block-title"><i class="ti ti-calendar-event"></i> 시험 설정</div>
+        <div class="mvw-exam-dday-setting">
+          <input type="text"  id="examNameInput" class="mvw-exam-input"
+                 placeholder="시험 이름 (예: 수능 2027, 공무원 9급)"/>
+          <input type="date"  id="examDateInput" class="mvw-exam-input"/>
+          <button class="mvw-exam-save-btn" onclick="ExamMob.saveExamSettings()">
+            <i class="ti ti-device-floppy"></i> 저장
+          </button>
+        </div>
+
+        <!-- 약점 TOP 3 -->
+        <div class="mvw-block-title" style="margin-top:24px">
+          <i class="ti ti-target"></i> 나의 약점 TOP 3
+        </div>
+        <div id="examWeaknessTop3">
+          <div class="mob-loading"><span class="mob-spin"></span></div>
+        </div>
+
+        <!-- 과목별 오답 바 차트 -->
+        <div class="mvw-block-title" style="margin-top:20px">
+          <i class="ti ti-chart-bar"></i> 과목별 오답 현황
+        </div>
+        <div id="examSubjectBars">
+          <div class="mob-loading"><span class="mob-spin"></span></div>
+        </div>
+
+      </div>
 
       <!-- 배달 설정 패널 -->
       <div class="mvw-section-block mvw-delivery-panel" id="deliveryPanel">
@@ -461,6 +554,19 @@
       <input type="file" id="mobImageInput" accept="image/*"
         style="display:none" onchange="Mob.handleImageSelect(this)"/>
 
+      <!-- 수험생 모드 — 과목 선택 (exam 모드에서만 표시) -->
+      <div class="mob-exam-subject-row" id="examSubjectRow" hidden>
+        <span class="mob-exam-subject-label"><i class="ti ti-school"></i> 과목 선택</span>
+        <div class="mob-exam-subject-chips">
+          <button class="mob-subj-chip active" data-subj="math"    onclick="ExamMob.setSubject('math',this)">📐 수학</button>
+          <button class="mob-subj-chip"        data-subj="korean"  onclick="ExamMob.setSubject('korean',this)">📖 국어</button>
+          <button class="mob-subj-chip"        data-subj="english" onclick="ExamMob.setSubject('english',this)">🗽 영어</button>
+          <button class="mob-subj-chip"        data-subj="history" onclick="ExamMob.setSubject('history',this)">🏛️ 한국사</button>
+          <button class="mob-subj-chip"        data-subj="science" onclick="ExamMob.setSubject('science',this)">🔬 탐구</button>
+          <button class="mob-subj-chip"        data-subj="cert"    onclick="ExamMob.setSubject('cert',this)">📋 자격증</button>
+        </div>
+      </div>
+
       <div class="mob-img-pick-area" id="mobImgPickArea" onclick="el('mobImageInput').click()">
         <i class="ti ti-camera-plus"></i>
         <p>탭하여 사진 촬영 또는 갤러리에서 선택</p>
@@ -496,7 +602,8 @@
 <!-- 토스트 -->
 <div class="mob-toast" id="mobToast" hidden></div>
 
-<script src="js/app_mobile.js?v=44"></script>
+<script src="js/app_mobile.js?v=46"></script>
+<script src="js/app_exam.js?v=1"></script>
 <script src="js/pwa.js?v=1"></script>
 <script>
 (function() {

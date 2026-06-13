@@ -40,6 +40,7 @@ const DAILY_FEEDS_PATH       = path.join(__dirname, 'data', 'dailyFeeds.json');
 const SUBSCRIPTIONS_PATH     = path.join(__dirname, 'data', 'subscriptions.json');
 const USERS_PATH             = path.join(__dirname, 'data', 'users.json');
 const PUSH_SUBS_PATH         = path.join(__dirname, 'data', 'push_subscriptions.json');
+const EXAM_SETTINGS_PATH     = path.join(__dirname, 'data', 'exam_settings.json');
 
 // ══════════════════════════════════════════════════
 //  Layer 1: 8대 지식 도메인 온톨로지
@@ -2905,7 +2906,11 @@ app.patch('/api/items/:id', (req, res) => {
   const items = readDB();
   const item  = items.find(i => i.id === req.params.id);
   if (!item) return res.status(404).json({ success: false, error: '항목을 찾을 수 없습니다.' });
-  const allowed = ['domain', 'tags', 'category', 'keywords', 'summary', 'source', 'text', 'myInsight', 'starred', 'reviewAt', 'reviewCount', 'reviewEase'];
+  const allowed = ['domain', 'tags', 'category', 'keywords', 'summary', 'source', 'text', 'myInsight', 'starred', 'reviewAt', 'reviewCount', 'reviewEase', 'wrongAnswer'];
+  /* wrongAnswerMemo 편의 필드 — wrongAnswer.memo 에 저장 */
+  if (req.body.wrongAnswerMemo !== undefined && item.wrongAnswer) {
+    item.wrongAnswer = { ...item.wrongAnswer, memo: req.body.wrongAnswerMemo };
+  }
   allowed.forEach(k => { if (req.body[k] !== undefined) item[k] = req.body[k]; });
   // domain 변경 시 category·shelf 자동 동기화 (dbUpdate 내부에서도 처리)
   item.updatedAt = new Date().toISOString();
@@ -3414,9 +3419,11 @@ app.post('/api/analyze-image', upload.single('image'), async (req, res) => {
     return res.status(400).json({ success: false, error: '이미지 파일이 없습니다.' });
   }
 
-  const userHint = (req.body.memo || '').trim();
-  const tmpPath  = req.file.path;
-  const mimeType = req.file.mimetype;
+  const userHint   = (req.body.memo || '').trim();
+  const examMode   = req.body.mode === 'exam';
+  const examSubject = (req.body.subject || 'math').trim();
+  const tmpPath    = req.file.path;
+  const mimeType   = req.file.mimetype;
 
   // 확장자 결정
   const extMap = {
@@ -3436,56 +3443,97 @@ app.post('/api/analyze-image', upload.single('image'), async (req, res) => {
 
     // ── Gemini 멀티모달 분석 ──
     let analysisResult;
+    const imageBuffer = fs.readFileSync(finalPath);
+
     if (!process.env.GEMINI_API_KEY) {
       console.warn('[이미지분석] GEMINI_API_KEY 미설정 — 목업 반환');
       analysisResult = generateMockImageAnalysis(fileName, userHint);
+    } else if (examMode) {
+      /* 수험생 오답 분석 프롬프트 */
+      const rawText = await callGeminiWithImageExam(imageBuffer, mimeType, examSubject);
+      const cleaned = rawText.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
+      const parsed  = safeParseJSON(cleaned);
+      analysisResult = parsed && parsed.unit ? parsed : {
+        title: `[${EXAM_SUBJECTS[examSubject] || examSubject}] 오답 분석`,
+        unit: '단원 미분류', whyWrong: rawText.slice(0, 200),
+        keyConceptName: '', keyConceptExplain: '', concepts: [], solvingTip: ''
+      };
     } else {
-      const imageBuffer = fs.readFileSync(finalPath);
       const rawText = await callGeminiWithImage(imageBuffer, mimeType, userHint);
-
-      // JSON 파싱 시도 (코드블록 제거)
-      const cleaned = rawText
-        .replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
-      const parsed = safeParseJSON(cleaned);
-
+      const cleaned = rawText.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
+      const parsed  = safeParseJSON(cleaned);
       if (parsed && parsed.title) {
         analysisResult = parsed;
       } else {
-        // JSON 파싱 실패 → 원문을 fullAnalysis로
         console.warn('[이미지분석] JSON 파싱 실패 — 원문 저장');
-        analysisResult = {
-          title:       '사진 분석 결과',
-          summary:     rawText.slice(0, 100),
-          concepts:    [],
-          steps:       [],
-          fullAnalysis: rawText
-        };
+        analysisResult = { title: '사진 분석 결과', summary: rawText.slice(0, 100), concepts: [], steps: [], fullAnalysis: rawText };
       }
     }
 
-    const now     = new Date();
-    const newItem = {
-      id:           uuidv4(),
-      type:         'image_analysis',
-      category:     'inbox',
-      title:        analysisResult.title || '사진 분석 결과',
-      text:         analysisResult.summary || '',
-      summary:      analysisResult.summary || '',
-      aiSummary:    analysisResult.fullAnalysis || '',
-      concepts:     analysisResult.concepts || [],
-      steps:        analysisResult.steps || [],
-      imageUrl,
-      thumbnailUrl: imageUrl,
-      userHint,
-      keywords:     (analysisResult.concepts || []).slice(0, 3).map(c => c.term || ''),
-      classifier:   'gemini-vision',
-      source:       'image-upload',
-      date:         toDateStr(now),
-      time:         toTimeStr(now),
-      createdAt:    now.toISOString(),
-      updatedAt:    now.toISOString(),
-      insights:     []
-    };
+    const now = new Date();
+    let newItem;
+
+    if (examMode) {
+      /* 수험생 오답 아이템 구조 */
+      newItem = {
+        id:        uuidv4(),
+        type:      'wrong_answer',
+        domain:    'exam',
+        category:  'exam',
+        title:     analysisResult.title || `[${EXAM_SUBJECTS[examSubject]}] 오답`,
+        text:      analysisResult.whyWrong || '',
+        summary:   analysisResult.whyWrong || '',
+        imageUrl,
+        thumbnailUrl: imageUrl,
+        userHint,
+        keywords:  analysisResult.concepts || [],
+        classifier: 'gemini-exam',
+        source:    'image-upload',
+        date:      toDateStr(now),
+        time:      toTimeStr(now),
+        createdAt: now.toISOString(),
+        updatedAt: now.toISOString(),
+        insights:  [],
+        wrongAnswer: {
+          subject:          examSubject,
+          subjectName:      EXAM_SUBJECTS[examSubject] || examSubject,
+          unit:             analysisResult.unit || '단원 미분류',
+          whyWrong:         analysisResult.whyWrong || '',
+          keyConceptName:   analysisResult.keyConceptName || '',
+          keyConceptExplain:analysisResult.keyConceptExplain || '',
+          concepts:         analysisResult.concepts || [],
+          solvingTip:       analysisResult.solvingTip || '',
+          reviewStatus:     'pending',
+          reviewCount:      0,
+          reviewEase:       2.5,
+          reviewAt:         null,
+          lastReview:       null,
+        }
+      };
+    } else {
+      newItem = {
+        id:           uuidv4(),
+        type:         'image_analysis',
+        category:     'inbox',
+        title:        analysisResult.title || '사진 분석 결과',
+        text:         analysisResult.summary || '',
+        summary:      analysisResult.summary || '',
+        aiSummary:    analysisResult.fullAnalysis || '',
+        concepts:     analysisResult.concepts || [],
+        steps:        analysisResult.steps || [],
+        imageUrl,
+        thumbnailUrl: imageUrl,
+        userHint,
+        keywords:     (analysisResult.concepts || []).slice(0, 3).map(c => c.term || ''),
+        classifier:   'gemini-vision',
+        source:       'image-upload',
+        date:         toDateStr(now),
+        time:         toTimeStr(now),
+        createdAt:    now.toISOString(),
+        updatedAt:    now.toISOString(),
+        insights:     []
+      };
+    }
 
     dbInsert(newItem);
 
@@ -3626,6 +3674,215 @@ app.get('/api/insights', (req, res) => {
 app.get('/api/subscriptions', (req, res) => {
   const subs = readJSON(SUBSCRIPTIONS_PATH, []);
   res.json({ success: true, subscriptions: subs });
+});
+
+// ══════════════════════════════════════════════════
+//  수험생 모드 API (Exam Mode)
+// ══════════════════════════════════════════════════
+
+/* 과목 코드 → 한국어 레이블 */
+const EXAM_SUBJECTS = {
+  math:    '수학',
+  korean:  '국어',
+  english: '영어',
+  history: '한국사',
+  science: '탐구',
+  cert:    '자격증',
+};
+
+/* 과목별 추천 채널 (Phase 1 — 수동 큐레이션) */
+const LECTURE_CHANNELS = {
+  math:    ['수학의神', '수악중독', 'EBSi 수학'],
+  korean:  ['EBSi 국어', '현우진 국어'],
+  english: ['EBSi 영어', '조정식 영어'],
+  history: ['EBSi 한국사', '설민석'],
+  science: ['EBSi 과학탐구'],
+  cert:    ['에듀윌', '해커스'],
+};
+
+/* 수험생 오답 분석용 Gemini 프롬프트 */
+async function callGeminiWithImageExam(imageBuffer, mimeType, subject = 'math') {
+  const { GoogleGenerativeAI } = require('@google/generative-ai');
+  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+  const model = genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL || 'gemini-1.5-flash' });
+  const subjectName = EXAM_SUBJECTS[subject] || '수학';
+
+  const prompt = `당신은 수험생 전문 튜터입니다. 이 문제 사진을 분석해주세요.
+과목: ${subjectName}
+
+반드시 아래 JSON 형식으로만 출력하세요 (마크다운 코드블록 없이 순수 JSON):
+{
+  "unit": "단원명 (예: 수열 > 등차수열의 합)",
+  "whyWrong": "틀린 이유 추정 (2~3문장)",
+  "keyConceptName": "핵심 개념명",
+  "keyConceptExplain": "핵심 개념 설명 (3~5문장)",
+  "concepts": ["연관개념1", "연관개념2", "연관개념3"],
+  "solvingTip": "비슷한 문제 풀이 팁 (1~2문장)",
+  "title": "카드 제목 (예: [${subjectName}] 등차수열의 합 오답)"
+}`;
+
+  const timeoutP = new Promise((_, rej) => setTimeout(() => rej(new Error('Gemini 타임아웃')), 25000));
+  const result = await Promise.race([
+    model.generateContent({
+      contents: [{
+        role: 'user',
+        parts: [
+          { inlineData: { mimeType, data: imageBuffer.toString('base64') } },
+          { text: prompt }
+        ]
+      }],
+      generationConfig: { maxOutputTokens: 1500, temperature: 0.4 }
+    }),
+    timeoutP
+  ]);
+  return result.response.text();
+}
+
+/* GET /api/exam/settings */
+app.get('/api/exam/settings', (req, res) => {
+  const settings = readJSON(EXAM_SETTINGS_PATH, {});
+  res.json({ success: true, ...settings });
+});
+
+/* POST /api/exam/settings */
+app.post('/api/exam/settings', (req, res) => {
+  const { examDate, examName } = req.body;
+  const settings = { examDate: examDate || null, examName: examName || '' };
+  writeJSON(EXAM_SETTINGS_PATH, settings);
+  res.json({ success: true, ...settings });
+});
+
+/* GET /api/exam/today-summary */
+app.get('/api/exam/today-summary', (req, res) => {
+  const items = readDB();
+  const now   = new Date();
+  const todayStr = toDateStr(now);
+
+  /* 오늘 틀린 문제 수 */
+  const todayWrong = items.filter(i => i.type === 'wrong_answer' && i.date === todayStr).length;
+
+  /* 복습 대기 중인 오답 (reviewAt <= now) */
+  const reviewDue = items.filter(i =>
+    i.type === 'wrong_answer' &&
+    i.wrongAnswer?.reviewAt &&
+    new Date(i.wrongAnswer.reviewAt) <= now
+  ).length;
+
+  /* 연속 학습일 (오답 저장 기준, 최대 365일 역추적) */
+  const wrongDates = new Set(
+    items.filter(i => i.type === 'wrong_answer').map(i => i.date).filter(Boolean)
+  );
+  let streak = 0;
+  const cursor = new Date();
+  while (wrongDates.has(toDateStr(cursor)) && streak < 365) {
+    streak++;
+    cursor.setDate(cursor.getDate() - 1);
+  }
+
+  res.json({ success: true, todayWrong, reviewDue, streak });
+});
+
+/* GET /api/exam/weakness-analysis */
+app.get('/api/exam/weakness-analysis', (req, res) => {
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - 30);
+
+  const items = readDB().filter(i =>
+    i.type === 'wrong_answer' && new Date(i.createdAt) >= cutoff
+  );
+
+  /* 과목 + 단원별 집계 */
+  const unitMap = {};
+  items.forEach(i => {
+    const w = i.wrongAnswer || {};
+    const key = `${w.subject || 'etc'}::${w.unit || '미분류'}`;
+    if (!unitMap[key]) {
+      unitMap[key] = {
+        subject:     w.subject || 'etc',
+        subjectName: EXAM_SUBJECTS[w.subject] || w.subject || '기타',
+        unit:        w.unit || '미분류',
+        concepts:    [],
+        count:       0
+      };
+    }
+    unitMap[key].count++;
+    (w.concepts || []).forEach(c => {
+      if (!unitMap[key].concepts.includes(c)) unitMap[key].concepts.push(c);
+    });
+  });
+
+  const topWeakness = Object.values(unitMap)
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 3);
+
+  const subjectCounts = {};
+  items.forEach(i => {
+    const s = i.wrongAnswer?.subject || 'etc';
+    subjectCounts[s] = (subjectCounts[s] || 0) + 1;
+  });
+
+  res.json({ success: true, topWeakness, subjectCounts, totalWrong: items.length });
+});
+
+/* GET /api/lecture-recommend?concept=X&subject=Y */
+app.get('/api/lecture-recommend', (req, res) => {
+  const { concept = '', subject = 'math' } = req.query;
+  const searchQuery = encodeURIComponent(`${concept} 개념 강의`);
+  res.json({
+    success: true,
+    links: [
+      {
+        title:    `"${concept}" 유튜브 강의 검색`,
+        url:      `https://www.youtube.com/results?search_query=${searchQuery}`,
+        platform: 'YouTube',
+        isFree:   true,
+      },
+      {
+        title:    `EBSi에서 "${concept}" 찾기`,
+        url:      `https://www.ebsi.co.kr/ebs/search/search.ebs?searchKeyword=${encodeURIComponent(concept)}`,
+        platform: 'EBSi',
+        isFree:   true,
+      }
+    ]
+  });
+});
+
+/* PATCH /api/items/:id/wrong-review  (SM-2 오답 복습 평가) */
+app.patch('/api/items/:id/wrong-review', (req, res) => {
+  const items = readDB();
+  const item  = items.find(i => i.id === req.params.id);
+  if (!item) return res.status(404).json({ success: false, error: '항목을 찾을 수 없습니다.' });
+  if (item.type !== 'wrong_answer') return res.status(400).json({ success: false, error: '오답 항목이 아닙니다.' });
+
+  const quality    = Number(req.body.quality) || 3;
+  const w          = item.wrongAnswer || {};
+  const ease       = w.reviewEase  || 2.5;
+  const count      = (w.reviewCount || 0) + 1;
+  const { interval, ease: newEase } = calcNextReview(ease, count, quality);
+
+  const nextDate = new Date();
+  nextDate.setDate(nextDate.getDate() + interval);
+
+  /* wrongAnswer 필드 내 복습 상태 업데이트 */
+  item.wrongAnswer = {
+    ...w,
+    reviewCount:  count,
+    reviewEase:   newEase,
+    reviewAt:     nextDate.toISOString(),
+    reviewStatus: quality >= 4 ? 'done' : quality >= 3 ? 'reviewing' : 'pending',
+    lastReview:   new Date().toISOString(),
+  };
+  item.updatedAt = new Date().toISOString();
+  dbUpdate(item);
+
+  res.json({ success: true, item, nextReviewAt: item.wrongAnswer.reviewAt, intervalDays: interval });
+});
+
+/* 로그 클릭 API (Phase 2 CPA 준비) */
+app.post('/api/log/lecture-click', (req, res) => {
+  const { concept, subject, platform, url } = req.body;
+  console.log(`[강의클릭] ${subject}/${concept} → ${platform}`);
+  res.json({ success: true });
 });
 
 // ══════════════════════════════════════════════════

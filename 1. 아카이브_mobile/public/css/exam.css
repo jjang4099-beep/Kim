@@ -1,0 +1,311 @@
+/* ═══════════════════════════════════════════
+   exam.css — 수험생 모드 전용 스타일
+   ═══════════════════════════════════════════ */
+
+/* ── 온보딩 오버레이 ── */
+.mob-onboarding {
+  position: fixed; inset: 0; z-index: 9000;
+  background: rgba(0,0,0,.55);
+  display: flex; align-items: flex-end; justify-content: center;
+  animation: examFadeIn .25s ease both;
+}
+.mob-onboarding-card {
+  background: var(--bg-card, #fff);
+  border-radius: 24px 24px 0 0;
+  padding: 32px 24px 48px;
+  width: 100%; max-width: 480px;
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+}
+.mob-onboarding-logo { font-size: 48px; line-height: 1; }
+.mob-onboarding-title {
+  font-size: 20px; font-weight: 700; color: var(--text-1, #111);
+  margin: 0; text-align: center;
+}
+.mob-mode-btn {
+  width: 100%; padding: 18px 20px;
+  border: 2px solid var(--border, #e5e7eb);
+  border-radius: 14px; background: var(--bg-card, #fff);
+  display: flex; flex-direction: column; gap: 4px;
+  cursor: pointer; text-align: left; transition: border-color .15s, background .15s;
+}
+.mob-mode-btn:active { background: var(--bg-hover, #f3f4f6); }
+.mob-mode-btn.exam  { border-color: #4f46e5; }
+.mob-mode-btn.work  { border-color: #2563eb; }
+.mob-mode-btn-title {
+  font-size: 16px; font-weight: 700; color: var(--text-1, #111);
+}
+.mob-mode-btn-sub {
+  font-size: 13px; color: var(--text-2, #6b7280);
+}
+.mob-mode-change-hint {
+  font-size: 12px; color: var(--text-3, #9ca3af); margin: 4px 0 0;
+}
+
+/* ── hidden 속성 보호 (display 재정의로 인한 덮어쓰기 방지) ── */
+[hidden] { display: none !important; }
+
+/* ── 수험생 홈 헤더 (D-day + 오늘 통계) ── */
+.exam-home-header {
+  margin: 12px 16px 0;
+  display: flex; align-items: center; gap: 10px;
+}
+.exam-dday-block {
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  border-radius: 14px; padding: 12px 16px;
+  display: flex; flex-direction: column; align-items: center;
+  cursor: pointer; min-width: 80px;
+}
+.exam-dday-label {
+  font-size: 10px; font-weight: 600; color: rgba(255,255,255,.8);
+  letter-spacing: .04em;
+}
+.exam-dday-num {
+  font-size: 22px; font-weight: 800; color: #fff;
+  line-height: 1.1;
+}
+.exam-today-stats {
+  flex: 1; display: flex; flex-direction: column; gap: 6px;
+}
+.exam-stat-chip {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 10px; padding: 8px 12px;
+  font-size: 13px; color: var(--text-1, #111);
+  display: flex; align-items: center; gap: 6px;
+  cursor: pointer;
+}
+.exam-stat-chip i { color: #4f46e5; }
+
+/* ── 과목 선택 칩 (추가 모달 내) ── */
+.mob-exam-subject-row {
+  padding: 0 4px 12px;
+}
+.mob-exam-subject-label {
+  display: block; font-size: 12px; font-weight: 600;
+  color: var(--text-2, #6b7280); margin-bottom: 8px;
+  letter-spacing: .03em;
+}
+.mob-exam-subject-chips {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.mob-subj-chip {
+  padding: 5px 12px; border-radius: 20px; border: 1.5px solid var(--border, #e5e7eb);
+  background: var(--bg-card, #fff); font-size: 13px; font-weight: 500;
+  color: var(--text-2, #6b7280); cursor: pointer; transition: all .15s;
+}
+.mob-subj-chip.active {
+  border-color: #4f46e5; background: #ede9fe; color: #4f46e5; font-weight: 700;
+}
+
+/* ── 서재 내 오답/개념 탭 ── */
+.mvw-lib-type-tabs {
+  display: flex; gap: 8px; padding: 12px 16px 4px;
+}
+.mvw-lib-type-tab {
+  flex: 1; padding: 9px 0; border-radius: 10px;
+  border: 1.5px solid var(--border, #e5e7eb);
+  background: var(--bg-card, #fff); font-size: 14px; font-weight: 600;
+  color: var(--text-2, #6b7280); cursor: pointer; transition: all .15s;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+}
+.mvw-lib-type-tab.active {
+  border-color: #4f46e5; background: #ede9fe; color: #4f46e5;
+}
+
+/* ── 오답 노트 카드 ── */
+.mvw-wrong-card {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 14px; padding: 14px 16px; margin: 0 16px 10px;
+  cursor: pointer; transition: box-shadow .15s;
+}
+.mvw-wrong-card:active { box-shadow: 0 2px 12px rgba(79,70,229,.15); }
+.mvw-wrong-card-top {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 6px;
+}
+.mvw-wrong-subj-badge {
+  font-size: 11px; font-weight: 700; padding: 2px 8px;
+  border-radius: 6px; background: #ede9fe; color: #4f46e5;
+}
+.mvw-wrong-status { font-size: 12px; font-weight: 600; }
+.mvw-wrong-unit { font-size: 15px; font-weight: 700; color: var(--text-1, #111); }
+.mvw-wrong-concept { font-size: 13px; color: var(--text-2, #6b7280); margin-top: 2px; }
+.mvw-wrong-next-review {
+  font-size: 11px; color: var(--text-3, #9ca3af);
+  display: flex; align-items: center; gap: 4px; margin-top: 6px;
+}
+
+/* ── 오답 상세 모달 ── */
+.mob-wrong-modal .mob-modal-sheet { max-height: 92vh; }
+.mvw-wrong-detail-section {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border, #e5e7eb);
+}
+.mvw-wrong-detail-section:last-child { border-bottom: none; }
+.mvw-wrong-detail-section-title {
+  font-size: 11px; font-weight: 700; color: var(--text-2, #6b7280);
+  letter-spacing: .06em; text-transform: uppercase; margin-bottom: 8px;
+}
+.mvw-wrong-detail-unit {
+  font-size: 17px; font-weight: 800; color: var(--text-1, #111);
+  margin-bottom: 4px;
+}
+.mvw-wrong-detail-text {
+  font-size: 14px; color: var(--text-1, #111); line-height: 1.65;
+}
+.mvw-wrong-concept-tags {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px;
+}
+.mvw-wrong-concept-tag {
+  padding: 4px 10px; border-radius: 20px;
+  border: 1.5px solid var(--border, #e5e7eb);
+  font-size: 13px; color: var(--text-1, #111); cursor: pointer;
+  background: var(--bg-card, #fff); transition: all .12s;
+}
+.mvw-wrong-concept-tag:active { background: #ede9fe; border-color: #4f46e5; color: #4f46e5; }
+
+/* 강의 추천 카드 */
+.mvw-lecture-card {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: 12px;
+  border: 1px solid var(--border, #e5e7eb);
+  background: var(--bg-card, #fff); margin-bottom: 8px;
+  cursor: pointer; text-decoration: none;
+}
+.mvw-lecture-card-icon { font-size: 22px; flex-shrink: 0; }
+.mvw-lecture-card-body { flex: 1; min-width: 0; }
+.mvw-lecture-card-title {
+  font-size: 13px; font-weight: 600; color: var(--text-1, #111);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.mvw-lecture-card-platform { font-size: 11px; color: var(--text-2, #6b7280); }
+.mvw-lecture-free { font-size: 10px; color: #059669; font-weight: 700; flex-shrink: 0; }
+
+/* 복습 평가 버튼 */
+.mvw-review-eval-row {
+  display: flex; gap: 8px; padding: 4px 0;
+}
+.mvw-review-eval-btn {
+  flex: 1; padding: 12px 4px; border-radius: 12px;
+  border: 1.5px solid var(--border, #e5e7eb);
+  background: var(--bg-card, #fff); font-size: 13px; font-weight: 600;
+  cursor: pointer; display: flex; flex-direction: column;
+  align-items: center; gap: 4px; transition: all .15s;
+}
+.mvw-review-eval-btn:nth-child(1):active { background:#fee2e2; border-color:#ef4444; }
+.mvw-review-eval-btn:nth-child(2):active { background:#fef3c7; border-color:#f59e0b; }
+.mvw-review-eval-btn:nth-child(3):active { background:#dcfce7; border-color:#22c55e; }
+
+/* 오답 메모 textarea */
+.mvw-wrong-memo-textarea {
+  width: 100%; min-height: 72px; padding: 10px 12px;
+  border-radius: 10px; border: 1px solid var(--border, #e5e7eb);
+  background: var(--bg-base, #f9fafb);
+  font-size: 14px; color: var(--text-1, #111); resize: vertical;
+  font-family: inherit; box-sizing: border-box;
+}
+
+/* ── 수험생 관리 대시보드 ── */
+.mvw-exam-block { border: none; }
+
+.mvw-exam-dday-setting {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.mvw-exam-input {
+  width: 100%; padding: 10px 14px; border-radius: 10px;
+  border: 1.5px solid var(--border, #e5e7eb);
+  background: var(--bg-card, #fff); font-size: 15px;
+  color: var(--text-1, #111); box-sizing: border-box;
+}
+.mvw-exam-save-btn {
+  align-self: flex-start; padding: 9px 20px;
+  border-radius: 10px; background: #4f46e5; color: #fff;
+  font-size: 14px; font-weight: 700; border: none; cursor: pointer;
+}
+
+/* 약점 TOP 3 */
+.mvw-weakness-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 0; border-bottom: 1px solid var(--border, #e5e7eb);
+}
+.mvw-weakness-item:last-child { border-bottom: none; }
+.mvw-weakness-rank { font-size: 20px; flex-shrink: 0; }
+.mvw-weakness-body { flex: 1; min-width: 0; }
+.mvw-weakness-name {
+  font-size: 13px; font-weight: 700; color: var(--text-1, #111);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.mvw-weakness-bar {
+  height: 6px; background: var(--border, #e5e7eb);
+  border-radius: 3px; margin: 5px 0 3px; overflow: hidden;
+}
+.mvw-weakness-fill {
+  height: 100%; background: #4f46e5; border-radius: 3px;
+  transition: width .6s ease;
+}
+.mvw-weakness-count { font-size: 11px; color: var(--text-2, #6b7280); }
+.mvw-weakness-lecture-btn {
+  flex-shrink: 0; padding: 6px 10px; border-radius: 8px;
+  border: 1.5px solid #4f46e5; color: #4f46e5;
+  background: #ede9fe; font-size: 12px; font-weight: 600; cursor: pointer;
+  display: flex; align-items: center; gap: 4px;
+}
+
+/* 과목별 오답 바 */
+.mvw-exam-subject-bar-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 6px 0;
+}
+.mvw-exam-subject-bar-label { font-size: 13px; color: var(--text-1,#111); min-width: 44px; }
+.mvw-exam-subject-bar-track {
+  flex: 1; height: 10px; background: var(--border,#e5e7eb);
+  border-radius: 5px; overflow: hidden;
+}
+.mvw-exam-subject-bar-fill {
+  height: 100%; background: #7c3aed; border-radius: 5px; transition: width .6s;
+}
+.mvw-exam-subject-bar-count { font-size: 12px; color: var(--text-2,#6b7280); min-width: 24px; text-align:right; }
+
+/* ── 수험생 모드 빈 상태 ── */
+.mvw-empty {
+  text-align: center; padding: 32px 16px;
+  font-size: 14px; color: var(--text-2, #6b7280);
+}
+
+/* ── 관리탭 모드 전환 버튼 ── */
+.mvw-mode-switch-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 16px; border-radius: 12px;
+  border: 1.5px solid var(--border,#e5e7eb);
+  background: var(--bg-card,#fff); width: 100%;
+  font-size: 14px; font-weight: 600; color: var(--text-2,#6b7280);
+  cursor: pointer; margin-bottom: 16px;
+}
+.mvw-mode-switch-btn i { color: #4f46e5; font-size: 18px; }
+
+/* ── 애니메이션 ── */
+@keyframes examFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ── 다크모드 ── */
+@media (prefers-color-scheme: dark) {
+  .mob-onboarding-card { background: #1e1e2e; }
+  .mob-mode-btn { background: #1e1e2e; border-color: #374151; }
+  .mob-mode-btn.exam { border-color: #6366f1; }
+  .mob-mode-btn.work { border-color: #3b82f6; }
+  .mob-mode-btn-title { color: #f9fafb; }
+  .mob-mode-btn-sub { color: #9ca3af; }
+  .exam-stat-chip { background: #1e1e2e; border-color: #374151; color: #f9fafb; }
+  .mvw-lib-type-tab { background: #1e1e2e; border-color: #374151; color: #9ca3af; }
+  .mvw-lib-type-tab.active { background: #312e81; color: #a5b4fc; border-color: #4f46e5; }
+  .mvw-wrong-card { background: #1e1e2e; border-color: #374151; }
+  .mvw-wrong-subj-badge { background: #312e81; color: #a5b4fc; }
+  .mob-subj-chip { background: #1e1e2e; border-color: #374151; color: #9ca3af; }
+  .mob-subj-chip.active { background: #312e81; color: #a5b4fc; border-color: #4f46e5; }
+  .mvw-exam-input { background: #1e1e2e; border-color: #374151; color: #f9fafb; }
+  .mvw-wrong-memo-textarea { background: #1e1e2e; border-color: #374151; color: #f9fafb; }
+  .mvw-lecture-card { background: #1e1e2e; border-color: #374151; }
+  .mvw-review-eval-btn { background: #1e1e2e; border-color: #374151; }
+  .mvw-wrong-concept-tag { background: #1e1e2e; border-color: #374151; color: #f9fafb; }
+}

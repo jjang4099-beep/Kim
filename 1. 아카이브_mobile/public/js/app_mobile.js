@@ -158,8 +158,30 @@ const Mob = {
      초기화
   ────────────────────────────────────────────── */
   init() {
+    const mode = localStorage.getItem('userMode');
+    if (!mode) {
+      el('mobOnboarding')?.removeAttribute('hidden');
+      return;
+    }
+    this._applyMode(mode);
     this._loadHomeItems();
     this.checkFeedBadge();
+  },
+
+  setMode(mode) {
+    localStorage.setItem('userMode', mode);
+    el('mobOnboarding')?.setAttribute('hidden', '');
+    this._applyMode(mode);
+    this._loadHomeItems();
+    this.checkFeedBadge();
+  },
+
+  _applyMode(mode) {
+    document.body.dataset.mode = mode;
+    if (mode === 'exam') {
+      ExamMob.init();
+      el('examSubjectRow')?.removeAttribute('hidden');
+    }
   },
 
   /* ══════════════════════════════════════════
@@ -182,8 +204,20 @@ const Mob = {
     navBtn?.classList.add('active');
 
     if (viewName === 'feed')    this._loadFeedView();
-    if (viewName === 'manage')  this._loadManageView();
-    if (viewName === 'summary') this._loadLibraryView();
+    if (viewName === 'manage')  {
+      this._loadManageView();
+      if (document.body.dataset.mode === 'exam') {
+        el('examDashboard')?.removeAttribute('hidden');
+        ExamMob._loadWeaknessAnalysis();
+        ExamMob._restoreExamSettings();
+      }
+    }
+    if (viewName === 'summary') {
+      this._loadLibraryView();
+      if (document.body.dataset.mode === 'exam') {
+        el('libTypeTabs')?.removeAttribute('hidden');
+      }
+    }
 
     state.currentView = viewName;
   },
@@ -2414,9 +2448,15 @@ const Mob = {
     status.textContent = '이미지를 분석하고 있습니다…'; status.hidden = false;
 
     try {
+      const isExam = localStorage.getItem('userMode') === 'exam';
       const formData = new FormData();
       formData.append('image', state.selectedImageFile);
       if (memo) formData.append('memo', memo);
+      if (isExam) {
+        formData.append('mode', 'exam');
+        formData.append('subject', ExamMob.selectedSubject || 'math');
+        status.textContent = '오답을 분석하고 있습니다…';
+      }
 
       const ctrl  = new AbortController();
       const timer = setTimeout(() => ctrl.abort(), 90000);

@@ -28,21 +28,21 @@
 <body>
 
 <!-- ══════════════════════════════════════════════════════
+     스플래시 화면 (앱 첫 진입 시)
+══════════════════════════════════════════════════════ -->
+<div id="splashScreen" class="splash-screen">
+  <div class="splash-inner">
+    <img src="/icons/archive-logo.svg" class="splash-logo" alt="Archive"/>
+    <p class="splash-subtitle">나만의 지식 아카이브</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
      상단 헤더
 ══════════════════════════════════════════════════════ -->
 <header class="mob-topbar">
   <div class="mob-topbar-left">
-    <svg class="mob-parthenon" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M16 1 L31 9 L1 9 Z" fill="#2563eb"/>
-      <rect x="1" y="9" width="30" height="3" fill="#2563eb"/>
-      <rect x="2.5"  y="12" width="3" height="11" fill="#2563eb" rx="0.4"/>
-      <rect x="8"    y="12" width="3" height="11" fill="#2563eb" rx="0.4"/>
-      <rect x="13.5" y="12" width="3" height="11" fill="#2563eb" rx="0.4"/>
-      <rect x="19"   y="12" width="3" height="11" fill="#2563eb" rx="0.4"/>
-      <rect x="24.5" y="12" width="3" height="11" fill="#2563eb" rx="0.4"/>
-      <rect x="0" y="23" width="32" height="2.5" fill="#2563eb" rx="0.5"/>
-      <rect x="0" y="25.5" width="32" height="2.5" fill="#1d4ed8" rx="0.5"/>
-    </svg>
+    <img src="/icons/archive-logo.svg" class="mob-parthenon" alt="Archive" aria-hidden="true"/>
     <span class="mob-title" id="mobHeaderTitle">아카이브</span>
   </div>
   <div class="mob-topbar-right" id="mobHeaderActions">
@@ -496,7 +496,26 @@
 <!-- 토스트 -->
 <div class="mob-toast" id="mobToast" hidden></div>
 
-<script src="js/app_mobile.js?v=32"></script>
+<script src="js/app_mobile.js?v=44"></script>
 <script src="js/pwa.js?v=1"></script>
+<script>
+(function() {
+  var splash = document.getElementById('splashScreen');
+  if (!splash) return;
+
+  // 세션 내 첫 진입만 스플래시 표시 (재방문·탭 전환 시 즉시 숨김)
+  if (sessionStorage.getItem('splashDone')) {
+    splash.style.display = 'none';
+    return;
+  }
+  sessionStorage.setItem('splashDone', '1');
+
+  // 1.8초 후 fade-out → 0.5초 트랜지션 후 제거
+  setTimeout(function() {
+    splash.classList.add('hide');
+    setTimeout(function() { splash.style.display = 'none'; }, 500);
+  }, 1800);
+})();
+</script>
 </body>
 </html>

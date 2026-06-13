@@ -1,0 +1,52 @@
+<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cream background -->
+  <circle cx="60" cy="60" r="58.5" fill="#f5eedb"/>
+  <!-- Outer gold ring -->
+  <circle cx="60" cy="60" r="58.5" fill="none" stroke="#c8a440" stroke-width="3"/>
+  <!-- Inner gold ring -->
+  <circle cx="60" cy="60" r="53" fill="none" stroke="#c8a440" stroke-width="1.2"/>
+
+  <!-- Steps (3 tiers at base) -->
+  <rect x="14" y="84" width="92" height="3.5" fill="#1b2a5e" rx="0.4"/>
+  <rect x="17" y="80" width="86" height="4"   fill="#1b2a5e" rx="0.4"/>
+  <rect x="20" y="76" width="80" height="4"   fill="#1b2a5e" rx="0.4"/>
+
+  <!-- 7 columns -->
+  <rect x="22"   y="42" width="6.5" height="34" fill="#1b2a5e" rx="1"/>
+  <rect x="32.4" y="42" width="6.5" height="34" fill="#1b2a5e" rx="1"/>
+  <rect x="42.8" y="42" width="6.5" height="34" fill="#1b2a5e" rx="1"/>
+  <rect x="53.2" y="42" width="6.5" height="34" fill="#1b2a5e" rx="1"/>
+  <rect x="63.6" y="42" width="6.5" height="34" fill="#1b2a5e" rx="1"/>
+  <rect x="74"   y="42" width="6.5" height="34" fill="#1b2a5e" rx="1"/>
+  <rect x="84.4" y="42" width="6.5" height="34" fill="#1b2a5e" rx="1"/>
+
+  <!-- Column capitals (top bar) -->
+  <rect x="20.5" y="40" width="9.5" height="2" fill="#1b2a5e"/>
+  <rect x="30.9" y="40" width="9.5" height="2" fill="#1b2a5e"/>
+  <rect x="41.3" y="40" width="9.5" height="2" fill="#1b2a5e"/>
+  <rect x="51.7" y="40" width="9.5" height="2" fill="#1b2a5e"/>
+  <rect x="62.1" y="40" width="9.5" height="2" fill="#1b2a5e"/>
+  <rect x="72.5" y="40" width="9.5" height="2" fill="#1b2a5e"/>
+  <rect x="82.9" y="40" width="9.5" height="2" fill="#1b2a5e"/>
+
+  <!-- Entablature (beam) -->
+  <rect x="17" y="34.5" width="86" height="5.5" fill="#1b2a5e"/>
+
+  <!-- Pediment (gold triangle) -->
+  <polygon points="60,12 103,34.5 17,34.5" fill="#c8a440"/>
+  <!-- Pediment outline -->
+  <polyline points="17,34.5 60,12 103,34.5" fill="none" stroke="#1b2a5e" stroke-width="1.6" stroke-linejoin="round"/>
+
+  <!-- Peak ornament (tiny temple icon) -->
+  <rect x="56.5" y="13.5" width="7" height="5.5" fill="#1b2a5e" rx="0.5"/>
+  <polygon points="60,10.5 63.5,13.5 56.5,13.5" fill="#1b2a5e"/>
+
+  <!-- "ARCHIVE" text -->
+  <text x="60" y="106"
+        text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="11.5"
+        font-weight="700"
+        letter-spacing="3"
+        fill="#1b2a5e">ARCHIVE</text>
+</svg>

@@ -104,6 +104,7 @@ const state = {
   libraryLoaded    : false,
   libraryAIOpen    : false,
   libraryItems     : [],   // 서재 전체 아이템 (검색/필터용)
+  libraryFilter    : 'all', // 서재 카테고리 필터
 };
 
 /* ──────────────────────────────────────────────
@@ -389,16 +390,19 @@ const Mob = {
   cardHTML(item) {
     const m    = item.analysis || {};
     const type = item.type || 'text';
+    const cat  = item.category || item.shelf || 'inbox';
     if (type === 'daily_delivery') return this._cardDailyDelivery(item);
     if (type === 'language')       return this._cardFeedLanguage(item);
     if (type === 'market')         return this._cardFeedMarket(item);
     if (type === 'humanities')     return this._cardFeedHumanities(item);
+    // 영어 표현 카드 → 프리미엄 English 카드 (v37)
+    if (cat === 'en')              return this._cardEnglishV(item);
     // 유튜브·이미지·썸네일 보유 → 가로형 썸네일 카드 (기존 유지)
     if (type === 'youtube' || type === 'image_analysis' ||
         item.thumbnail || m.thumbnail || item.imageUrl) {
       return this._cardH(item, m);
     }
-    // 텍스트 지식 (English · History · Economy · Inbox) → 전폭 세로형 카드 v21
+    // 텍스트 지식 (History · Economy · Inbox) → 전폭 세로형 카드 v21
     return this._cardV(item, m);
   },
 
@@ -420,7 +424,48 @@ const Mob = {
     return out;
   },
 
-  /** 홈 피드 — 영어 표현 가로형 카드 (유튜브 카드와 동일 높이) */
+  /** 홈 영어 카드 (v37) — 표현/뜻/예문 항상 가시, 클릭 → 상세 모달 */
+  _cardEnglishV(item) {
+    const id      = item._id || item.id || '';
+    const p       = this._parseEnglishText(item.text);
+    const expr    = p.expression || item.title || '영어 표현';
+    const rawD    = item.createdAt || item.savedAt || '';
+    const dateStr = rawD ? (() => { const d = new Date(rawD); return isNaN(d) ? '오늘' : `${d.getMonth()+1}/${d.getDate()}`; })() : '오늘';
+
+    const rows = [
+      p.meaning ? `<div class="mob-env-row">
+        <span class="mob-env-badge">뜻</span>
+        <span class="mob-env-val">${p.meaning}</span>
+      </div>` : '',
+      p.example ? `<div class="mob-env-row">
+        <span class="mob-env-badge mob-env-badge-ex">예문</span>
+        <span class="mob-env-val mob-env-val-ex">${p.example}</span>
+      </div>` : '',
+    ].join('');
+
+    return `
+    <div class="mob-card mob-card-en-v" data-id="${id}">
+      <div class="mob-env-top">
+        <span class="mob-env-meta">🌐 English · ${dateStr}</span>
+        <div class="mob-card-v-acts">
+          <button class="mob-card-v-copy"
+                  onclick="event.stopPropagation();Mob._copyItemText('${id}')" title="복사">
+            <i class="ti ti-copy"></i>
+          </button>
+          <button class="mob-card-v-del"
+                  onclick="event.stopPropagation();Mob._deleteItem('${id}',this.closest('.mob-card'))" title="삭제">
+            <i class="ti ti-trash"></i>
+          </button>
+        </div>
+      </div>
+      <div class="mob-env-expr">${expr}</div>
+      <div class="mob-env-fields">${rows}</div>
+      ${p.nuance ? `<div class="mob-env-nuance">${p.nuance}</div>` : ''}
+      <div class="mob-env-foot"><i class="ti ti-chevron-right"></i> 탭하여 전체 대화문 보기</div>
+    </div>`;
+  },
+
+  /** 홈 피드 — 영어 표현 가로형 카드 (레거시, 현재 미사용) */
   _cardEnglish(item) {
     const id      = item._id || item.id || '';
     const p       = this._parseEnglishText(item.text);
@@ -1351,13 +1396,19 @@ const Mob = {
         if (!state.items.find(i => (i._id || i.id) === id)) state.items.push(item);
       });
 
-      state.libraryItems = items;   // 검색 필터용 전체 보관
+      state.libraryItems  = items;   // 검색/필터용 전체 보관
+      state.libraryFilter = 'all';
 
       /* 검색창 초기화 */
       const si = el('libSearchInput');
       if (si) si.value = '';
       const sc = el('libSearchClear');
       if (sc) sc.hidden = true;
+
+      /* 카테고리 필터 칩 초기화 */
+      document.querySelectorAll('.mvw-lib-filter-chip').forEach(c => {
+        c.classList.toggle('active', c.dataset.cat === 'all');
+      });
 
       this._renderLibraryTimeline(items);
       state.libraryLoaded = true;
@@ -1539,13 +1590,55 @@ const Mob = {
     }
   },
 
+  /* ── 서재 카테고리 필터 칩 ── */
+  setLibraryFilter(cat, chip) {
+    state.libraryFilter = cat;
+    document.querySelectorAll('.mvw-lib-filter-chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    const si = el('libSearchInput');
+    if (si) si.value = '';
+    const sc = el('libSearchClear');
+    if (sc) sc.hidden = true;
+    this._applyLibraryFilters();
+  },
+
+  /* 카테고리 필터 + 검색어 동시 적용 */
+  _applyLibraryFilters(searchQ) {
+    let items = state.libraryItems || [];
+    const f   = state.libraryFilter;
+
+    if (f && f !== 'all') {
+      items = items.filter(item => {
+        const cat  = item.category || item.shelf || '';
+        const type = item.type || '';
+        const subId = item.subId || '';
+        if (f === 'zh')      return cat === 'zh' || cat === 'zh_expr' || subId.includes('zh');
+        if (f === 'history') return cat === 'history' || type === 'humanities';
+        return cat === f;
+      });
+    }
+    if (searchQ) {
+      const qLow = searchQ.toLowerCase();
+      items = items.filter(item => {
+        const m = item.analysis || {};
+        return [
+          m.title || item.title || '',
+          m.summary || item.summary || '',
+          item.text || '',
+          (m.keywords || item.keywords || []).join(' '),
+        ].some(field => field.toLowerCase().includes(qLow));
+      });
+    }
+    this._renderLibraryTimeline(items, searchQ);
+  },
+
   /* ── 서재 인라인 실시간 검색 ── */
   onLibrarySearch(val) {
     const sc = el('libSearchClear');
     if (sc) sc.hidden = !val;
     clearTimeout(state.searchDebounce);
-    if (!val.trim()) { this._renderLibraryTimeline(state.libraryItems); return; }
-    state.searchDebounce = setTimeout(() => this._filterLibrary(val.trim()), 150);
+    if (!val.trim()) { this._applyLibraryFilters(); return; }
+    state.searchDebounce = setTimeout(() => this._applyLibraryFilters(val.trim()), 150);
   },
 
   clearLibrarySearch() {
@@ -1553,22 +1646,10 @@ const Mob = {
     if (si) si.value = '';
     const sc = el('libSearchClear');
     if (sc) sc.hidden = true;
-    this._renderLibraryTimeline(state.libraryItems);
+    this._applyLibraryFilters();
   },
 
-  _filterLibrary(q) {
-    const qLow = q.toLowerCase();
-    const filtered = (state.libraryItems || []).filter(item => {
-      const m = item.analysis || {};
-      return [
-        m.title || item.title || '',
-        m.summary || item.summary || '',
-        item.text || '',
-        (m.keywords || item.keywords || []).join(' '),
-      ].some(f => f.toLowerCase().includes(qLow));
-    });
-    this._renderLibraryTimeline(filtered, q);
-  },
+  _filterLibrary(q) { this._applyLibraryFilters(q); },
 
   openSummary() { this.switchView('summary', el('bnSummary')); },
 
@@ -1879,6 +1960,15 @@ const Mob = {
     } finally {
       if (btn) { btn.disabled = false; btn.innerHTML = '<i class="ti ti-device-floppy"></i> 상세 옵션 저장'; }
     }
+  },
+
+  /* ── 배달 옵션 패널 슬라이드 토글 ── */
+  _toggleDeliveryOptions() {
+    const panel   = el('dpOptionsPanel');
+    const chevron = el('dpOptionsChevron');
+    if (!panel) return;
+    const open = panel.classList.toggle('open');
+    if (chevron) chevron.style.transform = open ? 'rotate(180deg)' : '';
   },
 
   /* 배달 설정 저장 */

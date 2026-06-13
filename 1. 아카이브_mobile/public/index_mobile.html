@@ -103,6 +103,22 @@
   <div class="mob-view" id="viewSummary">
     <div class="mvw-library-wrap">
 
+      <!-- ★ 카테고리 필터 칩 바 (v37) -->
+      <div class="mvw-lib-filter-bar" id="libFilterBar">
+        <button class="mvw-lib-filter-chip active" data-cat="all"
+                onclick="Mob.setLibraryFilter('all',this)">전체</button>
+        <button class="mvw-lib-filter-chip" data-cat="en"
+                onclick="Mob.setLibraryFilter('en',this)">🔤 영어</button>
+        <button class="mvw-lib-filter-chip" data-cat="zh"
+                onclick="Mob.setLibraryFilter('zh',this)">🇨🇳 중국어</button>
+        <button class="mvw-lib-filter-chip" data-cat="history"
+                onclick="Mob.setLibraryFilter('history',this)">📜 역사</button>
+        <button class="mvw-lib-filter-chip" data-cat="economy"
+                onclick="Mob.setLibraryFilter('economy',this)">📈 기업분석</button>
+        <button class="mvw-lib-filter-chip" data-cat="psychology"
+                onclick="Mob.setLibraryFilter('psychology',this)">🧠 심리전술</button>
+      </div>
+
       <!-- ★ AI 기간별 요약 아코디언 토글 버튼 -->
       <button class="mvw-lib-ai-toggle" id="libAiToggle" onclick="Mob._toggleLibraryAI()">
         <span class="mvw-lib-ai-toggle-icon"><i class="ti ti-sparkles"></i></span>
@@ -177,31 +193,46 @@
       <!-- 배달 설정 패널 -->
       <div class="mvw-section-block mvw-delivery-panel" id="deliveryPanel">
         <div class="mvw-block-title">
-          <i class="ti ti-gift"></i> 지식 배달 설정
+          <i class="ti ti-gift"></i> 지식 배달
           <span class="mvw-dp-status-chip" id="dpStatusChip">로딩 중…</span>
         </div>
 
-        <div class="mvw-dp-time-row">
-          <label class="mvw-dp-label" for="dpDeliveryTime">
-            <i class="ti ti-clock"></i> 배달 시간
-          </label>
-          <input type="time" id="dpDeliveryTime" class="mvw-dp-time-input" value="07:30"/>
-        </div>
-
-        <div class="mvw-dp-subs-label">받을 지식 선택</div>
-        <div class="mvw-dp-subs-list" id="dpSubsList">
-          <div class="mob-loading" style="padding:12px 0"><span class="mob-spin"></span></div>
-        </div>
-
-        <div class="mvw-dp-actions">
-          <button class="mvw-dp-save-btn" id="dpSaveBtn"
-                  onclick="Mob._saveDeliverySettings()">
-            <i class="ti ti-device-floppy"></i> 설정 저장
-          </button>
+        <!-- 메인 생성 버튼 (항상 노출) -->
+        <div class="mvw-dp-gen-wrap">
           <button class="mvw-dp-gen-btn" id="dpGenBtn"
                   onclick="Mob._generateFeedNow()">
-            <i class="ti ti-refresh"></i> 지금 생성
+            <i class="ti ti-rocket"></i> 지금 배달 생성
           </button>
+        </div>
+
+        <!-- 옵션 설정 슬라이드 토글 -->
+        <button class="mvw-dp-options-toggle" onclick="Mob._toggleDeliveryOptions()">
+          <i class="ti ti-settings"></i>
+          <span class="mvw-dp-options-toggle-text">⚙️ 배달 옵션 및 난이도 설정 변경</span>
+          <i class="ti ti-chevron-down" id="dpOptionsChevron"></i>
+        </button>
+
+        <!-- 접힌 설정 패널 (기본 숨김) -->
+        <div class="mvw-dp-options-panel" id="dpOptionsPanel">
+
+          <div class="mvw-dp-time-row">
+            <label class="mvw-dp-label" for="dpDeliveryTime">
+              <i class="ti ti-clock"></i> 배달 시간
+            </label>
+            <input type="time" id="dpDeliveryTime" class="mvw-dp-time-input" value="07:30"/>
+          </div>
+
+          <div class="mvw-dp-subs-label">받을 지식 선택</div>
+          <div class="mvw-dp-subs-list" id="dpSubsList">
+            <div class="mob-loading" style="padding:12px 0"><span class="mob-spin"></span></div>
+          </div>
+
+          <div class="mvw-dp-actions">
+            <button class="mvw-dp-save-btn" id="dpSaveBtn"
+                    onclick="Mob._saveDeliverySettings()">
+              <i class="ti ti-device-floppy"></i> 설정 저장
+            </button>
+          </div>
         </div>
       </div>
 

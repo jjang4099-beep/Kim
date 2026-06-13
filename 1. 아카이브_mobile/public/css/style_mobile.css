@@ -2501,6 +2501,94 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 }
 .mob-detail-move-chip:active { background: #eff6ff; color: var(--accent); border-color: var(--accent); }
 
+/* ══════════════════════════════════════════════════════════
+   영어 카드 v37 (.mob-card-en-v) — 표현/뜻/예문 항상 가시
+══════════════════════════════════════════════════════════ */
+.mob-card-en-v {
+  background   : var(--surface);
+  border-radius: 14px;
+  border       : 1.5px solid var(--border);
+  border-left  : 4px solid var(--accent);
+  padding      : 14px 14px 10px;
+  margin-bottom: 10px;
+  cursor       : pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition   : box-shadow .15s, transform .12s;
+  box-shadow   : var(--shadow);
+}
+.mob-card-en-v:active { transform: scale(.985); box-shadow: none; }
+.mob-env-top {
+  display        : flex;
+  align-items    : center;
+  justify-content: space-between;
+  margin-bottom  : 6px;
+}
+.mob-env-meta { font-size: 11px; font-weight: 600; color: var(--text-3); letter-spacing: .02em; }
+.mob-env-expr {
+  font-size     : 20px; font-weight: 800; color: var(--accent);
+  font-family   : 'DM Sans', sans-serif; letter-spacing: -.3px;
+  line-height   : 1.25; margin-bottom: 10px; word-break: break-word;
+}
+.mob-env-fields { display: flex; flex-direction: column; }
+.mob-env-row {
+  display    : flex; align-items: flex-start; gap: 9px;
+  padding    : 8px 0; border-top: 1px solid var(--border);
+}
+.mob-env-badge {
+  flex-shrink: 0; min-width: 38px; text-align: center;
+  font-size: 10px; font-weight: 800; color: #fff; background: var(--accent);
+  padding: 2px 6px; border-radius: 4px; line-height: 1.8;
+  white-space: nowrap; margin-top: 1px;
+}
+.mob-env-badge-ex   { background: #059669; }
+.mob-env-val        { font-size: 13.5px; color: var(--text-1); line-height: 1.65; word-break: keep-all; flex: 1; }
+.mob-env-val-ex     { font-style: italic; color: var(--text-2); }
+.mob-env-nuance     { font-size: 12px; color: var(--text-3); line-height: 1.6; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+.mob-env-foot       { font-size: 11px; color: var(--text-3); margin-top: 10px; display: flex; align-items: center; gap: 3px; justify-content: flex-end; }
+
+/* ══════════════════════════════════════════════════════════
+   서재 카테고리 필터 칩 바 (v37)
+══════════════════════════════════════════════════════════ */
+.mvw-lib-filter-bar {
+  display: flex; align-items: center; gap: 7px;
+  padding: 10px 14px 6px;
+  overflow-x: auto; flex-wrap: nowrap; white-space: nowrap;
+  -ms-overflow-style: none; scrollbar-width: none;
+}
+.mvw-lib-filter-bar::-webkit-scrollbar { display: none; }
+.mvw-lib-filter-chip {
+  display: inline-flex; align-items: center;
+  padding: 6px 14px; border-radius: 20px;
+  font-size: 12.5px; font-weight: 600; color: var(--text-2);
+  background: var(--surface); border: 1.5px solid var(--border);
+  white-space: nowrap; cursor: pointer; flex-shrink: 0;
+  transition: all .15s; -webkit-tap-highlight-color: transparent;
+}
+.mvw-lib-filter-chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.mvw-lib-filter-chip:not(.active):active { background: #eff6ff; border-color: var(--accent); color: var(--accent); }
+
+/* ══════════════════════════════════════════════════════════
+   관리탭 배달 옵션 아코디언 (v37)
+══════════════════════════════════════════════════════════ */
+.mvw-dp-gen-wrap { margin-bottom: 10px; }
+.mvw-dp-options-toggle {
+  display: flex; align-items: center; gap: 8px; width: 100%;
+  padding: 10px 14px; border-radius: 10px;
+  background: var(--bg); border: 1.5px solid var(--border);
+  font-size: 13px; font-weight: 600; color: var(--text-2);
+  cursor: pointer; text-align: left;
+  transition: background .15s, border-color .15s, color .15s;
+  -webkit-tap-highlight-color: transparent; margin-bottom: 2px;
+}
+.mvw-dp-options-toggle:active { background: #eff6ff; border-color: var(--accent); color: var(--accent); }
+.mvw-dp-options-toggle-text { flex: 1; }
+#dpOptionsChevron { font-size: 14px; transition: transform .25s ease; flex-shrink: 0; }
+.mvw-dp-options-panel {
+  overflow: hidden; max-height: 0; opacity: 0;
+  transition: max-height .32s ease, opacity .25s ease;
+}
+.mvw-dp-options-panel.open { max-height: 3000px; opacity: 1; }
+
 /* ═══════════════════════════════════════════════
    다크 모드 (v32) — 시스템 설정 자동 추종
 ═══════════════════════════════════════════════ */
@@ -2569,4 +2657,9 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   .mob-detail-concept    { background: #19202f; }
   .mob-detail-move-chip  { background: #19202f; border-color: #2a3349; color: var(--text-2); }
   .mvw-lib-search-wrap   { background: var(--surface); border-color: var(--border); }
+
+  /* v37 신규 */
+  .mob-card-en-v          { background: var(--surface); border-color: var(--border); }
+  .mvw-lib-filter-chip:not(.active) { background: var(--surface); border-color: var(--border); }
+  .mvw-dp-options-toggle  { background: var(--bg); border-color: var(--border); }
 }

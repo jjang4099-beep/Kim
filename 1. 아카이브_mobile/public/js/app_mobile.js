@@ -1386,10 +1386,11 @@ const Mob = {
       const sc = el('libSearchClear');
       if (sc) sc.hidden = true;
 
-      /* 카테고리 필터 칩 초기화 */
-      document.querySelectorAll('.mvw-lib-filter-chip').forEach(c => {
+      /* 카테고리 필터 탭 초기화 + 빈 카테고리 비활성화 */
+      document.querySelectorAll('#libFilterBar .mob-tab').forEach(c => {
         c.classList.toggle('active', c.dataset.cat === 'all');
       });
+      this._updateLibraryFilterState();
 
       this._renderLibraryTimeline(items);
       state.libraryLoaded = true;
@@ -1571,16 +1572,34 @@ const Mob = {
     }
   },
 
-  /* ── 서재 카테고리 필터 칩 ── */
+  /* ── 서재 카테고리 필터 탭 ── */
   setLibraryFilter(cat, chip) {
     state.libraryFilter = cat;
-    document.querySelectorAll('.mvw-lib-filter-chip').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('#libFilterBar .mob-tab').forEach(c => c.classList.remove('active'));
     chip.classList.add('active');
     const si = el('libSearchInput');
     if (si) si.value = '';
     const sc = el('libSearchClear');
     if (sc) sc.hidden = true;
     this._applyLibraryFilters();
+  },
+
+  /* 빈 카테고리 탭 자동 비활성화 */
+  _updateLibraryFilterState() {
+    const items = state.libraryItems || [];
+    document.querySelectorAll('#libFilterBar .mob-tab[data-cat]').forEach(btn => {
+      const cat = btn.dataset.cat;
+      if (cat === 'all') { btn.disabled = false; return; }
+      const hasItems = items.some(item => {
+        const c = item.category || item.shelf || '';
+        const t = item.type || '';
+        const s = item.subId || '';
+        if (cat === 'zh')      return c === 'zh' || c === 'zh_expr' || s.includes('zh');
+        if (cat === 'history') return c === 'history' || t === 'humanities';
+        return c === cat;
+      });
+      btn.disabled = !hasItems;
+    });
   },
 
   /* 카테고리 필터 + 검색어 동시 적용 */

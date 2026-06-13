@@ -103,21 +103,15 @@
   <div class="mob-view" id="viewSummary">
     <div class="mvw-library-wrap">
 
-      <!-- ★ 카테고리 필터 칩 바 (v37) -->
-      <div class="mvw-lib-filter-bar" id="libFilterBar">
-        <button class="mvw-lib-filter-chip active" data-cat="all"
-                onclick="Mob.setLibraryFilter('all',this)">전체</button>
-        <button class="mvw-lib-filter-chip" data-cat="en"
-                onclick="Mob.setLibraryFilter('en',this)">🔤 영어</button>
-        <button class="mvw-lib-filter-chip" data-cat="zh"
-                onclick="Mob.setLibraryFilter('zh',this)">🇨🇳 중국어</button>
-        <button class="mvw-lib-filter-chip" data-cat="history"
-                onclick="Mob.setLibraryFilter('history',this)">📜 역사</button>
-        <button class="mvw-lib-filter-chip" data-cat="economy"
-                onclick="Mob.setLibraryFilter('economy',this)">📈 기업분석</button>
-        <button class="mvw-lib-filter-chip" data-cat="psychology"
-                onclick="Mob.setLibraryFilter('psychology',this)">🧠 심리전술</button>
-      </div>
+      <!-- 카테고리 필터 — 홈 탭바와 동일 구조 -->
+      <nav class="mob-tabs mob-tabs-lib" id="libFilterBar">
+        <button class="mob-tab active" data-cat="all"        onclick="Mob.setLibraryFilter('all',this)">전체</button>
+        <button class="mob-tab"        data-cat="en"         onclick="Mob.setLibraryFilter('en',this)">영어</button>
+        <button class="mob-tab"        data-cat="zh"         onclick="Mob.setLibraryFilter('zh',this)">중국어</button>
+        <button class="mob-tab"        data-cat="history"    onclick="Mob.setLibraryFilter('history',this)">역사</button>
+        <button class="mob-tab"        data-cat="economy"    onclick="Mob.setLibraryFilter('economy',this)">기업분석</button>
+        <button class="mob-tab"        data-cat="psychology" onclick="Mob.setLibraryFilter('psychology',this)">심리전술</button>
+      </nav>
 
       <!-- ★ AI 기간별 요약 아코디언 토글 버튼 -->
       <button class="mvw-lib-ai-toggle" id="libAiToggle" onclick="Mob._toggleLibraryAI()">

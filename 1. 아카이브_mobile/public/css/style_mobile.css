@@ -2584,25 +2584,19 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 }
 
 /* ══════════════════════════════════════════════════════════
-   서재 카테고리 필터 칩 바 (v37)
+   서재 카테고리 탭바 — 홈 탭바(.mob-tabs) 동일 스타일, fixed 해제
 ══════════════════════════════════════════════════════════ */
-.mvw-lib-filter-bar {
-  display: flex; align-items: center; gap: 7px;
-  padding: 10px 14px 6px;
-  overflow-x: auto; flex-wrap: nowrap; white-space: nowrap;
-  -ms-overflow-style: none; scrollbar-width: none;
+.mob-tabs-lib {
+  position: static;
+  height: auto;
+  top: auto; left: auto; right: auto;
+  padding: 8px 10px 4px;
+  box-shadow: none;
+  border-bottom: 0.5px solid var(--border);
 }
-.mvw-lib-filter-bar::-webkit-scrollbar { display: none; }
-.mvw-lib-filter-chip {
-  display: inline-flex; align-items: center;
-  padding: 6px 14px; border-radius: 20px;
-  font-size: 12.5px; font-weight: 600; color: var(--text-2);
-  background: var(--surface); border: 1.5px solid var(--border);
-  white-space: nowrap; cursor: pointer; flex-shrink: 0;
-  transition: all .15s; -webkit-tap-highlight-color: transparent;
+.mob-tabs-lib .mob-tab[disabled] {
+  opacity: .35; pointer-events: none;
 }
-.mvw-lib-filter-chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
-.mvw-lib-filter-chip:not(.active):active { background: #eff6ff; border-color: var(--accent); color: var(--accent); }
 
 /* ══════════════════════════════════════════════════════════
    관리탭 배달 옵션 아코디언 (v37)
@@ -2697,7 +2691,6 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 
   /* v37 신규 */
   .mob-card-en-v          { background: var(--surface); border-color: var(--border); }
-  .mvw-lib-filter-chip:not(.active) { background: var(--surface); border-color: var(--border); }
   .mvw-dp-options-toggle  { background: var(--bg); border-color: var(--border); }
 
   /* v38 신규 */

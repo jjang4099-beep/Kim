@@ -284,6 +284,65 @@ function showInstallBanner() {
 }
 
 // ══════════════════════════════════════════
+//  Feature 7: 온라인 / 오프라인 상태 알림
+// ══════════════════════════════════════════
+
+window.addEventListener('online', () => {
+  if (typeof toast === 'function') toast('🌐 온라인 연결됐습니다', 'ok');
+  flushOfflineQueue();
+});
+window.addEventListener('offline', () => {
+  if (typeof toast === 'function') toast('📴 오프라인 모드 — 저장 지식은 계속 열람 가능', '', 5000);
+});
+
+const OFFLINE_DB_NAME = 'sj-offline-queue';
+const OFFLINE_STORE   = 'posts';
+
+function _openOfflineDB() {
+  return new Promise((res, rej) => {
+    const req = indexedDB.open(OFFLINE_DB_NAME, 1);
+    req.onupgradeneeded = e => e.target.result.createObjectStore(OFFLINE_STORE, { autoIncrement: true });
+    req.onsuccess = e => res(e.target.result);
+    req.onerror   = e => rej(e.target.error);
+  });
+}
+
+async function queueOfflinePost(url, body) {
+  try {
+    const db = await _openOfflineDB();
+    const tx = db.transaction(OFFLINE_STORE, 'readwrite');
+    tx.objectStore(OFFLINE_STORE).add({ url, body, timestamp: Date.now() });
+    console.log('[PWA] 오프라인 큐에 저장:', url);
+  } catch (e) {
+    console.warn('[PWA] 오프라인 큐 저장 실패:', e.message);
+  }
+}
+
+async function flushOfflineQueue() {
+  if (!navigator.onLine) return;
+  let db;
+  try { db = await _openOfflineDB(); } catch { return; }
+  const tx    = db.transaction(OFFLINE_STORE, 'readwrite');
+  const store = tx.objectStore(OFFLINE_STORE);
+  const all   = await new Promise(res => {
+    const req = store.getAll(); req.onsuccess = () => res(req.result);
+  });
+  if (!all.length) return;
+  console.log(`[PWA] 오프라인 큐 플러시 (${all.length}개)`);
+  for (const entry of all) {
+    try {
+      await fetch(entry.url, {
+        method : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify(entry.body)
+      });
+    } catch {}
+  }
+  db.transaction(OFFLINE_STORE, 'readwrite').objectStore(OFFLINE_STORE).clear();
+  if (typeof toast === 'function') toast(`✅ 오프라인 저장 ${all.length}개 전송됨`, 'ok');
+}
+
+// ══════════════════════════════════════════
 //  초기화 진입점
 // ══════════════════════════════════════════
 

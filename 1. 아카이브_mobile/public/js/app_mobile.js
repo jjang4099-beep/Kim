@@ -103,18 +103,26 @@ const state = {
   pendingFeedFilter: null,
   libraryLoaded    : false,
   libraryAIOpen    : false,
-  libraryItems     : [],   // 서재 전체 아이템 (검색/필터용)
-  libraryFilter    : 'all', // 서재 카테고리 필터
+  libraryItems     : [],
+  libraryFilter    : 'all',
+  quiz: {
+    items   : [],
+    current : 0,
+    score   : 0,
+    answered: [],
+    cat     : 'all',
+  },
 };
 
 /* ──────────────────────────────────────────────
    VIEW CONFIG
 ────────────────────────────────────────────── */
 const VIEW_CONFIG = {
-  home:    { el:'viewHome',    tabsVisible:true,  title:'아카이브',      showHeaderActions:true  },
-  feed:    { el:'viewFeed',    tabsVisible:false, title:'지식 배달',     showHeaderActions:false },
-  summary: { el:'viewSummary', tabsVisible:false, title:'내 서재',     showHeaderActions:false },
-  manage:  { el:'viewManage',  tabsVisible:false, title:'학습 관리',    showHeaderActions:false },
+  home:    { el:'viewHome',    tabsVisible:true,  title:'아카이브',   showHeaderActions:true  },
+  feed:    { el:'viewFeed',    tabsVisible:false, title:'지식 배달',  showHeaderActions:false },
+  summary: { el:'viewSummary', tabsVisible:false, title:'내 서재',   showHeaderActions:false },
+  manage:  { el:'viewManage',  tabsVisible:false, title:'학습 관리', showHeaderActions:false },
+  quiz:    { el:'viewQuiz',    tabsVisible:false, title:'AI 퀴즈',   showHeaderActions:false },
 };
 
 /* ══════════════════════════════════════════════
@@ -1509,10 +1517,13 @@ const Mob = {
         const typeIcon = { youtube:'ti-brand-youtube', image_analysis:'ti-photo-ai', text:'ti-file-text' }[type] || 'ti-file-text';
         const id      = item._id || item.id;
 
+        const starredMark = item.starred ? `<span class="mob-card-star-badge">★</span>` : '';
         html += `<div class="mvw-lib-card" data-id="${id}" onclick="Mob.openDetail('${id}')">
+          <div class="swipe-layer-delete"><i class="ti ti-trash"></i></div>
+          <div class="swipe-layer-star"><i class="ti ti-star"></i></div>
           <div class="mvw-lib-card-icon"><i class="ti ${typeIcon}"></i></div>
           <div class="mvw-lib-card-body">
-            <div class="mvw-lib-card-title">${title}</div>
+            <div class="mvw-lib-card-title">${starredMark}${title}</div>
             ${sub ? `<div class="mvw-lib-card-sub">${sub}${sub.length >= 80 ? '…' : ''}</div>` : ''}
           </div>
           <span class="mvw-lib-card-cat">${cat}</span>
@@ -1529,6 +1540,41 @@ const Mob = {
       cntEl.textContent = `검색 결과 ${items.length}개`;
       timelineEl.prepend(cntEl);
     }
+    /* Feature 2: 스와이프 제스처 초기화 */
+    timelineEl.querySelectorAll('.mvw-lib-card').forEach(card => {
+      this._initSwipe(card, card.dataset.id);
+    });
+  },
+
+  /* ── Feature 2: 스와이프 제스처 ── */
+  _initSwipe(card, id) {
+    let startX = 0, deltaX = 0;
+    const THRESHOLD = 60, MAX = 80;
+    card.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+      deltaX = 0;
+      card.style.transition = '';
+    }, { passive: true });
+    card.addEventListener('touchmove', e => {
+      deltaX = e.touches[0].clientX - startX;
+      if (Math.abs(deltaX) < 5) return;
+      const move = Math.max(-MAX, Math.min(MAX, deltaX));
+      card.style.transform = `translateX(${move}px)`;
+      const delLayer = card.querySelector('.swipe-layer-delete');
+      const starLayer = card.querySelector('.swipe-layer-star');
+      if (delLayer)  delLayer.style.opacity  = deltaX < -10 ? Math.min(1, (-deltaX - 10) / 50) : '0';
+      if (starLayer) starLayer.style.opacity = deltaX > 10  ? Math.min(1, (deltaX - 10) / 50)  : '0';
+    }, { passive: true });
+    card.addEventListener('touchend', () => {
+      card.style.transition = 'transform 0.25s ease';
+      card.style.transform  = '';
+      const delLayer = card.querySelector('.swipe-layer-delete');
+      const starLayer = card.querySelector('.swipe-layer-star');
+      if (delLayer)  delLayer.style.opacity  = '0';
+      if (starLayer) starLayer.style.opacity = '0';
+      if (deltaX < -THRESHOLD) this._deleteItem(id, card);
+      else if (deltaX > THRESHOLD) this._toggleStar(id);
+    });
   },
 
   /* AI 아코디언 토글 */
@@ -1629,6 +1675,7 @@ const Mob = {
     document.querySelectorAll('#libFilterBar .mob-tab[data-cat]').forEach(btn => {
       const cat = btn.dataset.cat;
       if (cat === 'all') { btn.disabled = false; return; }
+      if (cat === 'starred') { btn.disabled = !items.some(i => i.starred); return; }
       const hasItems = items.some(item => {
         const c = item.category || item.shelf || '';
         const t = item.type || '';
@@ -1647,14 +1694,18 @@ const Mob = {
     const f   = state.libraryFilter;
 
     if (f && f !== 'all') {
-      items = items.filter(item => {
-        const cat  = item.category || item.shelf || '';
-        const type = item.type || '';
-        const subId = item.subId || '';
-        if (f === 'zh')      return cat === 'zh' || cat === 'zh_expr' || subId.includes('zh');
-        if (f === 'history') return cat === 'history' || type === 'humanities';
-        return cat === f;
-      });
+      if (f === 'starred') {
+        items = items.filter(item => item.starred);
+      } else {
+        items = items.filter(item => {
+          const cat  = item.category || item.shelf || '';
+          const type = item.type || '';
+          const subId = item.subId || '';
+          if (f === 'zh')      return cat === 'zh' || cat === 'zh_expr' || subId.includes('zh');
+          if (f === 'history') return cat === 'history' || type === 'humanities';
+          return cat === f;
+        });
+      }
     }
     if (searchQ) {
       const qLow = searchQ.toLowerCase();
@@ -2072,9 +2123,88 @@ const Mob = {
     el('statTodayCount').textContent = todayCount;
     el('statStreak').textContent     = this._computeStreak(items);
 
+    this._renderHeatmap(items);
+    this._renderReviewQueue(items);
     this._renderWeeklyBars(items);
     this._renderCatBars(items);
     this._renderRecentItems(items);
+  },
+
+  /* ── Feature 6: 학습 히트맵 ── */
+  _renderHeatmap(items) {
+    const container = el('statHeatmap');
+    if (!container) return;
+
+    const WEEKS = 26;
+    const today = new Date(); today.setHours(0,0,0,0);
+    const dailyMap = {};
+    items.forEach(i => {
+      const d = new Date(i.createdAt); d.setHours(0,0,0,0);
+      const key = d.toISOString().slice(0,10);
+      dailyMap[key] = (dailyMap[key] || 0) + 1;
+    });
+
+    const COLORS = ['var(--border)', '#c6e48b', '#40c463', '#216e39'];
+    const W = 14, GAP = 2, LABEL_H = 18;
+    const totalW = WEEKS * (W + GAP);
+    const totalH = 7 * (W + GAP) + LABEL_H;
+
+    let svgCells = '';
+    const monthLabels = {};
+    for (let w = 0; w < WEEKS; w++) {
+      for (let d = 6; d >= 0; d--) {
+        const offset = (WEEKS - 1 - w) * 7 + d;
+        const date   = new Date(today.getTime() - offset * 86400000);
+        const key    = date.toISOString().slice(0,10);
+        const cnt    = dailyMap[key] || 0;
+        const color  = cnt === 0 ? COLORS[0] : cnt === 1 ? COLORS[1] : cnt <= 3 ? COLORS[2] : COLORS[3];
+        const x      = w * (W + GAP);
+        const y      = (6 - d) * (W + GAP) + LABEL_H;
+        if (d === 0 && date.getDate() <= 7) {
+          monthLabels[w] = date.toLocaleDateString('ko-KR', { month: 'short' });
+        }
+        svgCells += `<rect x="${x}" y="${y}" width="${W}" height="${W}" rx="2" fill="${color}"
+          data-date="${key}" data-count="${cnt}" style="cursor:${cnt>0?'pointer':'default'}"
+          onclick="${cnt>0?`Mob._heatmapClick('${key}','${cnt}')`:''}"
+          title="${key}: ${cnt}개"/>`;
+      }
+    }
+    let svgLabels = '';
+    Object.entries(monthLabels).forEach(([w, label]) => {
+      svgLabels += `<text x="${w * (W + GAP)}" y="${LABEL_H - 4}" font-size="9" fill="var(--text-3)">${label}</text>`;
+    });
+
+    container.innerHTML = `<svg viewBox="0 0 ${totalW} ${totalH}" xmlns="http://www.w3.org/2000/svg"
+      style="width:100%;min-width:${Math.min(totalW,360)}px;display:block">
+      ${svgLabels}${svgCells}
+    </svg>`;
+  },
+
+  _heatmapClick(date, count) {
+    toast(`${date}: ${count}개 저장`, 'ok');
+  },
+
+  /* ── Feature 3: 복습 큐 렌더링 ── */
+  async _renderReviewQueue(items) {
+    const block   = el('reviewQueueBlock');
+    const listEl  = el('reviewQueueList');
+    if (!block || !listEl) return;
+
+    const today = new Date(); today.setHours(23,59,59,999);
+    const due   = items.filter(i => i.reviewAt && new Date(i.reviewAt) <= today);
+
+    if (!due.length) { block.hidden = true; return; }
+    block.hidden = false;
+
+    listEl.innerHTML = due.slice(0,10).map(item => {
+      const m     = item.analysis || {};
+      const title = m.title || item.title || (item.text || '').slice(0,40) || '제목 없음';
+      const id    = item._id || item.id;
+      return `<div class="mvw-review-item" onclick="Mob.openDetail('${id}')">
+        <div class="mvw-review-item-title">${title}</div>
+        <span class="mvw-review-item-cat">${this._catLabel(item.category)}</span>
+      </div>`;
+    }).join('');
   },
 
   _computeStreak(items) {
@@ -2538,7 +2668,7 @@ const Mob = {
     if (kws.length) {
       body += `<div class="mob-detail-section">
         <div class="mob-detail-sec-label">키워드</div>
-        <div class="mob-detail-kw-row">${kws.map(k => `<span class="mob-detail-kw-chip">${k}</span>`).join('')}</div>
+        <div class="mob-detail-kw-row">${kws.map(k => `<span class="mob-detail-kw-chip" onclick="Mob._searchByKeyword('${k.replace(/'/g,"&#39;")}')" style="cursor:pointer">${k}</span>`).join('')}</div>
       </div>`;
     }
 
@@ -2585,7 +2715,15 @@ const Mob = {
         <button class="mob-detail-action-btn primary" onclick="Mob._saveInsight('${id}')">
           <i class="ti ti-device-floppy"></i> 저장
         </button>
+        <button class="mob-detail-action-btn mob-star-btn ${item.starred ? 'starred' : ''}"
+                id="starBtn_${id}" onclick="Mob._toggleStar('${id}')" title="즐겨찾기">
+          <i class="ti ${item.starred ? 'ti-star-filled' : 'ti-star'}"></i>
+        </button>
         ${srcBtn}
+        <button class="mob-detail-action-btn" style="background:var(--bg);color:var(--text-2)"
+                onclick="Mob._shareItem('${id}')" title="공유">
+          <i class="ti ti-share"></i>
+        </button>
         <button class="mob-detail-action-btn" style="background:var(--bg);color:var(--text-2)"
                 onclick="Mob._toggleMoveCat('detailMoveCat')" title="카테고리 이동">
           <i class="ti ti-folder-symlink"></i> 이동
@@ -2593,6 +2731,14 @@ const Mob = {
         <button class="mob-detail-action-btn danger" onclick="Mob._deleteFromDetail('${id}')">
           <i class="ti ti-trash"></i>
         </button>
+      </div>
+      <div class="mob-detail-review-rating" id="reviewRating_${id}">
+        <div class="mob-detail-sec-label" style="margin-bottom:6px">복습 평가</div>
+        <div class="mob-review-btns">
+          <button class="mob-review-btn hard"   onclick="Mob._submitReview('${id}',1)">😰 어려움</button>
+          <button class="mob-review-btn normal"  onclick="Mob._submitReview('${id}',3)">🙂 보통</button>
+          <button class="mob-review-btn easy"   onclick="Mob._submitReview('${id}',5)">😎 쉬움</button>
+        </div>
       </div>
     `;
   },
@@ -2635,6 +2781,75 @@ const Mob = {
       const item = state.items.find(i => (i._id || i.id) === id);
       if (item) item.myInsight = insight;
     } catch { toast('저장 실패', 'err'); }
+  },
+
+  /* ── Feature 1: 즐겨찾기 ── */
+  async _toggleStar(id) {
+    const item = [...state.items, ...state.libraryItems].find(i => (i._id || i.id) === id);
+    if (!item) return;
+    const newStarred = !item.starred;
+    try {
+      await fetchJSON(`/api/items/${id}`, {
+        method : 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify({ starred: newStarred })
+      });
+      [state.items, state.libraryItems].forEach(arr => {
+        const found = arr.find(i => (i._id || i.id) === id);
+        if (found) found.starred = newStarred;
+      });
+      const btn = el(`starBtn_${id}`);
+      if (btn) {
+        btn.className = `mob-detail-action-btn mob-star-btn ${newStarred ? 'starred' : ''}`;
+        btn.innerHTML = `<i class="ti ${newStarred ? 'ti-star-filled' : 'ti-star'}"></i>`;
+      }
+      toast(newStarred ? '★ 즐겨찾기에 추가됐습니다' : '☆ 즐겨찾기 해제됐습니다', 'ok');
+      if (state.currentView === 'summary') this._renderLibraryTimeline(this._applyLibraryFilters());
+    } catch { toast('즐겨찾기 실패', 'err'); }
+  },
+
+  /* ── Feature 5: 공유 ── */
+  async _shareItem(id) {
+    const item  = [...state.items, ...state.libraryItems].find(i => (i._id || i.id) === id);
+    if (!item) return;
+    const m     = item.analysis || {};
+    const title = m.title || item.title || '지식 아카이브';
+    const text  = (m.summary || item.summary || item.text || '').slice(0, 300);
+    const url   = item.source || window.location.href;
+    if (navigator.share) {
+      try { await navigator.share({ title, text, url }); }
+      catch (e) { if (e.name !== 'AbortError') toast('공유 실패', 'err'); }
+    } else {
+      const full = `${title}\n\n${text}\n\n${url}`;
+      await navigator.clipboard.writeText(full).catch(() => {});
+      toast('📋 클립보드에 복사됐습니다', 'ok');
+    }
+  },
+
+  /* ── Feature 4: 키워드 → 서재 검색 ── */
+  _searchByKeyword(keyword) {
+    this.closeDetail();
+    this.switchView('summary', el('bnSummary'));
+    const inject = () => {
+      const si = el('libSearchInput');
+      if (si) { si.value = keyword; this.onLibrarySearch(keyword); }
+    };
+    state.libraryLoaded ? inject() : setTimeout(inject, 600);
+  },
+
+  /* ── Feature 3: 복습 평가 제출 ── */
+  async _submitReview(id, quality) {
+    try {
+      const data = await fetchJSON(`/api/items/${id}/review`, {
+        method : 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify({ quality })
+      });
+      const days = data.intervalDays;
+      toast(`✅ ${days}일 뒤 복습 예정`, 'ok');
+      const ratingEl = el(`reviewRating_${id}`);
+      if (ratingEl) ratingEl.innerHTML = `<div style="font-size:12px;color:var(--text-3);text-align:center;padding:8px 0">✅ ${days}일 후 복습 예정</div>`;
+    } catch { toast('복습 평가 실패', 'err'); }
   },
 
   async _deleteFromDetail(id) {
@@ -2718,6 +2933,116 @@ const Mob = {
     ['mobDetailModal','mobAddModal'].forEach(id => {
       const m = el(id); if (m) m.hidden = true;
     });
+  },
+
+  /* ═══════════════════════════════════════
+     Feature 8: AI 퀴즈 모드
+  ═══════════════════════════════════════ */
+  _selectQuizCat(cat, btn) {
+    state.quiz.cat = cat;
+    document.querySelectorAll('.mvw-quiz-cat-chip').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+  },
+
+  async _startQuiz() {
+    const startBtn = document.querySelector('.mvw-quiz-start-btn');
+    if (startBtn) { startBtn.disabled = true; startBtn.textContent = '생성 중…'; }
+    try {
+      const data = await fetchJSON('/api/quiz/generate', {
+        method : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify({ category: state.quiz.cat, count: 5 })
+      }, 60000);
+      if (!data.quiz?.length) throw new Error('퀴즈 없음');
+      state.quiz.items    = data.quiz;
+      state.quiz.current  = 0;
+      state.quiz.score    = 0;
+      state.quiz.answered = [];
+      el('quizStart').hidden  = true;
+      el('quizResult').hidden = true;
+      el('quizPlay').hidden   = false;
+      this._renderQuizQuestion();
+    } catch (e) {
+      toast('퀴즈 생성 실패: ' + e.message, 'err');
+    } finally {
+      if (startBtn) { startBtn.disabled = false; startBtn.innerHTML = '<i class="ti ti-rocket"></i> 퀴즈 시작 (5문제)'; }
+    }
+  },
+
+  _renderQuizQuestion() {
+    const q   = state.quiz;
+    const cur = q.items[q.current];
+    if (!cur) return;
+    const pct = Math.round((q.current / q.items.length) * 100);
+    el('quizProgressBar').style.width = `${pct}%`;
+    el('quizCount').textContent       = `${q.current + 1} / ${q.items.length}`;
+    el('quizQuestion').textContent    = cur.question;
+    el('quizNextBtn').hidden          = true;
+
+    const labels = ['A', 'B', 'C', 'D'];
+    el('quizOptions').innerHTML = cur.options.map((opt, i) =>
+      `<button class="mvw-quiz-btn" data-idx="${i}" onclick="Mob._answerQuiz('${labels[i]}')">${opt}</button>`
+    ).join('');
+  },
+
+  _answerQuiz(selected) {
+    const q   = state.quiz;
+    const cur = q.items[q.current];
+    if (!cur) return;
+    const correct = selected === cur.answer;
+    if (correct) q.score++;
+    q.answered.push({ question: cur.question, selected, correct, explanation: cur.explanation });
+
+    const labels = ['A', 'B', 'C', 'D'];
+    el('quizOptions').querySelectorAll('.mvw-quiz-btn').forEach((btn, i) => {
+      btn.disabled = true;
+      if (labels[i] === cur.answer) btn.classList.add('correct');
+      else if (labels[i] === selected && !correct) btn.classList.add('wrong');
+    });
+    el('quizNextBtn').hidden = false;
+    if (cur.explanation) {
+      const exp = document.createElement('div');
+      exp.className   = 'mvw-quiz-explanation';
+      exp.textContent = '💡 ' + cur.explanation;
+      el('quizOptions').after(exp);
+    }
+  },
+
+  _quizNext() {
+    const q = state.quiz;
+    const expEl = el('quizOptions')?.nextElementSibling;
+    if (expEl?.classList.contains('mvw-quiz-explanation')) expEl.remove();
+    q.current++;
+    if (q.current >= q.items.length) { this._showQuizResult(); return; }
+    this._renderQuizQuestion();
+  },
+
+  _showQuizResult() {
+    const q   = state.quiz;
+    const pct = Math.round((q.score / q.items.length) * 100);
+    el('quizPlay').hidden   = true;
+    el('quizResult').hidden = false;
+    el('quizProgressBar').style.width = '100%';
+    el('quizScoreCircle').innerHTML = `
+      <div class="mvw-quiz-score-num">${q.score}<span style="font-size:20px">/${q.items.length}</span></div>
+      <div style="font-size:14px;color:var(--text-2);margin-top:4px">${pct}% 정답</div>`;
+    const msgs = ['💪 다시 도전해보세요!', '🙂 조금 더 노력해봐요', '👍 꽤 잘했어요!', '🎉 훌륭합니다!', '🏆 완벽!'];
+    el('quizResultMsg').textContent = msgs[Math.min(4, Math.floor(pct / 25))];
+    const wrong = q.answered.filter(a => !a.correct);
+    el('quizWrongList').innerHTML = wrong.length
+      ? `<div style="font-size:13px;font-weight:700;color:var(--text-2);margin-bottom:8px">틀린 문제</div>` +
+        wrong.map(a => `<div class="mvw-quiz-wrong-item">
+          <div style="font-size:13px;color:var(--text-1);margin-bottom:3px">${a.question}</div>
+          <div style="font-size:12px;color:var(--text-3)">정답: ${a.selected} → ${a.explanation || ''}</div>
+        </div>`).join('')
+      : '';
+  },
+
+  _resetQuiz() {
+    el('quizStart').hidden  = false;
+    el('quizPlay').hidden   = true;
+    el('quizResult').hidden = true;
+    el('quizProgressBar').style.width = '0%';
   },
 
 };

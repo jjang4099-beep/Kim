@@ -2641,6 +2641,7 @@ app.get('/api/items', (req, res) => {
 
   if (category && category !== 'all') items = items.filter(i => i.category === category);
   if (shelf)    items = items.filter(i => i.shelf === shelf);
+  if (req.query.starred === 'true') items = items.filter(i => i.starred === true);
 
   // 키워드 검색: 제목·요약·본문·키워드 모두 대상
   if (search && search.trim()) {
@@ -2814,12 +2815,103 @@ app.patch('/api/items/:id', (req, res) => {
   const items = readDB();
   const item  = items.find(i => i.id === req.params.id);
   if (!item) return res.status(404).json({ success: false, error: '항목을 찾을 수 없습니다.' });
-  const allowed = ['category', 'keywords', 'summary', 'source', 'text', 'myInsight'];
+  const allowed = ['category', 'keywords', 'summary', 'source', 'text', 'myInsight', 'starred', 'reviewAt', 'reviewCount', 'reviewEase'];
   allowed.forEach(k => { if (req.body[k] !== undefined) item[k] = req.body[k]; });
   // category 변경 시 shelf 자동 동기화 (dbUpdate 내부에서도 처리)
   item.updatedAt = new Date().toISOString();
   dbUpdate(item);
   res.json({ success: true, item });
+});
+
+// ══════════════════════════════════════════════════
+//  API — 스페이스드 리피티션 (SM-2 간소화)
+// ══════════════════════════════════════════════════
+
+function calcNextReview(ease, count, quality) {
+  if (quality < 3) return { interval: 1, ease };
+  const newEase = Math.max(1.3, ease + 0.1 - (5 - quality) * 0.18);
+  const interval = count === 0 ? 1 : count === 1 ? 6 : Math.round(count * newEase);
+  return { interval, ease: newEase };
+}
+
+app.get('/api/review-queue', (req, res) => {
+  const today = new Date(); today.setHours(23, 59, 59, 999);
+  const items = readDB()
+    .filter(i => i.reviewAt && new Date(i.reviewAt) <= today)
+    .sort((a, b) => new Date(a.reviewAt) - new Date(b.reviewAt))
+    .slice(0, 20);
+  res.json({ success: true, items, total: items.length });
+});
+
+app.patch('/api/items/:id/review', (req, res) => {
+  const items = readDB();
+  const item  = items.find(i => i.id === req.params.id);
+  if (!item) return res.status(404).json({ success: false, error: '항목을 찾을 수 없습니다.' });
+
+  const quality    = Number(req.body.quality) || 3;
+  const ease       = item.reviewEase   || 2.5;
+  const count      = (item.reviewCount || 0) + 1;
+  const { interval, ease: newEase } = calcNextReview(ease, count, quality);
+
+  const nextDate = new Date();
+  nextDate.setDate(nextDate.getDate() + interval);
+
+  item.reviewCount = count;
+  item.reviewEase  = newEase;
+  item.reviewAt    = nextDate.toISOString();
+  item.updatedAt   = new Date().toISOString();
+  dbUpdate(item);
+
+  res.json({ success: true, item, nextReviewAt: item.reviewAt, intervalDays: interval });
+});
+
+// ══════════════════════════════════════════════════
+//  API — AI 퀴즈 생성
+// ══════════════════════════════════════════════════
+
+app.post('/api/quiz/generate', async (req, res) => {
+  const { category = 'all', count = 5 } = req.body || {};
+  let pool = readDB().filter(i => i.type !== 'daily_delivery');
+  if (category !== 'all') pool = pool.filter(i => i.category === category);
+  if (!pool.length) return res.status(400).json({ success: false, error: '퀴즈를 만들 항목이 없습니다.' });
+
+  // 랜덤 셔플 후 count개 선택
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  const selected = pool.slice(0, Math.min(count, pool.length, 10));
+
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return res.status(503).json({ success: false, error: 'ANTHROPIC_API_KEY 미설정' });
+  }
+
+  try {
+    const quizItems = [];
+    for (const item of selected) {
+      const m     = item.analysis || {};
+      const title = m.title || item.title || '';
+      const text  = (m.summary || item.summary || item.text || '').slice(0, 400);
+      if (!title && !text) continue;
+
+      const raw = await callClaude({
+        maxTokens: 300,
+        system: '사용자의 저장된 지식 카드로 4지선다 퀴즈를 1개 만드세요. 반드시 JSON만 출력하세요.',
+        messages: [{
+          role: 'user',
+          content: `지식: "${title}"\n내용: ${text}\n\n아래 JSON만 출력:\n{"question":"...","options":["A.","B.","C.","D."],"answer":"A","explanation":"..."}`
+        }]
+      });
+      const parsed = safeParseJSON(raw);
+      if (parsed?.question && parsed?.options?.length === 4) {
+        quizItems.push({ ...parsed, itemId: item.id, category: item.category });
+      }
+    }
+    if (!quizItems.length) return res.status(500).json({ success: false, error: '퀴즈 생성 실패' });
+    res.json({ success: true, quiz: quizItems });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
 });
 
 app.delete('/api/items/:id', (req, res) => {

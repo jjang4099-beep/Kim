@@ -106,6 +106,7 @@
       <!-- 카테고리 필터 — 홈 탭바와 동일 구조 -->
       <nav class="mob-tabs mob-tabs-lib" id="libFilterBar">
         <button class="mob-tab active" data-cat="all"        onclick="Mob.setLibraryFilter('all',this)">전체</button>
+        <button class="mob-tab"        data-cat="starred"    onclick="Mob.setLibraryFilter('starred',this)">★ 즐겨찾기</button>
         <button class="mob-tab"        data-cat="en"         onclick="Mob.setLibraryFilter('en',this)">영어</button>
         <button class="mob-tab"        data-cat="zh"         onclick="Mob.setLibraryFilter('zh',this)">중국어</button>
         <button class="mob-tab"        data-cat="history"    onclick="Mob.setLibraryFilter('history',this)">역사</button>
@@ -246,6 +247,18 @@
         </div>
       </div>
 
+      <!-- 복습 큐 블록 (Feature 3) -->
+      <div class="mvw-section-block mvw-review-block" id="reviewQueueBlock" hidden>
+        <div class="mvw-block-title"><i class="ti ti-refresh"></i> 오늘 복습할 지식</div>
+        <div id="reviewQueueList"></div>
+      </div>
+
+      <!-- 학습 히트맵 (Feature 6) -->
+      <div class="mvw-section-block">
+        <div class="mvw-block-title"><i class="ti ti-calendar-stats"></i> 학습 히트맵</div>
+        <div id="statHeatmap" style="overflow-x:auto"></div>
+      </div>
+
       <div class="mvw-section-block">
         <div class="mvw-block-title"><i class="ti ti-chart-bar"></i> 최근 7일 활동</div>
         <div class="mvw-weekly-bars" id="statWeekly">
@@ -267,6 +280,48 @@
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- ── 뷰 5: 퀴즈 ── -->
+  <div class="mob-view" id="viewQuiz">
+    <div class="mvw-quiz-wrap" id="quizWrap">
+      <!-- 시작 화면 -->
+      <div id="quizStart">
+        <div class="mvw-quiz-start-title"><i class="ti ti-brain"></i> AI 퀴즈</div>
+        <div class="mvw-quiz-start-sub">저장한 지식으로 나만의 퀴즈를 풀어보세요</div>
+        <div class="mvw-quiz-cat-chips" id="quizCatChips">
+          <button class="mvw-quiz-cat-chip active" data-cat="all" onclick="Mob._selectQuizCat('all',this)">전체</button>
+          <button class="mvw-quiz-cat-chip" data-cat="en" onclick="Mob._selectQuizCat('en',this)">영어</button>
+          <button class="mvw-quiz-cat-chip" data-cat="history" onclick="Mob._selectQuizCat('history',this)">역사</button>
+          <button class="mvw-quiz-cat-chip" data-cat="economy" onclick="Mob._selectQuizCat('economy',this)">경제</button>
+        </div>
+        <button class="mvw-quiz-start-btn" onclick="Mob._startQuiz()">
+          <i class="ti ti-rocket"></i> 퀴즈 시작 (5문제)
+        </button>
+        <div class="mvw-quiz-start-note">* Claude AI가 저장 지식을 기반으로 4지선다를 생성합니다</div>
+      </div>
+      <!-- 진행 화면 -->
+      <div id="quizPlay" hidden>
+        <div class="mvw-quiz-progress-wrap">
+          <div class="mvw-quiz-progress-bar" id="quizProgressBar"></div>
+        </div>
+        <div class="mvw-quiz-count" id="quizCount"></div>
+        <div class="mvw-quiz-card" id="quizQuestion"></div>
+        <div class="mvw-quiz-options" id="quizOptions"></div>
+        <button class="mvw-quiz-next-btn" id="quizNextBtn" onclick="Mob._quizNext()" hidden>
+          다음 <i class="ti ti-arrow-right"></i>
+        </button>
+      </div>
+      <!-- 결과 화면 -->
+      <div id="quizResult" hidden>
+        <div class="mvw-quiz-result-score" id="quizScoreCircle"></div>
+        <div class="mvw-quiz-result-msg" id="quizResultMsg"></div>
+        <div class="mvw-quiz-wrong-list" id="quizWrongList"></div>
+        <button class="mvw-quiz-start-btn" onclick="Mob._resetQuiz()">
+          <i class="ti ti-refresh"></i> 다시 풀기
+        </button>
+      </div>
     </div>
   </div>
 
@@ -308,6 +363,12 @@
   <button class="mob-nav-btn" id="bnManage" onclick="Mob.switchView('manage',this)">
     <i class="ti ti-chart-bar"></i>
     <span>관리</span>
+  </button>
+
+  <!-- 퀴즈 -->
+  <button class="mob-nav-btn" id="bnQuiz" onclick="Mob.switchView('quiz',this)">
+    <i class="ti ti-brain"></i>
+    <span>퀴즈</span>
   </button>
 
 </nav>

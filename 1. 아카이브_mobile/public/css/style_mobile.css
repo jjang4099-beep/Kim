@@ -2658,6 +2658,149 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 }
 .mvw-dp-options-panel.open { max-height: 3000px; opacity: 1; }
 
+/* ══════════════════════════════════════════════════════════
+   v42 신규 기능 스타일
+══════════════════════════════════════════════════════════ */
+
+/* Feature 1: 즐겨찾기 */
+.mob-star-btn { background: var(--bg); color: var(--text-2); border: 1.5px solid var(--border); }
+.mob-star-btn.starred { background: #fffbeb; color: #d97706; border-color: #f59e0b; }
+.mob-card-star-badge {
+  display: inline-block; font-size: 11px; color: #d97706;
+  margin-right: 4px; vertical-align: middle;
+}
+
+/* Feature 2: 스와이프 레이어 */
+.mvw-lib-card { position: relative; overflow: hidden; }
+.swipe-layer-delete,
+.swipe-layer-star {
+  position: absolute; top: 0; bottom: 0; width: 72px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; opacity: 0; pointer-events: none; z-index: 0;
+  transition: opacity .12s;
+}
+.swipe-layer-delete { right: 0; background: rgba(220,38,38,.75); color: #fff; border-radius: 0 10px 10px 0; }
+.swipe-layer-star   { left: 0;  background: rgba(234,179,8,.75);  color: #fff; border-radius: 10px 0 0 10px; }
+.mvw-lib-card > *:not(.swipe-layer-delete):not(.swipe-layer-star) { position: relative; z-index: 1; }
+
+/* Feature 3: 복습 평가 버튼 */
+.mob-detail-review-rating {
+  padding: 12px 0 4px;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+}
+.mob-review-btns { display: flex; gap: 8px; }
+.mob-review-btn {
+  flex: 1; padding: 9px 4px; border-radius: 10px;
+  border: 1.5px solid var(--border);
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  background: var(--bg); color: var(--text-1);
+  -webkit-tap-highlight-color: transparent;
+  transition: background .12s, border-color .12s;
+}
+.mob-review-btn.hard   { border-color: #f87171; background: #fff5f5; color: #dc2626; }
+.mob-review-btn.normal { border-color: #fbbf24; background: #fffbeb; color: #d97706; }
+.mob-review-btn.easy   { border-color: #4ade80; background: #f0fdf4; color: #16a34a; }
+.mob-review-btn:active { opacity: .75; }
+
+/* Feature 3: 복습 큐 블록 */
+.mvw-review-block { border-left: 3px solid var(--accent); }
+.mvw-review-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 12px; border-radius: 8px;
+  background: var(--bg); border: 1px solid var(--border);
+  margin-bottom: 6px; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.mvw-review-item-title { font-size: 13px; color: var(--text-1); flex: 1; }
+.mvw-review-item-cat { font-size: 11px; color: var(--text-3); flex-shrink: 0; margin-left: 8px; }
+.mvw-review-item:active { opacity: .7; }
+
+/* Feature 6: 히트맵 */
+#statHeatmap svg { height: auto; }
+
+/* Feature 8: 퀴즈 뷰 */
+.mvw-quiz-wrap { padding: 20px 16px; max-width: 480px; margin: 0 auto; }
+.mvw-quiz-start-title {
+  font-size: 22px; font-weight: 800; color: var(--text-1);
+  text-align: center; margin-bottom: 6px;
+}
+.mvw-quiz-start-sub {
+  font-size: 13px; color: var(--text-2); text-align: center; margin-bottom: 20px;
+}
+.mvw-quiz-cat-chips {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px;
+}
+.mvw-quiz-cat-chip {
+  padding: 7px 16px; border-radius: 20px; border: 1.5px solid var(--border);
+  font-size: 13px; font-weight: 600; cursor: pointer; background: var(--bg);
+  color: var(--text-2); transition: all .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mvw-quiz-cat-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.mvw-quiz-start-btn {
+  display: block; width: 100%; padding: 14px;
+  background: var(--accent); color: #fff;
+  border: none; border-radius: 12px;
+  font-size: 16px; font-weight: 700; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity .15s; margin-bottom: 10px;
+}
+.mvw-quiz-start-btn:active { opacity: .8; }
+.mvw-quiz-start-btn:disabled { opacity: .5; }
+.mvw-quiz-start-note { font-size: 11px; color: var(--text-3); text-align: center; }
+.mvw-quiz-progress-wrap {
+  width: 100%; height: 5px; background: var(--border);
+  border-radius: 3px; margin-bottom: 10px; overflow: hidden;
+}
+.mvw-quiz-progress-bar {
+  height: 100%; background: var(--accent);
+  border-radius: 3px; transition: width .3s ease; width: 0%;
+}
+.mvw-quiz-count { font-size: 12px; color: var(--text-3); text-align: right; margin-bottom: 14px; }
+.mvw-quiz-card {
+  background: var(--bg); border: 1.5px solid var(--border);
+  border-radius: 14px; padding: 18px 16px;
+  font-size: 16px; font-weight: 700; color: var(--text-1);
+  line-height: 1.5; margin-bottom: 14px;
+}
+.mvw-quiz-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+.mvw-quiz-btn {
+  width: 100%; padding: 12px 14px; border-radius: 10px;
+  border: 1.5px solid var(--border); text-align: left;
+  font-size: 14px; cursor: pointer;
+  background: var(--bg); color: var(--text-1);
+  -webkit-tap-highlight-color: transparent; transition: all .15s;
+}
+.mvw-quiz-btn:active:not(:disabled) { background: #eff6ff; border-color: var(--accent); }
+.mvw-quiz-btn.correct { background: #f0fdf4; border-color: #16a34a; color: #15803d; font-weight: 700; }
+.mvw-quiz-btn.wrong   { background: #fff5f5; border-color: #dc2626; color: #dc2626; }
+.mvw-quiz-explanation {
+  background: #fffbeb; border: 1px solid #fde68a;
+  border-radius: 10px; padding: 10px 12px;
+  font-size: 13px; color: #92400e; line-height: 1.5;
+  margin-bottom: 10px;
+}
+.mvw-quiz-next-btn {
+  display: block; width: 100%; padding: 13px;
+  background: var(--accent); color: #fff;
+  border: none; border-radius: 12px;
+  font-size: 15px; font-weight: 700; cursor: pointer;
+  -webkit-tap-highlight-color: transparent; transition: opacity .15s;
+}
+.mvw-quiz-next-btn:active { opacity: .8; }
+.mvw-quiz-result-score {
+  background: var(--bg); border: 1.5px solid var(--border);
+  border-radius: 14px; padding: 28px 20px; text-align: center; margin-bottom: 14px;
+}
+.mvw-quiz-score-num { font-size: 42px; font-weight: 900; color: var(--accent); }
+.mvw-quiz-result-msg { font-size: 16px; font-weight: 700; color: var(--text-1); text-align: center; margin-bottom: 16px; }
+.mvw-quiz-wrong-item {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px 12px; margin-bottom: 8px;
+}
+.mvw-quiz-wrong-list { margin-bottom: 16px; }
+
 /* ═══════════════════════════════════════════════
    다크 모드 (v32) — 시스템 설정 자동 추종
 ═══════════════════════════════════════════════ */
@@ -2733,4 +2876,21 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 
   /* v38 신규 */
   .mob-env-chip           { background: #1e2d48; color: #60a5fa; }
+
+  /* v42 신규 */
+  .mob-star-btn.starred   { background: #2a2000; color: #fbbf24; border-color: #92400e; }
+  .swipe-layer-delete     { background: rgba(220,38,38,.85); }
+  .swipe-layer-star       { background: rgba(234,179,8,.85); }
+  .mvw-review-block       { border-left: 3px solid var(--accent); }
+  .mvw-review-item        { background: var(--surface); border-color: var(--border); }
+  .mvw-quiz-card          { background: var(--surface); border-color: var(--border); }
+  .mvw-quiz-btn           { background: var(--surface); border-color: var(--border); color: var(--text-1); }
+  .mvw-quiz-btn.correct   { background: #052e16; border-color: #166534; color: #4ade80; }
+  .mvw-quiz-btn.wrong     { background: #2d0909; border-color: #7f1d1d; color: #f87171; }
+  .mvw-quiz-explanation   { background: #1a2035; border-color: #2a3a5a; }
+  .mvw-quiz-result-score  { background: var(--surface); border-color: var(--border); }
+  .mvw-quiz-wrong-item    { background: var(--surface); border-color: var(--border); }
+  .mvw-quiz-start-btn     { background: var(--accent); }
+  .mvw-quiz-cat-chip      { background: var(--surface); border-color: var(--border); color: var(--text-2); }
+  .mvw-quiz-cat-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 }

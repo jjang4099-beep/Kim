@@ -159,10 +159,7 @@ const Mob = {
   ────────────────────────────────────────────── */
   init() {
     const mode = localStorage.getItem('userMode');
-    if (!mode) {
-      el('mobOnboarding')?.removeAttribute('hidden');
-      return;
-    }
+    if (!mode) return; // 앱 진입 화면이 모드 선택을 처리함
     this._applyMode(mode);
     this._loadHomeItems();
     this.checkFeedBadge();
@@ -170,10 +167,20 @@ const Mob = {
 
   setMode(mode) {
     localStorage.setItem('userMode', mode);
-    el('mobOnboarding')?.setAttribute('hidden', '');
-    this._applyMode(mode);
-    this._loadHomeItems();
-    this.checkFeedBadge();
+    const entrance = el('appEntrance');
+    if (entrance) {
+      entrance.classList.add('app-entrance-out');
+      setTimeout(() => {
+        entrance.style.display = 'none';
+        this._applyMode(mode);
+        this._loadHomeItems();
+        this.checkFeedBadge();
+      }, 650);
+    } else {
+      this._applyMode(mode);
+      this._loadHomeItems();
+      this.checkFeedBadge();
+    }
   },
 
   _applyMode(mode) {

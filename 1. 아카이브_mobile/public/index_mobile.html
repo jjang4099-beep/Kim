@@ -23,40 +23,52 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
-  <link rel="stylesheet" href="css/style_mobile.css?v=32"/>
+  <link rel="stylesheet" href="css/style_mobile.css?v=33"/>
   <link rel="stylesheet" href="css/exam.css?v=2"/>
 </head>
 <body>
 
 <!-- ══════════════════════════════════════════════════════
-     스플래시 화면 (앱 첫 진입 시)
+     통합 앱 진입 화면 (스플래시 → 모드 선택)
 ══════════════════════════════════════════════════════ -->
-<div id="splashScreen" class="splash-screen">
-  <div class="splash-inner">
-    <img src="/icons/archive-logo.svg" class="splash-logo" alt="Archive"/>
-    <p class="splash-subtitle">나만의 지식 아카이브</p>
-  </div>
-</div>
+<div id="appEntrance" class="app-entrance">
 
-<!-- ══════════════════════════════════════════════════════
-     모드 선택 온보딩 (최초 1회)
-══════════════════════════════════════════════════════ -->
-<div class="mob-onboarding" id="mobOnboarding" hidden>
-  <div class="mob-onboarding-card">
-    <div class="mob-onboarding-logo">
-      <img src="/icons/archive-logo.svg" style="width:64px;height:64px" alt="Archive"/>
-    </div>
-    <h2 class="mob-onboarding-title">어떻게 사용하실 건가요?</h2>
-    <button class="mob-mode-btn exam" onclick="Mob.setMode('exam')">
-      <span class="mob-mode-btn-title">📚 수험생 모드</span>
-      <span class="mob-mode-btn-sub">오답 분석 · 개념 배달 · 약점 관리</span>
-    </button>
-    <button class="mob-mode-btn work" onclick="Mob.setMode('work')">
-      <span class="mob-mode-btn-title">💼 직장인 모드</span>
-      <span class="mob-mode-btn-sub">시황 · 영어 · 인문학 지식 배달</span>
-    </button>
-    <p class="mob-mode-change-hint">설정에서 언제든 변경 가능해요</p>
+  <!-- Phase 1: 스플래시 로고 -->
+  <div class="aep-splash" id="aepSplash">
+    <img src="/icons/archive-logo.svg" class="aep-logo" alt="Archive"/>
+    <div class="aep-wordmark">ARCHIVE</div>
+    <div class="aep-tagline">나만의 지식 신전</div>
   </div>
+
+  <!-- Phase 2: 모드 선택 (JS로 표시) -->
+  <div class="aep-select" id="aepSelect" style="display:none">
+    <div class="aep-select-top">
+      <img src="/icons/archive-logo.svg" class="aep-select-logo" alt="Archive"/>
+      <div class="aep-wordmark-sm">ARCHIVE</div>
+    </div>
+    <div class="aep-headline">
+      나만의 지식 신전에<br>
+      <strong>어떤 정체성을 담을까요?</strong>
+    </div>
+    <button class="mode-card exam" onclick="Mob.setMode('exam')">
+      <div class="icon-box"><i class="ti ti-school"></i></div>
+      <div class="card-info">
+        <h2>수험생 모드</h2>
+        <p>오답 분석 · 개념 자동 배달 · 약점 관리</p>
+        <p>성적 향상을 위한 지능형 학습 페이스메이커</p>
+      </div>
+    </button>
+    <button class="mode-card work" onclick="Mob.setMode('work')">
+      <div class="icon-box"><i class="ti ti-briefcase"></i></div>
+      <div class="card-info">
+        <h2>직장인 모드</h2>
+        <p>경제 시황 · 영어 · 인문학 인사이트</p>
+        <p>휘발되는 지식을 자산으로 만드는 지적 아카이브</p>
+      </div>
+    </button>
+    <p class="aep-hint">설정에서 언제든 변경 가능해요</p>
+  </div>
+
 </div>
 
 <!-- ══════════════════════════════════════════════════════
@@ -602,25 +614,31 @@
 <!-- 토스트 -->
 <div class="mob-toast" id="mobToast" hidden></div>
 
-<script src="js/app_mobile.js?v=46"></script>
+<script src="js/app_mobile.js?v=47"></script>
 <script src="js/app_exam.js?v=1"></script>
 <script src="js/pwa.js?v=1"></script>
 <script>
 (function() {
-  var splash = document.getElementById('splashScreen');
-  if (!splash) return;
+  var entrance = document.getElementById('appEntrance');
+  if (!entrance) return;
 
-  // 세션 내 첫 진입만 스플래시 표시 (재방문·탭 전환 시 즉시 숨김)
-  if (sessionStorage.getItem('splashDone')) {
-    splash.style.display = 'none';
+  // 모드가 이미 선택된 경우 진입 화면 즉시 숨김
+  if (localStorage.getItem('userMode')) {
+    entrance.style.display = 'none';
     return;
   }
-  sessionStorage.setItem('splashDone', '1');
 
-  // 1.8초 후 fade-out → 0.5초 트랜지션 후 제거
+  // Phase 1 → Phase 2 전환: 1.8초 후 스플래시 → 모드 선택
+  var splash  = document.getElementById('aepSplash');
+  var select  = document.getElementById('aepSelect');
+
   setTimeout(function() {
-    splash.classList.add('hide');
-    setTimeout(function() { splash.style.display = 'none'; }, 500);
+    splash.style.transition = 'opacity 0.4s ease';
+    splash.style.opacity    = '0';
+    setTimeout(function() {
+      splash.style.display = 'none';
+      select.style.display = 'flex';
+    }, 400);
   }, 1800);
 })();
 </script>

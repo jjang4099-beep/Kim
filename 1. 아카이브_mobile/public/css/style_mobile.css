@@ -42,48 +42,179 @@ input, textarea { font: inherit; }
 img { display: block; max-width: 100%; }
 
 /* ══════════════════════════════════════════════════════════
-   스플래시 화면
+   통합 앱 진입 화면 (스플래시 + 모드 선택)
 ══════════════════════════════════════════════════════════ */
-.splash-screen {
+:root { --gold: #d4af37; --entrance-bg: #0d1a35; }
+
+.app-entrance {
   position  : fixed;
   inset     : 0;
   z-index   : 9999;
-  background: #f5eedb;
+  background: radial-gradient(ellipse at 50% 40%, #1b2a5e 0%, #0d1528 100%);
   display   : flex;
   align-items    : center;
   justify-content: center;
   opacity   : 1;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.6s ease;
 }
-.splash-screen.hide {
-  opacity        : 0;
-  pointer-events : none;
+.app-entrance.app-entrance-out {
+  opacity       : 0;
+  pointer-events: none;
 }
-.splash-inner {
-  display        : flex;
-  flex-direction : column;
-  align-items    : center;
-  gap            : 20px;
-  animation      : splashFadeIn 0.6s ease both;
+
+/* ── Phase 1: 스플래시 로고 ── */
+.aep-splash {
+  display       : flex;
+  flex-direction: column;
+  align-items   : center;
+  gap           : 14px;
+  animation     : aepFadeIn 0.7s cubic-bezier(0.16,1,0.3,1) both;
 }
-@keyframes splashFadeIn {
-  from { opacity: 0; transform: scale(0.88); }
-  to   { opacity: 1; transform: scale(1); }
+.aep-splash.aep-fade-out {
+  animation: aepFadeOut 0.5s ease forwards;
 }
-.splash-logo {
-  width        : 180px;
-  height       : 180px;
-  filter       : drop-shadow(0 8px 24px rgba(28,42,94,0.18));
+.aep-logo {
+  width : 140px;
+  height: 140px;
+  filter: drop-shadow(0 0 28px rgba(212,175,55,0.5))
+          drop-shadow(0 8px 20px rgba(0,0,0,0.4));
 }
-.splash-subtitle {
-  font-family  : 'Noto Serif KR', serif;
-  font-size    : 15px;
-  font-weight  : 600;
-  color        : #1b2a5e;
-  letter-spacing: 0.05em;
-  opacity      : 0.75;
-  margin       : 0;
+.aep-wordmark {
+  font-family   : Georgia, 'Times New Roman', serif;
+  font-size     : 26px;
+  font-weight   : 700;
+  letter-spacing: 8px;
+  color         : var(--gold);
+  text-shadow   : 0 0 20px rgba(212,175,55,0.35);
 }
+.aep-tagline {
+  font-size     : 13px;
+  color         : rgba(255,255,255,0.45);
+  letter-spacing: 0.1em;
+}
+
+/* ── Phase 2: 모드 선택 ── */
+.aep-select {
+  display       : flex;
+  flex-direction: column;
+  align-items   : center;
+  gap           : 18px;
+  padding       : 28px 24px 40px;
+  width         : 100%;
+  max-width     : 480px;
+  animation     : aepSlideUp 0.65s cubic-bezier(0.16,1,0.3,1) both;
+}
+.aep-select-top {
+  display       : flex;
+  flex-direction: column;
+  align-items   : center;
+  gap           : 6px;
+  margin-bottom : 4px;
+}
+.aep-select-logo {
+  width : 58px;
+  height: 58px;
+  filter: drop-shadow(0 0 14px rgba(212,175,55,0.4));
+}
+.aep-wordmark-sm {
+  font-family   : Georgia, 'Times New Roman', serif;
+  font-size     : 12px;
+  font-weight   : 700;
+  letter-spacing: 6px;
+  color         : var(--gold);
+}
+.aep-headline {
+  text-align    : center;
+  color         : rgba(255,255,255,0.85);
+  font-size     : 15px;
+  line-height   : 1.6;
+  margin-bottom : 4px;
+}
+.aep-headline strong {
+  display    : block;
+  font-size  : 21px;
+  font-weight: 800;
+  color      : #fff;
+  margin-top : 4px;
+}
+
+/* ── 모드 선택 카드 ── */
+.mode-card {
+  width      : 100%;
+  padding    : 18px 20px;
+  border-radius: 16px;
+  display    : flex;
+  align-items: center;
+  gap        : 16px;
+  cursor     : pointer;
+  border     : 1px solid rgba(255,255,255,0.1);
+  background : rgba(255,255,255,0.05);
+  transition : all 0.2s ease;
+  text-align : left;
+}
+.mode-card:active { transform: scale(0.98); }
+.mode-card.exam {
+  background  : rgba(253,251,247,0.08);
+  border-color: rgba(212,175,55,0.4);
+  box-shadow  : inset 0 0 15px rgba(212,175,55,0.05);
+}
+.mode-card.exam:hover, .mode-card.exam:active {
+  background  : rgba(253,251,247,0.15);
+  border-color: var(--gold);
+  box-shadow  : 0 0 20px rgba(212,175,55,0.2);
+}
+.mode-card.exam .icon-box {
+  background: rgba(212,175,55,0.2);
+  color     : var(--gold);
+  border    : 0.5px solid rgba(212,175,55,0.4);
+}
+.mode-card.work {
+  background  : rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.15);
+}
+.mode-card.work:hover, .mode-card.work:active {
+  background  : rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.3);
+}
+.mode-card.work .icon-box {
+  background: rgba(255,255,255,0.1);
+  color     : rgba(255,255,255,0.75);
+  border    : 0.5px solid rgba(255,255,255,0.2);
+}
+.icon-box {
+  width        : 52px;
+  height       : 52px;
+  border-radius: 14px;
+  display      : flex;
+  align-items  : center;
+  justify-content: center;
+  font-size    : 22px;
+  flex-shrink  : 0;
+}
+.card-info { flex: 1; }
+.card-info h2 {
+  font-size  : 16px;
+  font-weight: 700;
+  color      : #fff;
+  margin     : 0 0 4px;
+}
+.card-info p {
+  font-size: 12px;
+  color    : rgba(255,255,255,0.55);
+  margin   : 1px 0;
+  line-height: 1.5;
+}
+.aep-hint {
+  font-size  : 12px;
+  color      : rgba(255,255,255,0.3);
+  text-decoration: underline;
+  cursor     : pointer;
+  margin-top : 4px;
+}
+
+@keyframes aepFadeIn  { from { opacity:0; transform:scale(0.88); } to { opacity:1; transform:scale(1); } }
+@keyframes aepFadeOut { from { opacity:1; transform:scale(1);    } to { opacity:0; transform:scale(1.04); } }
+@keyframes aepSlideUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
 
 /* ══════════════════════════════════════════════════════════
    상단 헤더

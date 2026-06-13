@@ -531,31 +531,37 @@ const Mob = {
     return out;
   },
 
-  /** 홈 영어 카드 (v37) — 표현/뜻/예문 항상 가시, 클릭 → 상세 모달 */
-  /**
-   * 홈 영어 카드 v38 — 미니멀 3단 (표현 → 뜻 → 예문)
-   * 클릭 → 상세 모달 / 내부 아코디언 없음
-   */
+  /** 홈 영어 카드 v48 — Premium Language Card */
   _cardEnglishV(item) {
     const id      = item._id || item.id || '';
     const p       = this._parseEnglishText(item.text);
     const expr    = p.expression || item.title || '영어 표현';
     const rawD    = item.createdAt || item.savedAt || '';
+    const MONTHS  = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
     const dateStr = rawD
-      ? (() => { const d = new Date(rawD); return isNaN(d) ? '오늘' : `${d.getMonth()+1}/${d.getDate()}`; })()
-      : '오늘';
+      ? (() => { const d = new Date(rawD); return isNaN(d) ? 'TODAY' : `${MONTHS[d.getMonth()]} ${d.getDate()}`; })()
+      : 'TODAY';
+    const tagLabel = p.topic || 'Expression';
+    const context  = p.nuance || (p.example ? `"${p.example}"` : '');
 
     return `
-    <div class="mob-card mob-card-en-v" data-id="${id}">
-      <div class="mob-env-hd">
-        <span class="mob-env-chip">EN · ${dateStr}</span>
-        <button class="mob-env-x"
-                onclick="event.stopPropagation();Mob._deleteItem('${id}',this.closest('.mob-card'))"
-                title="삭제"><i class="ti ti-x"></i></button>
+    <div class="mob-card archive-lang-card" data-id="${id}">
+      <div class="card-meta">
+        <span class="tag-expression"><i class="ti ti-language"></i> ${tagLabel}</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="card-date">${dateStr}</span>
+          <button class="alc-del"
+                  onclick="event.stopPropagation();Mob._deleteItem('${id}',this.closest('.mob-card'))"
+                  title="삭제"><i class="ti ti-x"></i></button>
+        </div>
       </div>
-      <div class="mob-env-expr">${expr}</div>
-      ${p.meaning ? `<div class="mob-env-meaning">${p.meaning}</div>` : ''}
-      ${(p.example || p.practice) ? `<div class="mob-env-example">"${p.example || p.practice}"</div>` : ''}
+      <h2 class="expression-phrase">${expr}</h2>
+      ${p.meaning ? `<p class="expression-meaning">${p.meaning}</p>` : ''}
+      <div class="card-divider"></div>
+      ${context ? `<div class="expression-context">${context}</div>` : ''}
+      <div class="card-footer">
+        <span>자세히 보기</span><i class="ti ti-chevron-right" style="font-size:9px;margin-left:2px;"></i>
+      </div>
     </div>`;
   },
 

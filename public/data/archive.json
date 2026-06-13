@@ -1,5 +1,203 @@
 [
   {
+    "id": "e956f1e4-2114-442c-8068-e34d4a0ac04b",
+    "type": "daily_delivery",
+    "category": "en",
+    "shelf": "en",
+    "title": "다시 논의할 때: Circle back",
+    "text": "• 현재 논의를 잠시 멈추고 나중에 다시 다룰 때 쓰는 비즈니스 영어 표현입니다.\n• 정보 부족이나 다른 중요한 사안에 집중해야 할 때 유용하게 활용됩니다.\n• '나중에 다시 연락드리겠습니다' 또는 '이 주제는 나중에 다시 논의하죠'의 뉘앙스를 가집니다.",
+    "summary": "중요한 사안은 'Let's circle back to this later.'라고 말하며 현명하게 논의를 조절하세요.",
+    "summary3": "• 현재 논의를 잠시 멈추고 나중에 다시 다룰 때 쓰는 비즈니스 영어 표현입니다.\n• 정보 부족이나 다른 중요한 사안에 집중해야 할 때 유용하게 활용됩니다.\n• '나중에 다시 연락드리겠습니다' 또는 '이 주제는 나중에 다시 논의하죠'의 뉘앙스를 가집니다.",
+    "concepts": [
+      {
+        "term": "Circle back",
+        "desc": "(나중에) 다시 논의하다, 다시 다루다, 다시 연락하다는 뜻입니다."
+      },
+      {
+        "term": "Focus",
+        "desc": "현재 다른 논의에 집중하거나 정보가 부족할 때 사용합니다."
+      }
+    ],
+    "reminder": "중요한 사안은 'Let's circle back to this later.'라고 말하며 현명하게 논의를 조절하세요.",
+    "keywords": [
+      "Circle back",
+      "Focus"
+    ],
+    "classifier": "daily-delivery",
+    "source": "daily-delivery",
+    "aiGenerated": true,
+    "date": "2026-06-11",
+    "time": "20:50",
+    "createdAt": "2026-06-11T11:50:22.586Z",
+    "updatedAt": "2026-06-11T11:50:22.586Z",
+    "insights": []
+  },
+  {
+    "id": "c27e6198-78e7-4858-a07e-20d1eed01dc3",
+    "type": "daily_delivery",
+    "category": "en",
+    "shelf": "en",
+    "title": "같은 이해: on the same page",
+    "text": "• 회의나 대화에서 모두가 같은 정보를 공유하고 동일한 이해를 하고 있음을 나타냅니다.\n• 상대방의 이해도를 무례하지 않게 확인하고 싶을 때 유용하게 사용됩니다.\n• '우리가 같은 생각을 하고 있나요?' 또는 '모두가 이해했나요?'의 긍정적인 표현입니다.",
+    "summary": "팀원들과 중요한 결정을 내리기 전, 'Are we all on the same page?'라고 물어보세요.",
+    "summary3": "• 회의나 대화에서 모두가 같은 정보를 공유하고 동일한 이해를 하고 있음을 나타냅니다.\n• 상대방의 이해도를 무례하지 않게 확인하고 싶을 때 유용하게 사용됩니다.\n• '우리가 같은 생각을 하고 있나요?' 또는 '모두가 이해했나요?'의 긍정적인 표현입니다.",
+    "concepts": [
+      {
+        "term": "on the same page",
+        "desc": "생각이 일치하다, 같은 이해를 하고 있다는 의미입니다."
+      },
+      {
+        "term": "Mutual understanding",
+        "desc": "상대방이 내 말을 이해했는지 다소 무례하지 않게 확인할 때 사용합니다."
+      }
+    ],
+    "reminder": "팀원들과 중요한 결정을 내리기 전, 'Are we all on the same page?'라고 물어보세요.",
+    "keywords": [
+      "on the same page",
+      "Mutual understanding"
+    ],
+    "classifier": "daily-delivery",
+    "source": "daily-delivery",
+    "aiGenerated": true,
+    "date": "2026-06-11",
+    "time": "20:50",
+    "createdAt": "2026-06-11T11:50:22.586Z",
+    "updatedAt": "2026-06-11T11:50:22.586Z",
+    "insights": []
+  },
+  {
+    "id": "e6457574-4923-442b-95df-ec87b1b52bb5",
+    "type": "daily_delivery",
+    "category": "en",
+    "shelf": "en",
+    "title": "가볍게 연락: touch base",
+    "text": "• 가볍게 안부를 묻거나 짧게 상황을 업데이트하기 위해 연락할 때 쓰는 비즈니스 영어입니다.\n• 'contact'나 'meet'보다 덜 형식적이고 부담 없는 만남이나 연락을 의미합니다.\n• 주로 짧은 대화나 정보 공유를 목적으로 하며, 관계 유지에 효과적입니다.",
+    "summary": "동료에게 'Let's touch base next week.'라고 제안하여 부담 없이 진행 상황을 확인하세요.",
+    "summary3": "• 가볍게 안부를 묻거나 짧게 상황을 업데이트하기 위해 연락할 때 쓰는 비즈니스 영어입니다.\n• 'contact'나 'meet'보다 덜 형식적이고 부담 없는 만남이나 연락을 의미합니다.\n• 주로 짧은 대화나 정보 공유를 목적으로 하며, 관계 유지에 효과적입니다.",
+    "concepts": [
+      {
+        "term": "touch base",
+        "desc": "~와 연락을 취하다, 간단히 상황을 맞추다는 뜻입니다."
+      },
+      {
+        "term": "Informal contact",
+        "desc": "가볍게 안부를 묻거나 짧게 진척 상황을 확인할 때 사용합니다."
+      }
+    ],
+    "reminder": "동료에게 'Let's touch base next week.'라고 제안하여 부담 없이 진행 상황을 확인하세요.",
+    "keywords": [
+      "touch base",
+      "Informal contact"
+    ],
+    "classifier": "daily-delivery",
+    "source": "daily-delivery",
+    "aiGenerated": true,
+    "date": "2026-06-11",
+    "time": "20:50",
+    "createdAt": "2026-06-11T11:50:22.586Z",
+    "updatedAt": "2026-06-11T11:50:22.586Z",
+    "insights": []
+  },
+  {
+    "id": "c100e320-8690-4c5a-a4dd-297c336a273e",
+    "type": "daily_delivery",
+    "category": "en",
+    "shelf": "en",
+    "title": "다시 논의할 때: Circle back",
+    "text": "• 현재 논의를 잠시 중단하고 나중에 다시 다룰 때 쓰는 표현입니다.\n• 정보 부족이나 다른 중요한 사안에 집중해야 할 때 유용하게 활용됩니다.\n• '나중에 다시 논의하다', '다시 연락하다'의 의미로 비즈니스 상황에서 자주 쓰입니다.",
+    "summary": "지금 당장 결정하기 어렵다면 \"Let's circle back to this later.\"라고 말하며 현명하게 논의를 미루세요.",
+    "summary3": "• 현재 논의를 잠시 중단하고 나중에 다시 다룰 때 쓰는 표현입니다.\n• 정보 부족이나 다른 중요한 사안에 집중해야 할 때 유용하게 활용됩니다.\n• '나중에 다시 논의하다', '다시 연락하다'의 의미로 비즈니스 상황에서 자주 쓰입니다.",
+    "concepts": [
+      {
+        "term": "Circle back",
+        "desc": "나중에 다시 논의하거나 연락할 때 사용하는 비즈니스 영어 표현입니다."
+      },
+      {
+        "term": "Delay discussion",
+        "desc": "현재 정보 부족 등으로 인해 논의를 미룰 때 사용하는 상황입니다."
+      }
+    ],
+    "reminder": "지금 당장 결정하기 어렵다면 \"Let's circle back to this later.\"라고 말하며 현명하게 논의를 미루세요.",
+    "keywords": [
+      "Circle back",
+      "Delay discussion"
+    ],
+    "classifier": "daily-delivery",
+    "source": "daily-delivery",
+    "aiGenerated": true,
+    "date": "2026-06-11",
+    "time": "20:50",
+    "createdAt": "2026-06-11T11:50:13.750Z",
+    "updatedAt": "2026-06-11T11:50:13.750Z",
+    "insights": []
+  },
+  {
+    "id": "5a81c2a7-5af2-46e3-a881-7612e7142bc1",
+    "type": "daily_delivery",
+    "category": "en",
+    "shelf": "en",
+    "title": "같은 이해를 할 때: on the same page",
+    "text": "• 상대방과 같은 이해를 하고 있거나 생각이 일치할 때 사용하는 비즈니스 표현입니다.\n• 상대방의 이해도를 확인하는 부드러운 방법으로 'Do you understand?'보다 훨씬 정중합니다.\n• 팀원 간의 오해를 줄이고 합의를 도출하는 데 필수적인 표현입니다.",
+    "summary": "회의 후 \"Are we all on the same page regarding the next steps?\"라고 확인하여 오해를 방지하세요.",
+    "summary3": "• 상대방과 같은 이해를 하고 있거나 생각이 일치할 때 사용하는 비즈니스 표현입니다.\n• 상대방의 이해도를 확인하는 부드러운 방법으로 'Do you understand?'보다 훨씬 정중합니다.\n• 팀원 간의 오해를 줄이고 합의를 도출하는 데 필수적인 표현입니다.",
+    "concepts": [
+      {
+        "term": "on the same page",
+        "desc": "모두가 같은 정보를 이해하고 있거나 의견이 일치함을 나타내는 표현입니다."
+      },
+      {
+        "term": "Mutual understanding",
+        "desc": "서로 간에 오해 없이 정확히 이해하고 있음을 뜻하는 개념입니다."
+      }
+    ],
+    "reminder": "회의 후 \"Are we all on the same page regarding the next steps?\"라고 확인하여 오해를 방지하세요.",
+    "keywords": [
+      "on the same page",
+      "Mutual understanding"
+    ],
+    "classifier": "daily-delivery",
+    "source": "daily-delivery",
+    "aiGenerated": true,
+    "date": "2026-06-11",
+    "time": "20:50",
+    "createdAt": "2026-06-11T11:50:13.750Z",
+    "updatedAt": "2026-06-11T11:50:13.750Z",
+    "insights": []
+  },
+  {
+    "id": "64c21d71-3828-4184-8bb9-32b5796c064a",
+    "type": "daily_delivery",
+    "category": "en",
+    "shelf": "en",
+    "title": "가볍게 연락할 때: touch base",
+    "text": "• 누군가와 가볍게 연락을 취하거나 짧게 상황을 맞출 때 쓰는 비즈니스 영어 표현입니다.\n• 'contact'나 'meet'보다 덜 공식적이고 부담 없는 만남이나 연락을 의미합니다.\n• 진행 상황을 확인하거나 간단한 안부를 물을 때 유용하게 사용됩니다.",
+    "summary": "\"Let's touch base next week to see how things are progressing.\"라며 가볍게 다음 소통을 제안하세요.",
+    "summary3": "• 누군가와 가볍게 연락을 취하거나 짧게 상황을 맞출 때 쓰는 비즈니스 영어 표현입니다.\n• 'contact'나 'meet'보다 덜 공식적이고 부담 없는 만남이나 연락을 의미합니다.\n• 진행 상황을 확인하거나 간단한 안부를 물을 때 유용하게 사용됩니다.",
+    "concepts": [
+      {
+        "term": "touch base",
+        "desc": "가볍게 연락하여 상황을 확인하거나 안부를 묻는 비즈니스 표현입니다."
+      },
+      {
+        "term": "Casual check-in",
+        "desc": "공식적인 미팅 대신 짧고 비공식적으로 소통하는 상황을 의미합니다."
+      }
+    ],
+    "reminder": "\"Let's touch base next week to see how things are progressing.\"라며 가볍게 다음 소통을 제안하세요.",
+    "keywords": [
+      "touch base",
+      "Casual check-in"
+    ],
+    "classifier": "daily-delivery",
+    "source": "daily-delivery",
+    "aiGenerated": true,
+    "date": "2026-06-11",
+    "time": "20:50",
+    "createdAt": "2026-06-11T11:50:13.750Z",
+    "updatedAt": "2026-06-11T11:50:13.750Z",
+    "insights": []
+  },
+  {
     "id": "8c130e0f-3e7a-492d-82ed-9d56304480c4",
     "type": "daily_delivery",
     "category": "en",

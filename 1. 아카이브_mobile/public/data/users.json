@@ -6,9 +6,12 @@
     "timezone": "Asia/Seoul",
     "enabled_feeds": [
       "en_expr",
-      "us_market"
+      "us_market",
+      "hist_daily",
+      "quote_daily",
+      "idiom_daily"
     ],
-    "updated_at": "2026-06-09T14:09:30.301Z",
+    "updated_at": "2026-06-11T20:31:35.514Z",
     "feed_settings": {
       "en_expr": {
         "count": 10,

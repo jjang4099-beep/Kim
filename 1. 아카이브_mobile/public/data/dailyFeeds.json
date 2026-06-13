@@ -235,5 +235,611 @@
       ],
       "aiGenerated": true
     }
+  },
+  "2026-06-11": {
+    "en_expr": {
+      "id": "2026-06-11::en_expr",
+      "date": "2026-06-11",
+      "subId": "en_expr",
+      "createdAt": "2026-06-11T11:53:51.633Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "language",
+      "category": "en",
+      "subCategory": "비즈니스 미팅 & 회의 진행",
+      "label": "US 영어 표현",
+      "title": "[목] 비즈니스 미팅 & 회의 진행: touch base 외 4개",
+      "summary": "목요일 테마 — 비즈니스 미팅 & 회의 진행 핵심 영어 표현 5선",
+      "report": "",
+      "theme": "비즈니스 미팅 & 회의 진행",
+      "dayOfWeek": "목",
+      "vocabEntries": [
+        {
+          "expression": "touch base",
+          "meaning": "연락하다",
+          "nuance": "짧게 상황을 확인할 때 사용. \"contact\"보다 가볍고 친근한 뉘앙스",
+          "sourceSentence": "Let's touch base tomorrow morning.",
+          "practiceSentence": "I'll touch base with the client before the meeting.",
+          "dialogue": "A: Do you have an update on the proposal?\nB: Not yet, let me touch base with Sarah.\nA: Great, let me know what you find out."
+        },
+        {
+          "expression": "get the ball rolling",
+          "meaning": "시작하다",
+          "nuance": "첫 발을 내딛을 때. \"start\"보다 더 역동적인 느낌",
+          "sourceSentence": "Let's get the ball rolling on the Q3 campaign.",
+          "practiceSentence": "We should get the ball rolling on this project now.",
+          "dialogue": "A: The deadline is approaching.\nB: You're right. Let's get the ball rolling.\nA: I'll schedule a kickoff meeting."
+        },
+        {
+          "expression": "on the same page",
+          "meaning": "의견 일치",
+          "nuance": "팀 내 공통 이해 확인. 회의 시작/끝에 자주 사용",
+          "sourceSentence": "Are we all on the same page about the launch date?",
+          "practiceSentence": "Before we proceed, let's make sure we're on the same page.",
+          "dialogue": "A: So we're aiming for a July launch?\nB: I thought it was August.\nA: Let's make sure we're on the same page — I'll send a summary."
+        },
+        {
+          "expression": "circle back",
+          "meaning": "재논의하다",
+          "nuance": "나중에 다시 돌아올 것임을 시사. 현안을 잠시 미룰 때",
+          "sourceSentence": "Let's circle back on the budget after lunch.",
+          "practiceSentence": "Can we circle back to this point at the end of the meeting?",
+          "dialogue": "A: Should we address the pricing issue now?\nB: We don't have all the data yet. Let's circle back on that.\nA: Agreed. I'll add it to next week's agenda."
+        },
+        {
+          "expression": "take this offline",
+          "meaning": "별도로 논의하다",
+          "nuance": "회의 중 특정 이슈를 개별적으로 처리하자고 제안할 때",
+          "sourceSentence": "This is getting complex — let's take this offline.",
+          "practiceSentence": "Can we take this offline and set up a separate call?",
+          "dialogue": "A: This technical issue needs more time.\nB: Agreed. Let's take this offline.\nA: I'll send you a calendar invite."
+        }
+      ],
+      "aiGenerated": true
+    },
+    "us_market": {
+      "id": "2026-06-11::us_market",
+      "date": "2026-06-11",
+      "subId": "us_market",
+      "createdAt": "2026-06-11T11:54:14.323Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "market",
+      "category": "economy",
+      "subCategory": "미국 증시 · 경제",
+      "label": "미국 시황",
+      "title": "미국 증시: 금리 인하 기대와 리스크",
+      "summary": "미국 증시는 연준의 금리 인하 기대와 견조한 경제 지표 속에서도 중동 지정학적 리스크가 변동성을 키우고 있습니다.",
+      "indicators": [
+        {
+          "name": "S&P 500",
+          "value": "5200.50",
+          "change": "+0.85%",
+          "dir": "up"
+        },
+        {
+          "name": "나스닥",
+          "value": "16300.20",
+          "change": "+1.10%",
+          "dir": "up"
+        },
+        {
+          "name": "다우 지수",
+          "value": "39200",
+          "change": "+0.60%",
+          "dir": "up"
+        },
+        {
+          "name": "미 국채 10년물",
+          "value": "4.35%",
+          "change": "+5 bp",
+          "dir": "up"
+        },
+        {
+          "name": "VIX 공포지수",
+          "value": "13.8",
+          "change": "-0.5",
+          "dir": "down"
+        }
+      ],
+      "summary3": "• 연준의 금리 인하 신호 해석과 기업 실적 발표에 시장의 관심이 집중됩니다.\n• AI 및 기술 섹터가 시장 상승을 주도하는 가운데, 에너지 섹터도 지정학적 요인으로 주목받습니다.\n• 변동성 장세에 대비하여 포트폴리오의 방어적 요소를 강화하고 장기적 관점을 유지해야 합니다.",
+      "checkpoints": [
+        "다음 FOMC 회의 결과 및 파월 의장의 발언 (금리 인하 시그널 확인)",
+        "미국 소비자물가지수(CPI) 및 고용 보고서 발표 (인플레이션 압력 및 경제 성장 확인)",
+        "중동 지역의 지정학적 긴장 완화 여부 및 유가 추이 (글로벌 공급망 및 인플레이션 영향)"
+      ],
+      "report": "## 시장 흐름\n최근 미국 증시는 연준의 금리 인하 기대감과 견조한 경제 지표에 힘입어 상승세를 보였습니다. 하지만 중동 지정학적 리스크가 유가를 밀어 올리며 인플레이션 재점화 우려를 낳고 있습니다. 달러 인덱스는 연준의 신중한 태도에 소폭 변동하며, 장단기 금리차 역전 현상은 지속되나 그 폭은 다소 완화되는 추세입니다. 이는 경기 연착륙 기대와 경기 침체 우려가 공존하는 복잡한 시장 상황을 반영합니다.\n\n## 투자 인사이트\n현재 시장은 금리 인하 시점과 폭에 대한 연준의 스탠스, 그리고 기업들의 실적 발표에 촉각을 곤두세우고 있습니다. 지정학적 리스크는 단기 변동성을 높일 수 있으므로, 고배당주나 필수 소비재 등 방어적 섹터에 대한 관심과 함께 AI 등 성장 산업의 장기적 잠재력을 고려한 균형 잡힌 포트폴리오 전략이 중요합니다. 경제 지표와 글로벌 이슈를 꾸준히 모니터링하며 유연하게 대응해야 합니다.",
+      "aiEconomicKnowledge": [
+        {
+          "term": "Fed 금리 전망",
+          "importance": "미 연준의 금리 전망은 시장의 자금 조달 비용과 기업 이익에 직접적인 영향을 미쳐 주식, 채권 시장 전반의 방향을 결정합니다. 예를 들어, 금리 인하는 기업 투자와 소비를 촉진하여 경제 성장을 가속화할 수 있습니다.",
+          "connection": "은행 대출 금리, 주택담보대출 금리 등 우리 생활과 밀접한 금융 상품의 이자율에 영향을 미치며, 투자 결정의 핵심 지표가 됩니다."
+        },
+        {
+          "term": "달러 인덱스",
+          "importance": "달러 인덱스는 미국 달러화의 주요 6개국 통화 대비 가치를 나타내는 지표로, 글로벌 교역 조건과 원자재 가격에 큰 영향을 줍니다. 달러 강세는 수입 물가를 낮추고 수출 기업의 경쟁력을 약화시킬 수 있습니다.",
+          "connection": "해외 여행 시 환율이나 해외 직구 비용에 직접적인 영향을 주며, 국내 수출 기업의 실적에도 간접적으로 영향을 미쳐 나의 투자 포트폴리오에도 영향을 미칩니다."
+        },
+        {
+          "term": "채권 수익률 곡선",
+          "importance": "채권 수익률 곡선은 만기별 채권 수익률을 연결한 그래프로, 미래 경제 성장 및 인플레이션 기대를 반영합니다. 특히 장단기 금리 역전은 과거 경기 침체의 강력한 선행 지표로 여겨져 8번의 경기 침체 중 7번을 예측했습니다.",
+          "connection": "장단기 금리 역전 현상이 나타나면 다가올 경기 침체 가능성을 염두에 두고 자산 배분을 보수적으로 가져갈 필요가 있다는 신호로 해석할 수 있습니다."
+        }
+      ],
+      "aiGenerated": true
+    }
+  },
+  "2026-06-12": {
+    "en_expr": {
+      "id": "2026-06-12::en_expr",
+      "date": "2026-06-12",
+      "subId": "en_expr",
+      "createdAt": "2026-06-11T20:30:08.182Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "language",
+      "category": "en",
+      "subCategory": "이메일 & 보고서 작성",
+      "label": "US 영어 표현",
+      "title": "[금] 이메일 & 보고서 작성: flag this for attention 외 9개",
+      "summary": "금요일 테마 — 이메일 & 보고서 작성 핵심 영어 표현 10선",
+      "report": "",
+      "theme": "이메일 & 보고서 작성",
+      "dayOfWeek": "금",
+      "vocabEntries": [
+        {
+          "expression": "flag this for attention",
+          "meaning": "특별 검토 요청",
+          "nuance": "보고서에서 특정 이슈를 상급자가 주목해야 할 사안으로 명시적으로 표시할 때 사용. 'highlight'보다 긴급성과 중요도가 더 강함",
+          "sourceSentence": "I'd like to flag this discrepancy for your attention before we finalize the quarterly report.",
+          "practiceSentence": "I'm flagging the Q3 budget variance for your attention—it requires executive approval before Friday.",
+          "dialogue": "A: The compliance issue in section 4 looks minor.\nB: Actually, I need to flag this for the legal team's attention immediately.\nA: Understood, I'll copy them on the revised draft."
+        },
+        {
+          "expression": "tease out the implications",
+          "meaning": "함의를 분석하다",
+          "nuance": "복잡한 데이터나 상황에서 숨겨진 의미나 결과를 신중히 도출할 때 사용. 단순 분석(analyze)보다 세밀하고 사려깊은 접근을 의미",
+          "sourceSentence": "The data shows a trend, but we need to tease out the implications for our Asia-Pacific strategy.",
+          "practiceSentence": "Let's schedule a working session to tease out the implications of this regulatory change for our pipeline.",
+          "dialogue": "A: The customer feedback is mixed across regions.\nB: We should tease out the implications before adjusting our product roadmap.\nA: Good point—I'll prepare a comparative analysis."
+        },
+        {
+          "expression": "surface key concerns",
+          "meaning": "핵심 우려 도출",
+          "nuance": "회의나 보고서에서 숨어있거나 명시되지 않은 중요 문제를 수면 위로 끌어올릴 때 사용. 'raise concerns'보다 체계적이고 분석적 뉘앙스",
+          "sourceSentence": "This stakeholder analysis should surface key concerns before we present to the board.",
+          "practiceSentence": "My memo aims to surface key concerns from regional managers that weren't captured in the survey.",
+          "dialogue": "A: The integration plan looks solid on paper.\nB: Let's conduct one more review to surface key concerns from the IT team.\nA: I'll set up a technical deep-dive for Monday."
+        },
+        {
+          "expression": "walk through the rationale",
+          "meaning": "논리 설명하다",
+          "nuance": "결정이나 제안의 근거를 단계별로 상세히 설명할 때 사용. 단순 'explain'보다 체계적이고 설득력 있는 설명 프로세스를 ���시",
+          "sourceSentence": "Can you walk me through the rationale behind this pricing structure in your proposal?",
+          "practiceSentence": "In section 3, I walk through the rationale for recommending vendor B over the incumbent supplier.",
+          "dialogue": "A: The CFO questioned our capex allocation.\nB: I can walk through the rationale in tomorrow's steering committee meeting.\nA: Perfect, I'll add 10 minutes to the agenda."
+        },
+        {
+          "expression": "hedge against potential risks",
+          "meaning": "리스크 대비하다",
+          "nuance": "보고서에서 위험 완화 전략을 제시할 때 사용하는 금융·전략 용어. 'prevent risks'보다 전문적이고 proactive한 리스크 관리를 의미",
+          "sourceSentence": "Our contingency plan hedges against potential risks in the supply chain disruption scenario.",
+          "practiceSentence": "To hedge against potential regulatory risks, I recommend establishing a compliance buffer in Q4.",
+          "dialogue": "A: What if the merger timeline slips?\nB: We've built in a 6-week buffer to hedge against potential integration risks.\nA: That should give us adequate cushion."
+        },
+        {
+          "expression": "unpack the findings",
+          "meaning": "결과 상세 분석",
+          "nuance": "복잡한 연구나 분석 결과를 체계적으로 풀��� 설명할 때 사용. 'explain results'보다 깊이있고 구조적인 해석 작업을 암시",
+          "sourceSentence": "The executive summary is clear, but we need a full session to unpack the findings with stakeholders.",
+          "practiceSentence": "Section 4 unpacks the survey findings and maps them to our three strategic priorities.",
+          "dialogue": "A: The market research came back with surprising results.\nB: Let's schedule 90 minutes next week to properly unpack the findings.\nA: I'll book the large conference room."
+        },
+        {
+          "expression": "calibrate expectations",
+          "meaning": "기대치 조정하다",
+          "nuance": "비현실적 기대를 현실적 수준으로 조정할 때 사용. 'manage expectations'보다 정밀하고 데이터 기반 조정을 암시하는 고급 표현",
+          "sourceSentence": "We need to calibrate expectations with the client regarding the project timeline and deliverables.",
+          "practiceSentence": "My email calibrates expectations around Q1 launch dates given the recent resource constraints.",
+          "dialogue": "A: The marketing team expects a 50% conversion increase.\nB: We should calibrate expectations based on last year's campaign performance data.\nA: Agreed, let's present realistic projections."
+        },
+        {
+          "expression": "triangulate data sources",
+          "meaning": "출처 교차검증",
+          "nuance": "여러 독립적 데이터 소스를 대조하여 정확성을 확보할 때 사용하는 리서치/분석 용어. 신뢰도 높은 보고서 작성 시 전문성을 드러냄",
+          "sourceSentence": "To ensure accuracy, we triangulated data sources from internal sales records, customer surveys, and market reports.",
+          "practiceSentence": "I've triangulated three independent data sources to validate the cost-benefit projections in Appendix B.",
+          "dialogue": "A: How confident are we in these market size estimates?\nB: Very confident—we triangulated data sources from Gartner, IDC, and our own field research.\nA: Excellent, that should address the board's concerns."
+        },
+        {
+          "expression": "caveat the recommendation",
+          "meaning": "단서 명시하다",
+          "nuance": "제안이나 권고에 중요한 조건이나 제한사항을 명확히 달 때 사용. 법률/컨설팅 문서에서 자주 쓰이며 전문성과 신중함을 보여줌",
+          "sourceSentence": "I'd like to caveat this recommendation by noting it assumes stable currency exchange rates.",
+          "practiceSentence": "Please note that I've caveated the ROI projections with three key assumptions detailed on page 7.",
+          "dialogue": "A: Should we present this as our firm recommendation?\nB: Yes, but we need to caveat it with the regulatory approval timeline uncertainty.\nA: I'll add that qualifier to the executive summary."
+        },
+        {
+          "expression": "socialize the proposal",
+          "meaning": "사전 의견 수렴",
+          "nuance": "공식 승인 전에 비공식적으로 관련자들에게 제안을 공유하여 피드백을 받고 지지를 구축하는 전략적 커뮤니케이션. 정치적 감각이 필요한 표현",
+          "sourceSentence": "Before the steering committee, let's socialize the proposal with key department heads to gauge reactions.",
+          "practiceSentence": "I recommend we socialize this restructuring proposal with regional VPs before the formal board presentation.",
+          "dialogue": "A: Should we go straight to the executive committee?\nB: No, let's socialize the proposal with finance and ops first to identify potential objections.\nA: Smart—I'll set up informal coffee chats this week."
+        }
+      ],
+      "aiGenerated": true
+    },
+    "us_market": {
+      "id": "2026-06-12::us_market",
+      "date": "2026-06-12",
+      "subId": "us_market",
+      "createdAt": "2026-06-11T20:30:08.199Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "market",
+      "category": "economy",
+      "subCategory": "미국 증시 · 경제",
+      "label": "미국 시황",
+      "title": "연준 매파 신호와 달러 강세 흐름",
+      "summary": "금리 인하 기대 후퇴로 달러 강세·장기 금리 상승하며 성장주 압박, 방어주로 자금 이동 중",
+      "indicators": [
+        {
+          "name": "S&P 500",
+          "value": "4783.45",
+          "change": "-0.68%",
+          "dir": "down"
+        },
+        {
+          "name": "나스닥",
+          "value": "14901.28",
+          "change": "-1.12%",
+          "dir": "down"
+        },
+        {
+          "name": "다우 지수",
+          "value": "37305",
+          "change": "-0.25%",
+          "dir": "down"
+        },
+        {
+          "name": "미 국채 10년물",
+          "value": "4.28%",
+          "change": "+8 bp",
+          "dir": "up"
+        },
+        {
+          "name": "VIX 공포지수",
+          "value": "14.2",
+          "change": "+1.3",
+          "dir": "up"
+        }
+      ],
+      "summary3": "• 연준 점도표 상향으로 2024년 금리 인하 횟수 3회→2회 조정, 터미널 레이트 재평가\n• 장기채 금리 급등으로 테크·성장주 밸류에이션 압박, 유틸리티·헬스케어 등 방어 섹터 상대 강세\n• 달러 인덱스 105 돌파하며 신흥국 통화 약세, 글로벌 유동성 축소 국면 진입 신호",
+      "checkpoints": [
+        "체크포인트 1: 2월 FOMC 의사록 발표 시 '더 오래 높게(higher for longer)' 표현 빈도와 위원 투표 성향 확인",
+        "체크포인트 2: 미 국채 2년-10년 수익률 곡선 정상화 속도 (현재 +30bp, 역전 해소 시 경기 침체 신호 가능성)",
+        "체크포인트 3: 달러 인덱스 106 저항선 돌파 여부와 엔화 150선, 원화 1,350원 방어 성공 여부로 외환 변동성 점검"
+      ],
+      "report": "## 시장 흐름\n연준이 인플레이션 재가속 우려에 금리 인하 속도 조절 신호를 보내면서 시장은 '골디락스' 시나리오에서 '스태그플레이션' 가능성으로 내러티브를 전환 중입니다. 특히 장기 금리 상승은 기업 차입 비용 증가와 밸류에이션 압박을 동시에 일으키며, 고평가 기술주에서 현금흐름 안정적인 가치주로 자금 재배치가 가속화되고 있습니다. 달러 강세는 다국적 기업 실적에 환차손 부담을 주는 동시에, 신흥국 자산에서 자금 이탈을 촉진하는 이중 압박 구조를 만들고 있습니다.\n\n## 투자 인사이트\n금리 인하 지연은 단기적으로 주식 멀티플 압축 요인이지만, 역설적으로 경제 체력이 견조하다는 증거이기도 합니다. 현 국면에서는 높은 금리 환경에서도 수익성을 유지하는 재무 건전 기업에 주목해야 합니다. 채권 수익률 곡선의 가파른 스티프닝(steepening)은 장기 경기 회복 기대를 반영하므로, 6개월 이후 경기 민감 섹터의 재평가 기회를 준비하는 전략적 관점이 필요합니다. 달러 강세 국면에서는 해외 매출 비중 낮은 내수주와 배당 수익률 높은 방어주가 상대적 안전자산 역할을 합니다.",
+      "aiEconomicKnowledge": [
+        {
+          "term": "터미널 레이트(Terminal Rate)",
+          "importance": "금리 인상 사이클에서 연준이 도달할 최종 목표 금리를 의미하며, 현재 시장은 5.25~5.50%를 예상 중입니다. 터미널 레이트 전망이 상향되면 주식 밸류에이션의 기준이 되는 할인율이 높아져 이론 주가가 하락하고, 특히 미래 현금흐름 비중이 큰 성장주가 더 큰 타격을 받습니다.",
+          "connection": "주택담보대출 금리와 예금 금리의 상한선을 결정하므로, 내 집 마련 계획과 예적금 전략 수립 시 터미널 레이트 전망을 반드시 고려해야 합니다."
+        },
+        {
+          "term": "수익률 곡선 스티프닝(Yield Curve Steepening)",
+          "importance": "단기 금리 대비 장기 금리가 더 빠르게 상승하여 수익률 곡선 기울기가 가팔라지는 현상으로, 통상 경기 회복 기대를 반영합니다. 2년-10년 금리���가 -50bp에서 +30bp로 전환되면 은행 순이자마진(NIM) 개선으로 금융주 수익성이 크게 향상되며, 역사적으로 이후 6~12개월간 경기 민감 섹터가 아웃퍼폼했습니다.",
+          "connection": "장기 고정금리 대출이 유리한 시점 신호이며, 변동금리 예금보다 장기 채권이나 채권형 펀드로 금리 상승 수익을 확보할 기회입니다."
+        },
+        {
+          "term": "달러 인덱스(DXY)",
+          "importance": "유로·엔·파운드 등 주요 6개 통화 대비 달러 가치를 측정하는 지수로, 105 이상은 강달러 국면을 의미합니다. 달러 강세는 원자재 가격(달러 표시) 하락 압력과 신흥국 외채 상환 부담 증가로 이어지며, 한국 수출 기업은 가격 경쟁력 확보하지만 수입 원자재 비용 상승으로 마진 압박을 받습니다.",
+          "connection": "해외여행 경비 증가와 해외 직구 비용 상승에 직결되며, 환율 변동을 고려한 달러 예금이나 해외 ETF 투자 타이밍 판단의 핵심 지표입니다."
+        }
+      ],
+      "aiGenerated": true
+    },
+    "idiom_daily": {
+      "id": "2026-06-12::idiom_daily",
+      "date": "2026-06-12",
+      "subId": "idiom_daily",
+      "createdAt": "2026-06-11T20:31:52.690Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "idiom",
+      "label": "오늘의 고사성어",
+      "category": "history",
+      "title": "각주구검 (刻舟求劍)",
+      "idiom": "각주구검",
+      "hanja": "刻舟求劍",
+      "meaning": "융통성 없이 변화하는 상황에 맞추지 못하고 낡은 방법을 고집함을 이르는 말",
+      "origin": "출처: 여씨춘추(呂氏春秋) 찰금편(察今篇)",
+      "story": "초나라 사람이 배를 타고 강을 건너다가 칼을 물에 빠뜨렸습니다. 그는 칼이 떨어진 뱃전에 칼로 표시를 하며 '여기서 칼이 떨어졌다'고 했습니다. 배가 멈춘 뒤 표시한 곳에서 물속으로 들어가 칼을 찾았지만, 배는 이미 움직였는데 칼은 그대로 있으니 찾을 수 없었습니다.",
+      "behindStory": "여씨춘추는 진시황의 승상 여불위가 삼천 식객을 동원해 편찬한 백과사전식 저작으로, 이 고사는 원래 법률을 시대에 맞춰 바꾸지 않는 완고한 정치인을 비판하기 위해 쓰였습니다. 흥미롭게도 여불위 본인도 나중에 진시황의 생부 의혹으로 정치적 유연성을 발휘하지 못해 비극적 최후를 맞았습니다.",
+      "application": "예: 예전에 통했던 업무 프로세스를 상황이 바뀌었는데도 그대로 고집하�� 동료를 설득할 때 '각주구검 하지 말고 새로운 방법을 시도해봅시다'라고 말할 수 있습니다",
+      "aiGenerated": true
+    },
+    "hist_daily": {
+      "id": "2026-06-12::hist_daily",
+      "date": "2026-06-12",
+      "subId": "hist_daily",
+      "createdAt": "2026-06-11T20:31:52.689Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "history",
+      "label": "역사 지식 한줌",
+      "category": "history",
+      "era": "세계사",
+      "period": "남북전쟁 직후 (1865년)",
+      "title": "링컨 암살범의 12일 도주극",
+      "summary": "배우가 대통령을 쏘고 다리 부러진 채 도망친 실화",
+      "summary3": "• 존 윌크스 부스는 당대 최고 인기 배우로 연 15만 달러(현재 300만 달러) 수입\n• 링컨 저격 후 무대에서 뛰어내리다 다리 골절, 12일간 버지니아 늪지대 도주\n• 600명 추격대에 쫓겨 담배 헛간에 숨었다가 총격전 끝에 사살됨",
+      "behindStory": "부스는 도주 중 자신의 일기에 '브루투스처럼 폭군을 처단했는데 왜 영웅 대접을 못 받나'며 불평을 적었습니다. 아이러니하게도 그를 숨겨준 남부 동조자들조차 링컨의 관대한 전후 처리 방침이 사라질까 두려워 신고를 고민했다고 합니다. 부스의 공범 8명 중 여성 메리 서랫은 미국 최초로 연방정부에 의해 교수형당한 여성이 되었습니다.",
+      "lesson": "아무리 재능 있고 성공한 사람도 잘못된 신념에 사로잡히면 역사의 악역이 되며, 극단적 행동은 자신이 원하는 결과와 정반대의 결과를 가져옵니다.",
+      "aiGenerated": true
+    },
+    "quote_daily": {
+      "id": "2026-06-12::quote_daily",
+      "date": "2026-06-12",
+      "subId": "quote_daily",
+      "createdAt": "2026-06-11T20:31:52.689Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "quote",
+      "label": "오늘의 명언",
+      "category": "inbox",
+      "title": "\"괴물과 싸우는 사람은 그 과정에서 자신이 괴물이 되…\" — 프리드리히 니체",
+      "quote": "Wer mit Ungeheuern kämpft, mag zusehn, dass er nicht dabei zum Ungeheuer wird. Und wenn du lange in einen Abgrund blickst, blickt der Abgrund auch in dich hinein.",
+      "quoteKo": "괴물과 싸우는 사람은 그 과정에서 자신이 괴물이 되지 않도록 조심해야 한다. 그대가 오랫동안 심연을 들여다본다면, 심연 또한 그대를 들여다본다.",
+      "author": "프리드리히 니체",
+      "authorInfo": "독일의 철학자이자 문헌학자 (1844-1900), 실존주의와 포스트모더니즘에 지대한 영향을 끼친 사상가",
+      "context": "《선악의 저편》(1886) 4장 146절에 나오는 구절로, 도덕과 정의를 추구하는 과정에서 발생하는 자기 변질의 위험성을 경고한다.",
+      "behindStory": "니체는 바젤 대학 교수 시절, 바그너와의 우정이 깨지며 이상주의자들이 자신의 신념을 강요하며 독단적으로 변하는 모습을 목격했다. 그는 1870년 보불전쟁에 의무병으로 참전했다가 이질과 디프테리아에 걸려 평생 건강을 잃었는데, 전쟁터에서 '정의'를 외치던 군인들이 잔혹해지는 모습을 보며 이 통찰을 얻었다. 그 자신도 말년에 극단적 사상으로 치달으며 정신 붕괴를 겪었다는 점에서 이 명언은 예언적이다.",
+      "application": "업무에서 문제를 해결하거나 부조리와 맞설 때, 수단이 목적을 정당화한다는 함정에 빠지지 않도록 나의 방법과 태도를 주기적으로 점검하는 시간을 가지세요.",
+      "aiGenerated": true
+    }
+  },
+  "2026-06-13": {
+    "hist_daily": {
+      "id": "2026-06-13::hist_daily",
+      "date": "2026-06-13",
+      "subId": "hist_daily",
+      "createdAt": "2026-06-12T23:01:59.463Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "history",
+      "label": "역사 지식 한줌",
+      "category": "history",
+      "item_id": "HI_005",
+      "era": "세계사",
+      "period": "19세기",
+      "title": "철도가 시간을 통일하다 — 표준 시간대의 탄생",
+      "summary": "기차 시간표 때문에 탄생한 표준 시간대 — 비즈니스 필요가 시간의 개념을 재설계한 사례",
+      "summary3": "• 1800년대 초 각 도시는 자체 태양시 사용 — 시카고 철도역 하나에 75개 다른 시간이 존재\n• 1847년 영국 철도회사들이 그리니치 표준시(GMT) 자체 채택 — 정부보다 기업이 먼저 시간을 통일\n• 1883년 미국 철도회사들의 민간 합의로 4개 표준 시간대 제정 — 현재 전 세계 시간대 체계의 원형",
+      "behindStory": "현재 우리가 'UTC+9 한국 표준시'에 맞춰 회의를 잡는 그 체계가 기차가 제시간에 출발해야 했던 철도 회사들의 비즈니스 필요에서 탄생했다. 미국에서는 정부가 아닌 철도 회사들의 민간 협약이 먼저 표준 시간을 만들었다.",
+      "lesson": "강력한 비즈니스 필요(기차 시간표)는 인류의 가장 근본적인 개념(시간)조차 바꿀 수 있다. 기술과 인프라가 사회적 규범을 앞서간다.",
+      "aiGenerated": false
+    },
+    "quote_daily": {
+      "id": "2026-06-13::quote_daily",
+      "date": "2026-06-13",
+      "subId": "quote_daily",
+      "createdAt": "2026-06-12T23:01:59.463Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "quote",
+      "label": "오늘의 명언",
+      "category": "inbox",
+      "item_id": "IQ_011",
+      "title": "\"효율은 일을 올바르게 하는 것이고, 효과는 올바른 …\" — 피터 드러커",
+      "quote": "Efficiency is doing things right; effectiveness is doing the right things.",
+      "quoteKo": "효율은 일을 올바르게 하는 것이고, 효과는 올바른 일을 하는 것이다.",
+      "author": "피터 드러커",
+      "authorInfo": "현대 경영학의 아버지, 오스트리아 출신 미국 경영사상가 (1909-2005). GE·IBM·P&G 등을 컨설팅하며 현대 경영학의 기초를 세웠다.",
+      "context": "1963년 하버드 비즈니스 리뷰에 기고한 논문 「효과적인 경영자(The Effective Executive)」에서, 기업들이 '어떻게(efficiency)'에 집착하며 '무엇을(effectiveness)'을 간과한다고 비판하며 남긴 말.",
+      "behindStory": "드러커는 수십 개 대기업 임원들을 직접 관찰하면서 가장 열심히 일하는 사람들이 정작 틀린 문제를 완벽하게 해결하는 데 자원을 낭비한다는 사실을 발견했다. 그는 '지금 하고 있는 일이 완전히 쓸모없어질 때, 그것을 더 효율적으로 하는 것보다 위험한 것은 없다'고도 말했다. 이 두 문장을 함께 읽으면 전략적 우선순위 설정의 모든 것이 담겨 있다.",
+      "application": "회의 시작 전 '우리가 지금 올바른 문제를 풀고 있는가?'를 먼저 묻는 습관을 가지면 가장 바쁜 팀이 가장 생산적인 팀이 아닌 이유를 이해할 수 있다.",
+      "aiGenerated": false
+    },
+    "idiom_daily": {
+      "id": "2026-06-13::idiom_daily",
+      "date": "2026-06-13",
+      "subId": "idiom_daily",
+      "createdAt": "2026-06-12T23:01:59.464Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "idiom",
+      "label": "오늘의 고사성어",
+      "category": "history",
+      "item_id": "IQ_008",
+      "title": "군계일학 (群鷄一鶴)",
+      "idiom": "군계일학",
+      "hanja": "群鷄一鶴",
+      "meaning": "닭의 무리 속에 한 마리 학. 많은 평범한 사람들 중에 뛰어난 한 사람을 비유.",
+      "origin": "세설신어(世說新語) — 서진(西晉) 시대 혜소(嵆紹)에 대한 왕융(王戎)의 말에서 유래",
+      "story": "서진 시대 혜강(嵆康)의 아들 혜소가 낙양 저잣거리에 나타나자 사람들이 술렁였다. 이를 본 왕융이 '혜소는 야생의 학이 닭 무리 속으로 걸어 들어온 것 같다'고 말한 것에서 유래했다.",
+      "behindStory": "이 표현은 단순히 용모가 출중함을 가리키는 것이 아니었다. 혜소의 아버지 혜강은 '죽림칠현' 중 한 명으로 명성이 높았지만 정치적 이유로 처형당했다. 그 원수의 왕조(사마씨 진나라)를 위해 혜소는 끝까지 충성을 다했고, 황제를 지키다 전장에서 전사했다. 외관의 탁월함이 아닌, 다른 차원의 품격과 신념에서 나오는 존재감이 진정한 군계일학이다.",
+      "application": "예: 평범한 팀 속에서 탁월한 역량과 태도로 자연스럽게 주목받는 동료나 신입을 칭찬할 때.",
+      "aiGenerated": false
+    },
+    "en_expr": {
+      "id": "2026-06-13::en_expr",
+      "date": "2026-06-13",
+      "subId": "en_expr",
+      "createdAt": "2026-06-12T23:01:59.445Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "language",
+      "category": "en",
+      "subCategory": "비즈니스 미팅 & 회의 진행",
+      "label": "US 영어 표현",
+      "title": "[토] 비즈니스 미팅 & 회의 진행: Get down to brass tacks 외 9개",
+      "summary": "토요일 테마 — 비즈니스 미팅 & 회의 진행 핵심 영어 표현 10선",
+      "report": "",
+      "theme": "비즈니스 미팅 & 회의 진행",
+      "dayOfWeek": "토",
+      "vocabEntries": [
+        {
+          "expression": "Get down to brass tacks",
+          "meaning": "본론으로 들어가다",
+          "nuance": "회의나 논의에서 불필요한 서론을 줄이고 핵심적이고 실질적인 문제에 집중하자는 의미입니다. 효율적인 논의를 위해 사용됩니다.",
+          "sourceSentence": "Alright team, we've covered the pleasantries, let's get down to brass tacks and discuss the Q3 budget allocations.",
+          "practiceSentence": "이메일: Good morning all, for today's meeting, I suggest we get down to brass tacks on the project timeline immediately.",
+          "dialogue": "A: Before we dive into the details, does anyone have general comments?\nB: Actually, I think it's time we get down to brass tacks on the pricing strategy.\nA: Agreed. Let's focus on actionable numbers."
+        },
+        {
+          "expression": "Put a pin in that",
+          "meaning": "나중에 논의하다",
+          "nuance": "현재 논의 중인 주제와 관련 없는 흥미로운 아이디어나 질문이 나왔을 때, 나중에 다시 다루기 위해 잠시 보류하자는 완곡한 표현입니다. 회의의 흐름을 유지하는 데 유용합니다.",
+          "sourceSentence": "That's an interesting point about market expansion, but let's put a pin in that for now and finish discussing the current product launch.",
+          "practiceSentence": "회의 중: The suggestion to revamp our entire brand image is compelling, but let's put a pin in that and focus on Q2 sales targets first.",
+          "dialogue": "A: Should we also consider the long-term impact on our talent acquisition?\nB: That's a valid concern, but let's put a pin in that for our next strategy session.\nA: Sounds good, we'll add it to the agenda."
+        },
+        {
+          "expression": "Run it up the flagpole",
+          "meaning": "아이디어 시험하다",
+          "nuance": "새로운 아이디어나 제안을 비공식적으로 제시하여 다른 사람들의 반응이나 의견을 떠보는 비유적인 표현입니다. 공식적인 발표 전에 내부적인 피드백을 얻을 때 사용됩니다.",
+          "sourceSentence": "I have a rough concept for the new marketing campaign; I'd like to run it up the flagpole with the team before presenting it to leadership.",
+          "practiceSentence": "보고서 준비 중: Before finalizing the proposal, I want to run it up the flagpole with a few key stakeholders to gauge their initial reactions.",
+          "dialogue": "A: What do you think of this radical new product feature?\nB: It's bold. Let's run it up the flagpole with the engineering team first.\nA: Good call, we need their technical perspective."
+        },
+        {
+          "expression": "Get buy-in",
+          "meaning": "동의/지지를 얻다",
+          "nuance": "어떤 계획이나 제안에 대해 관련자들의 동의, 지지, 그리고 참여를 얻는 것을 의미합니다. 성공적인 프로젝트 진행을 위해 필수적인 과정입니다.",
+          "sourceSentence": "We need to ensure we get buy-in from all department heads before we can implement this new cross-functional initiative.",
+          "practiceSentence": "이메일: To successfully launch this project, it's crucial that we get buy-in from both sales and marketing teams on the proposed timeline.",
+          "dialogue": "A: The new policy change is meeting some resistance.\nB: We clearly need to do a better job of explaining its benefits to get buy-in.\nA: Perhaps a town hall meeting would help."
+        },
+        {
+          "expression": "Move the needle",
+          "meaning": "상황에 변화를 주다",
+          "nuance": "눈에 띄는 변화나 실질적인 진전을 만들어내는 것을 의미합니다. 특히 중요한 문제나 목표에 대해 미미한 영향이 아니라 큰 영향을 줄 때 사용됩니다.",
+          "sourceSentence": "Our current efforts are good, but we need a truly innovative strategy if we want to move the needle on our market share.",
+          "practiceSentence": "회의 중: I'm looking for ideas that can genuinely move the needle in terms of customer satisfaction, not just minor tweaks.",
+          "dialogue": "A: Are these small optimizations really helping our conversion rates?\nB: Honestly, they're not enough to move the needle significantly.\nA: We need a bolder approach then."
+        },
+        {
+          "expression": "Play devil's advocate",
+          "meaning": "반대 의견 제시하다",
+          "nuance": "주어진 아이디어나 계획의 약점, 문제점 등을 찾기 위해 일부러 반대 입장에서 논쟁을 펼치는 것을 의미합니다. 결정을 내리기 전에 모든 잠재적 위험을 검토하는 데 유용합니다.",
+          "sourceSentence": "I'm not against the proposal, but I'll play devil's advocate for a moment to highlight potential risks we might be overlooking.",
+          "practiceSentence": "회의 중: To play devil's advocate, what if our main competitor launches a similar product simultaneously? How would we respond?",
+          "dialogue": "A: I think we should proceed with the acquisition without delay.\nB: Let me play devil's advocate. What's the worst-case scenario if we wait six months?\nA: That's a fair point to consider."
+        },
+        {
+          "expression": "Flesh out (an idea/plan)",
+          "meaning": "구체화하다, 살을 붙이다",
+          "nuance": "대략적인 아이디어나 계획에 세부 사항, 추가 정보, 구체적인 내용을 덧붙여 더 완전하고 명확하게 만드는 것을 의미합니다. 초안을 발전시킬 때 자주 사용됩니다.",
+          "sourceSentence": "The initial concept for the new app is promising, but we need to flesh out the user interface and core functionalities.",
+          "practiceSentence": "이메일: Please flesh out the preliminary marketing strategy with specific campaign channels and budget estimates by end of day.",
+          "dialogue": "A: I have a rough outline for the quarterly report.\nB: Great. Can you flesh out the key performance indicators for each section?\nA: Absolutely, I'll add the data points."
+        },
+        {
+          "expression": "The elephant in the room",
+          "meaning": "모두 아는 불편한 진실",
+          "nuance": "모두가 알고 있지만 불편하거나 민감해서 아무도 공개적으로 언급하지 않는 중요한 문제를 비유적으로 나타냅니다. 회의에서 이런 문제를 직면할 때 사용됩니다.",
+          "sourceSentence": "Let's address the elephant in the room: our recent budget cuts are clearly impacting team morale and productivity.",
+          "practiceSentence": "회의 시작 시: Before we proceed, I think it's important to address the elephant in the room regarding the recent leadership changes.",
+          "dialogue": "A: We've been talking about minor issues all morning.\nB: Yes, but no one wants to address the elephant in the room: our declining sales figures.\nA: Someone has to bring it up eventually."
+        },
+        {
+          "expression": "Boil the ocean",
+          "meaning": "불가능한 일 시도하다",
+          "nuance": "너무 광범위하거나 복잡해서 비현실적이거나 불가능한 일을 시도하는 것을 비유적으로 표현합니다. 비효율적이거나 달성하기 어려운 목표 설정을 경고할 때 사용됩니다.",
+          "sourceSentence": "Trying to implement all these features in one release would be boiling the ocean; we need to prioritize.",
+          "practiceSentence": "회의 중: While comprehensive, I'm concerned that our current plan might be trying to boil the ocean, risking burnout and delayed delivery.",
+          "dialogue": "A: Let's redesign the entire system from scratch in three months.\nB: That sounds like trying to boil the ocean. We should focus on incremental improvements.\nA: You're right, let's set more realistic goals."
+        },
+        {
+          "expression": "Read the room",
+          "meaning": "분위기를 파악하다",
+          "nuance": "회의나 모임에서 참석자들의 기분, 태도, 미묘한 비언어적 신호 등을 통해 전체적인 분위기나 상황을 이해하고 그에 맞춰 행동하는 것을 의미합니다. 사회적 지능을 나타내는 표현입니다.",
+          "sourceSentence": "I tried to read the room before proposing the radical idea, but the silence indicated it wasn't the right time.",
+          "practiceSentence": "회의 전 조언: Before presenting your ambitious proposal, make sure to read the room; the team has been under a lot of stress lately.",
+          "dialogue": "A: I think we should push for a decision today.\nB: I'm not so sure. Based on their body language, I'm trying to read the room and it feels like they need more time.\nA: Good point, let's not rush it then."
+        }
+      ],
+      "aiGenerated": true
+    },
+    "us_market": {
+      "id": "2026-06-13::us_market",
+      "date": "2026-06-13",
+      "subId": "us_market",
+      "createdAt": "2026-06-12T23:01:59.462Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "market",
+      "category": "economy",
+      "subCategory": "미국 증시 · 경제",
+      "label": "미국 시황",
+      "title": "연준 피봇 기대와 인플레 경계 사이",
+      "summary": "금리 인하 기대감 속 채권 수익률 안정화, 빅테크 중심 랠리 지속되나 인플레 재점화 우려가 변동성 키워",
+      "indicators": [
+        {
+          "name": "S&P 500",
+          "value": "4783.45",
+          "change": "+0.85%",
+          "dir": "up"
+        },
+        {
+          "name": "나스닥",
+          "value": "15095.14",
+          "change": "+1.12%",
+          "dir": "up"
+        },
+        {
+          "name": "다우 지수",
+          "value": "37440",
+          "change": "+0.43%",
+          "dir": "up"
+        },
+        {
+          "name": "미 국채 10년물",
+          "value": "4.15%",
+          "change": "+8 bp",
+          "dir": "up"
+        },
+        {
+          "name": "VIX 공포지수",
+          "value": "13.2",
+          "change": "-0.8",
+          "dir": "down"
+        }
+      ],
+      "summary3": "• 연준의 금리 피봇 시그널에 시장은 선반영 구간 진입, 채권 수익률은 4.0~4.3% 박스권 형성 중\n• AI 반도체와 헬스케어 섹터 강세, 경기 방어주로 자금 일부 이동하며 포트폴리오 리밸런싱 진행\n• 기관 투자자들은 풋옵션 매수로 하방 헤지 강화, 상승 랠리 지속 가능성과 조정 리스크 동시 대비",
+      "checkpoints": [
+        "체크포인트 1: 다음 FOMC 의사록 발표 시 '인플레 목표 달성 확신도' 표현 변화 모니터링",
+        "체크포인트 2: 미 국채 10년물 수익률 4.5% 돌파 여부 - 금리 인하 기대감 후퇴 신호",
+        "체크포인트 3: 달러 인덱스 105 지지선 이탈 시 신흥국 자산 유입 가속화 가능성"
+      ],
+      "report": "## 시장 흐름\n연준의 금리 정책 전환점을 둘러싼 시장의 긴장감이 고조되고 있습니다. 최근 근원 PCE와 CPI 둔화 흐름은 디스인플레이션 경로를 지지하지만, 유가가 배럴당 80달러 근처에서 견조하고 서비스 인플레이션이 끈적이며 연준의 조기 피봇을 제약하고 있습니다. 채권 시장은 10년물 수익률 4.15% 수준에서 방향성을 모색 중이며, 수익률 곡선의 역전 완화는 경기 침체 우려 후퇴를 시사합니다. 달러 인덱스는 103-105 구간에서 박스권 움직임을 보이며 글로벌 자금 흐름의 분기점을 예고합니다.\n\n## 투자 인사이트\n현 구간은 '골디락스의 마지막 국면'일 가능성이 높습니다. 금리 인하 기대는 멀티플 확장을 정당화하지만, 실제 인하 시점까지 매크로 불확실성은 변동성을 키울 것입니다. 채권은 듀레이션 5-7년 구간에서 수익률 4% 초반대 매력도가 부각되며, ��식은 실적 모멘텀 확인된 빅테크와 배당주 조합이 방어적입니다. 지정학적 리스크로 중동 긴장과 대선 정치 이슈가 VIX 급등 촉매가 될 수 있어, 포트폴리오의 10-15%는 현금성 자산 유지가 권고됩니다.",
+      "aiEconomicKnowledge": [
+        {
+          "term": "PCE 디플레이터",
+          "importance": "연준이 CPI보다 선호하는 인플레이션 지표로, 소비 패턴 변화를 반영한 가중치 조정이 특징입니다. 최근 근원 PCE가 전년비 2.8%로 둔화되며 연준의 2% 목표 달성 가능성이 높아졌습니다.",
+          "connection": "PCE 상승률이 높으면 연준이 금리를 올려 대출이자와 예금금리가 동반 상승합니다"
+        },
+        {
+          "term": "수익률 곡선 역전",
+          "importance": "단기 국채 금리가 장기 금리보다 높은 비정상 현상으로, 역사적으로 경기 침체 12-18개월 전 발생했습니다. 현재 10년-2년 스프레드가 -40bp에서 -10bp로 축소되며 역전 해소 국면 진입 중입니다.",
+          "connection": "역전 해소는 경기 회복 신호지만, 해소 직후 6개월이 실제 침체 고위험 구간입니다"
+        },
+        {
+          "term": "달러 인덱스 DXY",
+          "importance": "주요 6개 통화 대비 달러 가치를 측정하는 지수로, 103-105는 중립 구간입니다. 달러 약세는 신흥��� 자산과 원자재 가격 상승을 촉진하며, 한국 수출 기업 실적에 긍정적입니다.",
+          "connection": "달러가 약해지면 해외여행 경비 상승, 수입 물가 상승으로 체감 물가에 직접 영향"
+        }
+      ],
+      "aiGenerated": true
+    }
   }
 }

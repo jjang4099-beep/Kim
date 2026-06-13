@@ -405,11 +405,28 @@ function buildPushPayload(feeds) {
 //  Users DB (data/users.json)
 // ──────────────────────────────────────────────────
 
+const DEFAULT_USER = {
+  id: 'sj', name: 'SJ', delivery_time: '07:30',
+  timezone: 'Asia/Seoul',
+  enabled_feeds: ['en_expr', 'us_market', 'hist_daily', 'quote_daily', 'idiom_daily'],
+  feed_settings: {
+    en_expr:   { count: 10, themes: ['business_meeting', 'office_email'], level: 'advanced' },
+    zh_expr:   { count: 7,  themes: ['biz_hsk', 'biz_trip'],             level: 'advanced' },
+    us_market: { is_market_centric: false, is_macro_centric: true },
+    kr_market: { is_market_centric: true,  is_macro_centric: true }
+  }
+};
+
 function readUsers() {
-  return readJSON(USERS_PATH, [{
-    id: 'sj', name: 'SJ', delivery_time: '07:30',
-    timezone: 'Asia/Seoul', enabled_feeds: ['en_expr', 'us_market']
-  }]);
+  const users = readJSON(USERS_PATH, [DEFAULT_USER]);
+  if (!users?.length) return [DEFAULT_USER];
+  /* 구버전 users.json 로드 시 빠진 필드 보충 (Render.com 재시작 대비) */
+  const u = users[0];
+  if (!u.feed_settings) u.feed_settings = { ...DEFAULT_USER.feed_settings };
+  if (!u.enabled_feeds?.length || u.enabled_feeds.length < 3) {
+    u.enabled_feeds = DEFAULT_USER.enabled_feeds;
+  }
+  return users;
 }
 
 function writeUsers(data) {

@@ -164,28 +164,12 @@ const Mob = {
     const load = el('mobLoading');
     if (load) load.style.display = 'flex';
 
+    const catParam = cat || state.currentCat;
+
+    /* ① 아카이브 먼저 — 로딩 스피너 즉시 해제 */
     try {
-      const catParam = cat || state.currentCat;
-
-      /* 아카이브 + 배달 피드 병렬 로딩 (배달 피드는 미로드 시에만 fetch) */
-      const [archiveRes, feedRes] = await Promise.allSettled([
-        fetchJSON(`/api/items?category=${catParam}&limit=500`, {}, 25000),
-        state.feedItems.length > 0
-          ? Promise.resolve(null)         /* 이미 로드됐으면 재사용 */
-          : fetchJSON('/api/daily-feed', {}, 90000)
-      ]);
-
-      state.items = parseFeedsArray(
-        archiveRes.status === 'fulfilled'
-          ? (archiveRes.value?.items ?? archiveRes.value)
-          : []
-      );
-
-      /* 배달 피드 업데이트 (null은 "이미 있음" 신호라 건드리지 않음) */
-      if (feedRes.status === 'fulfilled' && feedRes.value !== null) {
-        state.feedItems = parseFeedsArray(feedRes.value?.feeds ?? feedRes.value ?? []);
-      }
-
+      const data = await fetchJSON(`/api/items?category=${catParam}&limit=500`, {}, 20000);
+      state.items = parseFeedsArray(data?.items ?? data);
       this.renderFeed(state.items);
     } catch (e) {
       if (feed) feed.innerHTML = `<div class="mob-loading" style="color:#ef4444">
@@ -194,6 +178,16 @@ const Mob = {
     } finally {
       if (load) load.style.display = 'none';
     }
+
+    /* ② 배달 피드 미리보기 — 백그라운드 비동기 (이미 있으면 스킵) */
+    if (state.feedItems.length > 0) return;
+    try {
+      const status = await fetchJSON('/api/daily-feed/status', {}, 5000);
+      if (!status?.allReady) return;   /* 미생성 상태면 스킵 — 배달탭에서 생성 */
+      const data = await fetchJSON('/api/daily-feed', {}, 20000);
+      state.feedItems = parseFeedsArray(data?.feeds ?? data?.items ?? data);
+      this.renderFeed(state.items);
+    } catch {}
   },
 
   setTab(cat, btn) {

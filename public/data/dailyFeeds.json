@@ -164,5 +164,83 @@
       ],
       "aiGenerated": true
     }
+  },
+  "2026-06-11": {
+    "en_expr": {
+      "id": "2026-06-11::en_expr",
+      "date": "2026-06-11",
+      "subId": "en_expr",
+      "createdAt": "2026-06-11T11:49:33.971Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "language",
+      "category": "en",
+      "subCategory": "비즈니스 영어",
+      "label": "영어 표현",
+      "title": "오늘의 비즈니스 영어: Let's touch base. 외 4개",
+      "summary": "비즈니스 영어 분야 핵심 영어 표현 5선",
+      "report": "",
+      "vocabEntries": [
+        {
+          "expression": "Let's touch base.",
+          "meaning": "연락하여 상황 공유하다, 잠시 논의하다.",
+          "nuance": "'연락하다'의 일반적인 의미를 넘어, '잠깐 만나거나 이야기해서 현재 상황을 확인하고 정보를 교환하다'는 뉘앙스가 강합니다. 격식 없이 사용 가능하며, 이메일이나 회의 후 팔로우업 시 자주 쓰입니다.",
+          "sourceSentence": "I'll be in New York next week, so let's touch base to discuss the project's progress.",
+          "practiceSentence": "Before the client meeting, let's touch base briefly to align on our key messages."
+        },
+        {
+          "expression": "Circle back to (something/someone).",
+          "meaning": "나중에 다시 논의하다/연락하다.",
+          "nuance": "현재는 다른 주제를 다루거나 시간이 부족할 때, 특정 안건이나 인물에게 '나중에 다시 돌아와서 이야기하거나 처리하겠다'는 의미입니다. 'Follow up'과 비슷하지만, '지금은 미루고 나중에 다시 다룬다'는 뉘앙스가 더 강합니다.",
+          "sourceSentence": "We're running short on time, so let's circle back to the budget discussion in our next meeting.",
+          "practiceSentence": "I'll need to gather more data on that. Let me circle back to you with a concrete proposal by end of day."
+        },
+        {
+          "expression": "On the same page.",
+          "meaning": "같은 생각을 공유하다, 의견 일치하다.",
+          "nuance": "단순히 '이해하다(understand)'를 넘어, '모두가 동일한 목표, 방향, 또는 정보 수준을 공유하고 있다'는 의미입니다. 팀원 간 합의를 확인하거나 오해를 방지할 때 매우 중요하게 사용됩니다.",
+          "sourceSentence": "Before we proceed with the new strategy, I want to make sure everyone is on the same page regarding the goals.",
+          "practiceSentence": "Let's review the revised strategy once more to ensure we are all on the same page before presenting it to the stakeholders."
+        },
+        {
+          "expression": "Leverage (something).",
+          "meaning": "~을 활용하다, 지렛대 삼다.",
+          "nuance": "단순히 'use'가 아니라, '가지고 있는 자원, 강점, 기회 등을 최대한 효과적으로 사용하여 이점을 얻다'는 적극적이고 전략적인 뉘앙스입니다. 비즈니스에서 자원 활용의 중요성을 강조할 때 자주 쓰입니다.",
+          "sourceSentence": "We need to leverage our strong market position to introduce this new product successfully.",
+          "practiceSentence": "To minimize costs and maximize efficiency, we should leverage our existing vendor relationships for the new software implementation."
+        },
+        {
+          "expression": "Bandwidth (as capacity).",
+          "meaning": "시간/능력/자원 여유, 처리 가능 용량.",
+          "nuance": "원래는 인터넷 대역폭을 의미하지만, 비즈니스에서는 '어떤 일을 처리할 수 있는 개인이나 팀의 시간, 에너지, 인력 등의 여유'를 비유적으로 표현할 때 사용됩니다. '시간이 없다' 또는 '여력이 부족하다'를 완곡하고 전문적으로 표현하는 방식입니다.",
+          "sourceSentence": "I'd love to help with the new initiative, but I honestly don't have the bandwidth right now.",
+          "practiceSentence": "Given our current project load and tight deadlines, I'm not sure if we have the bandwidth to take on another major client this quarter."
+        }
+      ],
+      "aiGenerated": true
+    },
+    "us_market": {
+      "id": "2026-06-11::us_market",
+      "date": "2026-06-11",
+      "subId": "us_market",
+      "createdAt": "2026-06-11T11:49:48.825Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "market",
+      "category": "economy",
+      "subCategory": "미국 증시 · 경제",
+      "label": "미국 시황",
+      "title": "미국 시황 — AI 키 미설정",
+      "summary": "GEMINI_API_KEY를 설정하면 실시간 AI 시황 분석을 받을 수 있습니다.",
+      "report": "## 미국 증시 · 경제\n\n**GEMINI_API_KEY를 환경변수에 설정하면** 매일 아침 자동으로 AI가 분석한 시황 리포트를 받을 수 있습니다.\n\n현재는 Mock 데이터로 표시됩니다.",
+      "aiEconomicKnowledge": [
+        {
+          "term": "API 키 설정",
+          "importance": ".env 파일에 GEMINI_API_KEY를 추가하세요.",
+          "connection": "설정 후 앱을 재시작하면 즉시 활성화됩니다."
+        }
+      ],
+      "aiGenerated": true
+    }
   }
 }

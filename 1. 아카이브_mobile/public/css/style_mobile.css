@@ -2584,6 +2584,44 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 }
 
 /* ══════════════════════════════════════════════════════════
+   홈 전용 daily_delivery 요약 카드 (v41)
+   배달탭 mob-dlv-card와 시각적 역할 분리 — 제목+한줄만 표시
+══════════════════════════════════════════════════════════ */
+.mob-dlv-summary {
+  display: block; width: 100%; text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3.5px solid var(--accent);
+  border-radius: 12px;
+  padding: 11px 14px 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .12s, box-shadow .12s;
+  box-shadow: var(--shadow);
+}
+.mob-dlv-summary:active { transform: scale(.982); box-shadow: none; }
+.mob-dls-top {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.mob-dls-badge {
+  font-size: 11px; font-weight: 700;
+  color: var(--accent);
+}
+.mob-dls-date  { font-size: 11px; color: var(--text-3); }
+.mob-dls-title {
+  font-size: 14px; font-weight: 700;
+  color: var(--text-1); line-height: 1.35;
+  margin-bottom: 4px;
+}
+.mob-dls-snippet {
+  font-size: 12.5px; color: var(--text-2);
+  line-height: 1.5; opacity: .85;
+}
+
+/* ══════════════════════════════════════════════════════════
    서재 카테고리 탭바 — 홈 탭바(.mob-tabs) 동일 스타일, fixed 해제
 ══════════════════════════════════════════════════════════ */
 .mob-tabs-lib {

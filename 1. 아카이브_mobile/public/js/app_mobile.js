@@ -272,9 +272,13 @@ const Mob = {
           </button>
         </div>`;
     } else if (todayItems.length > 0) {
-      /* 오늘 아카이브 아이템 (daily_delivery 등) */
+      /* 오늘 아카이브 아이템 — daily_delivery는 compact 요약 카드로 */
       html += '<div class="mob-card-list">';
-      todayItems.forEach(item => { html += this.cardHTML(item); });
+      todayItems.forEach(item => {
+        html += item.type === 'daily_delivery'
+          ? this._cardDlvSummary(item)
+          : this.cardHTML(item);
+      });
       html += '</div>';
     }
 
@@ -295,9 +299,12 @@ const Mob = {
       });
       for (const [date, group] of Object.entries(groups)) {
         html += `<div class="mob-date-divider">${date}</div>`;
-        /* 각 날짜 그룹도 리스트 컨테이너로 감쌈 */
         html += '<div class="mob-card-list">';
-        group.forEach(item => { html += this.cardHTML(item); });
+        group.forEach(item => {
+          html += item.type === 'daily_delivery'
+            ? this._cardDlvSummary(item)
+            : this.cardHTML(item);
+        });
         html += '</div>';
       }
     }
@@ -376,6 +383,38 @@ const Mob = {
   _goToFeedFiltered(subId) {
     state.pendingFeedFilter = subId || 'all';
     this.switchView('feed', el('bnFeed'));
+  },
+
+  /**
+   * 홈 전용 daily_delivery 요약 카드 — 제목 + 한줄 요약만 표시
+   * 클릭 시 상세 모달(openDetail) 오픈. 배달탭과 시각적 역할 분리.
+   */
+  _cardDlvSummary(item) {
+    const id      = item._id || item.id || '';
+    const title   = item.title || '오늘의 지식';
+    const cat     = item.category || 'inbox';
+    const rawD    = item.createdAt || item.savedAt || '';
+    const dateStr = rawD
+      ? (() => { const d = new Date(rawD); return isNaN(d) ? '' : `${d.getMonth()+1}/${d.getDate()}`; })()
+      : '';
+    /* 첫 번째 유효한 요약 줄 — summary3 > summary > text 순서 */
+    const rawSummary = (item.summary3 || item.summary || item.text || '')
+      .replace(/\\n/g, ' ').split('\n')[0]
+      .replace(/^[•\-·]\s*/, '').trim();
+    const snippet = rawSummary.length > 62 ? rawSummary.slice(0, 62) + '…' : rawSummary;
+
+    const catIconMap = { en:'🌐', history:'🏛️', economy:'📈', inbox:'📌', youtube:'▶️' };
+    const catIcon    = catIconMap[cat] || '💡';
+
+    return `
+    <div class="mob-card mob-dlv-summary" data-id="${id}">
+      <div class="mob-dls-top">
+        <span class="mob-dls-badge">${catIcon} ${this._catLabel(cat)}</span>
+        ${dateStr ? `<span class="mob-dls-date">${dateStr}</span>` : ''}
+      </div>
+      <div class="mob-dls-title">${title}</div>
+      ${snippet ? `<div class="mob-dls-snippet">${snippet}</div>` : ''}
+    </div>`;
   },
 
   /* ──────────────────────────────────────────

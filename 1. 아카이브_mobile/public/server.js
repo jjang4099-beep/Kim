@@ -2899,17 +2899,23 @@ function loadQuizDB() {
 app.post('/api/quiz/generate', async (req, res) => {
   const { category = 'all', count = 5 } = req.body || {};
 
+  const excludeIds = Array.isArray(req.body.excludeIds) ? req.body.excludeIds : [];
+
   // DB-First: quiz_db에서 먼저 시도
   let pool = loadQuizDB();
   if (category !== 'all') pool = pool.filter(q => q.category === category);
 
   if (pool.length > 0) {
-    const shuffled = [...pool];
+    // 이미 본 문제 제외 — 전부 봤으면 seen 무시하고 새 라운드
+    const fresh = pool.filter(q => !excludeIds.includes(q.id));
+    const src   = fresh.length >= count ? fresh : pool;
+    const shuffled = [...src];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    return res.json({ success: true, quiz: shuffled.slice(0, Math.min(count, shuffled.length)) });
+    const result = shuffled.slice(0, Math.min(count, shuffled.length));
+    return res.json({ success: true, quiz: result, newRound: fresh.length < count });
   }
 
   // 폴백: 저장된 항목으로 Claude API 생성

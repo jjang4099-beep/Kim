@@ -2948,12 +2948,14 @@ const Mob = {
     const startBtn = document.querySelector('.mvw-quiz-start-btn');
     if (startBtn) { startBtn.disabled = true; startBtn.textContent = '생성 중…'; }
     try {
+      const seen = JSON.parse(localStorage.getItem('quiz-seen') || '[]');
       const data = await fetchJSON('/api/quiz/generate', {
         method : 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body   : JSON.stringify({ category: state.quiz.cat, count: 5 })
+        body   : JSON.stringify({ category: state.quiz.cat, count: 5, excludeIds: seen })
       }, 60000);
       if (!data.quiz?.length) throw new Error('퀴즈 없음');
+      if (data.newRound) toast('🔄 모든 문제를 풀었어요! 처음부터 다시 시작합니다', '', 3000);
       state.quiz.items    = data.quiz;
       state.quiz.current  = 0;
       state.quiz.score    = 0;
@@ -3020,6 +3022,14 @@ const Mob = {
   _showQuizResult() {
     const q   = state.quiz;
     const pct = Math.round((q.score / q.items.length) * 100);
+
+    // 완료한 문제 ID를 seen에 추가 (최대 500개 보관)
+    const newIds = q.items.map(i => i.id).filter(Boolean);
+    if (newIds.length) {
+      const prev = JSON.parse(localStorage.getItem('quiz-seen') || '[]');
+      const merged = [...new Set([...prev, ...newIds])];
+      localStorage.setItem('quiz-seen', JSON.stringify(merged.slice(-500)));
+    }
     el('quizPlay').hidden   = true;
     el('quizResult').hidden = false;
     el('quizProgressBar').style.width = '100%';

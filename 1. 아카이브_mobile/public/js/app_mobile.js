@@ -425,43 +425,30 @@ const Mob = {
   },
 
   /** 홈 영어 카드 (v37) — 표현/뜻/예문 항상 가시, 클릭 → 상세 모달 */
+  /**
+   * 홈 영어 카드 v38 — 미니멀 3단 (표현 → 뜻 → 예문)
+   * 클릭 → 상세 모달 / 내부 아코디언 없음
+   */
   _cardEnglishV(item) {
     const id      = item._id || item.id || '';
     const p       = this._parseEnglishText(item.text);
     const expr    = p.expression || item.title || '영어 표현';
     const rawD    = item.createdAt || item.savedAt || '';
-    const dateStr = rawD ? (() => { const d = new Date(rawD); return isNaN(d) ? '오늘' : `${d.getMonth()+1}/${d.getDate()}`; })() : '오늘';
-
-    const rows = [
-      p.meaning ? `<div class="mob-env-row">
-        <span class="mob-env-badge">뜻</span>
-        <span class="mob-env-val">${p.meaning}</span>
-      </div>` : '',
-      p.example ? `<div class="mob-env-row">
-        <span class="mob-env-badge mob-env-badge-ex">예문</span>
-        <span class="mob-env-val mob-env-val-ex">${p.example}</span>
-      </div>` : '',
-    ].join('');
+    const dateStr = rawD
+      ? (() => { const d = new Date(rawD); return isNaN(d) ? '오늘' : `${d.getMonth()+1}/${d.getDate()}`; })()
+      : '오늘';
 
     return `
     <div class="mob-card mob-card-en-v" data-id="${id}">
-      <div class="mob-env-top">
-        <span class="mob-env-meta">🌐 English · ${dateStr}</span>
-        <div class="mob-card-v-acts">
-          <button class="mob-card-v-copy"
-                  onclick="event.stopPropagation();Mob._copyItemText('${id}')" title="복사">
-            <i class="ti ti-copy"></i>
-          </button>
-          <button class="mob-card-v-del"
-                  onclick="event.stopPropagation();Mob._deleteItem('${id}',this.closest('.mob-card'))" title="삭제">
-            <i class="ti ti-trash"></i>
-          </button>
-        </div>
+      <div class="mob-env-hd">
+        <span class="mob-env-chip">EN · ${dateStr}</span>
+        <button class="mob-env-x"
+                onclick="event.stopPropagation();Mob._deleteItem('${id}',this.closest('.mob-card'))"
+                title="삭제"><i class="ti ti-x"></i></button>
       </div>
       <div class="mob-env-expr">${expr}</div>
-      <div class="mob-env-fields">${rows}</div>
-      ${p.nuance ? `<div class="mob-env-nuance">${p.nuance}</div>` : ''}
-      <div class="mob-env-foot"><i class="ti ti-chevron-right"></i> 탭하여 전체 대화문 보기</div>
+      ${p.meaning ? `<div class="mob-env-meaning">${p.meaning}</div>` : ''}
+      ${(p.example || p.practice) ? `<div class="mob-env-example">"${p.example || p.practice}"</div>` : ''}
     </div>`;
   },
 

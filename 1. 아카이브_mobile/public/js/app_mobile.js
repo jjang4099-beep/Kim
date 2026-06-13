@@ -2340,7 +2340,7 @@ const Mob = {
       const data = await fetchJSON('/api/items', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text })
+        body: JSON.stringify({ text, createdAt: new Date().toISOString() })
       }, 60000);
       if (!data.success) throw new Error(data.error || '처리 실패');
       toast('✅ 서재에 저장됐어요!', 'ok');

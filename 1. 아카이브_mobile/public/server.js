@@ -2698,6 +2698,7 @@ app.post('/api/items', async (req, res) => {
     };
 
     const now     = new Date();
+    const clientTs = body.createdAt && !isNaN(Date.parse(body.createdAt)) ? body.createdAt : now.toISOString();
     const newItem = {
       id         : uuidv4(),
       type       : 'youtube',
@@ -2713,7 +2714,7 @@ app.post('/api/items', async (req, res) => {
       classifier : oembed ? 'youtube-oembed' : 'youtube-rules',
       date       : toDateStr(now),
       time       : toTimeStr(now),
-      createdAt  : now.toISOString(),
+      createdAt  : clientTs,
       updatedAt  : now.toISOString(),
       insights   : []
     };
@@ -2724,8 +2725,9 @@ app.post('/api/items', async (req, res) => {
   }
 
   // ── 일반 텍스트 처리 ──
-  const now     = new Date();
-  const c       = await classify(rawText, manualCategory);
+  const now      = new Date();
+  const clientTs = body.createdAt && !isNaN(Date.parse(body.createdAt)) ? body.createdAt : now.toISOString();
+  const c        = await classify(rawText, manualCategory);
 
   const newItem = {
     id        : uuidv4(),
@@ -2737,7 +2739,7 @@ app.post('/api/items', async (req, res) => {
     source,
     date      : toDateStr(now),
     time      : toTimeStr(now),
-    createdAt : now.toISOString(),
+    createdAt : clientTs,
     updatedAt : now.toISOString(),
     insights  : []
   };
@@ -2866,21 +2868,60 @@ app.patch('/api/items/:id/review', (req, res) => {
 });
 
 // ══════════════════════════════════════════════════
-//  API — AI 퀴즈 생성
+//  Quiz DB — 사전 생성 퀴즈 로더 (AI 호출 비용 0원)
+// ══════════════════════════════════════════════════
+
+let _qdb = null;
+
+function loadQuizDB() {
+  if (_qdb) return _qdb;
+  const dbDir = path.join(__dirname, 'data', 'quiz_db');
+  const pool  = [];
+  try {
+    if (!fs.existsSync(dbDir)) { _qdb = pool; return pool; }
+    for (const f of fs.readdirSync(dbDir).filter(f => f.endsWith('.json'))) {
+      try {
+        const raw  = JSON.parse(fs.readFileSync(path.join(dbDir, f), 'utf8'));
+        const list = Array.isArray(raw.quiz) ? raw.quiz : [];
+        pool.push(...list);
+      } catch {}
+    }
+  } catch {}
+  console.log(`[QuizDB] ${pool.length}개 퀴즈 로드`);
+  _qdb = pool;
+  return pool;
+}
+
+// ══════════════════════════════════════════════════
+//  API — AI 퀴즈 생성 (DB-First, 비용 0원)
 // ══════════════════════════════════════════════════
 
 app.post('/api/quiz/generate', async (req, res) => {
   const { category = 'all', count = 5 } = req.body || {};
-  let pool = readDB().filter(i => i.type !== 'daily_delivery');
-  if (category !== 'all') pool = pool.filter(i => i.category === category);
-  if (!pool.length) return res.status(400).json({ success: false, error: '퀴즈를 만들 항목이 없습니다.' });
 
-  // 랜덤 셔플 후 count개 선택
-  for (let i = pool.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [pool[i], pool[j]] = [pool[j], pool[i]];
+  // DB-First: quiz_db에서 먼저 시도
+  let pool = loadQuizDB();
+  if (category !== 'all') pool = pool.filter(q => q.category === category);
+
+  if (pool.length > 0) {
+    const shuffled = [...pool];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return res.json({ success: true, quiz: shuffled.slice(0, Math.min(count, shuffled.length)) });
   }
-  const selected = pool.slice(0, Math.min(count, pool.length, 10));
+
+  // 폴백: 저장된 항목으로 Claude API 생성
+  let items = readDB().filter(i => i.type !== 'daily_delivery');
+  if (category !== 'all') items = items.filter(i => i.category === category);
+  if (!items.length) return res.status(400).json({ success: false, error: '퀴즈를 만들 항목이 없습니다.' });
+
+  for (let i = items.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [items[i], items[j]] = [items[j], items[i]];
+  }
+  const selected = items.slice(0, Math.min(count, items.length, 10));
 
   if (!process.env.ANTHROPIC_API_KEY) {
     return res.status(503).json({ success: false, error: 'ANTHROPIC_API_KEY 미설정' });

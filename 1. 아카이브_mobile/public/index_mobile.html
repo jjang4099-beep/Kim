@@ -56,12 +56,15 @@
      카테고리 탭 벨트
 ══════════════════════════════════════════════════════ -->
 <nav class="mob-tabs" id="mobTabs">
-  <button class="mob-tab active" data-cat="all"     onclick="Mob.setTab('all',this)">전체</button>
-  <button class="mob-tab"        data-cat="en"      onclick="Mob.setTab('en',this)">English</button>
-  <button class="mob-tab"        data-cat="history" onclick="Mob.setTab('history',this)">History</button>
-  <button class="mob-tab"        data-cat="economy" onclick="Mob.setTab('economy',this)">Economy</button>
-  <button class="mob-tab"        data-cat="youtube" onclick="Mob.setTab('youtube',this)">YouTube</button>
-  <button class="mob-tab"        data-cat="inbox"   onclick="Mob.setTab('inbox',this)">임시서랍</button>
+  <button class="mob-tab active" data-cat="all"        onclick="Mob.setTab('all',this)">전체</button>
+  <button class="mob-tab"        data-cat="business"   onclick="Mob.setTab('business',this)">📈 비즈니스</button>
+  <button class="mob-tab"        data-cat="language"   onclick="Mob.setTab('language',this)">🌐 언어</button>
+  <button class="mob-tab"        data-cat="humanities" onclick="Mob.setTab('humanities',this)">📜 역사</button>
+  <button class="mob-tab"        data-cat="psychology" onclick="Mob.setTab('psychology',this)">🧠 심리</button>
+  <button class="mob-tab"        data-cat="science"    onclick="Mob.setTab('science',this)">🔬 과학</button>
+  <button class="mob-tab"        data-cat="arts"       onclick="Mob.setTab('arts',this)">🎨 문화</button>
+  <button class="mob-tab"        data-cat="life"       onclick="Mob.setTab('life',this)">⚕️ 건강</button>
+  <button class="mob-tab"        data-cat="society"    onclick="Mob.setTab('society',this)">🌍 사회</button>
 </nav>
 
 <!-- ══════════════════════════════════════════════════════
@@ -103,15 +106,18 @@
   <div class="mob-view" id="viewSummary">
     <div class="mvw-library-wrap">
 
-      <!-- 카테고리 필터 — 홈 탭바와 동일 구조 -->
+      <!-- 도메인 필터 — 8대 지식 온톨로지 -->
       <nav class="mob-tabs mob-tabs-lib" id="libFilterBar">
         <button class="mob-tab active" data-cat="all"        onclick="Mob.setLibraryFilter('all',this)">전체</button>
         <button class="mob-tab"        data-cat="starred"    onclick="Mob.setLibraryFilter('starred',this)">★ 즐겨찾기</button>
-        <button class="mob-tab"        data-cat="en"         onclick="Mob.setLibraryFilter('en',this)">영어</button>
-        <button class="mob-tab"        data-cat="zh"         onclick="Mob.setLibraryFilter('zh',this)">중국어</button>
-        <button class="mob-tab"        data-cat="history"    onclick="Mob.setLibraryFilter('history',this)">역사</button>
-        <button class="mob-tab"        data-cat="economy"    onclick="Mob.setLibraryFilter('economy',this)">기업분석</button>
-        <button class="mob-tab"        data-cat="psychology" onclick="Mob.setLibraryFilter('psychology',this)">심리전술</button>
+        <button class="mob-tab"        data-cat="business"   onclick="Mob.setLibraryFilter('business',this)">📈 비즈니스</button>
+        <button class="mob-tab"        data-cat="language"   onclick="Mob.setLibraryFilter('language',this)">🌐 언어</button>
+        <button class="mob-tab"        data-cat="humanities" onclick="Mob.setLibraryFilter('humanities',this)">📜 역사</button>
+        <button class="mob-tab"        data-cat="psychology" onclick="Mob.setLibraryFilter('psychology',this)">🧠 심리</button>
+        <button class="mob-tab"        data-cat="science"    onclick="Mob.setLibraryFilter('science',this)">🔬 과학</button>
+        <button class="mob-tab"        data-cat="arts"       onclick="Mob.setLibraryFilter('arts',this)">🎨 문화</button>
+        <button class="mob-tab"        data-cat="life"       onclick="Mob.setLibraryFilter('life',this)">⚕️ 건강</button>
+        <button class="mob-tab"        data-cat="society"    onclick="Mob.setLibraryFilter('society',this)">🌍 사회</button>
       </nav>
 
       <!-- ★ AI 기간별 요약 아코디언 토글 버튼 -->
@@ -291,10 +297,10 @@
         <div class="mvw-quiz-start-title"><i class="ti ti-brain"></i> AI 퀴즈</div>
         <div class="mvw-quiz-start-sub">저장한 지식으로 나만의 퀴즈를 풀어보세요</div>
         <div class="mvw-quiz-cat-chips" id="quizCatChips">
-          <button class="mvw-quiz-cat-chip active" data-cat="all" onclick="Mob._selectQuizCat('all',this)">전체</button>
-          <button class="mvw-quiz-cat-chip" data-cat="en" onclick="Mob._selectQuizCat('en',this)">영어</button>
-          <button class="mvw-quiz-cat-chip" data-cat="history" onclick="Mob._selectQuizCat('history',this)">역사</button>
-          <button class="mvw-quiz-cat-chip" data-cat="economy" onclick="Mob._selectQuizCat('economy',this)">경제</button>
+          <button class="mvw-quiz-cat-chip active" data-cat="all"        onclick="Mob._selectQuizCat('all',this)">전체</button>
+          <button class="mvw-quiz-cat-chip"        data-cat="language"   onclick="Mob._selectQuizCat('language',this)">🌐 언어</button>
+          <button class="mvw-quiz-cat-chip"        data-cat="humanities" onclick="Mob._selectQuizCat('humanities',this)">📜 역사</button>
+          <button class="mvw-quiz-cat-chip"        data-cat="business"   onclick="Mob._selectQuizCat('business',this)">📈 비즈니스</button>
         </div>
         <button class="mvw-quiz-start-btn" onclick="Mob._startQuiz()">
           <i class="ti ti-rocket"></i> 퀴즈 시작 (5문제)

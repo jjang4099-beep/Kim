@@ -41,6 +41,40 @@ const SUBSCRIPTIONS_PATH     = path.join(__dirname, 'data', 'subscriptions.json'
 const USERS_PATH             = path.join(__dirname, 'data', 'users.json');
 const PUSH_SUBS_PATH         = path.join(__dirname, 'data', 'push_subscriptions.json');
 
+// ══════════════════════════════════════════════════
+//  Layer 1: 8대 지식 도메인 온톨로지
+// ══════════════════════════════════════════════════
+const DOMAINS = {
+  business:   { label: '비즈니스·경제', icon: '📈' },
+  language:   { label: '언어·표현',     icon: '🌐' },
+  humanities: { label: '역사·문명',     icon: '📜' },
+  psychology: { label: '심리·철학',     icon: '🧠' },
+  science:    { label: '과학·기술',     icon: '🔬' },
+  arts:       { label: '문화·예술',     icon: '🎨' },
+  life:       { label: '건강·라이프',   icon: '⚕️' },
+  society:    { label: '사회·정치',     icon: '🌍' },
+};
+
+// 구형 category → domain 매핑 (마이그레이션 + 호환성)
+const CATEGORY_TO_DOMAIN = {
+  en:        'language',
+  zh:        'language',
+  history:   'humanities',
+  economy:   'business',
+  youtube:   'business',
+  inbox:     'business',
+  psychology:'psychology',
+  science:   'science',
+  arts:      'arts',
+  life:      'life',
+  society:   'society',
+};
+
+function getDomain(item) {
+  if (item.domain && DOMAINS[item.domain]) return item.domain;
+  return CATEGORY_TO_DOMAIN[item.category] || 'business';
+}
+
 // ── 이미지 업로드 디렉토리 + multer 설정 ──
 const UPLOADS_DIR = path.join(__dirname, 'uploads');
 if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
@@ -125,6 +159,7 @@ async function initSQLiteDB() {
     CREATE INDEX IF NOT EXISTS idx_items_created_at ON items(created_at);
   `);
   _migrateFromJSON();
+  _migrateLegacyDomains();
   _persistDB();
   console.log('[SQLite] DB 초기화 완료 →', SQLITE_PATH);
 }
@@ -191,6 +226,26 @@ function _migrateFromJSON() {
   }
 }
 
+/** 기존 항목의 domain 필드 백필 (서버 시작 시 1회) */
+function _migrateLegacyDomains() {
+  const result = _sqliteDb.exec("SELECT id, data FROM items WHERE category IN ('en','zh','history','economy','youtube','inbox') OR category IS NULL");
+  if (!result.length) return;
+  let migrated = 0;
+  const stmt = _sqliteDb.prepare('UPDATE items SET category=?, data=? WHERE id=?');
+  for (const [id, dataStr] of result[0].values) {
+    try {
+      const item = JSON.parse(dataStr);
+      if (item.domain && DOMAINS[item.domain]) continue;  // 이미 마이그레이션됨
+      item.domain = CATEGORY_TO_DOMAIN[item.category] || 'business';
+      item.shelf  = item.domain;
+      stmt.run([item.domain, JSON.stringify(item), id]);
+      migrated++;
+    } catch {}
+  }
+  stmt.free();
+  if (migrated > 0) console.log(`[Migration] domain 백필 완료: ${migrated}개`);
+}
+
 /**
  * 전체 아이템 배열 반환 (createdAt DESC)
  * 기존 코드와 인터페이스 동일
@@ -201,7 +256,8 @@ function readDB() {
   if (!result.length) return [];
   return result[0].values.map(([data]) => {
     const item = JSON.parse(data);
-    item.shelf = item.category || 'inbox';   // shelf 자동 동기화
+    item.domain = getDomain(item);           // domain 자동 주입 (구형 항목 호환)
+    item.shelf  = item.domain;               // shelf → domain 기반으로 통일
     return item;
   });
 }
@@ -232,14 +288,16 @@ function writeDB(items) {
 
 /** 단일 아이템 삽입/교체 */
 function dbInsert(item) {
-  const db = getSQLiteDB();
-  item.shelf = item.category || 'inbox';
-  const stmt = db.prepare(
+  const db     = getSQLiteDB();
+  const domain = getDomain(item);
+  item.domain  = domain;
+  item.shelf   = domain;
+  const stmt   = db.prepare(
     'INSERT OR REPLACE INTO items (id, category, date, created_at, data) VALUES (?, ?, ?, ?, ?)'
   );
   stmt.run([
     item.id        || uuidv4(),
-    item.category  || 'inbox',
+    domain,                          // category 컬럼을 domain 인덱스로 재활용
     item.date      || '',
     item.createdAt || new Date().toISOString(),
     JSON.stringify(item)
@@ -250,13 +308,15 @@ function dbInsert(item) {
 
 /** 단일 아이템 업데이트 */
 function dbUpdate(item) {
-  const db = getSQLiteDB();
-  item.shelf = item.category || 'inbox';
-  const stmt = db.prepare(
+  const db     = getSQLiteDB();
+  const domain = getDomain(item);
+  item.domain  = domain;
+  item.shelf   = domain;
+  const stmt   = db.prepare(
     'UPDATE items SET category=?, date=?, created_at=?, data=? WHERE id=?'
   );
   stmt.run([
-    item.category  || 'inbox',
+    domain,
     item.date      || '',
     item.createdAt || '',
     JSON.stringify(item),
@@ -1842,16 +1902,24 @@ async function callClaude({ model = 'claude-haiku-4-5-20251001', maxTokens = 600
 function classifyByRules(text) {
   const t = text.toLowerCase();
   if (/youtube\.com\/watch|youtu\.be\//.test(t))
-    return { category: 'youtube', confidence: 'high', keywords: [] };
+    return { domain: 'business', confidence: 'high', keywords: [] };
   const alpha = (text.match(/[a-zA-Z]/g) || []).length;
   const total = (text.match(/[^\s]/g) || []).length;
   if (total > 0 && alpha / total > 0.55)
-    return { category: 'en', confidence: 'high', keywords: [] };
-  if (/금리|증시|주가|연준|fed|fomc|etf|반도체|경제|인플레|기준금리|gdp|환율|코스피|나스닥|달러|채권|금융|투자|주식|ipo/.test(t))
-    return { category: 'economy', confidence: 'medium', keywords: [] };
-  if (/조선|고려|신라|백제|고구려|임진왜란|세종|이순신|태종|광해군|영조|정조|무신정권|삼별초|동학|갑오|을사|일제|독립|년대|세기|왕조|왕|장군|사건|혁명|전쟁|고대|중세/.test(t))
-    return { category: 'history', confidence: 'medium', keywords: [] };
-  return { category: 'inbox', confidence: 'low', keywords: [] };
+    return { domain: 'language', confidence: 'high', keywords: [] };
+  if (/금리|증시|주가|연준|fed|fomc|etf|반도체|경제|인플레|기준금리|gdp|환율|코스피|나스닥|달러|채권|금융|투자|주식|ipo|기업|창업|마케팅/.test(t))
+    return { domain: 'business', confidence: 'medium', keywords: [] };
+  if (/조선|고려|신라|백제|고구려|임진왜란|세종|이순신|왕조|사건|혁명|전쟁|고대|중세|근세|근대|역사|문명|왕|제국|식민/.test(t))
+    return { domain: 'humanities', confidence: 'medium', keywords: [] };
+  if (/심리|철학|인지|감정|스트레스|관계|행동|동기|사고|무의식|자아|인간관계/.test(t))
+    return { domain: 'psychology', confidence: 'medium', keywords: [] };
+  if (/ai|인공지능|머신러닝|딥러닝|알고리즘|프로그래밍|코딩|과학|물리|화학|수학|공학|기술|tech/.test(t))
+    return { domain: 'science', confidence: 'medium', keywords: [] };
+  if (/건강|의학|운동|식단|다이어트|수면|영양|병원|치료|약|라이프스타일/.test(t))
+    return { domain: 'life', confidence: 'medium', keywords: [] };
+  if (/정치|사회|법|시사|선거|정부|복지|환경|기후|시위|국제/.test(t))
+    return { domain: 'society', confidence: 'medium', keywords: [] };
+  return { domain: 'business', confidence: 'low', keywords: [] };
 }
 
 async function classifyWithClaude(text) {
@@ -1859,35 +1927,44 @@ async function classifyWithClaude(text) {
     maxTokens: 250,
     messages: [{
       role: 'user',
-      content: `다음 텍스트를 분류하고 핵심 키워드 3개와 한 줄 요약을 추출하세요.
+      content: `다음 텍스트를 8대 지식 도메인 중 하나로 분류하고 핵심 키워드 3개와 한 줄 요약을 추출하세요.
 
-카테고리:
-- en       : 영어 학습, 비즈니스 영어, 영어 표현
-- history  : 역사, 역사적 사건·인물 (한국사/세계사)
-- economy  : 경제, 금융, 주식, 기업
-- youtube  : 유튜브 링크 또는 영상 내용
-- inbox    : 위에 해당하지 않는 일반 지식 (임시 서랍)
+도메인:
+- business   : 비즈니스, 경제, 금융, 주식, 기업, 창업, 마케팅, 커리어
+- language   : 영어표현, 중국어, 일본어, 어학, 언어학습, 비즈니스 영어
+- humanities : 역사, 문명, 문화사, 고전, 인류학, 지정학
+- psychology : 심리학, 철학, 인간관계, 리더십, 인지과학, 행동경제학
+- science    : 과학, 기술, IT, AI, 수학, 공학, 자연과학
+- arts       : 문학, 영화, 음악, 미술, 디자인, 문화예술
+- life       : 건강, 의학, 운동, 식단, 라이프스타일, 여행, 자기계발
+- society    : 사회, 정치, 법, 시사, 환경, 국제
 
 반드시 JSON만 출력:
-{"category":"en","keywords":["표현","협상","비즈니스"],"summary":"협상 시 사용하는 핵심 비즈니스 영어 표현"}
+{"domain":"language","keywords":["표현","협상","비즈니스"],"summary":"협상 시 사용하는 핵심 비즈니스 영어 표현"}
 
 텍스트: ${text.slice(0, 600)}`
     }]
   });
   const parsed = safeParseJSON(raw);
-  if (parsed?.category) return {
-    category: parsed.category, keywords: parsed.keywords || [],
-    summary: parsed.summary || '', classifier: 'claude'
+  if (parsed?.domain && DOMAINS[parsed.domain]) return {
+    domain   : parsed.domain,
+    category : parsed.domain,   // 하위 호환
+    keywords : parsed.keywords || [],
+    summary  : parsed.summary || '',
+    classifier: 'claude'
   };
   return null;
 }
 
-async function classify(text, manualCategory) {
-  if (manualCategory) return { category: manualCategory, keywords: [], summary: '', classifier: 'manual' };
+async function classify(text, manualDomain) {
+  if (manualDomain) {
+    const domain = DOMAINS[manualDomain] ? manualDomain : (CATEGORY_TO_DOMAIN[manualDomain] || 'business');
+    return { domain, category: domain, keywords: [], summary: '', classifier: 'manual' };
+  }
   const c = await classifyWithClaude(text);
   if (c) return c;
   const r = classifyByRules(text);
-  return { ...r, summary: '', classifier: `rules(${r.confidence})` };
+  return { ...r, category: r.domain, summary: '', classifier: `rules(${r.confidence})` };
 }
 
 // ══════════════════════════════════════════════════
@@ -2020,9 +2097,10 @@ setInterval(reshelfOldInboxItems, 60 * 60 * 1000);
 
 async function detectCrossInsight(newItem, recentItems) {
   if (!process.env.ANTHROPIC_API_KEY) return null;
-  if (!['en','history'].includes(newItem.category)) return null;
-  const opposite = newItem.category === 'en' ? 'history' : 'en';
-  const peers = recentItems.filter(i => i.category === opposite).slice(0, 5)
+  const itemDomain = getDomain(newItem);
+  if (!['language','humanities'].includes(itemDomain)) return null;
+  const opposite = itemDomain === 'language' ? 'humanities' : 'language';
+  const peers = recentItems.filter(i => getDomain(i) === opposite).slice(0, 5)
     .map(i => `- ${i.text.slice(0,120)}`).join('\n');
   if (!peers) return null;
 
@@ -2637,10 +2715,16 @@ app.post('/api/daily-delivery/generate', async (req, res) => {
 
 app.get('/api/items', (req, res) => {
   let items = readDB();
-  const { category, shelf, limit = 100, sort = 'desc', search } = req.query;
+  const { domain, category, shelf, limit = 100, sort = 'desc', search } = req.query;
 
-  if (category && category !== 'all') items = items.filter(i => i.category === category);
-  if (shelf)    items = items.filter(i => i.shelf === shelf);
+  // domain 필터 우선, 없으면 구형 category 파라미터 호환
+  if (domain && domain !== 'all') {
+    items = items.filter(i => getDomain(i) === domain);
+  } else if (category && category !== 'all') {
+    const mapped = CATEGORY_TO_DOMAIN[category] || category;
+    items = items.filter(i => getDomain(i) === mapped);
+  }
+  if (shelf)    items = items.filter(i => getDomain(i) === shelf);
   if (req.query.starred === 'true') items = items.filter(i => i.starred === true);
 
   // 키워드 검색: 제목·요약·본문·키워드 모두 대상
@@ -2728,11 +2812,14 @@ app.post('/api/items', async (req, res) => {
   const now      = new Date();
   const clientTs = body.createdAt && !isNaN(Date.parse(body.createdAt)) ? body.createdAt : now.toISOString();
   const c        = await classify(rawText, manualCategory);
+  const domain   = c.domain || CATEGORY_TO_DOMAIN[c.category] || 'business';
 
   const newItem = {
     id        : uuidv4(),
     text      : rawText,
-    category  : c.category,
+    domain,
+    category  : domain,         // 하위 호환
+    tags      : body.tags || [],
     keywords  : [...c.keywords, ...extraTags].slice(0, 6),
     summary   : c.summary,
     classifier: c.classifier,
@@ -2770,24 +2857,25 @@ app.post('/api/insights/detect', async (req, res) => {
   const toDate = endDate   || toDateStr(now);
   const fromDate = startDate || toDateStr(new Date(now.getTime() - 30 * 86400000));
 
-  const items = _sqlQuery(
-    "SELECT data FROM items WHERE date >= ? AND date <= ? AND category IN ('en','history') ORDER BY created_at DESC LIMIT 60",
+  const allItems = _sqlQuery(
+    "SELECT data FROM items WHERE date >= ? AND date <= ? ORDER BY created_at DESC LIMIT 100",
     [fromDate, toDate]
-  ).map(r => JSON.parse(r.data));
+  ).map(r => { const i = JSON.parse(r.data); i.domain = getDomain(i); return i; });
 
-  if (items.length < 2) {
-    return res.json({ success: true, detected: 0, message: '통찰 감지에 필요한 아이템이 부족합니다 (en·history 각 1개 이상 필요).' });
+  if (allItems.length < 2) {
+    return res.json({ success: true, detected: 0, message: '통찰 감지에 필요한 아이템이 부족합니다.' });
   }
 
-  const enItems   = items.filter(i => i.category === 'en');
-  const histItems = items.filter(i => i.category === 'history');
-  if (!enItems.length || !histItems.length) {
-    return res.json({ success: true, detected: 0, message: 'en 또는 history 카테고리 아이템이 없어 교차 통찰을 생성할 수 없습니다.' });
+  const langItems = allItems.filter(i => i.domain === 'language');
+  const humItems  = allItems.filter(i => i.domain === 'humanities');
+  const items     = [...langItems, ...humItems];
+  if (!langItems.length || !humItems.length) {
+    return res.json({ success: true, detected: 0, message: 'language 또는 humanities 도메인 아이템이 없어 교차 통찰을 생성할 수 없습니다.' });
   }
 
-  // 최신 en 아이템 3개에 대해서만 교차 통찰 감지 (비용 절감)
+  // 최신 language 아이템 3개에 대해서만 교차 통찰 감지 (비용 절감)
   let detected = 0;
-  const targets = enItems.slice(0, 3);
+  const targets = langItems.slice(0, 3);
 
   for (const target of targets) {
     try {
@@ -2817,9 +2905,9 @@ app.patch('/api/items/:id', (req, res) => {
   const items = readDB();
   const item  = items.find(i => i.id === req.params.id);
   if (!item) return res.status(404).json({ success: false, error: '항목을 찾을 수 없습니다.' });
-  const allowed = ['category', 'keywords', 'summary', 'source', 'text', 'myInsight', 'starred', 'reviewAt', 'reviewCount', 'reviewEase'];
+  const allowed = ['domain', 'tags', 'category', 'keywords', 'summary', 'source', 'text', 'myInsight', 'starred', 'reviewAt', 'reviewCount', 'reviewEase'];
   allowed.forEach(k => { if (req.body[k] !== undefined) item[k] = req.body[k]; });
-  // category 변경 시 shelf 자동 동기화 (dbUpdate 내부에서도 처리)
+  // domain 변경 시 category·shelf 자동 동기화 (dbUpdate 내부에서도 처리)
   item.updatedAt = new Date().toISOString();
   dbUpdate(item);
   res.json({ success: true, item });
@@ -3466,18 +3554,18 @@ app.get('/api/report/weekly', async (req, res) => {
   const weekly  = items.filter(i => new Date(i.createdAt) >= cutoff);
   const grouped = {};
   weekly.forEach(i => { (grouped[i.date] = grouped[i.date] || []).push(i); });
-  const catCounts = {};
-  weekly.forEach(i => { catCounts[i.category] = (catCounts[i.category] || 0) + 1; });
+  const domainCounts = {};
+  weekly.forEach(i => { const d = getDomain(i); domainCounts[d] = (domainCounts[d] || 0) + 1; });
 
   let storyReport = null;
   if (process.env.ANTHROPIC_API_KEY && weekly.length >= 3) {
-    const enItems = weekly.filter(i => i.category === 'en').slice(0, 8).map(i => `• ${i.text.slice(0,150)}`).join('\n');
-    const hiItems = weekly.filter(i => i.category === 'history').slice(0, 8).map(i => `• ${i.text.slice(0,150)}`).join('\n');
-    const ecItems = weekly.filter(i => i.category === 'economy').slice(0, 5).map(i => `• ${i.text.slice(0,150)}`).join('\n');
+    const langItems = weekly.filter(i => getDomain(i) === 'language').slice(0, 8).map(i => `• ${i.text.slice(0,150)}`).join('\n');
+    const humItems  = weekly.filter(i => getDomain(i) === 'humanities').slice(0, 8).map(i => `• ${i.text.slice(0,150)}`).join('\n');
+    const bizItems  = weekly.filter(i => getDomain(i) === 'business').slice(0, 5).map(i => `• ${i.text.slice(0,150)}`).join('\n');
     const raw = await callClaude({
       maxTokens: 800,
       system: '당신은 개인 지식 사서이자 인문학 큐레이터입니다.',
-      messages: [{ role: 'user', content: `이번 주 수집된 지식들입니다.\n\n[영어·비즈니스 표현]\n${enItems||'(없음)'}\n\n[역사 지식]\n${hiItems||'(없음)'}\n\n[경제 지식]\n${ecItems||'(없음)'}\n\n아래 JSON만 출력하세요:\n{"headline":"제목(15자)","story":"스토리(200~300자)","crossInsight":"영어↔역사 연결(100자)","weeklyPhrase":"핵심 문장"}` }]
+      messages: [{ role: 'user', content: `이번 주 수집된 지식들입니다.\n\n[언어·표현]\n${langItems||'(없음)'}\n\n[역사·문명]\n${humItems||'(없음)'}\n\n[비즈니스·경제]\n${bizItems||'(없음)'}\n\n아래 JSON만 출력하세요:\n{"headline":"제목(15자)","story":"스토리(200~300자)","crossInsight":"도메인 간 연결(100자)","weeklyPhrase":"핵심 문장"}` }]
     });
     storyReport = safeParseJSON(raw);
   }
@@ -3485,7 +3573,7 @@ app.get('/api/report/weekly', async (req, res) => {
   res.json({
     success: true,
     period: { from: toDateStr(cutoff), to: toDateStr() },
-    totalItems: weekly.length, byDate: grouped, byCategory: catCounts,
+    totalItems: weekly.length, byDate: grouped, byCategory: domainCounts,
     storyReport: storyReport || { headline: '이번 주 지식 브리핑', story: 'ANTHROPIC_API_KEY를 설정하면 AI 스토리텔링을 받을 수 있습니다.', crossInsight: 'API 키 설정 후 활성화됩니다.', weeklyPhrase: '知識は力なり' }
   });
 });

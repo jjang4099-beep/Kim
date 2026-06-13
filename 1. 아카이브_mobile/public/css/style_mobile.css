@@ -2802,6 +2802,65 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 .mvw-quiz-wrong-list { margin-bottom: 16px; }
 
 /* ═══════════════════════════════════════════════
+   v44: 8대 도메인 뱃지 + Layer 2 태그 칩
+═══════════════════════════════════════════════ */
+
+/* 카드 상단 도메인 라벨 (mob-card-v-cat 대체) */
+.mob-card-v-cat {
+  display     : inline-flex;
+  align-items : center;
+  gap         : 4px;
+  font-size   : 11px;
+  font-weight : 700;
+  letter-spacing: 0.02em;
+  padding     : 2px 8px;
+  border-radius: 20px;
+  background  : color-mix(in srgb, var(--domain-color, #6b7280) 12%, transparent);
+  color       : var(--domain-color, #6b7280);
+}
+
+/* 도메인별 컬러 변수 (JS에서 inline style로 주입, CSS fallback용) */
+.mob-card[data-domain="business"]   { --domain-color: #10b981; }
+.mob-card[data-domain="language"]   { --domain-color: #3b82f6; }
+.mob-card[data-domain="humanities"] { --domain-color: #8b5cf6; }
+.mob-card[data-domain="psychology"] { --domain-color: #ec4899; }
+.mob-card[data-domain="science"]    { --domain-color: #06b6d4; }
+.mob-card[data-domain="arts"]       { --domain-color: #f59e0b; }
+.mob-card[data-domain="life"]       { --domain-color: #84cc16; }
+.mob-card[data-domain="society"]    { --domain-color: #f97316; }
+
+/* Layer 2 태그 칩 */
+.mob-tag-chip {
+  display       : inline-flex;
+  align-items   : center;
+  font-size     : 11px;
+  padding       : 2px 7px;
+  border-radius : 12px;
+  font-weight   : 500;
+  line-height   : 1.4;
+}
+.mob-tag-chip.user {
+  background : #ecfdf5;
+  color      : #059669;
+  border     : 1px solid #a7f3d0;
+}
+.mob-tag-chip.kw {
+  background : var(--bg, #f1f5f9);
+  color      : var(--text-2, #64748b);
+  border     : 1px solid var(--border, #e2e8f0);
+}
+
+/* 홈·서재 탭바 — 8개 탭 가로 스크롤 강화 */
+.mob-tabs {
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+}
+.mob-tabs .mob-tab {
+  scroll-snap-align: start;
+  white-space      : nowrap;
+}
+
+/* ═══════════════════════════════════════════════
    다크 모드 (v32) — 시스템 설정 자동 추종
 ═══════════════════════════════════════════════ */
 @media (prefers-color-scheme: dark) {

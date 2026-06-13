@@ -9,6 +9,30 @@
 'use strict';
 
 /* ──────────────────────────────────────────────
+   Layer 1: 8대 지식 도메인 (서버와 동기)
+────────────────────────────────────────────── */
+const DOMAINS = {
+  business:   { label: '비즈니스·경제', icon: '📈', color: '#10b981' },
+  language:   { label: '언어·표현',     icon: '🌐', color: '#3b82f6' },
+  humanities: { label: '역사·문명',     icon: '📜', color: '#8b5cf6' },
+  psychology: { label: '심리·철학',     icon: '🧠', color: '#ec4899' },
+  science:    { label: '과학·기술',     icon: '🔬', color: '#06b6d4' },
+  arts:       { label: '문화·예술',     icon: '🎨', color: '#f59e0b' },
+  life:       { label: '건강·라이프',   icon: '⚕️', color: '#84cc16' },
+  society:    { label: '사회·정치',     icon: '🌍', color: '#f97316' },
+};
+const CATEGORY_TO_DOMAIN = {
+  en:'language', zh:'language', history:'humanities',
+  economy:'business', youtube:'business', inbox:'business',
+  psychology:'psychology', science:'science', arts:'arts',
+  life:'life', society:'society',
+};
+function getItemDomain(item) {
+  if (item.domain && DOMAINS[item.domain]) return item.domain;
+  return CATEGORY_TO_DOMAIN[item.category] || 'business';
+}
+
+/* ──────────────────────────────────────────────
    유틸
 ────────────────────────────────────────────── */
 const el = id => document.getElementById(id);
@@ -176,7 +200,8 @@ const Mob = {
 
     /* ① 아카이브 먼저 — 로딩 스피너 즉시 해제 */
     try {
-      const data = await fetchJSON(`/api/items?category=${catParam}&limit=500`, {}, 20000);
+      const param = catParam && catParam !== 'all' ? `domain=${catParam}` : '';
+      const data = await fetchJSON(`/api/items?${param}&limit=500`, {}, 20000);
       state.items = parseFeedsArray(data?.items ?? data);
       this.renderFeed(state.items);
     } catch (e) {
@@ -522,16 +547,16 @@ const Mob = {
    * 흰 배경 + 파란 왼쪽 border · 카테고리칩+날짜 · 복사/삭제 · 볼드 제목 · 불릿 · 해시태그
    */
   _cardV(item, m = {}) {
-    const cat    = item.category || item.shelf || 'inbox';
     const id     = item._id || item.id || '';
     const rawD   = item.createdAt || item.savedAt || '';
     const dateStr = rawD
       ? (() => { const d = new Date(rawD); return isNaN(d) ? '오늘' : `${d.getMonth()+1}/${d.getDate()}`; })()
       : '오늘';
 
-    const catIconMap = { en:'🌐', history:'🏛️', economy:'📈', inbox:'📌', youtube:'▶️' };
-    const catIcon  = catIconMap[cat] || '💡';
-    const catLabel = this._catLabel(cat);
+    const domain   = getItemDomain(item);
+    const domMeta  = DOMAINS[domain] || { icon: '💡', label: '기타', color: '#6b7280' };
+    const catIcon  = domMeta.icon;
+    const catLabel = domMeta.label;
 
     /* ── 제목 & 불릿 생성 (preview = 항상 보임 / detail = 접힐 때 숨김) ── */
     let title          = '';
@@ -558,29 +583,30 @@ const Mob = {
       detailBullets  = allBullets.slice(1);
     }
 
-    /* ── 해시태그 ── */
+    /* ── Layer 2 유저 태그 + AI 키워드 해시태그 ── */
+    const userTags = (item.tags || []).slice(0, 3).map(t => `<span class="mob-tag-chip user">#${t}</span>`);
     const kws = (m.keywords || item.keywords || []).slice(0, 3);
-    const defaultTagMap = { en:'#영어표현', history:'#역사', economy:'#경제', inbox:'#메모' };
-    const tags = kws.length
-      ? kws.map(k => '#' + k)
-      : [defaultTagMap[cat] || '#지식', '#서재저장'];
+    const kwTags = kws.length
+      ? kws.map(k => `<span class="mob-tag-chip kw">#${k}</span>`)
+      : [`<span class="mob-tag-chip kw">#${domMeta.label}</span>`];
 
     /* ── HTML 조합 ── */
     const mkUL = (arr) =>
       `<ul class="mob-card-v-body">${arr.map(b => `<li>${b}</li>`).join('')}</ul>`;
 
     const previewHTML = previewBullets.length ? mkUL(previewBullets) : '';
-    const tagsHTML    = tags.length
-      ? `<div class="mob-card-v-tags">${tags.map(t => `<span class="mob-card-v-tag">${t}</span>`).join('')}</div>`
+    const allTagsHTML = [...userTags, ...kwTags];
+    const tagsHTML    = allTagsHTML.length
+      ? `<div class="mob-card-v-tags">${allTagsHTML.join('')}</div>`
       : '';
     /* detail: 나머지 불릿 + 해시태그 (내용 없으면 빈 div → 셰브론 숨김) */
     const detailInner = (detailBullets.length ? mkUL(detailBullets) : '') + tagsHTML;
     const hasDetail   = detailBullets.length > 0 || tags.length > 0;
 
     return `
-    <div class="mob-card mob-card-v${hasDetail ? '' : ' no-detail'}" data-id="${id}">
+    <div class="mob-card mob-card-v${hasDetail ? '' : ' no-detail'}" data-id="${id}" data-domain="${domain}">
       <div class="mob-card-v-top">
-        <span class="mob-card-v-cat">${catIcon} ${catLabel} · ${dateStr}</span>
+        <span class="mob-card-v-cat" style="--domain-color:${domMeta.color}">${catIcon} ${catLabel} · ${dateStr}</span>
         <div class="mob-card-v-acts">
           <button class="mob-card-v-copy"
                   onclick="event.stopPropagation();Mob._copyItemText('${id}')" title="복사">
@@ -621,17 +647,16 @@ const Mob = {
    */
   _cardH(item, m) {
     const type     = item.type || 'text';
-    const cat      = item.category || item.shelf || 'inbox';
-    const catLabel = this._catLabel(cat);
     const id       = item._id || item.id || '';
     const title    = m.title || item.title || (item.text || '').slice(0, 60) || '제목 없음';
     const summary  = m.summary || item.summary || (item.text || '').slice(0, 120) || '';
     const thumb    = item.thumbnail || m.thumbnail || item.imageUrl || '';
     const dur      = item.duration  || m.duration  || '';
 
-    // 카테고리별 이모지·그라데이션 키 매핑
-    const emojiMap = { en:'📚', economy:'📈', history:'🏛️', youtube:'▶️', inbox:'📌' };
-    const emoji    = emojiMap[cat] || '💡';
+    const domain   = getItemDomain(item);
+    const domMeta  = DOMAINS[domain] || { icon: '💡', label: '기타' };
+    const catLabel = domMeta.label;
+    const emoji    = domMeta.icon;
 
     // AI 이미지 분석 뱃지 (이미지 타입만)
     const aiBadge = type === 'image_analysis'
@@ -1156,9 +1181,22 @@ const Mob = {
     }
   },
 
-  _catLabel(cat) {
-    const map = { en:'English', history:'History', economy:'Economy', youtube:'YouTube', inbox:'서랍', all:'전체' };
-    return map[cat] || (cat || '기타');
+  _catLabel(catOrDomain) {
+    if (!catOrDomain || catOrDomain === 'all') return '전체';
+    const domain = DOMAINS[catOrDomain]
+      ? catOrDomain
+      : (CATEGORY_TO_DOMAIN[catOrDomain] || catOrDomain);
+    return DOMAINS[domain]?.label || catOrDomain;
+  },
+
+  _domainIcon(item) {
+    const d = getItemDomain(item);
+    return DOMAINS[d]?.icon || '💡';
+  },
+
+  _domainLabel(item) {
+    const d = getItemDomain(item);
+    return DOMAINS[d] ? `${DOMAINS[d].icon} ${DOMAINS[d].label}` : '💡 기타';
   },
 
   /* ──────────────────────────────────────────
@@ -1669,22 +1707,14 @@ const Mob = {
     this._applyLibraryFilters();
   },
 
-  /* 빈 카테고리 탭 자동 비활성화 */
+  /* 빈 도메인 탭 자동 비활성화 */
   _updateLibraryFilterState() {
     const items = state.libraryItems || [];
     document.querySelectorAll('#libFilterBar .mob-tab[data-cat]').forEach(btn => {
       const cat = btn.dataset.cat;
       if (cat === 'all') { btn.disabled = false; return; }
       if (cat === 'starred') { btn.disabled = !items.some(i => i.starred); return; }
-      const hasItems = items.some(item => {
-        const c = item.category || item.shelf || '';
-        const t = item.type || '';
-        const s = item.subId || '';
-        if (cat === 'zh')      return c === 'zh' || c === 'zh_expr' || s.includes('zh');
-        if (cat === 'history') return c === 'history' || t === 'humanities';
-        return c === cat;
-      });
-      btn.disabled = !hasItems;
+      btn.disabled = !items.some(item => getItemDomain(item) === cat);
     });
   },
 
@@ -1697,14 +1727,7 @@ const Mob = {
       if (f === 'starred') {
         items = items.filter(item => item.starred);
       } else {
-        items = items.filter(item => {
-          const cat  = item.category || item.shelf || '';
-          const type = item.type || '';
-          const subId = item.subId || '';
-          if (f === 'zh')      return cat === 'zh' || cat === 'zh_expr' || subId.includes('zh');
-          if (f === 'history') return cat === 'history' || type === 'humanities';
-          return cat === f;
-        });
+        items = items.filter(item => getItemDomain(item) === f);
       }
     }
     if (searchQ) {

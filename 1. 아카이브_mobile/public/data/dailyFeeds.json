@@ -841,5 +841,206 @@
       ],
       "aiGenerated": true
     }
+  },
+  "2026-06-14": {
+    "hist_daily": {
+      "id": "2026-06-14::hist_daily",
+      "date": "2026-06-14",
+      "subId": "hist_daily",
+      "createdAt": "2026-06-14T00:54:24.640Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "history",
+      "label": "역사 지식 한줌",
+      "category": "history",
+      "item_id": "HI_042",
+      "era": "세계사",
+      "period": "1215년 6월 15일",
+      "title": "마그나카르타 — 왕권 제한과 법치주의의 씨앗",
+      "summary": "1215년 영국 귀족들이 존 왕에게 강제로 서명하게 한 마그나카르타(대헌장)는 '왕도 법 위에 있지 않다'는 원칙을 확립한 인류 최초의 헌법적 문서다.",
+      "summary3": "",
+      "behindStory": "존 왕(King John, 재위 1199~1216)은 프랑스와의 전쟁에서 패하고 막대한 세금을 귀족들에게 부과했다. 1215년 귀족들이 반란을 일으켜 런던을 점령하자, 존 왕은 런던 남서쪽 러니미드(Runnymede) 초원에서 마그나카르타에 서명할 수밖에 없었다. 핵심 조항은 두 가지였다. 첫째, 왕은 귀족의 동의 없이 세금을 부과할 수 없다(현대 의회 민주주의의 원형). 둘째, 어떤 자유민도 법적 절차 없이 체포·투옥·재산 몰수·추방될 수 없다(적법 절차의 원칙). 존 왕은 서명 후 교황에게 무효화를 요청했고, 이후 수십 년간 마그나카르타는 유명무실했다. 그러나 17세기 영국 의회가 왕권에 맞서 싸울 때 이 문서를 '고대로부터의 권리'로 부활시켰다. 이것이 미국 헌법과 권리장전, 나아가 유엔 세계인권선언의 사상적 출발점이 됐다.",
+      "lesson": "",
+      "aiGenerated": false
+    },
+    "quote_daily": {
+      "id": "2026-06-14::quote_daily",
+      "date": "2026-06-14",
+      "subId": "quote_daily",
+      "createdAt": "2026-06-14T00:54:24.641Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "quote",
+      "label": "오늘의 명언",
+      "category": "inbox",
+      "title": "\"채찍을 맞지 않은 사람은 교육받지 못한다.…\" — 메난드로스",
+      "quote": "Ὁ μὴ δαρεὶς ἄνθρωπος οὐ παιδεύεται.",
+      "quoteKo": "채찍을 맞지 않은 사람은 교육받지 못한다.",
+      "author": "메난드로스",
+      "authorInfo": "기원전 342~291년, 고대 그리스 신희극의 대표 작가이자 일상 윤리를 다룬 극작가",
+      "context": "메난드로스의 희곡 단편에 등장하는 구절로, 고난과 역경이야말로 인간을 성숙시키는 진정한 스승임을 강조한 말입니다.",
+      "behindStory": "메난드로스는 아테네 최고 부유층 출신으로 평생 편안한 삶을 살 수 있었지만, 정작 그의 작품은 노예와 평민의 고단한 삶에서 배우는 지혜를 주제로 삼았습니다. 그는 무려 108편의 희곡을 썼지만 생전에는 단 8번만 우승했고, 경쟁자들에게 번번이 밀렸던 실패 경험이 이런 통찰을 낳았다고 전해집니다. 이집트에서 익사로 생을 마감했을 때, 아테네 시민들은 뒤늦게 그의 작품 속 지혜를 재조명했습니다.",
+      "application": "오늘 마주한 까다로운 프로젝트나 상사의 피드백을 회피하�� 말고, 이것이 나를 한 단계 성장시킬 '교육의 순간'임을 인식하며 적극적으로 받아들이세요.",
+      "aiGenerated": true
+    },
+    "idiom_daily": {
+      "id": "2026-06-14::idiom_daily",
+      "date": "2026-06-14",
+      "subId": "idiom_daily",
+      "createdAt": "2026-06-14T00:54:24.642Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "idiom",
+      "label": "오늘의 고사성어",
+      "category": "history",
+      "title": "지음지교 (知音之交)",
+      "idiom": "지음지교",
+      "hanja": "知音之交",
+      "meaning": "마음속 깊은 뜻을 알아주는 친구 사이의 사귐",
+      "origin": "출처: 여씨춘추(呂氏春秋) 본미편(本味篇)",
+      "story": "춘추시대 초나라의 거문고 명인 백아(伯牙)는 평생 자신의 연주를 진정으로 이해해주는 친구 종자기(鍾子期)를 만났습니다. 백아가 높은 산을 생각하며 타면 종자기는 '태산같구나'하고, 흐르는 물을 생각하며 타면 '강물같구나'하며 그 뜻을 정확히 알아주었습니다. 종자기가 세상을 떠나자 백아는 '이제 나의 음악을 알아줄 이가 없다'며 거문고 줄을 끊고 다시는 연주하지 않았습니다.",
+      "behindStory": "백아가 거문고 줄을 끊은 '절현(絕絃)'의 고사는 단순한 우정을 넘어 예술가의 고독을 상징하게 되었습니다. 실제로 당시 백아는 이미 명성이 높았지만, 청중의 박수보다 단 한 사람의 이해가 더 소중했던 것입니다. 이후 중국 문인들은 진정한 이해자를 만나지 못한 채 재능을 묻고 사는 삶을 '지음난구(知音難求, 알아주는 이 만나기 어렵다)'라 표현하며 한탄했습니다.",
+      "application": "예: 회의에서 내 제안의 진의를 정확히 이해하고 적극 지지해주는 동료를 만났을 때, '지음지교를 맺은 것 같다'고 표현하며 그 관계를 소중히 여길 수 있습니다",
+      "aiGenerated": true
+    },
+    "us_market": {
+      "id": "2026-06-14::us_market",
+      "date": "2026-06-14",
+      "subId": "us_market",
+      "createdAt": "2026-06-14T00:54:24.627Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "market",
+      "category": "economy",
+      "subCategory": "미국 증시 · 경제",
+      "label": "미국 시황",
+      "title": "연준 매파 기조 속 금리 불확실성 확대",
+      "summary": "연준의 긴축 기조 지속 신호에 장기 금리 상승하며 증시 조정, 달러 강세 재개",
+      "indicators": [
+        {
+          "name": "S&P 500",
+          "value": "4783.45",
+          "change": "-0.87%",
+          "dir": "down"
+        },
+        {
+          "name": "나스닥",
+          "value": "14901.28",
+          "change": "-1.24%",
+          "dir": "down"
+        },
+        {
+          "name": "다우 지수",
+          "value": "37403",
+          "change": "-0.52%",
+          "dir": "down"
+        },
+        {
+          "name": "미 국채 10년물",
+          "value": "4.28%",
+          "change": "+12 bp",
+          "dir": "up"
+        },
+        {
+          "name": "VIX 공포지수",
+          "value": "15.8",
+          "change": "+2.1",
+          "dir": "up"
+        }
+      ],
+      "summary3": "• 연준 위원들의 매파적 발언으로 금리 인하 기대 후퇴, 채권 수익률 급등\n• 기술주 중심 조정 심화, 금리 민감 성장주에서 방어주로 자금 이동 감지\n• 달러 인덱스 105선 돌파하며 신흥국 통화 약세 압력 증가",
+      "checkpoints": [
+        "체크포인트 1: 이번 주 FOMC 의사록 발표 - 금리 경로에 대한 위원들의 구체적 의견 분포 확인 필수",
+        "체크포인트 2: 미 국채 2년-10년 수익률 곡선 기울기 - 역전 해소 속도가 경기침체 신호 여부 판단 기준",
+        "체크포인트 3: 12월 PCE 물가지수 발표 예정 - 연준의 선호 인플레이션 지표로 2% 목표 달성 진행도 점검"
+      ],
+      "report": "## 시장 흐름\n연준은 '높은 금리를 더 오래(higher for longer)' 기조를 명확히 하며 시장의 조기 금리 인하 기대를 제어하고 있습니다. 장기 채권 수익률이 4%를 돌파하면서 자금 조달 비용 상승 우려가 확산되었고, 밸류에이션 부담이 큰 성장주 중심으로 매도세가 나타났습니다. 달러 강세는 글로벌 유동성 축소를 의미하며, 특히 신흥국 자산에 부정적 압력으로 작용합니다.\n\n## 투자 인사이트\n금리 변동성 확대 국면에서는 듀레이션 리스크 관리가 핵심입니다. 단기 채권으로 포트폴리오 듀레이션을 축소하고, 배당 안정성이 높은 헬스케어·유틸리티 섹터로 방어적 포지셔닝을 고려할 시점입니다. 달러 강세 시기엔 미국 내수 중심 기업이 환율 리스크에서 상대적으로 자유롭습니다. 채권 수익률 곡선의 형태 변화를 주간 단위로 추적하며 경기 사이클 전환점을 포착하는 것이 중요합니다.",
+      "aiEconomicKnowledge": [
+        {
+          "term": "채권 수익률 곡선(Yield Curve)",
+          "importance": "단기-장기 금리 차이로 경기 전망을 예측하는 핵심 지표입니다. 2년-10년 국채 금리차가 -0.5%p 이상 역전되면 12~18개월 내 경기침체 확률이 70%를 넘는 역사적 패턴이 있습니다.",
+          "connection": "주택담보대출 금리는 10년물 국채 금리를 기준으로 결정되므로, 수익률 곡선이 가팔라지면 대출 이자 부담이 직접 증가합니다."
+        },
+        {
+          "term": "듀레이션(Duration)",
+          "importance": "채권 가격의 금리 민감도를 나타내는 지표로, 금리 1% 상승 시 채권 가격 하락폭을 예측합니다. 듀레이션 7년 채권은 금리 1%p 상승 시 약 7% 손실이 발생합니다.",
+          "connection": "연금·보험 같은 장기 투자 상품의 수익률이 금리 변동에 따라 크게 흔들리는 이유가 높은 듀레이션 때문입니다."
+        },
+        {
+          "term": "달러 인덱스(DXY)",
+          "importance": "유로·엔·파운드 등 주요 6개 통화 대비 달러 가치를 측정하는 지표입니다. 105를 넘으면 강달러 국면으로 분류되며, 신흥국 외채 상환 부담이 평균 15~20% 증가합니다.",
+          "connection": "해외여행 경비와 수입 물가에 직접 영향을 미치며, 달러 강세 시 애플·나이키 같은 수출 기업의 환산 이익이 감소합니다."
+        }
+      ],
+      "aiGenerated": true
+    },
+    "en_expr": {
+      "id": "2026-06-14::en_expr",
+      "date": "2026-06-14",
+      "subId": "en_expr",
+      "createdAt": "2026-06-14T00:54:24.625Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "language",
+      "category": "en",
+      "subCategory": "daily-life",
+      "label": "US 영어 표현",
+      "title": "[일] 일상 회화: I'm drawing a blank. 외 4개",
+      "summary": "일요일 — 일상 회화 핵심 영어 표현 5선",
+      "report": "",
+      "theme": "daily-life",
+      "dayOfWeek": "일",
+      "vocabEntries": [
+        {
+          "item_id": "EN_163",
+          "expression": "I'm drawing a blank.",
+          "meaning": "아무것도 생각이 안 나요. / 머리가 하얘졌어요.",
+          "nuance": "",
+          "sourceSentence": "",
+          "practiceSentence": "",
+          "dialogue": "A: What was the name of that framework we used in the last project?\nB: I'm completely drawing a blank right now. Let me search through my emails — I know I emailed about it at the time."
+        },
+        {
+          "item_id": "EN_112",
+          "expression": "That's a no-brainer.",
+          "meaning": "그건 고민할 것도 없어요. / 당연한 선택이죠.",
+          "nuance": "",
+          "sourceSentence": "",
+          "practiceSentence": "",
+          "dialogue": "A: Should we take the direct flight or the one with two stopovers that costs half as much?\nB: You've got a meeting at 8 AM the next day — the direct flight is a no-brainer. Pay the extra and arrive fresh."
+        },
+        {
+          "item_id": "EN_153",
+          "expression": "I'm on edge.",
+          "meaning": "신경이 날카로워요. / 불안하고 초조해요.",
+          "nuance": "",
+          "sourceSentence": "",
+          "practiceSentence": "",
+          "dialogue": "A: You seem really tense today.\nB: I'm on edge. The offer for the house is in and we're waiting to hear back. If we lose this one, I genuinely don't know what we'll do — the market is brutal."
+        },
+        {
+          "item_id": "EN_009",
+          "expression": "Let's not boil the ocean here.",
+          "meaning": "너무 많은 것을 한꺼번에 하려고 하지 맙시다.",
+          "nuance": "",
+          "sourceSentence": "",
+          "practiceSentence": "",
+          "dialogue": "A: What if we also added a loyalty program, a referral system, and a subscription tier?\nB: Let's not boil the ocean. Get the basics right first, then we can layer in the extras."
+        },
+        {
+          "item_id": "EN_102",
+          "expression": "I'm all over the place today.",
+          "meaning": "오늘 정신이 하나도 없어요. / 너무 산만해요.",
+          "nuance": "",
+          "sourceSentence": "",
+          "practiceSentence": "",
+          "dialogue": "A: You seem distracted. Everything okay?\nB: I'm all over the place today — barely slept, missed my alarm, and I forgot my laptop at home. Today is not my day."
+        }
+      ],
+      "aiGenerated": false
+    }
   }
 }

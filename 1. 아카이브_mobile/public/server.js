@@ -148,6 +148,7 @@ async function initSQLiteDB() {
     _sqliteDb  = new SQL.Database();
   }
   _sqliteDb.run(`
+    /* ── 유저 아카이브 아이템 ── */
     CREATE TABLE IF NOT EXISTS items (
       id         TEXT PRIMARY KEY,
       category   TEXT NOT NULL DEFAULT 'inbox',
@@ -158,9 +159,48 @@ async function initSQLiteDB() {
     CREATE INDEX IF NOT EXISTS idx_items_category   ON items(category);
     CREATE INDEX IF NOT EXISTS idx_items_date       ON items(date);
     CREATE INDEX IF NOT EXISTS idx_items_created_at ON items(created_at);
+
+    /* ══════════════════════════════════════════════════
+       영어 테마 팩 스키마 — 어드민 선행 생성, 런타임 AI 호출 없음
+    ══════════════════════════════════════════════════ */
+
+    /* 상위 테마 테이블 */
+    CREATE TABLE IF NOT EXISTS english_themes (
+      id                   INTEGER PRIMARY KEY AUTOINCREMENT,
+      pack_id              TEXT UNIQUE NOT NULL,
+      theme_title          TEXT NOT NULL,
+      theme_title_en       TEXT    DEFAULT '',
+      theme_key            TEXT    DEFAULT '',
+      level                TEXT    DEFAULT 'intermediate',
+      delivery_date        TEXT,                       -- YYYY-MM-DD, NULL=미지정
+      master_paragraph_en  TEXT    NOT NULL DEFAULT '',
+      master_paragraph_ko  TEXT    NOT NULL DEFAULT '',
+      highlights_json      TEXT    DEFAULT '[]',       -- JSON 배열
+      created_at           TEXT    DEFAULT (datetime('now','localtime'))
+    );
+    CREATE INDEX IF NOT EXISTS idx_et_pack_id  ON english_themes(pack_id);
+    CREATE INDEX IF NOT EXISTS idx_et_date     ON english_themes(delivery_date);
+
+    /* 하위 개별 표현 테이블 (theme_id FK) */
+    CREATE TABLE IF NOT EXISTS english_expressions (
+      id               INTEGER PRIMARY KEY AUTOINCREMENT,
+      theme_id         INTEGER NOT NULL REFERENCES english_themes(id) ON DELETE CASCADE,
+      expression_order INTEGER NOT NULL,
+      expr_id          TEXT UNIQUE,
+      expression       TEXT NOT NULL,
+      meaning          TEXT NOT NULL,
+      nuance_story     TEXT DEFAULT '',
+      dialogue_en      TEXT DEFAULT '',
+      dialogue_ko      TEXT DEFAULT '',
+      example_en       TEXT DEFAULT '',
+      practice_en      TEXT DEFAULT ''
+    );
+    CREATE INDEX IF NOT EXISTS idx_ee_theme_id ON english_expressions(theme_id);
+    CREATE INDEX IF NOT EXISTS idx_ee_order    ON english_expressions(theme_id, expression_order);
   `);
   _migrateFromJSON();
   _migrateLegacyDomains();
+  _seedEnglishThemes();
   _persistDB();
   console.log('[SQLite] DB 초기화 완료 →', SQLITE_PATH);
 }
@@ -224,6 +264,126 @@ function _migrateFromJSON() {
     console.log(`[SQLite] archive.json 마이그레이션 완료 (${rows.length}개)`);
   } catch (e) {
     console.warn('[SQLite] 마이그레이션 실패 (무시):', e.message);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   영어 테마 팩 — 시드 / 쿼리 유틸리티
+   knowledge_db/*.json → english_themes / english_expressions
+   (INSERT OR IGNORE → 멱등, 재시작마다 안전 실행)
+══════════════════════════════════════════════════════════ */
+
+/** 서버 시작 시 knowledge_db 배치 파일에서 테마팩을 SQLite로 시드 */
+function _seedEnglishThemes() {
+  const kdbDir = path.join(__dirname, 'data', 'knowledge_db');
+  if (!fs.existsSync(kdbDir)) return;
+  const files = fs.readdirSync(kdbDir).filter(f => f.endsWith('.json')).sort();
+  let seeded = 0;
+  for (const file of files) {
+    try {
+      const batch = JSON.parse(fs.readFileSync(path.join(kdbDir, file), 'utf8'));
+      const packs = batch.english_theme_packs;
+      if (!Array.isArray(packs) || !packs.length) continue;
+      for (const pack of packs) {
+        const highlights = JSON.stringify(pack.master_paragraph?.highlights || []);
+        /* 테마 INSERT OR IGNORE (pack_id UNIQUE) */
+        const tStmt = _sqliteDb.prepare(
+          `INSERT OR IGNORE INTO english_themes
+           (pack_id, theme_title, theme_title_en, theme_key, level, delivery_date,
+            master_paragraph_en, master_paragraph_ko, highlights_json)
+           VALUES (?,?,?,?,?,?,?,?,?)`
+        );
+        tStmt.run([
+          pack.id,
+          pack.theme_title          || '',
+          pack.theme_title_en       || '',
+          pack.theme_key            || '',
+          pack.level                || 'intermediate',
+          pack.delivery_date        || null,
+          pack.master_paragraph?.text        || '',
+          pack.master_paragraph?.translation || '',
+          highlights
+        ]);
+        tStmt.free();
+        /* theme_id 조회 */
+        const themeRow = _sqlGet('SELECT id FROM english_themes WHERE pack_id = ?', [pack.id]);
+        if (!themeRow) continue;
+        /* 표현 INSERT OR IGNORE (expr_id UNIQUE) */
+        for (const expr of (pack.expressions || [])) {
+          const eStmt = _sqliteDb.prepare(
+            `INSERT OR IGNORE INTO english_expressions
+             (theme_id, expression_order, expr_id, expression, meaning,
+              nuance_story, dialogue_en, dialogue_ko, example_en, practice_en)
+             VALUES (?,?,?,?,?,?,?,?,?,?)`
+          );
+          eStmt.run([
+            themeRow.id,
+            expr.order            || 0,
+            expr.id               || null,
+            expr.expression,
+            expr.meaning,
+            expr.nuance           || '',
+            expr.dialogue         || '',
+            expr.dialogue_ko      || '',
+            expr.example          || '',
+            expr.practice         || ''
+          ]);
+          eStmt.free();
+          seeded++;
+        }
+      }
+    } catch (e) {
+      console.warn(`[EnTheme Seed] ${file} 실패:`, e.message);
+    }
+  }
+  if (seeded > 0) console.log(`[EnTheme Seed] ${seeded}개 표현 시드 완료`);
+}
+
+/**
+ * 오늘 배달할 영어 테마팩 1개를 SQLite에서 선택 (AI 호출 없음)
+ * 우선순위: ① today 날짜 지정 팩 ② 최근 미배달 랜덤 ③ 전체 랜덤 fallback
+ */
+function _queryEnThemePack(subId) {
+  try {
+    const recentPackIds = getRecentDeliveredIDs(subId, 30);
+    const today = toDateStr(new Date());
+    let themeRow = null;
+
+    if (recentPackIds.length > 0) {
+      const notIn = recentPackIds.map(() => '?').join(',');
+      /* ① 오늘 지정 날짜 + 미배달 */
+      themeRow = _sqlGet(
+        `SELECT * FROM english_themes WHERE delivery_date = ? AND pack_id NOT IN (${notIn}) LIMIT 1`,
+        [today, ...recentPackIds]
+      );
+      /* ② 날짜 무관 미배달 랜덤 */
+      if (!themeRow) {
+        themeRow = _sqlGet(
+          `SELECT * FROM english_themes WHERE pack_id NOT IN (${notIn}) ORDER BY RANDOM() LIMIT 1`,
+          recentPackIds
+        );
+      }
+    } else {
+      /* ① 오늘 지정 날짜 */
+      themeRow = _sqlGet(
+        `SELECT * FROM english_themes WHERE delivery_date = ? LIMIT 1`, [today]
+      );
+      /* ② 전체 랜덤 */
+      if (!themeRow) themeRow = _sqlGet(`SELECT * FROM english_themes ORDER BY RANDOM() LIMIT 1`, []);
+    }
+    /* ③ 완전 fallback */
+    if (!themeRow) themeRow = _sqlGet(`SELECT * FROM english_themes ORDER BY RANDOM() LIMIT 1`, []);
+    if (!themeRow) return null;
+
+    const expressions = _sqlQuery(
+      `SELECT * FROM english_expressions WHERE theme_id = ? ORDER BY expression_order ASC`,
+      [themeRow.id]
+    );
+    if (!expressions.length) return null;
+    return { theme: themeRow, expressions };
+  } catch (e) {
+    console.warn('[EnTheme Query] 실패:', e.message);
+    return null;
   }
 }
 
@@ -903,42 +1063,47 @@ async function generateLanguageFeed(sub, user) {
   const count          = feedCfg.count || sub.options?.count || defCount;
   const level          = feedCfg.level || '';
 
-  /* ── Theme Pack First: 테마팩이 있으면 팩 단위로 배달 (영어 전용) ── */
+  /* ══════════════════════════════════════════════════════
+     SQLite Theme Pack First (영어 전용) — AI 호출 없음
+     english_themes JOIN english_expressions 단일 쿼리
+  ══════════════════════════════════════════════════════ */
   if (langKey === 'en') {
-    const kdb       = loadKnowledgeDB();
-    const packs     = kdb.english_theme_packs || [];
-    if (packs.length > 0) {
-      const recentIds  = getRecentDeliveredIDs(sub.id, 30);
-      const unseen     = packs.filter(p => !recentIds.includes(p.id));
-      const packPool   = unseen.length > 0 ? unseen : packs;
-      const pack       = packPool[Math.floor(Math.random() * packPool.length)];
-      const dow        = new Date().getDay();
-      const dayNames   = ['일', '월', '화', '수', '목', '금', '토'];
-      const dayKr      = dayNames[dow];
-      const vocabEntries = pack.expressions.map(e => ({
-        item_id:          e.id,
+    const pack = _queryEnThemePack(sub.id);
+    if (pack) {
+      const { theme, expressions } = pack;
+      const dow      = new Date().getDay();
+      const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
+      const dayKr    = dayNames[dow];
+      const highlights  = JSON.parse(theme.highlights_json || '[]');
+      const vocabEntries = expressions.map(e => ({
+        item_id:          e.expr_id || String(e.id),
         expression:       e.expression,
         meaning:          e.meaning,
-        nuance:           e.nuance           || '',
-        dialogue:         e.dialogue          || '',
-        sourceSentence:   e.example           || '',
-        practiceSentence: e.practice          || ''
+        nuance:           e.nuance_story   || '',
+        dialogue:         e.dialogue_en    || '',
+        dialogueKo:       e.dialogue_ko    || '',
+        sourceSentence:   e.example_en     || '',
+        practiceSentence: e.practice_en    || ''
       }));
-      console.log(`[ThemePack] 팩 서빙: ${pack.id} (${pack.theme_title})`);
+      console.log(`[SQLite EnTheme] 서빙: ${theme.pack_id} (${theme.theme_title})`);
       return {
         type:          'language',
         category:      'en',
-        subCategory:   pack.theme_key,
+        subCategory:   theme.theme_key   || '',
         label:         sub.label,
-        title:         `[${dayKr}] ${pack.theme_title}: ${vocabEntries[0]?.expression} 외 ${vocabEntries.length - 1}개`,
-        summary:       `${dayKr}요일 — ${pack.theme_title}`,
-        theme:         pack.theme_key,
-        themeTitle:    pack.theme_title,
-        themeTitleEn:  pack.theme_title_en || '',
+        title:         `[${dayKr}] ${theme.theme_title}: ${vocabEntries[0]?.expression} 외 ${vocabEntries.length - 1}개`,
+        summary:       `${dayKr}요일 — ${theme.theme_title}`,
+        theme:         theme.theme_key   || '',
+        themeTitle:    theme.theme_title,
+        themeTitleEn:  theme.theme_title_en || '',
         dayOfWeek:     dayKr,
         vocabEntries,
-        masterParagraph: pack.master_paragraph || null,
-        pack_id:       pack.id,
+        masterParagraph: {
+          text:        theme.master_paragraph_en,
+          translation: theme.master_paragraph_ko,
+          highlights
+        },
+        pack_id:       theme.pack_id,
         aiGenerated:   false
       };
     }
@@ -2609,6 +2774,72 @@ app.get('/api/daily-feed/status', (req, res) => {
     allReady:      subStatus.every(s => s.generated),
     subscriptions: subStatus
   });
+});
+
+/**
+ * GET /api/en-theme/today
+ * 오늘 배달할 영어 테마팩 1개를 SQLite JOIN 단일 쿼리로 반환.
+ * 런타임 AI 호출 없음 — 어드민 선행 생성 콘텐츠만 서빙.
+ *
+ * Response: { pack_id, theme_title, master_paragraph_en, master_paragraph_ko,
+ *             highlights[], expressions[{ order, id, expression, meaning,
+ *             nuance_story, dialogue_en, dialogue_ko, example_en, practice_en }] }
+ */
+app.get('/api/en-theme/today', (req, res) => {
+  try {
+    const pack = _queryEnThemePack('en_expr');
+    if (!pack) return res.status(404).json({ error: 'No theme pack available. Seed the DB first.' });
+    const { theme, expressions } = pack;
+    const highlights = JSON.parse(theme.highlights_json || '[]');
+    res.json({
+      pack_id:             theme.pack_id,
+      theme_title:         theme.theme_title,
+      theme_title_en:      theme.theme_title_en  || '',
+      theme_key:           theme.theme_key        || '',
+      level:               theme.level            || 'intermediate',
+      delivery_date:       theme.delivery_date    || null,
+      master_paragraph_en: theme.master_paragraph_en,
+      master_paragraph_ko: theme.master_paragraph_ko,
+      highlights,
+      expressions: expressions.map(e => ({
+        order:        e.expression_order,
+        id:           e.expr_id || String(e.id),
+        expression:   e.expression,
+        meaning:      e.meaning,
+        nuance_story: e.nuance_story  || '',
+        dialogue_en:  e.dialogue_en   || '',
+        dialogue_ko:  e.dialogue_ko   || '',
+        example_en:   e.example_en    || '',
+        practice_en:  e.practice_en   || ''
+      }))
+    });
+  } catch (err) {
+    console.error('[/api/en-theme/today]', err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/**
+ * GET /api/en-theme/list
+ * 어드민용: DB에 적재된 모든 테마팩 목록 조회 (표현 제외 메타만)
+ */
+app.get('/api/en-theme/list', (req, res) => {
+  try {
+    const rows = _sqlQuery(
+      `SELECT id, pack_id, theme_title, theme_title_en, level, delivery_date, created_at
+       FROM english_themes ORDER BY id ASC`, []
+    );
+    const recentPackIds = getRecentDeliveredIDs('en_expr', 30);
+    res.json({
+      total: rows.length,
+      themes: rows.map(r => ({
+        ...r,
+        delivered_recently: recentPackIds.includes(r.pack_id)
+      }))
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 /**

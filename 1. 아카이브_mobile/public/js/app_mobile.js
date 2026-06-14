@@ -311,11 +311,14 @@ const Mob = {
     const todayMidnight = new Date();
     todayMidnight.setHours(0, 0, 0, 0);
 
-    const todayItems = sorted.filter(i => {
+    /* daily_delivery는 배달 미리보기/배달탭에서만 표시 — 홈 today/past에서 제외 */
+    const userItems = sorted.filter(i => i.type !== 'daily_delivery');
+
+    const todayItems = userItems.filter(i => {
       const d = new Date(i.createdAt); d.setHours(0,0,0,0);
       return d.getTime() === todayMidnight.getTime();
     });
-    const pastItems = sorted.filter(i => {
+    const pastItems = userItems.filter(i => {
       const d = new Date(i.createdAt); d.setHours(0,0,0,0);
       return d.getTime() < todayMidnight.getTime();
     });

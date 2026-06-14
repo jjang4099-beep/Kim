@@ -3374,6 +3374,146 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 }
 
 /* ═══════════════════════════════════════════════
+   시스템 테마 환경설정 섹션 (관리 탭 하단)
+═══════════════════════════════════════════════ */
+.mvw-theme-section {
+  margin-top: 8px;
+  border-top: 2px solid var(--border);
+  padding-top: 20px;
+}
+.mvw-theme-section .mvw-block-title {
+  display    : flex;
+  align-items: center;
+  gap        : 8px;
+  font-size  : 15px;
+  font-weight: 700;
+  color      : var(--text-1);
+  margin-bottom: 10px;
+}
+.mvw-theme-tag {
+  margin-left : auto;
+  font-size   : 10px;
+  font-weight : 600;
+  letter-spacing: 0.05em;
+  padding     : 2px 8px;
+  border-radius: 20px;
+  background  : color-mix(in srgb, var(--accent) 12%, transparent);
+  color       : var(--accent);
+  text-transform: uppercase;
+}
+.mvw-theme-desc {
+  font-size  : 13px;
+  color      : var(--text-2);
+  line-height: 1.6;
+  margin     : 0 0 16px;
+}
+.mvw-theme-seg {
+  display      : grid;
+  grid-template-columns: 1fr 1fr;
+  gap          : 10px;
+  margin-bottom: 12px;
+}
+.mvw-theme-seg-btn {
+  display        : flex;
+  flex-direction : column;
+  align-items    : center;
+  gap            : 6px;
+  padding        : 16px 10px;
+  border-radius  : 14px;
+  border         : 2px solid var(--border);
+  background     : var(--surface);
+  cursor         : pointer;
+  transition     : border-color .2s, background .2s, box-shadow .2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mvw-theme-seg-btn:active {
+  opacity: .8;
+}
+.mvw-theme-seg-btn.active {
+  border-color: var(--accent);
+  background  : color-mix(in srgb, var(--accent) 8%, var(--surface));
+  box-shadow  : 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+.mvw-theme-seg-icon  { font-size: 24px; line-height: 1; }
+.mvw-theme-seg-label { font-size: 13px; font-weight: 700; color: var(--text-1); }
+.mvw-theme-seg-sub   { font-size: 11px; color: var(--text-3); font-style: italic; }
+.mvw-theme-active-label {
+  font-size  : 12px;
+  color      : var(--text-3);
+  text-align : center;
+  min-height : 18px;
+  transition : opacity .3s;
+}
+
+/* ─── 강제 라이트 모드 (Papyrus) ─── */
+html[data-theme="light"] {
+  --surface : #ffffff;
+  --bg      : #f8f5ef;
+  --bg-2    : #ffffff;
+  --text-1  : #1a1208;
+  --text-2  : #5a4a32;
+  --text-3  : #8a7a62;
+  --border     : #e0d4be;
+  --shadow     : 0 2px 12px rgba(0, 0, 0, .08);
+  --mob-gold   : #9A6F1B;
+  --mob-card   : #FDFBF7;
+  --mob-section: #F4ECD8;
+  --mob-border : #E5D3B8;
+}
+
+/* ─── 강제 다크 모드 (Midnight) ─── */
+html[data-theme="dark"] {
+  --surface : #1b2232;
+  --bg      : #0f1420;
+  --bg-2    : #1b2232;
+  --text-1  : #e8ecf4;
+  --text-2  : #a8b2c4;
+  --text-3  : #6e7a90;
+  --border     : #2a3349;
+  --shadow     : 0 2px 12px rgba(0, 0, 0, .40);
+  --mob-gold   : #D4AF37;
+  --mob-card   : #0F1E36;
+  --mob-section: #162340;
+  --mob-border : #1E3356;
+}
+
+/* ─── data-theme="dark" 때 하드코딩 표면 강제 ─── */
+html[data-theme="dark"] .mob-bottom-nav {
+  background: #161c2b;
+  border-top: 1px solid #2a3349;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, .45);
+}
+html[data-theme="dark"] .mob-bottom-nav .mob-nav-btn         { color: #6e7a90; }
+html[data-theme="dark"] .mob-bottom-nav .mob-nav-btn.active  { color: var(--accent); }
+html[data-theme="dark"] .mob-card                            { background: #1b2232; border-color: #2a3349; }
+html[data-theme="dark"] .mob-card-v                          { background: #1b2232; border-color: #2a3349; }
+html[data-theme="dark"] .alc-expand-btn                      { background: #1e2a40; border-color: #2a3a5a; color: #a8b2c4; }
+html[data-theme="dark"] .alc-section                         { background: #162340; border-color: #1E3356; }
+html[data-theme="dark"] .mob-fv-item                         { border-color: #1E3356; }
+html[data-theme="dark"] .mob-fv-front                        { background: #0F1E36; }
+html[data-theme="dark"] .mob-fv-body                         { background: #162340; }
+html[data-theme="dark"] .mob-mkt-ind-chip                    { background: #0F1E36; border-color: #1E3356; }
+html[data-theme="dark"] .mob-mkt-expand-body                 { background: #162340; border-color: #1E3356; }
+
+/* ─── data-theme="light" 때 하드코딩 표면 강제 ─── */
+html[data-theme="light"] .mob-bottom-nav {
+  background: #fff;
+  border-top: 1px solid #e0d4be;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, .06);
+}
+html[data-theme="light"] .mob-card     { background: #FDFBF7; border-color: #E5D3B8; }
+html[data-theme="light"] .mob-card-v   { background: #FDFBF7; border-color: #E5D3B8; }
+html[data-theme="light"] .alc-expand-btn { background: #F4ECD8; border-color: #E5D3B8; color: #5a4a32; }
+html[data-theme="light"] .alc-section   { background: #F4ECD8; border-color: #E5D3B8; }
+html[data-theme="light"] .mob-fv-item   { border-color: #E5D3B8; }
+html[data-theme="light"] .mob-fv-front  { background: #FDFBF7; }
+html[data-theme="light"] .mob-fv-body   { background: #F4ECD8; }
+html[data-theme="light"] .mob-mkt-ind-chip   { background: #FDFBF7; border-color: #E5D3B8; }
+html[data-theme="light"] .mob-mkt-expand-body { background: #F4ECD8; border-color: #E5D3B8; }
+html[data-theme="light"] .mvw-quiz-btn.correct { background: #f0fdf4; border-color: #16a34a; color: #15803d; }
+html[data-theme="light"] .mvw-quiz-btn.wrong   { background: #fff5f5; border-color: #dc2626; color: #dc2626; }
+
+/* ═══════════════════════════════════════════════
    다크 모드 (v32) — 시스템 설정 자동 추종
 ═══════════════════════════════════════════════ */
 @media (prefers-color-scheme: dark) {

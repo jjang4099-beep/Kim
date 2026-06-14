@@ -163,6 +163,7 @@ const Mob = {
     this._applyMode(mode);
     this._loadHomeItems();
     this.checkFeedBadge();
+    this._initTheme();
   },
 
   setMode(mode) {
@@ -198,6 +199,35 @@ const Mob = {
       el('examSubjectRow')?.setAttribute('hidden', '');
       el('examDashboard')?.setAttribute('hidden', '');
     }
+  },
+
+  /* ══════════════════════════════════════════
+     테마 환경설정 (라이트 Papyrus / 다크 Midnight)
+  ══════════════════════════════════════════ */
+  _initTheme() {
+    const saved = localStorage.getItem('app-theme');
+    if (saved === 'light' || saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', saved);
+    }
+    this._syncThemeButtons(saved);
+  },
+
+  _setTheme(theme, btn) {
+    localStorage.setItem('app-theme', theme);
+    document.documentElement.setAttribute('data-theme', theme);
+    this._syncThemeButtons(theme);
+    const lbl = el('themeActiveLabel');
+    if (lbl) {
+      lbl.textContent = theme === 'light'
+        ? '☀️ 파피루스(Papyrus) 라이트 모드가 적용되었습니다.'
+        : '🌙 미드나잇(Midnight) 다크 모드가 적용되었습니다.';
+    }
+  },
+
+  _syncThemeButtons(theme) {
+    document.querySelectorAll('#themeSegButtons .mvw-theme-seg-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.theme === theme);
+    });
   },
 
   /* ══════════════════════════════════════════

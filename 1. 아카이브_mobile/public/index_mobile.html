@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
-  <link rel="stylesheet" href="css/style_mobile.css?v=53"/>
+  <link rel="stylesheet" href="css/style_mobile.css?v=54"/>
   <link rel="stylesheet" href="css/exam.css?v=2"/>
 </head>
 <body>
@@ -396,6 +396,28 @@
         </div>
       </div>
 
+      <!-- ══ 시스템 테마 환경설정 ══ -->
+      <div class="mvw-section-block mvw-theme-section">
+        <div class="mvw-block-title">
+          🏛️ 시스템 테마 환경설정
+          <span class="mvw-theme-tag">System Theme</span>
+        </div>
+        <p class="mvw-theme-desc">앱에 전역으로 적용될 기본 테마를 설정합니다. 라이트 모드는 사색적인 '파피루스' 테마로, 다크 모드는 몰입감 있는 '미드나잇' 테마로 화면이 렌더링됩니다.</p>
+        <div class="mvw-theme-seg" id="themeSegButtons">
+          <button class="mvw-theme-seg-btn" data-theme="light" onclick="Mob._setTheme('light',this)">
+            <span class="mvw-theme-seg-icon">☀️</span>
+            <span class="mvw-theme-seg-label">라이트 모드</span>
+            <span class="mvw-theme-seg-sub">Papyrus</span>
+          </button>
+          <button class="mvw-theme-seg-btn" data-theme="dark" onclick="Mob._setTheme('dark',this)">
+            <span class="mvw-theme-seg-icon">🌙</span>
+            <span class="mvw-theme-seg-label">다크 모드</span>
+            <span class="mvw-theme-seg-sub">Midnight</span>
+          </button>
+        </div>
+        <div class="mvw-theme-active-label" id="themeActiveLabel"></div>
+      </div>
+
     </div>
   </div>
 
@@ -614,7 +636,7 @@
 <!-- 토스트 -->
 <div class="mob-toast" id="mobToast" hidden></div>
 
-<script src="js/app_mobile.js?v=53"></script>
+<script src="js/app_mobile.js?v=54"></script>
 <script src="js/app_exam.js?v=1"></script>
 <script src="js/pwa.js?v=1"></script>
 <script>

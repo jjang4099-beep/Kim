@@ -1,0 +1,203 @@
+{
+  "meta": {
+    "batch": 2,
+    "theme": "테마팩 — 영어 표현 세트 (DB-First 배달용)",
+    "created": "2026-06-14",
+    "note": "각 팩은 5개 표현 + master_paragraph로 구성. generateLanguageFeed() DB-First 경로에서 팩 단위로 선택됨."
+  },
+  "english_expressions": [],
+  "english_theme_packs": [
+    {
+      "id": "PACK_EN_001",
+      "theme_key": "mental_block_at_work",
+      "theme_title": "프로젝트 아이디어가 막혀서 멘붕이 왔을 때",
+      "theme_title_en": "When Your Mind Goes Blank Under Pressure",
+      "level": "intermediate",
+      "expressions": [
+        {
+          "id": "PACK_EN_001_01",
+          "order": 1,
+          "expression": "I'm drawing a blank.",
+          "meaning": "머릿속이 하얘지다",
+          "nuance": "단순히 '기억이 안 난다(I don't remember)'가 아닙니다. 회의 중 상사나 클라이언트가 기습 질문을 던졌을 때, 극도의 긴장감이나 스트레스로 인해 뇌 회로가 순간적으로 단선되어 머릿속이 하얘진 당혹스러운 심리 상태를 대변합니다. 'blank'는 빈 도화지를 연상시키며, 아무것도 떠오르지 않는 순간의 공허함을 시각적으로 표현합니다.",
+          "dialogue": "Team Lead: Sungjae, do you have any alternative marketing strategies for our US launch?\nYou: Honestly, I'm drawing a blank right now. The pressure is really getting to me.\nTeam Lead: Take a breath. There's no rush — we still have fifteen minutes before the client call.\nYou: Thanks. Let me pull up my notes from last week. I know I had a few ideas jotted down.",
+          "example": "When the director asked for my long-term forecast on the spot, I was drawing a blank.",
+          "practice": "I'm drawing a blank on the vendor's contact info — could you check the shared drive?"
+        },
+        {
+          "id": "PACK_EN_001_02",
+          "order": 2,
+          "expression": "It's a no-brainer.",
+          "meaning": "고민할 필요도 없는 당연한 일",
+          "nuance": "'No-brainer'는 'brain'이 필요 없을 정도로 너무나 분명하고 쉬운 선택임을 강조합니다. 'Obviously'보다 훨씬 강렬하고, 어떤 상황에서도 굳이 깊이 고민하거나 분석할 필요조차 없다는 자신감을 담습니다. 특히 비즈니스 의사결정 상황에서 '이건 당연히 해야 하는 것'이라는 뉘앙스로 자주 쓰입니다.",
+          "dialogue": "Manager: Should we switch to the new cloud platform even though the migration will take two weeks?\nYou: It's a no-brainer, honestly. The current system crashes every time we hit peak traffic.\nManager: I agree, but we need to convince the board. Can you put together a cost-benefit analysis?\nYou: Absolutely. Once they see we're losing 20% revenue per outage, the decision will make itself.",
+          "example": "Automating the manual reporting process is a no-brainer — it saves us eight hours a week.",
+          "practice": "Offering free onboarding support to enterprise clients is a no-brainer given their contract size."
+        },
+        {
+          "id": "PACK_EN_001_03",
+          "order": 3,
+          "expression": "I've been on edge all morning.",
+          "meaning": "아침 내내 신경이 날카로워져 있었다",
+          "nuance": "'On edge'는 신체적으로 날이 세워진 칼날 위에 서 있는 이미지에서 나온 표현으로, 내가 통제할 수 없는 불안 요소(시스템 장애, 마감, 인사 발표 등) 때문에 온종일 신경이 곤두서 있는 상태를 묘사합니다. 단순한 '긴장(nervous)'과 달리, 이 상태는 지속적이고 누적된 스트레스에서 비롯된 만성적 초조함을 내포합니다.",
+          "dialogue": "Colleague: Are you okay? You seem distracted during the standup.\nYou: Sorry. I've been on edge all morning because of the server incident. It's hard to focus.\nColleague: I get it. The whole team is stressed. Did DevOps give any update yet?\nYou: They said it'll be resolved by noon, but I keep checking the dashboard every five minutes.",
+          "example": "With the audit coming up next week, the entire finance team has been on edge.",
+          "practice": "I've been on edge all morning waiting for the board's decision on the restructuring plan."
+        },
+        {
+          "id": "PACK_EN_001_04",
+          "order": 4,
+          "expression": "Let's not boil the ocean.",
+          "meaning": "너무 많은 것을 한꺼번에 하려 들지 맙시다",
+          "nuance": "'Boil the ocean'은 바다를 통째로 끓이려는 비현실적인 시도에서 나온 은유로, 지나치게 방대한 목표나 무한히 넓은 범위의 작업에 무모하게 뛰어드는 행동을 비판할 때 씁니다. 스타트업이나 프로젝트 관리 맥락에서 '일단 MVP부터 시작하자', '범위를 좁히자'는 제안을 세련되게 표현하는 방법입니다.",
+          "dialogue": "You: I'm thinking we should redesign the entire platform, revamp the brand identity, and launch a mobile app all at once.\nLead: Whoa, let's not boil the ocean here. We have a three-person team and a six-week deadline.\nYou: Fair point. So what should we prioritize first?\nLead: Let's nail the core checkout flow. Everything else can wait for version two.",
+          "example": "We only have three weeks — let's not boil the ocean and focus on the two highest-impact features.",
+          "practice": "Let's not boil the ocean on this redesign. Tackle the homepage first and iterate from there."
+        },
+        {
+          "id": "PACK_EN_001_05",
+          "order": 5,
+          "expression": "I'm all over the place today.",
+          "meaning": "오늘 정신이 완전히 산만하다",
+          "nuance": "'All over the place'는 생각이나 행동이 사방팔방으로 흩어져 일관성이 없는 상태를 묘사합니다. 일이 너무 많거나 갑작스러운 변수들이 터졌을 때 마음과 우선순위가 중구난방인 느낌을 솔직하게 고백하는 표현입니다. 공식적인 자리보다는 팀원 간의 대화에서 자신의 상태를 정직하게 드러낼 때 효과적입니다.",
+          "dialogue": "Colleague: Did you finish the proposal draft?\nYou: I'm sorry, I'm all over the place today. I started three different tasks and didn't complete any.\nColleague: That happens. What's the most urgent thing on your list right now?\nYou: Honestly, the proposal. Let me block off the next two hours and just focus on that.",
+          "example": "Between the three back-to-back calls and the urgent brief, I've been all over the place today.",
+          "practice": "Sorry for the scattered emails — I've been all over the place today with the launch prep."
+        }
+      ],
+      "master_paragraph": {
+        "text": "Yesterday's meeting was absolute chaos. When the director suddenly asked for my long-term forecast, I was drawing a blank — the morning's server crisis had left me completely on edge. Everyone in the room knew it was a no-brainer that our initial plan was flawed, yet I was so all over the place that I couldn't articulate a single coherent thought. Finally, my colleague stepped in and said, 'Let's not boil the ocean here — let's fix the three core issues first and show the board a realistic roadmap.' That one sentence cut through the fog and got everyone back on track.",
+        "translation": "어제 회의는 그야말로 혼돈이었다. 이사가 갑자기 장기 전망을 물었을 때, 나는 머릿속이 완전히 하얘졌다 — 오전 내내 서버 위기 때문에 신경이 극도로 날카로워져 있던 탓이었다. 방 안의 모두가 우리 초기 계획에 결함이 있다는 사실은 고민할 필요도 없는 당연한 일이라는 걸 알았지만, 나는 정신이 너무 산만해서 제대로 된 말 한마디를 꺼낼 수가 없었다. 그때 동료가 끼어들며 말했다, '한 번에 너무 많은 걸 해결하려 들지 맙시다 — 핵심 세 가지 문제만 고치고 이사회에 현실적인 로드맵을 보여줍시다.' 그 한 마디가 안개를 걷어냈고, 모두가 다시 궤도에 오르게 해주었다.",
+        "highlights": ["drawing a blank", "on edge", "no-brainer", "all over the place", "boil the ocean"]
+      }
+    },
+    {
+      "id": "PACK_EN_002",
+      "theme_key": "negotiation_power",
+      "theme_title": "협상·설득 테이블에서 우위를 점할 때",
+      "theme_title_en": "Holding Your Ground at the Negotiation Table",
+      "level": "advanced",
+      "expressions": [
+        {
+          "id": "PACK_EN_002_01",
+          "order": 1,
+          "expression": "Let's meet halfway.",
+          "meaning": "중간 선에서 합의합시다",
+          "nuance": "'Meet halfway'는 양측이 각자의 입장에서 딱 중간 지점을 향해 한 발씩 양보하는 이미지입니다. 단순히 '타협하자(Let's compromise)'보다 공평성의 뉘앙스가 강하며, 어느 한쪽만 손해 보는 것이 아니라 서로 동등하게 양보하는 건전한 협상 자세를 보여줍니다.",
+          "dialogue": "Client: We can't go above 50,000 dollars for the entire project.\nYou: That's significantly below our minimum. But if you're flexible on the timeline, we could meet halfway at 65,000.\nClient: Hmm. What would we get for that additional budget?\nYou: A dedicated project manager and bi-weekly progress calls throughout the entire engagement.",
+          "example": "Neither side got everything they wanted, but both were willing to meet halfway on the delivery terms.",
+          "practice": "If you can extend the pilot period to 60 days, we're happy to meet halfway on the setup cost."
+        },
+        {
+          "id": "PACK_EN_002_02",
+          "order": 2,
+          "expression": "I'll take that on board.",
+          "meaning": "그 의견을 열린 마음으로 수용하겠습니다",
+          "nuance": "'Take on board'는 항구에 화물을 적재하는 이미지에서 온 표현으로, 상대방의 의견이나 비판을 단순히 '들었다'가 아니라 내 사고의 배에 실어 앞으로 나아가겠다는 의지를 담습니다. 방어적으로 반응하지 않고 열린 마음으로 피드백을 수용하는 프로페셔널한 태도를 전달합니다.",
+          "dialogue": "Lead: Your presentation was strong, but the financial projections felt too optimistic.\nYou: I'll take that on board. I'll revise the forecast with more conservative assumptions for the Q4 model.\nLead: Good. Also, the stakeholder analysis could use more depth.\nYou: Noted. I'll add a risk matrix and a second scenario for each key segment.",
+          "example": "I'll take your feedback on board and revise the scope document before our next check-in.",
+          "practice": "I'll take that on board and adjust the proposal to reflect their preferred payment structure."
+        },
+        {
+          "id": "PACK_EN_002_03",
+          "order": 3,
+          "expression": "Let me push back on that.",
+          "meaning": "그 부분에 이의를 제기하겠습니다",
+          "nuance": "'Push back'은 상대방의 주장이나 제안을 정면으로 부정하지 않으면서도 나는 동의하지 않는다는 점을 명확히 밝히는 세련된 표현입니다. 직접적인 반박(I disagree)보다 훨씬 외교적이며, 서구 비즈니스 문화에서 의견 충돌을 건강하게 처리하는 방식으로 널리 쓰입니다.",
+          "dialogue": "Manager: Let's cut the user research phase to save two weeks.\nYou: I need to push back on that. Skipping research is how we ended up with the last product that nobody used.\nManager: I hear you, but the board is breathing down our necks on the timeline.\nYou: What if we do condensed guerrilla testing in three days? That gets us real insights without blowing the schedule.",
+          "example": "I have to push back on the assumption that cutting support staff will improve margins long-term.",
+          "practice": "I want to push back on the Q3 launch target — the infrastructure simply isn't ready to handle that load."
+        },
+        {
+          "id": "PACK_EN_002_04",
+          "order": 4,
+          "expression": "That's a deal-breaker for us.",
+          "meaning": "그건 저희로선 절대 수용 불가입니다",
+          "nuance": "'Deal-breaker'는 협상이 무너지는 결정적 조건 — 이 하나 때문에 거래 자체가 성립되지 않는다는 강력한 신호입니다. 상대방에게 '이 조항만은 절대 양보할 수 없다'는 레드라인을 명확히 그어주는 역할을 합니다. 너무 자주 쓰면 신뢰도가 떨어지므로, 진짜 협상 결렬 사유에 한해 사용해야 합니다.",
+          "dialogue": "Partner: We'd like an exclusivity clause preventing you from working with any competitor for two years.\nYou: That's a deal-breaker for us, I'm afraid. Our other clients represent 40% of our annual revenue.\nPartner: What if we limit it to direct competitors only, for one year?\nYou: That's something we could consider. Let me bring it back to our legal team and follow up by Thursday.",
+          "example": "A mandatory six-month notice period is a deal-breaker for most mid-level candidates we interview.",
+          "practice": "Unlimited liability exposure is a deal-breaker for us — we need a cap at the contract value."
+        },
+        {
+          "id": "PACK_EN_002_05",
+          "order": 5,
+          "expression": "We need to be on the same page here.",
+          "meaning": "우리 서로 완전히 인식을 맞춰야 합니다",
+          "nuance": "'On the same page'는 단순한 의견 일치가 아니라, 같은 책의 같은 페이지를 보고 있는 것처럼 서로의 전제·목표·우선순위가 완전히 동기화되어야 한다는 요구입니다. 협상이 교착 상태에 빠졌거나 양측의 기대가 어긋났을 때, 대화를 리셋하고 기본 전제를 다시 맞추기 위해 쓰입니다.",
+          "dialogue": "You: I feel like we keep going in circles. Before we discuss pricing, we need to be on the same page about the project scope.\nPartner: Agreed. What's your current understanding of the deliverables?\nYou: Design, development, and a 60-day post-launch support period.\nPartner: We had assumed unlimited revisions were included. That's exactly where the gap is.",
+          "example": "Let's align on the success metrics first — we need to be on the same page before development starts.",
+          "practice": "Before we go further, are we on the same page about what 'done' looks like for phase one?"
+        }
+      ],
+      "master_paragraph": {
+        "text": "Heading into the contract review, I knew it wouldn't be simple. The client opened with terms clearly structured to favor their side, so I said, 'I need to push back on that — the liability clause is a deal-breaker for us as it stands.' Rather than escalating, they softened: 'What if we meet halfway and cap it at the contract value?' I took that on board and replied carefully. But before we moved further, I said, 'Let's just make sure we're on the same page about the core deliverables first, so there are no surprises later.' By anchoring the conversation in shared understanding, we closed the deal on terms both sides could live with.",
+        "translation": "계약 검토 회의에 들어가기 전부터 이번 건이 단순하지 않을 것을 직감했다. 클라이언트는 명백히 자신들에게 유리한 조건들로 시작했고, 나는 '그 부분에는 이의를 제기해야겠습니다 — 책임 조항은 저희로선 현재 상태로는 절대 수용 불가입니다'라고 밝혔다. 상대방은 에스컬레이션 대신 입장을 누그러뜨리며 말했다. '계약 금액 한도에서 중간 선에 합의하면 어떨까요?' 나는 그 제안을 열린 마음으로 받아들인 뒤 신중하게 답했다. 하지만 논의를 더 진전시키기 전에, '핵심 납품 범위부터 서로 인식이 일치하는지 확인합시다. 나중에 서로 당혹스러운 일이 없도록요'라고 말했다. 서로의 이해를 기반으로 대화를 고정함으로써, 양측 모두 수용할 수 있는 조건으로 계약이 성사되었다.",
+        "highlights": ["push back on that", "deal-breaker", "meet halfway", "took that on board", "on the same page"]
+      }
+    },
+    {
+      "id": "PACK_EN_003",
+      "theme_key": "deadline_breakthrough",
+      "theme_title": "마감 압박 속에서 돌파구를 찾을 때",
+      "theme_title_en": "Finding a Breakthrough When the Clock Is Ticking",
+      "level": "intermediate",
+      "expressions": [
+        {
+          "id": "PACK_EN_003_01",
+          "order": 1,
+          "expression": "We're down to the wire.",
+          "meaning": "마감이 코앞입니다 / 시간이 촉박합니다",
+          "nuance": "'Down to the wire'는 결승선에 코를 박은 말들처럼 마감이 극도로 임박해 조금의 여유도 없는 상태입니다. 'The deadline is near'보다 훨씬 극적인 긴장감을 전달하며, 이 상황에서는 팀원 누구도 여유를 부릴 수 없다는 집단적 위기감을 환기시킵니다.",
+          "dialogue": "You: Is the report finalized yet?\nDev: Still working on the final section. We're really down to the wire on this one.\nYou: Okay, how much longer do you realistically need?\nDev: Ninety minutes, maybe two hours if the data export runs slow again.",
+          "example": "We're down to the wire on the product launch — every single day counts at this point.",
+          "practice": "We're down to the wire on the RFP response. Can everyone clear their schedules for tomorrow morning?"
+        },
+        {
+          "id": "PACK_EN_003_02",
+          "order": 2,
+          "expression": "Let's cut to the chase.",
+          "meaning": "서론은 생략하고 핵심만 얘기합시다",
+          "nuance": "'Cut to the chase'는 할리우드 초창기에 클라이맥스 추격 장면(chase scene)으로 바로 넘어가라는 편집 지시에서 유래했습니다. 불필요한 서론이나 우회 없이 핵심만 말하라는 요청으로, 시간이 촉박하거나 상대방이 장황한 설명을 늘어놓을 때 효과적으로 사용합니다.",
+          "dialogue": "Colleague: So, the background of this issue goes back to Q1, when the team decided to restructure the entire reporting pipeline—\nYou: Sorry to interrupt, but let's cut to the chase — what exactly do you need from me before 5 PM?\nColleague: Right. I need your sign-off on the revised budget and the vendor shortlist.\nYou: Both sent to you in the next ten minutes.",
+          "example": "We only have 20 minutes, so let's cut to the chase and address the three biggest blockers.",
+          "practice": "I'll cut to the chase: the client needs a revised timeline and cost breakdown by Friday morning."
+        },
+        {
+          "id": "PACK_EN_003_03",
+          "order": 3,
+          "expression": "Let's fast-track this.",
+          "meaning": "이것을 최우선으로 신속하게 진행합시다",
+          "nuance": "'Fast-track'은 원래 특수 엘리트 코스나 우선 처리 레인을 뜻하며, 비즈니스에서는 일반적인 검토·승인 절차를 건너뛰고 최우선 순위로 처리하겠다는 선언입니다. 위기 상황이나 경쟁 대응 시에 쓰며, '빠르게 하자'는 단순한 요청보다 더 강한 공식 의지를 표현합니다.",
+          "dialogue": "Director: The competitor just announced a very similar product. When can we ship?\nYou: Normally six weeks, but if we fast-track this and pull in two senior engineers, we can ship in three.\nDirector: What's the trade-off?\nYou: We'll need to defer the premium analytics dashboard to version 1.2, but the core product will be rock solid.",
+          "example": "Given the regulatory deadline, we need to fast-track the compliance documentation review.",
+          "practice": "Legal has agreed to fast-track the contract review so we can sign before the quarter closes."
+        },
+        {
+          "id": "PACK_EN_003_04",
+          "order": 4,
+          "expression": "I'll circle back to you on this.",
+          "meaning": "이 건으로 나중에 다시 연락드리겠습니다",
+          "nuance": "'Circle back'은 현재는 다른 우선순위가 있거나 정보가 부족해 즉시 답하기 어려울 때, 반드시 다시 돌아와 이 주제를 다루겠다는 신뢰 있는 약속입니다. 'I'll get back to you'보다 더 적극적이고, 상대방을 잊지 않겠다는 책임감이 담겨 있습니다.",
+          "dialogue": "Client: Can you confirm whether the API integration will support our legacy database architecture?\nYou: Great question, and I want to give you a fully accurate answer. Let me circle back to you on this by end of day after checking with our technical lead.\nClient: Perfect. That's exactly what we need before we can commit to the timeline.\nYou: I'll send a written confirmation along with any technical constraints we identify.",
+          "example": "I don't have the final numbers yet — let me circle back to you on this after the finance call.",
+          "practice": "I'll circle back to you on this by Thursday once the legal team has reviewed the terms."
+        },
+        {
+          "id": "PACK_EN_003_05",
+          "order": 5,
+          "expression": "We need to think outside the box.",
+          "meaning": "기존 틀을 벗어나 창의적으로 생각해야 합니다",
+          "nuance": "'Think outside the box'는 기존의 틀과 관행에서 벗어나 창의적이고 비전통적인 해결책을 모색하라는 촉구입니다. 매우 흔한 비즈니스 표현이 되어 다소 진부해졌지만, 역설적으로 팀이 '예상 가능한 답'에만 집착할 때 이 표현 하나가 사고방식을 전환시키는 트리거가 됩니다.",
+          "dialogue": "Manager: The traditional ad campaign is 50% over budget and results are flat. We have to change course.\nYou: What if we think outside the box and partner with five micro-influencers instead of running paid ads?\nManager: That's actually interesting. What would the reach and cost look like?\nYou: Their combined audience is 200,000 in our exact target demographic, and the total cost is a quarter of the ad spend.",
+          "example": "We've tried the standard approaches. It's time to think outside the box on customer acquisition.",
+          "practice": "To hit the growth targets with a reduced budget, we'll need to really think outside the box this quarter."
+        }
+      ],
+      "master_paragraph": {
+        "text": "The moment I walked into the Monday all-hands, I could feel the tension — we were clearly down to the wire on the product launch, and nobody had a clean solution. Our VP said, 'Let's cut to the chase: we have 48 hours. What can we actually ship?' I suggested we fast-track the authentication module and defer the reporting dashboard, which got a nod from engineering. For the vendor partnership question, I told the room, 'Let me circle back to you on this by tomorrow morning once I have the legal team's input.' On the way out, the designer pulled me aside and whispered, 'I know it feels impossible, but we need to think outside the box on the onboarding UX — what if it were a single screen instead of five?' That ten-second conversation became our breakthrough.",
+        "translation": "월요일 전체 회의에 발을 들여놓는 순간 긴장감이 느껴졌다 — 제품 출시 마감이 코앞으로 다가왔는데 깔끔한 해결책이 없었다. 부사장이 말했다. '핵심만 얘기합시다: 48시간 남았습니다. 실제로 무엇을 출시할 수 있나요?' 나는 인증 모듈을 최우선으로 신속하게 진행하고 리포팅 대시보드는 미루자고 제안했고, 엔지니어링 팀이 고개를 끄덕였다. 파트너십 계약 문제가 나왔을 때, 나는 방 안에 있는 사람들에게 '법무팀 의견을 받아서 내일 아침까지 다시 연락드리겠습니다'라고 했다. 회의를 나오는 길에 디자이너가 나를 불러 속삭였다. '불가능해 보이는 건 알지만, 온보딩 UX를 기존 틀 밖에서 생각해봐야 해요 — 다섯 화면 대신 단 하나의 화면이면 어떨까요?' 그 10초짜리 대화가 우리의 돌파구가 되었다.",
+        "highlights": ["down to the wire", "cut to the chase", "fast-track", "circle back to you", "think outside the box"]
+      }
+    }
+  ]
+}

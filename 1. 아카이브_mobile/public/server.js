@@ -847,7 +847,7 @@ let _kdb = null;
 function loadKnowledgeDB() {
   if (_kdb) return _kdb;
   const dbDir = path.join(__dirname, 'data', 'knowledge_db');
-  const db = { english_expressions: [], chinese_expressions: [], idioms_and_quotes: [], history_facts: [] };
+  const db = { english_expressions: [], chinese_expressions: [], idioms_and_quotes: [], history_facts: [], english_theme_packs: [] };
   try {
     if (!fs.existsSync(dbDir)) { _kdb = db; return db; }
     const files = fs.readdirSync(dbDir).filter(f => f.endsWith('.json')).sort();
@@ -886,7 +886,8 @@ function getRecentDeliveredIDs(subId, days = 60) {
     const feed = feeds?.[subId];
     if (!feed) continue;
     if (Array.isArray(feed.vocabEntries)) feed.vocabEntries.forEach(e => { if (e.item_id) ids.push(e.item_id); });
-    if (feed.item_id) ids.push(feed.item_id);
+    if (feed.item_id)  ids.push(feed.item_id);
+    if (feed.pack_id)  ids.push(feed.pack_id);
   }
   return [...new Set(ids)];
 }
@@ -901,6 +902,47 @@ async function generateLanguageFeed(sub, user) {
   const defCount       = langKey === 'zh' ? 5 : 3;
   const count          = feedCfg.count || sub.options?.count || defCount;
   const level          = feedCfg.level || '';
+
+  /* ── Theme Pack First: 테마팩이 있으면 팩 단위로 배달 (영어 전용) ── */
+  if (langKey === 'en') {
+    const kdb       = loadKnowledgeDB();
+    const packs     = kdb.english_theme_packs || [];
+    if (packs.length > 0) {
+      const recentIds  = getRecentDeliveredIDs(sub.id, 30);
+      const unseen     = packs.filter(p => !recentIds.includes(p.id));
+      const packPool   = unseen.length > 0 ? unseen : packs;
+      const pack       = packPool[Math.floor(Math.random() * packPool.length)];
+      const dow        = new Date().getDay();
+      const dayNames   = ['일', '월', '화', '수', '목', '금', '토'];
+      const dayKr      = dayNames[dow];
+      const vocabEntries = pack.expressions.map(e => ({
+        item_id:          e.id,
+        expression:       e.expression,
+        meaning:          e.meaning,
+        nuance:           e.nuance           || '',
+        dialogue:         e.dialogue          || '',
+        sourceSentence:   e.example           || '',
+        practiceSentence: e.practice          || ''
+      }));
+      console.log(`[ThemePack] 팩 서빙: ${pack.id} (${pack.theme_title})`);
+      return {
+        type:          'language',
+        category:      'en',
+        subCategory:   pack.theme_key,
+        label:         sub.label,
+        title:         `[${dayKr}] ${pack.theme_title}: ${vocabEntries[0]?.expression} 외 ${vocabEntries.length - 1}개`,
+        summary:       `${dayKr}요일 — ${pack.theme_title}`,
+        theme:         pack.theme_key,
+        themeTitle:    pack.theme_title,
+        themeTitleEn:  pack.theme_title_en || '',
+        dayOfWeek:     dayKr,
+        vocabEntries,
+        masterParagraph: pack.master_paragraph || null,
+        pack_id:       pack.id,
+        aiGenerated:   false
+      };
+    }
+  }
 
   /* ── DB-First: knowledge_db에서 먼저 시도 (비용 0원) ── */
   {

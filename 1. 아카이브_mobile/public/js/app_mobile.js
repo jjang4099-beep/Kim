@@ -825,17 +825,31 @@ const Mob = {
 
   /** 배달 피드 — 언어 표현 카드 v53 (per-entry 아코디언) */
   _cardFeedLanguage(item) {
-    const entries   = item.vocabEntries || [];
-    const subId     = item.subId || '';
-    const date      = item.date  || '';
-    const theme     = item.theme || item.subCategory || '';
-    const dayOfWeek = item.dayOfWeek || '';
-    const langIcon  = item.label?.includes('중국') ? '🐉' : '🗽';
+    const entries      = item.vocabEntries   || [];
+    const subId        = item.subId          || '';
+    const date         = item.date           || '';
+    const theme        = item.theme          || item.subCategory || '';
+    const dayOfWeek    = item.dayOfWeek      || '';
+    const themeTitle   = item.themeTitle     || '';
+    const themeTitleEn = item.themeTitleEn   || '';
+    const masterPara   = item.masterParagraph || null;
+    const langIcon     = item.label?.includes('중국') ? '🐉' : '🗽';
+    const isThemePack  = !!themeTitle;
 
+    /* ── 테마 타이틀 밴드 (팩 전용) ── */
+    const themeBand = isThemePack ? `
+    <div class="mob-fv-theme-band">
+      <div class="mob-fv-theme-kicker">🏷️ 오늘의 테마 팩</div>
+      <div class="mob-fv-theme-title">${themeTitle}</div>
+      ${themeTitleEn ? `<div class="mob-fv-theme-title-en">${themeTitleEn}</div>` : ''}
+    </div>` : '';
+
+    /* ── 개별 어휘 항목 렌더링 ── */
     const vocabHTML = entries.map((e, i) => {
       const dlgLines = (e.dialogue || '').replace(/\\n/g, '\n').split('\n').map(l => l.trim()).filter(Boolean);
       const dlgHTML  = dlgLines.map(l => {
-        if (/^(A|B|甲|乙):/.test(l)) {
+        /* 화자: 패턴 — A/B/甲/乙 및 임의 이름(Team Lead, You, Manager 등) */
+        if (/^[A-Za-z가-힣\s]{1,24}:\s/.test(l)) {
           const ci = l.indexOf(':');
           const sp = l.slice(0, ci).trim();
           const tx = l.slice(ci + 1).trim();
@@ -846,10 +860,11 @@ const Mob = {
         return `<div class="mob-fv-dlg-line"><span>${l}</span></div>`;
       }).join('');
 
+      const nuanceLbl = isThemePack ? '원어민 비밀 노트' : 'Nuance';
       const sects = [
-        e.nuance         ? `<div class="mob-fv-sect"><div class="mob-fv-sect-lbl">Nuance</div><div class="mob-fv-sect-txt">${e.nuance}</div></div>` : '',
+        e.nuance         ? `<div class="mob-fv-sect"><div class="mob-fv-sect-lbl">${nuanceLbl}</div><div class="mob-fv-sect-txt">${e.nuance}</div></div>` : '',
         dlgHTML          ? `<div class="mob-fv-sect"><div class="mob-fv-sect-lbl">Dialogue</div><div class="mob-fv-dlg">${dlgHTML}</div></div>` : '',
-        e.sourceSentence ? `<div class="mob-fv-sect"><div class="mob-fv-sect-lbl">Example</div><div class="mob-fv-sect-txt mob-fv-italic">"${e.sourceSentence}"</div>${e.practiceSentence ? `<div class="mob-fv-sect-txt" style="margin-top:5px;font-style:normal">${e.practiceSentence}</div>` : ''}</div>` : ''
+        e.sourceSentence ? `<div class="mob-fv-sect"><div class="mob-fv-sect-lbl">Example</div><div class="mob-fv-sect-txt mob-fv-italic">"${e.sourceSentence}"</div>${e.practiceSentence ? `<div class="mob-fv-sect-txt mob-fv-practice">${e.practiceSentence}</div>` : ''}</div>` : ''
       ].filter(Boolean).join('');
 
       return `
@@ -872,22 +887,55 @@ const Mob = {
       </div>`;
     }).join('');
 
+    /* ── 마스터 패러그래프 (팩 전용) ── */
+    const masterHTML = masterPara ? this._renderMasterParagraph(masterPara) : '';
+
     return `
     <div class="mob-card mob-card-feed" data-id="">
       <div class="mob-feed-card-hd">
         <span class="mob-feed-badge mob-feed-badge-lang">${langIcon} ${item.label || '표현'}</span>
-        ${dayOfWeek ? `<span class="mob-feed-day-theme">${dayOfWeek}요일 · ${theme}</span>` : ''}
+        ${dayOfWeek && !isThemePack ? `<span class="mob-feed-day-theme">${dayOfWeek}요일 · ${theme}</span>` : ''}
         <span class="mob-feed-card-date">${date}</span>
       </div>
-      <div class="mob-card-title">${item.title || '오늘의 표현'}</div>
-      ${item.summary ? `<div class="mob-card-summary">${item.summary}</div>` : ''}
+      ${!isThemePack ? `<div class="mob-card-title">${item.title || '오늘의 표현'}</div>` : ''}
+      ${!isThemePack && item.summary ? `<div class="mob-card-summary">${item.summary}</div>` : ''}
+      ${themeBand}
       <div class="mob-feed-vocab-list">${vocabHTML}</div>
+      ${masterHTML}
       <div class="mob-feed-card-ft">
         <button class="mob-feed-save-btn" onclick="event.stopPropagation();Mob._saveFeedToArchive('${subId}','${date}',this)">
           <i class="ti ti-device-floppy"></i> 전체 저장
         </button>
-        <span class="mob-feed-ai-tag">${item.aiGenerated ? '✨ AI 생성' : '📋 DB'}</span>
+        <span class="mob-feed-ai-tag">${item.aiGenerated ? '✨ AI 생성' : (item.pack_id ? '📦 테마팩' : '📋 DB')}</span>
       </div>
+    </div>`;
+  },
+
+  /** 마스터 패러그래프 렌더링 — 5개 표현 하이라이트 포함 */
+  _renderMasterParagraph(para) {
+    const highlights = para.highlights || [];
+    let txt = (para.text || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    highlights.forEach((h, idx) => {
+      const escaped = h.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      txt = txt.replace(
+        new RegExp(`(${escaped})`, 'gi'),
+        `<mark class="mob-mpa-hl" data-n="${idx + 1}">$1</mark>`
+      );
+    });
+    const trHTML = para.translation
+      ? `<div class="mob-mpa-tr">${para.translation}</div>`
+      : '';
+    return `
+    <div class="mob-master-para">
+      <div class="mob-mpa-hd">
+        <span class="mob-mpa-fire">🔥</span>
+        <div class="mob-mpa-hd-text">
+          <div class="mob-mpa-title">The Master Paragraph</div>
+          <div class="mob-mpa-sub">오늘 배운 ${highlights.length}개 표현을 하나의 문맥으로 마스터하기</div>
+        </div>
+      </div>
+      <div class="mob-mpa-body">${txt}</div>
+      ${trHTML}
     </div>`;
   },
 

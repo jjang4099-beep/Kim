@@ -910,8 +910,9 @@ async function generateLanguageFeed(sub, user) {
     const srcPool = lvlPool.length >= count ? lvlPool : pool;
     if (srcPool.length >= count) {
       const recentIds = getRecentDeliveredIDs(sub.id, 14);
-      const items = pickUnseenItems(srcPool, recentIds, count);
-      if (items.length >= count) {
+      const unseen = srcPool.filter(item => !recentIds.includes(item.id));
+      if (unseen.length >= count) {
+        const items = unseen.sort(() => Math.random() - 0.5).slice(0, count);
         const dow      = new Date().getDay();
         const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
         const dayKr    = dayNames[dow];
@@ -940,6 +941,8 @@ async function generateLanguageFeed(sub, user) {
           aiGenerated: false
         };
       }
+      // 미배달 표현 부족 → AI 생성으로 fallback (반복 방지)
+      console.log(`[KnowledgeDB] 미배달 EN 부족(${unseen.length}/${count}) → AI 생성 fallback`);
     }
   }
 

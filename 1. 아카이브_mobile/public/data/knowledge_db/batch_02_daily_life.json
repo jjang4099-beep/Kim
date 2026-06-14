@@ -1,0 +1,647 @@
+{
+  "meta": {
+    "batch": 2,
+    "theme": "일상·감정·사회생활",
+    "id_range": {
+      "english": "EN_101 ~ EN_170"
+    },
+    "total": 70,
+    "created": "2026-06-14",
+    "updated": "2026-06-14"
+  },
+  "english_expressions": [
+    {
+      "id": "EN_101",
+      "expression": "It's on the tip of my tongue.",
+      "meaning": "입에서 맴돌아요. / 알 것 같은데 딱 안 나와요.",
+      "level": "intermediate",
+      "theme": "daily-life",
+      "example": "I know the actor's name — it's on the tip of my tongue. Give me a second.",
+      "dialogue": "A: Do you remember the name of that restaurant we went to last year?\nB: It's on the tip of my tongue! The one near the river with the outdoor seating... starts with an L, I think."
+    },
+    {
+      "id": "EN_102",
+      "expression": "I'm all over the place today.",
+      "meaning": "오늘 정신이 하나도 없어요. / 너무 산만해요.",
+      "level": "beginner",
+      "theme": "daily-life",
+      "example": "Sorry I keep losing track of what I was saying — I'm all over the place today.",
+      "dialogue": "A: You seem distracted. Everything okay?\nB: I'm all over the place today — barely slept, missed my alarm, and I forgot my laptop at home. Today is not my day."
+    },
+    {
+      "id": "EN_103",
+      "expression": "That really hit home.",
+      "meaning": "그 말이 가슴에 와 닿았어요. / 정말 공감이 됐어요.",
+      "level": "intermediate",
+      "theme": "emotion",
+      "example": "The part of the documentary about loneliness in big cities really hit home for me.",
+      "dialogue": "A: What did you think of the speech?\nB: It really hit home. When she talked about how small moments define who we are — I couldn't stop thinking about my own life after that."
+    },
+    {
+      "id": "EN_104",
+      "expression": "You really went above and beyond.",
+      "meaning": "기대 이상으로 정말 애써줬어요. / 크게 노력해줬어요.",
+      "level": "intermediate",
+      "theme": "praise",
+      "example": "Staying until midnight to finish the report wasn't expected — you really went above and beyond.",
+      "dialogue": "A: I rewrote the whole proposal and added a competitive analysis on top.\nB: You didn't have to do all that — but you really went above and beyond. The client is going to love it."
+    },
+    {
+      "id": "EN_105",
+      "expression": "Let's not beat around the bush.",
+      "meaning": "돌려 말하지 말고 솔직하게 얘기합시다.",
+      "level": "intermediate",
+      "theme": "communication",
+      "example": "We've been dancing around this issue for weeks — let's not beat around the bush anymore.",
+      "dialogue": "A: Well, there are various factors to consider and the situation is complex...\nB: Let's not beat around the bush. Are you saying the project is over budget or not?"
+    },
+    {
+      "id": "EN_106",
+      "expression": "I could use a break.",
+      "meaning": "좀 쉬어야 할 것 같아요. / 잠깐 쉬고 싶어요.",
+      "level": "beginner",
+      "theme": "daily-life",
+      "example": "I've been staring at this screen for six hours — I could really use a break.",
+      "dialogue": "A: You look exhausted. When did you last step away from your desk?\nB: Honestly? I can't remember. I could use a break — even just ten minutes of fresh air would help."
+    },
+    {
+      "id": "EN_107",
+      "expression": "That's easier said than done.",
+      "meaning": "말은 쉽죠. / 그게 말처럼 쉬운 게 아니에요.",
+      "level": "beginner",
+      "theme": "daily-life",
+      "example": "You say just 'be more confident,' but that's easier said than done.",
+      "dialogue": "A: Just stop worrying about what people think of you.\nB: That's easier said than done when you're presenting to fifty people who are all experts in the field."
+    },
+    {
+      "id": "EN_108",
+      "expression": "I'll keep you posted.",
+      "meaning": "계속 소식 전해드릴게요. / 업데이트 해드릴게요.",
+      "level": "beginner",
+      "theme": "communication",
+      "example": "The test results aren't back yet, but I'll keep you posted as soon as I hear anything.",
+      "dialogue": "A: Any news on the apartment application?\nB: Not yet — they said it could take a few more days. I'll keep you posted the moment I hear something."
+    },
+    {
+      "id": "EN_109",
+      "expression": "Don't judge a book by its cover.",
+      "meaning": "겉모습만 보고 판단하지 마세요.",
+      "level": "beginner",
+      "theme": "life-advice",
+      "example": "I almost skipped that café because it looked run-down, but don't judge a book by its cover — it was the best coffee I've had all year.",
+      "dialogue": "A: He seemed a bit awkward in the interview. I'm not sure about him.\nB: Don't judge a book by its cover. Once I actually worked with him on a project, his quiet confidence and attention to detail were exactly what we needed."
+    },
+    {
+      "id": "EN_110",
+      "expression": "I'm not a morning person.",
+      "meaning": "저는 아침형 인간이 아니에요. / 아침에 너무 약해요.",
+      "level": "beginner",
+      "theme": "daily-life",
+      "example": "Don't expect much from me before 9 AM — I'm not a morning person.",
+      "dialogue": "A: Want to join the 6 AM jogging club?\nB: I appreciate the invite, but I'm really not a morning person. I'm barely functional before I've had two cups of coffee. Maybe an evening run instead?"
+    },
+    {
+      "id": "EN_111",
+      "expression": "Long story short...",
+      "meaning": "길게 얘기하면 복잡하고, 요약하자면...",
+      "level": "beginner",
+      "theme": "communication",
+      "example": "Long story short, we missed the flight, rented a car, and somehow made it to the wedding on time.",
+      "dialogue": "A: How did the job interview go? You were gone for four hours!\nB: It's a wild story — long story short, they offered me the position on the spot and I start next Monday."
+    },
+    {
+      "id": "EN_112",
+      "expression": "That's a no-brainer.",
+      "meaning": "그건 고민할 것도 없어요. / 당연한 선택이죠.",
+      "level": "beginner",
+      "theme": "decision-making",
+      "example": "If you can get the same quality at half the price, switching suppliers is a no-brainer.",
+      "dialogue": "A: Should we take the direct flight or the one with two stopovers that costs half as much?\nB: You've got a meeting at 8 AM the next day — the direct flight is a no-brainer. Pay the extra and arrive fresh."
+    },
+    {
+      "id": "EN_113",
+      "expression": "I wasn't born yesterday.",
+      "meaning": "저도 눈치가 있어요. / 제가 그렇게 순진하지 않아요.",
+      "level": "intermediate",
+      "theme": "social",
+      "example": "You're telling me this deal just happened to land in my inbox with no strings attached? I wasn't born yesterday.",
+      "dialogue": "A: It's a limited-time offer, completely risk-free, and the returns are guaranteed at 30%.\nB: I wasn't born yesterday. No investment guarantees 30% returns — what's the catch?"
+    },
+    {
+      "id": "EN_114",
+      "expression": "Cut me some slack.",
+      "meaning": "좀 봐주세요. / 너무 몰아붙이지 마세요.",
+      "level": "intermediate",
+      "theme": "social",
+      "example": "It's my first week on the job — cut me some slack if I don't know every procedure yet.",
+      "dialogue": "A: You misspelled three things in that email to the client.\nB: I know, I'm sorry — cut me some slack. I was typing it up between two meetings and I'll proofread more carefully next time."
+    },
+    {
+      "id": "EN_115",
+      "expression": "Actions speak louder than words.",
+      "meaning": "말보다 행동이 중요합니다.",
+      "level": "beginner",
+      "theme": "life-advice",
+      "example": "He promises every week that he'll change, but actions speak louder than words.",
+      "dialogue": "A: He keeps saying he's committed to the project, but the deadlines keep slipping.\nB: Exactly. Actions speak louder than words. If he doesn't deliver by Friday, we need to have a serious conversation."
+    },
+    {
+      "id": "EN_116",
+      "expression": "I'm in over my head.",
+      "meaning": "제 능력 밖의 일이에요. / 너무 벅차요.",
+      "level": "intermediate",
+      "theme": "workload",
+      "example": "I volunteered to lead the international expansion team, but I'm completely in over my head.",
+      "dialogue": "A: How's the new role going?\nB: Honestly, I'm a little in over my head. I didn't realize how much legal and compliance work was involved. I might need to bring in some outside help."
+    },
+    {
+      "id": "EN_117",
+      "expression": "We're just scratching the surface.",
+      "meaning": "우리는 아직 표면만 긁은 거예요. / 이게 시작일 뿐이에요.",
+      "level": "intermediate",
+      "theme": "exploration",
+      "example": "We've identified five pain points, but I think we're just scratching the surface of what customers are really frustrated about.",
+      "dialogue": "A: We've covered a lot of ground today.\nB: We've made good progress, but honestly we're just scratching the surface. There's a whole layer of systemic issues we haven't even touched yet."
+    },
+    {
+      "id": "EN_118",
+      "expression": "It's a blessing in disguise.",
+      "meaning": "전화위복이에요. / 겉보기엔 나빠 보여도 사실은 좋은 일이에요.",
+      "level": "intermediate",
+      "theme": "life-advice",
+      "example": "Getting laid off felt devastating at the time, but it turned out to be a blessing in disguise — it pushed me to start my own business.",
+      "dialogue": "A: I'm still upset we lost that client.\nB: I know it stings, but it might be a blessing in disguise. They were demanding, constantly changing scope, and paying below market rate. Now we have room for a better client."
+    },
+    {
+      "id": "EN_119",
+      "expression": "I'll take a rain check.",
+      "meaning": "이번엔 다음으로 미룰게요. / 다음 기회에 할게요.",
+      "level": "intermediate",
+      "theme": "social",
+      "example": "I'd love to join dinner tonight, but I'm exhausted — can I take a rain check?",
+      "dialogue": "A: We're all going out for drinks after work. You coming?\nB: I'll have to take a rain check — I promised I'd help my sister move this evening. Next time for sure."
+    },
+    {
+      "id": "EN_120",
+      "expression": "You can't have it both ways.",
+      "meaning": "둘 다 가질 수는 없어요. / 두 마리 토끼를 잡을 순 없어요.",
+      "level": "intermediate",
+      "theme": "decision-making",
+      "example": "You want maximum speed AND zero risk — you can't have it both ways in product development.",
+      "dialogue": "A: I want to launch next month, but I also need it to be perfect.\nB: You can't have it both ways. If we rush to next month, something will break. If we go until it's perfect, we launch in six months. You need to choose."
+    },
+    {
+      "id": "EN_121",
+      "expression": "I had a lightbulb moment.",
+      "meaning": "갑자기 번뜩이는 아이디어가 떠올랐어요.",
+      "level": "intermediate",
+      "theme": "creativity",
+      "example": "I was in the shower this morning and had a lightbulb moment about how to fix the bug.",
+      "dialogue": "A: How did you figure out the solution so fast?\nB: I had a lightbulb moment on the train. The whole thing clicked when I stopped trying to force it and just thought about what the user actually needs."
+    },
+    {
+      "id": "EN_122",
+      "expression": "Let's cross that bridge when we come to it.",
+      "meaning": "그 문제는 닥쳤을 때 해결합시다. / 미리 걱정할 필요 없어요.",
+      "level": "intermediate",
+      "theme": "planning",
+      "example": "What if the investor says no? Let's cross that bridge when we come to it — first let's prepare the best pitch we can.",
+      "dialogue": "A: What happens if we go over budget in Phase 2?\nB: Let's cross that bridge when we come to it. Right now we're under budget in Phase 1 — focus on what's in front of us."
+    },
+    {
+      "id": "EN_123",
+      "expression": "I feel you.",
+      "meaning": "공감해요. / 충분히 이해해요.",
+      "level": "beginner",
+      "theme": "emotion",
+      "example": "You haven't had a day off in three weeks? I feel you — I was in the same situation last quarter.",
+      "dialogue": "A: I'm so tired of being the only one who cares about the quality of the work.\nB: I feel you. It's incredibly draining when you're holding a high standard and the people around you aren't matching your energy."
+    },
+    {
+      "id": "EN_124",
+      "expression": "My hands are tied.",
+      "meaning": "제가 어쩔 수 없는 상황이에요. / 제 손을 쓸 수가 없어요.",
+      "level": "intermediate",
+      "theme": "workplace",
+      "example": "I'd love to offer you a better deal, but my hands are tied — the pricing was set by headquarters.",
+      "dialogue": "A: Can you extend the deadline by even one day?\nB: I wish I could, but my hands are tied. The client presentation is locked in and the CEO is flying in for it. There's no flexibility on this one."
+    },
+    {
+      "id": "EN_125",
+      "expression": "That's a double-edged sword.",
+      "meaning": "그건 양날의 검이에요. (장점이자 단점이 되는 상황)",
+      "level": "advanced",
+      "theme": "analysis",
+      "example": "Going viral on social media is a double-edged sword — massive exposure, but also massive scrutiny.",
+      "dialogue": "A: Making the app free should massively increase our user base.\nB: It's a double-edged sword. More users means more growth, but we lose our revenue stream and suddenly need to monetize through ads or convert free users, which is incredibly hard."
+    },
+    {
+      "id": "EN_126",
+      "expression": "Time flies when you're having fun.",
+      "meaning": "즐길 땐 시간이 금방 가요.",
+      "level": "beginner",
+      "theme": "daily-life",
+      "example": "We were supposed to talk for an hour and ended up chatting for three — time flies when you're having fun.",
+      "dialogue": "A: I can't believe it's already midnight!\nB: Time flies when you're having fun. This was exactly what I needed — I haven't laughed this hard in months."
+    },
+    {
+      "id": "EN_127",
+      "expression": "Don't put all your eggs in one basket.",
+      "meaning": "한 곳에만 모든 것을 걸지 마세요. / 분산이 중요해요.",
+      "level": "intermediate",
+      "theme": "strategy",
+      "example": "We're 90% dependent on one platform for our revenue — we shouldn't put all our eggs in one basket.",
+      "dialogue": "A: We're going all-in on TikTok for our marketing.\nB: I'd diversify if I were you. Don't put all your eggs in one basket — algorithms change overnight and we could lose our entire audience."
+    },
+    {
+      "id": "EN_128",
+      "expression": "I'll give it my best shot.",
+      "meaning": "최선을 다해볼게요. / 한번 해볼게요.",
+      "level": "beginner",
+      "theme": "motivation",
+      "example": "I've never done public speaking before, but I'll give it my best shot.",
+      "dialogue": "A: Can you present the quarterly results to the board on Thursday?\nB: I've never presented to that level before, but I'll give it my best shot. Can you send me some background on who'll be in the room?"
+    },
+    {
+      "id": "EN_129",
+      "expression": "That's the last straw.",
+      "meaning": "이건 더 이상 못 참겠어요. / 인내의 한계예요.",
+      "level": "intermediate",
+      "theme": "emotion",
+      "example": "They canceled on me for the third time this month — that's the last straw.",
+      "dialogue": "A: The supplier missed the deadline again and didn't even apologize.\nB: That's the last straw. I've given them three chances. Let's start the vendor replacement process today."
+    },
+    {
+      "id": "EN_130",
+      "expression": "You're preaching to the choir.",
+      "meaning": "저도 이미 그 생각이에요. / 설득할 필요 없어요, 동의하고 있거든요.",
+      "level": "advanced",
+      "theme": "communication",
+      "example": "You're telling me we need more diverse hires? You're preaching to the choir — I've been pushing for this for two years.",
+      "dialogue": "A: I think the team needs more autonomy and less micromanagement.\nB: You're preaching to the choir. I've been making that exact argument to leadership for months. The challenge is convincing the people above us."
+    },
+    {
+      "id": "EN_131",
+      "expression": "Get it off your chest.",
+      "meaning": "속에 담아두지 말고 털어놓으세요.",
+      "level": "intermediate",
+      "theme": "emotion",
+      "example": "You've been quiet all day. Whatever is bothering you — just get it off your chest.",
+      "dialogue": "A: There's something that's been really bothering me about how the team handled this.\nB: I'm glad you brought it up. Please, get it off your chest — I want to hear it, and I'm not going to get defensive."
+    },
+    {
+      "id": "EN_132",
+      "expression": "I'd rather not.",
+      "meaning": "그렇게 하지 않는 게 낫겠어요. / 그건 좀 사양할게요.",
+      "level": "beginner",
+      "theme": "social",
+      "example": "I'd rather not get involved in that conversation — it's political and I have to work with both of them.",
+      "dialogue": "A: Do you want to be the one to tell him his presentation went badly?\nB: I'd rather not. Could someone closer to him deliver that feedback? It'd be better received coming from a peer."
+    },
+    {
+      "id": "EN_133",
+      "expression": "It takes two to tango.",
+      "meaning": "혼자만의 잘못이 아니에요. / 둘 다 책임이 있어요.",
+      "level": "intermediate",
+      "theme": "relationships",
+      "example": "Don't just blame him for the argument — it takes two to tango.",
+      "dialogue": "A: The client relationship completely fell apart and it was all their fault.\nB: I hear you, but it takes two to tango. Let's look honestly at where our team's communication could have been better before we assign all the blame."
+    },
+    {
+      "id": "EN_134",
+      "expression": "I'm having second thoughts.",
+      "meaning": "다시 생각해보니 망설여지네요. / 마음이 흔들려요.",
+      "level": "intermediate",
+      "theme": "decision-making",
+      "example": "I signed the lease, but now I'm having second thoughts about moving to a new city.",
+      "dialogue": "A: You seemed so certain about the new job offer yesterday. What changed?\nB: Honestly, I'm having second thoughts. The salary is great, but the commute is 90 minutes each way and I'm not sure the role is actually what they described."
+    },
+    {
+      "id": "EN_135",
+      "expression": "Every cloud has a silver lining.",
+      "meaning": "어떤 힘든 일에도 밝은 면이 있어요. (전화위복 긍정 표현)",
+      "level": "beginner",
+      "theme": "life-advice",
+      "example": "The pandemic was devastating, but for many small businesses every cloud has a silver lining — they found entirely new customer bases online.",
+      "dialogue": "A: I'm gutted we didn't win the pitch.\nB: Every cloud has a silver lining. We learned a lot about how we present our pricing, and the feedback they gave us is going to make our next pitch much stronger."
+    },
+    {
+      "id": "EN_136",
+      "expression": "We're on thin ice.",
+      "meaning": "우리가 아슬아슬한 상황이에요. / 위태로운 상태예요.",
+      "level": "intermediate",
+      "theme": "workplace",
+      "example": "After missing the last two deadlines, our team is on thin ice with the client.",
+      "dialogue": "A: Should we ask for another extension?\nB: Absolutely not. We're already on thin ice. One more delay and they'll cancel the contract. We work the weekend if we have to."
+    },
+    {
+      "id": "EN_137",
+      "expression": "Don't hold your breath.",
+      "meaning": "기대하지 마세요. / 그게 이루어지길 기다리지 마세요.",
+      "level": "intermediate",
+      "theme": "daily-life",
+      "example": "He said he'd respond by noon — but don't hold your breath. He's notoriously slow with emails.",
+      "dialogue": "A: Do you think the CEO will approve our budget request this quarter?\nB: Don't hold your breath. They just froze all discretionary spending last week. We might want to plan for a leaner version of the project."
+    },
+    {
+      "id": "EN_138",
+      "expression": "I spoke too soon.",
+      "meaning": "제가 너무 일찍 말했네요. / 김칫국 마셨네요.",
+      "level": "intermediate",
+      "theme": "daily-life",
+      "example": "I told everyone the problem was fixed, but I spoke too soon — it came back an hour later.",
+      "dialogue": "A: Did you say the server was stable again?\nB: I spoke too soon. It went down again about twenty minutes after I sent that update. I'm sorry — we're still working on the root cause."
+    },
+    {
+      "id": "EN_139",
+      "expression": "Let's bury the hatchet.",
+      "meaning": "지난 일은 묻어두고 화해합시다.",
+      "level": "advanced",
+      "theme": "relationships",
+      "example": "We've been at odds for months — I think it's time to bury the hatchet and move forward.",
+      "dialogue": "A: Things have been tense between our teams since the product launch dispute.\nB: Can we just bury the hatchet? We're on the same side at the end of the day. How about lunch this week, just us?"
+    },
+    {
+      "id": "EN_140",
+      "expression": "I'm between a rock and a hard place.",
+      "meaning": "진퇴양난이에요. / 어디로도 갈 수 없는 상황이에요.",
+      "level": "advanced",
+      "theme": "decision-making",
+      "example": "If I say yes to the project, I burn out. If I say no, I risk losing the client. I'm between a rock and a hard place.",
+      "dialogue": "A: Can't you just tell the vendor to push the delivery date?\nB: I'm between a rock and a hard place. If we push the vendor, they'll charge us penalties. If we don't, we miss the launch. Neither option is good."
+    },
+    {
+      "id": "EN_141",
+      "expression": "That really struck a chord with me.",
+      "meaning": "그 말/그것이 제 마음에 깊이 울렸어요. / 공감이 많이 됐어요.",
+      "level": "advanced",
+      "theme": "emotion",
+      "example": "The line about not waiting for the 'right time' to pursue your dreams really struck a chord with me.",
+      "dialogue": "A: Which part of the book resonated with you the most?\nB: The chapter on forgiveness struck a chord. I didn't expect it to — but it made me think about some relationships in my own life I've been avoiding."
+    },
+    {
+      "id": "EN_142",
+      "expression": "It comes with the territory.",
+      "meaning": "그건 어쩔 수 없이 따라오는 부분이에요. / 원래 그런 거예요.",
+      "level": "intermediate",
+      "theme": "workplace",
+      "example": "Dealing with difficult clients isn't pleasant, but it comes with the territory in consulting.",
+      "dialogue": "A: I hate how much after-hours communication this role requires.\nB: I know. It's frustrating, but honestly it comes with the territory in a client-facing position. The question is whether the other parts of the role make it worth it for you."
+    },
+    {
+      "id": "EN_143",
+      "expression": "You hit it out of the park.",
+      "meaning": "완전히 잘 해냈어요! / 홈런을 쳤어요! (크게 성공했을 때)",
+      "level": "intermediate",
+      "theme": "praise",
+      "example": "That presentation was flawless — you hit it out of the park.",
+      "dialogue": "A: I was so nervous the whole time. I couldn't tell if they liked it.\nB: Are you kidding? You hit it out of the park. Three of the investors came up to me afterward asking for your contact details."
+    },
+    {
+      "id": "EN_144",
+      "expression": "Bear with me.",
+      "meaning": "잠깐만 참아주세요. / 조금만 기다려 주세요.",
+      "level": "beginner",
+      "theme": "communication",
+      "example": "Bear with me while I pull up the right file — I have about fifty tabs open.",
+      "dialogue": "A: The slides aren't loading...\nB: Bear with me — the WiFi in this room is terrible. Let me switch to a hotspot and we'll be good to go in just a moment."
+    },
+    {
+      "id": "EN_145",
+      "expression": "I got carried away.",
+      "meaning": "제가 너무 흥분해서 (정도를) 넘어버렸어요.",
+      "level": "intermediate",
+      "theme": "social",
+      "example": "Sorry I ranted about the policy for twenty minutes — I got a little carried away.",
+      "dialogue": "A: You kept adding features that weren't in the original brief.\nB: I know, I got carried away. Once I started building, I kept thinking 'wouldn't it be cool if...' and just couldn't stop. I'll rein it in going forward."
+    },
+    {
+      "id": "EN_146",
+      "expression": "It's not the end of the world.",
+      "meaning": "이게 세상이 끝나는 일은 아니에요. / 그렇게 큰 일 아니에요.",
+      "level": "beginner",
+      "theme": "emotion",
+      "example": "You failed one exam. It's not the end of the world — there are retakes and other paths forward.",
+      "dialogue": "A: I can't believe I made that mistake in front of the whole team.\nB: It's not the end of the world. Everyone makes mistakes. What matters is how you handle it — own it, fix it, and move on."
+    },
+    {
+      "id": "EN_147",
+      "expression": "Speak of the devil.",
+      "meaning": "호랑이도 제 말 하면 온다더니. (방금 얘기하던 사람이 나타날 때)",
+      "level": "beginner",
+      "theme": "social",
+      "example": "We were just wondering where you'd gone — speak of the devil!",
+      "dialogue": "A: Has anyone heard from Jake today? He missed the standup.\nB: Speak of the devil — here he comes down the hall now."
+    },
+    {
+      "id": "EN_148",
+      "expression": "I'll sleep when I'm dead.",
+      "meaning": "죽으면 그때 자지요. (일·열정을 위해 수면을 희생할 때 쓰는 자조적 표현)",
+      "level": "intermediate",
+      "theme": "daily-life",
+      "example": "Everyone keeps telling me to take weekends off, but I'll sleep when I'm dead — this is a once-in-a-decade opportunity.",
+      "dialogue": "A: You worked all weekend again, didn't you?\nB: I'll sleep when I'm dead. We're so close to launching and I genuinely love what we're building. But okay — I promise I'll take a proper break after the release."
+    },
+    {
+      "id": "EN_149",
+      "expression": "There's no such thing as a free lunch.",
+      "meaning": "세상에 공짜는 없어요.",
+      "level": "intermediate",
+      "theme": "life-advice",
+      "example": "The influencer deal seemed amazing until we read the fine print — there's no such thing as a free lunch.",
+      "dialogue": "A: This software is completely free with unlimited storage. Why would they offer that?\nB: There's no such thing as a free lunch. They're monetizing your data. Read the privacy policy before you upload anything sensitive."
+    },
+    {
+      "id": "EN_150",
+      "expression": "You can say that again.",
+      "meaning": "정말 그렇죠. / 완전 동의해요. (강하게 공감할 때)",
+      "level": "beginner",
+      "theme": "social",
+      "example": "A: This commute is absolutely brutal in rush hour. B: You can say that again — it took me an hour and a half today.",
+      "dialogue": "A: This project has had more moving parts than anything I've ever worked on.\nB: You can say that again. I've been in this industry for fifteen years and I've never seen a scope this complex managed with such a small team."
+    },
+    {
+      "id": "EN_151",
+      "expression": "We're burning daylight.",
+      "meaning": "시간을 낭비하고 있어요. / 빨리 시작합시다.",
+      "level": "intermediate",
+      "theme": "productivity",
+      "example": "Everyone's here and we have a lot to cover — let's get started. We're burning daylight.",
+      "dialogue": "A: Should we wait for the others before we begin?\nB: We're already ten minutes late and we're burning daylight. Let's start and catch them up when they arrive."
+    },
+    {
+      "id": "EN_152",
+      "expression": "I take back what I said.",
+      "meaning": "제가 한 말 취소할게요. / 아까 한 말 철회합니다.",
+      "level": "beginner",
+      "theme": "communication",
+      "example": "I said the new system was slow, but I take back what I said — it's actually very fast once you know how to use it.",
+      "dialogue": "A: You said you thought the new hire wasn't working out.\nB: I take back what I said. I've seen her work this week and she's actually incredibly methodical and sharp. I judged too quickly."
+    },
+    {
+      "id": "EN_153",
+      "expression": "I'm on edge.",
+      "meaning": "신경이 날카로워요. / 불안하고 초조해요.",
+      "level": "intermediate",
+      "theme": "emotion",
+      "example": "I've been on edge all morning waiting for the board's decision.",
+      "dialogue": "A: You seem really tense today.\nB: I'm on edge. The offer for the house is in and we're waiting to hear back. If we lose this one, I genuinely don't know what we'll do — the market is brutal."
+    },
+    {
+      "id": "EN_154",
+      "expression": "I'll take the fall for this.",
+      "meaning": "제가 책임질게요. / 제가 비난을 받을게요.",
+      "level": "advanced",
+      "theme": "leadership",
+      "example": "If the launch fails, I'll take the fall for it — this was my call to make.",
+      "dialogue": "A: Someone has to explain to the board why we missed the target.\nB: I'll take the fall for this. I made the final decision on the strategy and I should be the one to own it. Set up the meeting."
+    },
+    {
+      "id": "EN_155",
+      "expression": "We go way back.",
+      "meaning": "우리는 오랜 인연이에요. / 옛날부터 알던 사이예요.",
+      "level": "beginner",
+      "theme": "relationships",
+      "example": "Don't worry about being formal — we go way back. Just talk to him like a normal person.",
+      "dialogue": "A: I didn't realize you knew the CEO personally.\nB: Oh yeah, we go way back. We were in the same study group in university. You'd never guess it from how formal he is in meetings."
+    },
+    {
+      "id": "EN_156",
+      "expression": "You're a lifesaver.",
+      "meaning": "진짜 살았어요! / 고마워요, 덕분에 살았어요.",
+      "level": "beginner",
+      "theme": "gratitude",
+      "example": "You sent me the file right before my presentation — you're a lifesaver.",
+      "dialogue": "A: I thought you might need the extra charger, so I packed one just in case.\nB: You're a lifesaver. My laptop was at 4% and the presentation is in ten minutes. Seriously, thank you so much."
+    },
+    {
+      "id": "EN_157",
+      "expression": "That's food for thought.",
+      "meaning": "생각해볼 만한 좋은 포인트네요. / 곱씹어볼 내용이에요.",
+      "level": "intermediate",
+      "theme": "communication",
+      "example": "The suggestion to simplify the onboarding instead of adding more features — that's food for thought.",
+      "dialogue": "A: What if the reason users churn isn't the product itself but the fact that we're attracting the wrong users from the start?\nB: That's food for thought. It would reframe our entire acquisition strategy. Let me sit with that over the weekend."
+    },
+    {
+      "id": "EN_158",
+      "expression": "I'm not cut out for this.",
+      "meaning": "저는 이것에 맞지 않는 것 같아요. / 적성에 안 맞아요.",
+      "level": "intermediate",
+      "theme": "self-reflection",
+      "example": "After six months of management, I've realized I'm not cut out for it — I miss doing the actual work.",
+      "dialogue": "A: How are you finding the new leadership role?\nB: Honestly? I'm not sure I'm cut out for this. I spend my whole day in meetings and I haven't written a single line of code in three months. I got into tech to build things."
+    },
+    {
+      "id": "EN_159",
+      "expression": "Let's call it a day.",
+      "meaning": "오늘은 이만 마무리합시다. / 퇴근합시다.",
+      "level": "beginner",
+      "theme": "daily-life",
+      "example": "We've hit every item on the agenda — let's call it a day and get some rest.",
+      "dialogue": "A: Should we try to fit in one more review before we wrap?\nB: It's already 7:30 and everyone's running on fumes. Let's call it a day. We'll come back fresh in the morning and it'll be better work anyway."
+    },
+    {
+      "id": "EN_160",
+      "expression": "I can't wrap my head around it.",
+      "meaning": "도저히 이해가 안 돼요. / 머릿속에서 정리가 안 돼요.",
+      "level": "intermediate",
+      "theme": "daily-life",
+      "example": "The new tax code has so many exceptions — I can't wrap my head around it.",
+      "dialogue": "A: Did you understand the architect's explanation of the new infrastructure?\nB: Honestly, I couldn't wrap my head around most of it. Could you send me a summary? I'm a visual person — maybe a diagram would help."
+    },
+    {
+      "id": "EN_161",
+      "expression": "I'm just playing devil's advocate.",
+      "meaning": "반론을 제기하는 거예요. / 일부러 반대 입장에서 말해보는 거예요.",
+      "level": "advanced",
+      "theme": "critical-thinking",
+      "example": "I'm just playing devil's advocate here, but what if the data is pointing us in the wrong direction?",
+      "dialogue": "A: So we all agree the new feature is a priority?\nB: Before we finalize — I'm just playing devil's advocate — but who specifically asked for this? Is it a vocal minority or does the data actually back up the demand?"
+    },
+    {
+      "id": "EN_162",
+      "expression": "The ball really got rolling.",
+      "meaning": "일이 본격적으로 잘 굴러가기 시작했어요.",
+      "level": "intermediate",
+      "theme": "progress",
+      "example": "Once we got the first investor on board, the ball really got rolling and three more followed within a month.",
+      "dialogue": "A: The early days of the startup sound chaotic.\nB: They were. But once we landed that first enterprise client, the ball really got rolling. Word spread fast and suddenly everyone wanted a demo."
+    },
+    {
+      "id": "EN_163",
+      "expression": "I'm drawing a blank.",
+      "meaning": "아무것도 생각이 안 나요. / 머리가 하얘졌어요.",
+      "level": "intermediate",
+      "theme": "daily-life",
+      "example": "I studied everything last night, but in the exam I was drawing a complete blank.",
+      "dialogue": "A: What was the name of that framework we used in the last project?\nB: I'm completely drawing a blank right now. Let me search through my emails — I know I emailed about it at the time."
+    },
+    {
+      "id": "EN_164",
+      "expression": "It's water under the bridge.",
+      "meaning": "다 지난 일이에요. / 이미 흘러간 일이에요.",
+      "level": "intermediate",
+      "theme": "relationships",
+      "example": "We had a falling out two years ago, but it's water under the bridge — we've moved on.",
+      "dialogue": "A: Are you sure you're okay working with him after what happened?\nB: It's water under the bridge. That conflict was two years ago, we both said things we regret, and we've talked it through. I'm genuinely fine."
+    },
+    {
+      "id": "EN_165",
+      "expression": "I'll turn over a new leaf.",
+      "meaning": "새 출발을 할 거예요. / 마음을 고쳐먹을 거예요.",
+      "level": "intermediate",
+      "theme": "self-improvement",
+      "example": "This year I'm really going to turn over a new leaf with my health — no more skipping the gym.",
+      "dialogue": "A: You've said you'll work on your time management before.\nB: I know, I know. But I've got an accountability partner now and I've blocked off deep work hours on my calendar. I'm genuinely turning over a new leaf."
+    },
+    {
+      "id": "EN_166",
+      "expression": "To each their own.",
+      "meaning": "각자의 취향이 있는 거죠. / 사람마다 다른 거예요.",
+      "level": "beginner",
+      "theme": "social",
+      "example": "I don't get the appeal of true crime podcasts, but to each their own.",
+      "dialogue": "A: How can you like pineapple on pizza?\nB: To each their own! I love the sweet and salty combination. I'm not going to judge what you put on yours if you don't judge mine."
+    },
+    {
+      "id": "EN_167",
+      "expression": "I'm at my wit's end.",
+      "meaning": "더 이상 어떻게 해야 할지 모르겠어요. / 방법이 다 떨어졌어요.",
+      "level": "advanced",
+      "theme": "emotion",
+      "example": "I've tried everything to fix the bug and I'm at my wit's end — do you have any ideas?",
+      "dialogue": "A: The client keeps rejecting every version of the design with no specific feedback.\nB: I'm at my wit's end with them, honestly. We've gone through eleven revisions. I think we need to schedule a workshop to uncover what they actually want before we design anything else."
+    },
+    {
+      "id": "EN_168",
+      "expression": "I could eat a horse.",
+      "meaning": "너무 배고파요. / 엄청 많이 먹을 수 있을 것 같아요.",
+      "level": "beginner",
+      "theme": "daily-life",
+      "example": "I skipped lunch and it's now 6 PM — I could eat a horse right now.",
+      "dialogue": "A: Should we grab something small before the dinner reservation at 8?\nB: Honestly, I could eat a horse. I've been in back-to-back meetings since 8 AM without a proper meal. Let's grab something now."
+    },
+    {
+      "id": "EN_169",
+      "expression": "Don't bite off more than you can chew.",
+      "meaning": "감당할 수 있는 것 이상을 맡으려 하지 마세요.",
+      "level": "intermediate",
+      "theme": "life-advice",
+      "example": "You're already stretched thin — don't bite off more than you can chew by taking on this extra project.",
+      "dialogue": "A: I said yes to the conference talk, the book chapter, and the podcast all in the same month.\nB: Don't bite off more than you can chew. You already have a full load. Which one actually matters most for where you want to be in two years? Do that one well."
+    },
+    {
+      "id": "EN_170",
+      "expression": "The more the merrier.",
+      "meaning": "사람이 많을수록 더 좋죠. / 많이 올수록 환영이에요.",
+      "level": "beginner",
+      "theme": "social",
+      "example": "Bring your coworkers to the team dinner — the more the merrier.",
+      "dialogue": "A: Is it okay if my partner and a couple of friends join us for the barbecue?\nB: Absolutely — the more the merrier! Just let me know numbers so I can make sure we have enough food for everyone."
+    }
+  ],
+  "chinese_expressions": [],
+  "idioms_and_quotes": [],
+  "history_facts": []
+}

@@ -917,6 +917,16 @@ async function generateLanguageFeed(sub, user) {
         const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
         const dayKr    = dayNames[dow];
         const theme    = items[0]?.theme || (langKey === 'en' ? '비즈니스 영어' : '비즈니스 중국어');
+        /* DB 항목 theme(영문) → 사용자 노출용 한글 라벨 */
+        const THEME_KR = {
+          'meeting':'회의·미팅','communication':'커뮤니케이션','workload':'업무·일정','performance':'성과','kickoff':'프로젝트 시작',
+          'strategy':'전략','planning':'기획','negotiation':'협상','reporting':'보고','standards':'기준·품질','creativity':'창의력',
+          'decision-making':'의사결정','daily-life':'일상 회화','social':'사교·관계','formal':'격식 표현','life-advice':'삶의 지혜',
+          'efficiency':'효율','project-management':'프로젝트 관리','critical-thinking':'비판적 사고','analysis':'분석','teamwork':'팀워크',
+          'emotion':'감정 표현','praise':'칭찬','relationships':'인간관계','exploration':'탐구','gratitude':'감사','productivity':'생산성',
+          'self-reflection':'자기성찰','leadership':'리더십','motivation':'동기부여','self-improvement':'자기계발','progress':'진척'
+        };
+        const themeKr  = THEME_KR[theme] || (langKey === 'en' ? '실전 영어 표현' : '실전 중국어 표현');
         const vocabEntries = items.map(item => ({
           item_id:          item.id,
           expression:       item.expression,
@@ -932,8 +942,8 @@ async function generateLanguageFeed(sub, user) {
           category:    sub.category || langKey,
           subCategory: theme,
           label:       sub.label,
-          title:       `[${dayKr}] ${theme}: ${vocabEntries[0]?.expression || '핵심 표현'} 외 ${vocabEntries.length - 1}개`,
-          summary:     `${dayKr}요일 — ${theme} 핵심 ${lang} 표현 ${vocabEntries.length}선`,
+          title:       `[${dayKr}] ${themeKr}: ${vocabEntries[0]?.expression || '핵심 표현'} 외 ${vocabEntries.length - 1}개`,
+          summary:     `${dayKr}요일 — ${themeKr} 핵심 ${lang} 표현 ${vocabEntries.length}선`,
           report:      '',
           theme,
           dayOfWeek:   dayKr,

@@ -14,12 +14,13 @@
     "updated_at": "2026-06-11T20:31:35.514Z",
     "feed_settings": {
       "en_expr": {
-        "count": 10,
+        "count": 5,
         "themes": [
           "business_meeting",
-          "office_email"
+          "daily_travel",
+          "drama_spoken"
         ],
-        "level": "advanced"
+        "level": ""
       },
       "zh_expr": {
         "count": 7,

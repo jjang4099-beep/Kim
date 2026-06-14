@@ -190,9 +190,11 @@ const Mob = {
     el('modeBtnWork')?.classList.toggle('active', mode === 'work');
     if (mode === 'exam') {
       ExamMob.init();
+      el('examHomeHeader')?.removeAttribute('hidden');
       el('examSubjectRow')?.removeAttribute('hidden');
       el('examDashboard')?.removeAttribute('hidden');
     } else {
+      el('examHomeHeader')?.setAttribute('hidden', '');
       el('examSubjectRow')?.setAttribute('hidden', '');
       el('examDashboard')?.setAttribute('hidden', '');
     }

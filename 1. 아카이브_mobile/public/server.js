@@ -898,9 +898,9 @@ async function generateLanguageFeed(sub, user) {
   /* ── 사용자 상세 설정 우선 적용 (영어/중국어 공통) ── */
   const feedSettingKey = langKey === 'en' ? 'en_expr' : 'zh_expr';
   const feedCfg        = user?.feed_settings?.[feedSettingKey] || {};
-  const defCount       = langKey === 'zh' ? 5 : 7;
+  const defCount       = langKey === 'zh' ? 5 : 3;
   const count          = feedCfg.count || sub.options?.count || defCount;
-  const level          = feedCfg.level || 'intermediate';
+  const level          = feedCfg.level || '';
 
   /* ── DB-First: knowledge_db에서 먼저 시도 (비용 0원) ── */
   {
@@ -909,7 +909,7 @@ async function generateLanguageFeed(sub, user) {
     const lvlPool = level ? pool.filter(i => i.level === level) : pool;
     const srcPool = lvlPool.length >= count ? lvlPool : pool;
     if (srcPool.length >= count) {
-      const recentIds = getRecentDeliveredIDs(sub.id, 60);
+      const recentIds = getRecentDeliveredIDs(sub.id, 14);
       const items = pickUnseenItems(srcPool, recentIds, count);
       if (items.length >= count) {
         const dow      = new Date().getDay();

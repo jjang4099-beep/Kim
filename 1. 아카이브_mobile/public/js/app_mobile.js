@@ -531,23 +531,24 @@ const Mob = {
     return out;
   },
 
-  /** 홈 영어 카드 v48 — Premium Language Card */
+  /** 홈 영어 카드 v49 — Premium Language Card v2 */
   _cardEnglishV(item) {
-    const id      = item._id || item.id || '';
-    const p       = this._parseEnglishText(item.text);
-    const expr    = p.expression || item.title || '영어 표현';
-    const rawD    = item.createdAt || item.savedAt || '';
-    const MONTHS  = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
-    const dateStr = rawD
+    const id         = item._id || item.id || '';
+    const p          = this._parseEnglishText(item.text);
+    const expr       = p.expression || item.title || '영어 표현';
+    const rawD       = item.createdAt || item.savedAt || '';
+    const MONTHS     = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+    const dateStr    = rawD
       ? (() => { const d = new Date(rawD); return isNaN(d) ? 'TODAY' : `${MONTHS[d.getMonth()]} ${d.getDate()}`; })()
       : 'TODAY';
-    const tagLabel = p.topic || 'Expression';
-    const context  = p.nuance || (p.example ? `"${p.example}"` : '');
+    const isSentence = expr.split(/\s+/).filter(Boolean).length > 4;
+    const tagLabel   = isSentence ? 'Sentence' : 'Expression';
+    const phraseClass = isSentence ? 'expression-phrase sentence' : 'expression-phrase';
 
     return `
     <div class="mob-card archive-lang-card" data-id="${id}">
       <div class="card-meta">
-        <span class="tag-expression"><i class="ti ti-language"></i> ${tagLabel}</span>
+        <span class="tag-expression">${tagLabel}</span>
         <div style="display:flex;align-items:center;gap:8px;">
           <span class="card-date">${dateStr}</span>
           <button class="alc-del"
@@ -555,13 +556,15 @@ const Mob = {
                   title="삭제"><i class="ti ti-x"></i></button>
         </div>
       </div>
-      <h2 class="expression-phrase">${expr}</h2>
-      ${p.meaning ? `<p class="expression-meaning">${p.meaning}</p>` : ''}
+      <h2 class="${phraseClass}">${expr}</h2>
+      ${p.meaning ? `<div class="expression-meaning">${p.meaning}</div>` : ''}
       <div class="card-divider"></div>
-      ${context ? `<div class="expression-context">${context}</div>` : ''}
-      <div class="card-footer">
-        <span>자세히 보기</span><i class="ti ti-chevron-right" style="font-size:9px;margin-left:2px;"></i>
-      </div>
+      ${p.example ? `
+      <div class="example-box">
+        <span class="example-label">Example</span>
+        <div class="example-en">"${p.example}"</div>
+        ${p.practice ? `<div class="example-ko">${p.practice}</div>` : ''}
+      </div>` : (p.nuance ? `<div class="example-box"><div class="example-en">${p.nuance}</div></div>` : '')}
     </div>`;
   },
 

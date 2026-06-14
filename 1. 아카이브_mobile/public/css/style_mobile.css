@@ -44,7 +44,15 @@ img { display: block; max-width: 100%; }
 /* ══════════════════════════════════════════════════════════
    통합 앱 진입 화면 (스플래시 + 모드 선택)
 ══════════════════════════════════════════════════════════ */
-:root { --gold: #d4af37; --entrance-bg: #0d1a35; }
+:root {
+  --gold       : #d4af37;
+  --entrance-bg: #0d1a35;
+  /* Papyrus(라이트) / Midnight(다크) 테마 토큰 */
+  --mob-gold   : #9A6F1B;
+  --mob-card   : #FDFBF7;
+  --mob-section: #F4ECD8;
+  --mob-border : #E5D3B8;
+}
 
 .app-entrance {
   position  : fixed;
@@ -2199,7 +2207,7 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   border-top   : 0 solid #fde68a;
 }
 .mob-hum-behind-panel.open {
-  max-height   : 800px;
+  max-height   : 3000px;
   border-top   : 1px solid #fde68a;
 }
 
@@ -2709,47 +2717,54 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 .mob-detail-move-chip:active { background: #eff6ff; color: var(--accent); border-color: var(--accent); }
 
 /* ══════════════════════════════════════════════════════════
-   영어 카드 v49 — Premium Language Card v2 (.archive-lang-card)
+   v53 — English Card Accordion (Papyrus / Midnight)
 ══════════════════════════════════════════════════════════ */
 .archive-lang-card {
-  background   : var(--surface);
-  border       : 1px solid var(--border);
-  border-radius: 24px;
-  padding      : 22px 22px 20px;
-  margin-bottom: 10px;
-  cursor       : pointer;
+  background   : var(--mob-card, var(--surface));
+  border       : 1px solid var(--mob-border, var(--border));
+  border-radius: 20px;
+  margin-bottom: 12px;
+  overflow     : hidden;
+  box-shadow   : 0 2px 12px rgba(0,0,0,.06);
   -webkit-tap-highlight-color: transparent;
-  box-shadow   : 0 4px 16px rgba(15,30,54,.04);
-  transition   : transform .25s ease, box-shadow .25s;
 }
-.archive-lang-card:active { transform: scale(.98); box-shadow: none; }
 
-.archive-lang-card .card-meta {
+/* ── 전면 패딩 블록 ── */
+.alc-front { padding: 18px 20px 14px; }
+
+.alc-row-meta {
   display        : flex;
   justify-content: space-between;
   align-items    : center;
-  margin-bottom  : 14px;
+  margin-bottom  : 13px;
 }
-.archive-lang-card .tag-expression {
-  font-size     : 11px;
-  font-weight   : 600;
-  letter-spacing: 1px;
-  color         : var(--gold);
-  background    : rgba(212,175,55,.08);
-  padding       : 4px 10px;
+.alc-meta-r {
+  display    : flex;
+  align-items: center;
+  gap        : 8px;
+}
+.alc-tag {
+  font-size     : 10px;
+  font-weight   : 800;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  color         : var(--mob-gold, var(--gold));
+  background    : rgba(154,111,27,.10);
+  padding       : 3px 9px;
   border-radius : 20px;
 }
-.archive-lang-card .card-date {
-  font-size  : 11px;
-  color      : var(--text-3);
-  font-weight: 300;
+.alc-date {
+  font-size    : 11px;
+  color        : var(--text-3);
+  font-weight  : 500;
+  letter-spacing: .02em;
 }
 .archive-lang-card .alc-del {
-  width          : 20px;
-  height         : 20px;
+  width          : 22px;
+  height         : 22px;
   border-radius  : 50%;
   color          : var(--text-3);
-  font-size      : 11px;
+  font-size      : 12px;
   display        : flex;
   align-items    : center;
   justify-content: center;
@@ -2757,55 +2772,328 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 }
 .archive-lang-card .alc-del:active { background: #fee2e2; color: #ef4444; }
 
-.archive-lang-card .expression-phrase {
-  font-family   : 'Georgia', serif;
-  font-size     : 24px;
-  font-weight   : 600;
-  color         : #0F1E36;
-  margin        : 0 0 6px;
-  line-height   : 1.25;
-  word-break    : break-word;
+/* ── 표현 & 뜻 ── */
+.alc-expr {
+  font-family  : 'Georgia', 'Noto Serif KR', serif;
+  font-size    : 24px;
+  font-weight  : 700;
+  color        : var(--text-1);
+  line-height  : 1.25;
+  margin-bottom: 5px;
+  word-break   : break-word;
+  letter-spacing: -.01em;
 }
-.archive-lang-card .expression-phrase.sentence {
-  font-size  : 20px;
-  font-weight: 500;
-  line-height: 1.35;
-}
-.archive-lang-card .expression-meaning {
-  font-size    : 14px;
-  font-weight  : 500;
-  color        : var(--gold);
-  margin       : 0 0 16px;
-}
-.archive-lang-card .card-divider {
-  height       : 1px;
-  background   : linear-gradient(to right, var(--border), transparent);
-  margin-bottom: 16px;
-}
-.archive-lang-card .example-box {
-  display       : flex;
-  flex-direction: column;
-  gap           : 6px;
-}
-.archive-lang-card .example-label {
-  font-size     : 10px;
-  font-weight   : 700;
-  color         : var(--text-3);
-  letter-spacing: .5px;
-  text-transform: uppercase;
-}
-.archive-lang-card .example-en {
-  font-family: 'Georgia', serif;
-  font-size  : 15px;
-  line-height: 1.45;
-  color      : var(--text-1);
-  font-style : italic;
-}
-.archive-lang-card .example-ko {
-  font-size  : 12px;
+.alc-expr.alc-sentence {
+  font-size  : 19px;
+  font-weight: 600;
   line-height: 1.4;
+}
+.alc-meaning {
+  font-size  : 14px;
+  font-weight: 600;
+  color      : var(--mob-gold, var(--gold));
+}
+
+/* ── 펼치기 버튼 ── */
+.alc-expand-btn {
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  gap            : 5px;
+  width          : 100%;
+  padding        : 9px 16px;
+  border-top     : 1px solid var(--mob-border, var(--border));
+  font-size      : 12px;
+  font-weight    : 600;
+  color          : var(--text-3);
+  letter-spacing : .03em;
+  transition     : color .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.alc-expand-btn:active                           { color: var(--mob-gold, var(--gold)); }
+.archive-lang-card.alc-open .alc-expand-btn      { color: var(--mob-gold, var(--gold)); }
+.alc-expand-btn i                                { font-size: 13px; transition: transform .28s ease; }
+.archive-lang-card.alc-open .alc-expand-btn i   { transform: rotate(180deg); }
+
+/* ── 아코디언 본문 ── */
+.alc-expand-body {
+  max-height : 0;
+  overflow   : hidden;
+  transition : max-height .38s cubic-bezier(.4,0,.2,1);
+}
+.alc-section {
+  padding   : 13px 20px;
+  border-top: 1px solid var(--mob-border, var(--border));
+  background: var(--mob-section, var(--bg));
+}
+.alc-section-lbl {
+  font-size    : 9.5px;
+  font-weight  : 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color        : var(--mob-gold, var(--gold));
+  margin-bottom: 7px;
+}
+.alc-body-text {
+  font-size  : 14px;
+  line-height: 1.72;
+  color      : var(--text-2);
+  word-break : keep-all;
+}
+.alc-italic {
+  font-style : italic;
+  font-family: 'Georgia', serif;
+  color      : var(--text-1);
+  font-size  : 14.5px;
+}
+.alc-practice-txt {
+  margin-top : 7px;
+  font-size  : 13px;
   color      : var(--text-3);
-  font-weight: 300;
+  padding-top: 7px;
+  border-top : 1px dashed var(--mob-border, var(--border));
+}
+
+/* ══════════════════════════════════════════════════════════
+   v53 — 배달 언어 표현 항목 아코디언 (.mob-fv-item)
+══════════════════════════════════════════════════════════ */
+.mob-fv-item {
+  border-top: 1px solid var(--border);
+}
+.mob-fv-item:first-child { border-top: none; }
+
+.mob-fv-front {
+  display    : flex;
+  align-items: flex-start;
+  gap        : 10px;
+  padding    : 13px 14px 12px;
+  -webkit-tap-highlight-color: transparent;
+}
+.mob-fv-num {
+  font-size    : 11px;
+  font-weight  : 800;
+  color        : var(--mob-gold, var(--gold));
+  min-width    : 18px;
+  padding-top  : 3px;
+  letter-spacing: .02em;
+}
+.mob-fv-main { flex: 1; min-width: 0; }
+.mob-fv-expr {
+  font-family  : 'Georgia', serif;
+  font-size    : 17px;
+  font-weight  : 700;
+  color        : var(--text-1);
+  margin-bottom: 3px;
+  line-height  : 1.3;
+  word-break   : break-word;
+}
+.mob-fv-meaning {
+  font-size  : 13px;
+  font-weight: 600;
+  color      : var(--mob-gold, var(--gold));
+  line-height: 1.4;
+}
+.mob-fv-actions {
+  display    : flex;
+  align-items: center;
+  gap        : 4px;
+  flex-shrink: 0;
+  padding-top: 1px;
+}
+.mob-fv-save {
+  width      : 30px;
+  height     : 30px;
+  border-radius: 50%;
+  display    : flex;
+  align-items: center;
+  justify-content: center;
+  color      : var(--text-3);
+  font-size  : 15px;
+  transition : color .15s, background .15s;
+}
+.mob-fv-save:active { background: rgba(154,111,27,.10); color: var(--mob-gold, var(--gold)); }
+.mob-fv-toggle {
+  width      : 28px;
+  height     : 28px;
+  border-radius: 50%;
+  border     : 1.5px solid var(--border);
+  display    : flex;
+  align-items: center;
+  justify-content: center;
+  color      : var(--text-3);
+  font-size  : 12px;
+  transition : all .15s;
+}
+.mob-fv-item.fv-open .mob-fv-toggle {
+  color       : var(--mob-gold, var(--gold));
+  border-color: var(--mob-gold, var(--gold));
+  background  : var(--mob-section, var(--bg));
+}
+.mob-fv-toggle i { transition: transform .25s ease; }
+.mob-fv-item.fv-open .mob-fv-toggle i { transform: rotate(180deg); }
+
+/* 아코디언 본문 */
+.mob-fv-body {
+  max-height : 0;
+  overflow   : hidden;
+  transition : max-height .35s cubic-bezier(.4,0,.2,1);
+  background : var(--mob-section, var(--bg));
+}
+.mob-fv-sect {
+  padding   : 11px 14px 11px 42px;
+  border-top: 1px solid var(--mob-border, var(--border));
+}
+.mob-fv-sect-lbl {
+  font-size    : 9px;
+  font-weight  : 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color        : var(--mob-gold, var(--gold));
+  margin-bottom: 6px;
+}
+.mob-fv-sect-txt {
+  font-size  : 13.5px;
+  line-height: 1.68;
+  color      : var(--text-2);
+  word-break : keep-all;
+}
+.mob-fv-italic {
+  font-style : italic;
+  font-family: 'Georgia', serif;
+  color      : var(--text-1);
+  font-size  : 14px;
+}
+.mob-fv-dlg { display: flex; flex-direction: column; gap: 6px; }
+.mob-fv-dlg-line {
+  display    : flex;
+  align-items: flex-start;
+  gap        : 8px;
+  font-size  : 13.5px;
+  line-height: 1.55;
+  color      : var(--text-2);
+}
+.mob-fv-dlg-sp {
+  font-size  : 11px;
+  font-weight: 800;
+  color      : var(--mob-gold, var(--gold));
+  min-width  : 14px;
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+.mob-fv-dlg-tr {
+  font-size : 12px;
+  color     : var(--text-3);
+  font-style: italic;
+  padding   : 4px 0;
+}
+
+/* ══════════════════════════════════════════════════════════
+   v53 — 인문학 카드 아코디언 섹션 (.mob-hum-acc-*)
+══════════════════════════════════════════════════════════ */
+.mob-hum-acc-sect {
+  padding   : 12px 14px;
+  border-top: 1px solid #fde68a;
+  background: #fdfbf7;
+}
+.mob-hum-acc-lbl {
+  font-size    : 9.5px;
+  font-weight  : 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color        : #d97706;
+  margin-bottom: 7px;
+}
+.mob-hum-acc-body {
+  font-size  : 13px;
+  line-height: 1.75;
+  color      : var(--text-2);
+  word-break : keep-all;
+}
+.mob-hum-acc-lesson { background: #fffbeb; }
+.mob-hum-acc-bullet {
+  display      : flex;
+  align-items  : flex-start;
+  gap          : 8px;
+  font-size    : 13px;
+  color        : var(--text-2);
+  line-height  : 1.6;
+  word-break   : keep-all;
+  margin-bottom: 6px;
+}
+.mob-hum-acc-bullet:last-child { margin-bottom: 0; }
+.mob-hum-acc-dot {
+  flex-shrink  : 0;
+  width        : 5px;
+  height       : 5px;
+  border-radius: 50%;
+  background   : #d97706;
+  margin-top   : 7px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   v53 — 시황 카드 아코디언 (.mob-mkt-*)
+══════════════════════════════════════════════════════════ */
+.mob-mkt-ind-mini {
+  display  : flex;
+  gap      : 6px;
+  flex-wrap: wrap;
+  padding  : 0 14px 12px;
+}
+.mob-mkt-ind-chip {
+  display        : flex;
+  flex-direction : column;
+  align-items    : center;
+  background     : var(--bg);
+  border         : 1px solid var(--border);
+  border-radius  : 10px;
+  padding        : 7px 10px 6px;
+  min-width      : 88px;
+  flex           : 1;
+  gap            : 2px;
+}
+.mob-mkt-ind-chip.up   { border-color: rgba(34,197,94,.3); }
+.mob-mkt-ind-chip.down { border-color: rgba(239,68,68,.3); }
+.mob-mkt-ind-name {
+  font-size    : 10px;
+  font-weight  : 700;
+  color        : var(--text-3);
+  letter-spacing: .04em;
+}
+.mob-mkt-ind-val {
+  font-size  : 15px;
+  font-weight: 700;
+  color      : var(--text-1);
+  font-family: 'Georgia', serif;
+}
+.mob-mkt-ind-chg { font-size: 11px; font-weight: 600; }
+.mob-mkt-ind-chip.up   .mob-mkt-ind-chg { color: #16a34a; }
+.mob-mkt-ind-chip.down .mob-mkt-ind-chg { color: #dc2626; }
+
+.mob-mkt-expand-btn {
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  gap            : 5px;
+  width          : 100%;
+  padding        : 9px 14px;
+  border-top     : 1px solid var(--border);
+  font-size      : 12px;
+  font-weight    : 600;
+  color          : var(--text-3);
+  letter-spacing : .03em;
+  transition     : color .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mob-mkt-expand-btn:active                          { color: var(--accent); }
+.mob-card-feed-market.mkt-open .mob-mkt-expand-btn  { color: var(--accent); }
+.mob-mkt-expand-btn i                               { font-size: 13px; transition: transform .28s; }
+.mob-card-feed-market.mkt-open .mob-mkt-expand-btn i { transform: rotate(180deg); }
+
+.mob-mkt-expand-body {
+  max-height : 0;
+  overflow   : hidden;
+  transition : max-height .4s cubic-bezier(.4,0,.2,1);
+  border-top : 1px solid var(--border);
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -3096,8 +3384,12 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
     --text-1  : #e8ecf4;
     --text-2  : #a8b2c4;
     --text-3  : #6e7a90;
-    --border  : #2a3349;
-    --shadow  : 0 2px 12px rgba(0, 0, 0, .40);
+    --border     : #2a3349;
+    --shadow     : 0 2px 12px rgba(0, 0, 0, .40);
+    --mob-gold   : #D4AF37;
+    --mob-card   : #0F1E36;
+    --mob-section: #162340;
+    --mob-border : #1E3356;
   }
 
   /* ── 하드코딩 흰 배경 표면 ── */
@@ -3157,11 +3449,22 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   /* v37 신규 */
   .mvw-dp-options-toggle  { background: var(--bg); border-color: var(--border); }
 
-  /* v49 신규 */
-  .archive-lang-card                { background: var(--surface); border-color: var(--border); }
-  .archive-lang-card .expression-phrase { color: #e2e8f0; }
-  .archive-lang-card .example-en    { color: #cbd5e1; }
-  .archive-lang-card .example-ko    { color: #64748b; }
+  /* v49 */
+  .archive-lang-card { background: var(--mob-card, var(--surface)); border-color: var(--mob-border, var(--border)); }
+  .alc-tag           { background: rgba(212,175,55,.15); }
+  .alc-section       { background: var(--mob-section, var(--bg)); border-color: var(--mob-border, var(--border)); }
+  .alc-practice-txt  { border-color: var(--mob-border, var(--border)); }
+
+  /* v53 신규 */
+  .mob-fv-toggle      { border-color: var(--border); }
+  .mob-fv-body,
+  .mob-fv-sect        { background: var(--mob-section, var(--bg)); }
+  .mob-fv-sect        { border-color: var(--mob-border, var(--border)); }
+  .mob-mkt-ind-chip   { background: var(--bg-2); border-color: var(--border); }
+  .mob-hum-acc-sect   { background: #261f15; border-color: #4d4015; }
+  .mob-hum-acc-lesson { background: #2c2614; }
+  .mob-hum-acc-lbl    { color: #e3a83a; }
+  .mob-hum-acc-dot    { background: #e3a83a; }
 
   /* v42 신규 */
   .mob-star-btn.starred   { background: #2a2000; color: #fbbf24; border-color: #92400e; }

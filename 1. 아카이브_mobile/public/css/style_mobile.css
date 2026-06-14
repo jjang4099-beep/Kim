@@ -52,6 +52,12 @@ img { display: block; max-width: 100%; }
   --mob-card   : #FDFBF7;
   --mob-section: #F4ECD8;
   --mob-border : #E5D3B8;
+  /* 확장 영역 시맨틱 변수 — 라이트 기본값 */
+  --bg-card-main    : #FFFFFF;
+  --bg-card-expanded: #F9F6EE;
+  --text-primary    : #1E293B;
+  --text-muted      : #64748B;
+  --accent-color    : #9A6F1B;
 }
 
 .app-entrance {
@@ -2824,32 +2830,34 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 .alc-section {
   padding   : 13px 20px;
   border-top: 1px solid var(--mob-border, var(--border));
-  background: var(--mob-section, var(--bg));
+  background: var(--bg-card-expanded);
+  transition : background-color .3s ease, color .3s ease;
 }
 .alc-section-lbl {
   font-size    : 9.5px;
   font-weight  : 800;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color        : var(--mob-gold, var(--gold));
+  color        : var(--accent-color, var(--mob-gold, var(--gold)));
   margin-bottom: 7px;
 }
 .alc-body-text {
   font-size  : 14px;
   line-height: 1.72;
-  color      : var(--text-2);
+  color      : var(--text-primary);
   word-break : keep-all;
+  transition : color .3s ease;
 }
 .alc-italic {
   font-style : italic;
   font-family: 'Georgia', serif;
-  color      : var(--text-1);
+  color      : var(--text-primary);
   font-size  : 14.5px;
 }
 .alc-practice-txt {
   margin-top : 7px;
   font-size  : 13px;
-  color      : var(--text-3);
+  color      : var(--text-muted);
   padding-top: 7px;
   border-top : 1px dashed var(--mob-border, var(--border));
 }
@@ -2936,31 +2944,33 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 .mob-fv-body {
   max-height : 0;
   overflow   : hidden;
-  transition : max-height .35s cubic-bezier(.4,0,.2,1);
-  background : var(--mob-section, var(--bg));
+  transition : max-height .35s cubic-bezier(.4,0,.2,1), background-color .3s ease;
+  background : var(--bg-card-expanded);
 }
 .mob-fv-sect {
   padding   : 11px 14px 11px 42px;
   border-top: 1px solid var(--mob-border, var(--border));
+  transition : background-color .3s ease;
 }
 .mob-fv-sect-lbl {
   font-size    : 9px;
   font-weight  : 800;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color        : var(--mob-gold, var(--gold));
+  color        : var(--accent-color, var(--mob-gold, var(--gold)));
   margin-bottom: 6px;
 }
 .mob-fv-sect-txt {
   font-size  : 13.5px;
   line-height: 1.68;
-  color      : var(--text-2);
+  color      : var(--text-primary);
   word-break : keep-all;
+  transition : color .3s ease;
 }
 .mob-fv-italic {
   font-style : italic;
   font-family: 'Georgia', serif;
-  color      : var(--text-1);
+  color      : var(--text-primary);
   font-size  : 14px;
 }
 .mob-fv-dlg { display: flex; flex-direction: column; gap: 6px; }
@@ -2970,19 +2980,20 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   gap        : 8px;
   font-size  : 13.5px;
   line-height: 1.55;
-  color      : var(--text-2);
+  color      : var(--text-primary);
+  transition : color .3s ease;
 }
 .mob-fv-dlg-sp {
   font-size  : 11px;
   font-weight: 800;
-  color      : var(--mob-gold, var(--gold));
+  color      : var(--accent-color, var(--mob-gold, var(--gold)));
   min-width  : 14px;
   padding-top: 2px;
   flex-shrink: 0;
 }
 .mob-fv-dlg-tr {
   font-size : 12px;
-  color     : var(--text-3);
+  color     : var(--text-muted);
   font-style: italic;
   padding   : 4px 0;
 }
@@ -2992,30 +3003,32 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 ══════════════════════════════════════════════════════════ */
 .mob-hum-acc-sect {
   padding   : 12px 14px;
-  border-top: 1px solid #fde68a;
-  background: #fdfbf7;
+  border-top: 1px solid var(--mob-border, var(--border));
+  background: var(--bg-card-expanded);
+  transition : background-color .3s ease;
 }
 .mob-hum-acc-lbl {
   font-size    : 9.5px;
   font-weight  : 800;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color        : #d97706;
+  color        : var(--accent-color, var(--mob-gold, #d97706));
   margin-bottom: 7px;
 }
 .mob-hum-acc-body {
   font-size  : 13px;
   line-height: 1.75;
-  color      : var(--text-2);
+  color      : var(--text-primary);
   word-break : keep-all;
+  transition : color .3s ease;
 }
-.mob-hum-acc-lesson { background: #fffbeb; }
+.mob-hum-acc-lesson { background: var(--bg-card-expanded); }
 .mob-hum-acc-bullet {
   display      : flex;
   align-items  : flex-start;
   gap          : 8px;
   font-size    : 13px;
-  color        : var(--text-2);
+  color        : var(--text-primary);
   line-height  : 1.6;
   word-break   : keep-all;
   margin-bottom: 6px;
@@ -3026,8 +3039,9 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   width        : 5px;
   height       : 5px;
   border-radius: 50%;
-  background   : #d97706;
+  background   : var(--accent-color, #d97706);
   margin-top   : 7px;
+  transition   : background-color .3s ease;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -3092,8 +3106,10 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 .mob-mkt-expand-body {
   max-height : 0;
   overflow   : hidden;
-  transition : max-height .4s cubic-bezier(.4,0,.2,1);
-  border-top : 1px solid var(--border);
+  transition : max-height .4s cubic-bezier(.4,0,.2,1), background-color .3s ease;
+  border-top : 1px solid var(--mob-border, var(--border));
+  background : var(--bg-card-expanded);
+  color      : var(--text-primary);
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -3459,6 +3475,12 @@ html[data-theme="light"] {
   --mob-card   : #FDFBF7;
   --mob-section: #F4ECD8;
   --mob-border : #E5D3B8;
+  /* 확장 영역 — Papyrus */
+  --bg-card-main    : #FFFFFF;
+  --bg-card-expanded: #FDFBF7;
+  --text-primary    : #1E293B;
+  --text-muted      : #64748B;
+  --accent-color    : #0F1E36;
 }
 
 /* ─── 강제 다크 모드 (Midnight) ─── */
@@ -3475,6 +3497,12 @@ html[data-theme="dark"] {
   --mob-card   : #0F1E36;
   --mob-section: #162340;
   --mob-border : #1E3356;
+  /* 확장 영역 — Midnight */
+  --bg-card-main    : #162032;
+  --bg-card-expanded: #0F1E36;
+  --text-primary    : #F1F5F9;
+  --text-muted      : #94A3B8;
+  --accent-color    : #FFD700;
 }
 
 /* ─── data-theme="dark" 때 하드코딩 표면 강제 ─── */
@@ -3487,13 +3515,30 @@ html[data-theme="dark"] .mob-bottom-nav .mob-nav-btn         { color: #6e7a90; }
 html[data-theme="dark"] .mob-bottom-nav .mob-nav-btn.active  { color: var(--accent); }
 html[data-theme="dark"] .mob-card                            { background: #1b2232; border-color: #2a3349; }
 html[data-theme="dark"] .mob-card-v                          { background: #1b2232; border-color: #2a3349; }
-html[data-theme="dark"] .alc-expand-btn                      { background: #1e2a40; border-color: #2a3a5a; color: #a8b2c4; }
-html[data-theme="dark"] .alc-section                         { background: #162340; border-color: #1E3356; }
+html[data-theme="dark"] .alc-expand-btn                      { background: #1e2a40; border-color: #2a3a5a; color: #94A3B8; }
+html[data-theme="dark"] .alc-section                         { border-color: #1E3356; }
 html[data-theme="dark"] .mob-fv-item                         { border-color: #1E3356; }
 html[data-theme="dark"] .mob-fv-front                        { background: #0F1E36; }
-html[data-theme="dark"] .mob-fv-body                         { background: #162340; }
+html[data-theme="dark"] .mob-fv-body                         { border-color: #1E3356; }
 html[data-theme="dark"] .mob-mkt-ind-chip                    { background: #0F1E36; border-color: #1E3356; }
-html[data-theme="dark"] .mob-mkt-expand-body                 { background: #162340; border-color: #1E3356; }
+html[data-theme="dark"] .mob-mkt-expand-body                 { border-color: #1E3356; }
+/* 확장 영역 텍스트 강제 — Midnight */
+html[data-theme="dark"] .alc-body-text,
+html[data-theme="dark"] .alc-italic                          { color: #F1F5F9; }
+html[data-theme="dark"] .alc-practice-txt,
+html[data-theme="dark"] .mob-fv-dlg-tr                       { color: #94A3B8; }
+html[data-theme="dark"] .mob-fv-sect-txt,
+html[data-theme="dark"] .mob-fv-dlg-line,
+html[data-theme="dark"] .mob-fv-italic,
+html[data-theme="dark"] .mob-hum-acc-body,
+html[data-theme="dark"] .mob-hum-acc-bullet                  { color: #F1F5F9; }
+html[data-theme="dark"] .alc-section-lbl,
+html[data-theme="dark"] .mob-fv-sect-lbl,
+html[data-theme="dark"] .mob-fv-dlg-sp,
+html[data-theme="dark"] .mob-hum-acc-lbl                     { color: #FFD700; }
+html[data-theme="dark"] .mob-hum-acc-dot                     { background: #FFD700; }
+html[data-theme="dark"] .mob-hum-acc-sect,
+html[data-theme="dark"] .mob-hum-acc-lesson                  { border-color: #1E3356; }
 
 /* ─── data-theme="light" 때 하드코딩 표면 강제 ─── */
 html[data-theme="light"] .mob-bottom-nav {
@@ -3501,17 +3546,33 @@ html[data-theme="light"] .mob-bottom-nav {
   border-top: 1px solid #e0d4be;
   box-shadow: 0 -2px 12px rgba(0, 0, 0, .06);
 }
-html[data-theme="light"] .mob-card     { background: #FDFBF7; border-color: #E5D3B8; }
-html[data-theme="light"] .mob-card-v   { background: #FDFBF7; border-color: #E5D3B8; }
-html[data-theme="light"] .alc-expand-btn { background: #F4ECD8; border-color: #E5D3B8; color: #5a4a32; }
-html[data-theme="light"] .alc-section   { background: #F4ECD8; border-color: #E5D3B8; }
-html[data-theme="light"] .mob-fv-item   { border-color: #E5D3B8; }
-html[data-theme="light"] .mob-fv-front  { background: #FDFBF7; }
-html[data-theme="light"] .mob-fv-body   { background: #F4ECD8; }
-html[data-theme="light"] .mob-mkt-ind-chip   { background: #FDFBF7; border-color: #E5D3B8; }
-html[data-theme="light"] .mob-mkt-expand-body { background: #F4ECD8; border-color: #E5D3B8; }
-html[data-theme="light"] .mvw-quiz-btn.correct { background: #f0fdf4; border-color: #16a34a; color: #15803d; }
-html[data-theme="light"] .mvw-quiz-btn.wrong   { background: #fff5f5; border-color: #dc2626; color: #dc2626; }
+html[data-theme="light"] .mob-card                           { background: #FDFBF7; border-color: #E5D3B8; }
+html[data-theme="light"] .mob-card-v                         { background: #FDFBF7; border-color: #E5D3B8; }
+html[data-theme="light"] .alc-expand-btn                     { background: #F4ECD8; border-color: #E5D3B8; color: #5a4a32; }
+html[data-theme="light"] .alc-section                        { border-color: #E5D3B8; }
+html[data-theme="light"] .mob-fv-item                        { border-color: #E5D3B8; }
+html[data-theme="light"] .mob-fv-front                       { background: #FDFBF7; }
+html[data-theme="light"] .mob-mkt-ind-chip                   { background: #FDFBF7; border-color: #E5D3B8; }
+html[data-theme="light"] .mob-mkt-expand-body                { border-color: #E5D3B8; }
+/* 확장 영역 텍스트 강제 — Papyrus */
+html[data-theme="light"] .alc-body-text,
+html[data-theme="light"] .alc-italic                         { color: #1E293B; }
+html[data-theme="light"] .alc-practice-txt,
+html[data-theme="light"] .mob-fv-dlg-tr                      { color: #64748B; }
+html[data-theme="light"] .mob-fv-sect-txt,
+html[data-theme="light"] .mob-fv-dlg-line,
+html[data-theme="light"] .mob-fv-italic,
+html[data-theme="light"] .mob-hum-acc-body,
+html[data-theme="light"] .mob-hum-acc-bullet                 { color: #1E293B; }
+html[data-theme="light"] .alc-section-lbl,
+html[data-theme="light"] .mob-fv-sect-lbl,
+html[data-theme="light"] .mob-fv-dlg-sp,
+html[data-theme="light"] .mob-hum-acc-lbl                    { color: #0F1E36; }
+html[data-theme="light"] .mob-hum-acc-dot                    { background: #0F1E36; }
+html[data-theme="light"] .mob-hum-acc-sect,
+html[data-theme="light"] .mob-hum-acc-lesson                 { border-color: #E5D3B8; }
+html[data-theme="light"] .mvw-quiz-btn.correct               { background: #f0fdf4; border-color: #16a34a; color: #15803d; }
+html[data-theme="light"] .mvw-quiz-btn.wrong                 { background: #fff5f5; border-color: #dc2626; color: #dc2626; }
 
 /* ═══════════════════════════════════════════════
    다크 모드 (v32) — 시스템 설정 자동 추종
@@ -3530,6 +3591,12 @@ html[data-theme="light"] .mvw-quiz-btn.wrong   { background: #fff5f5; border-col
     --mob-card   : #0F1E36;
     --mob-section: #162340;
     --mob-border : #1E3356;
+    /* 확장 영역 시맨틱 변수 — 시스템 다크 기본값 */
+    --bg-card-main    : #162032;
+    --bg-card-expanded: #0F1E36;
+    --text-primary    : #F1F5F9;
+    --text-muted      : #94A3B8;
+    --accent-color    : #D4AF37;
   }
 
   /* ── 하드코딩 흰 배경 표면 ── */

@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
-  <link rel="stylesheet" href="css/style_mobile.css?v=35"/>
+  <link rel="stylesheet" href="css/style_mobile.css?v=36"/>
   <link rel="stylesheet" href="css/exam.css?v=2"/>
 </head>
 <body>
@@ -259,13 +259,18 @@
   <div class="mob-view" id="viewManage">
     <div class="mvw-manage-wrap">
 
+      <!-- 최상단 모드 전환 -->
+      <div class="mvw-mode-selector">
+        <button class="mvw-mode-btn exam" id="modeBtnExam" onclick="Mob.setMode('exam')">
+          <i class="ti ti-school"></i> 수험생
+        </button>
+        <button class="mvw-mode-btn work" id="modeBtnWork" onclick="Mob.setMode('work')">
+          <i class="ti ti-briefcase"></i> 직장인
+        </button>
+      </div>
+
       <!-- 수험생 모드 전용 대시보드 (exam 모드에서만 표시) -->
       <div class="mvw-section-block mvw-exam-block" id="examDashboard" hidden>
-
-        <!-- 모드 전환 버튼 -->
-        <button class="mvw-mode-switch-btn" onclick="Mob.setMode('work')">
-          <i class="ti ti-switch-horizontal"></i> 직장인 모드로 전환
-        </button>
 
         <!-- D-day 설정 -->
         <div class="mvw-block-title"><i class="ti ti-calendar-event"></i> 시험 설정</div>
@@ -476,11 +481,6 @@
     <span>관리</span>
   </button>
 
-  <!-- 퀴즈 -->
-  <button class="mob-nav-btn" id="bnQuiz" onclick="Mob.switchView('quiz',this)">
-    <i class="ti ti-brain"></i>
-    <span>퀴즈</span>
-  </button>
 
 </nav>
 
@@ -614,7 +614,7 @@
 <!-- 토스트 -->
 <div class="mob-toast" id="mobToast" hidden></div>
 
-<script src="js/app_mobile.js?v=49"></script>
+<script src="js/app_mobile.js?v=50"></script>
 <script src="js/app_exam.js?v=1"></script>
 <script src="js/pwa.js?v=1"></script>
 <script>

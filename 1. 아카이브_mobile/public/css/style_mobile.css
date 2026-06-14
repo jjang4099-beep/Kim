@@ -806,6 +806,38 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   padding: 14px 12px calc(env(safe-area-inset-bottom) + 16px);
   display: flex; flex-direction: column; gap: 14px;
 }
+
+/* 관리 탭 모드 전환 토글 */
+.mvw-mode-selector {
+  display        : flex;
+  gap            : 10px;
+}
+.mvw-mode-btn {
+  flex           : 1;
+  padding        : 12px 0;
+  border-radius  : 14px;
+  border         : 1.5px solid var(--border);
+  background     : var(--surface);
+  color          : var(--text-3);
+  font-size      : 14px;
+  font-weight    : 600;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  gap            : 6px;
+  transition     : all .2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mvw-mode-btn.work.active {
+  border-color: var(--accent);
+  background  : #eff6ff;
+  color       : var(--accent);
+}
+.mvw-mode-btn.exam.active {
+  border-color: var(--gold);
+  background  : rgba(212,175,55,.1);
+  color       : var(--gold);
+}
 .mvw-stats-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
 .mvw-stat-card {
   background: var(--surface); border-radius: var(--radius);

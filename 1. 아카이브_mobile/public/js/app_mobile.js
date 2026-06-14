@@ -168,7 +168,8 @@ const Mob = {
   setMode(mode) {
     localStorage.setItem('userMode', mode);
     const entrance = el('appEntrance');
-    if (entrance) {
+    const isVisible = entrance && entrance.style.display !== 'none';
+    if (isVisible) {
       entrance.classList.add('app-entrance-out');
       setTimeout(() => {
         entrance.style.display = 'none';
@@ -185,9 +186,15 @@ const Mob = {
 
   _applyMode(mode) {
     document.body.dataset.mode = mode;
+    el('modeBtnExam')?.classList.toggle('active', mode === 'exam');
+    el('modeBtnWork')?.classList.toggle('active', mode === 'work');
     if (mode === 'exam') {
       ExamMob.init();
       el('examSubjectRow')?.removeAttribute('hidden');
+      el('examDashboard')?.removeAttribute('hidden');
+    } else {
+      el('examSubjectRow')?.setAttribute('hidden', '');
+      el('examDashboard')?.setAttribute('hidden', '');
     }
   },
 
@@ -210,13 +217,19 @@ const Mob = {
     document.querySelectorAll('.mob-nav-btn').forEach(b => b.classList.remove('active'));
     navBtn?.classList.add('active');
 
+    if (viewName === 'home')    this.renderFeed(state.items);
     if (viewName === 'feed')    this._loadFeedView();
     if (viewName === 'manage')  {
       this._loadManageView();
-      if (document.body.dataset.mode === 'exam') {
+      const mode = document.body.dataset.mode;
+      el('modeBtnExam')?.classList.toggle('active', mode === 'exam');
+      el('modeBtnWork')?.classList.toggle('active', mode === 'work');
+      if (mode === 'exam') {
         el('examDashboard')?.removeAttribute('hidden');
         ExamMob._loadWeaknessAnalysis();
         ExamMob._restoreExamSettings();
+      } else {
+        el('examDashboard')?.setAttribute('hidden', '');
       }
     }
     if (viewName === 'summary') {

@@ -2647,8 +2647,59 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 }
 
 /* ══════════════════════════════════════════════════════════
-   상세 모달 — 풍부한 콘텐츠 섹션 (v36)
+   인라인 아코디언 상세 (v59) — 모달 대체
+   모든 카드(.mob-card-h / .mob-dlv-summary / .mvw-lib-card / 복습·최근 리스트)
+   클릭 시 하단에 .mob-inline-detail 삽입 + max-height 트랜지션
 ══════════════════════════════════════════════════════════ */
+.mob-inline-detail {
+  max-height : 0;
+  overflow   : hidden;
+  transition : max-height .3s ease-out;
+  width      : 100%;
+}
+/* 펼침 상태일 때 콘텐츠 패딩 (닫힘 시 0이라 여백 누수 없음) */
+.inline-open > .mob-inline-detail {
+  padding-top: 2px;
+}
+.mob-inline-detail > .mob-detail-section:first-child {
+  margin-top : 12px;
+  padding-top: 12px;
+  border-top : 1px solid var(--border);
+}
+/* 확장 셰브론 회전 (각 카드 공통) */
+.mob-card-h-chev, .mob-dls-chev, .mvw-lib-card-chev,
+.mvw-review-item-chev, .mvw-recent-item .mvw-recent-arrow {
+  transition: transform .3s ease;
+  color     : var(--text-3);
+  font-size : 15px;
+}
+.inline-open .mob-card-h-chev,
+.inline-open .mob-dls-chev,
+.inline-open .mvw-lib-card-chev,
+.inline-open .mvw-review-item-chev,
+.inline-open .mvw-recent-arrow { transform: rotate(180deg); }
+
+/* 리스트형 행(flex)에서 인라인 본문을 전폭 새 줄로 떨어뜨림 */
+.mvw-lib-card, .mvw-review-item, .mvw-recent-item, .mob-card-h { flex-wrap: wrap; }
+.mvw-lib-card > .mob-inline-detail,
+.mvw-review-item > .mob-inline-detail,
+.mvw-recent-item > .mob-inline-detail,
+.mob-card-h > .mob-inline-detail { flex-basis: 100%; }
+/* 가로형 카드: 인라인 본문에 좌우 패딩 부여 (썸네일 정렬과 분리) */
+.mob-card-h > .mob-inline-detail .mob-detail-section { padding-left: 14px; padding-right: 14px; }
+
+/* 셰브론 위치 */
+.mob-dls-meta-r { display: inline-flex; align-items: center; gap: 6px; }
+.mob-card-h-chev { position: absolute; right: 10px; bottom: 8px; }
+.mob-card-h-body { position: relative; }
+
+/* 인라인 원문 링크 */
+.mob-inline-src-link {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 13px; font-weight: 600; color: var(--accent);
+  text-decoration: none;
+}
+
 .mob-detail-meta-row {
   display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px;
 }

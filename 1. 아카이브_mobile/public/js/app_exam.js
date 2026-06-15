@@ -199,8 +199,8 @@ const ExamMob = {
       ? `<img src="${item.imageUrl}" style="width:100%;border-radius:10px;margin-bottom:8px" alt="문제 사진"/>`
       : '';
 
-    const body = el('mobDetailBody');
-    const badge = el('mobDetailBadge');
+    const body = el('examWrongBody');
+    const badge = el('examWrongBadge');
     if (badge) badge.textContent = `${subj.icon} ${subj.label}`;
 
     if (body) body.innerHTML = `
@@ -265,8 +265,14 @@ const ExamMob = {
     /* 강의 추천 비동기 로드 */
     if (w.keyConceptName) this._loadLectureRecommend(w.keyConceptName, w.subject);
 
-    const modal = el('mobDetailModal');
+    const modal = el('examWrongModal');
     if (modal) modal.hidden = false;
+  },
+
+  /* 오답 상세 모달 닫기 */
+  closeWrongDetail() {
+    const modal = el('examWrongModal');
+    if (modal) modal.hidden = true;
   },
 
   /* ── 강의 추천 로드 ── */
@@ -329,7 +335,7 @@ const ExamMob = {
       });
       const label = quality >= 4 ? '😎 완벽해요!' : quality >= 3 ? '🙂 좋아요!' : '😰 다시 볼게요';
       toast(`${label} 다음 복습: ${fmt(data.nextReviewAt)}`, 'ok');
-      Mob.closeDetail();
+      this.closeWrongDetail();
       this._loadWrongAnswerLibrary();
       this._loadTodaySummary();
     } catch { toast('저장 실패', 'err'); }

@@ -461,8 +461,9 @@ const Mob = {
         if (!card.classList.contains('no-detail')) card.classList.toggle('expanded');
         return;
       }
+      /* 기타 카드(가로형·데일리 요약 등) → 인라인 아코디언 확장 */
       const id = card.dataset.id;
-      if (id) this.openDetail(id);
+      if (id) this._toggleDetail(card, id);
     };
   },
 
@@ -532,7 +533,10 @@ const Mob = {
     <div class="mob-card mob-dlv-summary" data-id="${id}">
       <div class="mob-dls-top">
         <span class="mob-dls-badge">${catIcon} ${this._catLabel(cat)}</span>
-        ${dateStr ? `<span class="mob-dls-date">${dateStr}</span>` : ''}
+        <span class="mob-dls-meta-r">
+          ${dateStr ? `<span class="mob-dls-date">${dateStr}</span>` : ''}
+          <i class="ti ti-chevron-down mob-dls-chev"></i>
+        </span>
       </div>
       <div class="mob-dls-title">${title}</div>
       ${snippet ? `<div class="mob-dls-snippet">${snippet}</div>` : ''}
@@ -741,10 +745,6 @@ const Mob = {
       <div class="mob-card-v-top">
         <span class="mob-card-v-cat" style="--domain-color:${domMeta.color}">${catIcon} ${catLabel} · ${dateStr}</span>
         <div class="mob-card-v-acts">
-          <button class="mob-card-v-copy"
-                  onclick="event.stopPropagation();Mob._copyItemText('${id}')" title="복사">
-            <i class="ti ti-copy"></i>
-          </button>
           <button class="mob-card-v-del"
                   onclick="event.stopPropagation();Mob._deleteItem('${id}',this.closest('.mob-card'))" title="삭제">
             <i class="ti ti-trash"></i>
@@ -829,6 +829,7 @@ const Mob = {
         <div class="mob-card-h-title">${title}</div>
         <div class="mob-card-h-summary">${summary}</div>
         ${srcIcon}
+        <i class="ti ti-chevron-down mob-card-h-chev"></i>
       </div>
     </div>`;
   },
@@ -1584,9 +1585,9 @@ const Mob = {
         if (!card.classList.contains('no-detail')) card.classList.toggle('expanded');
         return;
       }
-      /* 기타 archive 카드 → 상세 모달 */
+      /* 기타 archive 카드 → 인라인 아코디언 확장 */
       const id = card.dataset.id;
-      if (id) this.openDetail(id);
+      if (id) this._toggleDetail(card, id);
     };
   },
 
@@ -1790,7 +1791,7 @@ const Mob = {
         const id      = item._id || item.id;
 
         const starredMark = item.starred ? `<span class="mob-card-star-badge">★</span>` : '';
-        html += `<div class="mvw-lib-card" data-id="${id}" onclick="Mob.openDetail('${id}')">
+        html += `<div class="mvw-lib-card" data-id="${id}" onclick="Mob._toggleDetail(this,'${id}')">
           <div class="swipe-layer-delete"><i class="ti ti-trash"></i></div>
           <div class="swipe-layer-star"><i class="ti ti-star"></i></div>
           <div class="mvw-lib-card-icon"><i class="ti ${typeIcon}"></i></div>
@@ -1799,6 +1800,7 @@ const Mob = {
             ${sub ? `<div class="mvw-lib-card-sub">${sub}${sub.length >= 80 ? '…' : ''}</div>` : ''}
           </div>
           <span class="mvw-lib-card-cat">${cat}</span>
+          <i class="ti ti-chevron-down mvw-lib-card-chev"></i>
         </div>`;
       });
 
@@ -2457,9 +2459,10 @@ const Mob = {
       const m     = item.analysis || {};
       const title = m.title || item.title || (item.text || '').slice(0,40) || '제목 없음';
       const id    = item._id || item.id;
-      return `<div class="mvw-review-item" onclick="Mob.openDetail('${id}')">
+      return `<div class="mvw-review-item" data-id="${id}" onclick="Mob._toggleDetail(this,'${id}')">
         <div class="mvw-review-item-title">${title}</div>
         <span class="mvw-review-item-cat">${this._catLabel(item.category)}</span>
+        <i class="ti ti-chevron-down mvw-review-item-chev"></i>
       </div>`;
     }).join('');
   },
@@ -2546,13 +2549,13 @@ const Mob = {
       const icon  = TYPE_ICON[item.type || 'text'] || 'ti-file-text';
       const id    = item._id || item.id;
       return `
-      <div class="mvw-recent-item" onclick="Mob.openDetail('${id}')">
+      <div class="mvw-recent-item" data-id="${id}" onclick="Mob._toggleDetail(this,'${id}')">
         <div class="mvw-recent-icon"><i class="ti ${icon}"></i></div>
         <div class="mvw-recent-body">
           <div class="mvw-recent-title">${title}</div>
           <div class="mvw-recent-sub">${fmt(item.createdAt)}</div>
         </div>
-        <i class="ti ti-chevron-right mvw-recent-arrow"></i>
+        <i class="ti ti-chevron-down mvw-recent-arrow"></i>
       </div>`;
     }).join('');
   },
@@ -2681,24 +2684,46 @@ const Mob = {
   /* ══════════════════════════════════════════
      상세 모달 (v36 — 전면 강화)
   ══════════════════════════════════════════ */
-  openDetail(id) {
-    const item = [...state.items, ...state.feedItems, ...(state.libraryItems || [])]
+  _findItem(id) {
+    return [...state.items, ...state.feedItems, ...(state.libraryItems || [])]
       .find(i => (i._id || i.id) === id);
-    if (!item) return;
-
-    const modal   = el('mobDetailModal');
-    const badgeEl = el('mobDetailBadge');
-    const bodyEl  = el('mobDetailBody');
-
-    badgeEl.textContent = this._catLabel(item.category || item.shelf || 'inbox');
-    bodyEl.innerHTML    = this._buildDetailBody(item, id);
-    modal.hidden        = false;
-    /* 시트 최상단으로 스크롤 */
-    el('mobDetailSheet')?.scrollTo({ top: 0, behavior: 'instant' });
   },
 
-  /** 상세 모달 본문 HTML 빌더 — 타입별 풍부한 콘텐츠 */
-  _buildDetailBody(item, id) {
+  /* ── 인라인 아코디언 토글 (모달/바텀시트 완전 대체) ──
+     클릭 시 카드 객체 하단에 상세 콘텐츠를 지연 빌드하여 펼침/접힘.
+     max-height transition으로 부드럽게 확장. */
+  _toggleDetail(trigger, id) {
+    const host = trigger.closest('[data-id]');
+    if (!host) return;
+    let body = host.querySelector(':scope > .mob-inline-detail');
+    if (!body) {
+      const item = this._findItem(id);
+      if (!item) return;
+      body = document.createElement('div');
+      body.className = 'mob-inline-detail';
+      body.innerHTML = this._buildExpandBody(item, id);
+      host.appendChild(body);
+    }
+    const opening = !host.classList.contains('inline-open');
+    if (opening) {
+      host.classList.add('inline-open');
+      body.style.maxHeight = body.scrollHeight + 'px';
+      body.addEventListener('transitionend', function h() {
+        body.removeEventListener('transitionend', h);
+        if (host.classList.contains('inline-open')) body.style.maxHeight = 'none';
+      });
+    } else {
+      /* maxHeight:none → 픽셀값으로 리셋 후 0으로 애니메이션 */
+      body.style.maxHeight = body.scrollHeight + 'px';
+      requestAnimationFrame(() => {
+        host.classList.remove('inline-open');
+        body.style.maxHeight = '0';
+      });
+    }
+  },
+
+  /** 인라인 확장 본문 HTML 빌더 — 타입별 콘텐츠 섹션만 (버튼/평가/인사이트 제거) */
+  _buildExpandBody(item, id) {
     const m    = item.analysis || {};
     const type = item.type || 'text';
     const cat  = item.category || item.shelf || 'inbox';
@@ -2935,115 +2960,18 @@ const Mob = {
       </div>`;
     }
 
-    /* 나의 인사이트 */
-    body += `<div class="mob-detail-section">
-      <div class="mob-detail-sec-label">나의 인사이트</div>
-      <textarea class="mob-detail-insight-area" id="detailInsight"
-        placeholder="이 지식에서 느낀 점, 적용 아이디어를 기록하세요…"
-      >${item.myInsight || ''}</textarea>
-    </div>`;
+    /* 원문 링크 (있을 때만) */
+    if (item.source) {
+      let srcLabel = '원문 보기';
+      try { srcLabel = new URL(item.source).hostname; } catch {}
+      body += `<div class="mob-detail-section">
+        <a class="mob-inline-src-link" href="${item.source}" target="_blank" onclick="event.stopPropagation()">
+          <i class="ti ti-external-link"></i> ${srcLabel}
+        </a>
+      </div>`;
+    }
 
-    /* 카테고리 이동 (숨김, 토글 방식) */
-    const CATS = [
-      { val:'en',      label:'English', icon:'🌐' },
-      { val:'history', label:'History', icon:'🏛️' },
-      { val:'economy', label:'Economy', icon:'📈' },
-      { val:'youtube', label:'YouTube', icon:'▶️' },
-      { val:'inbox',   label:'서랍',    icon:'📌' },
-    ];
-    const moveChips = CATS
-      .filter(c => c.val !== cat)
-      .map(c => `<button class="mob-detail-move-chip" onclick="Mob._moveCategory('${id}','${c.val}')">${c.icon} ${c.label}</button>`)
-      .join('');
-
-    /* 액션 버튼 */
-    const srcBtn = item.source
-      ? `<button class="mob-detail-action-btn" onclick="window.open('${item.source}','_blank')"
-           style="background:var(--bg);color:var(--text-2)">
-           <i class="ti ti-external-link"></i>
-         </button>` : '';
-
-    return `
-      <div class="mob-detail-meta-row">
-        ${dateStr ? `<span class="mob-detail-meta-chip">${dateStr}</span>` : ''}
-        ${srcHost  ? `<span class="mob-detail-meta-chip">${srcHost}</span>` : ''}
-      </div>
-      <div class="mob-detail-title">${titleStr}</div>
-      ${body}
-      <div class="mob-detail-move-section" id="detailMoveCat" hidden>
-        <div class="mob-detail-sec-label">카테고리 이동</div>
-        <div class="mob-detail-move-chips">${moveChips}</div>
-      </div>
-      <div class="mob-detail-actions">
-        <button class="mob-detail-action-btn primary" onclick="Mob._saveInsight('${id}')">
-          <i class="ti ti-device-floppy"></i> 저장
-        </button>
-        <button class="mob-detail-action-btn mob-star-btn ${item.starred ? 'starred' : ''}"
-                id="starBtn_${id}" onclick="Mob._toggleStar('${id}')" title="즐겨찾기">
-          <i class="ti ${item.starred ? 'ti-star-filled' : 'ti-star'}"></i>
-        </button>
-        ${srcBtn}
-        <button class="mob-detail-action-btn" style="background:var(--bg);color:var(--text-2)"
-                onclick="Mob._shareItem('${id}')" title="공유">
-          <i class="ti ti-share"></i>
-        </button>
-        <button class="mob-detail-action-btn" style="background:var(--bg);color:var(--text-2)"
-                onclick="Mob._toggleMoveCat('detailMoveCat')" title="카테고리 이동">
-          <i class="ti ti-folder-symlink"></i> 이동
-        </button>
-        <button class="mob-detail-action-btn danger" onclick="Mob._deleteFromDetail('${id}')">
-          <i class="ti ti-trash"></i>
-        </button>
-      </div>
-      <div class="mob-detail-review-rating" id="reviewRating_${id}">
-        <div class="mob-detail-sec-label" style="margin-bottom:6px">복습 평가</div>
-        <div class="mob-review-btns">
-          <button class="mob-review-btn hard"   onclick="Mob._submitReview('${id}',1)">😰 어려움</button>
-          <button class="mob-review-btn normal"  onclick="Mob._submitReview('${id}',3)">🙂 보통</button>
-          <button class="mob-review-btn easy"   onclick="Mob._submitReview('${id}',5)">😎 쉬움</button>
-        </div>
-      </div>
-    `;
-  },
-
-  _toggleMoveCat(panelId) {
-    const p = el(panelId);
-    if (p) p.hidden = !p.hidden;
-  },
-
-  async _moveCategory(id, newCat) {
-    try {
-      await fetchJSON(`/api/items/${id}`, {
-        method : 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body   : JSON.stringify({ category: newCat, shelf: newCat })
-      });
-      /* 로컬 상태 반영 */
-      [state.items, state.libraryItems].forEach(arr => {
-        const found = (arr || []).find(i => (i._id || i.id) === id);
-        if (found) { found.category = newCat; found.shelf = newCat; }
-      });
-      toast(`✅ ${this._catLabel(newCat)}으로 이동됐습니다`, 'ok');
-      this.closeDetail();
-      if (state.currentView === 'home') this.renderFeed(state.items);
-      if (state.currentView === 'summary') { state.libraryLoaded = false; this._loadLibraryView(true); }
-    } catch { toast('이동 실패', 'err'); }
-  },
-
-  closeDetail() { el('mobDetailModal').hidden = true; },
-
-  async _saveInsight(id) {
-    const insight = el('detailInsight')?.value.trim();
-    try {
-      await fetchJSON(`/api/items/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ myInsight: insight })
-      });
-      toast('💡 인사이트 저장됨', 'ok');
-      const item = state.items.find(i => (i._id || i.id) === id);
-      if (item) item.myInsight = insight;
-    } catch { toast('저장 실패', 'err'); }
+    return body || `<div class="mob-detail-section"><div class="mob-detail-full-text" style="color:var(--text-3)">추가 상세 내용이 없습니다.</div></div>`;
   },
 
   /* ── Feature 1: 즐겨찾기 ── */
@@ -3071,59 +2999,14 @@ const Mob = {
     } catch { toast('즐겨찾기 실패', 'err'); }
   },
 
-  /* ── Feature 5: 공유 ── */
-  async _shareItem(id) {
-    const item  = [...state.items, ...state.libraryItems].find(i => (i._id || i.id) === id);
-    if (!item) return;
-    const m     = item.analysis || {};
-    const title = m.title || item.title || '지식 아카이브';
-    const text  = (m.summary || item.summary || item.text || '').slice(0, 300);
-    const url   = item.source || window.location.href;
-    if (navigator.share) {
-      try { await navigator.share({ title, text, url }); }
-      catch (e) { if (e.name !== 'AbortError') toast('공유 실패', 'err'); }
-    } else {
-      const full = `${title}\n\n${text}\n\n${url}`;
-      await navigator.clipboard.writeText(full).catch(() => {});
-      toast('📋 클립보드에 복사됐습니다', 'ok');
-    }
-  },
-
   /* ── Feature 4: 키워드 → 서재 검색 ── */
   _searchByKeyword(keyword) {
-    this.closeDetail();
     this.switchView('summary', el('bnSummary'));
     const inject = () => {
       const si = el('libSearchInput');
       if (si) { si.value = keyword; this.onLibrarySearch(keyword); }
     };
     state.libraryLoaded ? inject() : setTimeout(inject, 600);
-  },
-
-  /* ── Feature 3: 복습 평가 제출 ── */
-  async _submitReview(id, quality) {
-    try {
-      const data = await fetchJSON(`/api/items/${id}/review`, {
-        method : 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body   : JSON.stringify({ quality })
-      });
-      const days = data.intervalDays;
-      toast(`✅ ${days}일 뒤 복습 예정`, 'ok');
-      const ratingEl = el(`reviewRating_${id}`);
-      if (ratingEl) ratingEl.innerHTML = `<div style="font-size:12px;color:var(--text-3);text-align:center;padding:8px 0">✅ ${days}일 후 복습 예정</div>`;
-    } catch { toast('복습 평가 실패', 'err'); }
-  },
-
-  async _deleteFromDetail(id) {
-    if (!confirm('이 지식을 삭제할까요?')) return;
-    try {
-      await fetchJSON(`/api/items/${id}`, { method: 'DELETE' });
-      this.closeDetail();
-      state.items = state.items.filter(i => (i._id || i.id) !== id);
-      this.renderFeed(state.items);
-      toast('삭제됨', 'ok');
-    } catch { toast('삭제 실패', 'err'); }
   },
 
   /* ══════════════════════════════════════════
@@ -3181,7 +3064,7 @@ const Mob = {
           if (found && !state.items.find(i => (i._id || i.id) === id)) {
             state.items.push(found);
           }
-          this.openDetail(id);
+          this._toggleDetail(card, id);
         }
       };
     } catch {
@@ -3190,10 +3073,10 @@ const Mob = {
   },
 
   /* ══════════════════════════════════════════
-     모달 일괄 닫기
+     모달 일괄 닫기 (추가 모달만 — 상세는 인라인 아코디언)
   ══════════════════════════════════════════ */
   _hideAllModals() {
-    ['mobDetailModal','mobAddModal'].forEach(id => {
+    ['mobAddModal'].forEach(id => {
       const m = el(id); if (m) m.hidden = true;
     });
   },
@@ -3320,14 +3203,21 @@ const Mob = {
 
 };
 
-/* ── 백드롭 클릭 모달 닫기 ── */
+/* ── 백드롭 클릭 모달 닫기 (클릭된 .mob-modal 직접 닫기 + 일괄) ── */
 document.addEventListener('click', e => {
-  if (e.target.classList.contains('mob-modal')) Mob._hideAllModals();
+  if (e.target.classList.contains('mob-modal')) {
+    e.target.hidden = true;
+    Mob._hideAllModals();
+  }
 });
 
 /* ── ESC 키 ── */
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { Mob.closeSearch(); Mob._hideAllModals(); }
+  if (e.key === 'Escape') {
+    Mob.closeSearch();
+    Mob._hideAllModals();
+    if (typeof ExamMob !== 'undefined' && ExamMob.closeWrongDetail) ExamMob.closeWrongDetail();
+  }
 });
 
 /* ── 초기화 ── */

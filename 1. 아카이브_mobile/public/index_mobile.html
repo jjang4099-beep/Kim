@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
-  <link rel="stylesheet" href="css/style_mobile.css?v=58"/>
+  <link rel="stylesheet" href="css/style_mobile.css?v=59"/>
   <link rel="stylesheet" href="css/exam.css?v=2"/>
 </head>
 <body>
@@ -532,19 +532,21 @@
   </div>
 </div>
 
+<!-- 지식 상세는 인라인 아코디언(.mob-inline-detail)으로 일원화 — 모달 제거 (v59) -->
+
 <!-- ══════════════════════════════════════════════════════
-     모달: 지식 상세
+     모달: 시험 오답노트 상세 (exam 전용 — 지식카드와 분리)
 ══════════════════════════════════════════════════════ -->
-<div class="mob-modal" id="mobDetailModal" hidden>
-  <div class="mob-modal-sheet" id="mobDetailSheet">
+<div class="mob-modal" id="examWrongModal" hidden>
+  <div class="mob-modal-sheet">
     <div class="mob-modal-handle"></div>
     <div class="mob-modal-header">
-      <span class="mob-modal-badge" id="mobDetailBadge"></span>
-      <button class="mob-modal-close" onclick="Mob.closeDetail()">
+      <span class="mob-modal-badge" id="examWrongBadge"></span>
+      <button class="mob-modal-close" onclick="ExamMob.closeWrongDetail()">
         <i class="ti ti-x"></i>
       </button>
     </div>
-    <div class="mob-modal-body" id="mobDetailBody"></div>
+    <div class="mob-modal-body" id="examWrongBody"></div>
   </div>
 </div>
 
@@ -636,8 +638,8 @@
 <!-- 토스트 -->
 <div class="mob-toast" id="mobToast" hidden></div>
 
-<script src="js/app_mobile.js?v=58"></script>
-<script src="js/app_exam.js?v=1"></script>
+<script src="js/app_mobile.js?v=59"></script>
+<script src="js/app_exam.js?v=2"></script>
 <script src="js/pwa.js?v=1"></script>
 <script>
 (function() {

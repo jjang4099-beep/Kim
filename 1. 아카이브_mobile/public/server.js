@@ -76,6 +76,32 @@ function getDomain(item) {
   return CATEGORY_TO_DOMAIN[item.category] || 'business';
 }
 
+/* ══════════════════════════════════════════════════════════
+   모드 격리(Isolation) — 'EXAM_PREP'(수험생) | 'PROFESSIONAL'(직장인)
+   클라이언트는 'exam'/'work'로 보냄 → 정규화하여 DB에 적재/조회
+══════════════════════════════════════════════════════════ */
+const MODE_EXAM = 'EXAM_PREP';
+const MODE_PRO  = 'PROFESSIONAL';
+
+/** 클라이언트 모드값('exam'/'work'/'EXAM_PREP'/'PROFESSIONAL')을 표준 ENUM으로 정규화 */
+function normalizeMode(raw) {
+  const v = String(raw || '').trim().toLowerCase();
+  if (v === 'exam' || v === 'exam_prep' || v === 'student') return MODE_EXAM;
+  return MODE_PRO;   // 기본/직장인
+}
+
+/** 아이템 콘텐츠로 모드를 추론 (기존 데이터 백필·fallback용) */
+function deriveItemMode(item) {
+  if (item && item.mode) return normalizeMode(item.mode);
+  const isExam = item && (
+    item.domain === 'exam' ||
+    item.category === 'exam' ||
+    item.type === 'wrong_answer' ||
+    !!item.wrongAnswer
+  );
+  return isExam ? MODE_EXAM : MODE_PRO;
+}
+
 // ── 이미지 업로드 디렉토리 + multer 설정 ──
 const UPLOADS_DIR = path.join(__dirname, 'uploads');
 if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
@@ -148,10 +174,13 @@ async function initSQLiteDB() {
     _sqliteDb  = new SQL.Database();
   }
   _sqliteDb.run(`
-    /* ── 유저 아카이브 아이템 ── */
+    /* ── 유저 아카이브 아이템 ──
+       mode: 저장 당시 활성 모드 — 'EXAM_PREP'(수험생) | 'PROFESSIONAL'(직장인)
+             모드별 서재/홈 피드 완전 격리(Isolation)의 기준 컬럼 */
     CREATE TABLE IF NOT EXISTS items (
       id         TEXT PRIMARY KEY,
       category   TEXT NOT NULL DEFAULT 'inbox',
+      mode       TEXT NOT NULL DEFAULT 'PROFESSIONAL',
       date       TEXT,
       created_at TEXT,
       data       TEXT NOT NULL
@@ -159,6 +188,7 @@ async function initSQLiteDB() {
     CREATE INDEX IF NOT EXISTS idx_items_category   ON items(category);
     CREATE INDEX IF NOT EXISTS idx_items_date       ON items(date);
     CREATE INDEX IF NOT EXISTS idx_items_created_at ON items(created_at);
+    /* mode 인덱스는 _migrateItemModes()에서 생성 — 기존 테이블의 컬럼 추가(ALTER) 이후 */
 
     /* ══════════════════════════════════════════════════
        영어 테마 팩 스키마 — 어드민 선행 생성, 런타임 AI 호출 없음
@@ -200,9 +230,51 @@ async function initSQLiteDB() {
   `);
   _migrateFromJSON();
   _migrateLegacyDomains();
+  _migrateItemModes();
   _seedEnglishThemes();
   _persistDB();
   console.log('[SQLite] DB 초기화 완료 →', SQLITE_PATH);
+}
+
+/**
+ * 기존 items 테이블에 mode 컬럼이 없으면 추가하고, 기존 행을 콘텐츠 기반으로 백필.
+ * - exam 아이템(domain/category==='exam' || type==='wrong_answer' || wrongAnswer) → EXAM_PREP
+ * - 그 외 → PROFESSIONAL
+ * 멱등: mode가 이미 채워진 행은 건너뜀.
+ */
+function _migrateItemModes() {
+  try {
+    /* 1) 컬럼 존재 여부 확인 (CREATE TABLE IF NOT EXISTS는 컬럼 추가 안 함) */
+    const cols = _sqliteDb.exec('PRAGMA table_info(items)');
+    const hasMode = cols.length && cols[0].values.some(row => row[1] === 'mode');
+    if (!hasMode) {
+      _sqliteDb.run(`ALTER TABLE items ADD COLUMN mode TEXT NOT NULL DEFAULT '${MODE_PRO}'`);
+      console.log('[SQLite] items.mode 컬럼 추가 완료');
+    }
+    /* mode 인덱스 — 컬럼 보장 후 항상 생성 (신규/기존 DB 공통) */
+    _sqliteDb.run('CREATE INDEX IF NOT EXISTS idx_items_mode ON items(mode)');
+    _sqliteDb.run('CREATE INDEX IF NOT EXISTS idx_items_mode_created ON items(mode, created_at)');
+
+    /* 2) 백필 — 데이터 JSON으로 모드 추론하여 컬럼 + JSON 동기화 */
+    const rows = _sqliteDb.exec('SELECT id, data, mode FROM items');
+    if (!rows.length) return;
+    const upd = _sqliteDb.prepare('UPDATE items SET mode=?, data=? WHERE id=?');
+    let migrated = 0;
+    for (const [id, data, mode] of rows[0].values) {
+      let item;
+      try { item = JSON.parse(data); } catch { continue; }
+      const already = item.mode && (mode === MODE_EXAM || mode === MODE_PRO) && mode === normalizeMode(item.mode);
+      if (already) continue;
+      const resolved = deriveItemMode(item);
+      item.mode = resolved;
+      upd.run([resolved, JSON.stringify(item), id]);
+      migrated++;
+    }
+    upd.free();
+    if (migrated) console.log(`[SQLite] items.mode 백필 완료 (${migrated}개)`);
+  } catch (e) {
+    console.warn('[SQLite] mode 마이그레이션 실패 (무시):', e.message);
+  }
 }
 
 /** sql.js 인스턴스를 디스크에 저장 (write마다 호출) */
@@ -249,12 +321,14 @@ function _migrateFromJSON() {
     const rows = JSON.parse(fs.readFileSync(ARCHIVE_JSON_PATH, 'utf-8'));
     if (!Array.isArray(rows) || !rows.length) return;
     const stmt = _sqliteDb.prepare(
-      'INSERT OR IGNORE INTO items (id, category, date, created_at, data) VALUES (?, ?, ?, ?, ?)'
+      'INSERT OR IGNORE INTO items (id, category, mode, date, created_at, data) VALUES (?, ?, ?, ?, ?, ?)'
     );
     for (const item of rows) {
+      item.mode = deriveItemMode(item);
       stmt.run([
         item.id        || uuidv4(),
         item.category  || 'inbox',
+        item.mode,
         item.date      || '',
         item.createdAt || '',
         JSON.stringify(item)
@@ -413,14 +487,37 @@ function _migrateLegacyDomains() {
  */
 function readDB() {
   const db     = getSQLiteDB();
-  const result = db.exec('SELECT data FROM items ORDER BY created_at DESC');
+  const result = db.exec('SELECT data, mode FROM items ORDER BY created_at DESC');
   if (!result.length) return [];
-  return result[0].values.map(([data]) => {
+  return result[0].values.map(([data, mode]) => {
     const item = JSON.parse(data);
     item.domain = getDomain(item);           // domain 자동 주입 (구형 항목 호환)
     item.shelf  = item.domain;               // shelf → domain 기반으로 통일
+    item.mode   = mode || deriveItemMode(item); // 모드 컬럼 우선, 없으면 추론
     return item;
   });
+}
+
+/**
+ * 모드별 격리 조회 — 인덱스(idx_items_mode_created) 활용.
+ * WHERE mode = ? ORDER BY created_at DESC 로 DB 단계에서 원천 분리.
+ */
+function readDBByMode(mode) {
+  const db   = getSQLiteDB();
+  const norm = normalizeMode(mode);
+  const stmt = db.prepare('SELECT data, mode FROM items WHERE mode = ? ORDER BY created_at DESC');
+  stmt.bind([norm]);
+  const out = [];
+  while (stmt.step()) {
+    const [data, m] = stmt.get();
+    const item = JSON.parse(data);
+    item.domain = getDomain(item);
+    item.shelf  = item.domain;
+    item.mode   = m || norm;
+    out.push(item);
+  }
+  stmt.free();
+  return out;
 }
 
 /**
@@ -430,14 +527,16 @@ function readDB() {
 function writeDB(items) {
   const db   = getSQLiteDB();
   const stmt = db.prepare(
-    'INSERT OR REPLACE INTO items (id, category, date, created_at, data) VALUES (?, ?, ?, ?, ?)'
+    'INSERT OR REPLACE INTO items (id, category, mode, date, created_at, data) VALUES (?, ?, ?, ?, ?, ?)'
   );
   db.run('DELETE FROM items');
   for (const item of items) {
     item.shelf = item.category || 'inbox';
+    item.mode  = deriveItemMode(item);
     stmt.run([
       item.id        || uuidv4(),
       item.category  || 'inbox',
+      item.mode,
       item.date      || '',
       item.createdAt || new Date().toISOString(),
       JSON.stringify(item)
@@ -453,12 +552,14 @@ function dbInsert(item) {
   const domain = getDomain(item);
   item.domain  = domain;
   item.shelf   = domain;
+  item.mode    = deriveItemMode(item);   // 모드 강제 적재 (격리 기준)
   const stmt   = db.prepare(
-    'INSERT OR REPLACE INTO items (id, category, date, created_at, data) VALUES (?, ?, ?, ?, ?)'
+    'INSERT OR REPLACE INTO items (id, category, mode, date, created_at, data) VALUES (?, ?, ?, ?, ?, ?)'
   );
   stmt.run([
     item.id        || uuidv4(),
     domain,                          // category 컬럼을 domain 인덱스로 재활용
+    item.mode,
     item.date      || '',
     item.createdAt || new Date().toISOString(),
     JSON.stringify(item)
@@ -473,11 +574,13 @@ function dbUpdate(item) {
   const domain = getDomain(item);
   item.domain  = domain;
   item.shelf   = domain;
+  item.mode    = deriveItemMode(item);
   const stmt   = db.prepare(
-    'UPDATE items SET category=?, date=?, created_at=?, data=? WHERE id=?'
+    'UPDATE items SET category=?, mode=?, date=?, created_at=?, data=? WHERE id=?'
   );
   stmt.run([
     domain,
+    item.mode,
     item.date      || '',
     item.createdAt || '',
     JSON.stringify(item),
@@ -2649,6 +2752,12 @@ app.get('/api/daily-feed', async (req, res) => {
   const force  = req.query.force === 'true';
   const user   = getDefaultUser();
 
+  /* ── 모드 격리 ── : 배달 피드는 직장인(전문직) 전용 큐레이션.
+     수험생 모드에서는 일반 지식 카드를 렌더링 엔진 단계에서 원천 배제(빈 반환). */
+  if (normalizeMode(req.query.mode) === MODE_EXAM) {
+    return res.json({ success: true, date: today, cached: true, mode: MODE_EXAM, feeds: {} });
+  }
+
   if (!user) return res.status(500).json({ success: false, error: '유저 설정 없음' });
 
   // ── 캐시 히트 체크 (활성화된 모든 피드가 캐시에 있어야 완전 히트) ──
@@ -2864,6 +2973,7 @@ app.post('/api/daily-feed/:date/:subId/save', async (req, res) => {
     id:         uuidv4(),
     text:       text.slice(0, 2000),
     category:   feed.category || 'en',
+    mode:       normalizeMode(req.body?.mode),   // 저장 당시 세션 모드 적재
     keywords:   [feed.subCategory, date].filter(Boolean).slice(0, 3),
     summary:    feed.summary || feed.title || '',
     classifier: 'daily-feed',
@@ -2924,6 +3034,7 @@ app.post('/api/archive/single', async (req, res) => {
     id:         uuidv4(),
     text,
     category:   feed.category || 'en',
+    mode:       normalizeMode(req.body?.mode),   // 저장 당시 세션 모드 적재
     keywords:   [entry.expression || entry.term, feed.subCategory].filter(Boolean).slice(0, 3),
     summary:    entry.meaning || entry.importance || '',
     classifier: 'daily-feed-single',
@@ -3001,8 +3112,11 @@ app.post('/api/daily-delivery/generate', async (req, res) => {
 // ══════════════════════════════════════════════════
 
 app.get('/api/items', (req, res) => {
-  let items = readDB();
-  const { domain, category, shelf, limit = 100, sort = 'desc', search } = req.query;
+  const { domain, category, shelf, limit = 100, sort = 'desc', search, mode } = req.query;
+
+  /* ── 모드 격리(Isolation) ── : mode 파라미터가 오면 DB 단계에서 원천 분리.
+     수험생 모드 조회 시 직장인 데이터는 쿼리 자체에서 배제(WHERE mode=?, 인덱스 활용). */
+  let items = mode ? readDBByMode(mode) : readDB();
 
   // domain 필터 우선, 없으면 구형 category 파라미터 호환
   if (domain && domain !== 'all') {
@@ -3050,6 +3164,7 @@ app.post('/api/items', async (req, res) => {
   const source         = body.source || body.origin || 'manual';
   const manualCategory = body.category || body.manualCategory || null;
   const extraTags      = Array.isArray(body.tags) ? body.tags : [];
+  const sessionMode    = normalizeMode(body.mode);   // 현재 세션 모드 인터셉트 → 강제 적재
 
   // ── YouTube URL 전용 처리 ──
   const ytUrl = extractYouTubeUrl(rawText);
@@ -3083,6 +3198,7 @@ app.post('/api/items', async (req, res) => {
       summary    : analysis.summary,
       analysis,
       classifier : oembed ? 'youtube-oembed' : 'youtube-rules',
+      mode       : sessionMode,
       date       : toDateStr(now),
       time       : toTimeStr(now),
       createdAt  : clientTs,
@@ -3091,7 +3207,7 @@ app.post('/api/items', async (req, res) => {
     };
 
     dbInsert(newItem);
-    console.log(`[저장] [youtube] "${rawTitle}"`);
+    console.log(`[저장] [youtube] "${rawTitle}" (${sessionMode})`);
     return res.status(201).json({ success: true, item: newItem });
   }
 
@@ -3111,6 +3227,7 @@ app.post('/api/items', async (req, res) => {
     summary   : c.summary,
     classifier: c.classifier,
     source,
+    mode      : sessionMode,
     date      : toDateStr(now),
     time      : toTimeStr(now),
     createdAt : clientTs,
@@ -3119,7 +3236,7 @@ app.post('/api/items', async (req, res) => {
   };
 
   dbInsert(newItem);
-  console.log(`[저장] [${newItem.category}] "${rawText.slice(0,60)}"`);
+  console.log(`[저장] [${newItem.category}] "${rawText.slice(0,60)}" (${sessionMode})`);
 
   // detectCrossInsight는 저장마다 호출하지 않음
   // → 유저가 서재 탭에서 [AI 기간별 요약]을 명시적으로 요청할 때 POST /api/insights/detect 사용
@@ -3769,6 +3886,7 @@ app.post('/api/analyze-image', upload.single('image'), async (req, res) => {
         title:     analysisResult.title || `[${EXAM_SUBJECTS[examSubject]}] 오답`,
         text:      analysisResult.whyWrong || '',
         summary:   analysisResult.whyWrong || '',
+        mode:      MODE_EXAM,
         imageUrl,
         thumbnailUrl: imageUrl,
         userHint,
@@ -3801,6 +3919,7 @@ app.post('/api/analyze-image', upload.single('image'), async (req, res) => {
         id:           uuidv4(),
         type:         'image_analysis',
         category:     'inbox',
+        mode:         normalizeMode(req.body.mode),
         title:        analysisResult.title || '사진 분석 결과',
         text:         analysisResult.summary || '',
         summary:      analysisResult.summary || '',

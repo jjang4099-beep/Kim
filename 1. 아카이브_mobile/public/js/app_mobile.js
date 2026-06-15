@@ -167,7 +167,10 @@ const Mob = {
   },
 
   setMode(mode) {
+    const prevMode = localStorage.getItem('userMode');
     localStorage.setItem('userMode', mode);
+    /* 모드가 실제로 바뀌면 이전 모드 데이터를 전역 상태에서 완전 격리(초기화) */
+    if (prevMode && prevMode !== mode) this._resetModeState();
     const entrance = el('appEntrance');
     const isVisible = entrance && entrance.style.display !== 'none';
     if (isVisible) {
@@ -182,7 +185,29 @@ const Mob = {
       this._applyMode(mode);
       this._loadHomeItems();
       this.checkFeedBadge();
+      /* 현재 보고 있는 뷰가 홈이 아니면 그 뷰도 격리된 데이터로 즉시 갱신 */
+      if (state.currentView === 'manage')  this._loadManageView();
+      if (state.currentView === 'summary') this._loadLibraryView(true);
+      if (state.currentView === 'feed')    this._loadFeedView(true);
     }
+  },
+
+  /** 현재 세션 모드를 서버 격리 ENUM으로 변환 ('exam'→EXAM_PREP, 그 외→PROFESSIONAL) */
+  _modeEnum() {
+    return localStorage.getItem('userMode') === 'exam' ? 'EXAM_PREP' : 'PROFESSIONAL';
+  },
+
+  /** 모드 전환 시 이전 모드의 흔적이 남지 않도록 전역 상태를 완전 초기화 */
+  _resetModeState() {
+    state.items         = [];
+    state.feedItems     = [];
+    state.feedLoaded    = false;
+    state.libraryItems  = [];
+    state.libraryLoaded = false;
+    state.currentCat    = 'all';
+    state.activeFeedFilter = 'all';
+    const feed = el('mobFeed');
+    if (feed) feed.innerHTML = '';
   },
 
   _applyMode(mode) {
@@ -284,10 +309,11 @@ const Mob = {
 
     const catParam = cat || state.currentCat;
 
-    /* ① 아카이브 먼저 — 로딩 스피너 즉시 해제 */
+    /* ① 아카이브 먼저 — 로딩 스피너 즉시 해제 (모드 격리 쿼리) */
+    const modeParam = `mode=${this._modeEnum()}`;
     try {
-      const param = catParam && catParam !== 'all' ? `domain=${catParam}` : '';
-      const data = await fetchJSON(`/api/items?${param}&limit=500`, {}, 20000);
+      const domainParam = catParam && catParam !== 'all' ? `domain=${catParam}&` : '';
+      const data = await fetchJSON(`/api/items?${domainParam}${modeParam}&limit=500`, {}, 20000);
       state.items = parseFeedsArray(data?.items ?? data);
       this.renderFeed(state.items);
     } catch (e) {
@@ -298,12 +324,13 @@ const Mob = {
       if (load) load.style.display = 'none';
     }
 
-    /* ② 배달 피드 미리보기 — 백그라운드 비동기 (이미 있으면 스킵) */
+    /* ② 배달 피드 미리보기 — 직장인(전문직) 모드 전용. 수험생 모드면 원천 배제 */
+    if (this._modeEnum() === 'EXAM_PREP') { state.feedItems = []; return; }
     if (state.feedItems.length > 0) return;
     try {
       const status = await fetchJSON('/api/daily-feed/status', {}, 5000);
       if (!status?.allReady) return;   /* 미생성 상태면 스킵 — 배달탭에서 생성 */
-      const data = await fetchJSON('/api/daily-feed', {}, 20000);
+      const data = await fetchJSON(`/api/daily-feed?${modeParam}`, {}, 20000);
       state.feedItems = parseFeedsArray(data?.feeds ?? data?.items ?? data);
       this.renderFeed(state.items);
     } catch {}
@@ -1038,7 +1065,7 @@ const Mob = {
       await fetchJSON('/api/items', {
         method : 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body   : JSON.stringify({ text, category: cat, source: 'daily-feed-entry' })
+        body   : JSON.stringify({ text, category: cat, source: 'daily-feed-entry', mode: this._modeEnum() })
       });
 
       btn.innerHTML = '<i class="ti ti-check"></i>';
@@ -1297,7 +1324,7 @@ const Mob = {
       await fetchJSON('/api/items', {
         method : 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body   : JSON.stringify({ text, category: item.category || 'inbox', source: 'daily-delivery' })
+        body   : JSON.stringify({ text, category: item.category || 'inbox', source: 'daily-delivery', mode: this._modeEnum() })
       });
 
       btn.innerHTML = '<i class="ti ti-check"></i>';
@@ -1430,7 +1457,11 @@ const Mob = {
     try {
       btn.disabled  = true;
       btn.innerHTML = '<span class="mob-spin"></span> 저장 중…';
-      const data = await fetchJSON(`/api/daily-feed/${date}/${subId}/save`, { method: 'POST' });
+      const data = await fetchJSON(`/api/daily-feed/${date}/${subId}/save`, {
+        method : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify({ mode: this._modeEnum() })
+      });
       if (data.success) {
         btn.innerHTML    = '<i class="ti ti-check"></i> 저장됨';
         btn.style.cursor = 'default';
@@ -1505,6 +1536,17 @@ const Mob = {
     const dateEl  = el('feedViewDate');
     if (!content) return;
 
+    /* 모드 격리: 배달 지식은 직장인 전용. 수험생 모드면 전문직 피드 원천 배제 */
+    if (this._modeEnum() === 'EXAM_PREP') {
+      state.feedItems = [];
+      content.innerHTML = `<div class="mob-loading" style="flex-direction:column;gap:8px">
+        <i class="ti ti-school" style="font-size:34px;color:var(--text-3)"></i>
+        <span style="font-size:13px;color:var(--text-2)">수험생 모드에서는 일반 지식 배달이 제공되지 않습니다.</span>
+        <small style="color:var(--text-3)">시험에 나오는 것만 — 오답노트와 학습에 집중하세요.</small>
+      </div>`;
+      return;
+    }
+
     if (state.feedLoaded && !forceRefresh) {
       if (state.pendingFeedFilter) {
         state.activeFeedFilter  = state.pendingFeedFilter;
@@ -1541,7 +1583,7 @@ const Mob = {
 
       /* 캐시 히트면 20초, 생성 필요하면 120초 */
       const timeoutMs = allReady ? 20000 : 120000;
-      const data = await fetchJSON('/api/daily-feed', {}, timeoutMs);
+      const data = await fetchJSON(`/api/daily-feed?mode=${this._modeEnum()}`, {}, timeoutMs);
       state.feedItems = parseFeedsArray(data.items ?? data.feeds ?? data);
 
       if (state.pendingFeedFilter) {
@@ -1717,7 +1759,7 @@ const Mob = {
     }
 
     try {
-      const data  = await fetchJSON('/api/items?limit=500&sort=desc', {}, 20000);
+      const data  = await fetchJSON(`/api/items?limit=500&sort=desc&mode=${this._modeEnum()}`, {}, 20000);
       const items = parseFeedsArray(data.items ?? data);
 
       /* state.items 에 병합 (상세 모달용) */
@@ -2036,10 +2078,10 @@ const Mob = {
   ══════════════════════════════════════════ */
   async _loadManageView() {
     try {
-      /* 설정 + 아이템 병렬 로드 */
+      /* 설정 + 아이템 병렬 로드 (모드 격리) */
       const [settingsResp, itemsResp] = await Promise.all([
         fetchJSON('/api/user/settings', {}, 10000),
-        fetchJSON('/api/items?limit=500', {}, 20000)
+        fetchJSON(`/api/items?limit=500&mode=${this._modeEnum()}`, {}, 20000)
       ]);
       this._renderDeliverySettings(settingsResp);
       const items = parseFeedsArray(itemsResp.items ?? itemsResp);
@@ -2629,7 +2671,7 @@ const Mob = {
       const data = await fetchJSON('/api/items', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text, createdAt: new Date().toISOString() })
+        body: JSON.stringify({ text, createdAt: new Date().toISOString(), mode: this._modeEnum() })
       }, 60000);
       if (!data.success) throw new Error(data.error || '처리 실패');
       toast('✅ 서재에 저장됐어요!', 'ok');
@@ -2688,6 +2730,8 @@ const Mob = {
         formData.append('mode', 'exam');
         formData.append('subject', ExamMob.selectedSubject || 'math');
         status.textContent = '오답을 분석하고 있습니다…';
+      } else {
+        formData.append('mode', 'work');   // 직장인 모드 명시 적재
       }
 
       const ctrl  = new AbortController();
@@ -3072,7 +3116,7 @@ const Mob = {
     const res = el('mobSearchResults');
     res.innerHTML = `<div class="mob-loading"><span class="mob-spin"></span></div>`;
     try {
-      const data  = await fetchJSON(`/api/items?search=${encodeURIComponent(q)}`, {}, 15000);
+      const data  = await fetchJSON(`/api/items?search=${encodeURIComponent(q)}&mode=${this._modeEnum()}`, {}, 15000);
       const items = parseFeedsArray(data.items ?? data);
       if (!items.length) {
         res.innerHTML = `<div class="mob-search-hint">

@@ -945,9 +945,38 @@ const Mob = {
           <div class="mob-mpa-sub">오늘 배운 ${highlights.length}개 표현을 하나의 문맥으로 마스터하기</div>
         </div>
       </div>
-      <div class="mob-mpa-body">${txt}</div>
-      ${trHTML}
+      <div class="mob-mpa-collapse">
+        <div class="mob-mpa-body">${txt}</div>
+        ${trHTML}
+      </div>
+      <button class="mob-mpa-toggle" onclick="event.stopPropagation();Mob._toggleMasterPara(this)">
+        <span>통합 지문 및 해석 보기</span><i class="ti ti-chevron-down"></i>
+      </button>
     </div>`;
+  },
+
+  /** The Master Paragraph 접기/펼치기 토글 (max-height + opacity 트랜지션) */
+  _toggleMasterPara(btn) {
+    const wrap = btn.closest('.mob-master-para');
+    const body = wrap?.querySelector('.mob-mpa-collapse');
+    if (!body) return;
+    const isOpen = wrap.classList.toggle('mpa-open');
+    const lbl    = btn.querySelector('span');
+    const icon   = btn.querySelector('i');
+    if (isOpen) {
+      body.style.maxHeight = body.scrollHeight + 'px';
+      body.addEventListener('transitionend', function h() {
+        body.removeEventListener('transitionend', h);
+        if (wrap.classList.contains('mpa-open')) body.style.maxHeight = 'none';
+      });
+      if (lbl)  lbl.textContent = '지문 접기';
+      if (icon) icon.className  = 'ti ti-chevron-up';
+    } else {
+      if (body.style.maxHeight === 'none') body.style.maxHeight = body.scrollHeight + 'px';
+      requestAnimationFrame(() => { body.style.maxHeight = '0'; });
+      if (lbl)  lbl.textContent = '통합 지문 및 해석 보기';
+      if (icon) icon.className  = 'ti ti-chevron-down';
+    }
   },
 
   /** 표현 항목 아코디언 토글 */

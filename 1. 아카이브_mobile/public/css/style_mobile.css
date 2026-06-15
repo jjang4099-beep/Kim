@@ -2800,6 +2800,33 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   color      : var(--mob-gold, var(--gold));
 }
 
+/* ── 전면 예문 프리뷰 ── */
+.alc-preview-ex {
+  margin-top   : 11px;
+  margin-bottom: 6px;
+  padding      : 9px 12px;
+  background   : rgba(154, 111, 27, 0.07);
+  border-left  : 2px solid var(--mob-gold, var(--gold));
+  border-radius: 0 6px 6px 0;
+}
+.alc-preview-ex-en {
+  display      : block;
+  font-style   : italic;
+  font-family  : 'Georgia', serif;
+  font-size    : 13px;
+  line-height  : 1.55;
+  color        : var(--text-muted, #64748B);
+  word-break   : break-word;
+}
+.alc-preview-ex-ko {
+  display      : block;
+  font-size    : 11.5px;
+  font-weight  : 500;
+  color        : var(--text-3);
+  margin-top   : 4px;
+  letter-spacing: .01em;
+}
+
 /* ── 펼치기 버튼 ── */
 .alc-expand-btn {
   display        : flex;
@@ -3624,6 +3651,10 @@ html[data-theme="dark"] .mob-master-para      { border-color: #1E3356; }
 html[data-theme="dark"] .mob-mpa-hl          { background: rgba(255,215,0,.18); color: #FFD700; }
 html[data-theme="dark"] .mob-mpa-tr          { border-color: #1E3356; }
 /* 확장 영역 텍스트 강제 — Midnight */
+/* 전면 예문 프리뷰 — Midnight */
+html[data-theme="dark"] .alc-preview-ex    { background: rgba(255,215,0,.06); border-left-color: #FFD700; }
+html[data-theme="dark"] .alc-preview-ex-en { color: #94A3B8; }
+html[data-theme="dark"] .alc-preview-ex-ko { color: #64748B; }
 html[data-theme="dark"] .alc-body-text,
 html[data-theme="dark"] .alc-italic                          { color: #F1F5F9; }
 html[data-theme="dark"] .alc-practice-txt,
@@ -3660,6 +3691,10 @@ html[data-theme="light"] .mob-fv-theme-band  { border-color: #E5D3B8; }
 html[data-theme="light"] .mob-master-para     { border-color: #E5D3B8; }
 html[data-theme="light"] .mob-mpa-hl         { background: rgba(15,30,54,.1); color: #0F1E36; }
 html[data-theme="light"] .mob-mpa-tr         { border-color: #E5D3B8; }
+/* 전면 예문 프리뷰 — Papyrus */
+html[data-theme="light"] .alc-preview-ex    { background: rgba(15,30,54,.05); border-left-color: #0F1E36; }
+html[data-theme="light"] .alc-preview-ex-en { color: #475569; }
+html[data-theme="light"] .alc-preview-ex-ko { color: #64748B; }
 /* 확장 영역 텍스트 강제 — Papyrus */
 html[data-theme="light"] .alc-body-text,
 html[data-theme="light"] .alc-italic                         { color: #1E293B; }

@@ -595,6 +595,15 @@ const Mob = {
     if (p.nuance)  sections.push(`<div class="alc-section"><div class="alc-section-lbl">Nuance</div><div class="alc-body-text">${p.nuance}</div></div>`);
     if (p.example) sections.push(`<div class="alc-section"><div class="alc-section-lbl">Example</div><div class="alc-body-text alc-italic">"${p.example}"</div>${p.practice ? `<div class="alc-practice-txt">${p.practice}</div>` : ''}</div>`);
 
+    /* 전면 예문 프리뷰: example 필드 우선, 없으면 대화문 첫 줄 사용 */
+    const rawEx = p.example || (p.dialogue ? p.dialogue.split('\n').find(l => l.trim()) : '') || '';
+    const exDisplay = rawEx.length > 90 ? rawEx.slice(0, 88) + '…' : rawEx;
+    const previewExHtml = exDisplay ? `
+        <div class="alc-preview-ex">
+          <span class="alc-preview-ex-en">"${exDisplay}"</span>
+          ${p.meaning ? `<span class="alc-preview-ex-ko">(${p.meaning})</span>` : ''}
+        </div>` : '';
+
     return `
     <div class="mob-card archive-lang-card" data-id="${id}">
       <div class="alc-front">
@@ -609,6 +618,7 @@ const Mob = {
         </div>
         <h2 class="alc-expr${isSentence ? ' alc-sentence' : ''}">${expr}</h2>
         ${p.meaning ? `<div class="alc-meaning">${p.meaning}</div>` : ''}
+        ${previewExHtml}
       </div>
       ${sections.length ? `
       <button class="alc-expand-btn" onclick="event.stopPropagation();Mob._toggleAlcCard(this)">

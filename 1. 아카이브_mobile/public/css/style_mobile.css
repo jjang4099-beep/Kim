@@ -55,6 +55,7 @@ img { display: block; max-width: 100%; }
   /* 확장 영역 시맨틱 변수 — 라이트 기본값 */
   --bg-card-main    : #FFFFFF;
   --bg-card-expanded: #F9F6EE;
+  --bg-highlight-box: #F4EFE6;   /* 강조 박스(필수 체크·비하인드 스토리) — 본문보다 살짝 짙은 베이지 */
   --text-primary    : #1E293B;
   --text-muted      : #64748B;
   --accent-color    : #9A6F1B;
@@ -1473,16 +1474,17 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   word-break : keep-all;
 }
 
-/* ── 오늘 장 체크포인트 ── */
+/* ── 오늘 장 체크포인트 (강조 박스 — 테마 변수 바인딩) ── */
 .mob-feed-checkpoints {
   margin      : 6px 0 8px;
   padding     : 10px 12px;
-  background  : #fffbeb;
+  background  : var(--bg-highlight-box);
   border-radius: 8px;
-  border      : 1px solid #fde68a;
+  border      : 1px solid var(--mob-border, var(--border));
+  transition  : background-color .3s ease, border-color .3s ease;
 }
 .mob-feed-check-label {
-  font-size  : 10.5px; font-weight: 800; color: #b45309;
+  font-size  : 10.5px; font-weight: 800; color: var(--accent-color, #b45309);
   text-transform: uppercase; letter-spacing: .06em;
   display    : flex; align-items: center; gap: 4px;
   margin-bottom: 7px;
@@ -1490,8 +1492,11 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 .mob-feed-check-label i { font-size: 13px; }
 .mob-feed-check-item {
   display    : flex; align-items: flex-start; gap: 8px;
-  margin-bottom: 5px; font-size: 12.5px; color: var(--text-1); line-height: 1.5;
+  margin-bottom: 5px; font-size: 12.5px; color: var(--text-primary); line-height: 1.5;
+  transition : color .3s ease;
 }
+.mob-feed-check-item span { color: var(--text-primary); }
+.mob-feed-check-item .mob-feed-check-num { color: #fff; }
 .mob-feed-check-item:last-child { margin-bottom: 0; }
 .mob-feed-check-num {
   flex-shrink : 0;
@@ -2208,25 +2213,27 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 .mob-hum-behind-panel {
   max-height   : 0;
   overflow     : hidden;
-  transition   : max-height .35s cubic-bezier(.4,0,.2,1);
-  background   : #fdfbf7;   /* ★ 크림색 — 비밀스러운 뒷이야기 분위기 */
-  border-top   : 0 solid #fde68a;
+  transition   : max-height .35s cubic-bezier(.4,0,.2,1), background-color .3s ease;
+  background   : var(--bg-highlight-box);   /* 강조 박스 — 테마 변수 바인딩 */
+  border-top   : 0 solid var(--mob-border, var(--border));
 }
 .mob-hum-behind-panel.open {
   max-height   : 3000px;
-  border-top   : 1px solid #fde68a;
+  border-top   : 1px solid var(--mob-border, var(--border));
 }
 
 .mob-hum-behind-txt {
   padding    : 12px 14px;
-  font-size  : 13px; color: var(--text-2);
+  font-size  : 13px; color: var(--text-primary);
   line-height: 1.75; word-break: keep-all;
+  transition : color .3s ease;
 }
 
 .mob-hum-behind-context {
   padding      : 0 14px 12px;
-  font-size    : 12px; color: var(--text-3);
+  font-size    : 12px; color: var(--text-muted);
   font-style   : italic; line-height: 1.6; word-break: keep-all;
+  transition   : color .3s ease;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -3082,7 +3089,7 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 .mob-hum-acc-sect {
   padding   : 12px 14px;
   border-top: 1px solid var(--mob-border, var(--border));
-  background: var(--bg-card-expanded);
+  background: var(--bg-highlight-box);
   transition : background-color .3s ease;
 }
 .mob-hum-acc-lbl {
@@ -3100,7 +3107,7 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   word-break : keep-all;
   transition : color .3s ease;
 }
-.mob-hum-acc-lesson { background: var(--bg-card-expanded); }
+.mob-hum-acc-lesson { background: var(--bg-highlight-box); }
 .mob-hum-acc-bullet {
   display      : flex;
   align-items  : flex-start;
@@ -3681,6 +3688,7 @@ html[data-theme="light"] {
   /* 확장 영역 — Papyrus */
   --bg-card-main    : #FFFFFF;
   --bg-card-expanded: #FDFBF7;
+  --bg-highlight-box: #F4EFE6;   /* 강조 박스 — 웜크림 톤앤매너 유지 */
   --text-primary    : #1E293B;
   --text-muted      : #64748B;
   --accent-color    : #0F1E36;
@@ -3703,6 +3711,7 @@ html[data-theme="dark"] {
   /* 확장 영역 — Midnight */
   --bg-card-main    : #162032;
   --bg-card-expanded: #0F1E36;
+  --bg-highlight-box: #1E293B;   /* 다크 전용 강조 박스 배경 */
   --text-primary    : #F1F5F9;
   --text-muted      : #94A3B8;
   --accent-color    : #FFD700;
@@ -3817,6 +3826,7 @@ html[data-theme="light"] .mvw-quiz-btn.wrong                 { background: #fff5
     /* 확장 영역 시맨틱 변수 — 시스템 다크 기본값 */
     --bg-card-main    : #162032;
     --bg-card-expanded: #0F1E36;
+    --bg-highlight-box: #1E293B;   /* 다크 전용 강조 박스 배경 */
     --text-primary    : #F1F5F9;
     --text-muted      : #94A3B8;
     --accent-color    : #D4AF37;
@@ -3836,12 +3846,10 @@ html[data-theme="light"] .mvw-quiz-btn.wrong                 { background: #fff5
   .mvw-stat-card.mvw-stat-streak { background: #2c2614; border-color: #6d5a1e; }
   .mvw-stat-card.mvw-stat-today  { background: #12303a; border-color: #1e5b6d; }
 
-  /* ── 파스텔 박스 → 딥톤 ── */
-  .mob-feed-checkpoints { background: #2c2614; border-color: #4d4015; }
+  /* ── 파스텔 박스 → 딥톤 (강조 박스는 --bg-highlight-box 변수가 처리, 하드코딩 제거 v61) ── */
   .mob-hum-lesson       { background: #2e2113; border-color: #4f3a1c; }
 
-  /* ── 비하인드 스토리 크림 박스 → 딥브라운 ── */
-  .mob-hum-behind-panel       { background: #261f15; }
+  /* ── 비하인드 스토리: 배경은 --bg-highlight-box 변수가 처리 (하드코딩 누수 제거) ── */
   .mob-hum-behind-btn         { background: #33290f; color: #e3c66b; }
   .mob-hum-behind-btn:active,
   .mob-hum-behind-btn.open    { background: #4d4015; color: #f0d77e; }
@@ -3891,8 +3899,8 @@ html[data-theme="light"] .mvw-quiz-btn.wrong                 { background: #fff5
   .mob-fv-sect        { background: var(--mob-section, var(--bg)); }
   .mob-fv-sect        { border-color: var(--mob-border, var(--border)); }
   .mob-mkt-ind-chip   { background: var(--bg-2); border-color: var(--border); }
-  .mob-hum-acc-sect   { background: #261f15; border-color: #4d4015; }
-  .mob-hum-acc-lesson { background: #2c2614; }
+  /* .mob-hum-acc-sect/lesson 배경은 --bg-highlight-box 변수가 처리 (하드코딩 누수 제거 v61) */
+  .mob-hum-acc-sect   { border-color: #4d4015; }
   .mob-hum-acc-lbl    { color: #e3a83a; }
   .mob-hum-acc-dot    { background: #e3a83a; }
 

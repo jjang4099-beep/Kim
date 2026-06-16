@@ -1860,7 +1860,7 @@ const Mob = {
       if (sc) sc.hidden = true;
 
       /* 카테고리 필터 탭 초기화 + 빈 카테고리 비활성화 */
-      document.querySelectorAll('#libFilterBar .mob-tab').forEach(c => {
+      document.querySelectorAll('#libFilterBar .km-filter-tab').forEach(c => {
         c.classList.toggle('active', c.dataset.cat === 'all');
       });
       this._updateLibraryFilterState();
@@ -1936,25 +1936,22 @@ const Mob = {
         const m       = item.analysis || {};
         /* 제목 없으면 본문 첫 줄로 대체 */
         const firstLine = (item.text || item.summary || '').split('\n').map(l => l.trim()).filter(Boolean)[0] || '';
-        const title   = m.title || item.title || firstLine.slice(0, 40) || '제목 없음';
-        const sub     = (m.summary || item.summary || item.text || '').slice(0, 80);
-        const cat     = this._catLabel(item.category || item.shelf || 'inbox');
-        const type    = item.type || 'text';
-        const typeIcon = { youtube:'ti-brand-youtube', image_analysis:'ti-photo-ai', text:'ti-file-text' }[type] || 'ti-file-text';
+        const title   = m.title || item.title || firstLine.slice(0, 50) || '제목 없음';
+        const sub     = (m.summary || item.summary || item.text || '').replace(/\n+/g, ' ').slice(0, 120);
         const id      = item._id || item.id;
+        const cc      = this._libCardCat(item);   /* 프리미엄 카테고리 뱃지 */
 
-        const starredMark = item.starred ? `<span class="mob-card-star-badge">★</span>` : '';
-        html += `<div class="mvw-lib-card" data-id="${id}" onclick="Mob._toggleDetail(this,'${id}')">
-          <div class="swipe-layer-delete"><i class="ti ti-trash"></i></div>
-          <div class="swipe-layer-star"><i class="ti ti-star"></i></div>
-          <div class="mvw-lib-card-icon"><i class="ti ${typeIcon}"></i></div>
-          <div class="mvw-lib-card-body">
-            <div class="mvw-lib-card-title">${starredMark}${title}</div>
-            ${sub ? `<div class="mvw-lib-card-sub">${sub}${sub.length >= 80 ? '…' : ''}</div>` : ''}
+        html += `<article class="knowledge-magazine-card" data-id="${id}" onclick="Mob._toggleDetail(this,'${id}')">
+          <div class="swipe-layer-delete"><i class="ti ti-trash"></i><span>삭제</span></div>
+          <div class="kmc-content">
+            <div class="kmc-top">
+              <span class="kmc-badge">${cc.icon} ${cc.label}</span>
+              <i class="ti ti-chevron-down kmc-chev"></i>
+            </div>
+            <h3 class="kmc-title">${title}</h3>
+            ${sub ? `<p class="kmc-sub">${sub}${sub.length >= 120 ? '…' : ''}</p>` : ''}
           </div>
-          <span class="mvw-lib-card-cat">${cat}</span>
-          <i class="ti ti-chevron-down mvw-lib-card-chev"></i>
-        </div>`;
+        </article>`;
       });
 
       html += `</div></div>`;
@@ -1967,13 +1964,30 @@ const Mob = {
       cntEl.textContent = `검색 결과 ${items.length}개`;
       timelineEl.prepend(cntEl);
     }
-    /* Feature 2: 스와이프 제스처 초기화 */
-    timelineEl.querySelectorAll('.mvw-lib-card').forEach(card => {
+    /* 스와이프 제스처 초기화 (좌측 삭제만) */
+    timelineEl.querySelectorAll('.knowledge-magazine-card').forEach(card => {
       this._initSwipe(card, card.dataset.id);
     });
   },
 
-  /* ── Feature 2: 스와이프 제스처 ── */
+  /**
+   * 서재 아이템을 매거진 카테고리로 분류 — 전체/English/역사/명언/고사성어
+   * 인문학 피드는 subType(history/quote/idiom) 기준, 영어는 category/도메인 기준.
+   */
+  _libCardCat(item) {
+    const st = (item.feedData && item.feedData.subType) || item.subType || '';
+    if (st === 'history') return { key: 'history', label: '역사',     icon: '🏛️' };
+    if (st === 'quote')   return { key: 'quote',   label: '명언',     icon: '💡' };
+    if (st === 'idiom')   return { key: 'idiom',   label: '고사성어', icon: '📜' };
+    const dom = getItemDomain(item);
+    if (item.category === 'en' || dom === 'language')
+      return { key: 'english', label: 'English', icon: '🌐' };
+    /* 그 외 도메인은 'all'에만 노출 — 뱃지는 도메인 라벨 사용 */
+    return { key: 'other', label: (DOMAINS[dom] && DOMAINS[dom].label) || '지식',
+             icon: (DOMAINS[dom] && DOMAINS[dom].icon) || '💡' };
+  },
+
+  /* ── 스와이프 제스처 — 좌측(삭제)만. 우측(즐겨찾기)은 버그 유발로 완전 제거 ── */
   _initSwipe(card, id) {
     let startX = 0, deltaX = 0;
     const THRESHOLD = 60, MAX = 80;
@@ -1985,22 +1999,18 @@ const Mob = {
     card.addEventListener('touchmove', e => {
       deltaX = e.touches[0].clientX - startX;
       if (Math.abs(deltaX) < 5) return;
-      const move = Math.max(-MAX, Math.min(MAX, deltaX));
+      /* 좌측(음수)으로만 이동 허용 — 우측 스와이프 차단 */
+      const move = Math.max(-MAX, Math.min(0, deltaX));
       card.style.transform = `translateX(${move}px)`;
       const delLayer = card.querySelector('.swipe-layer-delete');
-      const starLayer = card.querySelector('.swipe-layer-star');
-      if (delLayer)  delLayer.style.opacity  = deltaX < -10 ? Math.min(1, (-deltaX - 10) / 50) : '0';
-      if (starLayer) starLayer.style.opacity = deltaX > 10  ? Math.min(1, (deltaX - 10) / 50)  : '0';
+      if (delLayer) delLayer.style.opacity = deltaX < -10 ? Math.min(1, (-deltaX - 10) / 50) : '0';
     }, { passive: true });
     card.addEventListener('touchend', () => {
       card.style.transition = 'transform 0.25s ease';
       card.style.transform  = '';
       const delLayer = card.querySelector('.swipe-layer-delete');
-      const starLayer = card.querySelector('.swipe-layer-star');
-      if (delLayer)  delLayer.style.opacity  = '0';
-      if (starLayer) starLayer.style.opacity = '0';
+      if (delLayer) delLayer.style.opacity = '0';
       if (deltaX < -THRESHOLD) this._deleteItem(id, card);
-      else if (deltaX > THRESHOLD) this._toggleStar(id);
     });
   },
 
@@ -2084,10 +2094,10 @@ const Mob = {
     }
   },
 
-  /* ── 서재 카테고리 필터 탭 ── */
+  /* ── 서재 매거진 카테고리 필터 탭 ── */
   setLibraryFilter(cat, chip) {
     state.libraryFilter = cat;
-    document.querySelectorAll('#libFilterBar .mob-tab').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('#libFilterBar .km-filter-tab').forEach(c => c.classList.remove('active'));
     chip.classList.add('active');
     const si = el('libSearchInput');
     if (si) si.value = '';
@@ -2096,14 +2106,13 @@ const Mob = {
     this._applyLibraryFilters();
   },
 
-  /* 빈 도메인 탭 자동 비활성화 */
+  /* 빈 카테고리 탭 자동 비활성화 (전체는 항상 활성) */
   _updateLibraryFilterState() {
     const items = state.libraryItems || [];
-    document.querySelectorAll('#libFilterBar .mob-tab[data-cat]').forEach(btn => {
+    document.querySelectorAll('#libFilterBar .km-filter-tab[data-cat]').forEach(btn => {
       const cat = btn.dataset.cat;
       if (cat === 'all') { btn.disabled = false; return; }
-      if (cat === 'starred') { btn.disabled = !items.some(i => i.starred); return; }
-      btn.disabled = !items.some(item => getItemDomain(item) === cat);
+      btn.disabled = !items.some(item => this._libCardCat(item).key === cat);
     });
   },
 
@@ -2113,11 +2122,7 @@ const Mob = {
     const f   = state.libraryFilter;
 
     if (f && f !== 'all') {
-      if (f === 'starred') {
-        items = items.filter(item => item.starred);
-      } else {
-        items = items.filter(item => getItemDomain(item) === f);
-      }
+      items = items.filter(item => this._libCardCat(item).key === f);
     }
     if (searchQ) {
       const qLow = searchQ.toLowerCase();

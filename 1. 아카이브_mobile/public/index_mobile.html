@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
-  <link rel="stylesheet" href="css/style_mobile.css?v=64"/>
+  <link rel="stylesheet" href="css/style_mobile.css?v=65"/>
   <link rel="stylesheet" href="css/exam.css?v=2"/>
 </head>
 <body>
@@ -174,18 +174,13 @@
       <!-- 오답 노트 타임라인 (exam 모드) -->
       <div id="wrongAnswerTimeline" hidden></div>
 
-      <!-- 도메인 필터 — 8대 지식 온톨로지 -->
-      <nav class="mob-tabs mob-tabs-lib" id="libFilterBar">
-        <button class="mob-tab active" data-cat="all"        onclick="Mob.setLibraryFilter('all',this)">전체</button>
-        <button class="mob-tab"        data-cat="starred"    onclick="Mob.setLibraryFilter('starred',this)">★ 즐겨찾기</button>
-        <button class="mob-tab"        data-cat="business"   onclick="Mob.setLibraryFilter('business',this)">📈 비즈니스</button>
-        <button class="mob-tab"        data-cat="language"   onclick="Mob.setLibraryFilter('language',this)">🌐 언어</button>
-        <button class="mob-tab"        data-cat="humanities" onclick="Mob.setLibraryFilter('humanities',this)">📜 역사</button>
-        <button class="mob-tab"        data-cat="psychology" onclick="Mob.setLibraryFilter('psychology',this)">🧠 심리</button>
-        <button class="mob-tab"        data-cat="science"    onclick="Mob.setLibraryFilter('science',this)">🔬 과학</button>
-        <button class="mob-tab"        data-cat="arts"       onclick="Mob.setLibraryFilter('arts',this)">🎨 문화</button>
-        <button class="mob-tab"        data-cat="life"       onclick="Mob.setLibraryFilter('life',this)">⚕️ 건강</button>
-        <button class="mob-tab"        data-cat="society"    onclick="Mob.setLibraryFilter('society',this)">🌍 사회</button>
+      <!-- 매거진 카테고리 필터 — 가로 스크롤 (전체/English/역사/명언/고사성어) -->
+      <nav class="km-filter-bar" id="libFilterBar">
+        <button class="km-filter-tab active" data-cat="all"      onclick="Mob.setLibraryFilter('all',this)">전체</button>
+        <button class="km-filter-tab"        data-cat="english"  onclick="Mob.setLibraryFilter('english',this)">English</button>
+        <button class="km-filter-tab"        data-cat="history"  onclick="Mob.setLibraryFilter('history',this)">역사</button>
+        <button class="km-filter-tab"        data-cat="quote"    onclick="Mob.setLibraryFilter('quote',this)">명언</button>
+        <button class="km-filter-tab"        data-cat="idiom"    onclick="Mob.setLibraryFilter('idiom',this)">고사성어</button>
       </nav>
 
       <!-- ★ AI 기간별 요약 아코디언 토글 버튼 -->
@@ -638,7 +633,7 @@
 <!-- 토스트 -->
 <div class="mob-toast" id="mobToast" hidden></div>
 
-<script src="js/app_mobile.js?v=64"></script>
+<script src="js/app_mobile.js?v=65"></script>
 <script src="js/app_exam.js?v=2"></script>
 <script src="js/pwa.js?v=1"></script>
 <script>

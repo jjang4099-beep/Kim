@@ -3774,6 +3774,12 @@ html[data-theme="dark"] {
   --text-primary    : #F1F5F9;
   --text-muted      : #94A3B8;
   --accent-color    : #FFD700;
+  /* ── 통합 Deep Gold 시스템 (v64) — 영어 카드 기준 골드 톤으로 일원화 ── */
+  --color-premium-gold: #E2B65B;          /* 검증된 딥 골드 — 옐로우/토글 통일 기준 */
+  --bg-card-dark      : #162235;          /* 인문학 카드 메인 배경 (네이비) */
+  --bg-toggle-button  : #1F2D44;          /* 토글 버튼 배경 — 카드보다 살짝 밝은 네이비 */
+  --bg-badge-gold     : rgba(226,182,91,.15); /* 골드 뱃지 배경 — 은은한 투명 골드 */
+  --bg-tip-box        : #1E293B;          /* 팁/강조 박스 — 깔끔한 딥 네이비 */
 }
 
 /* ─── data-theme="dark" 때 하드코딩 표면 강제 ─── */
@@ -3815,11 +3821,86 @@ html[data-theme="dark"] .mob-hum-acc-body,
 html[data-theme="dark"] .mob-hum-acc-bullet                  { color: #F1F5F9; }
 html[data-theme="dark"] .alc-section-lbl,
 html[data-theme="dark"] .mob-fv-sect-lbl,
-html[data-theme="dark"] .mob-fv-dlg-sp,
-html[data-theme="dark"] .mob-hum-acc-lbl                     { color: #FFD700; }
-html[data-theme="dark"] .mob-hum-acc-dot                     { background: #FFD700; }
+html[data-theme="dark"] .mob-fv-dlg-sp                       { color: #FFD700; }
+/* 인문학 액센트는 통합 Deep Gold로 — 영어 카드와 톤 일원화 (v64) */
+html[data-theme="dark"] .mob-hum-acc-lbl                     { color: var(--color-premium-gold); }
+html[data-theme="dark"] .mob-hum-acc-dot                     { background: var(--color-premium-gold); }
 html[data-theme="dark"] .mob-hum-acc-sect,
 html[data-theme="dark"] .mob-hum-acc-lesson                  { border-color: #1E3356; }
+
+/* ══════════════════════════════════════════════════════════
+   v64 — 다크모드 인문학 컴포넌트 Deep Gold 통일 (data-theme="dark")
+   토글 버튼 / 명언·역사·고사성어 뱃지 / 팁 박스 / 카드 표면
+══════════════════════════════════════════════════════════ */
+/* 카드 표면 — 카키 브라운 → 딥 네이비 */
+html[data-theme="dark"] .mob-hum-card {
+  background: var(--bg-card-dark);
+  border-left-color   : var(--color-premium-gold);
+  border-top-color    : #2a3349;
+  border-right-color  : #2a3349;
+  border-bottom-color : #2a3349;
+}
+html[data-theme="dark"] .mob-hum-badge-row { border-bottom-color: #2a3349; }
+/* 뱃지 — 생노랑 → 은은한 크림 골드 */
+html[data-theme="dark"] .mob-hum-badge {
+  background: var(--bg-badge-gold);
+  color     : var(--color-premium-gold);
+  border    : 1px solid rgba(226,182,91,.35);
+}
+html[data-theme="dark"] .mob-hum-author-badge,
+html[data-theme="dark"] .mob-hum-hanja,
+html[data-theme="dark"] .mob-hum-period       { color: var(--text-muted); }
+html[data-theme="dark"] .mob-hum-quote-marks  { color: var(--color-premium-gold); }
+html[data-theme="dark"] .mob-hum-idiom-title  { color: var(--color-premium-gold); }
+/* 토글 버튼 — 카키 → 네이비 배경 + 딥 골드 텍스트/쉐브론 */
+html[data-theme="dark"] .mob-hum-behind-btn {
+  background : var(--bg-toggle-button);
+  border-top : 1px solid rgba(226,182,91,.2);
+  color      : var(--color-premium-gold);
+}
+html[data-theme="dark"] .mob-hum-behind-btn:active,
+html[data-theme="dark"] .mob-hum-behind-btn.open { background: #26354f; color: var(--color-premium-gold); }
+html[data-theme="dark"] .mob-mkt-expand-btn {
+  background : var(--bg-toggle-button);
+  border-top : 1px solid rgba(226,182,91,.2);
+  color      : var(--color-premium-gold);
+}
+html[data-theme="dark"] .mob-mkt-expand-btn:active,
+html[data-theme="dark"] .mob-card-feed-market.mkt-open .mob-mkt-expand-btn { color: var(--color-premium-gold); }
+html[data-theme="dark"] .mob-mpa-toggle {
+  background   : var(--bg-toggle-button);
+  border-color : rgba(226,182,91,.2);
+  color        : var(--color-premium-gold);
+}
+/* 팁/강조 박스 — 딥 네이비 + 좌측 골드 바 + 밝은 본문 */
+html[data-theme="dark"] .mob-hum-lesson {
+  background  : var(--bg-tip-box);
+  border-left : 4px solid var(--color-premium-gold);
+  color       : var(--text-primary);
+}
+html[data-theme="dark"] .mob-hum-application {
+  background  : var(--bg-tip-box);
+  border-left : 4px solid var(--color-premium-gold);
+  color       : var(--text-primary);
+}
+html[data-theme="dark"] .mob-hum-origin,
+html[data-theme="dark"] .mob-hum-author-info {
+  background  : var(--bg-tip-box);
+  border-left : 2px solid var(--color-premium-gold);
+  color       : var(--text-muted);
+}
+html[data-theme="dark"] .mob-hum-lesson i,
+html[data-theme="dark"] .mob-hum-application i { color: var(--color-premium-gold); }
+/* 인문학 헤더 저장 버튼 — 골드 통일 */
+html[data-theme="dark"] .mob-hum-save-btn {
+  border-color: rgba(226,182,91,.3);
+  color       : var(--color-premium-gold);
+}
+html[data-theme="dark"] .mob-hum-save-btn:hover { background: var(--bg-toggle-button); }
+html[data-theme="dark"] .mob-hum-save-btn.saved,
+html[data-theme="dark"] .mob-hum-save-btn:disabled {
+  color: var(--color-premium-gold); border-color: var(--color-premium-gold); background: var(--bg-badge-gold);
+}
 
 /* ─── data-theme="light" 때 하드코딩 표면 강제 ─── */
 html[data-theme="light"] .mob-bottom-nav {
@@ -3889,6 +3970,12 @@ html[data-theme="light"] .mvw-quiz-btn.wrong                 { background: #fff5
     --text-primary    : #F1F5F9;
     --text-muted      : #94A3B8;
     --accent-color    : #D4AF37;
+    /* ── 통합 Deep Gold 시스템 (v64) — 시스템 다크에서도 동일 톤 ── */
+    --color-premium-gold: #E2B65B;
+    --bg-card-dark      : #162235;
+    --bg-toggle-button  : #1F2D44;
+    --bg-badge-gold     : rgba(226,182,91,.15);
+    --bg-tip-box        : #1E293B;
   }
 
   /* ── 하드코딩 흰 배경 표면 ── */
@@ -3905,13 +3992,57 @@ html[data-theme="light"] .mvw-quiz-btn.wrong                 { background: #fff5
   .mvw-stat-card.mvw-stat-streak { background: #2c2614; border-color: #6d5a1e; }
   .mvw-stat-card.mvw-stat-today  { background: #12303a; border-color: #1e5b6d; }
 
-  /* ── 파스텔 박스 → 딥톤 (강조 박스는 --bg-highlight-box 변수가 처리, 하드코딩 제거 v61) ── */
-  .mob-hum-lesson       { background: #2e2113; border-color: #4f3a1c; }
+  /* ── v64 통합 Deep Gold: 팁 박스 — 딥 네이비 + 좌측 골드 바 + 밝은 본문 ── */
+  .mob-hum-lesson {
+    background  : var(--bg-tip-box);
+    border-left : 4px solid var(--color-premium-gold);
+    color       : var(--text-primary);
+  }
+  .mob-hum-lesson i { color: var(--color-premium-gold); }
+  .mob-hum-application {
+    background  : var(--bg-tip-box);
+    border-left : 4px solid var(--color-premium-gold);
+    color       : var(--text-primary);
+  }
+  .mob-hum-application i { color: var(--color-premium-gold); }
+  .mob-hum-origin,
+  .mob-hum-author-info {
+    background  : var(--bg-tip-box);
+    border-left : 2px solid var(--color-premium-gold);
+    color       : var(--text-muted);
+  }
 
-  /* ── 비하인드 스토리: 배경은 --bg-highlight-box 변수가 처리 (하드코딩 누수 제거) ── */
-  .mob-hum-behind-btn         { background: #33290f; color: #e3c66b; }
+  /* ── v64 통합 Deep Gold: 토글 버튼 — 네이비 배경 + 딥 골드 텍스트/쉐브론 ── */
+  .mob-hum-behind-btn {
+    background : var(--bg-toggle-button);
+    border-top : 1px solid rgba(226,182,91,.2);
+    color      : var(--color-premium-gold);
+  }
   .mob-hum-behind-btn:active,
-  .mob-hum-behind-btn.open    { background: #4d4015; color: #f0d77e; }
+  .mob-hum-behind-btn.open    { background: #26354f; color: var(--color-premium-gold); }
+  .mob-mkt-expand-btn {
+    background : var(--bg-toggle-button);
+    border-top : 1px solid rgba(226,182,91,.2);
+    color      : var(--color-premium-gold);
+  }
+  .mob-mkt-expand-btn:active,
+  .mob-card-feed-market.mkt-open .mob-mkt-expand-btn { color: var(--color-premium-gold); }
+  .mob-mpa-toggle {
+    background   : var(--bg-toggle-button);
+    border-color : rgba(226,182,91,.2);
+    color        : var(--color-premium-gold);
+  }
+  /* ── v64 통합 Deep Gold: 뱃지 — 생노랑 → 은은한 크림 골드 ── */
+  .mob-hum-badge {
+    background: var(--bg-badge-gold);
+    color     : var(--color-premium-gold);
+    border    : 1px solid rgba(226,182,91,.35);
+  }
+  .mob-hum-author-badge,
+  .mob-hum-hanja,
+  .mob-hum-period       { color: var(--text-muted); }
+  .mob-hum-quote-marks  { color: var(--color-premium-gold); }
+  .mob-hum-idiom-title  { color: var(--color-premium-gold); }
 
   /* ── 대화문 박스 ── */
   .mob-feed-dialogue { background: #232c40; }
@@ -3923,17 +4054,19 @@ html[data-theme="light"] .mvw-quiz-btn.wrong                 { background: #fff5
   .mob-dlv-card {
     background : linear-gradient(160deg, #1d2536 0%, #1a2130 100%);
   }
+  /* ── v64 통합 Deep Gold: 카드 표면 — 카키 브라운 → 딥 네이비 ── */
   .mob-hum-card {
-    background  : linear-gradient(160deg, #251f12 0%, #211c10 100%);
-    border-top-color   : #4d4015;
-    border-right-color : #4d4015;
-    border-bottom-color: #4d4015;
+    background  : var(--bg-card-dark);
+    border-left-color  : var(--color-premium-gold);
+    border-top-color   : #2a3349;
+    border-right-color : #2a3349;
+    border-bottom-color: #2a3349;
   }
-  .mob-hum-badge-row { border-bottom-color: #4d4015; }
-  .mob-hum-save-btn  { border-color: #4d4015; color: #e3c66b; }
-  .mob-hum-save-btn:hover { background: #33290f; }
+  .mob-hum-badge-row { border-bottom-color: #2a3349; }
+  .mob-hum-save-btn  { border-color: rgba(226,182,91,.3); color: var(--color-premium-gold); }
+  .mob-hum-save-btn:hover { background: var(--bg-toggle-button); }
   .mob-hum-save-btn.saved,
-  .mob-hum-save-btn:disabled { color: #f0d77e; border-color: #c08a18; background: #2e2113; }
+  .mob-hum-save-btn:disabled { color: var(--color-premium-gold); border-color: var(--color-premium-gold); background: var(--bg-badge-gold); }
 
   /* ── 옅은 파스텔 박스 + var(--text) 조합 보정 ── */
   .mvw-en-inner          { background: #19202f; }
@@ -3963,9 +4096,9 @@ html[data-theme="light"] .mvw-quiz-btn.wrong                 { background: #fff5
   .mob-fv-sect        { border-color: var(--mob-border, var(--border)); }
   .mob-mkt-ind-chip   { background: var(--bg-2); border-color: var(--border); }
   /* .mob-hum-acc-sect/lesson 배경은 --bg-highlight-box 변수가 처리 (하드코딩 누수 제거 v61) */
-  .mob-hum-acc-sect   { border-color: #4d4015; }
-  .mob-hum-acc-lbl    { color: #e3a83a; }
-  .mob-hum-acc-dot    { background: #e3a83a; }
+  .mob-hum-acc-sect   { border-color: #2a3349; }
+  .mob-hum-acc-lbl    { color: var(--color-premium-gold); }   /* v64 통합 Deep Gold */
+  .mob-hum-acc-dot    { background: var(--color-premium-gold); }
 
   /* v42 신규 */
   .mob-star-btn.starred   { background: #2a2000; color: #fbbf24; border-color: #92400e; }

@@ -290,7 +290,7 @@ const Mob = {
       }
     }
     if (viewName === 'summary') {
-      this._loadLibraryView();
+      this._loadLibraryView(true);   /* 탭 포커스마다 항상 fresh fetch */
       if (document.body.dataset.mode === 'exam') {
         el('libTypeTabs')?.removeAttribute('hidden');
       }
@@ -431,31 +431,27 @@ const Mob = {
       html += '</div>';
     }
 
-    /* ── [지난 지식] 섹션 ── */
+    /* ── [지난 지식] 섹션 — Fisher-Yates 셔플 후 평면 렌더링 ── */
     if (pastItems.length > 0) {
+      /* Fisher-Yates 인플레이스 셔플 */
+      const shuffled = [...pastItems];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+
       html += `
         <div class="mob-section-hd past" id="pastSection">
           <span>지난 지식 복습하기</span>
-          <span class="mob-section-badge">${pastItems.length}개</span>
+          <span class="mob-section-badge">${shuffled.length}개</span>
         </div>`;
-
-      /* 날짜별 그룹핑 */
-      const groups = {};
-      pastItems.forEach(item => {
-        const key = fmtFull(item.createdAt);
-        if (!groups[key]) groups[key] = [];
-        groups[key].push(item);
+      html += '<div class="mob-card-list">';
+      shuffled.forEach(item => {
+        html += item.type === 'daily_delivery'
+          ? this._cardDlvSummary(item)
+          : this.cardHTML(item);
       });
-      for (const [date, group] of Object.entries(groups)) {
-        html += `<div class="mob-date-divider">${date}</div>`;
-        html += '<div class="mob-card-list">';
-        group.forEach(item => {
-          html += item.type === 'daily_delivery'
-            ? this._cardDlvSummary(item)
-            : this.cardHTML(item);
-        });
-        html += '</div>';
-      }
+      html += '</div>';
     }
 
     feed.innerHTML = html;
@@ -928,12 +924,22 @@ const Mob = {
     /* ── 마스터 패러그래프 (팩 전용) ── */
     const masterHTML = masterPara ? this._renderMasterParagraph(masterPara) : '';
 
+    const isSavedLang = !!(item.saved || item.savedItemId);
     return `
     <div class="mob-card mob-card-feed" data-id="">
       <div class="mob-feed-card-hd">
         <span class="mob-feed-badge mob-feed-badge-lang">${langIcon} ${item.label || '표현'}</span>
         ${dayOfWeek && !isThemePack ? `<span class="mob-feed-day-theme">${dayOfWeek}요일 · ${theme}</span>` : ''}
-        <span class="mob-feed-card-date">${date}</span>
+        <div class="mob-feed-card-hd-r">
+          <span class="mob-feed-card-date">${date}</span>
+          ${subId ? `<button class="mob-feed-card-save-btn${isSavedLang ? ' saved' : ''}"
+              data-sub="${subId}" data-date="${date}"
+              onclick="event.stopPropagation();Mob._saveFeedToArchive('${subId}','${date}',this)"
+              title="${isSavedLang ? '이미 저장됨' : '전체 서재에 저장'}"
+              ${isSavedLang ? 'disabled' : ''}>
+              <i class="ti ti-${isSavedLang ? 'bookmark-filled' : 'bookmark'}"></i>
+            </button>` : ''}
+        </div>
       </div>
       ${!isThemePack ? `<div class="mob-card-title">${item.title || '오늘의 표현'}</div>` : ''}
       ${!isThemePack && item.summary ? `<div class="mob-card-summary">${item.summary}</div>` : ''}
@@ -941,8 +947,10 @@ const Mob = {
       <div class="mob-feed-vocab-list">${vocabHTML}</div>
       ${masterHTML}
       <div class="mob-feed-card-ft">
-        <button class="mob-feed-save-btn" onclick="event.stopPropagation();Mob._saveFeedToArchive('${subId}','${date}',this)">
-          <i class="ti ti-device-floppy"></i> 전체 저장
+        <button class="mob-feed-save-btn${isSavedLang ? ' saved' : ''}"
+            onclick="event.stopPropagation();Mob._saveFeedToArchive('${subId}','${date}',this)"
+            ${isSavedLang ? 'disabled' : ''}>
+          <i class="ti ti-device-floppy"></i> ${isSavedLang ? '저장됨' : '전체 저장'}
         </button>
         <span class="mob-feed-ai-tag">${item.aiGenerated ? '✨ AI 생성' : (item.pack_id ? '📦 테마팩' : '📋 DB')}</span>
       </div>
@@ -1115,12 +1123,25 @@ const Mob = {
 
     const hasExpand = !!(behindSect || lessonSect);
     const frontLesson = item.lesson || s3Lines[0] || '';
+    const subId = item.subId || '';
+    const date  = item.date  || '';
+    const isSaved = !!(item.saved || item.savedItemId);
+    const saveBtn = subId ? `<button class="mob-hum-save-btn${isSaved ? ' saved' : ''}"
+        data-sub="${subId}" data-date="${date}"
+        onclick="event.stopPropagation();Mob._saveFeedToArchive('${subId}','${date}',this)"
+        title="${isSaved ? '이미 저장됨' : '서재에 저장'}"
+        ${isSaved ? 'disabled' : ''}>
+        <i class="ti ti-${isSaved ? 'bookmark-filled' : 'bookmark'}"></i>
+      </button>` : '';
 
     return `
     <div class="mob-card mob-hum-card">
       <div class="mob-hum-badge-row">
         <span class="mob-hum-badge">🏛️ 역사 · ${item.era || '역사'}</span>
-        <span class="mob-hum-period">${item.period || ''}</span>
+        <div class="mob-hum-badge-row-r">
+          <span class="mob-hum-period">${item.period || ''}</span>
+          ${saveBtn}
+        </div>
       </div>
       <div class="mob-hum-content">
         <div class="mob-hum-title">${item.title || '오늘의 역사'}</div>
@@ -1151,12 +1172,25 @@ const Mob = {
         <div class="mob-hum-behind-txt">${item.behindStory}</div>
         ${item.context ? `<div class="mob-hum-behind-context">📍 맥락: ${item.context}</div>` : ''}
       </div>` : '';
+    const subId = item.subId || '';
+    const date  = item.date  || '';
+    const isSaved = !!(item.saved || item.savedItemId);
+    const saveBtn = subId ? `<button class="mob-hum-save-btn${isSaved ? ' saved' : ''}"
+        data-sub="${subId}" data-date="${date}"
+        onclick="event.stopPropagation();Mob._saveFeedToArchive('${subId}','${date}',this)"
+        title="${isSaved ? '이미 저장됨' : '서재에 저장'}"
+        ${isSaved ? 'disabled' : ''}>
+        <i class="ti ti-${isSaved ? 'bookmark-filled' : 'bookmark'}"></i>
+      </button>` : '';
 
     return `
     <div class="mob-card mob-hum-card mob-hum-quote-card">
       <div class="mob-hum-badge-row">
         <span class="mob-hum-badge">💡 오늘의 명언</span>
-        <span class="mob-hum-author-badge">${item.author || ''}</span>
+        <div class="mob-hum-badge-row-r">
+          <span class="mob-hum-author-badge">${item.author || ''}</span>
+          ${saveBtn}
+        </div>
       </div>
       <div class="mob-hum-quote-wrap">
         <div class="mob-hum-quote-marks">"</div>
@@ -1196,12 +1230,25 @@ const Mob = {
       </div>` : '';
 
     const hasExpand = !!(storySect || behindSect || applSect);
+    const subId = item.subId || '';
+    const date  = item.date  || '';
+    const isSaved = !!(item.saved || item.savedItemId);
+    const saveBtn = subId ? `<button class="mob-hum-save-btn${isSaved ? ' saved' : ''}"
+        data-sub="${subId}" data-date="${date}"
+        onclick="event.stopPropagation();Mob._saveFeedToArchive('${subId}','${date}',this)"
+        title="${isSaved ? '이미 저장됨' : '서재에 저장'}"
+        ${isSaved ? 'disabled' : ''}>
+        <i class="ti ti-${isSaved ? 'bookmark-filled' : 'bookmark'}"></i>
+      </button>` : '';
 
     return `
     <div class="mob-card mob-hum-card mob-hum-idiom-card">
       <div class="mob-hum-badge-row">
         <span class="mob-hum-badge">📜 고사성어</span>
-        <span class="mob-hum-hanja">${item.hanja || ''}</span>
+        <div class="mob-hum-badge-row-r">
+          <span class="mob-hum-hanja">${item.hanja || ''}</span>
+          ${saveBtn}
+        </div>
       </div>
       <div class="mob-hum-content">
         <div class="mob-hum-idiom-title">${item.idiom || item.title || ''}</div>
@@ -1397,11 +1444,21 @@ const Mob = {
 
     const hasDetail = !!(indFullHTML || summary3HTML || checkHTML || termsHTML);
 
+    const isSavedMkt = !!(item.saved || item.savedItemId);
     return `
     <div class="mob-card mob-card-feed mob-card-feed-market" data-id="">
       <div class="mob-feed-card-hd">
         <span class="mob-feed-badge mob-feed-badge-market">${isUS ? '🗽' : '🐯'} ${item.label || '시황'}</span>
-        <span class="mob-feed-card-date">${date}</span>
+        <div class="mob-feed-card-hd-r">
+          <span class="mob-feed-card-date">${date}</span>
+          ${subId ? `<button class="mob-feed-card-save-btn${isSavedMkt ? ' saved' : ''}"
+              data-sub="${subId}" data-date="${date}"
+              onclick="event.stopPropagation();Mob._saveFeedToArchive('${subId}','${date}',this)"
+              title="${isSavedMkt ? '이미 저장됨' : '서재에 저장'}"
+              ${isSavedMkt ? 'disabled' : ''}>
+              <i class="ti ti-${isSavedMkt ? 'bookmark-filled' : 'bookmark'}"></i>
+            </button>` : ''}
+        </div>
       </div>
       <div class="mob-card-title">${item.title || '오늘의 시황'}</div>
       ${item.summary ? `<div class="mob-card-summary">${item.summary}</div>` : ''}
@@ -1451,27 +1508,52 @@ const Mob = {
     }
   },
 
-  /** 배달 피드 아이템 → 서재 저장 */
+  /** 배달 피드 아이템 → 서재 저장 (아이콘 버튼 / 텍스트 버튼 공용) */
   async _saveFeedToArchive(subId, date, btn) {
     if (!subId || !date) return;
+    const isIconBtn = btn.classList.contains('mob-hum-save-btn') ||
+                      btn.classList.contains('mob-feed-card-save-btn');
     try {
       btn.disabled  = true;
-      btn.innerHTML = '<span class="mob-spin"></span> 저장 중…';
+      btn.innerHTML = isIconBtn ? '<span class="mob-spin"></span>' : '<span class="mob-spin"></span> 저장 중…';
       const data = await fetchJSON(`/api/daily-feed/${date}/${subId}/save`, {
         method : 'POST',
         headers: { 'Content-Type': 'application/json' },
         body   : JSON.stringify({ mode: this._modeEnum() })
       });
       if (data.success) {
-        btn.innerHTML    = '<i class="ti ti-check"></i> 저장됨';
+        btn.classList.add('saved');
+        btn.innerHTML    = isIconBtn
+          ? '<i class="ti ti-bookmark-filled"></i>'
+          : '<i class="ti ti-check"></i> 저장됨';
         btn.style.cursor = 'default';
+        btn.title        = '이미 저장됨';
+        /* 같은 subId+date를 공유하는 모든 저장 버튼 동기화 */
+        document.querySelectorAll(
+          `[data-sub="${subId}"][data-date="${date}"]`
+        ).forEach(b => {
+          if (b === btn) return;
+          b.disabled   = true;
+          b.classList.add('saved');
+          b.title      = '이미 저장됨';
+          const isIco  = b.classList.contains('mob-hum-save-btn') ||
+                         b.classList.contains('mob-feed-card-save-btn');
+          b.innerHTML  = isIco
+            ? '<i class="ti ti-bookmark-filled"></i>'
+            : '<i class="ti ti-check"></i> 저장됨';
+        });
+        /* 서재 캐시 무효화 — 다음 서재 탭 진입 시 fresh fetch */
+        state.libraryLoaded = false;
         toast('서재에 저장됐습니다!', 'ok');
       } else {
         throw new Error(data.error || '저장 실패');
       }
     } catch {
       btn.disabled  = false;
-      btn.innerHTML = '<i class="ti ti-device-floppy"></i> 서재에 저장';
+      btn.classList.remove('saved');
+      btn.innerHTML = isIconBtn
+        ? '<i class="ti ti-bookmark"></i>'
+        : '<i class="ti ti-device-floppy"></i> 서재에 저장';
       toast('저장에 실패했습니다', 'error');
     }
   },

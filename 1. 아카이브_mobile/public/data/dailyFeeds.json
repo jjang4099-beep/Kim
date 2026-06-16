@@ -1042,5 +1042,444 @@
       ],
       "aiGenerated": false
     }
+  },
+  "2026-06-15": {
+    "en_expr": {
+      "id": "2026-06-15::en_expr",
+      "date": "2026-06-15",
+      "subId": "en_expr",
+      "createdAt": "2026-06-14T20:37:19.876Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "language",
+      "category": "en",
+      "subCategory": "negotiation_power",
+      "label": "US 영어 표현",
+      "title": "[월] 협상·설득 테이블에서 우위를 점할 때: Let's meet halfway. 외 4개",
+      "summary": "월요일 — 협상·설득 테이블에서 우위를 점할 때",
+      "theme": "negotiation_power",
+      "themeTitle": "협상·설득 테이블에서 우위를 점할 때",
+      "themeTitleEn": "Holding Your Ground at the Negotiation Table",
+      "dayOfWeek": "월",
+      "vocabEntries": [
+        {
+          "item_id": "PACK_EN_002_01",
+          "expression": "Let's meet halfway.",
+          "meaning": "중간 선에서 합의합시다",
+          "nuance": "'Meet halfway'는 양측이 각자의 입장에서 딱 중간 지점을 향해 한 발씩 양보하는 이미지입니다. 단순히 '타협하자(Let's compromise)'보다 공평성의 뉘앙스가 강하며, 어느 한쪽만 손해 보는 것이 아니라 서로 동등하게 양보하는 건전한 협상 자세를 보여줍니다.",
+          "dialogue": "Client: We can't go above 50,000 dollars for the entire project.\nYou: That's significantly below our minimum. But if you're flexible on the timeline, we could meet halfway at 65,000.\nClient: Hmm. What would we get for that additional budget?\nYou: A dedicated project manager and bi-weekly progress calls throughout the entire engagement.",
+          "dialogueKo": "",
+          "sourceSentence": "Neither side got everything they wanted, but both were willing to meet halfway on the delivery terms.",
+          "practiceSentence": "If you can extend the pilot period to 60 days, we're happy to meet halfway on the setup cost."
+        },
+        {
+          "item_id": "PACK_EN_002_02",
+          "expression": "I'll take that on board.",
+          "meaning": "그 의견을 열린 마음으로 수용하겠습니다",
+          "nuance": "'Take on board'는 항구에 화물을 적재하는 이미지에서 온 표현으로, 상대방의 의견이나 비판을 단순히 '들었다'가 아니라 내 사고의 배에 실어 앞으로 나아가겠다는 의지를 담습니다. 방어적으로 반응하지 않고 열린 마음으로 피드백을 수용하는 프로페셔널한 태도를 전달합니다.",
+          "dialogue": "Lead: Your presentation was strong, but the financial projections felt too optimistic.\nYou: I'll take that on board. I'll revise the forecast with more conservative assumptions for the Q4 model.\nLead: Good. Also, the stakeholder analysis could use more depth.\nYou: Noted. I'll add a risk matrix and a second scenario for each key segment.",
+          "dialogueKo": "",
+          "sourceSentence": "I'll take your feedback on board and revise the scope document before our next check-in.",
+          "practiceSentence": "I'll take that on board and adjust the proposal to reflect their preferred payment structure."
+        },
+        {
+          "item_id": "PACK_EN_002_03",
+          "expression": "Let me push back on that.",
+          "meaning": "그 부분에 이의를 제기하겠습니다",
+          "nuance": "'Push back'은 상대방의 주장이나 제안을 정면으로 부정하지 않으면서도 나는 동의하지 않는다는 점을 명확히 밝히는 세련된 표현입니다. 직접적인 반박(I disagree)보다 훨씬 외교적이며, 서구 비즈니스 문화에서 의견 충돌을 건강하게 처리하는 방식으로 널리 쓰입니다.",
+          "dialogue": "Manager: Let's cut the user research phase to save two weeks.\nYou: I need to push back on that. Skipping research is how we ended up with the last product that nobody used.\nManager: I hear you, but the board is breathing down our necks on the timeline.\nYou: What if we do condensed guerrilla testing in three days? That gets us real insights without blowing the schedule.",
+          "dialogueKo": "",
+          "sourceSentence": "I have to push back on the assumption that cutting support staff will improve margins long-term.",
+          "practiceSentence": "I want to push back on the Q3 launch target — the infrastructure simply isn't ready to handle that load."
+        },
+        {
+          "item_id": "PACK_EN_002_04",
+          "expression": "That's a deal-breaker for us.",
+          "meaning": "그건 저희로선 절대 수용 불가입니다",
+          "nuance": "'Deal-breaker'는 협상이 무너지는 결정적 조건 — 이 하나 때문에 거래 자체가 성립되지 않는다는 강력한 신호입니다. 상대방에게 '이 조항만은 절대 양보할 수 없다'는 레드라인을 명확히 그어주는 역할을 합니다. 너무 자주 쓰면 신뢰도가 떨어지므로, 진짜 협상 결렬 사유에 한해 사용해야 합니다.",
+          "dialogue": "Partner: We'd like an exclusivity clause preventing you from working with any competitor for two years.\nYou: That's a deal-breaker for us, I'm afraid. Our other clients represent 40% of our annual revenue.\nPartner: What if we limit it to direct competitors only, for one year?\nYou: That's something we could consider. Let me bring it back to our legal team and follow up by Thursday.",
+          "dialogueKo": "",
+          "sourceSentence": "A mandatory six-month notice period is a deal-breaker for most mid-level candidates we interview.",
+          "practiceSentence": "Unlimited liability exposure is a deal-breaker for us — we need a cap at the contract value."
+        },
+        {
+          "item_id": "PACK_EN_002_05",
+          "expression": "We need to be on the same page here.",
+          "meaning": "우리 서로 완전히 인식을 맞춰야 합니다",
+          "nuance": "'On the same page'는 단순한 의견 일치가 아니라, 같은 책의 같은 페이지를 보고 있는 것처럼 서로의 전제·목표·우선순위가 완전히 동기화되어야 한다는 요구입니다. 협상이 교착 상태에 빠졌거나 양측의 기대가 어긋났을 때, 대화를 리셋하고 기본 전제를 다시 맞추기 위해 쓰입니다.",
+          "dialogue": "You: I feel like we keep going in circles. Before we discuss pricing, we need to be on the same page about the project scope.\nPartner: Agreed. What's your current understanding of the deliverables?\nYou: Design, development, and a 60-day post-launch support period.\nPartner: We had assumed unlimited revisions were included. That's exactly where the gap is.",
+          "dialogueKo": "",
+          "sourceSentence": "Let's align on the success metrics first — we need to be on the same page before development starts.",
+          "practiceSentence": "Before we go further, are we on the same page about what 'done' looks like for phase one?"
+        }
+      ],
+      "masterParagraph": {
+        "text": "Heading into the contract review, I knew it wouldn't be simple. The client opened with terms clearly structured to favor their side, so I said, 'I need to push back on that — the liability clause is a deal-breaker for us as it stands.' Rather than escalating, they softened: 'What if we meet halfway and cap it at the contract value?' I took that on board and replied carefully. But before we moved further, I said, 'Let's just make sure we're on the same page about the core deliverables first, so there are no surprises later.' By anchoring the conversation in shared understanding, we closed the deal on terms both sides could live with.",
+        "translation": "계약 검토 회의에 들어가기 전부터 이번 건이 단순하지 않을 것을 직감했다. 클라이언트는 명백히 자신들에게 유리한 조건들로 시작했고, 나는 '그 부분에는 이의를 제기해야겠습니다 — 책임 조항은 저희로선 현재 상태로는 절대 수용 불가입니다'라고 밝혔다. 상대방은 에스컬레이션 대신 입장을 누그러뜨리며 말했다. '계약 금액 한도에서 중간 선에 합의하면 어떨까요?' 나는 그 제안을 열린 마음으로 받아들인 뒤 신중하게 답했다. 하지만 논의를 더 진전시키기 전에, '핵심 납품 범위부터 서로 인식이 일치하는지 확인합시다. 나중에 서로 당혹스러운 일이 없도록요'라고 말했다. 서로의 이해를 기반으로 대화를 고정함으로써, 양측 모두 수용할 수 있는 조건으로 계약이 성사되었다.",
+        "highlights": [
+          "push back on that",
+          "deal-breaker",
+          "meet halfway",
+          "took that on board",
+          "on the same page"
+        ]
+      },
+      "pack_id": "PACK_EN_002",
+      "aiGenerated": false
+    },
+    "hist_daily": {
+      "id": "2026-06-15::hist_daily",
+      "date": "2026-06-15",
+      "subId": "hist_daily",
+      "createdAt": "2026-06-14T20:37:19.920Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "history",
+      "label": "역사 지식 한줌",
+      "category": "history",
+      "item_id": "HI_028",
+      "era": "세계사",
+      "period": "1997~2000년대",
+      "title": "애플의 1997년 귀환 — 파산 직전 기업이 세계 1위가 된 방법",
+      "summary": "1997년 애플은 90일 안에 파산할 것이라는 분석이 나올 만큼 절체절명의 위기였다. 스티브 잡스가 돌아와 가장 먼저 한 일은 제품 라인업을 96% 줄이는 것이었다.",
+      "summary3": "",
+      "behindStory": "1985년 이사회에 의해 애플에서 쫓겨난 스티브 잡스는 넥스트(NeXT)와 픽사(Pixar)를 운영했다. 1997년 애플은 시장 점유율 4%에 현금이 바닥나 파산 직전이었다. 마이크로소프트가 1억 5000만 달러를 투자하며 '경쟁사를 살려주는' 치욕적인 결정을 해야 할 만큼 절박했다. 잡스가 복귀해서 가장 먼저 한 일은 당시 40여 가지였던 제품 라인을 단 4개로 줄이는 것이었다. 회의실에서 그는 화이트보드에 2x2 매트릭스를 그렸다. 가로축: 일반 소비자 vs 전문가. 세로축: 데스크톱 vs 노트북. '이 네 칸에 각각 하나씩만 만들면 된다'고 선언했다. 이 단순함이 아이맥, 아이팟, 아이폰으로 이어지는 혁신의 토대가 됐다. 2012년 애플은 세계에서 시가총액 1위 기업이 됐다. 더하는 것이 아니라 빼는 것이 때로는 가장 어렵고 가장 강력한 전략이다.",
+      "lesson": "",
+      "aiGenerated": false
+    },
+    "quote_daily": {
+      "id": "2026-06-15::quote_daily",
+      "date": "2026-06-15",
+      "subId": "quote_daily",
+      "createdAt": "2026-06-14T20:37:19.923Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "quote",
+      "label": "오늘의 명언",
+      "category": "inbox",
+      "title": "\"아는 사람은 좋아하는 사람만 못하고, 좋아하는 사람…\" — 공자",
+      "quote": "知之者不如好之者, 好之者不如樂之者",
+      "quoteKo": "아는 사람은 좋아하는 사람만 못하고, 좋아하는 사람은 즐기는 사람만 못하다.",
+      "author": "공자",
+      "authorInfo": "기원전 551년 ~ 기원전 479년, 중국 춘추시대의 사상가이자 교육자, 유교의 시조.",
+      "context": "이 명언은 학문과 배움에 대한 태도를 강조하며, 단순히 지식을 습득하는 것을 넘어 즐거움을 통해 깊이 있는 이해와 성취를 이룰 수 있음을 말한다.",
+      "behindStory": "공자는 평생을 주유천하하며 자신의 이상을 펼치려 했으나 뜻을 이루지 못하고 고향으로 돌아와 제자들을 가르치고 『논어』 등을 편찬하는 데 힘썼습니다. 이 명언은 그가 제자들에게 학문 자체에서 즐거움을 찾아야 진정한 깨달음을 얻을 수 있다고 가르치던 과정에서 나왔으며, 공자 자신도 '배우고 때때로 익히면 또한 기쁘지 아니한가?'라고 말할 정도로 배움의 즐거움을 중시했습니다.",
+      "application": "오늘 성재님은 직장 업무나 자기계발에서 단순한 의무감보다는 흥미를 찾아 몰입함으로써 더 큰 성과와 만족을 얻을 수 있습니다.",
+      "aiGenerated": true
+    },
+    "idiom_daily": {
+      "id": "2026-06-15::idiom_daily",
+      "date": "2026-06-15",
+      "subId": "idiom_daily",
+      "createdAt": "2026-06-14T20:37:19.924Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "idiom",
+      "label": "오늘의 고사성어",
+      "category": "history",
+      "title": "와신상담 (臥薪嘗膽)",
+      "idiom": "와신상담",
+      "hanja": "臥薪嘗膽",
+      "meaning": "원수를 갚거나 목적 달성을 위해 온갖 고난을 견디며 분발함",
+      "origin": "사마천의 《사기》 월왕구천세가(越王勾踐世家)에서 유래",
+      "story": "춘추시대 오나라 왕 부차는 패배의 굴욕을 잊지 않기 위해 매일 가시 방석(薪) 위에서 잠을 잤습니다. 월나라 왕 구천은 부차에게 항복 후 3년간 노예처럼 살다 귀국해, 쓸개(膽)를 핥으며 복수의 불씨를 키웠습니다. 결국 구천은 22년 후 오나라를 멸망시켰습니다.",
+      "behindStory": "와신상담의 주인공 구천은 항복 후 오나라에서 부차의 말을 돌보는 마부 일까지 했습니다. 흥미로운 점은 부차가 구천을 귀국시킨 이유가, 구천의 신하 범려가 절세미녀 서시(西施)를 바쳐 부차의 눈을 멀게 했기 때문이라는 설도 있다는 것입니다. 이 와신상담의 고사는 훗날 일본의 무사도에도 영향을 줬다는 역사적 기록이 있습니다.",
+      "application": "예: 장기 프로젝트가 번번이 실패해도 포기하지 마세요 — 와신상담의 자세로 실력을 쌓다 보면 반드시 기회가 옵니다.",
+      "aiGenerated": false
+    },
+    "us_market": {
+      "id": "2026-06-15::us_market",
+      "date": "2026-06-15",
+      "subId": "us_market",
+      "createdAt": "2026-06-14T20:37:19.880Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "market",
+      "category": "economy",
+      "subCategory": "미국 증시 · 경제",
+      "label": "미국 시황",
+      "title": "미 증시: 금리 인하 기대 조정",
+      "summary": "연준의 신중론 속 금리 인하 기대가 후퇴하며 시장은 변동성 장세를 보였으나, AI 기술주는 견조한 흐름을 유지했습니다.",
+      "indicators": [
+        {
+          "name": "S&P 500",
+          "value": "5280.50",
+          "change": "+0.35%",
+          "dir": "up"
+        },
+        {
+          "name": "나스닥",
+          "value": "16850.20",
+          "change": "+0.55%",
+          "dir": "up"
+        },
+        {
+          "name": "다우 지수",
+          "value": "38750",
+          "change": "+0.20%",
+          "dir": "up"
+        },
+        {
+          "name": "미 국채 10년물",
+          "value": "4.45%",
+          "change": "+3 bp",
+          "dir": "up"
+        },
+        {
+          "name": "VIX 공포지수",
+          "value": "13.8",
+          "change": "-0.5",
+          "dir": "down"
+        }
+      ],
+      "summary3": "• 연준의 고금리 장기화 시사로 금리 인하 기대감이 조정되며 시장 변동성이 확대되었습니다.\n• AI 관련 기술주는 견조한 실적과 성장 기대로 시장의 하방 압력을 상쇄하며 상승세를 이끌었습니다.\n• 불확실성 속에서도 성장 잠재력이 높은 혁신 기술주 중심으로 포트폴리오를 점검하고, 현금 비중을 유연하게 조절하는 전략이 유효합니다.",
+      "checkpoints": [
+        "체크포인트 1: 다음 FOMC 회의록 및 연준 위원 발언을 통해 금리 경로 신호 확인",
+        "체크포인트 2: 핵심 물가 지표(CPI, PCE) 발표 시 인플레이션 둔화 속도 주시",
+        "체크포인트 3: 주요 기업 실적 발표 시즌, 특히 AI 및 기술 섹터 성장세 지속 여부"
+      ],
+      "report": "## 시장 흐름\n연준의 신중론과 고금리 장기화 시사로 금리 인하 기대는 후퇴하며 시장은 숨고르기에 들어섰습니다. 달러 강세, 유가 변동성, 채권 수익률 곡선의 복잡한 신호가 이어집니다. 지정학적 리스크는 여전히 잠재된 불안 요소로 작용합니다.\n\n## 투자 인사이트\n금리 인하 지연 가능성에 대비하여 포트폴리오의 방어적 요소를 강화하고, 고금리 환경에서 강점을 보이는 섹터에 주목해야 합니다. 동시에 AI와 같은 구조적 성장 테마는 장기적 관점에서 꾸준히 관심을 가질 필요가 있습니다.",
+      "aiEconomicKnowledge": [
+        {
+          "term": "미 연준 금리 전망 (Fed Funds Rate Outlook)",
+          "importance": "미국 연방준비제도(Fed)의 기준금리 전망은 기업의 대출 비용과 소비자의 주택담보대출 금리 등 전반적인 경제 활동에 막대한 영향을 미칩니다. 예를 들어, 금리 0.25% 인상 시 기업의 차입 비용이 크게 늘어 투자 위축으로 이어질 수 있습니다.",
+          "connection": "은행 대출 금리, 주택담보대출 금리, 자동차 할부 금리 등 우리 일상생활의 모든 대출 상품 이자에 직접적인 영향을 줍니다."
+        },
+        {
+          "term": "달러 인덱스 (Dollar Index, DXY)",
+          "importance": "달러 인덱스는 유로, 엔 등 6개 주요 통화 대비 달러의 가치를 나타내는 지표로, 달러 강세(DXY 상승)는 미국 기업의 해외 매출 감소와 원자재 가격 하락 압력으로 이어집니다. 예를 들어 DXY가 100에서 105로 오르면 달러 가치가 5% 상승했음을 의미합니다.",
+          "connection": "해외여행 시 환전 비용, 수입품 가격, 국내 주식 시장 외국인 투자자금 유출입에 영향을 미쳐 체감 물가와 자산 가치에 변화를 줍니다."
+        },
+        {
+          "term": "채권 수익률 곡선 (Yield Curve)",
+          "importance": "채권 수익률 곡선은 만기가 다른 채권들의 수익률을 연결한 선으로, 단기 채권 수익률이 장기 채권보다 높아지는 '역전 현상'은 과거 7번의 경기 침체 중 7번을 정확히 예측한 강력한 경기 침체 신호입니다. 이는 시장이 단기적으로 경제 둔화를 예상함을 나타냅니다.",
+          "connection": "장기 대출 금리(주택담보대출 등)와 은행의 수익성(단기 차입-장기 대출 마진)에 영향을 미치며, 개인의 투자 계획 및 경제 전망 판단에 중요한 참고 지표가 됩니다."
+        }
+      ],
+      "aiGenerated": true
+    }
+  },
+  "2026-06-16": {
+    "en_expr": {
+      "id": "2026-06-16::en_expr",
+      "date": "2026-06-16",
+      "subId": "en_expr",
+      "createdAt": "2026-06-16T12:40:14.783Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "language",
+      "category": "en",
+      "subCategory": "deadline_breakthrough",
+      "label": "US 영어 표현",
+      "title": "[화] 마감 압박 속에서 돌파구를 찾을 때: We're down to the wire. 외 4개",
+      "summary": "화요일 — 마감 압박 속에서 돌파구를 찾을 때",
+      "theme": "deadline_breakthrough",
+      "themeTitle": "마감 압박 속에서 돌파구를 찾을 때",
+      "themeTitleEn": "Finding a Breakthrough When the Clock Is Ticking",
+      "dayOfWeek": "화",
+      "vocabEntries": [
+        {
+          "item_id": "PACK_EN_003_01",
+          "expression": "We're down to the wire.",
+          "meaning": "마감이 코앞입니다 / 시간이 촉박합니다",
+          "nuance": "'Down to the wire'는 결승선에 코를 박은 말들처럼 마감이 극도로 임박해 조금의 여유도 없는 상태입니다. 'The deadline is near'보다 훨씬 극적인 긴장감을 전달하며, 이 상황에서는 팀원 누구도 여유를 부릴 수 없다는 집단적 위기감을 환기시킵니다.",
+          "dialogue": "You: Is the report finalized yet?\nDev: Still working on the final section. We're really down to the wire on this one.\nYou: Okay, how much longer do you realistically need?\nDev: Ninety minutes, maybe two hours if the data export runs slow again.",
+          "dialogueKo": "",
+          "sourceSentence": "We're down to the wire on the product launch — every single day counts at this point.",
+          "practiceSentence": "We're down to the wire on the RFP response. Can everyone clear their schedules for tomorrow morning?"
+        },
+        {
+          "item_id": "PACK_EN_003_02",
+          "expression": "Let's cut to the chase.",
+          "meaning": "서론은 생략하고 핵심만 얘기합시다",
+          "nuance": "'Cut to the chase'는 할리우드 초창기에 클라이맥스 추격 장면(chase scene)으로 바로 넘어가라는 편집 지시에서 유래했습니다. 불필요한 서론이나 우회 없이 핵심만 말하라는 요청으로, 시간이 촉박하거나 상대방이 장황한 설명을 늘어놓을 때 효과적으로 사용합니다.",
+          "dialogue": "Colleague: So, the background of this issue goes back to Q1, when the team decided to restructure the entire reporting pipeline—\nYou: Sorry to interrupt, but let's cut to the chase — what exactly do you need from me before 5 PM?\nColleague: Right. I need your sign-off on the revised budget and the vendor shortlist.\nYou: Both sent to you in the next ten minutes.",
+          "dialogueKo": "",
+          "sourceSentence": "We only have 20 minutes, so let's cut to the chase and address the three biggest blockers.",
+          "practiceSentence": "I'll cut to the chase: the client needs a revised timeline and cost breakdown by Friday morning."
+        },
+        {
+          "item_id": "PACK_EN_003_03",
+          "expression": "Let's fast-track this.",
+          "meaning": "이것을 최우선으로 신속하게 진행합시다",
+          "nuance": "'Fast-track'은 원래 특수 엘리트 코스나 우선 처리 레인을 뜻하며, 비즈니스에서는 일반적인 검토·승인 절차를 건너뛰고 최우선 순위로 처리하겠다는 선언입니다. 위기 상황이나 경쟁 대응 시에 쓰며, '빠르게 하자'는 단순한 요청보다 더 강한 공식 의지를 표현합니다.",
+          "dialogue": "Director: The competitor just announced a very similar product. When can we ship?\nYou: Normally six weeks, but if we fast-track this and pull in two senior engineers, we can ship in three.\nDirector: What's the trade-off?\nYou: We'll need to defer the premium analytics dashboard to version 1.2, but the core product will be rock solid.",
+          "dialogueKo": "",
+          "sourceSentence": "Given the regulatory deadline, we need to fast-track the compliance documentation review.",
+          "practiceSentence": "Legal has agreed to fast-track the contract review so we can sign before the quarter closes."
+        },
+        {
+          "item_id": "PACK_EN_003_04",
+          "expression": "I'll circle back to you on this.",
+          "meaning": "이 건으로 나중에 다시 연락드리겠습니다",
+          "nuance": "'Circle back'은 현재는 다른 우선순위가 있거나 정보가 부족해 즉시 답하기 어려울 때, 반드시 다시 돌아와 이 주제를 다루겠다는 신뢰 있는 약속입니다. 'I'll get back to you'보다 더 적극적이고, 상대방을 잊지 않겠다는 책임감이 담겨 있습니다.",
+          "dialogue": "Client: Can you confirm whether the API integration will support our legacy database architecture?\nYou: Great question, and I want to give you a fully accurate answer. Let me circle back to you on this by end of day after checking with our technical lead.\nClient: Perfect. That's exactly what we need before we can commit to the timeline.\nYou: I'll send a written confirmation along with any technical constraints we identify.",
+          "dialogueKo": "",
+          "sourceSentence": "I don't have the final numbers yet — let me circle back to you on this after the finance call.",
+          "practiceSentence": "I'll circle back to you on this by Thursday once the legal team has reviewed the terms."
+        },
+        {
+          "item_id": "PACK_EN_003_05",
+          "expression": "We need to think outside the box.",
+          "meaning": "기존 틀을 벗어나 창의적으로 생각해야 합니다",
+          "nuance": "'Think outside the box'는 기존의 틀과 관행에서 벗어나 창의적이고 비전통적인 해결책을 모색하라는 촉구입니다. 매우 흔한 비즈니스 표현이 되어 다소 진부해졌지만, 역설적으로 팀이 '예상 가능한 답'에만 집착할 때 이 표현 하나가 사고방식을 전환시키는 트리거가 됩니다.",
+          "dialogue": "Manager: The traditional ad campaign is 50% over budget and results are flat. We have to change course.\nYou: What if we think outside the box and partner with five micro-influencers instead of running paid ads?\nManager: That's actually interesting. What would the reach and cost look like?\nYou: Their combined audience is 200,000 in our exact target demographic, and the total cost is a quarter of the ad spend.",
+          "dialogueKo": "",
+          "sourceSentence": "We've tried the standard approaches. It's time to think outside the box on customer acquisition.",
+          "practiceSentence": "To hit the growth targets with a reduced budget, we'll need to really think outside the box this quarter."
+        }
+      ],
+      "masterParagraph": {
+        "text": "The moment I walked into the Monday all-hands, I could feel the tension — we were clearly down to the wire on the product launch, and nobody had a clean solution. Our VP said, 'Let's cut to the chase: we have 48 hours. What can we actually ship?' I suggested we fast-track the authentication module and defer the reporting dashboard, which got a nod from engineering. For the vendor partnership question, I told the room, 'Let me circle back to you on this by tomorrow morning once I have the legal team's input.' On the way out, the designer pulled me aside and whispered, 'I know it feels impossible, but we need to think outside the box on the onboarding UX — what if it were a single screen instead of five?' That ten-second conversation became our breakthrough.",
+        "translation": "월요일 전체 회의에 발을 들여놓는 순간 긴장감이 느껴졌다 — 제품 출시 마감이 코앞으로 다가왔는데 깔끔한 해결책이 없었다. 부사장이 말했다. '핵심만 얘기합시다: 48시간 남았습니다. 실제로 무엇을 출시할 수 있나요?' 나는 인증 모듈을 최우선으로 신속하게 진행하고 리포팅 대시보드는 미루자고 제안했고, 엔지니어링 팀이 고개를 끄덕였다. 파트너십 계약 문제가 나왔을 때, 나는 방 안에 있는 사람들에게 '법무팀 의견을 받아서 내일 아침까지 다시 연락드리겠습니다'라고 했다. 회의를 나오는 길에 디자이너가 나를 불러 속삭였다. '불가능해 보이는 건 알지만, 온보딩 UX를 기존 틀 밖에서 생각해봐야 해요 — 다섯 화면 대신 단 하나의 화면이면 어떨까요?' 그 10초짜리 대화가 우리의 돌파구가 되었다.",
+        "highlights": [
+          "down to the wire",
+          "cut to the chase",
+          "fast-track",
+          "circle back to you",
+          "think outside the box"
+        ]
+      },
+      "pack_id": "PACK_EN_003",
+      "aiGenerated": false
+    },
+    "hist_daily": {
+      "id": "2026-06-16::hist_daily",
+      "date": "2026-06-16",
+      "subId": "hist_daily",
+      "createdAt": "2026-06-16T12:40:14.826Z",
+      "saved": true,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "history",
+      "label": "역사 지식 한줌",
+      "category": "history",
+      "item_id": "HI_029",
+      "era": "세계사",
+      "period": "1869년~현재",
+      "title": "수에즈 운하 — 공급망이 지정학을 지배한 순간",
+      "summary": "1869년 개통된 수에즈 운하는 유럽과 아시아 간 항로를 7000km 단축했다. 이 하나의 수로가 세계 무역, 전쟁, 외교의 중심에 수백 번 등장했다.",
+      "summary3": "",
+      "behindStory": "프랑스 외교관 페르디낭 드 레셉스(Ferdinand de Lesseps)가 주도해 10년간 150만 명의 노동력으로 건설한 수에즈 운하는 개통 즉시 세계 무역의 판도를 바꿨다. 영국은 인도로 가는 항로 단축에 전략적 가치를 즉각 파악하고 1875년 이집트 정부 지분의 44%를 사들였다. 1956년 이집트 대통령 나세르가 운하를 국유화하자 영국·프랑스·이스라엘이 군사적으로 개입한 '수에즈 위기'가 터졌다. 미국과 소련이 모두 개입을 반대하면서 영국은 굴욕적으로 철수했다. 2021년 3월에는 대형 컨테이너선 에버기븐(Ever Given)이 좌초해 6일간 운하를 막았다. 그 6일간 세계 무역 손실은 약 600억 달러였다. 하루 400척이 오가는 이 좁은 수로 하나가 세계 물동량의 12%를 처리한다. 공급망의 취약점은 언제나 가장 좁은 곳에 있다.",
+      "lesson": "",
+      "aiGenerated": false,
+      "savedItemId": "bf413e3a-b3ca-4141-9c0c-ae483bcb8f7e"
+    },
+    "idiom_daily": {
+      "id": "2026-06-16::idiom_daily",
+      "date": "2026-06-16",
+      "subId": "idiom_daily",
+      "createdAt": "2026-06-16T12:40:14.830Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "idiom",
+      "label": "오늘의 고사성어",
+      "category": "history",
+      "title": "와신상담 (臥薪嘗膽)",
+      "idiom": "와신상담",
+      "hanja": "臥薪嘗膽",
+      "meaning": "원수를 갚거나 목적 달성을 위해 온갖 고난을 견디며 분발함",
+      "origin": "사마천의 《사기》 월왕구천세가(越王勾踐世家)에서 유래",
+      "story": "춘추시대 오나라 왕 부차는 패배의 굴욕을 잊지 않기 위해 매일 가시 방석(薪) 위에서 잠을 잤습니다. 월나라 왕 구천은 부차에게 항복 후 3년간 노예처럼 살다 귀국해, 쓸개(膽)를 핥으며 복수의 불씨를 키웠습니다. 결국 구천은 22년 후 오나라를 멸망시켰습니다.",
+      "behindStory": "와신상담의 주인공 구천은 항복 후 오나라에서 부차의 말을 돌보는 마부 일까지 했습니다. 흥미로운 점은 부차가 구천을 귀국시킨 이유가, 구천의 신하 범려가 절세미녀 서시(西施)를 바쳐 부차의 눈을 멀게 했기 때문이라는 설도 있다는 것입니다. 이 와신상담의 고사는 훗날 일본의 무사도에도 영향을 줬다는 역사적 기록이 있습니다.",
+      "application": "예: 장기 프로젝트가 번번이 실패해도 포기하지 마세요 — 와신상담의 자세로 실력을 쌓다 보면 반드시 기회가 옵니다.",
+      "aiGenerated": false
+    },
+    "quote_daily": {
+      "id": "2026-06-16::quote_daily",
+      "date": "2026-06-16",
+      "subId": "quote_daily",
+      "createdAt": "2026-06-16T12:40:14.829Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "quote",
+      "label": "오늘의 명언",
+      "category": "inbox",
+      "title": "\"상상력은 지식보다 중요하다. 지식은 한계가 있지만,…\" — 알베르트 아인슈타인",
+      "quote": "Imagination is more important than knowledge. For knowledge is limited, whereas imagination embraces the entire world, stimulating progress, giving birth to evolution.",
+      "quoteKo": "상상력은 지식보다 중요하다. 지식은 한계가 있지만, 상상력은 온 세상을 껴안고 진보를 자극하며 진화를 낳는다.",
+      "author": "알베르트 아인슈타인",
+      "authorInfo": "독일 태생 이론물리학자 (1879-1955), 상대성이론으로 현대 물리학의 혁명을 이끌었으며 1921년 노벨물리학상 수상",
+      "context": "1929년 《Saturday Evening Post》 인터뷰에서 아인슈타인이 과학 발견의 본질에 관해 설명하면서 한 말로, 그의 사고 방식의 핵심을 보여준다.",
+      "behindStory": "아인슈타인은 실제로 언어 발달이 늦어 부모가 걱정할 정도였고, 취리히 연방공대 입학시험에도 낙방했다. 하지만 그는 16살 때 '빛의 속도로 달리면 거울에 내 얼굴이 보일까?'라는 사고실험을 상상했고, 이것이 10년 후 특수상대성이론의 씨앗이 되었다. 그는 평생 바이올린 연주와 요트 타기를 즐기며 자유로운 상상의 시간을 확보했다.",
+      "application": "오늘 업무 중 막힌 문제가 있다면 기존 데이터 분석만 반복하지 말고, 점심시간에 산책하며 '만약 이 문제가 전혀 다른 분야라면 어떻게 접근할까?'를 상상해보세요.",
+      "aiGenerated": true
+    },
+    "us_market": {
+      "id": "2026-06-16::us_market",
+      "date": "2026-06-16",
+      "subId": "us_market",
+      "createdAt": "2026-06-16T12:40:32.890Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "market",
+      "category": "economy",
+      "subCategory": "미국 증시 · 경제",
+      "label": "미국 시황",
+      "title": "연준 매파 신호와 채권금리 급등",
+      "summary": "연준의 긴축 기조 지속 신호에 장기 채권금리 상승하며 증시 변동성 확대, 금리 민감 섹터 압박",
+      "indicators": [
+        {
+          "name": "S&P 500",
+          "value": "4783.45",
+          "change": "-0.78%",
+          "dir": "down"
+        },
+        {
+          "name": "나스닥",
+          "value": "14936.81",
+          "change": "-1.12%",
+          "dir": "down"
+        },
+        {
+          "name": "다우 지수",
+          "value": "37405",
+          "change": "-0.42%",
+          "dir": "down"
+        },
+        {
+          "name": "미 국채 10년물",
+          "value": "4.28%",
+          "change": "+12 bp",
+          "dir": "up"
+        },
+        {
+          "name": "VIX 공포지수",
+          "value": "15.8",
+          "change": "+1.9",
+          "dir": "up"
+        }
+      ],
+      "summary3": "• 연준 위원들의 매파 발언으로 금리 인하 기대 후퇴, 장기 채권 수익률 급등\n• 기술주와 성장주 밸류에이션 부담 가중, 에너지·금융 등 가치주 상대적 선전\n• 기관투자자들 포지션 축소 관측, 현금 비중 확대 및 방어적 섹터 선호",
+      "checkpoints": [
+        "체크포인트 1: 다음 주 FOMC 의사록 공개 시 위원들의 금리 경로 전망 표현 변화",
+        "체크포인트 2: 미 국채 10년물과 2년물 수익률 스프레드 역전 해소 여부 (경기 전환 신호)",
+        "체크포인트 3: 12월 고용보고서와 임금 상승률 - 인플레이션 재가속 리스크 판단 근거"
+      ],
+      "report": "## 시장 흐름\n연준은 2024년 금리 인하 속도가 시장 기대보다 느릴 것임을 거듭 시사하고 있습니다. 장기 중립금리(r-star) 논쟁이 재점화되며 4% 이상의 정책금리가 새로운 균형점일 수 있다는 인식이 확산됩니다. 이에 10년물 국채 수익률은 4.3%에 근접하며 주식 밸류에이션에 압력을 가하고 있습니다. 달러 인덱스 강세는 신흥국 자금 유출을 촉발하며 글로벌 유동성 긴축 효과를 증폭시킵니다.\n\n## 투자 인사이트\n고금리 장기화 시나리오에서는 현금흐름이 확실한 배당주와 실물 자산 노출 섹터가 유리합니다. 기술주 내에서도 수익성이 검증된 대형주와 AI 인프라 수혜주는 상대적 안전자산입니다. 채권 투자자는 수익률 곡선의 가파른 구간(5년-7년물)에서 듀레이션 리스크 대비 수익률 프리미엄을 확보할 기회를 주목해야 합니다. 지정학적 긴장 지속 시 금과 방산주는 헷지 포지션으로 유효합니다.",
+      "aiEconomicKnowledge": [
+        {
+          "term": "중립금리(Neutral Rate, r-star)",
+          "importance": "경제를 과열도 침체도 시키지 않는 균형 금리 수준으로, 연준이 정책금리 종착점을 결정하는 핵심 기준입니다. 최근 연준은 중립금리를 2.5%에서 3.5-4.0%로 상향 조정 검토 중이며, 이는 금리 인하 폭이 제한적일 수 있음을 의미합니다.",
+          "connection": "중립금리가 높아지면 주택담보대출, 자동차 할부 금리가 예전보다 높은 수준에서 고착되어 개인 대출 비용 부담이 지속됩니다."
+        },
+        {
+          "term": "수익률 곡선 역전(Yield Curve Inversion)",
+          "importance": "단기 채권 금리가 장기 채권보다 높은 비정상 현상으로, 역사적으로 경기 침체 선행지표입니다. 2023년 중반부터 이어진 역전이 해소되는 시점은 경기 전환의 실질적 신호로 해석되며, 현재 -40bp 수준에서 점진적 정상화 중입니다.",
+          "connection": "역전 해소는 장기 금리 상승을 의미해 고정금리 주택담보대출 재융자 기회가 사라지고, 저축예금보다 장기 채권 투자가 유리해집니다."
+        },
+        {
+          "term": "달러 인덱스(DXY)",
+          "importance": "주요 6개 통화 대비 달러 가치를 측정하는 지표로, 현��� 104선을 돌파하며 강달러 국면입니다. 강달러는 미국 기업의 해외 수익 환산 시 불리하게 작용하며, S&P500 기업 매출의 약 40%가 해외에서 발생해 직접적 영향을 받습니다.",
+          "connection": "해외여행 경비가 저렴해지는 장점이 있으나, 수입 물가 하락으로 국내 소비재 가격이 안정되는 효과도 있습니다."
+        }
+      ],
+      "aiGenerated": true
+    }
   }
 }

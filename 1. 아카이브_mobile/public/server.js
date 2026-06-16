@@ -2964,9 +2964,20 @@ app.post('/api/daily-feed/:date/:subId/save', async (req, res) => {
   if (feed.savedItemId) return res.json({ success: true, alreadySaved: true, itemId: feed.savedItemId });
 
   // 서재에 저장
-  const text = feed.type === 'language'
-    ? `[영어 배달 ${date}] ${feed.title}\n` + (feed.vocabEntries || []).map(e => `• ${e.expression}: ${e.meaning}`).join('\n')
-    : `[시황 배달 ${date}] ${feed.title}\n${feed.summary}\n${feed.report || ''}`;
+  let text;
+  if (feed.type === 'language') {
+    text = `[영어 배달 ${date}] ${feed.title}\n` + (feed.vocabEntries || []).map(e => `• ${e.expression}: ${e.meaning}`).join('\n');
+  } else if (feed.type === 'humanities') {
+    const parts = [`[인문학 배달 ${date}] ${feed.title}`];
+    if (feed.summary)     parts.push(feed.summary);
+    if (feed.lesson)      parts.push(`교훈: ${feed.lesson}`);
+    if (feed.application) parts.push(`활용: ${feed.application}`);
+    if (feed.meaning)     parts.push(`의미: ${feed.meaning}`);
+    if (feed.story)       parts.push(`유래: ${feed.story}`);
+    text = parts.filter(Boolean).join('\n');
+  } else {
+    text = `[시황 배달 ${date}] ${feed.title}\n${feed.summary}\n${feed.report || ''}`;
+  }
 
   const now     = new Date();
   const newItem = {

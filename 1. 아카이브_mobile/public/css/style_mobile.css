@@ -2049,6 +2049,65 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   border-bottom  : 1px solid #fde68a;
 }
 
+/* 인문학 카드 배지 행 우측 그룹 (텍스트 + 저장 버튼) */
+.mob-hum-badge-row-r {
+  display    : flex;
+  align-items: center;
+  gap        : 6px;
+}
+
+/* 인문학 카드 헤더 저장 버튼 */
+.mob-hum-save-btn {
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  width          : 26px;
+  height         : 26px;
+  border-radius  : 6px;
+  border         : 1.5px solid #fde68a;
+  background     : transparent;
+  color          : #92400e;
+  font-size      : 14px;
+  cursor         : pointer;
+  transition     : background .15s, color .15s, transform .1s;
+  flex-shrink    : 0;
+}
+.mob-hum-save-btn:hover           { background: #fef3c7; }
+.mob-hum-save-btn:active          { transform: scale(.88); }
+.mob-hum-save-btn.saved,
+.mob-hum-save-btn:disabled        { color: #d97706; border-color: #d97706; background: #fef9e7; cursor: default; }
+
+/* 피드 카드 헤더 우측 그룹 (날짜 + 저장 아이콘) */
+.mob-feed-card-hd-r {
+  display    : flex;
+  align-items: center;
+  gap        : 6px;
+}
+
+/* 피드 카드 헤더 저장 아이콘 버튼 (시황·영어 카드 공용) */
+.mob-feed-card-save-btn {
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  width          : 26px;
+  height         : 26px;
+  border-radius  : 6px;
+  border         : 1.5px solid var(--border);
+  background     : transparent;
+  color          : var(--text-2);
+  font-size      : 14px;
+  cursor         : pointer;
+  transition     : background .15s, color .15s, transform .1s;
+  flex-shrink    : 0;
+}
+.mob-feed-card-save-btn:hover     { background: var(--bg-2); }
+.mob-feed-card-save-btn:active    { transform: scale(.88); }
+.mob-feed-card-save-btn.saved,
+.mob-feed-card-save-btn:disabled  { color: var(--accent); border-color: var(--accent); background: #eff6ff; cursor: default; }
+
+/* 이미 저장된 언어 피드 전체저장 버튼 */
+.mob-feed-save-btn.saved          { opacity: .65; cursor: default; }
+
 .mob-hum-badge {
   display      : inline-flex; align-items: center; gap: 5px;
   font-size    : 11px; font-weight: 700;
@@ -3871,6 +3930,10 @@ html[data-theme="light"] .mvw-quiz-btn.wrong                 { background: #fff5
     border-bottom-color: #4d4015;
   }
   .mob-hum-badge-row { border-bottom-color: #4d4015; }
+  .mob-hum-save-btn  { border-color: #4d4015; color: #e3c66b; }
+  .mob-hum-save-btn:hover { background: #33290f; }
+  .mob-hum-save-btn.saved,
+  .mob-hum-save-btn:disabled { color: #f0d77e; border-color: #c08a18; background: #2e2113; }
 
   /* ── 옅은 파스텔 박스 + var(--text) 조합 보정 ── */
   .mvw-en-inner          { background: #19202f; }

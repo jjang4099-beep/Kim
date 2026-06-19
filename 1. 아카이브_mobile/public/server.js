@@ -227,11 +227,62 @@ async function initSQLiteDB() {
     );
     CREATE INDEX IF NOT EXISTS idx_ee_theme_id ON english_expressions(theme_id);
     CREATE INDEX IF NOT EXISTS idx_ee_order    ON english_expressions(theme_id, expression_order);
+
+    /* ══════════════════════════════════════════════════
+       수험생 모드 지식 배달 — 영어 단어 / 한국사
+       (직장인 english_themes와 완전 독립. data/exam_db/*.json에서 시드)
+    ══════════════════════════════════════════════════ */
+
+    /* 수능 영어 단어 — 상위 테마팩 */
+    CREATE TABLE IF NOT EXISTS exam_vocab_themes (
+      id            INTEGER PRIMARY KEY AUTOINCREMENT,
+      pack_id       TEXT UNIQUE NOT NULL,
+      theme_title   TEXT NOT NULL,
+      level         TEXT    DEFAULT 'high',
+      tip           TEXT    DEFAULT '',
+      delivery_date TEXT,
+      created_at    TEXT    DEFAULT (datetime('now','localtime'))
+    );
+    CREATE INDEX IF NOT EXISTS idx_evt_pack_id ON exam_vocab_themes(pack_id);
+
+    /* 수능 영어 단어 — 하위 개별 단어 (theme_id FK) */
+    CREATE TABLE IF NOT EXISTS exam_vocab_words (
+      id          INTEGER PRIMARY KEY AUTOINCREMENT,
+      theme_id    INTEGER NOT NULL REFERENCES exam_vocab_themes(id) ON DELETE CASCADE,
+      word_order  INTEGER NOT NULL,
+      word_id     TEXT UNIQUE,
+      word        TEXT NOT NULL,
+      pos         TEXT DEFAULT '',
+      meaning     TEXT NOT NULL,
+      example_en  TEXT DEFAULT '',
+      example_ko  TEXT DEFAULT '',
+      csat_ref    TEXT DEFAULT '',
+      synonyms    TEXT DEFAULT ''
+    );
+    CREATE INDEX IF NOT EXISTS idx_evw_theme_id ON exam_vocab_words(theme_id);
+    CREATE INDEX IF NOT EXISTS idx_evw_order    ON exam_vocab_words(theme_id, word_order);
+
+    /* 한국사 핵심 지식 */
+    CREATE TABLE IF NOT EXISTS exam_history_items (
+      id            INTEGER PRIMARY KEY AUTOINCREMENT,
+      item_id       TEXT UNIQUE NOT NULL,
+      era           TEXT DEFAULT '',
+      era_label     TEXT DEFAULT '',
+      title         TEXT NOT NULL,
+      summary       TEXT DEFAULT '',
+      key_point     TEXT DEFAULT '',
+      exam_tip      TEXT DEFAULT '',
+      delivery_date TEXT,
+      created_at    TEXT DEFAULT (datetime('now','localtime'))
+    );
+    CREATE INDEX IF NOT EXISTS idx_ehi_item_id ON exam_history_items(item_id);
+    CREATE INDEX IF NOT EXISTS idx_ehi_era     ON exam_history_items(era);
   `);
   _migrateFromJSON();
   _migrateLegacyDomains();
   _migrateItemModes();
   _seedEnglishThemes();
+  _seedExamKnowledge();
   _persistDB();
   console.log('[SQLite] DB 초기화 완료 →', SQLITE_PATH);
 }
@@ -458,6 +509,107 @@ function _queryEnThemePack(subId) {
   } catch (e) {
     console.warn('[EnTheme Query] 실패:', e.message);
     return null;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   수험생 지식 배달 — 시드 / 쿼리 유틸리티
+   data/exam_db/*.json → exam_vocab_themes / exam_vocab_words / exam_history_items
+   (INSERT OR IGNORE → 멱등, 재시작마다 안전 실행. 직장인 knowledge_db와 완전 독립)
+══════════════════════════════════════════════════════════ */
+
+/** 서버 시작 시 exam_db 배치 파일에서 영어단어/한국사를 SQLite로 시드 */
+function _seedExamKnowledge() {
+  const dir = path.join(__dirname, 'data', 'exam_db');
+  if (!fs.existsSync(dir)) return;
+  const files = fs.readdirSync(dir).filter(f => f.endsWith('.json')).sort();
+  let vSeeded = 0, hSeeded = 0;
+  for (const file of files) {
+    try {
+      const batch = JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8'));
+
+      /* ── 영어 단어 팩 ── */
+      for (const pack of (batch.exam_vocab_themes || [])) {
+        const tStmt = _sqliteDb.prepare(
+          `INSERT OR IGNORE INTO exam_vocab_themes (pack_id, theme_title, level, tip, delivery_date)
+           VALUES (?,?,?,?,?)`
+        );
+        tStmt.run([pack.id, pack.theme_title || '', pack.level || 'high', pack.tip || '', pack.delivery_date || null]);
+        tStmt.free();
+        const themeRow = _sqlGet('SELECT id FROM exam_vocab_themes WHERE pack_id = ?', [pack.id]);
+        if (!themeRow) continue;
+        let order = 0;
+        for (const w of (pack.words || [])) {
+          order++;
+          const wStmt = _sqliteDb.prepare(
+            `INSERT OR IGNORE INTO exam_vocab_words
+             (theme_id, word_order, word_id, word, pos, meaning, example_en, example_ko, csat_ref, synonyms)
+             VALUES (?,?,?,?,?,?,?,?,?,?)`
+          );
+          wStmt.run([
+            themeRow.id, w.order || order, w.id || null,
+            w.word, w.pos || '', w.meaning || '',
+            w.example_en || '', w.example_ko || '', w.csat_ref || '', w.synonyms || ''
+          ]);
+          wStmt.free();
+          vSeeded++;
+        }
+      }
+
+      /* ── 한국사 ── */
+      for (const h of (batch.exam_history_items || [])) {
+        const hStmt = _sqliteDb.prepare(
+          `INSERT OR IGNORE INTO exam_history_items
+           (item_id, era, era_label, title, summary, key_point, exam_tip, delivery_date)
+           VALUES (?,?,?,?,?,?,?,?)`
+        );
+        hStmt.run([
+          h.id, h.era || '', h.era_label || '', h.title,
+          h.summary || '', h.key_point || '', h.exam_tip || '', h.delivery_date || null
+        ]);
+        hStmt.free();
+        hSeeded++;
+      }
+    } catch (e) {
+      console.warn(`[ExamKnowledge Seed] ${file} 실패:`, e.message);
+    }
+  }
+  if (vSeeded || hSeeded) console.log(`[ExamKnowledge Seed] 단어 ${vSeeded}개 / 한국사 ${hSeeded}개 시드 완료`);
+}
+
+/**
+ * 수험생 오늘의 배달 — 영어 단어 팩 1개(5단어) + 한국사 1개 (AI 호출 없음)
+ * 날짜 기반 결정적(deterministic) 로테이션:
+ *   같은 날엔 항상 같은 내용(일관성), 날짜가 바뀌면 다음 팩/항목으로 순환.
+ *   데이터가 늘수록 더 다양해짐.
+ */
+function _queryExamDaily(dateStr) {
+  try {
+    const base = dateStr ? new Date(dateStr + 'T00:00:00') : new Date();
+    const epochDay = Math.floor(base.getTime() / 86400000);
+
+    /* 영어 단어 팩 */
+    let vocab = null;
+    const packs = _sqlQuery('SELECT * FROM exam_vocab_themes ORDER BY id ASC', []);
+    if (packs.length) {
+      const pack = packs[epochDay % packs.length];
+      const words = _sqlQuery(
+        'SELECT * FROM exam_vocab_words WHERE theme_id = ? ORDER BY word_order ASC', [pack.id]
+      );
+      vocab = { pack, words };
+    }
+
+    /* 한국사 — 영어와 다른 오프셋으로 조합 다양화 */
+    let history = null;
+    const histItems = _sqlQuery('SELECT * FROM exam_history_items ORDER BY id ASC', []);
+    if (histItems.length) {
+      history = histItems[epochDay % histItems.length];
+    }
+
+    return { vocab, history };
+  } catch (e) {
+    console.warn('[ExamDaily Query] 실패:', e.message);
+    return { vocab: null, history: null };
   }
 }
 
@@ -4153,6 +4305,109 @@ async function callGeminiWithImageExam(imageBuffer, mimeType, subject = 'math') 
   ]);
   return result.response.text();
 }
+
+/* ══════════════════════════════════════════════════
+   수험생 지식 배달 — 영어 단어 / 한국사 (AI 호출 없음, DB 기반)
+══════════════════════════════════════════════════ */
+
+/* GET /api/exam/daily-knowledge — 오늘의 영어 단어 팩 + 한국사 1건 */
+app.get('/api/exam/daily-knowledge', (req, res) => {
+  try {
+    const today = toDateStr(new Date());
+    const { vocab, history } = _queryExamDaily(today);
+    res.json({
+      success: true,
+      date: today,
+      vocab: vocab ? {
+        packId:     vocab.pack.pack_id,
+        themeTitle: vocab.pack.theme_title,
+        tip:        vocab.pack.tip,
+        level:      vocab.pack.level,
+        words: vocab.words.map(w => ({
+          id: w.word_id, word: w.word, pos: w.pos, meaning: w.meaning,
+          exampleEn: w.example_en, exampleKo: w.example_ko,
+          csatRef: w.csat_ref, synonyms: w.synonyms
+        }))
+      } : null,
+      history: history ? {
+        id:       history.item_id,
+        era:      history.era,
+        eraLabel: history.era_label,
+        title:    history.title,
+        summary:  history.summary,
+        keyPoint: history.key_point,
+        examTip:  history.exam_tip
+      } : null
+    });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+/* POST /api/exam/daily-knowledge/save — 배달된 단어팩/한국사를 서재(items, EXAM_PREP)에 저장
+   Body: { kind:'vocab'|'history', id }  (id = pack_id 또는 item_id) */
+app.post('/api/exam/daily-knowledge/save', (req, res) => {
+  const { kind, id } = req.body || {};
+  if (!kind || !id) return res.status(400).json({ success: false, error: 'kind, id 필요' });
+  try {
+    const now  = new Date();
+    const date = toDateStr(now);
+    let item   = null;
+
+    if (kind === 'vocab') {
+      const pack = _sqlGet('SELECT * FROM exam_vocab_themes WHERE pack_id = ?', [id]);
+      if (!pack) return res.status(404).json({ success: false, error: '단어팩을 찾을 수 없습니다.' });
+      const words = _sqlQuery(
+        'SELECT * FROM exam_vocab_words WHERE theme_id = ? ORDER BY word_order ASC', [pack.id]
+      );
+      const text = [`[수능 영단어] ${pack.theme_title}`, pack.tip]
+        .concat(words.map(w => `• ${w.word} (${w.pos}) — ${w.meaning}\n   ${w.example_en}`))
+        .filter(Boolean).join('\n');
+      item = {
+        id: `exv_${pack.pack_id}`, type: 'exam_vocab',
+        mode: MODE_EXAM, category: 'exam', domain: 'exam',
+        title: `[수능 영단어] ${pack.theme_title}`,
+        text, summary: pack.tip || '',
+        date, createdAt: now.toISOString(),
+        examVocab: {
+          packId: pack.pack_id, themeTitle: pack.theme_title, tip: pack.tip, level: pack.level,
+          words: words.map(w => ({
+            id: w.word_id, word: w.word, pos: w.pos, meaning: w.meaning,
+            exampleEn: w.example_en, exampleKo: w.example_ko, csatRef: w.csat_ref, synonyms: w.synonyms
+          }))
+        }
+      };
+    } else if (kind === 'history') {
+      const h = _sqlGet('SELECT * FROM exam_history_items WHERE item_id = ?', [id]);
+      if (!h) return res.status(404).json({ success: false, error: '한국사 항목을 찾을 수 없습니다.' });
+      const text = [`[한국사] ${h.title}`, h.summary,
+        h.key_point ? `핵심: ${h.key_point}` : '',
+        h.exam_tip  ? `시험팁: ${h.exam_tip}` : ''].filter(Boolean).join('\n');
+      item = {
+        id: `exh_${h.item_id}`, type: 'exam_history',
+        mode: MODE_EXAM, category: 'exam', domain: 'exam',
+        title: `[한국사] ${h.title}`,
+        text, summary: h.summary || '',
+        date, createdAt: now.toISOString(),
+        examHistory: {
+          id: h.item_id, era: h.era, eraLabel: h.era_label, title: h.title,
+          summary: h.summary, keyPoint: h.key_point, examTip: h.exam_tip
+        }
+      };
+    } else {
+      return res.status(400).json({ success: false, error: 'kind는 vocab|history' });
+    }
+
+    /* 중복 저장 방지 — 동일 id 이미 있으면 그대로 성공 반환 */
+    const exists = _sqlGet('SELECT id FROM items WHERE id = ?', [item.id]);
+    if (exists) return res.json({ success: true, alreadySaved: true, id: item.id });
+
+    dbInsert(item);
+    res.json({ success: true, id: item.id });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
 
 /* GET /api/exam/settings */
 app.get('/api/exam/settings', (req, res) => {

@@ -123,6 +123,7 @@ const state = {
   selectedImageFile: null,
   feedLoaded       : false,
   feedItems        : [],
+  examDaily        : null,   /* 수험생 모드 오늘의 배달(영어단어+한국사) */
   activeFeedFilter : 'all',
   pendingFeedFilter: null,
   libraryLoaded    : false,
@@ -324,8 +325,20 @@ const Mob = {
       if (load) load.style.display = 'none';
     }
 
-    /* ② 배달 피드 미리보기 — 직장인(전문직) 모드 전용. 수험생 모드면 원천 배제 */
-    if (this._modeEnum() === 'EXAM_PREP') { state.feedItems = []; return; }
+    /* ② 수험생 모드 — 오늘의 영어단어 + 한국사 배달 (직장인 배달 원천은 배제) */
+    if (this._modeEnum() === 'EXAM_PREP') {
+      state.feedItems = [];
+      try {
+        const ex = await fetchJSON('/api/exam/daily-knowledge', {}, 10000);
+        if (ex?.success) {
+          state.examDaily = ex;
+          this.renderFeed(state.items);
+        }
+      } catch {}
+      return;
+    }
+
+    /* ③ 배달 피드 미리보기 — 직장인(전문직) 모드 전용 */
     if (state.feedItems.length > 0) return;
     try {
       const status = await fetchJSON('/api/daily-feed/status', {}, 5000);
@@ -386,11 +399,23 @@ const Mob = {
 
     /* ── [오늘] 섹션 헤더 ── */
     const hasFeedPreview = state.feedItems && state.feedItems.length > 0;
+    /* 수험생 모드 오늘의 배달 — 영어단어 팩 + 한국사 */
+    const ex = (this._modeEnum() === 'EXAM_PREP') ? state.examDaily : null;
+    const examCards = ex ? [ex.vocab ? 1 : 0, ex.history ? 1 : 0].reduce((a, b) => a + b, 0) : 0;
+    const hasExamDaily = examCards > 0;
     html += `
       <div class="mob-section-hd today">
         <span>오늘 배달된 지식</span>
-        <span class="mob-section-badge">${todayItems.length + (hasFeedPreview ? state.feedItems.length : 0)}개</span>
+        <span class="mob-section-badge">${todayItems.length + (hasFeedPreview ? state.feedItems.length : 0) + examCards}개</span>
       </div>`;
+
+    /* ── 수험생 모드 배달 카드 (영어단어 + 한국사) ── */
+    if (hasExamDaily) {
+      html += '<div class="mob-card-list">';
+      if (ex.vocab)   html += this._cardExamVocab(ex.vocab);
+      if (ex.history) html += this._cardExamHistory(ex.history);
+      html += '</div>';
+    }
 
     /* ── 배달 피드 카테고리 미리보기 (1 per 구독, 클릭 시 배달탭 해당 필터로 이동) ── */
     if (hasFeedPreview) {
@@ -407,7 +432,7 @@ const Mob = {
       html += '</div>';
     }
 
-    if (todayItems.length === 0 && !hasFeedPreview) {
+    if (todayItems.length === 0 && !hasFeedPreview && !hasExamDaily) {
       /* ── Smart Empty View ── */
       html += `
         <div class="mob-today-empty" id="todayEmptyBox">
@@ -529,6 +554,87 @@ const Mob = {
   _goToFeedFiltered(subId) {
     state.pendingFeedFilter = subId || 'all';
     this.switchView('feed', el('bnFeed'));
+  },
+
+  /* ══════════════════════════════════════════
+     수험생 모드 배달 카드 — 영어 단어 / 한국사
+  ══════════════════════════════════════════ */
+
+  /** 오늘의 수능 영어 단어 팩 카드 */
+  _cardExamVocab(v) {
+    if (!v || !v.words?.length) return '';
+    const saved = this._examSavedIds?.has(`exv_${v.packId}`);
+    const words = v.words.map(w => `
+      <li class="mob-exv-word">
+        <div class="mob-exv-word-top">
+          <span class="mob-exv-term">${w.word}</span>
+          ${w.pos ? `<span class="mob-exv-pos">${w.pos}</span>` : ''}
+        </div>
+        <div class="mob-exv-mean">${w.meaning}</div>
+        ${w.exampleEn ? `<div class="mob-exv-ex">${w.exampleEn}${w.exampleKo ? `<span class="mob-exv-ex-ko">${w.exampleKo}</span>` : ''}</div>` : ''}
+        ${w.csatRef ? `<div class="mob-exv-ref"><i class="ti ti-bookmark"></i> ${w.csatRef}</div>` : ''}
+      </li>`).join('');
+    return `
+    <article class="mob-exam-card mob-exam-vocab">
+      <div class="mob-exam-card-hd">
+        <span class="mob-exam-badge">🗽 수능 영단어</span>
+        <button class="mob-hum-save-btn${saved ? ' saved' : ''}"
+          onclick="event.stopPropagation();Mob._saveExamKnowledge('vocab','${v.packId}',this)"
+          title="${saved ? '저장됨' : '서재에 저장'}" ${saved ? 'disabled' : ''}>
+          <i class="ti ti-${saved ? 'bookmark-filled' : 'bookmark'}"></i>
+        </button>
+      </div>
+      <h3 class="mob-exam-title">${v.themeTitle}</h3>
+      ${v.tip ? `<p class="mob-exam-tip">${v.tip}</p>` : ''}
+      <ul class="mob-exv-list">${words}</ul>
+    </article>`;
+  },
+
+  /** 오늘의 한국사 지식 카드 */
+  _cardExamHistory(h) {
+    if (!h) return '';
+    const saved = this._examSavedIds?.has(`exh_${h.id}`);
+    return `
+    <article class="mob-exam-card mob-exam-history">
+      <div class="mob-exam-card-hd">
+        <span class="mob-exam-badge hist">🏛️ 한국사${h.eraLabel ? ` · ${h.eraLabel}` : ''}</span>
+        <button class="mob-hum-save-btn${saved ? ' saved' : ''}"
+          onclick="event.stopPropagation();Mob._saveExamKnowledge('history','${h.id}',this)"
+          title="${saved ? '저장됨' : '서재에 저장'}" ${saved ? 'disabled' : ''}>
+          <i class="ti ti-${saved ? 'bookmark-filled' : 'bookmark'}"></i>
+        </button>
+      </div>
+      <h3 class="mob-exam-title">${h.title}</h3>
+      ${h.summary ? `<p class="mob-exam-summary">${h.summary}</p>` : ''}
+      ${h.keyPoint ? `<div class="mob-exam-keypoint"><b>📌 핵심</b> ${h.keyPoint}</div>` : ''}
+      ${h.examTip ? `<div class="mob-exam-tipbox"><b>💡 시험팁</b> ${h.examTip}</div>` : ''}
+    </article>`;
+  },
+
+  /** 수험생 배달 지식을 서재(EXAM_PREP)에 저장 */
+  async _saveExamKnowledge(kind, id, btn) {
+    if (btn?.classList.contains('saved')) return;
+    try {
+      if (btn) { btn.disabled = true; btn.innerHTML = '<span class="mob-spin"></span>'; }
+      const data = await fetchJSON('/api/exam/daily-knowledge/save', {
+        method : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify({ kind, id })
+      });
+      if (data.success) {
+        (this._examSavedIds ||= new Set()).add(data.id);
+        if (btn) {
+          btn.classList.add('saved');
+          btn.innerHTML = '<i class="ti ti-bookmark-filled"></i>';
+          btn.title = '저장됨';
+        }
+        state.libraryLoaded = false;
+        toast(data.alreadySaved ? '이미 저장된 지식입니다' : '서재에 저장됐습니다!', 'ok');
+      }
+    } catch {
+      if (btn) { btn.disabled = false; btn.innerHTML = '<i class="ti ti-bookmark"></i>'; }
+      toast('저장 실패', 'err');
+    }
   },
 
   /**
@@ -713,8 +819,15 @@ const Mob = {
       ? (() => { const d = new Date(rawD); return isNaN(d) ? '오늘' : `${d.getMonth()+1}/${d.getDate()}`; })()
       : '오늘';
 
+    const cat      = item.category || '';   /* 영어 표현(en) 분기 판별용 — 미정의 버그 수정 */
     const domain   = getItemDomain(item);
-    const domMeta  = DOMAINS[domain] || { icon: '💡', label: '기타', color: '#6b7280' };
+    let   domMeta  = DOMAINS[domain] || { icon: '💡', label: '기타', color: '#6b7280' };
+    /* 수험생 배달 저장분(exam_vocab/exam_history)은 8대 도메인 밖 — 전용 라벨로 보정 */
+    if (cat === 'exam') {
+      domMeta = item.type === 'exam_history'
+        ? { icon: '🏛️', label: '한국사',     color: '#b45309' }
+        : { icon: '🗽', label: '수능 영단어', color: '#2563eb' };
+    }
     const catIcon  = domMeta.icon;
     const catLabel = domMeta.label;
 
@@ -1989,28 +2102,40 @@ const Mob = {
 
   /* ── 스와이프 제스처 — 좌측(삭제)만. 우측(즐겨찾기)은 버그 유발로 완전 제거 ── */
   _initSwipe(card, id) {
-    let startX = 0, deltaX = 0;
-    const THRESHOLD = 60, MAX = 80;
+    let startX = 0, startY = 0, deltaX = 0;
+    let locked = null;                 /* null=미정 | 'h'=가로 스와이프 | 'v'=세로 스크롤 */
+    const THRESHOLD = 120, MAX = 140;  /* 삭제까지 충분히 밀어야 함 — 오삭제 방지 */
     card.addEventListener('touchstart', e => {
       startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
       deltaX = 0;
+      locked = null;
       card.style.transition = '';
     }, { passive: true });
     card.addEventListener('touchmove', e => {
-      deltaX = e.touches[0].clientX - startX;
-      if (Math.abs(deltaX) < 5) return;
+      const dx = e.touches[0].clientX - startX;
+      const dy = e.touches[0].clientY - startY;
+      /* 첫 의미있는 움직임으로 가로/세로 방향을 결정 → 세로 스크롤 중 오삭제 차단 */
+      if (locked === null) {
+        if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+        locked = Math.abs(dx) > Math.abs(dy) ? 'h' : 'v';
+      }
+      if (locked === 'v') return;      /* 세로 스크롤이면 스와이프 처리 안 함 */
+      deltaX = dx;
       /* 좌측(음수)으로만 이동 허용 — 우측 스와이프 차단 */
       const move = Math.max(-MAX, Math.min(0, deltaX));
       card.style.transform = `translateX(${move}px)`;
       const delLayer = card.querySelector('.swipe-layer-delete');
-      if (delLayer) delLayer.style.opacity = deltaX < -10 ? Math.min(1, (-deltaX - 10) / 50) : '0';
+      if (delLayer) delLayer.style.opacity = deltaX < -10 ? Math.min(1, (-deltaX) / THRESHOLD) : '0';
     }, { passive: true });
     card.addEventListener('touchend', () => {
       card.style.transition = 'transform 0.25s ease';
       card.style.transform  = '';
       const delLayer = card.querySelector('.swipe-layer-delete');
       if (delLayer) delLayer.style.opacity = '0';
-      if (deltaX < -THRESHOLD) this._deleteItem(id, card);
+      /* 가로 스와이프로 임계(120px)를 확실히 넘겼을 때만 삭제 확인 */
+      if (locked === 'h' && deltaX < -THRESHOLD) this._deleteItem(id, card);
+      deltaX = 0; locked = null;
     });
   },
 

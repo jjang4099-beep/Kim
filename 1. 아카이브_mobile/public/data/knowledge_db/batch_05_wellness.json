@@ -1,0 +1,746 @@
+{
+  "meta": {
+    "batch": 5,
+    "theme": "건강·소통·인간관계",
+    "created": "2026-06-17"
+  },
+  "english_expressions": [
+    {
+      "id": "EN_221",
+      "expression": "I need some time to decompress.",
+      "meaning": "좀 쉬고 긴장을 풀 시간이 필요해요.",
+      "level": "intermediate",
+      "theme": "건강·회복",
+      "example": "After the intense project sprint, I need some time to decompress this weekend.",
+      "dialogue": "A: The product launch finally wrapped up. How are you feeling?\nB: Exhausted, honestly. I need some time to decompress before jumping into the next thing.\nA: Totally understandable. Don't check your emails this weekend.\nB: Agreed. Recovery isn't laziness — it's maintenance."
+    },
+    {
+      "id": "EN_222",
+      "expression": "Don't bottle up your feelings.",
+      "meaning": "감정을 속으로만 억누르지 마세요.",
+      "level": "intermediate",
+      "theme": "소통",
+      "example": "It's not healthy to bottle up your feelings — find a way to express them.",
+      "dialogue": "A: You seem tense lately. Is everything okay?\nB: I've just been bottling up my feelings about the team dynamics.\nA: You should talk to the manager. Keeping it inside won't help.\nB: You're right. I'll schedule a one-on-one tomorrow."
+    },
+    {
+      "id": "EN_223",
+      "expression": "I'm running on empty.",
+      "meaning": "완전히 방전된 상태예요, 기력이 다 떨어졌어요.",
+      "level": "intermediate",
+      "theme": "건강·번아웃",
+      "example": "After three all-nighters in a row, I'm completely running on empty.",
+      "dialogue": "A: Can you join the 7 PM strategy session tonight?\nB: I really can't — I'm running on empty. I haven't slept properly in days.\nA: Take the night off. A burned-out team member is worse than an absent one.\nB: Thank you for understanding. I'll be sharper tomorrow."
+    },
+    {
+      "id": "EN_224",
+      "expression": "Let's clear the air.",
+      "meaning": "오해나 불편함을 솔직하게 털어놓고 해소합시다.",
+      "level": "intermediate",
+      "theme": "소통·관계",
+      "example": "There's been tension between us — can we meet and clear the air?",
+      "dialogue": "A: Things have been awkward between us since the meeting last week.\nB: I know. Can we grab coffee and clear the air?\nA: I'd really appreciate that. I think we both said things we didn't mean.\nB: Exactly. I'd rather address it directly than let it fester."
+    },
+    {
+      "id": "EN_225",
+      "expression": "I'm not in a good headspace right now.",
+      "meaning": "지금 마음 상태가 좋지 않아요.",
+      "level": "intermediate",
+      "theme": "건강·감정",
+      "example": "I appreciate the invitation, but I'm not in a good headspace for a party right now.",
+      "dialogue": "A: Want to join us for drinks tonight?\nB: Honestly, I'm not in a good headspace right now. I need some quiet time.\nA: Of course. Is there anything I can do?\nB: Just knowing you asked helps. I'll reach out when I'm feeling better."
+    },
+    {
+      "id": "EN_226",
+      "expression": "She has a thick skin.",
+      "meaning": "그녀는 비판이나 부정적 말에도 쉽게 상처받지 않아요.",
+      "level": "intermediate",
+      "theme": "인간관계",
+      "example": "You need a thick skin to survive in the world of public speaking and constant feedback.",
+      "dialogue": "A: How does she handle all the negative comments on her work?\nB: She has a thick skin — she takes the useful feedback and ignores the noise.\nA: I wish I could do that. Criticism really gets to me.\nB: It's a skill you can build. Start by separating the message from the emotions."
+    },
+    {
+      "id": "EN_227",
+      "expression": "He wears his heart on his sleeve.",
+      "meaning": "그는 감정을 숨기지 못하고 잘 드러내요.",
+      "level": "intermediate",
+      "theme": "인간관계",
+      "example": "As a manager, wearing your heart on your sleeve can build trust but also vulnerability.",
+      "dialogue": "A: Does he ever hide how he's feeling in meetings?\nB: Never — he wears his heart on his sleeve. You always know exactly where you stand with him.\nA: Some people find that refreshing.\nB: It is. Though in tough negotiations, it can work against him."
+    },
+    {
+      "id": "EN_228",
+      "expression": "Let's touch base soon.",
+      "meaning": "곧 연락해서 서로 근황이나 상황을 나눠요.",
+      "level": "beginner",
+      "theme": "소통",
+      "example": "I haven't seen you in weeks — let's touch base over coffee soon.",
+      "dialogue": "A: I heard you've been working on a new project.\nB: Yes, it's been intense. Let's touch base soon — I'd love your perspective.\nA: Absolutely. How's Thursday afternoon?\nB: Perfect. I'll send a calendar invite."
+    },
+    {
+      "id": "EN_229",
+      "expression": "I've been burning the candle at both ends.",
+      "meaning": "밤낮으로 무리하게 일하고 있어요.",
+      "level": "advanced",
+      "theme": "건강·번아웃",
+      "example": "She's been burning the candle at both ends — working early mornings and late nights.",
+      "dialogue": "A: You look exhausted. How long has it been like this?\nB: Weeks. I've been burning the candle at both ends — early gym, long work hours, weekend calls.\nA: Something has to give. What can you delegate?\nB: I know. I need to stop treating rest as a reward and start treating it as a tool."
+    },
+    {
+      "id": "EN_230",
+      "expression": "She really has her act together.",
+      "meaning": "그녀는 자기 관리와 삶이 정말 잘 정돈되어 있어요.",
+      "level": "intermediate",
+      "theme": "인간관계·성장",
+      "example": "After everything she went through, she really has her act together now.",
+      "dialogue": "A: I haven't seen Mirae in two years — is she still juggling everything?\nB: She really has her act together now — new role, healthy habits, much clearer about her priorities.\nA: What changed?\nB: She said she stopped trying to do everything and started doing the right things."
+    },
+    {
+      "id": "EN_231",
+      "expression": "I need to set some boundaries.",
+      "meaning": "나의 경계선을 설정해야 할 것 같아요.",
+      "level": "intermediate",
+      "theme": "건강·소통",
+      "example": "If I don't set some boundaries at work, I'll never be able to protect my personal time.",
+      "dialogue": "A: Your boss calls you on weekends again?\nB: Yes. I need to set some boundaries — it's affecting my health.\nA: Have you talked to him directly about it?\nB: Not yet. But saying nothing is the same as saying it's okay."
+    },
+    {
+      "id": "EN_232",
+      "expression": "He's a tough nut to crack.",
+      "meaning": "그는 마음을 열기가 정말 어려운 사람이에요.",
+      "level": "intermediate",
+      "theme": "인간관계",
+      "example": "The new client is a tough nut to crack, but once you earn his trust, he's loyal.",
+      "dialogue": "A: How's the relationship with the new stakeholder going?\nB: He's a tough nut to crack — very guarded, doesn't share much.\nA: What's your approach?\nB: Patience and consistency. People like that usually respect earned trust over time."
+    },
+    {
+      "id": "EN_233",
+      "expression": "We're on the same wavelength.",
+      "meaning": "우리는 서로 잘 통해요, 같은 감각을 공유해요.",
+      "level": "beginner",
+      "theme": "인간관계·소통",
+      "example": "I love working with her — we're always on the same wavelength creatively.",
+      "dialogue": "A: How did the brainstorming session go?\nB: It was effortless. We're completely on the same wavelength about the direction.\nA: That kind of creative chemistry is rare.\nB: I know. Protect it when you find it."
+    },
+    {
+      "id": "EN_234",
+      "expression": "I'm taking this one day at a time.",
+      "meaning": "하루하루 차근차근 해나가고 있어요.",
+      "level": "beginner",
+      "theme": "건강·회복",
+      "example": "Recovery is slow, but I'm taking this one day at a time and making steady progress.",
+      "dialogue": "A: How are you coping with the transition to a new city?\nB: Honestly, I'm just taking it one day at a time. Some days are great, some are hard.\nA: That's a healthy approach. No pressure to figure it all out immediately.\nB: Exactly. Small wins each day add up to something bigger."
+    },
+    {
+      "id": "EN_235",
+      "expression": "Don't burn bridges.",
+      "meaning": "관계를 완전히 끊어버리지 마세요.",
+      "level": "intermediate",
+      "theme": "인간관계",
+      "example": "Even if you're leaving on bad terms, try not to burn bridges — industries are small.",
+      "dialogue": "A: I'm so done with this company. I want to quit without giving notice.\nB: Don't burn bridges — you'll likely cross paths with these people again.\nA: I know, but I'm so frustrated.\nB: Write the angry email, then delete it. Quit gracefully."
+    },
+    {
+      "id": "EN_236",
+      "expression": "She reached out to me out of the blue.",
+      "meaning": "그녀가 아무 예고 없이 갑자기 연락해왔어요.",
+      "level": "beginner",
+      "theme": "인간관계",
+      "example": "My old mentor reached out to me out of the blue with an incredible opportunity.",
+      "dialogue": "A: How did you land that consulting gig?\nB: An old colleague reached out to me out of the blue — apparently she'd been following my work.\nA: That's a perfect example of why maintaining weak ties matters.\nB: Absolutely. You never know who's watching and remembering."
+    },
+    {
+      "id": "EN_237",
+      "expression": "I had to swallow my pride.",
+      "meaning": "자존심을 굽혀야 했어요.",
+      "level": "intermediate",
+      "theme": "인간관계·성장",
+      "example": "It was hard, but I had to swallow my pride and ask for help.",
+      "dialogue": "A: Did you ask the junior developer for help in the end?\nB: I did. I had to swallow my pride, but he solved it in ten minutes.\nA: That takes maturity.\nB: Protecting your ego at the cost of results isn't strength — it's just stubbornness."
+    },
+    {
+      "id": "EN_238",
+      "expression": "Let's agree to disagree.",
+      "meaning": "서로 다른 의견임을 인정하고 그냥 넘어갑시다.",
+      "level": "intermediate",
+      "theme": "소통",
+      "example": "We've debated this for an hour — let's agree to disagree and move forward.",
+      "dialogue": "A: I still think the blue version of the design is better.\nB: And I still prefer the green. Let's agree to disagree and show both options to the client.\nA: Fair enough. Let them decide.\nB: Sometimes the best resolution is accepting that neither side needs to win."
+    },
+    {
+      "id": "EN_239",
+      "expression": "He's been carrying a lot on his shoulders.",
+      "meaning": "그는 어깨에 많은 짐을 지고 있어요.",
+      "level": "intermediate",
+      "theme": "소통·공감",
+      "example": "Be patient with him — he's been carrying a lot on his shoulders since his father got sick.",
+      "dialogue": "A: He seems distant and less engaged lately.\nB: He's been carrying a lot on his shoulders — family issues on top of work pressure.\nA: I didn't know. I should have checked in.\nB: Sometimes the best support is just asking: 'How are you, really?'"
+    },
+    {
+      "id": "EN_240",
+      "expression": "I really dropped the ball on that one.",
+      "meaning": "그 부분에서 제가 완전히 실수(실패)했어요.",
+      "level": "intermediate",
+      "theme": "소통",
+      "example": "I dropped the ball on the client follow-up — I completely forgot to send the report.",
+      "dialogue": "A: The client called asking about the proposal we promised last week.\nB: I really dropped the ball on that one — I lost track of the deadline.\nA: Let's send it today with an apology note.\nB: Already drafting it. Owning the mistake quickly is the only way forward."
+    }
+  ],
+  "english_theme_packs": [
+    {
+      "id": "PACK_EN_007",
+      "theme_title": "번아웃에서 자신을 지킬 때",
+      "theme_title_en": "Protecting Yourself from Burnout",
+      "delivery_date": "2026-06-21",
+      "expressions": [
+        {
+          "id": "PACK_EN_007_E1",
+          "order": 1,
+          "expression": "Running on empty",
+          "meaning": "기력이 완전히 소진된 상태",
+          "nuance": "자동차 연료가 바닥난 상태에서 온 비유다. 피곤하다는 것을 넘어서, 기능하는 데 필요한 최소 에너지도 남지 않은 위험한 상태를 가리킨다. 번아웃 직전의 신호를 표현할 때 가장 정확한 표현이다.",
+          "dialogue": "A: You've worked 60-hour weeks for a month. How are you holding up?\nB: Honestly, I'm running on empty. My focus is gone and I can't think clearly anymore.\nA: That's your body telling you something important.\nB: I know. I need to stop before I crash completely.",
+          "example": "Running on empty doesn't make you productive — it makes you fragile and prone to mistakes.",
+          "practice": "'I realized I was running on empty when...'으로 시작하는 자신의 경험을 설명해보세요."
+        },
+        {
+          "id": "PACK_EN_007_E2",
+          "order": 2,
+          "expression": "Decompress",
+          "meaning": "긴장을 풀다, 스트레스를 해소하다",
+          "nuance": "'Relax'보다 더 의도적이고 능동적인 회복 과정을 뜻한다. 압축 파일이 풀리듯, 쌓인 스트레스와 긴장이 서서히 해소되는 이미지다. '쉬다'라기보다 '회복하다'에 가까우며, 혼자만의 시간이든 운동이든 자신에게 맞는 방식을 적극적으로 선택하는 행위다.",
+          "dialogue": "A: The deadline's over. What are you doing this weekend?\nB: Just decompressing — no meetings, no email, no screens. Just a long hike.\nA: That sounds perfect. I always forget to decompress properly after big sprints.\nB: Recovery is part of the performance, not separate from it.",
+          "example": "Top athletes build decompression time into their training cycles — so should professionals.",
+          "practice": "'The most effective way I decompress is...'로 시작하는 자신만의 회복법을 영어로 설명해보세요."
+        },
+        {
+          "id": "PACK_EN_007_E3",
+          "order": 3,
+          "expression": "Burning the candle at both ends",
+          "meaning": "밤낮으로 무리하게 혹사시키다",
+          "nuance": "양쪽을 동시에 태우는 초는 두 배 빠르게 타버린다. 밤을 새우는 동시에 이른 아침부터 일하거나, 직장과 사이드 프로젝트를 동시에 과도하게 뛰는 상황을 가리킨다. 단기 생산성을 위해 장기 건강을 저당 잡히는 패턴이다.",
+          "dialogue": "A: You're up at 5 AM for workouts and working until midnight?\nB: I've been burning the candle at both ends for months. I thought I could sustain it.\nA: Nobody can. What's your plan?\nB: I'm cutting the morning workout to three days. Sleep has to come first.",
+          "example": "She burned the candle at both ends through her twenties and paid for it with her health in her thirties.",
+          "practice": "'I know I'm burning the candle at both ends when I notice...'로 시작하는 자신만의 번아웃 신호를 설명해보세요."
+        },
+        {
+          "id": "PACK_EN_007_E4",
+          "order": 4,
+          "expression": "Set boundaries",
+          "meaning": "경계선을 설정하다",
+          "nuance": "물리적 경계가 아닌, 자신의 시간·에너지·감정에 대한 한계선을 명확히 하는 것이다. 경계선 설정은 이기적인 것이 아니라, 지속가능한 협력의 기반이다. 경계가 없는 사람은 결국 모두에게 덜 줄 수밖에 없게 된다.",
+          "dialogue": "A: My manager expects me to answer messages at 11 PM.\nB: That's the time to set boundaries. A clear, calm conversation about your availability window.\nA: What if they react badly?\nB: If a boundary conversation creates conflict, that itself tells you something important about the environment.",
+          "example": "Setting boundaries at work isn't about working less — it's about protecting your capacity to work well.",
+          "practice": "'A boundary I need to set in my life right now is...'로 시작하여 구체적인 상황을 설명해보세요."
+        },
+        {
+          "id": "PACK_EN_007_E5",
+          "order": 5,
+          "expression": "One day at a time",
+          "meaning": "하루하루 차근차근 해나가다",
+          "nuance": "압도적인 상황에서 전체를 보면 마비된다. '오늘 하루'에만 집중하는 것이 불안을 줄이고 실제로 앞으로 나아가게 한다. 번아웃 회복, 큰 변화의 적응, 장기 치료 과정 등에서 가장 실용적인 생존 전략이다.",
+          "dialogue": "A: I don't know how you're managing with everything on your plate right now.\nB: I'm just taking it one day at a time. Today's goal is just today's goal.\nA: That sounds simple but I imagine it's hard to stick to.\nB: It is. But it beats being paralyzed by everything at once.",
+          "example": "When facing overwhelming change, one day at a time isn't giving up on the future — it's how you get there.",
+          "practice": "'Taking things one day at a time helps me most when...'으로 시작하는 문장을 만들어보세요."
+        }
+      ],
+      "master_paragraph": {
+        "text": "There's a particular kind of exhaustion that sets in when you've been **running on empty** for too long — when rest feels like a luxury and productivity has become your identity. These are the moments when you most need to **decompress**, yet feel most guilty doing so. The truth is that **burning the candle at both ends** doesn't make you more committed — it makes you less capable. Sustainable performance begins the moment you **set boundaries** that protect your energy, and continues when you learn to take the process **one day at a time**, without demanding the whole mountain at once.",
+        "translation": "너무 오래 방전된 상태로 달려왔을 때 찾아오는 특별한 피로감이 있다. 쉬는 것이 사치처럼 느껴지고, 생산성이 정체성이 되어버린 상태. 바로 그 순간이 긴장을 가장 풀어야 할 때이지만, 동시에 가장 죄책감이 드는 때다. 밤낮으로 무리하는 것은 더 헌신적인 것이 아니라, 더 무능하게 만든다. 지속 가능한 성과는 에너지를 보호하는 경계선을 설정하는 순간 시작되고, 한꺼번에 산 전체를 요구하지 않고 하루하루 해나가는 법을 배울 때 이어진다.",
+        "highlights": ["running on empty", "decompress", "burning the candle at both ends", "set boundaries", "one day at a time"]
+      }
+    },
+    {
+      "id": "PACK_EN_008",
+      "theme_title": "인간관계의 깊이를 만드는 순간",
+      "theme_title_en": "Building Depth in Human Relationships",
+      "delivery_date": "2026-06-22",
+      "expressions": [
+        {
+          "id": "PACK_EN_008_E1",
+          "order": 1,
+          "expression": "On the same wavelength",
+          "meaning": "서로 잘 통하다, 같은 주파수에 있다",
+          "nuance": "무선 통신에서 같은 주파수여야 신호가 전달되듯, 사람 사이에서도 생각·감각·가치관이 비슷하게 맞을 때 소통이 자연스럽게 흐른다는 은유다. '말 안 해도 통하는' 깊은 상호이해의 상태를 나타낸다.",
+          "dialogue": "A: I've never had a collaborator I clicked with so instantly.\nB: Same. We're completely on the same wavelength — it saves so much energy.\nA: What do you think makes that happen?\nB: Shared values, similar working styles, and a mutual willingness to be direct.",
+          "example": "Great creative partnerships are built on being on the same wavelength about both the work and the process.",
+          "practice": "'I know I'm on the same wavelength with someone when...'으로 시작하는 문장을 만들어보세요."
+        },
+        {
+          "id": "PACK_EN_008_E2",
+          "order": 2,
+          "expression": "Clear the air",
+          "meaning": "오해나 불편함을 솔직하게 해소하다",
+          "nuance": "공기가 탁할 때는 창문을 열어 환기해야 한다. 관계에서의 '탁함'은 쌓인 오해, 말 못 한 불만, 어색한 사건들이다. 'Clear the air'는 그것을 직접 꺼내 해결하자는 적극적 제안이다. 문제를 무시하는 것(avoid)과 정면으로 싸우는 것(confront)의 중간 지점이다.",
+          "dialogue": "A: Can we talk? Things have been weird since the team meeting.\nB: Yes. I'm glad you said something — let's clear the air.\nA: I felt my idea was dismissed without a fair hearing.\nB: I understand why it felt that way. Let me explain what was going through my mind.",
+          "example": "The best friendships survive difficult moments because both people are willing to clear the air directly.",
+          "practice": "'A time I needed to clear the air with someone was when...'으로 시작하는 경험을 떠올려보세요."
+        },
+        {
+          "id": "PACK_EN_008_E3",
+          "order": 3,
+          "expression": "Touch base",
+          "meaning": "서로 연락해서 상황을 공유하다, 가볍게 안부를 나누다",
+          "nuance": "야구에서 주자가 베이스를 밟아 연결을 확인하는 것에서 유래. 관계를 단절 없이 유지하는 최소한의 행위를 뜻한다. 깊은 대화가 아닌 '살아있음'을 확인하는 가벼운 연결이며, 장기적 관계 유지의 핵심 도구다.",
+          "dialogue": "A: I feel bad — I haven't reached out to my old mentor in almost a year.\nB: Just touch base. A short message is enough to reopen the channel.\nA: What if it's awkward after so long?\nB: Good relationships don't expire. They just need a small activation.",
+          "example": "Successful professionals deliberately touch base with their networks regularly, not just when they need something.",
+          "practice": "'I try to touch base with [type of person] regularly because...'로 시작하는 문장을 만들어보세요."
+        },
+        {
+          "id": "PACK_EN_008_E4",
+          "order": 4,
+          "expression": "Don't burn bridges",
+          "meaning": "관계를 완전히 끊거나 망치지 마라",
+          "nuance": "강을 건넌 뒤 다리를 불태우면 다시는 돌아올 수 없다. 현실에서 업계는 좁고, 적은 예상치 못한 곳에서 나타난다. 감정적으로 관계를 망치는 것은 단기적 해방감을 주지만 장기적 네트워크를 손상시킨다. 그렇다고 진심을 억압하라는 게 아니라, 떠나더라도 품위 있게 떠나라는 원칙이다.",
+          "dialogue": "A: I want to quit by sending a brutal honest email about everything wrong with this company.\nB: Don't burn bridges. You can be honest without being scorched earth.\nA: They deserve to hear the truth.\nB: Write the email, sit on it 24 hours, then decide what actually needs to be said.",
+          "example": "The most professional people leave every situation — jobs, relationships, partnerships — without burning bridges.",
+          "practice": "'A situation where I was tempted to burn bridges but didn't was...'로 시작하는 문장을 만들어보세요."
+        },
+        {
+          "id": "PACK_EN_008_E5",
+          "order": 5,
+          "expression": "Reach out",
+          "meaning": "먼저 연락하다, 손을 내밀다",
+          "nuance": "'Contact'나 'message'가 단순한 행위라면, 'reach out'에는 거리를 좁히려는 의지와 취약성이 담겨 있다. 먼저 연락하는 것은 자존심을 내려놓는 행위이며, 동시에 관계에 가장 큰 투자 중 하나다. 도움을 요청할 때, 오래된 관계를 다시 시작할 때, 감사를 전할 때 모두 쓴다.",
+          "dialogue": "A: I've been thinking about reaching out to my old college professor. We lost touch.\nB: Do it. People almost always appreciate hearing from someone they mentored.\nA: What if they don't remember me?\nB: They will. And even if they don't — the act of reaching out says something about you.",
+          "example": "The single best career move most people never make is reaching out first, before they need something.",
+          "practice": "'I want to reach out to [someone] because...'로 시작하는 문장을 실제 상황에 맞게 만들어보세요."
+        }
+      ],
+      "master_paragraph": {
+        "text": "The deepest relationships in life are rarely built in a single moment — they are maintained through small, consistent acts. When you are lucky enough to find someone you are **on the same wavelength** with, protect that connection. When something feels off, have the courage to **clear the air** rather than letting distance grow. **Touch base** with the people who matter, even when life gets busy. Never **burn bridges** out of frustration, because the people you meet on the way up are the same people you'll need on the way down. And sometimes, the most powerful thing you can do is simply **reach out** first — not because you need something, but because you still care.",
+        "translation": "삶에서 가장 깊은 관계들은 단 한 번의 순간에 만들어지지 않는다. 작고 지속적인 행동들로 유지된다. 잘 통하는 사람을 만나는 행운이 생기면, 그 연결을 지켜라. 뭔가 어색함이 느껴지면, 거리가 멀어지도록 두는 대신 용기를 내어 솔직하게 해소하라. 삶이 바빠져도 중요한 사람들과 가볍게 안부를 나눠라. 화가 나더라도 관계를 망치지 마라. 올라가는 길에서 만나는 사람이 내려가는 길에서 다시 필요한 사람이기 때문이다. 그리고 때로는, 먼저 연락하는 것이 가장 강력한 행동이다. 무언가 필요해서가 아니라, 아직 신경 쓰기 때문에.",
+        "highlights": ["on the same wavelength", "clear the air", "touch base", "burn bridges", "reach out"]
+      }
+    },
+    {
+      "id": "PACK_EN_009",
+      "theme_title": "자기 자신과 솔직해지는 순간",
+      "theme_title_en": "Moments of Radical Honesty with Yourself",
+      "delivery_date": "2026-06-23",
+      "expressions": [
+        {
+          "id": "PACK_EN_009_E1",
+          "order": 1,
+          "expression": "Bottle up feelings",
+          "meaning": "감정을 억누르고 표현하지 않다",
+          "nuance": "병 속에 가두는 것처럼 감정을 내부에만 가두는 것이다. 단기적으로는 갈등을 피하는 것처럼 보이지만, 장기적으로는 감정이 압력을 받으며 예측할 수 없는 방식으로 터져 나온다. 건강한 자기 인식의 반대편에 있는 패턴이다.",
+          "dialogue": "A: You seemed fine all meeting but then snapped at the end. What happened?\nB: I've been bottling up a lot of frustration about the project direction for weeks.\nA: Why didn't you say something earlier?\nB: I didn't want to seem negative. But clearly that backfired.",
+          "example": "Bottling up feelings doesn't make them go away — it makes them come out sideways.",
+          "practice": "'I tend to bottle up my feelings most when...'으로 시작하는 자기 성찰 문장을 만들어보세요."
+        },
+        {
+          "id": "PACK_EN_009_E2",
+          "order": 2,
+          "expression": "Not in a good headspace",
+          "meaning": "마음 상태가 좋지 않다",
+          "nuance": "'Headspace'는 생각하고 감정을 처리하는 내면의 공간이다. 'Not in a good headspace'는 단순히 기분이 나쁜 것을 넘어, 지금 이 순간 명확한 판단·창의적 사고·생산적 대화가 어려운 상태임을 솔직하게 인정하는 표현이다. 자기 상태를 메타적으로 인식하는 성숙한 표현이다.",
+          "dialogue": "A: Can we dive into the strategy now?\nB: I'm not in a good headspace right now. Can we push it to tomorrow?\nA: Of course. Is everything okay?\nB: Just some personal stuff. I'd rather give it my full attention when I'm clearer.",
+          "example": "Recognizing when you're not in a good headspace is itself a form of self-awareness and professionalism.",
+          "practice": "'When I'm not in a good headspace, the most helpful thing I can do is...'로 자신만의 회복 방법을 설명해보세요."
+        },
+        {
+          "id": "PACK_EN_009_E3",
+          "order": 3,
+          "expression": "Thick skin",
+          "meaning": "비판이나 거절에 쉽게 상처받지 않는 강인함",
+          "nuance": "피부가 두꺼울수록 외부 자극에 덜 상처받듯, 비판·거절·부정적 피드백에 흔들리지 않는 심리적 내성을 뜻한다. 하지만 진짜 'thick skin'은 무감각이 아니다. 감정을 느끼되 그것이 자신을 정의하게 두지 않는 능력이다.",
+          "dialogue": "A: How do you handle the constant criticism that comes with a public role?\nB: You develop a thick skin — you learn to filter which feedback is useful and which is noise.\nA: Doesn't it still sting sometimes?\nB: Of course. Thick skin doesn't mean no feelings. It means the feelings don't run the show.",
+          "example": "A thick skin doesn't mean being emotionally numb — it means choosing which voices deserve your reaction.",
+          "practice": "'I developed a thicker skin after...'로 시작하는 자신의 성장 경험을 설명해보세요."
+        },
+        {
+          "id": "PACK_EN_009_E4",
+          "order": 4,
+          "expression": "Wear your heart on your sleeve",
+          "meaning": "감정을 감추지 못하고 그대로 드러내다",
+          "nuance": "중세 유럽에서 기사가 결투 전 사랑하는 이의 물건을 소매에 달았던 것에서 유래. 감정이 얼굴과 행동에 즉각적으로 나타나는 사람을 가리킨다. 단점만은 아니다. 진정성 있는 소통을 만들어내지만, 협상이나 복잡한 정치 환경에서는 취약점이 되기도 한다.",
+          "dialogue": "A: My coworkers always know when I'm upset. I can't hide it.\nB: You wear your heart on your sleeve — that's not a flaw, it's who you are.\nA: But it makes me feel vulnerable in meetings.\nB: Channel it. Your authenticity is an asset with the right people.",
+          "example": "Leaders who wear their heart on their sleeve often build deeper trust — as long as they pair it with emotional self-awareness.",
+          "practice": "'Wearing my heart on my sleeve has helped me / hurt me when...'으로 시작하는 경험을 설명해보세요."
+        },
+        {
+          "id": "PACK_EN_009_E5",
+          "order": 5,
+          "expression": "Swallow your pride",
+          "meaning": "자존심을 내려놓다, 자존심을 굽히다",
+          "nuance": "삼키기 힘든 음식처럼, 자존심을 굽히는 것은 고통스럽다. 하지만 'swallow your pride'는 자기 비하가 아니라 전략적 성숙함이다. 더 큰 목표를 위해, 또는 관계 회복을 위해, 자아보다 결과를 선택하는 순간이다.",
+          "dialogue": "A: I've been wrong about the market direction for six months. I hate admitting it.\nB: Swallow your pride and say it publicly. The team needs to pivot.\nA: It's so hard. My whole strategy was built on that assumption.\nB: Changing your mind in light of evidence isn't weakness — it's how the best thinkers operate.",
+          "example": "The moment you swallow your pride and ask for help, you usually solve the problem faster than if you'd struggled alone.",
+          "practice": "'I had to swallow my pride and...' — 구체적인 상황과 그 결과를 설명하는 문장을 만들어보세요."
+        }
+      ],
+      "master_paragraph": {
+        "text": "Self-awareness begins with the courage to stop **bottling up feelings** and start acknowledging them honestly — to yourself first, then to others. It means knowing when you're **not in a good headspace** and respecting that reality instead of pushing through it blindly. It means developing a **thick skin** without losing sensitivity — the ability to feel without being controlled by feeling. It means accepting that you sometimes **wear your heart on your sleeve**, and that this vulnerability is not a weakness to fix, but a signal to understand. And perhaps most of all, it means being willing to **swallow your pride** when the person who most needs to hear the truth is you.",
+        "translation": "자기 인식은 감정을 억누르기를 멈추고 솔직하게 인정하는 용기에서 시작된다. 먼저 자기 자신에게, 그리고 다른 사람에게. 마음 상태가 좋지 않을 때 그 현실을 인정하고 무작정 밀어붙이는 대신 그것을 존중하는 것이다. 감수성을 잃지 않고 강인함을 키우는 것이다. 느끼되, 감정에 의해 지배되지 않는 능력. 때로는 감정을 그대로 드러낸다는 것을 받아들이는 것이다. 그 취약성이 고쳐야 할 결함이 아니라, 이해해야 할 신호임을 인식하면서. 그리고 무엇보다도, 진실을 가장 필요로 하는 사람이 바로 자기 자신일 때, 기꺼이 자존심을 내려놓을 준비가 되어 있는 것이다.",
+        "highlights": ["bottling up feelings", "not in a good headspace", "thick skin", "wear your heart on your sleeve", "swallow your pride"]
+      }
+    }
+  ],
+  "chinese_expressions": [
+    {
+      "id": "ZH_048",
+      "expression": "养精蓄锐",
+      "pinyin": "yǎng jīng xù ruì",
+      "meaning": "정기를 기르고 예기를 축적하다, 에너지를 충전하다",
+      "level": "advanced",
+      "theme": "건강·회복",
+      "example": "比赛前要养精蓄锐，不能把体力消耗在不必要的事情上。",
+      "dialogue": "A: 你为什么这周拒绝了所有应酬？\nB: 月底有大项目，现在要养精蓄锐，保存实力。\nA: 有人会觉得你不合群。\nB: 真正懂你的人，会理解休息是为了更好地冲刺。"
+    },
+    {
+      "id": "ZH_049",
+      "expression": "推心置腹",
+      "pinyin": "tuī xīn zhì fù",
+      "meaning": "마음을 열고 진심으로 대하다, 속마음을 털어놓다",
+      "level": "advanced",
+      "theme": "소통·신뢰",
+      "example": "真正的友谊建立在推心置腹的坦诚之上。",
+      "dialogue": "A: 你们俩的关系为什么这么好？\nB: 因为我们会推心置腹地谈，不管什么烦恼都可以说。\nA: 这样的朋友真难得。\nB: 是的，人一生能有一两个这样的朋友就够了。"
+    },
+    {
+      "id": "ZH_050",
+      "expression": "防患未然",
+      "pinyin": "fáng huàn wèi rán",
+      "meaning": "문제가 발생하기 전에 미리 예방하다",
+      "level": "advanced",
+      "theme": "건강·예방",
+      "example": "健康管理的关键在于防患未然，而不是出了问题才去治疗。",
+      "dialogue": "A: 我平时身体很好，为什么要定期体检？\nB: 防患未然。很多病在初期没有症状，早发现才能早治疗。\nA: 你说得对，我一直在逃避这件事。\nB: 关心自己的身体，是对家人最大的负责。"
+    },
+    {
+      "id": "ZH_051",
+      "expression": "将心比心",
+      "pinyin": "jiāng xīn bǐ xīn",
+      "meaning": "상대방의 입장에서 생각하다, 역지사지",
+      "level": "intermediate",
+      "theme": "소통·공감",
+      "example": "解决冲突最有效的方法，是将心比心，站在对方的角度思考。",
+      "dialogue": "A: 我不明白他为什么对这件事这么敏感。\nB: 将心比心，如果你经历过同样的事，你也会这样的。\nA: 我从来没想到过他的背景。\nB: 了解一个人，从他的经历开始。"
+    },
+    {
+      "id": "ZH_052",
+      "expression": "相辅相成",
+      "pinyin": "xiāng fǔ xiāng chéng",
+      "meaning": "서로 보완하고 함께 이루다",
+      "level": "intermediate",
+      "theme": "인간관계·팀워크",
+      "example": "工作和休息相辅相成，缺一不可。",
+      "dialogue": "A: 他的逻辑思维强，你的创意好，你们合作是不是很顺？\nB: 非常顺。我们相辅相成，各自弥补对方的不足。\nA: 这种搭档关系真的很难得。\nB: 找到互补的合作伙伴，是职场最大的运气之一。"
+    },
+    {
+      "id": "ZH_053",
+      "expression": "豁然开朗",
+      "pinyin": "huò rán kāi lǎng",
+      "meaning": "갑자기 활짝 트이다, 막혔던 것이 단번에 풀리다",
+      "level": "intermediate",
+      "theme": "통찰·성장",
+      "example": "听了他的解释，我突然豁然开朗，之前困惑的问题全都清楚了。",
+      "dialogue": "A: 你之前一直看不懂这个数据模型，现在呢？\nB: 今天看到一篇文章，突然豁然开朗，全都串起来了。\nA: 理解是一件突然的事。\nB: 是的，积累很久，某一刻突然通了。"
+    },
+    {
+      "id": "ZH_054",
+      "expression": "心无旁骛",
+      "pinyin": "xīn wú páng wù",
+      "meaning": "마음이 다른 곳에 흔들리지 않다, 오직 한 가지에만 집중하다",
+      "level": "advanced",
+      "theme": "집중·건강",
+      "example": "真正的专注，是能够心无旁骛地投入当下正在做的事情。",
+      "dialogue": "A: 你是怎么做到在嘈杂的咖啡厅里专注工作的？\nB: 戴上耳机，心无旁骛。外部环境不重要，内部状态才是关键。\nA: 我总是容易分心。\nB: 专注力也是可以训练的，从短时间开始，逐步延长。"
+    },
+    {
+      "id": "ZH_055",
+      "expression": "宽以待人",
+      "pinyin": "kuān yǐ dài rén",
+      "meaning": "남에게 관대하게 대하다",
+      "level": "intermediate",
+      "theme": "인간관계",
+      "example": "严以律己，宽以待人，是处理人际关系的基本原则。",
+      "dialogue": "A: 他犯了个小错误，我要不要批评他？\nB: 宽以待人。他已经知道错了，你的包容会比批评更有力。\nA: 但这样会不会纵容他？\nB: 区别在于：包容是一次性的宽恕，纵容是无限次的回避。"
+    },
+    {
+      "id": "ZH_056",
+      "expression": "学无止境",
+      "pinyin": "xué wú zhǐ jìng",
+      "meaning": "배움에는 끝이 없다",
+      "level": "beginner",
+      "theme": "성장",
+      "example": "学无止境，保持好奇心是持续成长的最大动力。",
+      "dialogue": "A: 你工作这么忙还在报课程？\nB: 学无止境。停止学习的那天，就是被时代淘汰的开始。\nA: 你不觉得累吗？\nB: 学自己感兴趣的东西不累，那叫充电。"
+    },
+    {
+      "id": "ZH_057",
+      "expression": "日积月累",
+      "pinyin": "rì jī yuè lěi",
+      "meaning": "날마다 달마다 쌓이다, 꾸준한 축적",
+      "level": "beginner",
+      "theme": "성장",
+      "example": "流利的外语能力是日积月累的结果，没有捷径。",
+      "dialogue": "A: 他的英语怎么这么好，有什么秘诀？\nB: 日积月累，他坚持每天听英语播客三年了。\nA: 三年……我能做到吗？\nB: 从今天的十分钟开始。三年后你会感谢今天的自己。"
+    },
+    {
+      "id": "ZH_058",
+      "expression": "见怪不怪",
+      "pinyin": "jiàn guài bú guài",
+      "meaning": "이상한 것을 보아도 놀라지 않다, 웬만한 것에는 동요하지 않다",
+      "level": "intermediate",
+      "theme": "평정심",
+      "example": "在这个行业待久了，什么都见过了，见怪不怪。",
+      "dialogue": "A: 客户突然要求在一天内完成两周的工作，你不生气吗？\nB: 见怪不怪了。在这行，这已经是家常便饭。\nA: 你是怎么做到不崩溃的？\nB: 把精力放在解决方案上，而不是放在情绪上。"
+    },
+    {
+      "id": "ZH_059",
+      "expression": "知足常乐",
+      "pinyin": "zhī zú cháng lè",
+      "meaning": "만족할 줄 알면 항상 즐겁다",
+      "level": "intermediate",
+      "theme": "건강·마음가짐",
+      "example": "知足常乐，不是放弃进步，而是在追求中保持平静的心态。",
+      "dialogue": "A: 我觉得不管得到什么，我都不会满足。\nB: 知足常乐。满足不是终点，而是一种随时都能开启的状态。\nA: 那不是会失去前进的动力吗？\nB: 感恩现在的同时，依然可以追求更多。二者不矛盾。"
+    },
+    {
+      "id": "ZH_060",
+      "expression": "平心静气",
+      "pinyin": "píng xīn jìng qì",
+      "meaning": "마음을 평온하게 하고 기를 가라앉히다, 냉정을 되찾다",
+      "level": "intermediate",
+      "theme": "건강·평정심",
+      "example": "遇到突发状况，先平心静气，再做决定。",
+      "dialogue": "A: 刚才会议上他直接否定了我的方案，我很想当场反击。\nB: 先平心静气。在情绪高点做的决定，往往是你事后最后悔的。\nA: 你说得对，我深呼吸了一下，没有当场爆发。\nB: 这就是情绪智力的核心——感受情绪，但不被它控制。"
+    },
+    {
+      "id": "ZH_061",
+      "expression": "人心换人心",
+      "pinyin": "rén xīn huàn rén xīn",
+      "meaning": "마음을 마음으로 바꾸다, 진심은 진심으로 통한다",
+      "level": "intermediate",
+      "theme": "인간관계",
+      "example": "人心换人心，你对别人真诚，别人也会对你真诚。",
+      "dialogue": "A: 我帮了他那么多，他却对我不冷不热的。\nB: 人心换人心，但需要时间。真诚是种子，不是开关。\nA: 那我是不是应该继续？\nB: 继续，但不要带着期待。给予本身就是一种收获。"
+    },
+    {
+      "id": "ZH_062",
+      "expression": "患难见真情",
+      "pinyin": "huàn nàn jiàn zhēn qíng",
+      "meaning": "어려움 속에서 진정한 감정이 드러난다, 환난지우(患難之友)",
+      "level": "intermediate",
+      "theme": "인간관계",
+      "example": "患难见真情，经历过低谷的友谊，才是真正值得珍惜的。",
+      "dialogue": "A: 公司最困难的时候，很多人离开了。\nB: 患难见真情。留下来的那几个人，才是你真正的核心团队。\nA: 这段经历让我彻底看清了谁是谁。\nB: 危机是最好的测试，也是最深的礼物。"
+    }
+  ],
+  "idioms_and_quotes": [
+    {
+      "id": "IQ_049",
+      "title": "身心俱疲，勿強行",
+      "meaning": "몸과 마음이 모두 지쳤을 때는 억지로 밀어붙이지 말라",
+      "behind_story": "동아시아 의학과 도교 철학의 기본 원칙. 현대 심리학에서 말하는 '번아웃 예방'과 정확히 일치한다. 쉬는 것이 생산성의 반대가 아니라, 지속 가능한 성과의 핵심 요소라는 점은 동서양이 같다."
+    },
+    {
+      "id": "IQ_050",
+      "title": "言有盡而意無窮",
+      "meaning": "말은 끝이 있어도 뜻은 끝이 없다 (소통의 깊이)",
+      "behind_story": "송나라 엄우(嚴羽)의 《창랑시화》에서 유래한 시론. 진정한 소통은 말로 전달되는 정보보다 그 이면의 감정·맥락·의도에 있다는 통찰이다. 'It's not what you say, it's how you say it'의 동양 버전."
+    },
+    {
+      "id": "IQ_051",
+      "title": "怒中不可作書，喜中不可許人",
+      "meaning": "화가 났을 때는 편지를 쓰지 말고, 기쁠 때는 남에게 함부로 약속하지 말라",
+      "behind_story": "명나라 홍응명(洪應明)의 《채근담》에 수록된 구절. 감정의 절정에서 내린 결정은 나중에 후회하기 쉽다는 원칙이다. '화가 났을 때 이메일을 보내지 마라'는 현대 직장 조언의 고전 버전이다."
+    },
+    {
+      "id": "IQ_052",
+      "title": "樂以忘憂",
+      "meaning": "즐거움으로 근심을 잊다",
+      "behind_story": "공자가 자신을 묘사할 때 쓴 표현으로 《논어》 술이편에 수록. '그 즐거움 속에서 늙어가는 것조차 잊는다'는 구절이 이어진다. 좋아하는 일에 몰입하는 것이 최고의 스트레스 해소임을 공자가 2500년 전에 증명했다."
+    },
+    {
+      "id": "IQ_053",
+      "title": "不怨天，不尤人",
+      "meaning": "하늘을 원망하지 않고, 남을 탓하지 않는다",
+      "behind_story": "《논어》 헌문편의 공자 말씀. 내부 귀인(internal attribution)의 원형 — 결과의 원인을 외부가 아닌 자신에게서 찾는 태도다. 현대 심리학의 '자기 효능감(self-efficacy)'과 맥이 닿는다."
+    },
+    {
+      "id": "IQ_054",
+      "title": "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+      "meaning": "삶에서 가장 위대한 영광은 절대 넘어지지 않는 것이 아니라 넘어질 때마다 일어서는 것이다",
+      "behind_story": "넬슨 만델라의 말. 27년 감옥 생활 후 남아프리카 최초의 흑인 대통령이 된 만델라가 직접 살아낸 원칙이다. 회복 탄력성(resilience)을 말할 때 이보다 더 강렬한 증인이 없다."
+    },
+    {
+      "id": "IQ_055",
+      "title": "Between stimulus and response, there is a space. In that space is our power to choose our response.",
+      "meaning": "자극과 반응 사이에는 공간이 있다. 그 공간 안에 우리가 반응을 선택할 힘이 있다",
+      "behind_story": "빅터 프랭클의 《죽음의 수용소에서》에서 유래한 원칙. 나치 수용소에서 살아남으며 발견한 인간의 마지막 자유 — 어떤 상황에서도 자신의 반응을 선택할 수 있다는 것. 현대 심리 치료와 리더십 교육의 핵심 개념이다."
+    },
+    {
+      "id": "IQ_056",
+      "title": "You can't pour from an empty cup.",
+      "meaning": "빈 컵으로는 따를 수 없다 (자신을 먼저 채워야 남을 도울 수 있다)",
+      "behind_story": "자기 돌봄(self-care)의 본질을 담은 현대 속담. '이기적으로 자신을 챙겨라'가 아니라, '지속적으로 타인을 위하려면 자신을 먼저 충전해야 한다'는 원칙이다. 번아웃 시대에 가장 필요한 허락이기도 하다."
+    },
+    {
+      "id": "IQ_057",
+      "title": "The most important thing in communication is hearing what isn't said.",
+      "meaning": "소통에서 가장 중요한 것은 말해지지 않은 것을 듣는 것이다",
+      "behind_story": "피터 드러커의 말. 표면적 언어가 아닌 침묵, 망설임, 맥락, 감정을 읽는 능력이 진정한 소통 능력이다. 공감 능력이 높은 리더가 팀의 문제를 더 빨리 감지하는 이유이기도 하다."
+    },
+    {
+      "id": "IQ_058",
+      "title": "We are shaped by our thoughts; we become what we think.",
+      "meaning": "우리는 생각에 의해 형성되고, 생각한 대로 된다",
+      "behind_story": "불교 법구경(Dhammapada)의 첫 구절에서 유래. 붓다의 통찰은 현대 인지행동치료(CBT)의 핵심 전제가 됐다. 생각의 패턴이 감정과 행동을 만들고, 행동이 습관을 만들고, 습관이 성격을 만든다."
+    },
+    {
+      "id": "IQ_059",
+      "title": "Vulnerability is not weakness. It is our greatest measure of courage.",
+      "meaning": "취약성은 나약함이 아니다. 용기를 측정하는 우리의 가장 큰 척도다",
+      "behind_story": "브레네 브라운의 취약성 연구에서 나온 통찰. 마음을 열고 실패 가능성을 감수하는 것이야말로 가장 큰 용기라는 역설이다. '무적의 강함'이 아닌 '연결 가능한 인간성'이 진정한 리더십의 핵심이라는 현대적 재정의다."
+    },
+    {
+      "id": "IQ_060",
+      "title": "No man is an island.",
+      "meaning": "어떤 사람도 섬이 아니다 (인간은 혼자 존재할 수 없다)",
+      "behind_story": "존 던(John Donne)의 《명상록》(1624) 17번에서 유래. '한 인간의 죽음은 나를 감소시킨다. 왜냐하면 나는 인류와 연결되어 있기 때문이다'라는 맥락이다. 연결의 철학을 서양에서 가장 간결하게 표현한 문장이다."
+    },
+    {
+      "id": "IQ_061",
+      "title": "To handle yourself, use your head; to handle others, use your heart.",
+      "meaning": "자신을 다스리려면 머리를 써라; 타인을 다루려면 가슴을 써라",
+      "behind_story": "엘리너 루스벨트의 말. 지성(IQ)과 감성(EQ)의 적용 영역을 명확히 구분한다. 자기 관리는 이성적 원칙이지만, 인간 관계는 공감에서 시작된다는 리더십 원칙이다."
+    },
+    {
+      "id": "IQ_062",
+      "title": "Comparison is the thief of joy.",
+      "meaning": "비교는 기쁨을 훔치는 도둑이다",
+      "behind_story": "시어도어 루스벨트의 말. SNS 시대에 더욱 강렬하게 공명하는 통찰이다. 타인의 완성된 외면을 자신의 진행 중인 내면과 비교하는 것이 현대인의 가장 흔한 자기 파괴 패턴이다."
+    },
+    {
+      "id": "IQ_063",
+      "title": "The curious paradox is that when I accept myself just as I am, then I can change.",
+      "meaning": "호기심을 자극하는 역설은: 내가 지금의 나를 있는 그대로 받아들일 때, 그때 비로소 나는 변할 수 있다는 것이다",
+      "behind_story": "심리학자 칼 로저스의 말. 자기 수용(self-acceptance)이 변화의 전제 조건이라는 역설적 진실이다. 자신을 채찍질하고 부정해야 동기가 생긴다고 믿는 많은 이들에게 도전이 되는 통찰이다."
+    }
+  ],
+  "history_facts": [
+    {
+      "id": "HI_058",
+      "title": "쿠바 미사일 위기(1962) — 핵전쟁 직전",
+      "period": "1962년",
+      "region": "미국·쿠바·소련",
+      "summary": "1962년 미국이 소련의 쿠바 핵미사일 기지 건설을 발견하면서 13일간의 위기가 전개됐다. 케네디 대통령은 해상 봉쇄를 명령하고, 핵전쟁 직전의 긴장이 고조됐다. 결국 소련이 미사일을 철수하는 대신 미국이 쿠바 불침공을 약속하며 외교적으로 해결됐다.",
+      "behind_story": "이 13일 동안 실수 하나만 있었어도 핵전쟁이 시작됐을 수 있다. 실제로 소련 잠수함 B-59에서는 핵어뢰 발사 직전까지 갔으나 부함장 아르히포프 1명의 반대로 막혔다. 냉전의 가장 위험한 순간은 한 사람의 용기로 넘겼다."
+    },
+    {
+      "id": "HI_059",
+      "title": "베트남 전쟁(1955~1975)과 미국의 철수",
+      "period": "1955~1975년",
+      "region": "베트남·미국",
+      "summary": "공산주의 북베트남과 미국 지원을 받은 남베트남 사이의 전쟁으로, 미국은 1964년 통킹만 사건을 계기로 본격 개입했다. 게릴라전과 민간인 피해로 반전 여론이 고조됐고, 1975년 사이공 함락으로 전쟁은 공산주의 북베트남의 승리로 끝났다. 미국 역사상 최초의 전쟁 패배였다.",
+      "behind_story": "베트남전은 세계 최강국 미국이 게릴라전에 진다는 것을 증명했다. 가장 큰 교훈은 '군사력만으로는 이념 전쟁에서 이길 수 없다'는 것이었다. 이 교훈은 소련의 아프가니스탄 침공(1979)에서도, 미국의 이라크·아프간 전쟁에서도 반복됐다."
+    },
+    {
+      "id": "HI_060",
+      "title": "중국 문화대혁명(1966~1976)",
+      "period": "1966~1976년",
+      "region": "중국",
+      "summary": "마오쩌둥이 주도한 문화대혁명은 부르주아 잔재를 일소한다는 명목으로 시작됐다. 홍위병이 지식인·교사·전통 문화를 파괴했고, 수백만 명이 처형·투옥·강제 노역을 당했다. 중국의 전통 문화·예술·교육 기반이 붕괴됐고, 이 후유증은 중국 사회에 수십 년간 지속됐다.",
+      "behind_story": "문화대혁명은 '혁명을 혁명으로 지속한다'는 역설의 비극이었다. 마오쩌둥은 자신의 권력에 도전할 수 있는 모든 지식·전통·제도를 파괴했다. 결국 파괴한 것은 중국의 인적 자원이었고, 그 복구에 수십 년이 걸렸다."
+    },
+    {
+      "id": "HI_061",
+      "title": "아파르트헤이트와 넬슨 만델라(1948~1994)",
+      "period": "1948~1994년",
+      "region": "남아프리카공화국",
+      "summary": "남아프리카공화국의 백인 정권은 1948년부터 인종 분리 정책(아파르트헤이트)을 법제화했다. 아프리카민족회의(ANC)의 넬슨 만델라는 저항 운동을 이끌다 27년간 수감됐다. 1990년 석방된 만델라는 1994년 최초의 민주 선거에서 대통령으로 당선되며 아파르트헤이트를 종식시켰다.",
+      "behind_story": "27년 감옥에서 나온 만델라는 복수 대신 화해를 선택했다. 진실화해위원회를 설치해 가해자들이 진실을 고백하면 사면하는 방식으로 사회 통합을 추진했다. '가장 강한 복수는 자신이 더 나은 사람이 되는 것'이라는 그의 삶이 증명이었다."
+    },
+    {
+      "id": "HI_062",
+      "title": "프라하의 봄(1968)과 소련의 진압",
+      "period": "1968년",
+      "region": "체코슬로바키아·소련",
+      "summary": "1968년 체코슬로바키아 공산당 지도자 둡체크는 '인간적인 얼굴을 한 사회주의'를 표방하며 자유화 개혁을 추진했다. 그러나 소련은 8월 바르샤바조약군을 동원해 군사 개입하며 개혁을 짓밟았다. 이 사건은 소련 지배 하에서 공산주의 국가의 독자적 개혁이 불가능함을 보여줬다.",
+      "behind_story": "프라하의 봄을 진압한 브레즈네프 독트린은 '사회주의 블록의 국가들은 소련의 허락 없이 체제를 변경할 수 없다'는 원칙이었다. 고르바초프가 이 독트린을 폐기(1989)했을 때, 동유럽 도미노 혁명이 바로 시작됐다."
+    },
+    {
+      "id": "HI_063",
+      "title": "오일 쇼크(1973)와 에너지 위기",
+      "period": "1973년",
+      "region": "중동·세계",
+      "summary": "1973년 제4차 중동전쟁(욤 키푸르 전쟁) 이후 아랍 산유국들이 이스라엘 지지 서방 국가들에 대한 석유 금수를 단행했다. 석유 가격이 단기간에 4배로 폭등하며 서방 경제에 스태그플레이션(경기침체+물가상승)이 야기됐다. 에너지 안보가 국가 전략의 핵심 과제로 부상한 계기가 됐다.",
+      "behind_story": "오일 쇼크는 '석유 없이는 현대 문명이 하루도 못 돌아간다'는 사실을 처음으로 세계가 체감한 사건이었다. 이후 원자력·태양광·풍력 에너지 개발이 가속화됐고, 에너지 자립이 외교 안보와 직결된다는 교훈은 지금도 유효하다."
+    },
+    {
+      "id": "HI_064",
+      "title": "베를린 장벽 붕괴(1989)와 독일 통일",
+      "period": "1989~1990년",
+      "region": "독일·유럽",
+      "summary": "1989년 11월 9일 동독 정부가 여행 자유화를 발표하자 시민들이 베를린 장벽으로 몰려들었고, 장벽이 무너졌다. 이 사건은 냉전 종식의 상징이 됐다. 1990년 동서독이 통일하며 독일은 2차 세계대전 이후 45년 만에 하나의 나라가 됐다.",
+      "behind_story": "베를린 장벽 붕괴는 사실 방송사 실수에서 비롯됐다는 설이 있다. 동독 대변인이 '여행 규정 완화는 즉시 발효'라고 실수로 발표했고, 그 뉴스를 들은 수천 명이 장벽으로 몰려갔다. 역사는 때로 관료의 해프닝으로 만들어진다."
+    },
+    {
+      "id": "HI_065",
+      "title": "소비에트 연방 해체(1991)와 냉전 종식",
+      "period": "1991년",
+      "region": "소련·동유럽",
+      "summary": "고르바초프의 페레스트로이카(개혁)·글라스노스트(개방) 정책이 오히려 소련 붕괴를 가속화했다. 1991년 8월 쿠데타 실패 후 소련은 해체를 선언했고, 15개 독립 국가가 탄생했다. 70년간의 소비에트 실험이 끝나며 냉전이 공식 종식됐다.",
+      "behind_story": "소련이 붕괴한 직접 원인은 군사비 과다, 석유 가격 하락, 아프가니스탄 전쟁의 수렁이었다. 하지만 근본 원인은 '사람들은 믿지 않는 시스템을 위해 일하지 않는다'는 것이었다. 이념이 현실을 이길 수 없다는 교훈이다."
+    },
+    {
+      "id": "HI_066",
+      "title": "르완다 대학살(1994) — 100일간의 비극",
+      "period": "1994년",
+      "region": "르완다·아프리카",
+      "summary": "1994년 100일 동안 후투족이 투치족 약 80만~100만 명을 학살했다. 유엔 평화유지군이 주둔했지만 국제사회는 개입을 거부했다. 이 사건은 국제사회의 집단학살 방지 능력과 의지에 대한 근본적 반성을 불러일으켰다.",
+      "behind_story": "르완다 학살은 라디오가 무기였던 전쟁이었다. 후투족 극단주의자들이 운영한 'RTLM 라디오'가 매일 투치족을 '바퀴벌레'라 부르며 학살을 선동했다. 혐오 표현이 어떻게 대량 학살로 이어지는지 보여주는 가장 충격적인 현대 사례다."
+    },
+    {
+      "id": "HI_067",
+      "title": "유럽연합(EU) 창설(1993)과 유로화 도입",
+      "period": "1993년~",
+      "region": "유럽",
+      "summary": "1993년 마스트리히트 조약 발효로 유럽연합(EU)이 공식 출범했다. 1999년 유로화가 도입되고 2002년부터 실물 화폐로 유통됐다. 단일 시장과 공동 통화를 통해 유럽 국가들이 경제적으로 통합됐으나, 재정 위기(2010년대 그리스 위기)와 브렉시트(2020)로 도전에 직면했다.",
+      "behind_story": "EU는 역사상 가장 성공적인 평화 프로젝트다. 수백 년간 전쟁을 반복한 프랑스와 독일이 이제 단일 화폐로 묶여 있다. '적국을 경제적으로 통합하면 전쟁 이유가 사라진다'는 아이디어가 유럽 평화 70년을 만들었다."
+    },
+    {
+      "id": "HI_068",
+      "title": "9·11 테러(2001)와 테러와의 전쟁",
+      "period": "2001년",
+      "region": "미국·세계",
+      "summary": "2001년 9월 11일 알카에다 테러리스트들이 항공기 4대를 납치해 뉴욕 세계무역센터와 워싱턴 펜타곤에 충돌시켰다. 3,000명이 사망하며 미국 본토에 대한 최대 규모의 공격이 됐다. 미국은 아프가니스탄과 이라크를 침공하며 '테러와의 전쟁'을 선포했으나, 20년 후 아프간에서 철수하며 뚜렷한 성과 없이 막을 내렸다.",
+      "behind_story": "9·11은 '초강대국도 비국가 행위자에게 치명타를 입을 수 있다'는 것을 보여줬다. 그 이후 세계는 안보와 자유 사이에서 영구적인 긴장 관계에 놓였다. 공항 보안, 디지털 감시, 무슬림에 대한 편견 — 9·11의 흔적은 지금도 우리 일상에 남아 있다."
+    },
+    {
+      "id": "HI_069",
+      "title": "아랍의 봄(2010~2012)과 중동 민주화 운동",
+      "period": "2010~2012년",
+      "region": "중동·북아프리카",
+      "summary": "2010년 튀니지 청년 부아지지의 분신자살에서 시작된 민주화 시위가 아랍 세계 전역으로 확산됐다. 튀니지, 이집트, 리비아의 독재자들이 권좌에서 물러났다. 그러나 시리아는 내전으로, 이집트는 군부 쿠데타로 이어지며 민주화의 기대가 좌절됐다.",
+      "behind_story": "아랍의 봄은 SNS가 처음으로 혁명을 조직하는 데 결정적 역할을 한 사건이었다. 'Twitter 혁명'이라 불렸다. 하지만 SNS가 정부를 바꿀 수는 있어도, 민주주의 제도를 구축하지는 못했다. 소통 혁명이 정치 혁명을 완성하지 못한 이유에 대한 성찰이 이어졌다."
+    },
+    {
+      "id": "HI_070",
+      "title": "기후변화의 과학적 합의와 파리협정(2015)",
+      "period": "20세기 말~현재",
+      "region": "세계",
+      "summary": "20세기 후반부터 인간 활동에 의한 기후변화가 과학적으로 확인됐다. 2015년 파리협정에서 195개국이 지구 평균 기온 상승을 산업화 이전 대비 1.5~2°C 이내로 제한하기로 합의했다. 그러나 화석연료 경제에서의 전환과 선진국·개도국 간 책임 분담은 여전히 갈등 중이다.",
+      "behind_story": "파리협정의 역설: 합의는 역사적이었지만 구속력은 없었다. 도널드 트럼프 미국 대통령은 2017년 탈퇴를 선언했다가 바이든이 재가입했다. 기후위기는 인류의 가장 큰 집단 행동 문제다 — 모두가 문제를 알지만, 비용은 현재에 치르고 혜택은 미래 세대가 받기 때문이다."
+    },
+    {
+      "id": "HI_071",
+      "title": "코로나19 팬데믹(2020)과 세계 질서의 변화",
+      "period": "2020~2022년",
+      "region": "세계",
+      "summary": "2019년 12월 중국 우한에서 시작된 코로나19가 2020년 WHO 팬데믹 선언과 함께 전 세계를 강타했다. 수백만 명이 사망하고, 봉쇄·재택근무·디지털 전환이 급속히 확산됐다. mRNA 백신이 기록적 속도로 개발됐으며, 팬데믹은 의료 격차·디지털 불평등·공급망 취약성을 적나라하게 드러냈다.",
+      "behind_story": "코로나19는 '이런 일은 없을 것'이라는 집단적 안일함이 얼마나 위험한지 보여줬다. 수십 년간의 과학자 경고를 무시한 대가를 치렀다. 동시에 인류의 집단 지성이 1년 안에 백신을 개발하는 기적도 만들었다. 최악과 최선이 공존한 역사적 사건이었다."
+    },
+    {
+      "id": "HI_072",
+      "title": "인터넷 혁명과 디지털 시대의 도래(1990년대~)",
+      "period": "1990년대~현재",
+      "region": "세계",
+      "summary": "1991년 월드와이드웹(WWW)이 공개됐고, 1990년대 중반 인터넷이 상용화됐다. 구글(1998), 페이스북(2004), 아이폰(2007)의 등장으로 정보·소통·상거래의 방식이 근본적으로 변화했다. AI·빅데이터·클라우드 컴퓨팅으로 이어지는 디지털 전환은 21세기 경제·문화·정치의 모든 영역을 재편하고 있다.",
+      "behind_story": "인터넷의 아이러니: 정보의 민주화를 이루었지만, 동시에 가장 강력한 감시 도구가 됐다. 중국의 만리방화벽, SNS의 알고리즘 필터 버블, 가짜 뉴스의 확산 — 자유를 위해 만든 도구가 자유를 위협하는 역설이 인터넷의 본질적 갈등이다."
+    }
+  ]
+}

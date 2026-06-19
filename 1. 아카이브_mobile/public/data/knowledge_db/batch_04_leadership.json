@@ -1,0 +1,746 @@
+{
+  "meta": {
+    "batch": 4,
+    "theme": "리더십·커리어",
+    "created": "2026-06-17"
+  },
+  "english_expressions": [
+    {
+      "id": "EN_201",
+      "expression": "Let's get everyone on board.",
+      "meaning": "모두의 동의와 참여를 얻어냅시다.",
+      "level": "intermediate",
+      "theme": "리더십",
+      "example": "Before we move forward with the new strategy, let's get everyone on board.",
+      "dialogue": "A: I think we're ready to launch the new initiative.\nB: Not yet. Let's get everyone on board first — especially the ops team.\nA: You're right. They raised concerns last time.\nB: Exactly. Their buy-in is crucial for this to work."
+    },
+    {
+      "id": "EN_202",
+      "expression": "I want to give you some candid feedback.",
+      "meaning": "솔직한 피드백을 드리고 싶어요.",
+      "level": "intermediate",
+      "theme": "리더십",
+      "example": "I want to give you some candid feedback on your presentation skills.",
+      "dialogue": "A: Do you have a moment after the meeting?\nB: Sure. Is everything okay?\nA: I want to give you some candid feedback — your report was thorough, but the delivery was rushed.\nB: Thank you for telling me directly. I'll work on that."
+    },
+    {
+      "id": "EN_203",
+      "expression": "She really stepped up to the plate.",
+      "meaning": "그녀는 정말 기대에 부응해서 제 역할을 해냈어요.",
+      "level": "intermediate",
+      "theme": "커리어",
+      "example": "When the manager left suddenly, she really stepped up to the plate.",
+      "dialogue": "A: How did the project go without a project lead?\nB: Sarah really stepped up to the plate. She coordinated everything.\nA: Impressive. That's real leadership.\nB: Absolutely. She's definitely ready for a promotion."
+    },
+    {
+      "id": "EN_204",
+      "expression": "We need to manage expectations here.",
+      "meaning": "여기서 기대치를 현실적으로 조율해야 해요.",
+      "level": "intermediate",
+      "theme": "리더십",
+      "example": "The client is expecting results by Friday, but we need to manage expectations here.",
+      "dialogue": "A: The client thinks we'll deliver the full product by end of month.\nB: We need to manage expectations here — that's simply not realistic.\nA: I was afraid to disappoint them.\nB: Underpromising and overdelivering is always the better strategy."
+    },
+    {
+      "id": "EN_205",
+      "expression": "Let's take ownership of this.",
+      "meaning": "이 일에 대한 책임을 우리가 집시다.",
+      "level": "intermediate",
+      "theme": "리더십",
+      "example": "Instead of blaming the circumstances, let's take ownership of this situation.",
+      "dialogue": "A: The client complaints are piling up. What do we do?\nB: Let's take ownership of this and reach out proactively.\nA: Agreed. No more pointing fingers internally.\nB: Exactly — accountability starts with us."
+    },
+    {
+      "id": "EN_206",
+      "expression": "We're at a crossroads right now.",
+      "meaning": "우리는 지금 중요한 갈림길에 서 있어요.",
+      "level": "intermediate",
+      "theme": "커리어",
+      "example": "After losing two key clients, the company is at a crossroads right now.",
+      "dialogue": "A: Should we expand to new markets or consolidate what we have?\nB: Honestly, we're at a crossroads right now. Either path has major implications.\nA: I agree. This decision will define the next five years.\nB: Let's get the leadership team together for a full strategy session."
+    },
+    {
+      "id": "EN_207",
+      "expression": "He knows how to read the room.",
+      "meaning": "그는 분위기를 잘 파악할 줄 알아요.",
+      "level": "intermediate",
+      "theme": "리더십",
+      "example": "Even in tense negotiations, he always knows how to read the room.",
+      "dialogue": "A: The CEO pivoted his entire presentation when he saw the investors were unimpressed.\nB: He always knows how to read the room — that's what makes him effective.\nA: I wish I had that skill.\nB: You can develop it. Start by observing people's body language and energy shifts."
+    },
+    {
+      "id": "EN_208",
+      "expression": "This is a make-or-break moment.",
+      "meaning": "이건 성패를 가르는 결정적인 순간이에요.",
+      "level": "intermediate",
+      "theme": "커리어",
+      "example": "The board presentation tomorrow is a make-or-break moment for our funding.",
+      "dialogue": "A: I'm nervous about the pitch to the investors tomorrow.\nB: You should be focused — this is a make-or-break moment for the company.\nA: No pressure at all.\nB: Channel that nervous energy into preparation. You've got this."
+    },
+    {
+      "id": "EN_209",
+      "expression": "Let's not lose sight of the big picture.",
+      "meaning": "큰 그림(전체 목표)을 잃지 맙시다.",
+      "level": "intermediate",
+      "theme": "리더십",
+      "example": "We're getting too caught up in minor details — let's not lose sight of the big picture.",
+      "dialogue": "A: We've been debating the color scheme for the app for three days now.\nB: Let's not lose sight of the big picture — does the product actually solve the user's problem?\nA: Fair point. We've been stuck on aesthetics.\nB: Details matter, but only after the core value is clear."
+    },
+    {
+      "id": "EN_210",
+      "expression": "I'll loop you in on next steps.",
+      "meaning": "다음 단계에 대해 당신도 포함시켜 공유할게요.",
+      "level": "intermediate",
+      "theme": "커리어",
+      "example": "Once we finalize the plan, I'll loop you in on next steps.",
+      "dialogue": "A: Am I needed for the follow-up meeting with legal?\nB: Not immediately, but I'll loop you in on next steps once we have direction.\nA: Perfect. Just let me know when you need my input.\nB: Will do. I'll send an update by Thursday."
+    },
+    {
+      "id": "EN_211",
+      "expression": "We need to get ahead of this.",
+      "meaning": "우리가 먼저 선제적으로 대응해야 해요.",
+      "level": "intermediate",
+      "theme": "리더십",
+      "example": "With rumors circulating in the press, we need to get ahead of this story.",
+      "dialogue": "A: The system outage is starting to spread on social media.\nB: We need to get ahead of this — draft a public statement immediately.\nA: Should we wait until we know the full cause?\nB: No. Silence looks worse than acknowledgment. Own it first."
+    },
+    {
+      "id": "EN_212",
+      "expression": "Let's walk the talk.",
+      "meaning": "말만 하지 말고 행동으로 보여줍시다.",
+      "level": "intermediate",
+      "theme": "리더십",
+      "example": "If we claim to value work-life balance, we need to walk the talk as managers.",
+      "dialogue": "A: We say we support employee wellbeing, but people are still working weekends.\nB: You're right. We need to walk the talk, starting with leadership behavior.\nA: That means no more late-night emails to staff.\nB: Exactly. Culture change starts at the top."
+    },
+    {
+      "id": "EN_213",
+      "expression": "He tends to micromanage his team.",
+      "meaning": "그는 팀을 너무 세세하게 관리하려는 경향이 있어요.",
+      "level": "intermediate",
+      "theme": "리더십",
+      "example": "The team's morale is low because the director tends to micromanage everything.",
+      "dialogue": "A: Why does the design team seem so disengaged lately?\nB: Honestly, their manager tends to micromanage every detail — no autonomy.\nA: That kills creativity and ownership.\nB: He means well, but trust is what drives real performance."
+    },
+    {
+      "id": "EN_214",
+      "expression": "She has a lot on her plate.",
+      "meaning": "그녀는 지금 처리할 일이 너무 많아요.",
+      "level": "beginner",
+      "theme": "커리어",
+      "example": "Don't add another project to her workload — she already has a lot on her plate.",
+      "dialogue": "A: Can we ask Jiyeon to lead the new onboarding program?\nB: She has a lot on her plate right now — two product launches and a team restructure.\nA: Right. Maybe we should hire a dedicated coordinator.\nB: That would actually make everyone's lives easier."
+    },
+    {
+      "id": "EN_215",
+      "expression": "I'll take the lead on this.",
+      "meaning": "이건 제가 주도적으로 이끌겠습니다.",
+      "level": "beginner",
+      "theme": "커리어",
+      "example": "No one else volunteered, so I'll take the lead on this initiative.",
+      "dialogue": "A: We need someone to coordinate the client workshop. Any volunteers?\nB: I'll take the lead on this — I've done similar facilitation before.\nA: Great. I'll make sure you have the support you need.\nB: Thanks. I'll put together a plan by Monday."
+    },
+    {
+      "id": "EN_216",
+      "expression": "That's not your call to make.",
+      "meaning": "그건 당신이 결정할 사안이 아니에요.",
+      "level": "intermediate",
+      "theme": "커리어",
+      "example": "I appreciate your input, but that's not your call to make — it's the CEO's decision.",
+      "dialogue": "A: I've already told the client we can do it by next week.\nB: That's not your call to make — pricing decisions go through the director.\nA: I was just trying to close the deal.\nB: I get it, but we need to follow the proper process. Let's loop in the director now."
+    },
+    {
+      "id": "EN_217",
+      "expression": "She has her finger on the pulse.",
+      "meaning": "그녀는 항상 상황의 흐름을 정확히 파악하고 있어요.",
+      "level": "advanced",
+      "theme": "리더십",
+      "example": "As head of strategy, she always has her finger on the pulse of industry trends.",
+      "dialogue": "A: How does the VP always seem to know what competitors are doing?\nB: She really has her finger on the pulse — she reads everything and talks to everyone.\nA: That kind of awareness is invaluable.\nB: Absolutely. Strategic leaders don't wait for reports; they sense shifts first."
+    },
+    {
+      "id": "EN_218",
+      "expression": "Let's keep this between us.",
+      "meaning": "이건 우리 사이에서만 알아둡시다.",
+      "level": "beginner",
+      "theme": "커리어",
+      "example": "The restructuring isn't public yet, so let's keep this between us for now.",
+      "dialogue": "A: I heard the merger might fall through. Is that true?\nB: I've heard the same, but let's keep this between us — nothing's confirmed yet.\nA: Of course. Premature leaks would cause real damage.\nB: Exactly. We'll know more after the board meeting next week."
+    },
+    {
+      "id": "EN_219",
+      "expression": "I want to make sure we're aligned on this.",
+      "meaning": "이 부분에서 우리가 같은 방향인지 확인하고 싶어요.",
+      "level": "intermediate",
+      "theme": "리더십",
+      "example": "Before we present to the client, I want to make sure we're aligned on the key message.",
+      "dialogue": "A: Before the townhall, I want to make sure we're aligned on this — what's the core narrative?\nB: Growth and stability. We acknowledge challenges, but emphasize resilience.\nA: Good. Let's make sure all department heads say the same thing.\nB: I'll send a briefing document this afternoon."
+    },
+    {
+      "id": "EN_220",
+      "expression": "He threw his colleague under the bus.",
+      "meaning": "그는 동료를 희생양으로 삼아버렸어요.",
+      "level": "advanced",
+      "theme": "커리어",
+      "example": "When the project failed, he threw his colleague under the bus instead of sharing responsibility.",
+      "dialogue": "A: Did you hear what happened in the client review?\nB: Yes — when the client complained, he threw his colleague under the bus in front of everyone.\nA: That's a serious trust issue. The team won't forget that.\nB: Leaders who protect their teams rise. Leaders who sacrifice them fall."
+    }
+  ],
+  "english_theme_packs": [
+    {
+      "id": "PACK_EN_004",
+      "theme_title": "리더가 팀의 방향을 설정할 때",
+      "theme_title_en": "When a Leader Sets the Direction for the Team",
+      "delivery_date": "2026-06-18",
+      "expressions": [
+        {
+          "id": "PACK_EN_004_E1",
+          "order": 1,
+          "expression": "Read the room",
+          "meaning": "분위기를 파악하다",
+          "nuance": "분위기를 파악한다는 뜻이지만, 단순한 '눈치'가 아니라 청중의 에너지·감정·반응을 능동적으로 읽어내는 리더의 스킬을 가리킨다. 회의 도중 반응이 싸늘하면 말을 끊고 방향을 트는 게 진짜 '읽는 것'이다.",
+          "dialogue": "A: The board seemed less engaged than expected.\nB: I noticed — I tried to read the room and cut the financial slides short.\nA: Smart move. They clearly wanted the roadmap, not the numbers.\nB: Exactly. Reading the room saved us twenty minutes and kept their attention.",
+          "example": "A skilled facilitator reads the room and adjusts the pace when energy drops.",
+          "practice": "오늘 회의에서 참석자들의 반응을 관찰하고, 'I tried to read the room and noticed...'로 시작하는 문장을 만들어보세요."
+        },
+        {
+          "id": "PACK_EN_004_E2",
+          "order": 2,
+          "expression": "The big picture",
+          "meaning": "큰 그림, 전체적인 맥락과 목표",
+          "nuance": "세부 사항이 아닌 전략적 방향과 궁극적 목표를 가리킨다. 'Lose sight of the big picture'(큰 그림을 놓치다)와 함께 쓰이는 경우가 많다. 리더십 대화에서 '지금 우리가 왜 이걸 하고 있는가'를 상기시킬 때 쓴다.",
+          "dialogue": "A: We've been debating the logo for hours.\nB: Let's not lose sight of the big picture — does the product solve the actual problem?\nA: You're right. The logo is secondary to the core value.\nB: Focus on what matters first, then sweat the details.",
+          "example": "Great managers zoom out regularly to keep the team focused on the big picture.",
+          "practice": "'I sometimes lose sight of the big picture when...'으로 시작하는 개인 경험 문장을 만들어보세요."
+        },
+        {
+          "id": "PACK_EN_004_E3",
+          "order": 3,
+          "expression": "Get everyone on board",
+          "meaning": "모두의 동의와 참여를 얻어내다",
+          "nuance": "단순히 알리는 것이 아니라, 반대 의견을 해소하고 자발적 참여를 이끌어내는 과정을 내포한다. 특히 조직 변화나 새 전략 도입 시 '반발 없이 함께 가는 것'을 목표로 할 때 쓴다.",
+          "dialogue": "A: The new workflow seems efficient, but half the team is resistant.\nB: Before rolling it out, we need to get everyone on board — especially the skeptics.\nA: Should we hold a Q&A session first?\nB: Yes, let them voice concerns. Buy-in is worth the extra time.",
+          "example": "Change management fails when leaders implement decisions without getting everyone on board.",
+          "practice": "'In my experience, getting everyone on board requires...'로 시작하는 문장으로 자신의 방법을 표현해보세요."
+        },
+        {
+          "id": "PACK_EN_004_E4",
+          "order": 4,
+          "expression": "Take ownership",
+          "meaning": "주인의식을 갖다, 책임지다",
+          "nuance": "'Responsibility'(의무적 책임)와 달리, ownership은 자발적이고 능동적인 책임감을 강조한다. 결과가 나쁠 때도 변명 없이 '이건 내 일이다'라는 태도를 유지하는 것이다. 스타트업 문화·리더십 코칭에서 핵심 개념이다.",
+          "dialogue": "A: The launch didn't go as planned. Who's responsible?\nB: I'll take ownership — the timeline was mine to manage, and I didn't flag the risks early enough.\nA: That's a mature response. What do you suggest now?\nB: Let me fix the immediate issues and then do a full retrospective.",
+          "example": "High-performing employees take ownership of their mistakes before being asked.",
+          "practice": "'I should have taken more ownership of...'로 시작하는 과거 상황을 돌아보는 문장을 만들어보세요."
+        },
+        {
+          "id": "PACK_EN_004_E5",
+          "order": 5,
+          "expression": "Walk the talk",
+          "meaning": "말한 대로 행동하다, 언행일치",
+          "nuance": "리더십에서 특히 강조되는 개념으로, '말뿐인 리더'와 반대 지점에 있다. 가치(values)를 선언하는 것만으로는 충분하지 않으며, 리더 본인이 먼저 그 가치를 행동으로 보여줄 때만 조직이 따른다는 원칙이다.",
+          "dialogue": "A: We keep saying we value transparency, but leadership never shares bad news.\nB: We need to walk the talk — I'll start by sharing the Q3 shortfalls openly at the all-hands.\nA: That will send a strong signal to the organization.\nB: Culture is defined by what leaders do, not what they say.",
+          "example": "Employees notice quickly when managers don't walk the talk on company values.",
+          "practice": "'To walk the talk on [value], I plan to...'로 시작하는 구체적 행동 계획을 표현해보세요."
+        }
+      ],
+      "master_paragraph": {
+        "text": "The most effective leaders I've worked with always know how to **read the room** before any major announcement. They never lose sight of **the big picture** even when day-to-day pressures mount. They work hard to **get everyone on board**, understanding that a decision nobody owns is a decision nobody executes. When things go wrong, they **take ownership** without hesitation. And above all, they **walk the talk** — because in organizations, culture is not what you declare; it's what you demonstrate.",
+        "translation": "내가 함께 일한 가장 효과적인 리더들은 큰 발표 전에 항상 분위기를 읽는다. 일상의 압박 속에서도 큰 그림을 절대 놓치지 않는다. 아무도 주인의식을 갖지 않는 결정은 아무도 실행하지 않는다는 것을 알기에, 모두의 동의를 얻기 위해 노력한다. 일이 잘못되면 주저 없이 책임진다. 그리고 무엇보다 말한 대로 행동한다. 조직에서 문화란 선언하는 것이 아니라 실천으로 보여주는 것이기 때문이다.",
+        "highlights": ["read the room", "the big picture", "get everyone on board", "take ownership", "walk the talk"]
+      }
+    },
+    {
+      "id": "PACK_EN_005",
+      "theme_title": "커리어의 결정적 순간에 설 때",
+      "theme_title_en": "Standing at a Career-Defining Moment",
+      "delivery_date": "2026-06-19",
+      "expressions": [
+        {
+          "id": "PACK_EN_005_E1",
+          "order": 1,
+          "expression": "Make-or-break",
+          "meaning": "성패를 가르는, 결정적인",
+          "nuance": "결과에 따라 완전히 성공하거나 완전히 실패하는 이분법적 순간을 가리킨다. 보통 외부 기회나 위기 앞에서 쓰이며, 단순한 중요한 순간이 아니라 '이걸 못 넘기면 끝'이라는 절박한 무게감이 담겨 있다.",
+          "dialogue": "A: The partnership decision is a make-or-break moment for the startup.\nB: I agree — if we get this right, we double our revenue. If not, we're out of runway.\nA: No pressure.\nB: Actually, clarity helps. Knowing the stakes sharpens focus.",
+          "example": "The interview tomorrow is a make-or-break moment for his entire career trajectory.",
+          "practice": "'This week feels like a make-or-break moment because...'로 시작하는 현실적 상황을 표현해보세요."
+        },
+        {
+          "id": "PACK_EN_005_E2",
+          "order": 2,
+          "expression": "At a crossroads",
+          "meaning": "중요한 갈림길에 서 있는",
+          "nuance": "'Crossroads'는 두 갈래 이상의 길이 교차하는 지점으로, 어느 방향으로든 갈 수 있지만 한번 선택하면 되돌리기 어려운 전환점을 의미한다. 커리어·인생·비즈니스 맥락 모두에서 쓰이며, 반드시 위기 상황이 아닌 성장 기회의 순간에도 사용한다.",
+          "dialogue": "A: I got offers from two very different companies. I'm at a crossroads.\nB: What's pulling you toward each?\nA: One is safe and stable, the other is risky but exciting.\nB: The right crossroads question isn't what's safer — it's which path aligns with who you want to become.",
+          "example": "She's at a crossroads: stay in her comfortable role or take the leap into entrepreneurship.",
+          "practice": "'I was at a crossroads when...'으로 시작하는 과거 경험을 떠올려 설명해보세요."
+        },
+        {
+          "id": "PACK_EN_005_E3",
+          "order": 3,
+          "expression": "Step up to the plate",
+          "meaning": "기대에 부응하다, 어려운 상황에서 나서다",
+          "nuance": "야구에서 타석에 들어서는 동작에서 유래한 표현으로, 아무도 하려 하지 않는 어려운 역할을 자발적으로 맡거나, 기대되는 역할을 충분히 해냈을 때 쓴다. '도전을 회피하지 않고 정면으로 받아들이는 사람'을 칭찬할 때 자주 쓰인다.",
+          "dialogue": "A: The team was lost when the project lead quit without notice.\nB: But Minho really stepped up to the plate — he organized everything within 24 hours.\nA: That kind of initiative is what separates good employees from great ones.\nB: Absolutely. He'll be leading his own projects soon.",
+          "example": "When the crisis hit, she stepped up to the plate and guided the team through it.",
+          "practice": "'I had to step up to the plate when...'으로 시작하는 자신의 경험을 영어로 표현해보세요."
+        },
+        {
+          "id": "PACK_EN_005_E4",
+          "order": 4,
+          "expression": "Get ahead of this",
+          "meaning": "선제적으로 대응하다, 미리 앞서 처리하다",
+          "nuance": "문제가 커지기 전에 먼저 손을 쓴다는 의미다. 수동적 대응(reactive)이 아닌 능동적 예방(proactive)의 태도를 표현할 때 쓴다. 특히 홍보·위기 관리·팀 갈등 해소 상황에서 자주 등장한다.",
+          "dialogue": "A: Employee satisfaction scores dropped. How should we handle it?\nB: We need to get ahead of this — let's schedule listening sessions before it becomes a retention issue.\nA: Proactive communication is always better.\nB: The longer we wait, the more control we lose over the narrative.",
+          "example": "Smart leaders get ahead of problems before they escalate into crises.",
+          "practice": "'Next time, I'll try to get ahead of [specific situation] by...'로 구체적 대응 계획을 표현해보세요."
+        },
+        {
+          "id": "PACK_EN_005_E5",
+          "order": 5,
+          "expression": "Take the lead",
+          "meaning": "주도적으로 이끌다, 앞장서다",
+          "nuance": "'Lead'는 명사와 동사 양쪽으로 쓰이며, 여기서는 '자발적으로 앞에 나서서 방향을 설정하고 이끄는 행동'을 의미한다. 'I'll take the lead'는 단순한 자원봉사가 아니라 전체 방향에 대한 책임을 자발적으로 지겠다는 선언이다.",
+          "dialogue": "A: Nobody's coordinating the Q4 planning process. It's chaotic.\nB: I'll take the lead — send me all the department inputs and I'll consolidate them.\nA: Are you sure? It's a lot of work.\nB: Someone has to. And it's also a good opportunity to build visibility.",
+          "example": "She took the lead on the diversity initiative and transformed company culture within a year.",
+          "practice": "'I decided to take the lead on [project/situation] because...'로 시작하는 문장으로 동기를 설명해보세요."
+        }
+      ],
+      "master_paragraph": {
+        "text": "Every meaningful career has moments that feel **make-or-break** — points where everything seems to hang in the balance. These are the crossroads where you find yourself truly **at a crossroads**, uncertain which path to choose. The ones who build lasting careers are those who consistently **step up to the plate** when others hesitate. They **get ahead of** challenges rather than waiting for them to arrive. And when the moment demands it, they don't wait to be asked — they simply **take the lead**.",
+        "translation": "모든 의미 있는 커리어에는 성패를 가르는 순간들이 있다. 모든 것이 아슬아슬하게 걸려 있는 것처럼 느껴지는 중요한 갈림길. 지속적인 커리어를 쌓는 사람들은 다른 사람들이 망설일 때 기대에 부응하여 나서는 사람들이다. 그들은 도전이 닥치기를 기다리는 것이 아니라 선제적으로 대응한다. 그리고 그 순간이 요구할 때, 누군가가 요청하기를 기다리지 않는다. 그냥 앞장선다.",
+        "highlights": ["make-or-break", "at a crossroads", "step up to the plate", "get ahead of", "take the lead"]
+      }
+    },
+    {
+      "id": "PACK_EN_006",
+      "theme_title": "조직 안에서 신뢰를 관리할 때",
+      "theme_title_en": "Managing Trust Within an Organization",
+      "delivery_date": "2026-06-20",
+      "expressions": [
+        {
+          "id": "PACK_EN_006_E1",
+          "order": 1,
+          "expression": "Candid feedback",
+          "meaning": "솔직하고 직접적인 피드백",
+          "nuance": "'Candid'는 '사탕발림 없이 진실을 말하는' 태도를 뜻한다. 상처를 주려는 게 아니라, 상대방의 성장을 진심으로 원하기 때문에 불편한 진실도 말하는 것이다. 신뢰가 있어야 candid feedback이 가능하고, candid feedback이 있어야 신뢰가 깊어진다.",
+          "dialogue": "A: Is there something you've been holding back about my work?\nB: Since you're asking — I want to give you some candid feedback. Your analysis is solid, but your delivery needs work.\nA: I appreciate you saying that directly.\nB: I only say it because I know you can handle it and want to improve.",
+          "example": "The best managers create environments where candid feedback flows in both directions.",
+          "practice": "'Receiving candid feedback is [easy/difficult] for me because...'로 시작하는 자기 성찰 문장을 만들어보세요."
+        },
+        {
+          "id": "PACK_EN_006_E2",
+          "order": 2,
+          "expression": "Manage expectations",
+          "meaning": "기대치를 현실적으로 조율하다",
+          "nuance": "상대방이 실망하지 않도록 미리 현실적인 범위를 설정하는 것이다. 거짓말이 아니라, 무엇이 가능하고 무엇이 불가능한지를 명확히 소통하는 것이다. 과도한 약속(overpromise)의 반대 전략이며, 장기적 신뢰의 기반이 된다.",
+          "dialogue": "A: The client expects the full rollout by next month.\nB: We need to manage expectations — a phased delivery over two months is more realistic.\nA: Won't that disappoint them?\nB: A small disappointment now beats a big failure later. Honesty builds trust.",
+          "example": "Managing expectations early prevents the far greater damage of unmet commitments later.",
+          "practice": "'I should have managed expectations better when...'으로 시작하는 과거 상황을 떠올려보세요."
+        },
+        {
+          "id": "PACK_EN_006_E3",
+          "order": 3,
+          "expression": "Be aligned",
+          "meaning": "같은 방향·인식을 공유하다",
+          "nuance": "전략·목표·메시지에 대해 팀원들이 동일한 이해와 방향성을 가지고 있는 상태를 가리킨다. 외부적 행동의 일치를 넘어서 내적 이해의 공유를 강조한다. 'We need to be aligned before the client call'처럼 쓰일 때, 단순한 정보 공유가 아닌 해석과 방향의 일치를 요구한다.",
+          "dialogue": "A: Before the town hall, I want to make sure we're all aligned on the messaging.\nB: Core message: we're restructuring to grow, not because of financial trouble.\nA: Exactly. Different words but the same direction.\nB: Good. Let's do a quick sync with all managers at 9 AM.",
+          "example": "When leadership is not aligned, mixed signals destroy employee confidence.",
+          "practice": "'I find it hardest to stay aligned with my team when...'으로 시작하는 도전 상황을 묘사해보세요."
+        },
+        {
+          "id": "PACK_EN_006_E4",
+          "order": 4,
+          "expression": "Loop someone in",
+          "meaning": "누군가를 대화나 정보 흐름에 포함시키다",
+          "nuance": "원래 알림을 받지 못했던 사람을 프로세스 중간에 포함시키는 것을 뜻한다. 'Include'보다 더 구체적으로, 이메일 CC·미팅 초대·업데이트 공유 등의 행동을 통해 이루어진다. 투명성과 협업 문화의 언어다.",
+          "dialogue": "A: Should I loop in the legal team on the vendor contract draft?\nB: Definitely — loop them in now, not after issues arise.\nA: Good point. I'll CC them on the next revision.\nB: And loop in the finance lead too. Cost implications need their review.",
+          "example": "Good project managers loop in all stakeholders before decisions are finalized.",
+          "practice": "'I forgot to loop in [team/person] once, and it led to...'로 시작하는 경험을 영어로 설명해보세요."
+        },
+        {
+          "id": "PACK_EN_006_E5",
+          "order": 5,
+          "expression": "Keep this between us",
+          "meaning": "이 내용은 우리 사이에서만 알아두다",
+          "nuance": "비밀 유지 요청이지만, 동시에 상대방에 대한 신뢰의 표현이기도 하다. 조직 내에서 민감한 정보나 아직 발표 전인 사안을 공유할 때, 신중함을 당부하는 표현이다. 남용하면 오히려 불신을 만들 수 있으므로, 신뢰 관계가 전제되어야 한다.",
+          "dialogue": "A: Between you and me, the acquisition might close next week.\nB: Let's keep this between us — the wrong leak at this stage could derail everything.\nA: Understood. I won't say a word until the official announcement.\nB: I trust you. That's why I'm telling you now.",
+          "example": "He shared the reorganization news early, asking her to keep it between them.",
+          "practice": "'I've been trusted to keep something between us, and I handled it by...'로 시작하는 문장을 만들어보세요."
+        }
+      ],
+      "master_paragraph": {
+        "text": "Trust inside an organization is not given — it is built interaction by interaction. It begins with the courage to offer **candid feedback**, even when the truth is uncomfortable. It requires the integrity to **manage expectations** honestly rather than overpromising. It depends on every leader committing to **be aligned** before speaking to the team. It grows through the habit of **looping people in** proactively rather than letting them feel excluded. And sometimes, it is deepened by the simple act of saying: let's **keep this between us** — because I trust you with what matters.",
+        "translation": "조직 내 신뢰는 주어지는 것이 아니다. 한 번 한 번의 상호작용으로 쌓인다. 진실이 불편하더라도 솔직한 피드백을 할 용기에서 시작된다. 과도한 약속 대신 기대치를 솔직하게 조율하는 성실함이 필요하다. 팀에게 말하기 전에 모든 리더가 같은 방향을 공유하는 노력에 달려 있다. 사람들이 소외감을 느끼기 전에 미리 포함시키는 습관에서 자란다. 그리고 때로는, '이건 우리 사이에서만'이라는 한마디로 깊어진다. 중요한 것을 믿고 맡긴다는 뜻이기 때문이다.",
+        "highlights": ["candid feedback", "manage expectations", "be aligned", "looping people in", "keep this between us"]
+      }
+    }
+  ],
+  "chinese_expressions": [
+    {
+      "id": "ZH_033",
+      "expression": "当机立断",
+      "pinyin": "dāngjī lìduàn",
+      "meaning": "때를 놓치지 않고 즉시 결단을 내리다",
+      "level": "advanced",
+      "theme": "리더십",
+      "example": "面对危机，领导者必须当机立断，不能犹豫不决。",
+      "dialogue": "A: 现在情况紧急，我们该怎么办？\nB: 当机立断，先稳定客户关系，其他的事情之后再说。\nA: 好，我们马上行动。\nB: 记住，犹豫不决往往比错误的决定更致命。"
+    },
+    {
+      "id": "ZH_034",
+      "expression": "以身作则",
+      "pinyin": "yǐ shēn zuò zé",
+      "meaning": "솔선수범하다, 자신이 모범을 보이다",
+      "level": "intermediate",
+      "theme": "리더십",
+      "example": "好的领导者总是以身作则，用行动感染团队。",
+      "dialogue": "A: 员工们总是拖延提交报告。\nB: 你有没有以身作则，准时提交你自己的报告？\nA: 这个…我确实有时候也会推迟。\nB: 改变从自己做起。"
+    },
+    {
+      "id": "ZH_035",
+      "expression": "知己知彼",
+      "pinyin": "zhī jǐ zhī bǐ",
+      "meaning": "자신과 상대를 알다 (知己知彼，百战不殆 - 손자병법)",
+      "level": "advanced",
+      "theme": "전략",
+      "example": "在谈判前，我们需要知己知彼，才能制定最好的策略。",
+      "dialogue": "A: 明天的竞标，我们有胜算吗？\nB: 知己知彼，百战不殆。我们研究过他们的提案了吗？\nA: 还没有。\nB: 先做功课，再上场。"
+    },
+    {
+      "id": "ZH_036",
+      "expression": "厚积薄发",
+      "pinyin": "hòu jī bó fā",
+      "meaning": "오래 쌓고 때에 폭발시키다, 실력을 차곡차곡 쌓은 후 적기에 발휘하다",
+      "level": "advanced",
+      "theme": "커리어",
+      "example": "他默默努力了十年，终于厚积薄发，成为业界领军人物。",
+      "dialogue": "A: 他怎么突然就这么成功了？\nB: 不是突然。他一直在厚积薄发，外人看不见他背后的十年积累。\nA: 原来如此。我也要更有耐心。\nB: 成功从来不是偶然的。"
+    },
+    {
+      "id": "ZH_037",
+      "expression": "运筹帷幄",
+      "pinyin": "yùn chóu wéi wò",
+      "meaning": "장막 안에서 전략을 짜다, 탁월한 전략적 계획을 세우다",
+      "level": "advanced",
+      "theme": "전략",
+      "example": "优秀的战略家能够运筹帷幄，决胜千里之外。",
+      "dialogue": "A: 他没有亲自参与执行，却把项目做得很成功。\nB: 这就是运筹帷幄的能力。领导不一定要冲在前面，但一定要想在前面。\nA: 策略比行动更重要？\nB: 二者缺一不可，但没有策略，行动只是消耗。"
+    },
+    {
+      "id": "ZH_038",
+      "expression": "一石二鸟",
+      "pinyin": "yī shí èr niǎo",
+      "meaning": "일석이조, 하나로 둘을 얻다",
+      "level": "intermediate",
+      "theme": "효율",
+      "example": "这个方案既能降低成本，又能提升效率，真是一石二鸟。",
+      "dialogue": "A: 我们既需要培训员工，又需要更新文档，怎么平衡？\nB: 让员工边培训边更新文档，一石二鸟，两件事同时搞定。\nA: 这个方法很聪明！\nB: 在资源有限时，创意就是效率。"
+    },
+    {
+      "id": "ZH_039",
+      "expression": "临危不乱",
+      "pinyin": "lín wēi bù luàn",
+      "meaning": "위기에 처해도 침착함을 잃지 않다",
+      "level": "advanced",
+      "theme": "리더십",
+      "example": "真正的领导者在危机时刻能够临危不乱，稳定军心。",
+      "dialogue": "A: 系统崩溃了，客户都在投诉，我们怎么办？\nB: 临危不乱，先安抚客户，同时分工处理技术问题。\nA: 你怎么这么冷静？\nB: 越紧急的时候，越需要清醒的头脑。"
+    },
+    {
+      "id": "ZH_040",
+      "expression": "循序渐进",
+      "pinyin": "xún xù jiàn jìn",
+      "meaning": "순서대로 점진적으로 나아가다",
+      "level": "intermediate",
+      "theme": "성장",
+      "example": "学习新技能要循序渐进，不能急于求成。",
+      "dialogue": "A: 我想在三个月内完全掌握数据分析。\nB: 可以，但要循序渐进。先掌握基础，再学高级技巧。\nA: 我容易急着想跳到难的部分。\nB: 基础不牢，高楼不稳。"
+    },
+    {
+      "id": "ZH_041",
+      "expression": "扬长避短",
+      "pinyin": "yáng cháng bì duǎn",
+      "meaning": "장점을 살리고 단점을 보완하다",
+      "level": "intermediate",
+      "theme": "커리어",
+      "example": "组建团队时应该扬长避短，让每个人在最擅长的地方发挥价值。",
+      "dialogue": "A: 她的分析能力很强，但沟通技巧比较弱。\nB: 那就扬长避短——让她专注数据分析，找人负责对外沟通。\nA: 这样岂不是回避了她的弱点？\nB: 聪明的管理是激发优势，而不是只盯着缺陷。"
+    },
+    {
+      "id": "ZH_042",
+      "expression": "不耻下问",
+      "pinyin": "bù chǐ xià wèn",
+      "meaning": "자신보다 낮은 사람에게도 묻기를 부끄러워하지 않다",
+      "level": "intermediate",
+      "theme": "성장",
+      "example": "真正有智慧的人不耻下问，从任何人身上都能学到东西。",
+      "dialogue": "A: 我是团队里的老员工，直接问新来的同事会不会不好意思？\nB: 不耻下问是智慧，不是软弱。他可能有你不知道的新技术。\nA: 你说得有道理。\nB: 最危险的人，是以为自己什么都知道的人。"
+    },
+    {
+      "id": "ZH_043",
+      "expression": "言传身教",
+      "pinyin": "yán chuán shēn jiào",
+      "meaning": "말로 가르치고 몸소 행동으로 보여주다",
+      "level": "advanced",
+      "theme": "리더십",
+      "example": "教育孩子最有效的方式是言传身教，而不只是说教。",
+      "dialogue": "A: 我总是告诉下属要诚实，但他们还是隐瞒问题。\nB: 言传身教——你自己在汇报中有没有公开承认过失误？\nA: 好像很少……\nB: 他们在模仿你，不是听你说什么。"
+    },
+    {
+      "id": "ZH_044",
+      "expression": "精益求精",
+      "pinyin": "jīng yì qiú jīng",
+      "meaning": "이미 훌륭한 것을 더욱 완벽하게 추구하다",
+      "level": "advanced",
+      "theme": "품질",
+      "example": "工匠精神的核心就是精益求精，永远不满足于'够好'。",
+      "dialogue": "A: 这份报告已经很好了，还需要再改吗？\nB: 精益求精——这里的数据可视化还可以更直观。\nA: 你真是完美主义者。\nB: 不是完美主义，是对品质负责。"
+    },
+    {
+      "id": "ZH_045",
+      "expression": "同舟共济",
+      "pinyin": "tóng zhōu gòng jì",
+      "meaning": "같은 배에 타고 함께 헤쳐 나가다, 협력하여 어려움을 극복하다",
+      "level": "intermediate",
+      "theme": "팀워크",
+      "example": "面对市场下行，公司上下需要同舟共济，共渡难关。",
+      "dialogue": "A: 公司这季度业绩不好，大家情绪都很低落。\nB: 这时候更要同舟共济——团队的凝聚力比业绩数字更重要。\nA: 我们能撑过去吗？\nB: 一起扛，比分散独自扛，胜算大得多。"
+    },
+    {
+      "id": "ZH_046",
+      "expression": "马到成功",
+      "pinyin": "mǎ dào chéng gōng",
+      "meaning": "일에 착수하자마자 바로 성공하다, 즉각적인 성공을 빌다",
+      "level": "beginner",
+      "theme": "격려",
+      "example": "祝你新项目马到成功！",
+      "dialogue": "A: 明天就要向董事会做最终提案了，好紧张。\nB: 你准备得这么充分，一定马到成功！\nA: 谢谢你的鼓励。\nB: 实力加上准备，没有什么能拦住你。"
+    },
+    {
+      "id": "ZH_047",
+      "expression": "物以稀为贵",
+      "pinyin": "wù yǐ xī wéi guì",
+      "meaning": "희소한 것이 귀하다, 드물수록 가치가 높다",
+      "level": "intermediate",
+      "theme": "전략",
+      "example": "在竞争激烈的市场中，独特的专业能力物以稀为贵。",
+      "dialogue": "A: 现在市场上做UI设计的人太多了，我怎么才能脱颖而出？\nB: 物以稀为贵——专攻一个利基领域，成为那里的专家。\nA: 比如？\nB: 金融科技的UI设计，既懂设计又懂金融逻辑的人少之又少。"
+    }
+  ],
+  "idioms_and_quotes": [
+    {
+      "id": "IQ_034",
+      "title": "登高必自卑，行遠必自邇",
+      "meaning": "높이 오르려면 낮은 데서 시작해야 하고, 멀리 가려면 가까운 곳에서 출발해야 한다 (기초·겸손)",
+      "behind_story": "《중용》에서 유래한 구절로, 모든 큰 성취는 기초부터 시작된다는 원칙을 담고 있다. 리더십에서 '현장을 모르면 전략도 없다'는 교훈과 맥을 같이 한다."
+    },
+    {
+      "id": "IQ_035",
+      "title": "吾日三省吾身",
+      "meaning": "나는 날마다 세 가지로 내 자신을 반성한다 (자기 성찰)",
+      "behind_story": "공자의 제자 증자(曾子)의 말로, 매일 세 가지(남을 위해 충실했는가, 벗과 미더웠는가, 스승의 가르침을 익혔는가)를 반성했다. 자기 성찰의 습관이 성장의 근간임을 강조하는 고전 구절이다."
+    },
+    {
+      "id": "IQ_036",
+      "title": "木秀於林，風必摧之",
+      "meaning": "숲에서 뛰어나게 자란 나무는 바람이 반드시 쓰러뜨린다 (튀는 자에 대한 시기와 견제)",
+      "behind_story": "삼국시대 위나라 이강(李康)의 《운명론》에서 유래. 조직에서 너무 두드러지면 견제를 받는다는 현실을 경고하는 동시에, 뛰어남을 억누르는 문화를 비판하는 양면성을 지닌 표현이다."
+    },
+    {
+      "id": "IQ_037",
+      "title": "知人者智，自知者明",
+      "meaning": "남을 아는 것은 지혜이고, 자신을 아는 것은 밝음이다",
+      "behind_story": "노자 《도덕경》 33장의 구절. 진정한 리더는 자신의 약점과 강점을 명확히 알고, 그 자기 인식을 바탕으로 팀을 구성하고 위임한다. 현대 리더십에서 '자기인식(self-awareness)'의 중요성과 완벽하게 맞닿아 있다."
+    },
+    {
+      "id": "IQ_038",
+      "title": "千里之行，始於足下",
+      "meaning": "천 리의 여정도 발아래 한 걸음에서 시작된다",
+      "behind_story": "노자 《도덕경》 64장. '큰 성취는 첫 작은 실행에서 시작된다'는 실천의 철학이다. 커리어를 시작하는 시점, 또는 큰 프로젝트 앞에서 망설이는 사람들에게 행동의 용기를 주는 표현이다."
+    },
+    {
+      "id": "IQ_039",
+      "title": "器大者聲必宏",
+      "meaning": "그릇이 큰 자는 목소리도 반드시 크다 (인품과 영향력의 비례 관계)",
+      "behind_story": "조선시대 유학자들이 즐겨 인용한 리더의 자질론. 기량·인품·도량(器)이 클수록 사회적 영향력(聲)도 커진다는 원칙으로, 단순히 크게 말하는 것이 아닌 깊이에서 우러나오는 영향력을 의미한다."
+    },
+    {
+      "id": "IQ_040",
+      "title": "Uneasy lies the head that wears a crown.",
+      "meaning": "왕관을 쓴 자는 편히 쉬지 못한다 (리더의 책임과 부담)",
+      "behind_story": "셰익스피어 《헨리 4세》 2부 3막의 대사. 리더십은 특권이자 동시에 끊임없는 책임의 짐임을 표현한다. '높은 자리일수록 고독하고 불안하다'는 현대 경영자들도 공감하는 보편적 진실이다."
+    },
+    {
+      "id": "IQ_041",
+      "title": "The fish rots from the head down.",
+      "meaning": "생선은 머리부터 썩는다 (조직의 문제는 리더에서 시작된다)",
+      "behind_story": "그리스·터키 지역에서 유래한 속담으로, 조직의 실패·부패는 리더십의 문제에서 기인한다는 원칙을 담고 있다. 리더가 문화를 만든다는 현대 조직 이론의 원형이기도 하다."
+    },
+    {
+      "id": "IQ_042",
+      "title": "A lion led by donkeys.",
+      "meaning": "당나귀들에게 이끌리는 사자 (능력 있는 부하를 둔 무능한 리더십)",
+      "behind_story": "1차 세계대전 당시 독일군이 영국군 병사들의 용맹함과 지휘부의 무능함을 표현하며 사용한 말. 반대로도 읽힌다 — 좋은 팀이 형편없는 리더를 만났을 때의 비극. 리더십 선발의 중요성을 강조하는 문구다."
+    },
+    {
+      "id": "IQ_043",
+      "title": "Management is doing things right; leadership is doing the right things.",
+      "meaning": "관리는 일을 올바르게 하는 것이고, 리더십은 올바른 일을 하는 것이다",
+      "behind_story": "피터 드러커가 정립한 리더십과 매니지먼트의 구분. 실무 최적화(효율)와 방향 설정(효과)의 차이다. 현대 경영학에서 가장 자주 인용되는 격언 중 하나이며, 전략적 사고와 운영 사고의 경계를 명확히 한다."
+    },
+    {
+      "id": "IQ_044",
+      "title": "If you want to go fast, go alone. If you want to go far, go together.",
+      "meaning": "빨리 가려면 혼자 가고, 멀리 가려면 함께 가라",
+      "behind_story": "아프리카 속담으로 알려져 있으나 정확한 출처는 불분명. 속도와 지속가능성의 트레이드오프를 담은 표현으로, 스타트업 초기의 빠른 실행과 스케일업 단계의 팀빌딩 사이의 전환을 설명하는 데 자주 쓰인다."
+    },
+    {
+      "id": "IQ_045",
+      "title": "A ship in harbor is safe, but that's not what ships are built for.",
+      "meaning": "항구에 있는 배는 안전하다. 하지만 배는 그러라고 만들어진 것이 아니다",
+      "behind_story": "존 시드의 시에서 유래. 안전한 선택에 머무르는 것의 역설을 담은 표현이다. 커리어·창업·리더십 맥락에서 '안주(comfort zone)와 성장(growth zone)의 선택'을 논할 때 자주 인용된다."
+    },
+    {
+      "id": "IQ_046",
+      "title": "It's not the strongest species that survives, nor the most intelligent, but the most responsive to change.",
+      "meaning": "살아남는 것은 가장 강한 종도, 가장 지능적인 종도 아닌 변화에 가장 잘 적응하는 종이다",
+      "behind_story": "찰스 다윈의 진화론에서 영감을 받은 표현(다윈 직접 발언은 아님). 급변하는 비즈니스 환경에서 적응력과 민첩성(agility)의 중요성을 강조하는 현대 경영 담론의 핵심 메시지다."
+    },
+    {
+      "id": "IQ_047",
+      "title": "People don't leave bad jobs. They leave bad managers.",
+      "meaning": "사람들은 나쁜 직장을 떠나는 것이 아니다. 나쁜 상사를 떠나는 것이다",
+      "behind_story": "HR 연구(갤럽 등)에서 반복적으로 확인된 이직의 주요 원인을 압축한 표현. 리더십의 질이 인재 유지에 직결된다는 원칙으로, 채용보다 리더 개발에 투자해야 한다는 현대 인재 경영론의 핵심 명제다."
+    },
+    {
+      "id": "IQ_048",
+      "title": "Action expresses priorities.",
+      "meaning": "행동이 우선순위를 드러낸다",
+      "behind_story": "마하트마 간디의 말. 리더가 말하는 가치(values)와 실제 시간·돈·에너지를 투자하는 곳이 다를 때, 직원들은 말이 아닌 행동을 본다. 리더십의 진정성(authenticity)을 측정하는 가장 간단한 기준이다."
+    }
+  ],
+  "history_facts": [
+    {
+      "id": "HI_043",
+      "title": "르네상스의 시작과 이탈리아 도시국가",
+      "period": "14-15세기",
+      "region": "이탈리아",
+      "summary": "14~15세기 이탈리아 피렌체, 베네치아 등 도시국가에서 고대 그리스·로마 문화를 재발견하는 르네상스가 시작됐다. 메디치 가문의 후원으로 레오나르도 다빈치, 미켈란젤로, 마키아벨리 등 거장들이 활동했다. 인문주의(Humanism)는 신 중심에서 인간 중심의 세계관으로 전환을 이끌었다.",
+      "behind_story": "르네상스가 이탈리아에서 시작된 것은 우연이 아니다. 지중해 무역의 거점인 이탈리아 도시국가들은 부유했고, 그 富가 예술가와 학자를 후원하는 문화를 만들었다. 메디치 가문은 오늘날로 치면 세계 최고의 문화 VC(벤처 캐피탈)였다."
+    },
+    {
+      "id": "HI_044",
+      "title": "종교개혁과 마르틴 루터(1517)",
+      "period": "16세기",
+      "region": "독일·유럽",
+      "summary": "1517년 마르틴 루터가 가톨릭 교회의 면죄부 판매를 비판하는 '95개조 논제'를 비텐베르크 성당 문에 게시하며 종교개혁이 시작됐다. 루터는 성경만이 권위의 유일한 기준(Sola Scriptura)이며, 믿음만으로 구원받는다(Sola Fide)고 주장했다. 구텐베르크 인쇄술의 보급이 개혁 사상의 빠른 확산을 가능하게 했다.",
+      "behind_story": "루터의 개혁이 성공할 수 있었던 결정적 이유는 기술 혁신이었다. 구텐베르크의 인쇄기 덕분에 루터의 팸플릿은 수주 만에 수만 부가 유럽 전역에 배포됐다. 미디어가 혁명을 만든 역사상 최초의 사례 중 하나다."
+    },
+    {
+      "id": "HI_045",
+      "title": "대항해시대와 콜럼버스(1492)",
+      "period": "15-16세기",
+      "region": "유럽·아메리카",
+      "summary": "포르투갈과 스페인이 새로운 무역 항로를 개척하며 대항해시대가 열렸다. 1492년 콜럼버스의 아메리카 도달, 1498년 바스쿠 다가마의 인도 항로 개척이 핵심이다. 이후 유럽의 식민지 확장, 삼각 무역, 아메리카 원주민 문명의 붕괴가 뒤따랐다.",
+      "behind_story": "콜럼버스는 죽는 날까지 자신이 인도에 도달했다고 믿었다. '아메리카'라는 이름은 그가 아닌, 진실을 처음 깨달은 이탈리아 탐험가 아메리고 베스푸치에서 유래했다. 역사는 가장 먼저 한 사람이 아닌, 가장 먼저 이해한 사람의 이름을 기억하기도 한다."
+    },
+    {
+      "id": "HI_046",
+      "title": "영국 청교도 혁명(1640~1660)과 명예혁명(1688)",
+      "period": "17세기",
+      "region": "영국",
+      "summary": "찰스 1세의 전제 정치에 맞선 의회가 청교도 혁명을 일으켰고, 크롬웰의 공화정이 수립됐다. 왕정 복고 후 제임스 2세의 가톨릭 복귀 시도에 맞서 의회가 윌리엄 3세를 초청한 명예혁명(1688)으로 권리장전(1689)이 제정됐다. 이는 입헌군주제와 의회 주권의 토대가 됐다.",
+      "behind_story": "'명예혁명'이 명예로운 이유는 피를 흘리지 않았기 때문이다. 총 한 방 없이 왕을 교체한 이 사건은, 프랑스 혁명의 피바다와 대비되며 영국식 점진주의 개혁의 상징이 되었다."
+    },
+    {
+      "id": "HI_047",
+      "title": "프랑스 혁명(1789)과 나폴레옹",
+      "period": "18-19세기",
+      "region": "프랑스·유럽",
+      "summary": "1789년 재정 위기와 절대왕정에 저항한 시민들이 바스티유 감옥을 습격하며 혁명이 시작됐다. '자유·평등·박애'를 기치로 한 프랑스 혁명은 공화정 수립, 루이 16세 처형, 공포정치를 거쳐 나폴레옹의 집권으로 이어졌다. 나폴레옹 전쟁은 유럽 전역에 혁명 이념과 민족주의를 전파했다.",
+      "behind_story": "혁명의 아이러니: 자유를 위해 왕을 처형한 프랑스는 곧 나폴레옹이라는 황제를 스스로 선택했다. 혁명의 혼돈은 종종 더 강력한 권위에 대한 갈망을 낳는다. 이 패턴은 20세기 여러 혁명에서도 반복됐다."
+    },
+    {
+      "id": "HI_048",
+      "title": "산업혁명(18세기 영국)과 자본주의의 형성",
+      "period": "18-19세기",
+      "region": "영국·유럽",
+      "summary": "18세기 후반 영국에서 제임스 와트의 증기기관 개량을 계기로 산업혁명이 시작됐다. 수공업에서 기계 생산으로의 전환, 공장제 시스템, 도시화, 노동계급의 탄생이 뒤따랐다. 자본가와 노동자의 계급 대립이 심화되며 마르크스와 엥겔스의 사회주의 사상이 등장하는 배경이 됐다.",
+      "behind_story": "산업혁명은 인류 역사상 가장 빠른 생활 방식의 변화였다. 단 2~3세대 만에 농경 사회에서 도시 산업 사회로 전환됐고, 이 충격은 20세기 공산주의 혁명, 노동운동, 복지국가 등 오늘날 세계의 모든 정치·경제 구조를 낳았다."
+    },
+    {
+      "id": "HI_049",
+      "title": "미국 독립혁명(1776)과 민주주의 이념",
+      "period": "18세기",
+      "region": "북아메리카",
+      "summary": "1776년 영국 식민지였던 13개 주가 독립선언서를 발표하며 미합중국이 탄생했다. 영국의 대표 없는 과세에 맞선 '대표 없이 과세 없다(No taxation without representation)'의 원칙이 혁명의 기폭제가 됐다. 독립선언서의 '모든 인간은 평등하게 태어났다'는 구절은 이후 전 세계 민주주의 운동의 기반이 됐다.",
+      "behind_story": "독립선언서를 쓴 토머스 제퍼슨은 '모든 인간은 평등하다'고 썼지만 본인은 노예를 수백 명 소유했다. 이 거대한 위선은 미국이 200년 넘게 씨름해온 인종 불평등의 원죄이기도 하다."
+    },
+    {
+      "id": "HI_050",
+      "title": "빈 체제(1815)와 유럽 보수주의 질서",
+      "period": "19세기 초",
+      "region": "유럽",
+      "summary": "나폴레옹 전쟁 이후 1815년 빈 회의에서 유럽 열강이 구질서를 회복하고 세력 균형을 재편했다. 메테르니히(오스트리아)가 주도한 빈 체제는 정통주의·복고주의를 원칙으로 하며 혁명과 민족주의를 억압했다. 1848년 혁명(봄의 민족들) 이후 약화되기 시작했다.",
+      "behind_story": "빈 체제는 유럽에 약 40년간의 상대적 평화를 가져다줬다. 세력 균형이라는 개념 자체가 현대 국제 관계의 원형이다. 2차 세계대전 이후 유엔 체제나 냉전 시대 핵 억지력도 같은 원리의 현대판이다."
+    },
+    {
+      "id": "HI_051",
+      "title": "제국주의와 아프리카 분할(19세기 말)",
+      "period": "19세기 말",
+      "region": "아프리카·유럽",
+      "summary": "19세기 후반 유럽 열강은 원료·시장을 둘러싼 제국주의 경쟁에 나섰다. 1884~85년 베를린 회의에서 유럽 열강은 아프리카 대륙을 임의로 분할했다. 영국·프랑스·독일·벨기에 등이 아프리카를 식민지로 만들면서 콩고 학살, 보어 전쟁 등 폭력적 수탈이 이어졌다.",
+      "behind_story": "베를린 회의에서 유럽 열강은 아프리카를 지도 위에서 자로 줄을 그어 나눴다. 아프리카인은 한 명도 초대받지 못했다. 이 인위적인 국경선은 지금도 아프리카 분쟁의 근원으로 남아 있다."
+    },
+    {
+      "id": "HI_052",
+      "title": "제1차 세계대전(1914~1918)과 베르사유 조약",
+      "period": "20세기 초",
+      "region": "유럽",
+      "summary": "1914년 사라예보에서 오스트리아 황태자 암살(가브릴로 프린치프)을 계기로 1차 세계대전이 발발했다. 동맹국(독일·오스트리아·오스만)과 연합국(영국·프랑스·러시아·미국)이 충돌했다. 1918년 전쟁 종료 후 베르사유 조약으로 독일에 막대한 전쟁 배상금과 영토 제한이 부과됐고, 이는 2차 세계대전의 씨앗이 됐다.",
+      "behind_story": "1차 세계대전은 '전쟁을 끝내기 위한 전쟁'이라 불렸다. 하지만 베르사유의 굴욕적 조약은 독일 국민의 분노를 키웠고, 히틀러가 그 분노를 발판 삼아 권력을 잡을 수 있게 했다. 불공정한 평화 조약이 다음 전쟁을 예약한 셈이다."
+    },
+    {
+      "id": "HI_053",
+      "title": "러시아 혁명(1917)과 소비에트 연방 수립",
+      "period": "20세기 초",
+      "region": "러시아",
+      "summary": "1917년 2월 혁명으로 로마노프 왕조가 붕괴됐고, 10월 혁명으로 레닌이 이끄는 볼셰비키가 권력을 장악했다. 마르크스주의에 기반한 소비에트 정권은 토지·산업 국유화를 추진했다. 1922년 소비에트 연방(USSR)이 수립돼 냉전 종식(1991)까지 세계 정치의 한 축이 됐다.",
+      "behind_story": "레닌은 마르크스가 예언한 것과 달리, 자본주의가 발전한 나라가 아닌 가장 후진적인 농업 국가에서 혁명을 일으켰다. '조건이 갖춰질 때까지 기다리면 혁명은 없다'는 레닌의 전위당 이론은 20세기 모든 혁명 운동의 교범이 됐다."
+    },
+    {
+      "id": "HI_054",
+      "title": "대공황(1929)과 뉴딜 정책",
+      "period": "20세기 초",
+      "region": "미국·세계",
+      "summary": "1929년 미국 주식시장 붕괴로 시작된 대공황은 전 세계로 확산돼 실업·빈곤·사회 불안을 야기했다. 루스벨트 대통령은 정부 주도의 뉴딜 정책(공공사업·금융 규제·사회보장 도입)으로 경제 회복을 추진했다. 대공황은 자유방임 자본주의의 한계를 드러내며 케인스주의 경제학의 확산으로 이어졌다.",
+      "behind_story": "뉴딜은 단순한 경제 정책이 아니라 '정부가 국민의 생활을 책임진다'는 사회 계약의 재정립이었다. 복지국가, 최저임금, 실업보험 등 오늘날 당연하게 여기는 제도들의 씨앗이 대공황의 위기에서 뿌려졌다."
+    },
+    {
+      "id": "HI_055",
+      "title": "제2차 세계대전(1939~1945)과 홀로코스트",
+      "period": "20세기 중반",
+      "region": "유럽·아시아·태평양",
+      "summary": "1939년 독일의 폴란드 침공으로 2차 세계대전이 발발했다. 히틀러의 나치즘, 일본의 군국주의, 이탈리아의 파시즘이 축국(Axis)을 이루었고, 연합국(미·영·소·프)에 패배했다. 나치 독일은 유대인 600만 명을 조직적으로 학살한 홀로코스트(Holocaust)라는 인류 역사상 최악의 집단 학살을 자행했다.",
+      "behind_story": "홀로코스트가 충격적인 이유는 공장처럼 조직적이고 관료적으로 진행됐다는 점이다. 한나 아렌트는 이를 '악의 평범성(banality of evil)'이라 불렀다. 가장 끔찍한 악은 괴물이 아닌, 명령에 순응하는 평범한 사람들에 의해 저질러질 수 있다."
+    },
+    {
+      "id": "HI_056",
+      "title": "냉전의 시작과 마셜 플랜(1947~1953)",
+      "period": "20세기 중반",
+      "region": "미국·유럽·소련",
+      "summary": "2차 세계대전 이후 미국과 소련의 이념 대립으로 냉전이 시작됐다. 트루먼 독트린(1947)으로 공산주의 확산을 봉쇄하려 했고, 마셜 플랜(1948)으로 서유럽 재건을 지원했다. 베를린 봉쇄(1948~49), 한국전쟁(1950~53)이 초기 냉전의 대리전 성격을 띠었다.",
+      "behind_story": "마셜 플랜은 역사상 가장 현명한 외교 투자 중 하나였다. 미국이 130억 달러를 투자해 서유럽을 재건한 것은 순수한 인도주의가 아닌 전략이었다. 가난한 나라는 공산주의의 온상이 된다는 계산이었다. '적에게 먹을 것을 줘서 친구로 만들어라'."
+    },
+    {
+      "id": "HI_057",
+      "title": "탈식민지화와 인도 독립(1947)",
+      "period": "20세기 중반",
+      "region": "아시아·아프리카",
+      "summary": "2차 세계대전 이후 아시아·아프리카 식민지들이 독립을 획득하는 탈식민지화 물결이 일었다. 간디의 비폭력 불복종 운동이 인도 독립(1947)의 동력이 됐다. 그러나 파키스탄과의 분리 독립과 종교 분쟁으로 수십만 명이 희생됐다.",
+      "behind_story": "간디는 현대사 최초로 '비폭력이 제국을 이길 수 있음'을 증명했다. 하지만 인도 독립의 또 다른 현실은 분단이었다. 인도·파키스탄 분리 과정에서 100만~200만 명이 종교 폭력으로 사망했다. 독립은 해방이었지만 동시에 비극이었다."
+    }
+  ]
+}

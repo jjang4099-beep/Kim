@@ -3,11 +3,11 @@
     "batch": 2,
     "theme": "일상·감정·사회생활",
     "id_range": {
-      "english": "EN_101 ~ EN_170"
+      "english": "EN_101 ~ EN_190"
     },
-    "total": 70,
+    "total": 90,
     "created": "2026-06-14",
-    "updated": "2026-06-14"
+    "updated": "2026-06-16"
   },
   "english_expressions": [
     {
@@ -639,6 +639,187 @@
       "theme": "social",
       "example": "Bring your coworkers to the team dinner — the more the merrier.",
       "dialogue": "A: Is it okay if my partner and a couple of friends join us for the barbecue?\nB: Absolutely — the more the merrier! Just let me know numbers so I can make sure we have enough food for everyone."
+    },
+    {
+      "id": "EN_171",
+      "expression": "You're overthinking it.",
+      "meaning": "너무 복잡하게 생각하고 있어요.",
+      "level": "beginner",
+      "theme": "mindset",
+      "example": "The essay prompt is straightforward — you're overthinking it. Just answer the question directly.",
+      "dialogue": "A: I'm not sure if my answer is sophisticated enough. Should I add more theoretical background? Maybe restructure it entirely?\nB: You're overthinking it. The rubric just asks for a clear argument with evidence. You already have that."
+    },
+    {
+      "id": "EN_172",
+      "expression": "It grew on me.",
+      "meaning": "처음엔 별로였는데 점점 좋아지더라고요.",
+      "level": "intermediate",
+      "theme": "feelings",
+      "example": "I wasn't a fan of jazz at first, but it really grew on me after a few weeks of listening.",
+      "dialogue": "A: I remember you said you didn't like studying abroad when you first arrived.\nB: Yeah, it grew on me. The first month was tough, but now I can't imagine going back so soon."
+    },
+    {
+      "id": "EN_173",
+      "expression": "I'm not cut out for this.",
+      "meaning": "저는 이 일에 맞지 않는 것 같아요. / 저한테는 안 맞는 것 같아요.",
+      "level": "intermediate",
+      "theme": "self-reflection",
+      "example": "After three months of practice, I realized I'm just not cut out for competitive debate.",
+      "dialogue": "A: How's the pre-med program going?\nB: Honestly, I'm starting to think I'm not cut out for this. I love biology but the clinical side makes me anxious every time.\nA: That's worth listening to. What does make you excited?"
+    },
+    {
+      "id": "EN_174",
+      "expression": "Pull yourself together.",
+      "meaning": "정신 차려요. / 마음을 다잡아요.",
+      "level": "intermediate",
+      "theme": "encouragement",
+      "example": "You've studied harder than anyone this semester — pull yourself together and walk into that exam room with confidence.",
+      "dialogue": "A: I blanked on everything in the practice test. I think I'm going to fail the actual exam.\nB: Hey. Pull yourself together. One bad practice test doesn't define you. What section gave you the most trouble?"
+    },
+    {
+      "id": "EN_175",
+      "expression": "It's not rocket science.",
+      "meaning": "그렇게 어려운 일이 아니에요. / 별거 아니에요.",
+      "level": "beginner",
+      "theme": "encouragement",
+      "example": "Cooking a healthy breakfast isn't rocket science — eggs, oats, and some fruit. That's it.",
+      "dialogue": "A: I've been putting off learning Excel for months. It seems so complicated.\nB: It's not rocket science. Start with SUM and VLOOKUP and you'll handle eighty percent of what you need.\nA: You make it sound so simple.\nB: Because it is, once you stop avoiding it."
+    },
+    {
+      "id": "EN_176",
+      "expression": "I'm on a roll.",
+      "meaning": "요즘 잘 나가고 있어요. / 연속으로 잘 되고 있어요.",
+      "level": "beginner",
+      "theme": "momentum",
+      "example": "I've solved five practice problems in a row — I'm on a roll today.",
+      "dialogue": "A: You've been studying for four hours straight. Aren't you tired?\nB: Not at all — I'm on a roll. I finally understand the organic chemistry mechanisms I've been stuck on for weeks.\nA: Okay, but take a short break. You don't want to burn out before the exam."
+    },
+    {
+      "id": "EN_177",
+      "expression": "Don't sweat it.",
+      "meaning": "걱정 마요. / 별거 아니에요. / 신경 쓰지 마요.",
+      "level": "beginner",
+      "theme": "reassurance",
+      "example": "You mispronounced one word in the presentation — don't sweat it. Nobody noticed.",
+      "dialogue": "A: I totally forgot to cite one of my sources in the bibliography. The professor is going to take points off.\nB: Don't sweat it — email the professor now and explain. Most of them appreciate the honesty and will let you resubmit.\nA: Do you think that actually works?\nB: Nine times out of ten."
+    },
+    {
+      "id": "EN_178",
+      "expression": "I'm in over my head.",
+      "meaning": "감당하기 벅차요. / 너무 깊이 들어와버렸어요.",
+      "level": "intermediate",
+      "theme": "self-reflection",
+      "example": "I took six courses this semester and I'm completely in over my head.",
+      "dialogue": "A: How's the research assistant position going?\nB: Honestly, I feel like I'm in over my head. The professor assumes a level of statistics background I just don't have yet.\nA: Have you told her that?\nB: Not yet. I was afraid to look incompetent.\nA: Telling her now is way better than handing in bad work later."
+    },
+    {
+      "id": "EN_179",
+      "expression": "Wake up and smell the coffee.",
+      "meaning": "현실을 직시하세요. / 정신 차리고 현실을 봐요.",
+      "level": "intermediate",
+      "theme": "reality-check",
+      "example": "You've been skipping class every week and expecting an A. Wake up and smell the coffee.",
+      "dialogue": "A: I'm sure I'll figure out my career path eventually. Something will come along.\nB: Wake up and smell the coffee — internship application season closes in two weeks and you haven't applied anywhere.\nA: That soon?\nB: Yes. Let's sit down tonight and work on your resume together."
+    },
+    {
+      "id": "EN_180",
+      "expression": "That's water under the bridge.",
+      "meaning": "이미 지나간 일이에요. / 다 지나간 거예요.",
+      "level": "intermediate",
+      "theme": "moving-on",
+      "example": "We had a rough start as study partners, but that's water under the bridge now. We work great together.",
+      "dialogue": "A: I still feel bad about bombing that group presentation last semester and dragging everyone's grade down.\nB: That's water under the bridge. We all have off days, and you've more than made up for it since.\nA: Are you sure the others aren't still upset?\nB: Trust me — nobody even remembers it the way you do."
+    },
+    {
+      "id": "EN_181",
+      "expression": "I've been burning the candle at both ends.",
+      "meaning": "양쪽에서 무리하게 에너지를 쏟고 있어요. / 너무 혹독하게 살고 있어요.",
+      "level": "advanced",
+      "theme": "burnout",
+      "example": "Between exams, my part-time job, and club activities, I've been burning the candle at both ends for months.",
+      "dialogue": "A: You look exhausted. When did you last get a full night's sleep?\nB: Honestly? I can't remember. I've been burning the candle at both ends — studying until 2 AM and starting work at 7.\nA: That's not sustainable. Something has to give.\nB: I know. I'm dropping the weekend shift next month."
+    },
+    {
+      "id": "EN_182",
+      "expression": "It's a catch-22.",
+      "meaning": "진퇴양난이에요. / 어느 쪽으로도 빠져나올 수 없는 상황이에요.",
+      "level": "advanced",
+      "theme": "dilemma",
+      "example": "Job listings want three years of experience, but how do you get experience without a job? It's a catch-22.",
+      "dialogue": "A: Every company I apply to wants work experience, but I can't get work experience without a job.\nB: Classic catch-22. That's why internships and volunteer projects matter — they break the loop.\nA: I never thought of it that way.\nB: Build the evidence first. Then the experience requirement becomes a formality."
+    },
+    {
+      "id": "EN_183",
+      "expression": "I'm keeping my fingers crossed.",
+      "meaning": "잘 되길 바라고 있어요. / 행운을 빌고 있어요.",
+      "level": "beginner",
+      "theme": "hope",
+      "example": "The university results come out tomorrow. I'm keeping my fingers crossed.",
+      "dialogue": "A: Did you hear back from the scholarship committee yet?\nB: Not yet. The results should be out by end of this week. I'm keeping my fingers crossed.\nA: You had the strongest application in our group. If anyone gets it, it's you.\nB: Thank you — I really need this one to come through."
+    },
+    {
+      "id": "EN_184",
+      "expression": "Things are looking up.",
+      "meaning": "상황이 나아지고 있어요. / 좋아지고 있는 것 같아요.",
+      "level": "beginner",
+      "theme": "optimism",
+      "example": "After a rough first semester, things are really looking up — I found my study group and my grades improved.",
+      "dialogue": "A: How are you feeling after all those midterms?\nB: Much better, actually. Things are looking up — I got a B+ on the chemistry exam I thought I'd failed.\nA: That's a huge turnaround from last month.\nB: I finally stopped studying alone and joined a study group. Total game changer."
+    },
+    {
+      "id": "EN_185",
+      "expression": "I'll give it a shot.",
+      "meaning": "한번 해볼게요. / 시도해볼게요.",
+      "level": "beginner",
+      "theme": "willingness",
+      "example": "I've never spoken in front of a hundred people before, but I'll give it a shot.",
+      "dialogue": "A: The professor is looking for a student to present at the departmental seminar next month. Would you be interested?\nB: That sounds nerve-wracking, but I'll give it a shot. It'd be good experience.\nA: Great. I'll put your name forward.\nB: Could you send me the format and expected content? I want to prepare properly."
+    },
+    {
+      "id": "EN_186",
+      "expression": "You live and learn.",
+      "meaning": "살면서 배우는 거죠. / 경험이 최고의 선생님이에요.",
+      "level": "beginner",
+      "theme": "life-lesson",
+      "example": "I submitted the wrong file to the professor, but you live and learn — I triple-check everything now.",
+      "dialogue": "A: I spent two weeks on the wrong essay topic because I misread the prompt.\nB: Oh no — did you have time to redo it?\nA: Barely. But I submitted something. You live and learn.\nB: Always read the prompt twice. Three times for exams.",
+      "dialogue_ko": null
+    },
+    {
+      "id": "EN_187",
+      "expression": "Hang in there.",
+      "meaning": "조금만 더 버텨요. / 포기하지 말아요.",
+      "level": "beginner",
+      "theme": "encouragement",
+      "example": "Exam week is brutal, but hang in there — it's almost over.",
+      "dialogue": "A: I've been studying for twelve days straight and I feel like my brain has stopped working.\nB: Hang in there — you have two exams left and then it's completely done.\nA: I just hope all this effort actually shows in my grades.\nB: It will. Consistent effort always does."
+    },
+    {
+      "id": "EN_188",
+      "expression": "It's the thought that counts.",
+      "meaning": "마음이 중요한 거예요. / 뜻이 중요한 거죠.",
+      "level": "beginner",
+      "theme": "gratitude",
+      "example": "The gift was small, but it's the thought that counts — she remembered exactly what I'd mentioned months ago.",
+      "dialogue": "A: I couldn't afford a big birthday present for my study partner, so I just made her a card.\nB: That's really sweet. It's the thought that counts.\nA: I hope she feels that way.\nB: Handmade things mean more than bought things, most of the time."
+    },
+    {
+      "id": "EN_189",
+      "expression": "Every little bit helps.",
+      "meaning": "조금씩 쌓이면 다 도움이 돼요. / 작은 것도 다 의미 있어요.",
+      "level": "beginner",
+      "theme": "encouragement",
+      "example": "I can only study for thirty minutes before work, but every little bit helps.",
+      "dialogue": "A: I only managed twenty vocabulary words today. That feels like nothing.\nB: Every little bit helps. Twenty words a day is over six hundred words in a month.\nA: When you put it that way, it sounds significant.\nB: Consistency beats intensity every time. Keep going."
+    },
+    {
+      "id": "EN_190",
+      "expression": "I'm having second thoughts.",
+      "meaning": "다시 생각해보고 있어요. / 마음이 흔들려요.",
+      "level": "intermediate",
+      "theme": "decision",
+      "example": "I applied to the law school, but now I'm having second thoughts — I'm not sure it's the right fit.",
+      "dialogue": "A: You seemed so sure about studying abroad last semester. Are you still going?\nB: Honestly, I'm having second thoughts. The cost is higher than I planned and my parents are worried.\nA: What changed?\nB: I got the scholarship I wanted, so financially it works — I just got scared. I think I'm going."
     }
   ],
   "chinese_expressions": [],

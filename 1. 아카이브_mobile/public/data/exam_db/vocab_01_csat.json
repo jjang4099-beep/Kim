@@ -1,0 +1,359 @@
+{
+  "meta": {
+    "batch": 1,
+    "theme": "수능 영어 핵심 어휘",
+    "total_packs": 6,
+    "total_words": 30,
+    "created": "2026-06-16"
+  },
+  "exam_vocab_themes": [
+    {
+      "id": "EV_PACK_001",
+      "theme_title": "빈칸 추론 핵심 형용사",
+      "level": "high",
+      "tip": "수능 빈칸 추론에서 가장 자주 출제되는 서술 형용사들. 문맥상 '~한 상태'를 표현할 때 필수.",
+      "words": [
+        {
+          "id": "EV_001",
+          "word": "prevalent",
+          "pos": "형용사",
+          "meaning": "만연한, 널리 퍼진",
+          "example_en": "The use of smartphones has become prevalent among all age groups.",
+          "example_ko": "스마트폰 사용이 모든 연령대에 걸쳐 만연해졌다.",
+          "csat_ref": "2023학년도 수능 34번 유형",
+          "synonyms": "widespread, common, dominant"
+        },
+        {
+          "id": "EV_002",
+          "word": "intrinsic",
+          "pos": "형용사",
+          "meaning": "본질적인, 내재된",
+          "example_en": "Curiosity is intrinsic to human nature.",
+          "example_ko": "호기심은 인간 본성에 내재되어 있다.",
+          "csat_ref": "2022학년도 9월 모의고사",
+          "synonyms": "inherent, innate, essential"
+        },
+        {
+          "id": "EV_003",
+          "word": "inevitable",
+          "pos": "형용사",
+          "meaning": "불가피한, 피할 수 없는",
+          "example_en": "Change is inevitable in a rapidly evolving society.",
+          "example_ko": "빠르게 변화하는 사회에서 변화는 불가피하다.",
+          "csat_ref": "2024학년도 수능",
+          "synonyms": "unavoidable, certain, inescapable"
+        },
+        {
+          "id": "EV_004",
+          "word": "ambiguous",
+          "pos": "형용사",
+          "meaning": "모호한, 중의적인",
+          "example_en": "The results of the study were ambiguous and open to interpretation.",
+          "example_ko": "연구 결과는 모호하여 해석의 여지가 있었다.",
+          "csat_ref": "2023학년도 6월 모의고사",
+          "synonyms": "vague, unclear, equivocal"
+        },
+        {
+          "id": "EV_005",
+          "word": "conspicuous",
+          "pos": "형용사",
+          "meaning": "눈에 띄는, 두드러진",
+          "example_en": "Her talent was conspicuous from an early age.",
+          "example_ko": "그녀의 재능은 어린 나이부터 눈에 띄었다.",
+          "csat_ref": "2021학년도 수능",
+          "synonyms": "noticeable, prominent, striking"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_002",
+      "theme_title": "고난도 동사 — 빈칸·순서",
+      "level": "high",
+      "tip": "빈칸 추론과 문장 순서 배열에 핵심 동사들. 동사 뉘앙스를 정확히 알아야 오답을 피할 수 있다.",
+      "words": [
+        {
+          "id": "EV_006",
+          "word": "undermine",
+          "pos": "동사",
+          "meaning": "약화시키다, 서서히 무너뜨리다",
+          "example_en": "Constant criticism can undermine a person's self-confidence.",
+          "example_ko": "끊임없는 비판은 사람의 자신감을 약화시킬 수 있다.",
+          "csat_ref": "2024학년도 9월 모의고사",
+          "synonyms": "weaken, erode, sabotage"
+        },
+        {
+          "id": "EV_007",
+          "word": "facilitate",
+          "pos": "동사",
+          "meaning": "용이하게 하다, 촉진하다",
+          "example_en": "Technology can facilitate communication across long distances.",
+          "example_ko": "기술은 먼 거리를 넘나드는 소통을 용이하게 할 수 있다.",
+          "csat_ref": "2022학년도 수능",
+          "synonyms": "enable, promote, assist"
+        },
+        {
+          "id": "EV_008",
+          "word": "alleviate",
+          "pos": "동사",
+          "meaning": "완화하다, 경감하다",
+          "example_en": "Exercise can alleviate symptoms of depression.",
+          "example_ko": "운동은 우울증 증상을 완화할 수 있다.",
+          "csat_ref": "2023학년도 수능",
+          "synonyms": "ease, relieve, mitigate"
+        },
+        {
+          "id": "EV_009",
+          "word": "perpetuate",
+          "pos": "동사",
+          "meaning": "영속시키다, 지속시키다",
+          "example_en": "Stereotypes in media can perpetuate social inequality.",
+          "example_ko": "미디어의 고정관념은 사회적 불평등을 지속시킬 수 있다.",
+          "csat_ref": "2023학년도 6월",
+          "synonyms": "sustain, maintain, prolong"
+        },
+        {
+          "id": "EV_010",
+          "word": "scrutinize",
+          "pos": "동사",
+          "meaning": "면밀히 조사하다, 꼼꼼히 살피다",
+          "example_en": "Scientists scrutinize data carefully before drawing conclusions.",
+          "example_ko": "과학자들은 결론을 내리기 전에 데이터를 면밀히 조사한다.",
+          "csat_ref": "2021학년도 6월",
+          "synonyms": "examine, analyze, inspect"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_003",
+      "theme_title": "독해 필수 명사 — 추론·논리",
+      "level": "high",
+      "tip": "지문 논리 구조를 파악하는 데 필수인 명사들. 특히 사회·과학 지문에서 핵심 개념어로 반복 등장.",
+      "words": [
+        {
+          "id": "EV_011",
+          "word": "criterion",
+          "pos": "명사",
+          "meaning": "기준 (복수: criteria)",
+          "example_en": "The main criterion for selection was academic achievement.",
+          "example_ko": "선발의 주요 기준은 학업 성취도였다.",
+          "csat_ref": "2024학년도 수능",
+          "synonyms": "standard, measure, benchmark"
+        },
+        {
+          "id": "EV_012",
+          "word": "momentum",
+          "pos": "명사",
+          "meaning": "동력, 가속도, 여세",
+          "example_en": "The movement gained momentum after the viral video spread.",
+          "example_ko": "바이럴 영상이 퍼진 후 운동에 동력이 붙었다.",
+          "csat_ref": "2022학년도 9월",
+          "synonyms": "impetus, drive, force"
+        },
+        {
+          "id": "EV_013",
+          "word": "paradox",
+          "pos": "명사",
+          "meaning": "역설, 모순된 상황",
+          "example_en": "It is a paradox that more choices can lead to less satisfaction.",
+          "example_ko": "선택지가 많을수록 만족도가 낮아진다는 것은 역설이다.",
+          "csat_ref": "2023학년도 수능 38번",
+          "synonyms": "contradiction, irony, anomaly"
+        },
+        {
+          "id": "EV_014",
+          "word": "incentive",
+          "pos": "명사",
+          "meaning": "유인책, 동기 부여 수단",
+          "example_en": "Financial incentives can motivate employees to work harder.",
+          "example_ko": "금전적 유인책은 직원들이 더 열심히 일하도록 동기를 부여할 수 있다.",
+          "csat_ref": "2022학년도 수능",
+          "synonyms": "motivation, stimulus, reward"
+        },
+        {
+          "id": "EV_015",
+          "word": "implication",
+          "pos": "명사",
+          "meaning": "함의, 시사점, 암시",
+          "example_en": "The findings have significant implications for public health policy.",
+          "example_ko": "이 발견은 공중 보건 정책에 중요한 시사점을 가진다.",
+          "csat_ref": "2024학년도 6월",
+          "synonyms": "significance, consequence, suggestion"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_004",
+      "theme_title": "고급 부사·연결어",
+      "level": "high",
+      "tip": "글의 흐름과 논리 관계를 나타내는 부사·연결어. 순서 배열·삽입 문제에서 핵심 단서가 된다.",
+      "words": [
+        {
+          "id": "EV_016",
+          "word": "consequently",
+          "pos": "부사",
+          "meaning": "결과적으로, 따라서",
+          "example_en": "He didn't study enough; consequently, he failed the exam.",
+          "example_ko": "그는 충분히 공부하지 않았다. 결과적으로 시험에 떨어졌다.",
+          "csat_ref": "순서 배열 빈출 연결어",
+          "synonyms": "therefore, thus, as a result"
+        },
+        {
+          "id": "EV_017",
+          "word": "albeit",
+          "pos": "접속사",
+          "meaning": "비록 ~이지만, ~하더라도",
+          "example_en": "The plan was successful, albeit more expensive than expected.",
+          "example_ko": "그 계획은 비록 예상보다 비쌌지만 성공적이었다.",
+          "csat_ref": "2023학년도 수능 고난도 지문",
+          "synonyms": "although, even though, though"
+        },
+        {
+          "id": "EV_018",
+          "word": "notwithstanding",
+          "pos": "전치사/부사",
+          "meaning": "그럼에도 불구하고, ~에도 불구하고",
+          "example_en": "Notwithstanding the challenges, the team completed the project.",
+          "example_ko": "어려움에도 불구하고 팀은 프로젝트를 완수했다.",
+          "csat_ref": "2022학년도 수능 41~42번",
+          "synonyms": "despite, in spite of, regardless"
+        },
+        {
+          "id": "EV_019",
+          "word": "simultaneously",
+          "pos": "부사",
+          "meaning": "동시에",
+          "example_en": "The two events occurred simultaneously across different cities.",
+          "example_ko": "두 사건은 서로 다른 도시에서 동시에 발생했다.",
+          "csat_ref": "과학·사회 지문 빈출",
+          "synonyms": "at the same time, concurrently, together"
+        },
+        {
+          "id": "EV_020",
+          "word": "henceforth",
+          "pos": "부사",
+          "meaning": "이제부터, 앞으로는",
+          "example_en": "Henceforth, all meetings will be recorded for review.",
+          "example_ko": "이제부터 모든 회의는 검토를 위해 녹화될 것이다.",
+          "csat_ref": "법령·공고 지문 빈출",
+          "synonyms": "from now on, from this point forward"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_005",
+      "theme_title": "추론·분석 핵심 동사",
+      "level": "high",
+      "tip": "비판적 독해 지문에서 자주 등장하는 분석·인식 관련 동사들. 특히 '~로 간주하다' 계열 표현 정리.",
+      "words": [
+        {
+          "id": "EV_021",
+          "word": "constitute",
+          "pos": "동사",
+          "meaning": "구성하다, ~에 해당하다",
+          "example_en": "Women constitute over half of the university's student population.",
+          "example_ko": "여성이 대학 학생 인구의 절반 이상을 구성한다.",
+          "csat_ref": "2023학년도 수능",
+          "synonyms": "make up, form, comprise"
+        },
+        {
+          "id": "EV_022",
+          "word": "attribute",
+          "pos": "동사",
+          "meaning": "~의 탓으로 돌리다, ~에 귀속시키다",
+          "example_en": "Scientists attribute climate change largely to human activity.",
+          "example_ko": "과학자들은 기후 변화를 주로 인간 활동의 탓으로 돌린다.",
+          "csat_ref": "2024학년도 9월",
+          "synonyms": "ascribe, credit, assign"
+        },
+        {
+          "id": "EV_023",
+          "word": "perceive",
+          "pos": "동사",
+          "meaning": "인식하다, 감지하다",
+          "example_en": "How we perceive risk influences our decision-making.",
+          "example_ko": "우리가 위험을 어떻게 인식하느냐가 의사결정에 영향을 미친다.",
+          "csat_ref": "2022학년도 수능 빈칸",
+          "synonyms": "recognize, sense, observe"
+        },
+        {
+          "id": "EV_024",
+          "word": "presuppose",
+          "pos": "동사",
+          "meaning": "전제하다, 당연시하다",
+          "example_en": "The argument presupposes that all people have equal opportunities.",
+          "example_ko": "그 주장은 모든 사람이 동등한 기회를 가진다고 전제한다.",
+          "csat_ref": "2023학년도 철학 지문",
+          "synonyms": "assume, presume, take for granted"
+        },
+        {
+          "id": "EV_025",
+          "word": "encompass",
+          "pos": "동사",
+          "meaning": "포괄하다, 아우르다",
+          "example_en": "The study encompasses a wide range of cultural practices.",
+          "example_ko": "그 연구는 다양한 문화적 관행을 포괄한다.",
+          "csat_ref": "2024학년도 수능 장문",
+          "synonyms": "include, cover, embrace"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_006",
+      "theme_title": "사회·인문 지문 핵심 명사",
+      "level": "high",
+      "tip": "사회·인문학 관련 지문에서 반드시 알아야 할 개념어. 특히 EBS 연계 지문에서 집중 출제.",
+      "words": [
+        {
+          "id": "EV_026",
+          "word": "hierarchy",
+          "pos": "명사",
+          "meaning": "위계, 계층 구조",
+          "example_en": "Traditional societies often maintained a strict social hierarchy.",
+          "example_ko": "전통 사회는 흔히 엄격한 사회적 위계를 유지했다.",
+          "csat_ref": "2023학년도 사회·문화 지문",
+          "synonyms": "ranking, pecking order, structure"
+        },
+        {
+          "id": "EV_027",
+          "word": "consensus",
+          "pos": "명사",
+          "meaning": "합의, 의견 일치",
+          "example_en": "There is a growing consensus that urgent action is needed.",
+          "example_ko": "긴급한 조치가 필요하다는 합의가 점차 늘고 있다.",
+          "csat_ref": "2022학년도 정치 지문",
+          "synonyms": "agreement, unanimity, accord"
+        },
+        {
+          "id": "EV_028",
+          "word": "discourse",
+          "pos": "명사",
+          "meaning": "담론, 담화, 논의",
+          "example_en": "Public discourse on climate change has shifted significantly.",
+          "example_ko": "기후변화에 관한 공적 담론이 크게 변화했다.",
+          "csat_ref": "2024학년도 인문 장문",
+          "synonyms": "discussion, debate, dialogue"
+        },
+        {
+          "id": "EV_029",
+          "word": "contingent",
+          "pos": "형용사",
+          "meaning": "~에 달려 있는, 조건부의",
+          "example_en": "Success is contingent on consistent effort over time.",
+          "example_ko": "성공은 꾸준한 노력에 달려 있다.",
+          "csat_ref": "2023학년도 수능 빈칸",
+          "synonyms": "dependent, conditional, subject to"
+        },
+        {
+          "id": "EV_030",
+          "word": "ideology",
+          "pos": "명사",
+          "meaning": "이데올로기, 사상 체계",
+          "example_en": "Political ideology shapes how individuals interpret social issues.",
+          "example_ko": "정치적 이데올로기는 개인이 사회 문제를 해석하는 방식을 형성한다.",
+          "csat_ref": "2024학년도 사회 지문",
+          "synonyms": "belief system, worldview, doctrine"
+        }
+      ]
+    }
+  ]
+}

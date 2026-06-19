@@ -1,4 +1,7 @@
 node_modules/
 .env
+.env.*
+!.env.example
 public/uploads/
+public/data/archive.db
 *.log

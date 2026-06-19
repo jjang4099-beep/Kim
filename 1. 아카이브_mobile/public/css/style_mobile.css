@@ -2412,6 +2412,102 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 }
 
 /* ═══════════════════════════════════════════════
+   수험생 모드 배달 카드 — 영어 단어 / 한국사 (v66)
+═══════════════════════════════════════════════ */
+.mob-exam-card {
+  background    : var(--surface);
+  border        : 1px solid var(--border);
+  border-left   : 4px solid #2563eb;     /* 영어=블루 */
+  border-radius : 12px;
+  padding       : 14px 16px;
+  margin-bottom : 12px;
+}
+.mob-exam-history { border-left-color: #b45309; }   /* 한국사=브라운 */
+.mob-exam-card-hd {
+  display        : flex;
+  align-items    : center;
+  justify-content: space-between;
+  margin-bottom  : 8px;
+}
+.mob-exam-badge {
+  display      : inline-flex;
+  align-items  : center;
+  gap          : 4px;
+  padding      : 4px 11px;
+  border-radius: 99px;
+  background    : rgba(37,99,235,.12);
+  color         : #2563eb;
+  font-size     : 11.5px;
+  font-weight   : 700;
+}
+.mob-exam-badge.hist { background: rgba(180,83,9,.12); color: #b45309; }
+.mob-exam-title {
+  font-size  : 15.5px;
+  font-weight: 800;
+  color      : var(--text-1);
+  margin     : 0 0 6px;
+  line-height: 1.4;
+  word-break : keep-all;
+}
+.mob-exam-tip {
+  font-size  : 12.5px;
+  color      : var(--text-2);
+  margin     : 0 0 10px;
+  line-height: 1.5;
+}
+.mob-exam-summary {
+  font-size  : 13.5px;
+  color      : var(--text-1);
+  line-height: 1.65;
+  margin     : 0 0 10px;
+  word-break : keep-all;
+}
+.mob-exam-keypoint,
+.mob-exam-tipbox {
+  font-size    : 12.5px;
+  line-height  : 1.55;
+  padding      : 9px 11px;
+  border-radius: 8px;
+  margin-top   : 8px;
+  color        : var(--text-1);
+  word-break   : keep-all;
+}
+.mob-exam-keypoint { background: rgba(37,99,235,.07); }
+.mob-exam-tipbox   { background: rgba(180,83,9,.08); }
+.mob-exam-keypoint b,
+.mob-exam-tipbox b { display: inline-block; margin-right: 4px; font-size: 11.5px; }
+
+/* 단어 리스트 */
+.mob-exv-list {
+  list-style    : none;
+  margin        : 0;
+  padding       : 0;
+  display       : flex;
+  flex-direction: column;
+  gap           : 10px;
+}
+.mob-exv-word {
+  padding      : 10px 12px;
+  background   : var(--bg);
+  border-radius: 8px;
+}
+.mob-exv-word-top { display: flex; align-items: baseline; gap: 8px; }
+.mob-exv-term     { font-size: 15px; font-weight: 800; color: #2563eb; }
+.mob-exv-pos      { font-size: 11px; color: var(--text-2); }
+.mob-exv-mean     { font-size: 13px; font-weight: 600; color: var(--text-1); margin-top: 3px; }
+.mob-exv-ex       { font-size: 12px; color: var(--text-2); margin-top: 5px; line-height: 1.5; }
+.mob-exv-ex-ko    { display: block; color: var(--text-3); margin-top: 1px; }
+.mob-exv-ref      { font-size: 11px; color: var(--text-3); margin-top: 5px; display: flex; align-items: center; gap: 3px; }
+
+/* 다크모드 — 블루/브라운 톤을 밝게 보정해 가독성 확보 */
+html[data-theme="dark"] .mob-exv-term,
+html[data-theme="dark"] .mob-exam-badge          { color: #93c5fd; }
+html[data-theme="dark"] .mob-exam-badge          { background: rgba(147,197,253,.14); }
+html[data-theme="dark"] .mob-exam-badge.hist     { color: #fcd34d; background: rgba(252,211,77,.14); }
+html[data-theme="dark"] .mob-exam-card           { border-left-color: #3b82f6; }
+html[data-theme="dark"] .mob-exam-history        { border-left-color: #d97706; }
+
+/* ═══════════════════════════════════════════════
    서재 탭 (v29)
 ═══════════════════════════════════════════════ */
 .mvw-library-wrap {
@@ -4040,7 +4136,22 @@ html[data-theme="light"] .mob-fv-theme-band  { border-color: #E5D3B8; }
 html[data-theme="light"] .mob-master-para     { border-color: #E5D3B8; }
 html[data-theme="light"] .mob-mpa-hl         { background: rgba(15,30,54,.1); color: #0F1E36; }
 html[data-theme="light"] .mob-mpa-tr         { border-color: #E5D3B8; }
-html[data-theme="light"] .mob-mpa-toggle     { border-color: #E5D3B8; color: #0F1E36; }
+/* v66 라이트 모드 토글 바 — 시스템 다크모드(prefers-color-scheme) 색 누수 차단 + 시인성 확보
+   · 배경: 본문과 동일한 크림 베이지  · 텍스트: 선명한 다크 차콜  · 외곽: 1px 연한 슬레이트 */
+html[data-theme="light"] .mob-mpa-toggle,
+html[data-theme="light"] .mob-hum-behind-btn,
+html[data-theme="light"] .mob-mkt-expand-btn {
+  background : #FDFBF7;
+  color      : #1E293B;
+  border     : 1px solid #E2E8F0;
+}
+html[data-theme="light"] .mob-mpa-toggle:active,
+html[data-theme="light"] .mob-hum-behind-btn:active,
+html[data-theme="light"] .mob-hum-behind-btn.open,
+html[data-theme="light"] .mob-mkt-expand-btn:active {
+  background : #F4ECD8;   /* 눌렀을 때 은은한 베이지 강조 — 차콜 누수 방지 */
+  color      : #1E293B;
+}
 /* 전면 예문 프리뷰 — Papyrus */
 html[data-theme="light"] .alc-preview-ex    { background: rgba(15,30,54,.05); border-left-color: #0F1E36; }
 html[data-theme="light"] .alc-preview-ex-en { color: #475569; }

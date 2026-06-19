@@ -1481,5 +1481,443 @@
       ],
       "aiGenerated": true
     }
+  },
+  "2026-06-17": {
+    "en_expr": {
+      "id": "2026-06-17::en_expr",
+      "date": "2026-06-17",
+      "subId": "en_expr",
+      "createdAt": "2026-06-17T12:55:55.655Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "language",
+      "category": "en",
+      "subCategory": "mental_block_at_work",
+      "label": "US 영어 표현",
+      "title": "[수] 프로젝트 아이디어가 막혀서 멘붕이 왔을 때: I'm drawing a blank. 외 4개",
+      "summary": "수요일 — 프로젝트 아이디어가 막혀서 멘붕이 왔을 때",
+      "theme": "mental_block_at_work",
+      "themeTitle": "프로젝트 아이디어가 막혀서 멘붕이 왔을 때",
+      "themeTitleEn": "When Your Mind Goes Blank Under Pressure",
+      "dayOfWeek": "수",
+      "vocabEntries": [
+        {
+          "item_id": "PACK_EN_001_01",
+          "expression": "I'm drawing a blank.",
+          "meaning": "머릿속이 하얘지다",
+          "nuance": "단순히 '기억이 안 난다(I don't remember)'가 아닙니다. 회의 중 상사나 클라이언트가 기습 질문을 던졌을 때, 극도의 긴장감이나 스트레스로 인해 뇌 회로가 순간적으로 단선되어 머릿속이 하얘진 당혹스러운 심리 상태를 대변합니다. 'blank'는 빈 도화지를 연상시키며, 아무것도 떠오르지 않는 순간의 공허함을 시각적으로 표현합니다.",
+          "dialogue": "Team Lead: Sungjae, do you have any alternative marketing strategies for our US launch?\nYou: Honestly, I'm drawing a blank right now. The pressure is really getting to me.\nTeam Lead: Take a breath. There's no rush — we still have fifteen minutes before the client call.\nYou: Thanks. Let me pull up my notes from last week. I know I had a few ideas jotted down.",
+          "dialogueKo": "",
+          "sourceSentence": "When the director asked for my long-term forecast on the spot, I was drawing a blank.",
+          "practiceSentence": "I'm drawing a blank on the vendor's contact info — could you check the shared drive?"
+        },
+        {
+          "item_id": "PACK_EN_001_02",
+          "expression": "It's a no-brainer.",
+          "meaning": "고민할 필요도 없는 당연한 일",
+          "nuance": "'No-brainer'는 'brain'이 필요 없을 정도로 너무나 분명하고 쉬운 선택임을 강조합니다. 'Obviously'보다 훨씬 강렬하고, 어떤 상황에서도 굳이 깊이 고민하거나 분석할 필요조차 없다는 자신감을 담습니다. 특히 비즈니스 의사결정 상황에서 '이건 당연히 해야 하는 것'이라는 뉘앙스로 자주 쓰입니다.",
+          "dialogue": "Manager: Should we switch to the new cloud platform even though the migration will take two weeks?\nYou: It's a no-brainer, honestly. The current system crashes every time we hit peak traffic.\nManager: I agree, but we need to convince the board. Can you put together a cost-benefit analysis?\nYou: Absolutely. Once they see we're losing 20% revenue per outage, the decision will make itself.",
+          "dialogueKo": "",
+          "sourceSentence": "Automating the manual reporting process is a no-brainer — it saves us eight hours a week.",
+          "practiceSentence": "Offering free onboarding support to enterprise clients is a no-brainer given their contract size."
+        },
+        {
+          "item_id": "PACK_EN_001_03",
+          "expression": "I've been on edge all morning.",
+          "meaning": "아침 내내 신경이 날카로워져 있었다",
+          "nuance": "'On edge'는 신체적으로 날이 세워진 칼날 위에 서 있는 이미지에서 나온 표현으로, 내가 통제할 수 없는 불안 요소(시스템 장애, 마감, 인사 발표 등) 때문에 온종일 신경이 곤두서 있는 상태를 묘사합니다. 단순한 '긴장(nervous)'과 달리, 이 상태는 지속적이고 누적된 스트레스에서 비롯된 만성적 초조함을 내포합니다.",
+          "dialogue": "Colleague: Are you okay? You seem distracted during the standup.\nYou: Sorry. I've been on edge all morning because of the server incident. It's hard to focus.\nColleague: I get it. The whole team is stressed. Did DevOps give any update yet?\nYou: They said it'll be resolved by noon, but I keep checking the dashboard every five minutes.",
+          "dialogueKo": "",
+          "sourceSentence": "With the audit coming up next week, the entire finance team has been on edge.",
+          "practiceSentence": "I've been on edge all morning waiting for the board's decision on the restructuring plan."
+        },
+        {
+          "item_id": "PACK_EN_001_04",
+          "expression": "Let's not boil the ocean.",
+          "meaning": "너무 많은 것을 한꺼번에 하려 들지 맙시다",
+          "nuance": "'Boil the ocean'은 바다를 통째로 끓이려는 비현실적인 시도에서 나온 은유로, 지나치게 방대한 목표나 무한히 넓은 범위의 작업에 무모하게 뛰어드는 행동을 비판할 때 씁니다. 스타트업이나 프로젝트 관리 맥락에서 '일단 MVP부터 시작하자', '범위를 좁히자'는 제안을 세련되게 표현하는 방법입니다.",
+          "dialogue": "You: I'm thinking we should redesign the entire platform, revamp the brand identity, and launch a mobile app all at once.\nLead: Whoa, let's not boil the ocean here. We have a three-person team and a six-week deadline.\nYou: Fair point. So what should we prioritize first?\nLead: Let's nail the core checkout flow. Everything else can wait for version two.",
+          "dialogueKo": "",
+          "sourceSentence": "We only have three weeks — let's not boil the ocean and focus on the two highest-impact features.",
+          "practiceSentence": "Let's not boil the ocean on this redesign. Tackle the homepage first and iterate from there."
+        },
+        {
+          "item_id": "PACK_EN_001_05",
+          "expression": "I'm all over the place today.",
+          "meaning": "오늘 정신이 완전히 산만하다",
+          "nuance": "'All over the place'는 생각이나 행동이 사방팔방으로 흩어져 일관성이 없는 상태를 묘사합니다. 일이 너무 많거나 갑작스러운 변수들이 터졌을 때 마음과 우선순위가 중구난방인 느낌을 솔직하게 고백하는 표현입니다. 공식적인 자리보다는 팀원 간의 대화에서 자신의 상태를 정직하게 드러낼 때 효과적입니다.",
+          "dialogue": "Colleague: Did you finish the proposal draft?\nYou: I'm sorry, I'm all over the place today. I started three different tasks and didn't complete any.\nColleague: That happens. What's the most urgent thing on your list right now?\nYou: Honestly, the proposal. Let me block off the next two hours and just focus on that.",
+          "dialogueKo": "",
+          "sourceSentence": "Between the three back-to-back calls and the urgent brief, I've been all over the place today.",
+          "practiceSentence": "Sorry for the scattered emails — I've been all over the place today with the launch prep."
+        }
+      ],
+      "masterParagraph": {
+        "text": "Yesterday's meeting was absolute chaos. When the director suddenly asked for my long-term forecast, I was drawing a blank — the morning's server crisis had left me completely on edge. Everyone in the room knew it was a no-brainer that our initial plan was flawed, yet I was so all over the place that I couldn't articulate a single coherent thought. Finally, my colleague stepped in and said, 'Let's not boil the ocean here — let's fix the three core issues first and show the board a realistic roadmap.' That one sentence cut through the fog and got everyone back on track.",
+        "translation": "어제 회의는 그야말로 혼돈이었다. 이사가 갑자기 장기 전망을 물었을 때, 나는 머릿속이 완전히 하얘졌다 — 오전 내내 서버 위기 때문에 신경이 극도로 날카로워져 있던 탓이었다. 방 안의 모두가 우리 초기 계획에 결함이 있다는 사실은 고민할 필요도 없는 당연한 일이라는 걸 알았지만, 나는 정신이 너무 산만해서 제대로 된 말 한마디를 꺼낼 수가 없었다. 그때 동료가 끼어들며 말했다, '한 번에 너무 많은 걸 해결하려 들지 맙시다 — 핵심 세 가지 문제만 고치고 이사회에 현실적인 로드맵을 보여줍시다.' 그 한 마디가 안개를 걷어냈고, 모두가 다시 궤도에 오르게 해주었다.",
+        "highlights": [
+          "drawing a blank",
+          "on edge",
+          "no-brainer",
+          "all over the place",
+          "boil the ocean"
+        ]
+      },
+      "pack_id": "PACK_EN_001",
+      "aiGenerated": false
+    },
+    "hist_daily": {
+      "id": "2026-06-17::hist_daily",
+      "date": "2026-06-17",
+      "subId": "hist_daily",
+      "createdAt": "2026-06-17T12:55:55.690Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "history",
+      "label": "역사 지식 한줌",
+      "category": "history",
+      "item_id": "HI_003",
+      "era": "세계사",
+      "period": "15~16세기",
+      "title": "후추 한 알이 세계 지도를 바꿨다",
+      "summary": "오늘날 세계 지도의 모양은 대부분 향신료, 특히 후추 하나를 더 싸게 사려는 유럽 상인들의 집착에서 탄생했다.",
+      "summary3": "",
+      "behindStory": "중세 유럽에서 후추는 금과 같은 가치였다. 육류의 부패를 늦추고 단조로운 겨울 식단을 살려주는 후추는 귀족들의 필수품이었고, 세금을 후추로 납부하기도 했다. 문제는 후추가 인도에서만 나는데, 중간 무역상인 아랍 상인들이 수십 배의 마진을 붙였다는 것이다. 이 독점을 깨기 위해 포르투갈의 엔리케 왕자는 아프리카 서해안 탐험을 지원했고, 결국 바스코 다 가마가 1498년 인도 직항로를 개척했다. 콜럼버스가 아메리카 대륙을 발견한 것도 향신료의 서쪽 루트를 찾다가 생긴 결과였다. 공급망 독점이 얼마나 세계적인 파괴력을 가지는지, 그리고 그것을 깨려는 시도가 역사를 어떻게 바꾸는지를 보여주는 교훈이다.",
+      "lesson": "",
+      "aiGenerated": false
+    },
+    "idiom_daily": {
+      "id": "2026-06-17::idiom_daily",
+      "date": "2026-06-17",
+      "subId": "idiom_daily",
+      "createdAt": "2026-06-17T12:55:55.694Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "idiom",
+      "label": "오늘의 고사성어",
+      "category": "history",
+      "title": "와신상담 (臥薪嘗膽)",
+      "idiom": "와신상담",
+      "hanja": "臥薪嘗膽",
+      "meaning": "원수를 갚거나 목적 달성을 위해 온갖 고난을 견디며 분발함",
+      "origin": "사마천의 《사기》 월왕구천세가(越王勾踐世家)에서 유래",
+      "story": "춘추시대 오나라 왕 부차는 패배의 굴욕을 잊지 않기 위해 매일 가시 방석(薪) 위에서 잠을 잤습니다. 월나라 왕 구천은 부차에게 항복 후 3년간 노예처럼 살다 귀국해, 쓸개(膽)를 핥으며 복수의 불씨를 키웠습니다. 결국 구천은 22년 후 오나라를 멸망시켰습니다.",
+      "behindStory": "와신상담의 주인공 구천은 항복 후 오나라에서 부차의 말을 돌보는 마부 일까지 했습니다. 흥미로운 점은 부차가 구천을 귀국시킨 이유가, 구천의 신하 범려가 절세미녀 서시(西施)를 바쳐 부차의 눈을 멀게 했기 때문이라는 설도 있다는 것입니다. 이 와신상담의 고사는 훗날 일본의 무사도에도 영향을 줬다는 역사적 기록이 있습니다.",
+      "application": "예: 장기 프로젝트가 번번이 실패해도 포기하지 마세요 — 와신상담의 자세로 실력을 쌓다 보면 반드시 기회가 옵니다.",
+      "aiGenerated": false
+    },
+    "quote_daily": {
+      "id": "2026-06-17::quote_daily",
+      "date": "2026-06-17",
+      "subId": "quote_daily",
+      "createdAt": "2026-06-17T12:55:55.693Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "quote",
+      "label": "오늘의 명언",
+      "category": "inbox",
+      "title": "\"할 수 있다고 생각하든 없다고 생각하든, 둘 다 옳다\" — 헨리 포드",
+      "quote": "Whether you think you can, or you think you can't — you're right.",
+      "quoteKo": "당신이 할 수 있다고 생각하든, 할 수 없다고 생각하든 — 둘 다 맞다.",
+      "author": "헨리 포드",
+      "authorInfo": "헨리 포드 (1863–1947), 포드 자동차 창업자이자 대량생산 시스템의 아버지.",
+      "context": "포드는 자동차 왕이 되기 전 수차례 사업에 실패했으며, 이 말은 자서전 인터뷰에서 나왔습니다.",
+      "behindStory": "포드가 이 명언을 남기게 된 배경에는 자신의 세 번의 파산 경험이 있습니다. 포드는 실패할 때마다 \"해낼 수 있다\"는 믿음만으로 재기했고, 반대로 자신을 의심하는 직원들이 실제로 성과를 내지 못하는 것을 반복해 목격했습니다. 이 경험에서 나온 실용적 통찰이 세계에서 가장 유명한 동기부여 명언이 됐습니다.",
+      "application": "오늘 어려운 과제 앞에서 \"못 할 것 같다\"는 생각이 든다면, 그 생각 자체가 실패의 절반임을 기억하세요.",
+      "aiGenerated": false
+    },
+    "us_market": {
+      "id": "2026-06-17::us_market",
+      "date": "2026-06-17",
+      "subId": "us_market",
+      "createdAt": "2026-06-17T12:55:55.658Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "market",
+      "category": "economy",
+      "subCategory": "미국 증시 · 경제",
+      "label": "미국 시황",
+      "title": "美 증시, 금리 인하 기대 조정",
+      "summary": "미국 증시는 견조한 경제 지표와 연준의 신중한 금리 인하 시사로 혼조세를 보이며, 인플레이션 압력과 지정학적 리스크에 주목하고 있습니다.",
+      "indicators": [
+        {
+          "name": "S&P 500",
+          "value": "5254.35",
+          "change": "+0.12%",
+          "dir": "up"
+        },
+        {
+          "name": "나스닥",
+          "value": "16428.82",
+          "change": "+0.03%",
+          "dir": "up"
+        },
+        {
+          "name": "다우 지수",
+          "value": "39794",
+          "change": "-0.25%",
+          "dir": "down"
+        },
+        {
+          "name": "미 국채 10년물",
+          "value": "4.52%",
+          "change": "+3 bp",
+          "dir": "up"
+        },
+        {
+          "name": "VIX 공포지수",
+          "value": "13.8",
+          "change": "-0.5",
+          "dir": "down"
+        }
+      ],
+      "summary3": "• 연준의 '고금리 장기화' 기조 유지로 시장의 금리 인하 기대가 후퇴하고 있습니다.\n• 기술주 강세는 이어지나, 고금리 부담으로 성장주 전반의 변동성이 확대될 수 있습니다.\n• 방어적 섹터와 현금 흐름이 견고한 기업에 대한 관심이 필요한 시점입니다.",
+      "checkpoints": [
+        "체크포인트 1: 다음 주 발표될 미국 소비자물가지수(CPI) 및 생산자물가지수(PPI) 추이",
+        "체크포인트 2: 미 연준 위원들의 공개 발언에서 금리 인하 시점에 대한 추가 힌트",
+        "체크포인트 3: 중동 지역 지정학적 긴장 완화 또는 심화 여부에 따른 유가 변동성"
+      ],
+      "report": "## 시장 흐름\n연준은 견조한 고용시장과 여전히 높은 물가 압력을 이유로 금리 인하에 신중한 태도를 보이며 '고금리 장기화' 시그널을 유지하고 있습니다. 이는 시장의 조기 금리 인하 기대를 후퇴시키며 주식 시장의 상승 동력을 제한하고 있습니다. 유가는 중동 지역의 지정학적 리스크로 인해 상승 압력을 받고 있으며, 이는 인플레이션 우려를 다시 키우고 있습니다.\n\n## 투자 인사이트\n현재 시장은 금리 인하 시점에 대한 불확실성과 지정학적 리스크가 복합적으로 작용하고 있습니다. 이러한 환경에서는 단기적인 시장 변동성에 일희일비하기보다는, 견고한 펀더멘털을 가진 기업과 경기 방어적 성격의 섹터에 주목하는 것이 현명합니다. 또한, 장기적인 관점에서 분산 투자를 통해 리스크를 관리하는 전략이 중요합니다.",
+      "aiEconomicKnowledge": [
+        {
+          "term": "연준(Fed) 금리 전망",
+          "importance": "미국 연방준비제도(Fed)의 금리 결정은 전 세계 금융시장에 막대한 영향을 미칩니다. 기준금리는 기업의 자금 조달 비용, 소비자의 대출 이자 부담을 결정하여 경제 전반의 투자와 소비 심리에 직접적인 영향을 미칩니다. 예컨대, 금리가 0.25%p 인상되면 수십억 달러 규모의 기업 대출 비용이 증가할 수 있습니다.",
+          "connection": "당신이 주택 대출을 받거나 신용카드 할부 구매를 할 때 적용되는 이자율에 직접적인 영향을 미치며, 이는 가계 경제에 큰 영향을 줍니다."
+        },
+        {
+          "term": "달러 인덱스 (DXY)",
+          "importance": "달러 인덱스는 유로, 엔, 파운드 등 6개 주요 통화 대비 미국 달러화의 가치를 나타내는 지수입니다. 달러 가치 상승은 미국 기업의 수출 경쟁력을 약화시키고 수입 물가를 낮추는 반면, 해외 자산에 투자하는 미국 투자자에게는 환차손을 발생시킬 수 있습니다. 예를 들어, 달러 인덱스가 100에서 105로 오르면 달러 가치가 5% 강해진 것입니다.",
+          "connection": "해외 여행 시 환전 비용이나 해외 직구 시 결제 금액에 직접적인 영향을 미치며, 국내 기업의 수출 실적에도 영향을 주어 간접적으로 당신의 투자 수익률에 영향을 줄 수 있습니다."
+        },
+        {
+          "term": "채권 수익률 곡선",
+          "importance": "채권 수익률 곡선은 만기별 국채 금리를 연결한 선으로, 시장의 경제 전망을 반영합니다. 단기 금리가 장기 금리보다 높아지는 '역전' 현상은 과거 경제 침체의 강력한 선행 지표로 여겨져 왔습니다. 이는 투자자들이 단기적으로는 높은 위험을 보지만, 장기적으로는 경제 성장 둔화로 금리가 낮아질 것으로 예상하기 때문입니다.",
+          "connection": "이 곡선은 경제 침체 가능성을 미리 알려주는 '경고등' 역할을 하여, 당신이 경제 상황 변화에 대비하고 투자 전략을 조정하는 데 중요한 참고 자료가 됩니다."
+        }
+      ],
+      "aiGenerated": true
+    }
+  },
+  "2026-06-20": {
+    "en_expr": {
+      "id": "2026-06-20::en_expr",
+      "date": "2026-06-20",
+      "subId": "en_expr",
+      "createdAt": "2026-06-19T23:30:27.799Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "language",
+      "category": "en",
+      "subCategory": "",
+      "label": "US 영어 표현",
+      "title": "[토] 조직 안에서 신뢰를 관리할 때: Candid feedback 외 4개",
+      "summary": "토요일 — 조직 안에서 신뢰를 관리할 때",
+      "theme": "",
+      "themeTitle": "조직 안에서 신뢰를 관리할 때",
+      "themeTitleEn": "Managing Trust Within an Organization",
+      "dayOfWeek": "토",
+      "vocabEntries": [
+        {
+          "item_id": "PACK_EN_006_E1",
+          "expression": "Candid feedback",
+          "meaning": "솔직하고 직접적인 피드백",
+          "nuance": "'Candid'는 '사탕발림 없이 진실을 말하는' 태도를 뜻한다. 상처를 주려는 게 아니라, 상대방의 성장을 진심으로 원하기 때문에 불편한 진실도 말하는 것이다. 신뢰가 있어야 candid feedback이 가능하고, candid feedback이 있어야 신뢰가 깊어진다.",
+          "dialogue": "A: Is there something you've been holding back about my work?\nB: Since you're asking — I want to give you some candid feedback. Your analysis is solid, but your delivery needs work.\nA: I appreciate you saying that directly.\nB: I only say it because I know you can handle it and want to improve.",
+          "dialogueKo": "",
+          "sourceSentence": "The best managers create environments where candid feedback flows in both directions.",
+          "practiceSentence": "'Receiving candid feedback is [easy/difficult] for me because...'로 시작하는 자기 성찰 문장을 만들어보세요."
+        },
+        {
+          "item_id": "PACK_EN_006_E2",
+          "expression": "Manage expectations",
+          "meaning": "기대치를 현실적으로 조율하다",
+          "nuance": "상대방이 실망하지 않도록 미리 현실적인 범위를 설정하는 것이다. 거짓말이 아니라, 무엇이 가능하고 무엇이 불가능한지를 명확히 소통하는 것이다. 과도한 약속(overpromise)의 반대 전략이며, 장기적 신뢰의 기반이 된다.",
+          "dialogue": "A: The client expects the full rollout by next month.\nB: We need to manage expectations — a phased delivery over two months is more realistic.\nA: Won't that disappoint them?\nB: A small disappointment now beats a big failure later. Honesty builds trust.",
+          "dialogueKo": "",
+          "sourceSentence": "Managing expectations early prevents the far greater damage of unmet commitments later.",
+          "practiceSentence": "'I should have managed expectations better when...'으로 시작하는 과거 상황을 떠올려보세요."
+        },
+        {
+          "item_id": "PACK_EN_006_E3",
+          "expression": "Be aligned",
+          "meaning": "같은 방향·인식을 공유하다",
+          "nuance": "전략·목표·메시지에 대해 팀원들이 동일한 이해와 방향성을 가지고 있는 상태를 가리킨다. 외부적 행동의 일치를 넘어서 내적 이해의 공유를 강조한다. 'We need to be aligned before the client call'처럼 쓰일 때, 단순한 정보 공유가 아닌 해석과 방향의 일치를 요구한다.",
+          "dialogue": "A: Before the town hall, I want to make sure we're all aligned on the messaging.\nB: Core message: we're restructuring to grow, not because of financial trouble.\nA: Exactly. Different words but the same direction.\nB: Good. Let's do a quick sync with all managers at 9 AM.",
+          "dialogueKo": "",
+          "sourceSentence": "When leadership is not aligned, mixed signals destroy employee confidence.",
+          "practiceSentence": "'I find it hardest to stay aligned with my team when...'으로 시작하는 도전 상황을 묘사해보세요."
+        },
+        {
+          "item_id": "PACK_EN_006_E4",
+          "expression": "Loop someone in",
+          "meaning": "누군가를 대화나 정보 흐름에 포함시키다",
+          "nuance": "원래 알림을 받지 못했던 사람을 프로세스 중간에 포함시키는 것을 뜻한다. 'Include'보다 더 구체적으로, 이메일 CC·미팅 초대·업데이트 공유 등의 행동을 통해 이루어진다. 투명성과 협업 문화의 언어다.",
+          "dialogue": "A: Should I loop in the legal team on the vendor contract draft?\nB: Definitely — loop them in now, not after issues arise.\nA: Good point. I'll CC them on the next revision.\nB: And loop in the finance lead too. Cost implications need their review.",
+          "dialogueKo": "",
+          "sourceSentence": "Good project managers loop in all stakeholders before decisions are finalized.",
+          "practiceSentence": "'I forgot to loop in [team/person] once, and it led to...'로 시작하는 경험을 영어로 설명해보세요."
+        },
+        {
+          "item_id": "PACK_EN_006_E5",
+          "expression": "Keep this between us",
+          "meaning": "이 내용은 우리 사이에서만 알아두다",
+          "nuance": "비밀 유지 요청이지만, 동시에 상대방에 대한 신뢰의 표현이기도 하다. 조직 내에서 민감한 정보나 아직 발표 전인 사안을 공유할 때, 신중함을 당부하는 표현이다. 남용하면 오히려 불신을 만들 수 있으므로, 신뢰 관계가 전제되어야 한다.",
+          "dialogue": "A: Between you and me, the acquisition might close next week.\nB: Let's keep this between us — the wrong leak at this stage could derail everything.\nA: Understood. I won't say a word until the official announcement.\nB: I trust you. That's why I'm telling you now.",
+          "dialogueKo": "",
+          "sourceSentence": "He shared the reorganization news early, asking her to keep it between them.",
+          "practiceSentence": "'I've been trusted to keep something between us, and I handled it by...'로 시작하는 문장을 만들어보세요."
+        }
+      ],
+      "masterParagraph": {
+        "text": "Trust inside an organization is not given — it is built interaction by interaction. It begins with the courage to offer **candid feedback**, even when the truth is uncomfortable. It requires the integrity to **manage expectations** honestly rather than overpromising. It depends on every leader committing to **be aligned** before speaking to the team. It grows through the habit of **looping people in** proactively rather than letting them feel excluded. And sometimes, it is deepened by the simple act of saying: let's **keep this between us** — because I trust you with what matters.",
+        "translation": "조직 내 신뢰는 주어지는 것이 아니다. 한 번 한 번의 상호작용으로 쌓인다. 진실이 불편하더라도 솔직한 피드백을 할 용기에서 시작된다. 과도한 약속 대신 기대치를 솔직하게 조율하는 성실함이 필요하다. 팀에게 말하기 전에 모든 리더가 같은 방향을 공유하는 노력에 달려 있다. 사람들이 소외감을 느끼기 전에 미리 포함시키는 습관에서 자란다. 그리고 때로는, '이건 우리 사이에서만'이라는 한마디로 깊어진다. 중요한 것을 믿고 맡긴다는 뜻이기 때문이다.",
+        "highlights": [
+          "candid feedback",
+          "manage expectations",
+          "be aligned",
+          "looping people in",
+          "keep this between us"
+        ]
+      },
+      "pack_id": "PACK_EN_006",
+      "aiGenerated": false
+    },
+    "hist_daily": {
+      "id": "2026-06-20::hist_daily",
+      "date": "2026-06-20",
+      "subId": "hist_daily",
+      "createdAt": "2026-06-19T23:30:27.839Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "history",
+      "label": "역사 지식 한줌",
+      "category": "history",
+      "item_id": "HI_040",
+      "era": "세계사",
+      "period": "1917년",
+      "title": "러시아 혁명 — 세계 최초의 공산주의 국가 탄생",
+      "summary": "1917년 두 차례의 혁명으로 300년 로마노프 왕조가 무너지고 레닌이 이끄는 볼셰비키가 세계 최초의 공산주의 국가 소비에트 러시아를 세웠다. 20세기 냉전의 씨앗.",
+      "summary3": "",
+      "behindStory": "1차 세계대전의 패전과 식량 부족으로 민심이 폭발한 1917년, 두 번의 혁명이 일어났다. 2월 혁명(3월, 구력)으로 니콜라이 2세가 퇴위하고 임시 정부가 들어섰지만, 전쟁을 계속하기로 결정한 것이 치명타였다. 그 공백을 블라디미르 레닌이 이끄는 볼셰비키가 파고들었다. '평화, 토지, 빵'이라는 세 가지 슬로건으로 노동자·농민·병사를 결집한 볼셰비키는 10월 혁명(11월, 구력)으로 임시 정부를 전복했다. 레닌은 마르크스의 이론을 변형해 농업 국가 러시아에서의 혁명을 합리화했다. 소비에트 연방(USSR)은 1991년까지 존속하며 미국과 냉전을 벌였고, 오늘날 북한·중국·쿠바·베트남 등 여러 공산주의 국가들의 모델이 됐다. 20세기 이념 대결의 원점.",
+      "lesson": "",
+      "aiGenerated": false
+    },
+    "quote_daily": {
+      "id": "2026-06-20::quote_daily",
+      "date": "2026-06-20",
+      "subId": "quote_daily",
+      "createdAt": "2026-06-19T23:30:27.844Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "quote",
+      "label": "오늘의 명언",
+      "category": "inbox",
+      "title": "\"성공은 최종적인 것이 아니며, 실패는 치명적인 것이…\" — 윈스턴 처칠",
+      "quote": "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+      "quoteKo": "성공은 최종적인 것이 아니며, 실패는 치명적인 것이 아니다. 중요한 것은 계속 나아가려는 용기이다.",
+      "author": "윈스턴 처칠",
+      "authorInfo": "1874년부터 1965년까지 살았던 영국의 총리이자 정치가, 군인, 작가입니다.",
+      "context": "이 명언은 제2차 세계대전 중 영국이 나치 독일과의 전쟁에서 위기에 처했을 때, 국민들에게 좌절하지 않고 계속 싸울 용기를 불어넣기 위해 자주 사용되었습니다.",
+      "behindStory": "처칠은 어린 시절 학업 부진, 군인으로서의 부상, 그리고 정치 경력에서 수많은 좌절과 실패를 겪었습니다. 특히 1930년대에는 총리직에서 멀어져 '정치적 광야'라 불리는 시기를 보냈으나, 히틀러의 위협을 끊임없이 경고하며 결국 전시 총리가 되어 영국을 승리로 이끌었습니다. 이 명언은 그의 개인적인 역경과 국가적 위기를 극복해낸 경험에서 우러나온 철학을 담고 있습니다.",
+      "application": "오늘 성재님은 업무나 자기계발에서 예상치 못한 어려움에 직면하더라도 좌절하지 않고, 포기하지 않는 용기로 꾸준히 나아가 성공적인 결과로 이끌 수 있습니다.",
+      "aiGenerated": true
+    },
+    "idiom_daily": {
+      "id": "2026-06-20::idiom_daily",
+      "date": "2026-06-20",
+      "subId": "idiom_daily",
+      "createdAt": "2026-06-19T23:30:27.846Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "idiom",
+      "label": "오늘의 고사성어",
+      "category": "history",
+      "title": "와신상담 (臥薪嘗膽)",
+      "idiom": "와신상담",
+      "hanja": "臥薪嘗膽",
+      "meaning": "원수를 갚거나 목적 달성을 위해 온갖 고난을 견디며 분발함",
+      "origin": "사마천의 《사기》 월왕구천세가(越王勾踐世家)에서 유래",
+      "story": "춘추시대 오나라 왕 부차는 패배의 굴욕을 잊지 않기 위해 매일 가시 방석(薪) 위에서 잠을 잤습니다. 월나라 왕 구천은 부차에게 항복 후 3년간 노예처럼 살다 귀국해, 쓸개(膽)를 핥으며 복수의 불씨를 키웠습니다. 결국 구천은 22년 후 오나라를 멸망시켰습니다.",
+      "behindStory": "와신상담의 주인공 구천은 항복 후 오나라에서 부차의 말을 돌보는 마부 일까지 했습니다. 흥미로운 점은 부차가 구천을 귀국시킨 이유가, 구천의 신하 범려가 절세미녀 서시(西施)를 바쳐 부차의 눈을 멀게 했기 때문이라는 설도 있다는 것입니다. 이 와신상담의 고사는 훗날 일본의 무사도에도 영향을 줬다는 역사적 기록이 있습니다.",
+      "application": "예: 장기 프로젝트가 번번이 실패해도 포기하지 마세요 — 와신상담의 자세로 실력을 쌓다 보면 반드시 기회가 옵니다.",
+      "aiGenerated": false
+    },
+    "us_market": {
+      "id": "2026-06-20::us_market",
+      "date": "2026-06-20",
+      "subId": "us_market",
+      "createdAt": "2026-06-19T23:30:27.802Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "market",
+      "category": "economy",
+      "subCategory": "미국 증시 · 경제",
+      "label": "미국 시황",
+      "title": "미국 시장: 금리인하 기대와 변동성",
+      "summary": "미국 증시는 연준의 금리 인하 기대감 속에서도 지정학적 리스크와 유가 변동성에 주목하며 관망세를 유지하고 있습니다.",
+      "indicators": [
+        {
+          "name": "S&P 500",
+          "value": "5200.50",
+          "change": "+0.35%",
+          "dir": "up"
+        },
+        {
+          "name": "나스닥",
+          "value": "16250.75",
+          "change": "+0.55%",
+          "dir": "up"
+        },
+        {
+          "name": "다우 지수",
+          "value": "39000",
+          "change": "+0.20%",
+          "dir": "up"
+        },
+        {
+          "name": "미 국채 10년물",
+          "value": "4.35%",
+          "change": "+3 bp",
+          "dir": "up"
+        },
+        {
+          "name": "VIX 공포지수",
+          "value": "14.5",
+          "change": "-0.8",
+          "dir": "down"
+        }
+      ],
+      "summary3": "• 연준의 금리 인하 시점 불확실성 속 기술주 중심의 시장 강세가 이어지고 있습니다.\n• 중동 지정학적 리스크와 유가 변동성이 인플레이션 재점화 우려를 키우고 있습니다.\n• 장기적 관점에서 우량 성장주와 방어주를 분산 투자하는 전략이 유효합니다.",
+      "checkpoints": [
+        "체크포인트 1: 다음 FOMC 회의록 및 연준 위원 발언을 통해 금리 인하 신호를 확인하세요.",
+        "체크포인트 2: 국제 유가 동향과 중동 지정학적 리스크 심화 여부를 주시하세요.",
+        "체크포인트 3: 미국 기업들의 분기 실적 발표와 가이던스 변화를 면밀히 분석하세요."
+      ],
+      "report": "## 시장 흐름\n미 연준은 고금리 장기화 가능성을 시사하며 금리 인하 기대감을 일부 후퇴시켰습니다. 이는 달러 강세와 함께 국제 유가 상승 압력으로 작용하며 인플레이션 우려를 다시 키우고 있습니다. 장단기 금리 역전 현상 완화는 경기 침체 신호가 약화됨을 보여주지만, 중동 리스크는 여전히 변수입니다.\n\n## 투자 인사이트\n금리 인하 지연 가능성에 대비하여 변동성이 낮은 우량 기업에 주목해야 합니다. 경기 방어적 성격의 필수 소비재나 헬스케어 섹터도 고려할 만합니다. 지정학적 리스크에 따른 원자재 가격 변동성에도 주의하며 포트폴리오 다각화가 중요합니다.",
+      "aiEconomicKnowledge": [
+        {
+          "term": "연준(Fed) 금리 전망",
+          "importance": "미국 연방준비제도(Fed)의 금리 결정은 전 세계 경제에 막대한 영향을 미칩니다. 기준금리가 0.25%p만 변해도 기업의 자금 조달 비용과 개인의 대출 이자가 크게 달라집니다.",
+          "connection": "은행 예금 금리나 주택담보대출 금리가 연준 결정에 따라 변동하며, 내 지갑 사정에 직접적인 영향을 줍니다."
+        },
+        {
+          "term": "달러 인덱스 (DXY)",
+          "importance": "달러 인덱스는 유로, 엔 등 주요 6개 통화 대비 달러화의 가치를 나타내는 지표입니다. 이 지수가 100에서 105로 상승하면 달러 가치가 5% 강해졌음을 의미합니다.",
+          "connection": "달러 강세는 원화 약세로 이어져 해외 여행 비용이 비싸지고, 수입 물가를 상승시켜 장바구니 물가에 영향을 미칩니다."
+        },
+        {
+          "term": "채권 수익률 곡선 (Yield Curve)",
+          "importance": "단기 채권과 장기 채권의 수익률 차이를 나타내는 곡선으로, 장단기 금리 역전은 통상적으로 6개월에서 18개월 후 경기 침체를 예고하는 강력한 신호입니다. 예를 들어, 10년물 국채 금리가 2년물보다 0.5%p 낮아지면 역전으로 볼 수 있습니다.",
+          "connection": "채권 시장의 움직임은 미래 경기 전망을 반영하며, 이는 주식 투자 결정이나 부동산 구매 시점을 판단하는 데 중요한 참고 자료가 됩니다."
+        }
+      ],
+      "aiGenerated": true
+    }
   }
 }

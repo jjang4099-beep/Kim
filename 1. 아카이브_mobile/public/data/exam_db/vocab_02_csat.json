@@ -1,0 +1,359 @@
+{
+  "meta": {
+    "batch": 2,
+    "theme": "수능 핵심 어휘 — 심리·과학·논증·사회·윤리",
+    "total_packs": 6,
+    "total_words": 30,
+    "created": "2026-06-17"
+  },
+  "exam_vocab_themes": [
+    {
+      "id": "EV_PACK_007",
+      "theme_title": "심리·인지 핵심 형용사",
+      "level": "high",
+      "tip": "인간 심리와 인지 과정을 설명하는 지문에 반복 등장한다. 'resilient'는 회복 탄력성 지문, 'cognitive'는 뇌과학·학습 지문에서 빈칸 정답으로 자주 출제된다.",
+      "words": [
+        {
+          "id": "EV_031",
+          "word": "resilient",
+          "pos": "adjective",
+          "meaning": "회복력이 강한, 탄력적인",
+          "example_en": "Children who receive consistent emotional support tend to be more resilient when facing adversity.",
+          "example_ko": "지속적인 정서적 지지를 받는 아이들은 역경에 더 강한 회복력을 보이는 경향이 있다.",
+          "csat_ref": "2023 수능 34번 유사 출제",
+          "synonyms": ["adaptable", "flexible", "tough", "buoyant"]
+        },
+        {
+          "id": "EV_032",
+          "word": "empathetic",
+          "pos": "adjective",
+          "meaning": "공감 능력이 있는, 감정이입을 잘 하는",
+          "example_en": "An empathetic leader understands the emotional needs of team members before making major decisions.",
+          "example_ko": "공감 능력이 뛰어난 리더는 중요한 결정을 내리기 전에 팀원들의 정서적 필요를 이해한다.",
+          "csat_ref": "2024 수능 31번 유사 출제",
+          "synonyms": ["compassionate", "understanding", "sensitive", "considerate"]
+        },
+        {
+          "id": "EV_033",
+          "word": "cognitive",
+          "pos": "adjective",
+          "meaning": "인지적인, 인식과 관련된",
+          "example_en": "Sleep deprivation has significant cognitive effects, reducing both attention span and problem-solving ability.",
+          "example_ko": "수면 부족은 주의력 집중 시간과 문제 해결 능력을 저하시키는 심각한 인지적 영향을 미친다.",
+          "csat_ref": "2023 9월 모평 33번 유사 출제",
+          "synonyms": ["mental", "intellectual", "perceptual", "psychological"]
+        },
+        {
+          "id": "EV_034",
+          "word": "intuitive",
+          "pos": "adjective",
+          "meaning": "직관적인, 본능적으로 감지하는",
+          "example_en": "Expert decision-makers often rely on intuitive judgment built through years of pattern recognition.",
+          "example_ko": "전문가적 의사결정자들은 종종 수년간의 패턴 인식을 통해 쌓인 직관적 판단에 의존한다.",
+          "csat_ref": "2022 수능 39번 유사 출제",
+          "synonyms": ["instinctive", "spontaneous", "natural", "automatic"]
+        },
+        {
+          "id": "EV_035",
+          "word": "irrational",
+          "pos": "adjective",
+          "meaning": "비이성적인, 논리에 어긋나는",
+          "example_en": "Fear of flying is often considered irrational, since car travel poses statistically far greater risk.",
+          "example_ko": "비행기 공포증은 자동차 여행이 통계적으로 훨씬 더 큰 위험을 수반하기 때문에 비이성적이라고 여겨진다.",
+          "csat_ref": "2024 6월 모평 35번 유사 출제",
+          "synonyms": ["illogical", "unreasonable", "absurd", "unfounded"]
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_008",
+      "theme_title": "과학·기술 지문 핵심 동사",
+      "level": "high",
+      "tip": "과학 실험·기술 개발 지문 필수 동사들이다. 'replicate'(반복 실험)는 순서 배열 문제에서, 'validate'(검증)는 빈칸 추론 문제에서 정답 단서로 자주 작용한다.",
+      "words": [
+        {
+          "id": "EV_036",
+          "word": "simulate",
+          "pos": "verb",
+          "meaning": "모의실험하다, 가상으로 재현하다",
+          "example_en": "Researchers simulated the effects of ocean warming on marine biodiversity over the next century.",
+          "example_ko": "연구자들은 향후 1세기 동안 해양 온난화가 해양 생물 다양성에 미치는 영향을 모의실험했다.",
+          "csat_ref": "2023 6월 모평 30번 유사 출제",
+          "synonyms": ["model", "replicate", "imitate", "recreate"]
+        },
+        {
+          "id": "EV_037",
+          "word": "replicate",
+          "pos": "verb",
+          "meaning": "동일하게 반복하다, 복제하다",
+          "example_en": "For a scientific finding to be considered valid, independent researchers must be able to replicate the results.",
+          "example_ko": "과학적 발견이 유효하다고 인정받으려면 독립적인 연구자들이 그 결과를 동일하게 반복할 수 있어야 한다.",
+          "csat_ref": "2024 수능 30번 유사 출제",
+          "synonyms": ["duplicate", "reproduce", "repeat", "mirror"]
+        },
+        {
+          "id": "EV_038",
+          "word": "hypothesize",
+          "pos": "verb",
+          "meaning": "가설을 세우다, 추측하다",
+          "example_en": "Scientists hypothesized that the warming of polar ice directly accelerates sea-level rise.",
+          "example_ko": "과학자들은 극지방 빙하의 온난화가 해수면 상승을 직접적으로 가속화한다는 가설을 세웠다.",
+          "csat_ref": "2022 9월 모평 28번 유사 출제",
+          "synonyms": ["theorize", "propose", "postulate", "speculate"]
+        },
+        {
+          "id": "EV_039",
+          "word": "validate",
+          "pos": "verb",
+          "meaning": "검증하다, 타당성을 확인하다",
+          "example_en": "The large-scale trial was designed to validate the drug's effectiveness across diverse age groups.",
+          "example_ko": "그 대규모 임상 시험은 다양한 연령 집단에 걸쳐 약의 효능을 검증하기 위해 설계됐다.",
+          "csat_ref": "2023 수능 31번 유사 출제",
+          "synonyms": ["confirm", "verify", "substantiate", "certify"]
+        },
+        {
+          "id": "EV_040",
+          "word": "innovate",
+          "pos": "verb",
+          "meaning": "혁신하다, 새로운 방식을 도입하다",
+          "example_en": "Companies that fail to innovate continuously risk being replaced by more agile competitors.",
+          "example_ko": "지속적으로 혁신하지 못하는 기업들은 더 민첩한 경쟁사들에게 대체될 위험이 있다.",
+          "csat_ref": "2024 6월 모평 32번 유사 출제",
+          "synonyms": ["pioneer", "transform", "create", "modernize"]
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_009",
+      "theme_title": "논증·비판적 사고 핵심 명사",
+      "level": "high",
+      "tip": "'assertion'과 'inference'는 글의 논리 구조를 파악하는 빈칸 추론 문제에 핵심 답어로 반복된다. 'analogy'는 예시 기반 설명 지문에서, 'contradiction'은 주장 반박 유형에서 필수다.",
+      "words": [
+        {
+          "id": "EV_041",
+          "word": "assertion",
+          "pos": "noun",
+          "meaning": "주장, 단언",
+          "example_en": "Without supporting evidence, the writer's central assertion about human nature remains unconvincing.",
+          "example_ko": "뒷받침하는 증거 없이는 인간 본성에 대한 필자의 핵심 주장이 설득력을 갖지 못한다.",
+          "csat_ref": "2024 수능 36번 유사 출제",
+          "synonyms": ["claim", "declaration", "contention", "statement"]
+        },
+        {
+          "id": "EV_042",
+          "word": "analogy",
+          "pos": "noun",
+          "meaning": "유추, 비유를 통한 설명",
+          "example_en": "The author draws an analogy between the human immune system and a city's defense infrastructure.",
+          "example_ko": "저자는 인간 면역 체계와 도시 방어 인프라 사이의 유추를 제시한다.",
+          "csat_ref": "2023 수능 37번 유사 출제",
+          "synonyms": ["comparison", "parallel", "metaphor", "resemblance"]
+        },
+        {
+          "id": "EV_043",
+          "word": "hypothesis",
+          "pos": "noun",
+          "meaning": "가설, 검증 전 이론적 추측",
+          "example_en": "A hypothesis must be testable and falsifiable to qualify as a legitimate scientific claim.",
+          "example_ko": "가설은 검증 가능하고 반증 가능해야 합법적인 과학적 주장으로 인정받을 수 있다.",
+          "csat_ref": "2023 6월 모평 29번 유사 출제",
+          "synonyms": ["assumption", "theory", "proposition", "conjecture"]
+        },
+        {
+          "id": "EV_044",
+          "word": "inference",
+          "pos": "noun",
+          "meaning": "추론, 논리적으로 도출된 결론",
+          "example_en": "The detective's inference was based on subtle physical evidence that others had overlooked entirely.",
+          "example_ko": "그 형사의 추론은 다른 사람들이 완전히 간과한 미묘한 물적 증거에 근거했다.",
+          "csat_ref": "2024 수능 38번 유사 출제",
+          "synonyms": ["deduction", "conclusion", "reasoning", "derivation"]
+        },
+        {
+          "id": "EV_045",
+          "word": "contradiction",
+          "pos": "noun",
+          "meaning": "모순, 상충되는 주장이나 사실",
+          "example_en": "There is a fundamental contradiction between the author's opening premise and the evidence cited later.",
+          "example_ko": "저자의 첫 번째 전제와 나중에 인용된 증거 사이에는 근본적인 모순이 있다.",
+          "csat_ref": "2022 수능 40번 유사 출제",
+          "synonyms": ["inconsistency", "paradox", "conflict", "discrepancy"]
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_010",
+      "theme_title": "사회 변화·불평등 핵심 형용사",
+      "level": "high",
+      "tip": "'equitable'과 'marginalized'는 2024~2025 수능 출제 트렌드인 다양성·사회 정의 지문에서 빈칸 정답으로 부상하고 있다. 'unprecedented'는 최신 현상을 기술하는 지문 주제문에 자주 등장한다.",
+      "words": [
+        {
+          "id": "EV_046",
+          "word": "sustainable",
+          "pos": "adjective",
+          "meaning": "지속 가능한, 오래 유지될 수 있는",
+          "example_en": "Economic development is only meaningful when it is sustainable and does not deplete natural resources.",
+          "example_ko": "경제 개발은 지속 가능하고 천연 자원을 고갈시키지 않을 때만 의미가 있다.",
+          "csat_ref": "2023 수능 35번 유사 출제",
+          "synonyms": ["viable", "enduring", "renewable", "maintainable"]
+        },
+        {
+          "id": "EV_047",
+          "word": "equitable",
+          "pos": "adjective",
+          "meaning": "공평한, 형평성 있는",
+          "example_en": "Creating an equitable education system demands addressing structural barriers that disadvantaged communities face.",
+          "example_ko": "공평한 교육 시스템을 만드는 것은 불리한 공동체가 직면한 구조적 장벽을 해소하도록 요구한다.",
+          "csat_ref": "2024 수능 39번 유사 출제",
+          "synonyms": ["fair", "just", "impartial", "balanced"]
+        },
+        {
+          "id": "EV_048",
+          "word": "marginalized",
+          "pos": "adjective",
+          "meaning": "소외된, 주변부로 밀려난",
+          "example_en": "Policies that overlook marginalized groups tend to deepen existing social and economic inequalities.",
+          "example_ko": "소외된 집단을 간과하는 정책들은 기존의 사회적·경제적 불평등을 심화시키는 경향이 있다.",
+          "csat_ref": "2024 6월 모평 37번 유사 출제",
+          "synonyms": ["excluded", "disadvantaged", "underserved", "disenfranchised"]
+        },
+        {
+          "id": "EV_049",
+          "word": "systemic",
+          "pos": "adjective",
+          "meaning": "제도적·구조적인, 체계 전반에 걸친",
+          "example_en": "Addressing poverty requires confronting systemic inequalities embedded in institutional structures.",
+          "example_ko": "빈곤을 해결하는 것은 제도적 구조에 내재된 구조적 불평등에 맞서는 것을 요구한다.",
+          "csat_ref": "2023 9월 모평 40번 유사 출제",
+          "synonyms": ["structural", "institutional", "embedded", "pervasive"]
+        },
+        {
+          "id": "EV_050",
+          "word": "unprecedented",
+          "pos": "adjective",
+          "meaning": "전례 없는, 유례없는",
+          "example_en": "The pandemic caused unprecedented disruption to global supply chains and international labor markets.",
+          "example_ko": "팬데믹은 글로벌 공급망과 국제 노동 시장에 전례 없는 혼란을 야기했다.",
+          "csat_ref": "2022 9월 모평 32번 유사 출제",
+          "synonyms": ["unparalleled", "extraordinary", "novel", "unheard-of"]
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_011",
+      "theme_title": "글로벌·윤리 지문 핵심 동사",
+      "level": "high",
+      "tip": "'transcend'는 '경계를 넘는다'는 지문 주제문에 자주 쓰이고, 'reconcile'은 두 상충 관점을 조화시키는 결론 유형 빈칸의 정답이 되는 경우가 많다. 'acknowledge'는 인정과 수용을 다루는 지문에서 필수다.",
+      "words": [
+        {
+          "id": "EV_051",
+          "word": "transcend",
+          "pos": "verb",
+          "meaning": "초월하다, ~의 한계를 뛰어넘다",
+          "example_en": "Truly great art transcends cultural boundaries and resonates with audiences across vastly different societies.",
+          "example_ko": "진정으로 위대한 예술은 문화적 경계를 초월하고 매우 다양한 사회의 관객들에게 공명한다.",
+          "csat_ref": "2024 수능 32번 유사 출제",
+          "synonyms": ["surpass", "exceed", "overcome", "rise above"]
+        },
+        {
+          "id": "EV_052",
+          "word": "reconcile",
+          "pos": "verb",
+          "meaning": "두 대립을 조화시키다, 화해시키다",
+          "example_en": "It is difficult to reconcile the demands of rapid economic growth with the urgent need for environmental protection.",
+          "example_ko": "급속한 경제 성장의 요구와 환경 보호의 긴박한 필요를 조화시키는 것은 어렵다.",
+          "csat_ref": "2023 수능 36번 유사 출제",
+          "synonyms": ["harmonize", "balance", "align", "resolve"]
+        },
+        {
+          "id": "EV_053",
+          "word": "advocate",
+          "pos": "verb",
+          "meaning": "옹호하다, 강력히 지지하다",
+          "example_en": "The report advocates for stronger global cooperation on carbon pricing and clean energy investment.",
+          "example_ko": "그 보고서는 탄소 가격 책정 및 청정 에너지 투자에 관한 더 강력한 국제 협력을 옹호한다.",
+          "csat_ref": "2024 9월 모평 34번 유사 출제",
+          "synonyms": ["support", "champion", "promote", "endorse"]
+        },
+        {
+          "id": "EV_054",
+          "word": "diminish",
+          "pos": "verb",
+          "meaning": "줄어들다, 약화시키다",
+          "example_en": "Excessive praise without genuine basis can actually diminish a child's intrinsic motivation to learn.",
+          "example_ko": "진정한 근거 없는 과도한 칭찬은 실제로 아이의 내재적 학습 동기를 약화시킬 수 있다.",
+          "csat_ref": "2023 6월 모평 36번 유사 출제",
+          "synonyms": ["reduce", "lessen", "weaken", "undermine"]
+        },
+        {
+          "id": "EV_055",
+          "word": "acknowledge",
+          "pos": "verb",
+          "meaning": "인정하다, 존재나 가치를 받아들이다",
+          "example_en": "Leaders who openly acknowledge their mistakes earn significantly more trust than those who deflect blame.",
+          "example_ko": "자신의 실수를 솔직하게 인정하는 리더들은 책임을 전가하는 리더들보다 훨씬 더 많은 신뢰를 얻는다.",
+          "csat_ref": "2024 수능 33번 유사 출제",
+          "synonyms": ["admit", "recognize", "accept", "concede"]
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_012",
+      "theme_title": "고난도 복합 명사 — 현상·구조·격차",
+      "level": "high",
+      "tip": "'disparity'(격차)와 'trajectory'(궤적)는 사회 변화 지문 주제문 빈칸에 자주 등장한다. 'accountability'는 최근 출제 트렌드인 조직·거버넌스 지문에서 핵심어로 부상하고 있다.",
+      "words": [
+        {
+          "id": "EV_056",
+          "word": "phenomenon",
+          "pos": "noun",
+          "meaning": "현상, 주목할 만한 사실이나 사건",
+          "example_en": "The widespread adoption of social media is a cultural phenomenon that has fundamentally altered human interaction.",
+          "example_ko": "소셜미디어의 광범위한 수용은 인간 상호작용을 근본적으로 변화시킨 문화적 현상이다.",
+          "csat_ref": "2022 수능 31번 유사 출제",
+          "synonyms": ["occurrence", "development", "event", "trend"]
+        },
+        {
+          "id": "EV_057",
+          "word": "mechanism",
+          "pos": "noun",
+          "meaning": "메커니즘, 작동 원리, 수단",
+          "example_en": "Understanding the neurological mechanism behind addiction helps researchers develop more targeted treatments.",
+          "example_ko": "중독 이면의 신경학적 메커니즘을 이해하면 연구자들이 더 표적화된 치료법을 개발하는 데 도움이 된다.",
+          "csat_ref": "2023 수능 32번 유사 출제",
+          "synonyms": ["process", "system", "procedure", "means"]
+        },
+        {
+          "id": "EV_058",
+          "word": "disparity",
+          "pos": "noun",
+          "meaning": "격차, 불균형, 현저한 차이",
+          "example_en": "The growing disparity between high-income and low-income households is reshaping urban social structures.",
+          "example_ko": "고소득 가구와 저소득 가구 사이의 커지는 격차는 도시 사회 구조를 재편하고 있다.",
+          "csat_ref": "2024 수능 40번 유사 출제",
+          "synonyms": ["gap", "inequality", "imbalance", "difference"]
+        },
+        {
+          "id": "EV_059",
+          "word": "trajectory",
+          "pos": "noun",
+          "meaning": "궤적, 발전 방향, 진행 경로",
+          "example_en": "The trajectory of artificial intelligence development has far exceeded the projections made a decade ago.",
+          "example_ko": "인공지능 발전의 궤적은 10년 전에 이루어진 예측을 훨씬 앞질렀다.",
+          "csat_ref": "2024 9월 모평 36번 유사 출제",
+          "synonyms": ["path", "course", "direction", "arc"]
+        },
+        {
+          "id": "EV_060",
+          "word": "accountability",
+          "pos": "noun",
+          "meaning": "책무성, 책임, 투명한 설명 의무",
+          "example_en": "Transparency and accountability are essential for preserving public trust in democratic institutions.",
+          "example_ko": "투명성과 책무성은 민주주의 기관에 대한 대중의 신뢰를 유지하는 데 필수적이다.",
+          "csat_ref": "2023 9월 모평 37번 유사 출제",
+          "synonyms": ["responsibility", "answerability", "transparency", "integrity"]
+        }
+      ]
+    }
+  ]
+}

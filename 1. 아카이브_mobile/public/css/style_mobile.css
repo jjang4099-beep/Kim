@@ -3111,9 +3111,9 @@ html[data-theme="dark"] .mob-exam-history        { border-left-color: #d97706; }
   letter-spacing: -.01em;
 }
 .alc-expr.alc-sentence {
-  font-size  : 19px;
-  font-weight: 600;
-  line-height: 1.4;
+  font-size  : 24px;       /* Expression과 동일 크기로 통일 */
+  font-weight: 700;
+  line-height: 1.3;
 }
 .alc-meaning {
   font-size  : 14px;

@@ -684,7 +684,8 @@ const Mob = {
     if (type === 'market')         return this._cardFeedMarket(item);
     if (type === 'humanities')     return this._cardFeedHumanities(item);
     // 영어 표현 카드 → 프리미엄 English 카드 (v37)
-    if (cat === 'en')              return this._cardEnglishV(item);
+    // category 'en' 뿐 아니라 옛 저장분(category:'language')의 영어 표현도 동일 카드로
+    if (this._isEnglishExpr(item))  return this._cardEnglishV(item);
     // 유튜브·이미지·썸네일 보유 → 가로형 썸네일 카드 (기존 유지)
     if (type === 'youtube' || type === 'image_analysis' ||
         item.thumbnail || m.thumbnail || item.imageUrl) {
@@ -692,6 +693,14 @@ const Mob = {
     }
     // 텍스트 지식 (History · Economy · Inbox) → 전폭 세로형 카드 v21
     return this._cardV(item, m);
+  },
+
+  /** 영어 표현 아이템 판별 — category 'en' 또는 language 도메인의 영어 형식(중국어 'zh' 제외, "뜻:" 포함) */
+  _isEnglishExpr(item) {
+    const cat = item.category || '';
+    if (cat === 'en') return true;
+    if (cat === 'zh') return false;
+    return getItemDomain(item) === 'language' && /(^|\n)\s*뜻\s*:/.test(item.text || '');
   },
 
   /** 영어 표현 텍스트 파싱: "[토픽] 표현 / 뜻: / 뉘앙스: / 예문: / 연습:" */
@@ -819,7 +828,7 @@ const Mob = {
       ? (() => { const d = new Date(rawD); return isNaN(d) ? '오늘' : `${d.getMonth()+1}/${d.getDate()}`; })()
       : '오늘';
 
-    const cat      = item.category || '';   /* 영어 표현(en) 분기 판별용 — 미정의 버그 수정 */
+    const cat      = item.category || '';   /* exam 분기 판별용 — 미정의 버그 수정 */
     const domain   = getItemDomain(item);
     let   domMeta  = DOMAINS[domain] || { icon: '💡', label: '기타', color: '#6b7280' };
     /* 수험생 배달 저장분(exam_vocab/exam_history)은 8대 도메인 밖 — 전용 라벨로 보정 */
@@ -836,7 +845,7 @@ const Mob = {
     let previewBullets = [];   // 접혔을 때도 보임 (뜻 + 예문)
     let detailBullets  = [];   // 펼쳤을 때만 보임 (뉘앙스 + 연습 + 나머지)
 
-    if (cat === 'en') {
+    if (this._isEnglishExpr(item)) {
       const p = this._parseEnglishText(item.text);
       title = p.expression || item.title || '영어 표현';
       /* 뜻·예문 → preview / 뉘앙스·연습 → detail */

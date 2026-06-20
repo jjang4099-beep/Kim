@@ -24,6 +24,7 @@ Object.assign(Mob, {
       this._renderDeliverySettings(settingsResp);
       const items = parseFeedsArray(itemsResp.items ?? itemsResp);
       this._renderManageView(items);
+      this._initLifeOnHomeToggle();
       /* 카테고리 칩 + 결산 초기 로드 (병렬, 실패해도 무시) */
       this._renderCategoryChips().catch(() => {});
       this.loadSummary('monthly', el('summaryBlock')?.querySelector('.mvw-summary-tab')).catch(() => {});
@@ -555,5 +556,22 @@ Object.assign(Mob, {
     } catch { toast('결산 생성 실패', 'err'); }
   },
 
+  /* ══════════════════════════════════════════
+     라이프 홈 표시 토글
+  ══════════════════════════════════════════ */
+  _initLifeOnHomeToggle() {
+    const btn = el('lifeOnHomeToggle');
+    if (!btn) return;
+    const enabled = localStorage.getItem('showLifeOnHome') === 'true';
+    btn.classList.toggle('active', enabled);
+  },
+
+  _toggleLifeOnHome(btn) {
+    const next = !(localStorage.getItem('showLifeOnHome') === 'true');
+    localStorage.setItem('showLifeOnHome', String(next));
+    btn.classList.toggle('active', next);
+    this.renderFeed(state.items);
+    toast(next ? '라이프 기록이 홈에 표시됩니다' : '라이프 기록을 홈에서 숨겼습니다', 'ok');
+  },
 
 });

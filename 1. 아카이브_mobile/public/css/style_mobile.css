@@ -3935,6 +3935,135 @@ html[data-theme="dark"] .mob-exam-history        { border-left-color: #d97706; }
   transition : opacity .3s;
 }
 
+/* ──────────────────────────────────────────────
+   라이프 설정 토글
+────────────────────────────────────────────── */
+.mvw-life-setting-section {
+  margin-top: 8px;
+  border-top: 2px solid var(--border);
+  padding-top: 20px;
+  margin-bottom: 4px;
+}
+.mvw-life-setting-section .mvw-block-title {
+  font-size  : 15px;
+  font-weight: 700;
+  color      : var(--text-1);
+  margin-bottom: 14px;
+}
+.mvw-life-home-row {
+  display    : flex;
+  align-items: center;
+  justify-content: space-between;
+  gap        : 12px;
+}
+.mvw-life-home-info {
+  display       : flex;
+  flex-direction: column;
+  gap           : 3px;
+}
+.mvw-life-home-label {
+  font-size  : 14px;
+  font-weight: 600;
+  color      : var(--text-1);
+}
+.mvw-life-home-sub {
+  font-size: 12px;
+  color    : var(--text-3);
+}
+.mvw-life-toggle {
+  position     : relative;
+  width        : 48px;
+  height       : 28px;
+  border-radius: 14px;
+  background   : var(--border);
+  border       : none;
+  cursor       : pointer;
+  transition   : background .25s;
+  flex-shrink  : 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.mvw-life-toggle.active {
+  background: var(--accent);
+}
+.mvw-life-toggle-thumb {
+  position     : absolute;
+  top          : 3px;
+  left         : 3px;
+  width        : 22px;
+  height       : 22px;
+  border-radius: 50%;
+  background   : #fff;
+  box-shadow   : 0 1px 4px rgba(0,0,0,.25);
+  transition   : transform .25s;
+}
+.mvw-life-toggle.active .mvw-life-toggle-thumb {
+  transform: translateX(20px);
+}
+
+/* ──────────────────────────────────────────────
+   홈 라이프 카드
+────────────────────────────────────────────── */
+.mob-life-card {
+  background   : var(--surface);
+  border-radius: 16px;
+  border       : 1.5px solid var(--border);
+  border-left  : 4px solid #6abf69;
+  padding      : 14px 16px 12px;
+  margin-bottom: 10px;
+  cursor       : pointer;
+}
+html[data-theme="dark"] .mob-life-card {
+  border-left-color: #4caf50;
+}
+.mob-life-card-header {
+  display    : flex;
+  align-items: center;
+  gap        : 8px;
+  margin-bottom: 8px;
+}
+.mob-life-card-mood  { font-size: 20px; line-height: 1; }
+.mob-life-card-meta  {
+  flex     : 1;
+  font-size: 12px;
+  color    : var(--text-3);
+}
+.mob-life-card-del {
+  background: none;
+  border    : none;
+  cursor    : pointer;
+  color     : var(--text-3);
+  font-size : 15px;
+  padding   : 2px 4px;
+  opacity   : 0.6;
+}
+.mob-life-card-del:active { opacity: 1; }
+.mob-life-card-text {
+  font-size  : 14px;
+  line-height: 1.6;
+  color      : var(--text-1);
+  white-space: pre-wrap;
+  word-break : break-word;
+  margin-bottom: 10px;
+}
+.mob-life-card-photos {
+  display   : flex;
+  gap       : 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin    : 0 -2px;
+  padding   : 0 2px 4px;
+}
+.mob-life-card-photos::-webkit-scrollbar { display: none; }
+.mob-life-card-photo {
+  flex-shrink: 0;
+  width      : 100px;
+  height     : 100px;
+  object-fit : cover;
+  border-radius: 10px;
+  border     : 1px solid var(--border);
+}
+
 /* ─── 강제 라이트 모드 (Papyrus) ─── */
 html[data-theme="light"] {
   --surface : #ffffff;

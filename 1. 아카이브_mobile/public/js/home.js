@@ -246,8 +246,13 @@ Object.assign(Mob, {
     const todayMidnight = new Date();
     todayMidnight.setHours(0, 0, 0, 0);
 
-    /* daily_delivery는 배달 미리보기/배달탭에서만 표시 — 홈 today/past에서 제외 */
-    const userItems = sorted.filter(i => i.type !== 'daily_delivery');
+    /* daily_delivery는 배달 미리보기/배달탭에서만 표시 — 홈 today/past에서 제외
+       life 항목은 관리탭 토글 ON일 때만 홈에 표시 */
+    const showLife = localStorage.getItem('showLifeOnHome') === 'true';
+    const userItems = sorted.filter(i =>
+      i.type !== 'daily_delivery' &&
+      (showLife || i.category !== 'life')
+    );
 
     const todayItems = userItems.filter(i => {
       const d = new Date(i.createdAt); d.setHours(0,0,0,0);
@@ -537,6 +542,7 @@ Object.assign(Mob, {
     const type = item.type || 'text';
     const cat  = item.category || item.shelf || 'inbox';
     if (type === 'daily_delivery') return this._cardDailyDelivery(item);
+    if (cat === 'life')            return this._cardLife(item);
     if (type === 'language')       return this._cardFeedLanguage(item);
     if (type === 'market')         return this._cardFeedMarket(item);
     if (type === 'humanities')     return this._cardFeedHumanities(item);
@@ -550,6 +556,43 @@ Object.assign(Mob, {
     }
     // 텍스트 지식 (History · Economy · Inbox) → 전폭 세로형 카드 v21
     return this._cardV(item, m);
+  },
+
+  /** 라이프 기록 카드 — 사진 포함 */
+  _cardLife(item) {
+    const id    = item._id || item.id || '';
+    const life  = item.life || {};
+    const photos = life.photos || [];
+    const mood  = life.mood || '';
+    const loc   = life.location ? `📍 ${life.location}` : '';
+    const rawD  = item.createdAt || item.date || '';
+    const dateStr = rawD
+      ? (() => { const d = new Date(rawD); return isNaN(d) ? '' : `${d.getMonth()+1}/${d.getDate()}`; })()
+      : '';
+
+    const MOOD_EMOJI = { great:'😄', good:'🙂', soso:'😐', bad:'😔', awful:'😞' };
+    const moodIcon = MOOD_EMOJI[mood] || '📔';
+
+    const photosHtml = photos.length
+      ? `<div class="mob-life-card-photos">${
+          photos.map(url => `<img class="mob-life-card-photo" src="${url}" loading="lazy" alt="사진">`).join('')
+        }</div>`
+      : '';
+
+    return `
+    <div class="mob-card mob-life-card" data-id="${id}">
+      <div class="mob-life-card-header">
+        <span class="mob-life-card-mood">${moodIcon}</span>
+        <span class="mob-life-card-meta">${dateStr}${loc ? '  ' + loc : ''}</span>
+        <button class="mob-life-card-del"
+                onclick="event.stopPropagation();Mob._deleteItem('${id}',this.closest('.mob-card'))"
+                title="삭제">
+          <i class="ti ti-trash"></i>
+        </button>
+      </div>
+      <div class="mob-life-card-text">${(item.text || '').replace(/</g,'&lt;')}</div>
+      ${photosHtml}
+    </div>`;
   },
 
   /** 영어 표현 아이템 판별 — category 'en' 또는 language 도메인의 영어 형식(중국어 'zh' 제외, "뜻:" 포함) */

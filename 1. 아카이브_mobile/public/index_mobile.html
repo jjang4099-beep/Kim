@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
-  <link rel="stylesheet" href="css/style_mobile.css?v=70"/>
+  <link rel="stylesheet" href="css/style_mobile.css?v=71"/>
   <link rel="stylesheet" href="css/exam.css?v=2"/>
 </head>
 <body>
@@ -461,6 +461,22 @@
         </div>
       </div>
 
+      <!-- ══ 라이프 기록 설정 ══ -->
+      <div class="mvw-section-block mvw-life-setting-section">
+        <div class="mvw-block-title">
+          📔 라이프 기록 설정
+        </div>
+        <div class="mvw-life-home-row">
+          <div class="mvw-life-home-info">
+            <span class="mvw-life-home-label">홈에 라이프 기록 표시</span>
+            <small class="mvw-life-home-sub">일상 기록을 홈 피드에서도 확인합니다</small>
+          </div>
+          <button class="mvw-life-toggle" id="lifeOnHomeToggle" onclick="Mob._toggleLifeOnHome(this)" aria-label="라이프 홈 표시 토글">
+            <span class="mvw-life-toggle-thumb"></span>
+          </button>
+        </div>
+      </div>
+
       <!-- ══ 시스템 테마 환경설정 ══ -->
       <div class="mvw-section-block mvw-theme-section">
         <div class="mvw-block-title">
@@ -791,10 +807,10 @@
 <div class="mob-toast" id="mobToast" hidden></div>
 
 <script src="js/core.js?v=3"></script>
-<script src="js/home.js?v=7"></script>
+<script src="js/home.js?v=8"></script>
 <script src="js/feed.js?v=2"></script>
 <script src="js/library.js?v=4"></script>
-<script src="js/manage.js?v=3"></script>
+<script src="js/manage.js?v=4"></script>
 <script src="js/add.js?v=2"></script>
 <script src="js/app_exam.js?v=2"></script>
 <script src="js/pwa.js?v=1"></script>

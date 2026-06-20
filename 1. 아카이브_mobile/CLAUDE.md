@@ -11,8 +11,13 @@
 1. 아카이브_mobile/
 ├── public/
 │   ├── index_mobile.html       # 앱 진입점, SPA 뷰 구조 (CSS/JS는 ?v=N 캐시버스팅)
-│   ├── js/
-│   │   ├── app_mobile.js       # 메인 로직 (Mob 네임스페이스)
+│   ├── js/                     # 로드 순서: core → home → feed/library/manage/add → app_exam → pwa
+│   │   ├── core.js             # 전역 상수·유틸·state·const Mob={} 선언
+│   │   ├── home.js             # 앱 초기화·홈뷰·공통 카드·상세·검색 (Mob 확장)
+│   │   ├── feed.js             # 지식 배달 카드·뷰·설정 (Mob 확장)
+│   │   ├── library.js          # 내 서재 매거진 뷰 (Mob 확장)
+│   │   ├── manage.js           # 학습 관리·통계·복습 큐·AI 퀴즈 (Mob 확장)
+│   │   ├── add.js              # 추가 모달(텍스트·이미지 분석) (Mob 확장)
 │   │   ├── app_exam.js         # 수험생 모드 로직 (ExamMob 네임스페이스)
 │   │   └── pwa.js              # PWA / 서비스워커 등록
 │   ├── css/
@@ -36,11 +41,17 @@
 
 ### 네임스페이스
 ```js
-Mob       // 직장인/일반 모드 전체 로직 (app_mobile.js)
+Mob       // 직장인/일반 모드 전체 로직 — core.js에 선언, 나머지 5파일이 Object.assign으로 확장
 ExamMob   // 수험생 모드 전용 로직 (app_exam.js) — 이미 존재, Mob 유틸에 의존
 ```
 - **절대로 전역 함수 새로 만들지 말 것** — 반드시 Mob 또는 ExamMob 안에 넣을 것
-- 전역 허용(이미 존재): `el`, `toast`, `fmt`, `fmtFull`, `dayLabel`, `fetchJSON`, `parseFeedsArray`, `toLocalDateStr`
+- **새 Mob 메서드 추가 위치**: 역할에 맞는 파일의 `Object.assign(Mob, { … })` 블록 안에 추가
+  - 홈·카드·검색 관련 → `home.js`
+  - 배달 카드·뷰·설정 관련 → `feed.js`
+  - 서재 관련 → `library.js`
+  - 통계·퀴즈 관련 → `manage.js`
+  - 추가 모달 관련 → `add.js`
+- 전역 허용(core.js에 존재): `el`, `toast`, `fmt`, `fmtFull`, `dayLabel`, `fetchJSON`, `parseFeedsArray`, `toLocalDateStr`
 
 ### 모드 격리 (중요)
 - 직장인=`PROFESSIONAL`, 수험생=`EXAM_PREP`. 클라이언트는 `localStorage.userMode`('work'/'exam'),
@@ -50,7 +61,7 @@ ExamMob   // 수험생 모드 전용 로직 (app_exam.js) — 이미 존재, Mob
 
 ### 상태 관리
 ```js
-// 모든 앱 상태는 반드시 이 state 객체에만 저장 (app_mobile.js)
+// 모든 앱 상태는 반드시 이 state 객체에만 저장 (core.js)
 const state = {
   currentView, currentCat, items,
   feedItems,        // 직장인 배달 미리보기
@@ -222,7 +233,7 @@ POST   /api/exam/daily-knowledge/save        → 수험생 배달 저장
 
 ## ✅ 기능 추가 전 체크리스트
 ```
-□ 비슷한 기능/함수가 이미 app_mobile.js / app_exam.js에 있는가?
+□ 비슷한 기능/함수가 이미 core/home/feed/library/manage/add.js / app_exam.js에 있는가?
 □ 기존 함수를 확장하면 되는가?
 □ state 객체에 새 상태 필드를 추가하고 초기값을 설정했는가?
 □ VIEW_CONFIG에 새 뷰를 등록했는가? (해당 시)
@@ -258,6 +269,6 @@ idiom_daily→ 📜 고사성어    #c2410c
 
 ---
 
-*SJ 지식 아카이브 | app_mobile.js v69 기준*
+*SJ 지식 아카이브 | v68 7파일 분리 기준 (core / home / feed / library / manage / add / app_exam)*
 *이 파일이 업데이트되면 버전과 날짜를 하단에 기록할 것*
-**마지막 업데이트**: 2026-06-17
+**마지막 업데이트**: 2026-06-20

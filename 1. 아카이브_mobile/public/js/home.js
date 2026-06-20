@@ -1,9 +1,13 @@
 /**
- * app_mobile.js — Mob 네임스페이스 메서드 본체
+ * home.js — 홈 화면 + 앱 진입 + 공통 카드·상세·검색
  * ────────────────────────────────────────────
- * 전역 상수·유틸·state·VIEW_CONFIG·Mob 선언은 core.js로 분리됨.
- * 이 파일은 core.js의 전역 Mob 객체에 메서드를 Object.assign으로 더한다.
- * 로드 순서: core.js → app_mobile.js → app_exam.js → pwa.js
+ * 담당: 앱 초기화(init)·모드 전환(직장인/수험생)·테마·뷰 전환(switchView),
+ *       홈 피드 렌더(renderFeed/_loadHomeItems), 공통 카드(cardHTML/_cardV/_cardH/
+ *       _cardEnglishV/_parseEnglishText), 상세 모달(_toggleDetail/_buildExpandBody),
+ *       서재 검색(openSearch/_doSearch), 공통 액션(_catLabel/_openSource/_deleteItem),
+ *       전역 이벤트 리스너(click/keydown/DOMContentLoaded)
+ * 의존: core.js(전역·유틸·state·Mob). 배달/서재/관리/추가 메서드는 feed/library/manage/add.js.
+ * 로드 순서: core.js → home.js → feed/library/manage/add.js → app_exam.js → pwa.js
  */
 
 'use strict';

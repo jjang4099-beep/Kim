@@ -718,7 +718,7 @@ Object.assign(Mob, {
       : '';
     /* detail: 나머지 불릿 + 해시태그 (내용 없으면 빈 div → 셰브론 숨김) */
     const detailInner = (detailBullets.length ? mkUL(detailBullets) : '') + tagsHTML;
-    const hasDetail   = detailBullets.length > 0 || tags.length > 0;
+    const hasDetail   = detailBullets.length > 0 || allTagsHTML.length > 0;
 
     return `
     <div class="mob-card mob-card-v${hasDetail ? '' : ' no-detail'}" data-id="${id}" data-domain="${domain}">
@@ -1254,7 +1254,7 @@ Object.assign(Mob, {
   ══════════════════════════════════════════ */
   _showCategoryConfirm(item) {
     if (!item) return;
-    const catName = item.category || item.domain || '기타';
+    const catName = this._catLabel(item.category || item.domain) || '기타';
     const t = el('mobToast');
     if (!t) return;
     t.innerHTML = `<span>📁 <b>${catName}</b>로 분류됐어요</span>
@@ -1317,9 +1317,10 @@ Object.assign(Mob, {
       });
       this._closeCategorySheet();
       toast(`✅ '${catName}'으로 변경됐어요`, 'ok');
-      /* 로컬 state 반영 */
+      /* 로컬 state 반영 후 홈 피드 갱신 */
       const item = state.items.find(i => (i.id || i._id) === itemId);
       if (item) { item.userCategoryId = catId; item.categoryConfirmed = true; }
+      this._loadHomeItems();
     } catch { toast('변경 실패', 'err'); }
   },
 

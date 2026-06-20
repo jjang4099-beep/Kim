@@ -4468,6 +4468,16 @@ html[data-theme="dark"] .mob-card-feed-market.mkt-open .mob-mkt-expand-btn { col
 .mvw-catmgr-row:last-child { border-bottom: none; }
 .mvw-catmgr-row-emoji { font-size: 1.1rem; }
 .mvw-catmgr-row-name  { flex: 1; }
+.mvw-catmgr-badge {
+  font-size    : .6875rem;
+  padding      : 2px 7px;
+  border-radius: 99px;
+  font-weight  : 600;
+}
+.mvw-catmgr-badge.both { background: #e0e7ff; color: #4f46e5; }
+.mvw-catmgr-badge.work { background: #d1fae5; color: #065f46; }
+.mvw-catmgr-badge.exam { background: #fef3c7; color: #92400e; }
+
 .mvw-catmgr-del-btn {
   padding    : 4px 10px;
   border-radius: 99px;

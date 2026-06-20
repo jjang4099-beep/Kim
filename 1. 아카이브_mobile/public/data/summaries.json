@@ -1,0 +1,83 @@
+{
+  "monthly:2026-06": {
+    "type": "monthly",
+    "period": "2026-06",
+    "stats": {
+      "totalItems": 27,
+      "totalLife": 0,
+      "topCategories": [
+        {
+          "name": "en",
+          "count": 15
+        },
+        {
+          "name": "history",
+          "count": 5
+        },
+        {
+          "name": "language",
+          "count": 4
+        },
+        {
+          "name": "exam",
+          "count": 2
+        },
+        {
+          "name": "economy",
+          "count": 1
+        }
+      ],
+      "topKeywords": [
+        {
+          "word": "수에즈 운하 (Suez Canal)",
+          "count": 2
+        },
+        {
+          "word": "지정학 (Geopolitics)",
+          "count": 2
+        },
+        {
+          "word": "공급망 (Supply Chain)",
+          "count": 2
+        },
+        {
+          "word": "Touch base",
+          "count": 2
+        },
+        {
+          "word": "On the same page",
+          "count": 2
+        },
+        {
+          "word": "Circle back",
+          "count": 2
+        },
+        {
+          "word": "regard A as B",
+          "count": 1
+        },
+        {
+          "word": "perceive A as B",
+          "count": 1
+        },
+        {
+          "word": "interpret A as B",
+          "count": 1
+        },
+        {
+          "word": "골품제 (Kolpumje)",
+          "count": 1
+        }
+      ],
+      "monthlyBreakdown": [
+        {
+          "month": "2026-06",
+          "count": 27
+        }
+      ]
+    },
+    "aiReview": "이번 달 정말 알찬 학습을 하셨네요! 27개의 지식을 습득하면서 영어, 역사, 언어, 시험, 경제 등 다양한 분야를 균형 있게 공부하셨고, 특히 수에즈 운하와 지정학 같은 심화 주제까지 탐구하신 모습이 인상적입니다. 공급망, 'Touch base', 'On the same page' 등 실무 표현까지 배우시며 실질적인 역량을 쌓고 계신데, 이런 꾸준함이라면 다음 달에는 더욱 성장하실 거라 확신합니다! 😊",
+    "highlights": [],
+    "generatedAt": "2026-06-20T10:57:45.475Z"
+  }
+}

@@ -391,7 +391,11 @@ Object.assign(Mob, {
           <div class="mvw-catmgr-item">
             <span class="mvw-catmgr-emoji">${c.emoji}</span>
             <span class="mvw-catmgr-name">${c.name}</span>
-            <span class="mvw-catmgr-modes">${c.modes}</span>
+            <span class="mvw-catmgr-modes">${
+              c.modes === 'work' ? '<span class="mvw-catmgr-badge work">직장인</span>' :
+              c.modes === 'exam' ? '<span class="mvw-catmgr-badge exam">수험생</span>' :
+              '<span class="mvw-catmgr-badge both">공통</span>'
+            }</span>
           </div>`).join('')}
       </div>
 

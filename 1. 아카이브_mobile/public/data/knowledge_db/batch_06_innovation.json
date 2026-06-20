@@ -1,0 +1,523 @@
+{
+  "meta": {
+    "batch": 6,
+    "theme": "혁신·책임·고객·시간·갈등",
+    "id_range": {
+      "english": "EN_241 ~ EN_260",
+      "english_theme_packs": "PACK_EN_010 ~ PACK_EN_014",
+      "chinese": "",
+      "idioms_quotes": "",
+      "history": ""
+    },
+    "total": 45,
+    "created": "2026-06-20",
+    "updated": "2026-06-20"
+  },
+  "english_expressions": [
+    {
+      "id": "EN_241",
+      "expression": "Think big, start small.",
+      "meaning": "크게 생각하되 작게 시작하세요.",
+      "level": "intermediate",
+      "theme": "혁신·전략",
+      "example": "We want to disrupt the industry eventually — but think big, start small. Let's nail the first city before we scale.",
+      "dialogue": "A: Our vision is to be the go-to platform for every small business in Asia.\nB: I love the ambition, but think big, start small — let's own one category in one market first.\nA: Fair. Which market do you think we should anchor in?\nB: Seoul. We have the network and the product-market fit signal is already there."
+    },
+    {
+      "id": "EN_242",
+      "expression": "Fail fast, learn faster.",
+      "meaning": "빠르게 실패하고 더 빠르게 배워라.",
+      "level": "intermediate",
+      "theme": "혁신·전략",
+      "example": "Our engineering culture is built on 'fail fast, learn faster' — we ship MVPs weekly and iterate based on real user data.",
+      "dialogue": "A: The A/B test flopped. Only 2% clicked the new CTA.\nB: Good data. Fail fast, learn faster — now we know emotional framing doesn't resonate with this segment.\nA: So what's the next hypothesis?\nB: Try social proof instead of urgency. 'Thousands of teams use this' instead of 'Limited offer.'"
+    },
+    {
+      "id": "EN_243",
+      "expression": "Let's future-proof this.",
+      "meaning": "이게 앞으로도 통하도록 설계합시다.",
+      "level": "advanced",
+      "theme": "혁신·전략",
+      "example": "Before we standardise on this stack, let's future-proof it — the regulatory environment is going to change significantly in two years.",
+      "dialogue": "A: Should we build the reporting module for the current tax structure or anticipate the 2028 changes?\nB: Let's future-proof this from the start. Building it twice costs more than building it right once.\nA: That adds six weeks to the timeline.\nB: Six weeks now versus six months of rework later. It's not a hard call."
+    },
+    {
+      "id": "EN_244",
+      "expression": "We need to get ahead of this.",
+      "meaning": "이 문제를 선제적으로 먼저 처리해야 해요.",
+      "level": "intermediate",
+      "theme": "혁신·전략",
+      "example": "The media will find out about the policy change — we need to get ahead of this with a proactive statement before they ask.",
+      "dialogue": "A: Customers are starting to notice the service slowdowns. We've had ten complaints this week.\nB: We need to get ahead of this before it hits social media. Let's draft a transparent update and send it proactively.\nA: Admitting there's a problem doesn't worry you?\nB: Silence worries me more. Proactive communication always beats reactive damage control."
+    },
+    {
+      "id": "EN_245",
+      "expression": "That's on me.",
+      "meaning": "그건 제 책임이에요.",
+      "level": "beginner",
+      "theme": "책임·성장",
+      "example": "The data in the proposal had an error — that's on me. I'll send a corrected version within the hour.",
+      "dialogue": "A: The client said the scope document they received didn't match what we promised in the pitch.\nB: That's on me. I updated the pitch deck after the scope was sent and didn't sync the two documents.\nA: How are you handling it?\nB: I've already called them. We're having a 30-minute alignment session tomorrow morning."
+    },
+    {
+      "id": "EN_246",
+      "expression": "It's a game-changer.",
+      "meaning": "판도를 완전히 바꾸는 거예요.",
+      "level": "intermediate",
+      "theme": "혁신·전략",
+      "example": "Real-time translation built into the earbuds was a game-changer — it made global calls feel like local conversations.",
+      "dialogue": "A: The new AI scheduling feature automatically blocks focus time based on your workload patterns.\nB: That's a genuine game-changer for remote teams. Async coordination has always been the hidden cost of distributed work.\nA: We're seeing 40% fewer scheduling conflicts in the pilot.\nB: That's the kind of metric that sells itself."
+    },
+    {
+      "id": "EN_247",
+      "expression": "Low-hanging fruit.",
+      "meaning": "쉽게 얻을 수 있는 성과나 기회.",
+      "level": "intermediate",
+      "theme": "전략·우선순위",
+      "example": "Let's start with the low-hanging fruit — fixing the checkout button alone should recover about 8% of cart abandonments.",
+      "dialogue": "A: We have a twelve-month roadmap and limited resources. Where do we start?\nB: Let's identify the low-hanging fruit first — the changes that have the highest impact with the least effort.\nA: The search bar is broken for mobile users. That's 40% of our traffic.\nB: That's your low-hanging fruit. Fix it this sprint. Everything else can wait."
+    },
+    {
+      "id": "EN_248",
+      "expression": "We need a reality check.",
+      "meaning": "현실을 제대로 직시해야 해요.",
+      "level": "intermediate",
+      "theme": "전략·판단",
+      "example": "The projections look great, but we need a reality check — the assumptions are based on conditions that haven't existed since 2021.",
+      "dialogue": "A: The team is projecting 300% growth next quarter based on the new feature launch.\nB: Let's have a reality check. Our best quarter ever was 80%. What's changed that would make 300% realistic?\nA: The team is very optimistic about the partnership announcement.\nB: Optimism isn't a forecast. Build the base case and stress-test it."
+    },
+    {
+      "id": "EN_249",
+      "expression": "Step up to the plate.",
+      "meaning": "어려운 상황에서 자진해서 나서다.",
+      "level": "intermediate",
+      "theme": "리더십·책임",
+      "example": "When the lead engineer left mid-project, Ji-ho stepped up to the plate and led the technical delivery single-handedly.",
+      "dialogue": "A: The client is asking for someone to present the findings and none of the senior team is available.\nB: I can step up to the plate. I've been in every session and I know the data.\nA: Are you sure? The CMO will be in the room.\nB: Then it's good practice. I'd rather be challenged on my work than have no one represent it at all."
+    },
+    {
+      "id": "EN_250",
+      "expression": "Read between the lines.",
+      "meaning": "글자 그대로가 아닌 숨은 의미를 파악하다.",
+      "level": "advanced",
+      "theme": "소통·판단",
+      "example": "When the client said 'we'll think about it,' you have to read between the lines — that usually means the budget isn't there.",
+      "dialogue": "A: The investor said the business model was 'interesting and worth watching.'\nB: Read between the lines — 'worth watching' means they're not ready to commit. They want to see at least one more quarter of data.\nA: Should we reach out proactively in 90 days?\nB: Exactly. Give them what they said they needed and make the follow-up easy for them."
+    },
+    {
+      "id": "EN_251",
+      "expression": "I'm completely swamped.",
+      "meaning": "지금 완전히 업무에 파묻혀 있어요.",
+      "level": "beginner",
+      "theme": "시간·업무량",
+      "example": "I'd love to help, but I'm completely swamped with the quarterly close — can we pick this up next week?",
+      "dialogue": "A: Can you join the working group on the internal process redesign?\nB: I want to, but I'm completely swamped this month. Three client deliverables and a board presentation.\nA: What about just the kick-off session?\nB: Send me the agenda. If it's 90 minutes or less, I'll make it work."
+    },
+    {
+      "id": "EN_252",
+      "expression": "We're in sync.",
+      "meaning": "우리 의견이 잘 맞아요. 동기화됐어요.",
+      "level": "beginner",
+      "theme": "소통·협업",
+      "example": "After the alignment session, the two teams were finally in sync on the product roadmap and the release criteria.",
+      "dialogue": "A: Do we agree that the North Star metric should be monthly active users, not downloads?\nB: Completely. We're in sync on that. Downloads are a vanity metric.\nA: Good. Let's make sure everyone else on the team knows that shift.\nB: I'll update the OKR doc and send a brief summary to the full team."
+    },
+    {
+      "id": "EN_253",
+      "expression": "Play it safe.",
+      "meaning": "안전하게 가다. 리스크를 최소화하는 선택을 하다.",
+      "level": "beginner",
+      "theme": "전략·판단",
+      "example": "We can play it safe with a soft launch to existing users before opening it up to the public.",
+      "dialogue": "A: Should we roll out the new pricing to all users at once or phase it in?\nB: Let's play it safe — start with new sign-ups only. If conversion holds, expand to existing users in 30 days.\nA: What are we protecting against?\nB: Any negative reaction from the existing base. They're our most vocal users and we can't afford churn at this stage."
+    },
+    {
+      "id": "EN_254",
+      "expression": "Pull your weight.",
+      "meaning": "자기 역할을 다하다. 팀에서 당연한 몫을 해내다.",
+      "level": "intermediate",
+      "theme": "팀워크·책임",
+      "example": "On high-performing teams, everyone pulls their weight — there's no room for people who wait to be told what to do.",
+      "dialogue": "A: Honestly, two people on this team are doing 80% of the work.\nB: That's not sustainable, and it's not fair. Everyone needs to pull their weight — or we need to have a direct conversation about expectations.\nA: How do you raise that without it becoming personal?\nB: Focus on outputs, not personalities. 'We committed to X deliverables — here's where we are.' The gap speaks for itself."
+    },
+    {
+      "id": "EN_255",
+      "expression": "Throw someone under the bus.",
+      "meaning": "자신을 보호하기 위해 다른 사람을 희생양으로 삼다.",
+      "level": "intermediate",
+      "theme": "직장생활·신뢰",
+      "example": "When the campaign failed, the director threw the junior team under the bus in front of the client — and the team never trusted him again.",
+      "dialogue": "A: The client is asking who approved the flawed design spec.\nB: Don't throw anyone under the bus. Say the decision was made collectively and we're focused on fixing it.\nA: But it was the lead's call, not mine.\nB: Maybe. But the client doesn't care about internal hierarchy right now. They want a solution. Give them that first."
+    },
+    {
+      "id": "EN_256",
+      "expression": "We're in this together.",
+      "meaning": "우리는 함께 이 상황을 헤쳐나가고 있어요.",
+      "level": "beginner",
+      "theme": "팀워크·사기",
+      "example": "The product launch flopped, but we're in this together — let's figure out what we can do in the next 30 days.",
+      "dialogue": "A: I feel like I'm carrying too much of this alone. The stakes are high and I'm anxious.\nB: You're not carrying it alone. We're in this together — whatever we need to figure out, we figure out as a team.\nA: I appreciate that. I think I just needed to say it out loud.\nB: That's exactly what you should do. The worst thing in high-pressure projects is people silently drowning."
+    },
+    {
+      "id": "EN_257",
+      "expression": "Get the most out of something.",
+      "meaning": "무언가에서 최대한 많은 것을 얻다.",
+      "level": "intermediate",
+      "theme": "성장·효율",
+      "example": "To get the most out of the conference, prepare three specific questions you want answered before you arrive.",
+      "dialogue": "A: We're sending four people to the industry summit. It's a significant expense.\nB: Then let's make sure we get the most out of it. Assign each person a specific track and have them debrief the team afterwards.\nA: Should we set a goal for how many leads we want?\nB: A quality goal is better than a quantity goal. Three meaningful conversations beat thirty business cards."
+    },
+    {
+      "id": "EN_258",
+      "expression": "It's not rocket science.",
+      "meaning": "이건 그렇게 어려운 게 아니에요.",
+      "level": "beginner",
+      "theme": "소통·문제해결",
+      "example": "Setting up the CRM correctly isn't rocket science — it just requires someone to commit two hours to reading the setup guide.",
+      "dialogue": "A: The team seems intimidated by the new analytics dashboard.\nB: It's not rocket science — the interface is intuitive once you've done it twice. Can we set up a 30-minute demo session?\nA: Would that actually help?\nB: Every tool feels complex until you've used it in front of someone else. Demos remove the fear."
+    },
+    {
+      "id": "EN_259",
+      "expression": "At the end of the day.",
+      "meaning": "결국에는. 최종적으로는.",
+      "level": "beginner",
+      "theme": "소통·의사결정",
+      "example": "We can debate the approach all we want, but at the end of the day, the customer experience is what determines if we win or lose.",
+      "dialogue": "A: There are strong opinions on both sides about which framework to use.\nB: At the end of the day, both frameworks will work. The decision should come down to which one the team knows best.\nA: In that case, it's clearly the second option — that's what 80% of the team has experience with.\nB: Then that's the answer. Familiarity reduces delivery risk."
+    },
+    {
+      "id": "EN_260",
+      "expression": "Let's not drop the ball.",
+      "meaning": "이 중요한 일을 실수로 놓치지 맙시다.",
+      "level": "intermediate",
+      "theme": "실행·책임",
+      "example": "We've promised the client weekly updates — let's not drop the ball on that commitment, especially in the first month.",
+      "dialogue": "A: The follow-up email to the new partner has been sitting in drafts for three days.\nB: Let's not drop the ball on this one. A delayed follow-up on a new partnership sends the wrong signal.\nA: I'll send it today. Should I loop you in?\nB: CC me on the first one so I can see the tone, then you own it from there."
+    }
+  ],
+  "english_theme_packs": [
+    {
+      "id": "PACK_EN_010",
+      "theme_key": "driving_change_innovation",
+      "theme_title": "변화와 혁신을 이끌 때",
+      "theme_title_en": "Driving Change and Innovation",
+      "level": "advanced",
+      "expressions": [
+        {
+          "id": "PACK_EN_010_01",
+          "order": 1,
+          "expression": "shake things up",
+          "meaning": "기존 방식을 과감하게 뒤흔들다",
+          "nuance": "'Shake'는 물리적으로 흔드는 행위입니다. 오랫동안 고착된 관행이나 루틴을 강하게 뒤흔들어 변화를 만들어내는 것을 의미합니다. 혁신적인 리더가 부임하거나 조직이 침체됐을 때 '이제 판을 바꾸겠다'는 의지를 표현할 때 자주 쓰입니다. 긍정적 맥락에서는 혁신과 돌파의 언어이고, 비판적 맥락에서는 '불필요한 혼란을 만든다'는 우려의 언어이기도 합니다.",
+          "dialogue": "New Director: The team has been using the same workflow for four years. Productivity is flat.\nYou: I think it's time to shake things up. What if we moved to async-first communication and cut the standing meetings by half?\nNew Director: That's a significant change. How do you handle pushback from people attached to the old process?\nYou: You bring data first, then the proposal. Nobody argues with a chart showing where three hours a week disappear.",
+          "example": "The new CMO came in ready to shake things up — six underperforming campaigns were rebuilt within her first quarter.",
+          "practice": "Sometimes you need to shake things up to remind the team what creative risk-taking actually feels like."
+        },
+        {
+          "id": "PACK_EN_010_02",
+          "order": 2,
+          "expression": "ahead of the curve",
+          "meaning": "시대를 앞서가다. 남들보다 먼저 파악하고 행동하다",
+          "nuance": "'커브(곡선)'가 상승하기 전에 이미 그 방향을 예측하고 대비한다는 이미지입니다. 단순히 '빠른 것'이 아니라 '이미 어디로 가는지 보인다'는 예측적 통찰을 내포합니다. 시장 변화, 기술 트렌드, 규제 환경 변화를 누구보다 먼저 감지하고 그에 맞게 조직을 준비시키는 사람이나 회사를 묘사할 때 씁니다. 반대는 'behind the curve(뒤처진)'입니다.",
+          "dialogue": "VP Strategy: Competitors are still debating whether to invest in AI tools. We've been integrating them for eight months.\nYou: That's what it means to stay ahead of the curve. The platforms are shifting faster than most teams can adapt.\nVP Strategy: But what if AI adoption doesn't reach mainstream as fast as we expect?\nYou: Then we've learned more than our competitors at the same cost. Early experiments are cheap. Catching up later is expensive.",
+          "example": "The company was ahead of the curve on remote work infrastructure — they'd been building async communication tools since 2019.",
+          "practice": "Being ahead of the curve on sustainability reporting meant we were compliant before it became mandatory."
+        },
+        {
+          "id": "PACK_EN_010_03",
+          "order": 3,
+          "expression": "move the needle",
+          "meaning": "실질적이고 측정 가능한 변화를 만들어내다",
+          "nuance": "계기판의 바늘(needle)을 움직인다는 이미지에서 나왔습니다. 사소한 조정이나 느껴지지 않는 개선이 아니라, 측정 가능한 의미 있는 변화를 만드는 것을 뜻합니다. 성과 리뷰, 전략 회의, KPI 논의에서 자주 등장하며 'Making progress'보다 훨씬 구체적이고 결과 지향적인 표현입니다. 반대는 'treading water(제자리걸음)'입니다.",
+          "dialogue": "CEO: We've been optimising the funnel for two quarters. Conversion improved 0.4%.\nYou: 0.4% isn't moving the needle. We need to find the single biggest friction point users hit before they drop off.\nCEO: Our data shows 36% of users abandon at the payment screen.\nYou: Then that's where we focus. Fix that one moment — everything else can wait.",
+          "example": "Switching from monthly to weekly standups didn't move the needle. The bottleneck was always decisions, not communication frequency.",
+          "practice": "None of the incremental UX changes moved the needle. The breakthrough came from rethinking the onboarding flow entirely."
+        },
+        {
+          "id": "PACK_EN_010_04",
+          "order": 4,
+          "expression": "push the envelope",
+          "meaning": "기존의 한계를 넘어서다. 가능성의 경계를 확장하다",
+          "nuance": "항공 공학에서 비행기의 안전 비행 한계 범위를 'flight envelope'이라고 부릅니다. 이 한계를 밀어붙이는(push) 것이 표현의 유래입니다. 창의적 업무, R&D, 혁신 문화에서 자주 등장하며 단순히 열심히 하는 것이 아니라 '기존에 가능하다고 여겨진 것의 경계 자체를 확장하려는 의지'를 나타냅니다. 위험 감수와 함께한 도전을 인정하는 표현입니다.",
+          "dialogue": "Client: Our competitors are already doing what we're asking for.\nYou: Then we need to push the envelope further. Let's scope what a version 2 of this feature would look like — something they haven't conceived of yet.\nClient: That could require additional budget.\nYou: If it becomes a category-defining feature, that's the right investment. Let's show you the cost-benefit first.",
+          "example": "The research team was constantly pushing the envelope on materials science, running experiments competitors hadn't even conceptualised.",
+          "practice": "If you're not pushing the envelope at least once a quarter, you're probably optimising for comfort rather than growth."
+        },
+        {
+          "id": "PACK_EN_010_05",
+          "order": 5,
+          "expression": "a paradigm shift",
+          "meaning": "패러다임의 전환. 문제를 보는 방식 자체가 근본적으로 바뀌다",
+          "nuance": "철학자 토마스 쿤이 《과학혁명의 구조》에서 정의한 개념입니다. 단순한 업그레이드나 점진적 개선이 아니라, 문제를 바라보는 방식 자체가 완전히 바뀌는 근본적 전환을 의미합니다. 스마트폰의 등장, 스트리밍의 부상, 클라우드 전환 등 기존 규칙을 무력화하는 변화에 씁니다. 자주 쓰면 클리셰가 되지만, 진짜 구조적 변화가 있을 때 이 표현은 정확합니다.",
+          "dialogue": "You: Generative AI isn't just another productivity tool. It's changing how we make decisions.\nColleague: How is it different from, say, cloud computing?\nYou: Cloud changed where we stored and processed information. AI is a paradigm shift — it's changing the cognition layer. That's categorical, not incremental.\nColleague: So the companies that treat it as just another tool will miss the structural shift entirely?\nYou: Exactly. The ones who see it as infrastructure will build on top of it. The others will be built around.",
+          "example": "The shift from desktop to mobile wasn't a feature update — it was a paradigm shift in how humans related to software.",
+          "practice": "Remote-first work turned out to be a paradigm shift in how companies thought about talent geography, not just a temporary adjustment."
+        }
+      ],
+      "master_paragraph": {
+        "text": "We knew it was time to **shake things up** — three years of careful increments had done nothing to close the gap with our main competitor. Our new product lead insisted we needed to stay **ahead of the curve** by making bets on user behaviours that hadn't yet fully formed. The goal was never just to iterate; we had to genuinely **move the needle** on how the category was experienced. The board thought we were **pushing the envelope** too aggressively, but every major market shift in this industry had come from companies willing to go there. In the end, what we launched wasn't a product update — it was a **paradigm shift** in how our customers thought about the entire problem space.",
+        "translation": "기존 방식을 과감하게 바꿀 시간임을 우리는 알고 있었다 — 3년간의 신중한 점진적 접근으로는 주요 경쟁사와의 격차를 전혀 좁히지 못했다. 새 제품 리드는 아직 완전히 형성되지 않은 사용자 행동에 베팅함으로써 시대를 앞서 나가야 한다고 주장했다. 목표는 단순히 반복 개발이 아니었다 — 카테고리가 경험되는 방식에서 실질적인 변화를 만들어내야 했다. 이사회는 우리가 너무 공격적으로 한계를 밀어붙이고 있다고 생각했지만, 이 업계의 모든 주요 시장 전환은 기꺼이 그 길을 간 회사들로부터 나왔다. 결국 우리가 출시한 것은 제품 업데이트가 아니었다 — 고객들이 전체 문제 공간에 대해 생각하는 방식의 패러다임 전환이었다.",
+        "highlights": ["shake things up", "ahead of the curve", "move the needle", "pushing the envelope", "paradigm shift"]
+      }
+    },
+    {
+      "id": "PACK_EN_011",
+      "theme_key": "owning_mistakes_recovering",
+      "theme_title": "실수를 인정하고 빠르게 회복할 때",
+      "theme_title_en": "Owning Mistakes and Recovering Fast",
+      "level": "intermediate",
+      "expressions": [
+        {
+          "id": "PACK_EN_011_01",
+          "order": 1,
+          "expression": "take ownership",
+          "meaning": "책임을 자발적으로 지다",
+          "nuance": "결과에 대한 완전한 책임을 자발적으로 받아들이겠다는 선언입니다. 탓을 돌리지 않고 '이건 내 일이다, 내가 해결하겠다'고 받아들이는 태도입니다. 진정한 리더십의 언어로 여겨지며, 팀 내 신뢰를 만드는 가장 빠른 방법 중 하나입니다. 형식적으로 쓰면 신뢰를 오히려 떨어뜨리므로, 구체적인 행동과 함께 써야 효과적입니다.",
+          "dialogue": "Manager: The client said the deliverable didn't match what was promised in the brief.\nYou: That's on me — I need to take ownership of that. I reviewed the brief but didn't flag the discrepancy with the team before we submitted.\nManager: How are you handling it with the client?\nYou: I've already called them with an apology and a corrected version. I'm also setting up a process check so this doesn't repeat.",
+          "example": "The product manager took ownership of the botched rollout instead of pointing fingers at the engineering team.",
+          "practice": "When a project goes sideways, the fastest way to rebuild trust is to take ownership before someone assigns it to you."
+        },
+        {
+          "id": "PACK_EN_011_02",
+          "order": 2,
+          "expression": "own up to it",
+          "meaning": "솔직하게 인정하다",
+          "nuance": "'Take ownership'보다 더 구어체적인 표현으로, 자신이 잘못했다는 사실을 부끄럽더라도 직접적으로 말하는 용기를 강조합니다. 이미 알려졌거나 명백한 실수를 회피하지 않고 인정하는 행위입니다. 고백 자체가 신뢰 회복의 시작이라는 것을 내포하며, '이미 다 알고 있는데 모른 척하는 것'보다 훨씬 낫다는 실용적 판단도 담겨 있습니다.",
+          "dialogue": "Team Lead: Why did the system slow down during the presentation?\nYou: I need to own up to it — I pushed a config change without running it through staging first. I took a shortcut I shouldn't have.\nTeam Lead: I appreciate the honesty. What are you putting in place?\nYou: Mandatory peer review for any production changes, effective immediately. I'll also document this as a process improvement item.",
+          "example": "Rather than deflecting to the vendor, she owned up to the fact that her team had sent the wrong file format.",
+          "practice": "It takes real courage to own up to it in front of a client, but it almost always leads to a better outcome than cover-up."
+        },
+        {
+          "id": "PACK_EN_011_03",
+          "order": 3,
+          "expression": "lessons learned",
+          "meaning": "이번 경험에서 배운 교훈",
+          "nuance": "군사·항공에서 유래한 공식 용어로, 프로젝트 완료 또는 실패 후 진행하는 회고의 이름입니다. 비난보다 학습에 초점을 맞추는 문화적 프레임이며, '무엇이 잘못됐는가'보다 '다음에 무엇을 다르게 할 것인가'를 묻습니다. 'Postmortem'(부검)과 달리 생산적이고 미래 지향적인 뉘앙스를 갖습니다. 실패를 배움의 자산으로 전환하는 성숙한 조직 문화의 언어입니다.",
+          "dialogue": "You: Should we do a postmortem on the failed campaign?\nManager: I prefer 'lessons learned' — postmortems sound like something's dead. We want people to be honest, not defensive.\nYou: Good point. How should we structure it?\nManager: Start with what worked before you get to what didn't. Positive framing keeps people engaged and the insights more accurate.",
+          "example": "The company ran a lessons learned session after every major product launch, regardless of whether it succeeded or fell short.",
+          "practice": "Our biggest strategic insights don't come from our wins — they come from the honest lessons learned that follow our worst quarters."
+        },
+        {
+          "id": "PACK_EN_011_04",
+          "order": 4,
+          "expression": "course-correct",
+          "meaning": "방향을 수정하다. 잘못된 경로를 인식하고 조정하다",
+          "nuance": "비행이나 항해에서 목적지를 향해 경로를 수정하는 행위에서 나왔습니다. 완전히 실패하거나 멈추는 것이 아니라, 잘못된 방향을 인식하는 즉시 조금씩 조정하며 앞으로 나아가는 것입니다. 완벽한 첫 번째 시도보다 빠른 인식과 수정을 가치 있게 보는 애자일 문화에서 핵심 개념입니다. 빠르게 코스를 수정할수록 최종 목적지에서 멀어지지 않습니다.",
+          "dialogue": "You: We're four weeks in and the original strategy isn't generating leads as expected.\nDirector: What changed?\nYou: The audience we targeted isn't the one with the purchasing power. We need to course-correct and shift the messaging to the ops decision-maker, not procurement.\nDirector: How quickly can you pivot?\nYou: New creative is ready in five days. We can relaunch the campaign mid-month.",
+          "example": "The Q2 forecast was off by 20%, but the team course-corrected early enough to still hit the annual number.",
+          "practice": "The best teams don't panic when a plan stops working — they course-correct fast and document what they learn."
+        },
+        {
+          "id": "PACK_EN_011_05",
+          "order": 5,
+          "expression": "bounce back",
+          "meaning": "역경이나 실패 후 빠르게 회복하다",
+          "nuance": "공이 바닥에 튕겨 다시 올라오는 이미지에서 나왔습니다. 단순한 '회복(recover)'이 아니라 탄력성(resilience)의 언어로, 회복 속도와 기질을 동시에 강조합니다. 개인에게도, 팀에게도, 비즈니스에게도 쓸 수 있습니다. '얼마나 쓰러졌느냐'보다 '얼마나 빠르게 다시 일어나느냐'가 중요하다는 생각을 담고 있으며, 회복 자체가 능력임을 인정하는 표현입니다.",
+          "dialogue": "CEO: We lost two major clients in the same month. Team morale is very low right now.\nYou: Teams bounce back from this. What we need is one visible win fast — something everyone can feel proud of.\nCEO: What would you suggest?\nYou: The deal we're closest to closing — assign our best resources to it this week. A single win changes the energy of a whole team.",
+          "example": "The startup lost its lead investor, bounced back with a bridge round, and closed a Series B six months later.",
+          "practice": "What defines great teams isn't whether they fall — it's how fast they bounce back and what they do differently next time."
+        }
+      ],
+      "master_paragraph": {
+        "text": "When the platform went down on a Friday evening, I didn't look for someone to blame — I chose to **take ownership** immediately, sending an all-hands message before the client even noticed the issue. In the post-incident review, I **owned up to** the specific decision I'd made that created the vulnerability. We ran a thorough **lessons learned** session — not to assign fault, but to understand exactly where the system and the process had both failed us. Within a week, we were able to **course-correct** the release protocol and add a safeguard that would prevent the same class of error. Teams that **bounce back** fast from moments like this don't do it by accident — they build that muscle in the honest aftermath of every failure they're willing to face.",
+        "translation": "금요일 저녁 플랫폼이 다운됐을 때, 나는 탓할 사람을 찾지 않았다 — 클라이언트가 문제를 알아채기도 전에 즉시 책임을 지고 전체 공지를 보냈다. 사후 검토에서 나는 취약점을 만든 구체적인 결정을 솔직하게 인정했다. 우리는 책임을 전가하는 것이 아니라 시스템과 프로세스가 정확히 어디서 우리를 실패하게 했는지 이해하기 위한 철저한 교훈 도출 세션을 진행했다. 일주일 안에, 우리는 릴리스 프로토콜을 수정하고 같은 종류의 오류를 방지하는 안전장치를 추가할 수 있었다. 이런 순간에 빠르게 회복하는 팀들은 우연히 그렇게 되지 않는다 — 그들은 솔직하게 직면하는 모든 실패의 여파 속에서 그 능력을 단련한다.",
+        "highlights": ["take ownership", "owned up to", "lessons learned", "course-correct", "bounce back"]
+      }
+    },
+    {
+      "id": "PACK_EN_012",
+      "theme_key": "client_stakeholder_management",
+      "theme_title": "고객과 이해관계자를 관리할 때",
+      "theme_title_en": "Managing Clients and Stakeholders",
+      "level": "intermediate",
+      "expressions": [
+        {
+          "id": "PACK_EN_012_01",
+          "order": 1,
+          "expression": "manage expectations",
+          "meaning": "기대치를 현실에 맞게 조율하다",
+          "nuance": "상대방이 현실과 다른 기대를 갖지 않도록 미리 명확하게 소통하는 것입니다. 사후에 실망을 관리하는 것보다 훨씬 효율적입니다. 고객 관계와 팀 관계 모두에서 핵심적인 소통 스킬로, '당신의 기대를 낮추겠다'는 부정적 뉘앙스가 아니라 '현실적인 그림을 미리 공유해 신뢰를 쌓겠다'는 프로페셔널한 태도입니다. 실망은 항상 기대와 현실의 갭에서 나옵니다.",
+          "dialogue": "Account Lead: The client is expecting a full feature rollout in three weeks.\nYou: We need to manage expectations immediately. They need to hear what's achievable in that timeline — and what isn't — before we're a week away from delivery.\nAccount Lead: Should I apologise first?\nYou: No. Be direct. 'Here's what we deliver by the 15th, here's what follows in Sprint 2.' Clarity is more valuable than apology.",
+          "example": "Before the project kicked off, the lead spent an hour managing expectations around scope, revision limits, and response times.",
+          "practice": "The most effective account managers spend as much energy managing expectations at the start as they spend delivering at the end."
+        },
+        {
+          "id": "PACK_EN_012_02",
+          "order": 2,
+          "expression": "keep them in the loop",
+          "meaning": "정보를 지속적으로 공유해 이해관계자가 소외되지 않게 하다",
+          "nuance": "'Loop'는 순환 회로입니다. 어떤 사람을 루프 안에 유지한다는 것은 그들이 필요한 정보를 지속적으로 받아 결정 과정에 연결되어 있도록 하는 것입니다. 큰 뉴스가 없을 때도 간단한 업데이트가 신뢰를 쌓습니다. 반대로 사람을 '루프 밖(out of the loop)'에 두는 것은 배제감과 불신을 유발하며, 발견됐을 때 회복하기 어려운 신뢰 손상을 초래합니다.",
+          "dialogue": "Investor: Why wasn't I told about the pivot before it went live?\nCEO: You should have been kept in the loop — that's a trust issue we created. Major decisions go to key stakeholders directly, not through secondary channels.\nInvestor: Going forward, what does communication look like?\nCEO: Weekly brief, every Friday, even when there's nothing dramatic to report. Silence is the worst kind of communication.",
+          "example": "The project manager kept all department heads in the loop with a concise Friday summary, even in quiet weeks.",
+          "practice": "Keeping clients in the loop during a delay is uncomfortable, but silence always makes the problem twice as large."
+        },
+        {
+          "id": "PACK_EN_012_03",
+          "order": 3,
+          "expression": "a pain point",
+          "meaning": "반복적으로 경험하는 핵심 불편 사항 또는 문제",
+          "nuance": "'고통 지점'이라는 직역 그대로, 사람이나 조직이 반복적으로 경험하는 불편, 비효율, 해결되지 않은 문제를 의미합니다. 제품·서비스 기획에서 핵심 언어이며, 진짜 페인 포인트를 찾아야 진짜 해결책이 나옵니다. 고객이 묘사하는 증상 뒤에 있는 근본 원인이 실제 페인 포인트인 경우가 많습니다. '어떤 부분이 불편하신가요?'를 세련되게 묻는 방법이기도 합니다.",
+          "dialogue": "You: What's the biggest pain point for your team during the monthly close process?\nCFO: Honestly, it's not the calculations — it's chasing approvals from five different stakeholders across three time zones.\nYou: That's a workflow problem, not a calculation problem. Our tool can automate the approval routing.\nCFO: If it does that, you've solved our actual problem, not just the one we came in thinking about.",
+          "example": "The biggest pain point for enterprise users wasn't the price — it was the six-week implementation timeline.",
+          "practice": "Before presenting any solution, spend twenty minutes understanding their pain point from their perspective, not yours."
+        },
+        {
+          "id": "PACK_EN_012_04",
+          "order": 4,
+          "expression": "touch base",
+          "meaning": "간단히, 가볍게 확인하거나 연락하다",
+          "nuance": "야구에서 주자가 각 베이스를 밟아야 진루가 인정되는 데서 유래했습니다. 긴 회의나 공식 보고가 아니라 '잠깐 확인하는' 비공식적 접촉을 의미합니다. 관계를 유지하고 작은 오해가 쌓이기 전에 해소하는 커뮤니케이션 습관입니다. 이메일이나 슬랙으로 짧게 보내는 것도 '터치 베이스'이며, 형식보다 접촉 자체의 가치를 인정하는 표현입니다.",
+          "dialogue": "You: I haven't heard from the client since we sent the proposal ten days ago.\nManager: Let's just touch base — a three-line email. 'Hope the proposal was clear, happy to answer any questions, looking forward to Thursday.'\nYou: Should I call instead?\nManager: Email first. Give them the agency to respond when it suits them. A call can feel like pressure at the wrong moment.",
+          "example": "The account manager made a habit of touching base with every active client weekly, even if only to say the project was on track.",
+          "practice": "A two-minute message to touch base can prevent the kind of silent misalignment that costs you two weeks of rework."
+        },
+        {
+          "id": "PACK_EN_012_05",
+          "order": 5,
+          "expression": "circle back",
+          "meaning": "나중에 다시 연락하다. 결론을 내리지 못한 사안에 다시 돌아오다",
+          "nuance": "원(circle)을 그리다가 같은 지점으로 돌아오는 이미지입니다. 지금 당장 결론을 낼 수 없을 때 '나중에 명확한 답을 가지고 돌아오겠다'는 약속입니다. 대화에서 다루지 못한 주제를 나중에 다시 꺼낼 때도 씁니다. 중요한 것은 '언제 돌아올지'를 명시하는 것으로, 그래야 '나중에'가 '무기한'이 되지 않습니다.",
+          "dialogue": "You: We don't have the final budget approval yet.\nClient: That's fine. Let's circle back on pricing once you have a confirmed number.\nYou: I'll have clarity by end of Thursday. Should I send an email or would you prefer a quick call?\nClient: Email is fine. Keep it simple — just the number and the revised timeline.",
+          "example": "The CFO said she'd circle back on the headcount request once the board had approved the annual budget.",
+          "practice": "If you're not ready to commit, it's always better to circle back with a clear answer than to give a hesitant one under pressure."
+        }
+      ],
+      "master_paragraph": {
+        "text": "The most important thing we did on Day One was **manage expectations** — deliverables, timelines, and what a win would actually look like for both sides. We kept every decision-maker **in the loop** with a short Friday update, even when the week had been uneventful. Understanding their real **pain point** took three conversations; the problem they described in the first meeting was never the problem that mattered most. Each week we'd **touch base** informally, even just for ten minutes, so that no misalignment could quietly compound below the surface. And when a deliverable needed more time, we'd always **circle back** with a clear revised plan rather than going quiet and hoping they wouldn't notice.",
+        "translation": "첫날 우리가 가장 먼저 한 것은 기대치를 조율하는 것이었다 — 납품물, 타임라인, 그리고 양쪽 모두에게 성공이 실제로 어떤 모습일지. 아무리 조용한 주라도 모든 의사결정권자가 정보를 공유받을 수 있도록 짧은 금요일 업데이트를 보냈다. 진짜 핵심 문제를 파악하는 데 세 번의 대화가 필요했다 — 첫 미팅에서 그들이 묘사한 문제는 결코 가장 중요한 문제가 아니었다. 매주 비공식적으로, 단 10분이라도 간단히 확인했다 — 표면 아래에서 조용히 쌓이는 오해를 잡기 위해. 그리고 납품물에 더 많은 시간이 필요할 때는, 침묵하며 모르기를 바라는 대신 항상 명확한 수정 계획과 함께 다시 연락했다.",
+        "highlights": ["manage expectations", "in the loop", "pain point", "touch base", "circle back"]
+      }
+    },
+    {
+      "id": "PACK_EN_013",
+      "theme_key": "time_management_prioritization",
+      "theme_title": "시간 관리와 우선순위를 정할 때",
+      "theme_title_en": "Mastering Time and Priorities",
+      "level": "intermediate",
+      "expressions": [
+        {
+          "id": "PACK_EN_013_01",
+          "order": 1,
+          "expression": "put it on the back burner",
+          "meaning": "우선순위를 낮추다. 지금 당장은 보류하다",
+          "nuance": "가스레인지에서 뒤쪽 버너(back burner)는 천천히 유지하는 낮은 불입니다. 영구적으로 포기하는 것이 아니라 '일단 낮은 우선순위로 유지'하는 것을 의미합니다. 폐기와 보류를 명확히 구분하는 섬세한 표현으로, 아이디어나 프로젝트의 가치를 인정하면서도 지금 당장은 집중할 수 없다는 것을 전달합니다.",
+          "dialogue": "You: What happened to the podcast initiative we were planning?\nDirector: We had to put it on the back burner. Launching it properly takes resources we don't have until after the Q3 product release.\nYou: Should I close the project brief?\nDirector: No — keep it. Revisit it in November. It's a good idea that just needs the right moment.",
+          "example": "The Southeast Asia expansion was put on the back burner while the team focused on stabilising their core European market.",
+          "practice": "Not every good idea needs to happen now. Some of the best ones belong on the back burner until the timing aligns."
+        },
+        {
+          "id": "PACK_EN_013_02",
+          "order": 2,
+          "expression": "takes precedence",
+          "meaning": "우선순위가 더 높다. 다른 것보다 먼저 처리되어야 한다",
+          "nuance": "'Precedence'는 순서와 우선권을 의미하는 공식적 언어입니다. 단순히 '이게 더 중요하다'보다 규칙처럼 작용하는 우선순위를 선언합니다. 갈등하는 요청들 사이에서 방향을 잡아주는 리더십의 표현이며, 이유를 설명하지 않아도 이해되는 명확한 신호를 줍니다.",
+          "dialogue": "You: Should we finish the internal analytics tool or the client report first?\nManager: Client delivery takes precedence. The internal tool has no external deadline and the client's is Friday.\nYou: The engineering team was counting on finishing the internal tool this sprint.\nManager: I'll communicate the reprioritisation. Their flexibility is appreciated and we'll lock in the internal tool for the next sprint.",
+          "example": "In any conflict between a client deliverable and an internal initiative, the client deliverable takes precedence without exception.",
+          "practice": "When you're unsure what to work on next, ask: what takes precedence given today's constraints? The answer usually becomes obvious."
+        },
+        {
+          "id": "PACK_EN_013_03",
+          "order": 3,
+          "expression": "time-sensitive",
+          "meaning": "시간이 중요한 변수인. 지금 처리하지 않으면 기회나 결과가 달라지는",
+          "nuance": "'Urgent'보다 좀 더 중립적이고 설명적인 표현입니다. 지금 처리하지 않으면 기회가 사라지거나 결과가 나빠질 수 있는 항목을 묘사합니다. 이메일 제목이나 슬랙 메시지에서 처리 순서를 요청할 때 자주 씁니다. 'time-sensitive'라는 라벨이 붙으면, 받는 사람은 즉각적인 반응이 필요함을 이해합니다. 과도하게 쓰면 의미가 희석되므로, 정말 그런 상황에서만 써야 합니다.",
+          "dialogue": "You: Can you review the vendor proposal this week?\nColleague: Is it time-sensitive? I have three competing deliverables before Thursday.\nYou: Yes — we need to respond by Wednesday or we lose the preferred pricing window.\nColleague: Wednesday is time-sensitive. Send me the document tonight and I'll review it first thing tomorrow.",
+          "example": "The equity offer was time-sensitive — they had exactly 72 hours to accept or decline once the term sheet was issued.",
+          "practice": "Not everything labelled urgent is actually time-sensitive. Before escalating, ask: what specifically breaks if this waits 24 hours?"
+        },
+        {
+          "id": "PACK_EN_013_04",
+          "order": 4,
+          "expression": "triage",
+          "meaning": "여러 요청이나 문제 중 급선무를 신속히 가려내다",
+          "nuance": "원래 의료 용어로, 환자의 중증도를 분류해 치료 순서를 정하는 것입니다. 비즈니스에서는 여러 요청이나 문제가 한꺼번에 들어왔을 때 어느 것을 먼저 처리할지 신속히 우선순위를 매기는 과정을 뜻합니다. '모두 중요하다'는 전제를 인정하면서도 리소스의 현실 속에서 순서를 정하는 전략적 판단입니다. 이 단어를 자연스럽게 쓰는 사람은 압박 속에서도 체계적으로 생각하는 사람이라는 인상을 줍니다.",
+          "dialogue": "Team Lead: We have twelve open tickets and four engineers. Where do we start?\nYou: Let's triage before we assign anything. Which are customer-facing, which are security issues, and which are internal improvements?\nTeam Lead: Four are customer-facing, two are security, six are improvements.\nYou: Security first, customer-facing by severity, then improvements move to the next sprint backlog.",
+          "example": "Every Monday morning the support lead would triage the weekend's tickets — blocking issues first, then billing, then feature requests.",
+          "practice": "Before diving into your inbox, triage it: reply now, flag for later, or delete. Don't let the queue decide your day for you."
+        },
+        {
+          "id": "PACK_EN_013_05",
+          "order": 5,
+          "expression": "juggling priorities",
+          "meaning": "여러 우선순위를 동시에 처리하다",
+          "nuance": "저글링은 여러 개의 공을 동시에 공중에 유지하는 기술입니다. 직장에서 여러 프로젝트나 요청이 동시에 진행될 때, 어느 하나라도 놓치지 않으면서 균형을 유지하는 상태를 묘사합니다. 어렵다는 솔직함과 감당하고 있다는 유능함을 동시에 표현하는 뉘앙스가 있습니다. '저글링한다'는 것은 선택이 아니라 현실임을 암묵적으로 인정하는 표현입니다.",
+          "dialogue": "Manager: Can you take on the brand refresh project starting this month?\nYou: I'm already juggling three priorities — the product audit, the investor deck, and onboarding the new team member. Can we discuss what gets deprioritised if this comes in?\nManager: Fair. The investor deck is locked for two more weeks. After that?\nYou: Then I have capacity. Let's plan the brand refresh kickoff for the 20th.",
+          "example": "The operations director was juggling five priorities across three time zones and still returned every client message within four hours.",
+          "practice": "Juggling priorities is a skill, but so is knowing when you're holding one ball too many and asking for help."
+        }
+      ],
+      "master_paragraph": {
+        "text": "The new feature request was genuinely exciting, but it had to be **put on the back burner** — the compliance audit clearly **took precedence** and our team simply didn't have the capacity for both. We had to **triage** fast: what was actually **time-sensitive**, what could safely wait two weeks, and what we were already **juggling** across three active projects that could be paused without damage. Great prioritisation isn't about doing more — it's about building the judgment to know which one ball cannot be allowed to hit the floor.",
+        "translation": "새 기능 요청은 진심으로 흥미로웠지만, 우선순위를 낮춰야 했다 — 컴플라이언스 감사가 분명히 우선이었고, 팀에게는 두 가지를 동시에 할 여력이 없었다. 우리는 빠르게 급선무를 가려내야 했다. 실제로 시간이 촉박한 것은 무엇인지, 2주를 기다려도 되는 것은 무엇인지, 그리고 세 개의 활성 프로젝트 중 피해 없이 잠시 중단할 수 있는 것은 무엇인지. 훌륭한 우선순위 결정은 더 많이 하는 것이 아니다 — 어느 공이 바닥에 떨어지면 안 되는지를 아는 판단력을 만드는 것이다.",
+        "highlights": ["put on the back burner", "took precedence", "triage", "time-sensitive", "juggling"]
+      }
+    },
+    {
+      "id": "PACK_EN_014",
+      "theme_key": "conflict_resolution_consensus",
+      "theme_title": "갈등을 해결하고 공감대를 만들 때",
+      "theme_title_en": "Resolving Conflict and Building Consensus",
+      "level": "intermediate",
+      "expressions": [
+        {
+          "id": "PACK_EN_014_01",
+          "order": 1,
+          "expression": "clear the air",
+          "meaning": "쌓인 오해나 긴장을 직접 대면해 해소하다",
+          "nuance": "오해나 갈등으로 불투명해진 공기를 깨끗하게 하는 이미지입니다. 모두가 느끼지만 아무도 꺼내지 않는 긴장을 직접 말로 끌어내어 해소하는 행위입니다. 회피 없이 정면으로 소통함으로써 관계를 리셋하는 용기의 표현입니다. 이 표현을 쓸 수 있다는 것은 문제를 보고 모른 척하지 않겠다는 리더십 의지의 표현입니다.",
+          "dialogue": "You: There's been obvious tension between the two teams since the sprint review. It's affecting output.\nManager: You're right. We need to clear the air — let's schedule a 45-minute session where both sides can say what's on their mind.\nYou: What if it makes things worse?\nManager: Unaddressed tension always gets worse. Naming the problem is the first step toward solving it.",
+          "example": "The two co-founders sat down to clear the air after three weeks of passive-aggressive communication had slowed every decision.",
+          "practice": "If you can feel the tension in a room but nobody's addressing it, someone needs to clear the air — and it might as well be you."
+        },
+        {
+          "id": "PACK_EN_014_02",
+          "order": 2,
+          "expression": "see eye to eye",
+          "meaning": "의견이나 관점이 일치하다",
+          "nuance": "서로 시선의 높이가 같다는 이미지에서, 어떤 문제나 관점에 완전히 동의하거나 이해가 일치하는 상태를 뜻합니다. 'Agree'보다 더 깊은 상호 이해의 뉘앙스가 있으며, 오랫동안 입장이 달랐던 두 사람이 마침내 같은 시각을 공유하게 됐을 때 씁니다. 부정문('we don't see eye to eye')으로도 자주 쓰여 의견 불일치를 세련되게 표현합니다.",
+          "dialogue": "You: Do you and the CTO see eye to eye on the technology decision?\nCEO: Not entirely on approach, but we completely see eye to eye on the outcome — we both want scalability without unnecessary technical debt.\nYou: And when you don't agree on approach?\nCEO: We run a short proof of concept for each option. The data makes the final call, not either of us.",
+          "example": "The board and the founder didn't see eye to eye on pace of growth, but they respected each other's reasoning and found a workable path.",
+          "practice": "You don't have to see eye to eye on everything — but on the core objective, alignment is non-negotiable."
+        },
+        {
+          "id": "PACK_EN_014_03",
+          "order": 3,
+          "expression": "find common ground",
+          "meaning": "양쪽 모두 동의할 수 있는 공통점을 찾다",
+          "nuance": "두 사람이 서 있는 땅 중에서 공통된 부분을 찾는다는 이미지입니다. 갈등하는 두 입장 사이에서 양쪽 모두 동의할 수 있는 기반을 발견하는 것입니다. 협상, 갈등 해결, 팀 빌딩에서 핵심 개념이며, '공통점에서 시작해 차이점을 좁혀나가는' 협력적 접근을 상징합니다. 공통점을 찾지 못하면 협상이 아니라 싸움이 됩니다.",
+          "dialogue": "Mediator: The two teams want completely different solutions.\nYou: Let's find common ground first — what do both teams agree they want to avoid?\nMediator: Both want to avoid delivery delays and scope creep.\nYou: Start there. Build the solution that prevents those two things first. The remaining differences become negotiable.",
+          "example": "Despite very different communication styles, the two managers found common ground in their shared commitment to the customer experience.",
+          "practice": "When a conversation hits a wall, stop debating the solution and find common ground on the problem definition first."
+        },
+        {
+          "id": "PACK_EN_014_04",
+          "order": 4,
+          "expression": "agree to disagree",
+          "meaning": "의견 차이를 인정하고 그대로 앞으로 나아가다",
+          "nuance": "결론에 도달하지 못하더라도 상대방의 관점을 존중하며 관계와 협업을 유지하기로 하는 성숙한 합의입니다. 갈등을 해결하는 것이 아니라 그 갈등이 관계나 프로젝트를 방해하지 않도록 관리하는 방법입니다. 가치관이나 스타일의 차이에서 비롯된 갈등에서 특히 효과적이며, 굳이 한쪽이 이겨야 하지 않아도 된다는 성숙함을 보여줍니다.",
+          "dialogue": "You: We still can't align on whether to expand now or wait.\nDirector: Let's agree to disagree on timing and instead align on the trigger condition that would make either choice obviously correct.\nYou: So we define the signal rather than the decision?\nDirector: Exactly. 'If MRR hits X before September, we expand. If not, we wait.' The data decides, not our debate.",
+          "example": "On remote vs hybrid policy, the leadership team agreed to disagree and standardised the minimum expectations that applied to both.",
+          "practice": "Agree to disagree on style and approach. But never agree to disagree on values or the core objective — those need resolution."
+        },
+        {
+          "id": "PACK_EN_014_05",
+          "order": 5,
+          "expression": "bury the hatchet",
+          "meaning": "오래된 갈등이나 원한을 완전히 끝내고 새로운 출발을 하다",
+          "nuance": "아메리카 원주민 평화 협정에서 전쟁 무기인 도끼(hatchet)를 땅에 묻는 의식에서 유래했습니다. 오래된 갈등이나 원한을 영구히 끝내고 새 출발을 하겠다는 의지를 나타냅니다. 단순히 화해하는 것을 넘어, 과거를 뒤로 하고 앞으로 나아가겠다는 결단입니다. '과거는 과거다'라고 선언하는 강력한 표현이며, 가볍게 쓰면 클리셰가 되지만 진짜 오래된 갈등이 해결될 때는 정확합니다.",
+          "dialogue": "HR Lead: Jake and Priya haven't worked together since the disagreement in Q1. It's been six months.\nYou: It's time they buried the hatchet. The company can't afford two of its best people not collaborating.\nHR Lead: How do you bring that up without making it awkward?\nYou: Put them on the same project together. Shared stakes do more to resolve old tension than any facilitated conversation.",
+          "example": "The two competing agencies buried the hatchet when they were invited to co-pitch for the same client — and won together.",
+          "practice": "Burying the hatchet doesn't mean forgetting what happened. It means actively choosing the relationship over the grudge."
+        }
+      ],
+      "master_paragraph": {
+        "text": "After two months of unspoken tension, we finally sat down to **clear the air** properly. The two leads didn't **see eye to eye** on most things, and we weren't pretending they would — but they were able to **find common ground** in one shared belief: the project mattered more than being right. They chose to **agree to disagree** on approach while fully aligning on the outcome. And once they'd worked through that first difficult sprint together, they quietly **buried the hatchet** — the trust they rebuilt in those three weeks turned out to outlast everything that had divided them.",
+        "translation": "두 달간의 말하지 않은 긴장 이후, 우리는 마침내 제대로 오해를 풀기 위해 자리를 마련했다. 두 리드는 대부분의 것에 의견이 일치하지 않았고, 우리는 그들이 그럴 것이라고 가장하지 않았다 — 하지만 그들은 하나의 공유된 믿음에서 공통점을 찾을 수 있었다. 프로젝트가 옳고 그름보다 중요하다는 것이었다. 그들은 접근 방식의 차이를 인정하면서도 결과물에는 완전히 일치했다. 그리고 첫 번째 어려운 스프린트를 함께 헤쳐나가자, 그들은 조용히 갈등을 끝냈다 — 그 3주 동안 재건한 신뢰는 결국 그들을 갈라놓았던 모든 것보다 더 오래 지속됐다.",
+        "highlights": ["clear the air", "see eye to eye", "find common ground", "agree to disagree", "buried the hatchet"]
+      }
+    }
+  ],
+  "chinese_expressions": [],
+  "idioms_and_quotes": [],
+  "history_facts": []
+}

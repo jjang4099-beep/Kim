@@ -3367,6 +3367,56 @@ app.get('/api/items', (req, res) => {
   res.json({ success: true, total: items.length, items: items.slice(0, Number(limit)) });
 });
 
+/* ── 라이프 서재 — /:id 보다 먼저 등록해야 'life'가 id로 잡히지 않음 ── */
+app.get('/api/items/life', (req, res) => {
+  try {
+    const { mood } = req.query;
+    let items = readDB().filter(i => i.contentType === 'life');
+    if (mood) items = items.filter(i => i.life?.mood === mood);
+    items.sort((a, b) => {
+      const da  = new Date(a.life?.date || a.createdAt);
+      const db2 = new Date(b.life?.date || b.createdAt);
+      return db2 - da;
+    });
+    res.json({ success: true, items });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+app.post('/api/items/life', upload.array('photos', 10), (req, res) => {
+  try {
+    const { text, mood, location, weather, date, privacy } = req.body;
+    if (!text && (!req.files || !req.files.length)) {
+      return res.status(400).json({ success: false, error: '사진이나 텍스트 중 하나는 필요합니다' });
+    }
+    const photoUrls = (req.files || []).map(f => `/uploads/${f.filename}`);
+    const lifeDate  = date ? new Date(date + 'T00:00:00') : new Date();
+    const item = {
+      id:          uuidv4(),
+      title:       (text || '').slice(0, 50) || '라이프 기록',
+      text:        text || '',
+      category:    'life',
+      contentType: 'life',
+      mode:        'PROFESSIONAL',
+      createdAt:   new Date().toISOString(),
+      date:        toDateStr(lifeDate),
+      life: {
+        mood:     mood     || '',
+        location: location || '',
+        weather:  weather  || '',
+        photos:   photoUrls,
+        privacy:  privacy  || 'private',
+        date:     lifeDate.toISOString(),
+      },
+    };
+    dbInsert(item);
+    res.json({ success: true, item });
+  } catch (e) {
+    res.status(500).json({ success: false, error: '라이프 기록 저장 실패: ' + e.message });
+  }
+});
+
 app.get('/api/items/:id', (req, res) => {
   const item = readDB().find(i => i.id === req.params.id);
   if (!item) return res.status(404).json({ success: false, error: '항목을 찾을 수 없습니다.' });
@@ -4678,59 +4728,6 @@ app.delete('/api/categories/:id', (req, res) => {
     res.json({ success: true });
   } catch (e) {
     res.status(500).json({ error: e.message });
-  }
-});
-
-// ══════════════════════════════════════════════════
-//  라이프 서재 API
-// ══════════════════════════════════════════════════
-
-app.get('/api/items/life', (req, res) => {
-  try {
-    const { mood } = req.query;
-    let items = readDB().filter(i => i.contentType === 'life');
-    if (mood) items = items.filter(i => i.life?.mood === mood);
-    items.sort((a, b) => {
-      const da = new Date(a.life?.date || a.createdAt);
-      const db2 = new Date(b.life?.date || b.createdAt);
-      return db2 - da;
-    });
-    res.json({ success: true, items });
-  } catch (e) {
-    res.status(500).json({ success: false, error: e.message });
-  }
-});
-
-app.post('/api/items/life', upload.array('photos', 10), (req, res) => {
-  try {
-    const { text, mood, location, weather, date, privacy } = req.body;
-    if (!text && (!req.files || !req.files.length)) {
-      return res.status(400).json({ success: false, error: '사진이나 텍스트 중 하나는 필요합니다' });
-    }
-    const photoUrls = (req.files || []).map(f => `/uploads/${f.filename}`);
-    const lifeDate  = date ? new Date(date + 'T00:00:00') : new Date();
-    const item = {
-      id:          uuidv4(),
-      title:       (text || '').slice(0, 50) || '라이프 기록',
-      text:        text || '',
-      category:    'life',
-      contentType: 'life',
-      mode:        'PROFESSIONAL',
-      createdAt:   new Date().toISOString(),
-      date:        toDateStr(lifeDate),
-      life: {
-        mood:     mood     || '',
-        location: location || '',
-        weather:  weather  || '',
-        photos:   photoUrls,
-        privacy:  privacy  || 'private',
-        date:     lifeDate.toISOString(),
-      },
-    };
-    dbInsert(item);
-    res.json({ success: true, item });
-  } catch (e) {
-    res.status(500).json({ success: false, error: '라이프 기록 저장 실패: ' + e.message });
   }
 });
 

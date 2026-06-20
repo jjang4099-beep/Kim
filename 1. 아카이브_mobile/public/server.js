@@ -34,14 +34,17 @@ const multer   = require('multer');
 const { v4: uuidv4 } = require('uuid');
 
 const PORT                   = process.env.PORT || 3000;
-const SQLITE_PATH            = path.join(__dirname, 'data', 'archive.db');
-const ARCHIVE_JSON_PATH      = path.join(__dirname, 'data', 'archive.json');  // 마이그레이션 소스용
-const DAILY_FEEDS_PATH       = path.join(__dirname, 'data', 'dailyFeeds.json');
-const SUBSCRIPTIONS_PATH     = path.join(__dirname, 'data', 'subscriptions.json');
-const USERS_PATH             = path.join(__dirname, 'data', 'users.json');
-const PUSH_SUBS_PATH         = path.join(__dirname, 'data', 'push_subscriptions.json');
-const EXAM_SETTINGS_PATH     = path.join(__dirname, 'data', 'exam_settings.json');
-const SUMMARIES_PATH         = path.join(__dirname, 'data', 'summaries.json');
+/* DATA_DIR: Fly.io 볼륨 경로(/data)를 env로 주입, 로컬은 기존 경로 유지 */
+const _DATA_DIR              = process.env.DATA_DIR || path.join(__dirname, 'data');
+const _SEED_DIR              = path.join(__dirname, 'data'); // 시드 파일은 항상 컨테이너 내부
+const SQLITE_PATH            = path.join(_DATA_DIR, 'archive.db');
+const ARCHIVE_JSON_PATH      = path.join(_SEED_DIR, 'archive.json');  // 마이그레이션 소스용 (읽기전용 시드)
+const DAILY_FEEDS_PATH       = path.join(_DATA_DIR, 'dailyFeeds.json');
+const SUBSCRIPTIONS_PATH     = path.join(_DATA_DIR, 'subscriptions.json');
+const USERS_PATH             = path.join(_DATA_DIR, 'users.json');
+const PUSH_SUBS_PATH         = path.join(_DATA_DIR, 'push_subscriptions.json');
+const EXAM_SETTINGS_PATH     = path.join(_DATA_DIR, 'exam_settings.json');
+const SUMMARIES_PATH         = path.join(_DATA_DIR, 'summaries.json');
 
 // ══════════════════════════════════════════════════
 //  Layer 1: 8대 지식 도메인 온톨로지

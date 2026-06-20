@@ -1,0 +1,29 @@
+# fly.toml — SJ 지식 아카이브 Fly.io 설정
+# 앱 이름은 fly launch 시 자동 결정되거나 아래에서 직접 변경
+app = "sj-archive"
+primary_region = "nrt"   # 도쿄 (한국과 가장 가까운 Fly 리전)
+
+[build]
+  # Dockerfile 자동 감지
+
+[env]
+  PORT = "8080"
+  DATA_DIR = "/data"
+  TZ = "Asia/Seoul"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "off"   # Always-on (슬립 없음)
+  auto_start_machines = true
+  min_machines_running = 1
+
+[[vm]]
+  memory = "512mb"    # sql.js WASM 고려해 256 → 512
+  cpu_kind = "shared"
+  cpus = 1
+
+# 영구 볼륨: archive.db, dailyFeeds.json, subscriptions.json 등 보존
+[[mounts]]
+  source = "sj_data"
+  destination = "/data"

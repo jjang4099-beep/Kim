@@ -1,0 +1,7 @@
+node_modules
+.env
+.env.*
+.claude
+public/data/archive.db
+public/uploads/*
+*.log

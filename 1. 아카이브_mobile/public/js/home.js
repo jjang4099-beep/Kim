@@ -223,8 +223,14 @@ Object.assign(Mob, {
     const load = el('mobLoading');
     if (!feed) return;
 
-    /* ── 전체 빈 상태 ── */
-    if (!items || items.length === 0) {
+    /* ── 피드/수험 상태 먼저 확인 (빈 상태 판단에 필요) ── */
+    const hasFeedPreview = state.feedItems && state.feedItems.length > 0;
+    const ex = (this._modeEnum() === 'EXAM_PREP') ? state.examDaily : null;
+    const examCards = ex ? [ex.vocab ? 1 : 0, ex.history ? 1 : 0].reduce((a, b) => a + b, 0) : 0;
+    const hasExamDaily = examCards > 0;
+
+    /* ── 전체 빈 상태 — DB·배달·수험 모두 없을 때만 ── */
+    if ((!items || items.length === 0) && !hasFeedPreview && !hasExamDaily) {
       feed.innerHTML = `<div class="mob-loading">
         <i class="ti ti-mood-empty"></i>&nbsp;아직 지식이 없어요.&nbsp;
         ➕ 버튼을 눌러 첫 번째를 저장해 보세요!
@@ -234,7 +240,7 @@ Object.assign(Mob, {
     }
 
     /* ── 최신순 정렬 ── */
-    const sorted = [...items].sort((a, b) =>
+    const sorted = [...(items || [])].sort((a, b) =>
       new Date(b.createdAt) - new Date(a.createdAt)
     );
 
@@ -257,11 +263,6 @@ Object.assign(Mob, {
     let html = '';
 
     /* ── [오늘] 섹션 헤더 ── */
-    const hasFeedPreview = state.feedItems && state.feedItems.length > 0;
-    /* 수험생 모드 오늘의 배달 — 영어단어 팩 + 한국사 */
-    const ex = (this._modeEnum() === 'EXAM_PREP') ? state.examDaily : null;
-    const examCards = ex ? [ex.vocab ? 1 : 0, ex.history ? 1 : 0].reduce((a, b) => a + b, 0) : 0;
-    const hasExamDaily = examCards > 0;
     html += `
       <div class="mob-section-hd today">
         <span>오늘 배달된 지식</span>

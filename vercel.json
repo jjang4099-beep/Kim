@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "1. 아카이브_mobile/public/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "1. 아카이브_mobile/public/server.js" }
+  ],
+  "functions": {
+    "1. 아카이브_mobile/public/server.js": {
+      "maxDuration": 60
+    }
+  }
+}

@@ -24,6 +24,9 @@ Object.assign(Mob, {
       this._renderDeliverySettings(settingsResp);
       const items = parseFeedsArray(itemsResp.items ?? itemsResp);
       this._renderManageView(items);
+      /* 카테고리 칩 + 결산 초기 로드 (병렬, 실패해도 무시) */
+      this._renderCategoryChips().catch(() => {});
+      this.loadSummary('monthly', el('summaryBlock')?.querySelector('.mvw-summary-tab')).catch(() => {});
     } catch {
       el('statTotal').textContent  = '—';
       el('statStreak').textContent = '—';
@@ -343,5 +346,210 @@ Object.assign(Mob, {
     el('quizResult').hidden = true;
     el('quizProgressBar').style.width = '0%';
   },
+
+  /* ══════════════════════════════════════════
+     카테고리 관리
+  ══════════════════════════════════════════ */
+  async _renderCategoryChips() {
+    const wrap = el('categoryChipList');
+    if (!wrap) return;
+    try {
+      const cats = await fetchJSON('/api/categories', {}, 10000);
+      state.userCategories = cats;
+      if (!cats.length) { wrap.innerHTML = '<div style="font-size:13px;color:var(--text-2)">카테고리 없음</div>'; return; }
+      wrap.innerHTML = cats.map(c =>
+        `<span class="mvw-cat-chip-sm" style="border-color:${c.color};color:${c.color}">
+           ${c.emoji} ${c.name}
+         </span>`
+      ).join('');
+    } catch { wrap.innerHTML = '<div style="font-size:12px;color:var(--text-2)">불러오기 실패</div>'; }
+  },
+
+  async openCategoryManager() {
+    el('categoryManagerModal').hidden = false;
+    const body = el('categoryManagerBody');
+    body.innerHTML = '<div class="mob-loading"><span class="mob-spin"></span></div>';
+    try {
+      const cats = await fetchJSON('/api/categories', {}, 10000);
+      state.userCategories = cats;
+      this._renderCategoryManager(cats);
+    } catch { body.innerHTML = '<div style="padding:16px;color:var(--text-2)">불러오기 실패</div>'; }
+  },
+
+  _closeCategoryManager() {
+    el('categoryManagerModal').hidden = true;
+    this._renderCategoryChips();
+  },
+
+  _renderCategoryManager(cats) {
+    const body = el('categoryManagerBody');
+    const customCats = cats.filter(c => !c.is_default);
+    body.innerHTML = `
+      <div class="mvw-catmgr-section-title">기본 카테고리</div>
+      <div class="mvw-catmgr-list">
+        ${cats.filter(c => c.is_default).map(c => `
+          <div class="mvw-catmgr-item">
+            <span class="mvw-catmgr-emoji">${c.emoji}</span>
+            <span class="mvw-catmgr-name">${c.name}</span>
+            <span class="mvw-catmgr-modes">${c.modes}</span>
+          </div>`).join('')}
+      </div>
+
+      <div class="mvw-catmgr-section-title" style="margin-top:20px">내 카테고리</div>
+      <div class="mvw-catmgr-list" id="customCatList">
+        ${customCats.length ? customCats.map(c => `
+          <div class="mvw-catmgr-item">
+            <span class="mvw-catmgr-emoji">${c.emoji}</span>
+            <span class="mvw-catmgr-name">${c.name}</span>
+            <button class="mvw-catmgr-del-btn" onclick="Mob._deleteCategory(${c.id},'${c.name}')">
+              <i class="ti ti-trash"></i>
+            </button>
+          </div>`).join('')
+        : '<div style="font-size:13px;color:var(--text-2);padding:8px 0">아직 없어요</div>'}
+      </div>
+
+      <div class="mvw-catmgr-add-row">
+        <input type="text" id="newCatName"    class="mvw-catmgr-input" placeholder="카테고리 이름"/>
+        <input type="text" id="newCatEmoji"   class="mvw-catmgr-input mvw-catmgr-emoji-input" placeholder="😊" maxlength="2"/>
+        <button class="mvw-catmgr-add-btn" onclick="Mob._saveNewCategory()">
+          <i class="ti ti-plus"></i> 추가
+        </button>
+      </div>`;
+  },
+
+  async _saveNewCategory() {
+    const name  = el('newCatName')?.value.trim();
+    const emoji = el('newCatEmoji')?.value.trim() || '📁';
+    if (!name) { toast('이름을 입력해주세요', 'err'); return; }
+    try {
+      await fetchJSON('/api/categories', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, emoji })
+      });
+      toast(`'${name}' 카테고리 추가됐어요`, 'ok');
+      this.openCategoryManager();
+    } catch { toast('추가 실패', 'err'); }
+  },
+
+  async _deleteCategory(id, name) {
+    if (!confirm(`'${name}' 카테고리를 삭제할까요?\n포함 아이템은 '기타'로 이동합니다.`)) return;
+    try {
+      await fetchJSON(`/api/categories/${id}`, { method: 'DELETE' });
+      toast(`'${name}' 삭제됐어요`, 'ok');
+      this.openCategoryManager();
+    } catch { toast('삭제 실패', 'err'); }
+  },
+
+  /* ══════════════════════════════════════════
+     결산
+  ══════════════════════════════════════════ */
+  async loadSummary(type, btn) {
+    document.querySelectorAll('.mvw-summary-tab').forEach(t => t.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    state.summaryType = type;
+
+    const now   = new Date();
+    const y     = now.getFullYear();
+    const m     = String(now.getMonth() + 1).padStart(2, '0');
+    const half  = now.getMonth() < 6 ? 'H1' : 'H2';
+    const period = type === 'monthly'   ? `${y}-${m}`
+                 : type === 'half-year' ? `${y}-${half}`
+                 :                        `${y}`;
+
+    const wrap = el('summaryContent');
+    wrap.innerHTML = '<div class="mob-loading" style="padding:24px 0"><span class="mob-spin"></span></div>';
+    try {
+      const data = await fetchJSON(`/api/summary/${type}/${period}`, {}, 60000);
+      this._renderSummary(data, type);
+    } catch { wrap.innerHTML = '<div style="padding:16px;color:var(--text-2);font-size:13px">결산 불러오기 실패</div>'; }
+  },
+
+  _renderSummary(data, type) {
+    const s = data.stats || {};
+    const isYearly = (type === 'yearly');
+    const wrap = el('summaryContent');
+    if (!wrap) return;
+
+    const topCats = (s.topCategories || []).slice(0, 5);
+    const topKws  = (s.topKeywords  || []).slice(0, 10);
+    const total   = s.totalItems || 0;
+
+    wrap.innerHTML = `
+      <!-- 숫자 요약 -->
+      <div class="mvw-summary-stats">
+        <div class="mvw-summary-stat">
+          <div class="mvw-summary-num">${s.totalItems || 0}</div>
+          <div class="mvw-summary-label">지식</div>
+        </div>
+        <div class="mvw-summary-stat">
+          <div class="mvw-summary-num">${s.totalLife || 0}</div>
+          <div class="mvw-summary-label">라이프</div>
+        </div>
+      </div>
+
+      <!-- AI 총평 -->
+      ${data.aiReview ? `
+      <div class="mvw-summary-ai-review">
+        <i class="ti ti-sparkles"></i>
+        <p>${data.aiReview}</p>
+      </div>` : total === 0 ? `
+      <div class="mvw-summary-empty">
+        <i class="ti ti-books"></i>
+        <p>이 기간에 저장된 지식이 없어요</p>
+      </div>` : ''}
+
+      <!-- 많이 배운 분야 -->
+      ${topCats.length ? `
+      <div class="mvw-summary-section-title">많이 배운 분야</div>
+      <div class="mvw-summary-categories">
+        ${topCats.map(c => `
+          <div class="mvw-summary-cat-bar">
+            <span class="mvw-summary-cat-name">${c.name}</span>
+            <div class="mvw-summary-bar-wrap">
+              <div class="mvw-summary-bar-fill"
+                   style="width:${total ? Math.round(c.count / total * 100) : 0}%"></div>
+            </div>
+            <span class="mvw-summary-cat-count">${c.count}개</span>
+          </div>`).join('')}
+      </div>` : ''}
+
+      <!-- 주요 키워드 -->
+      ${topKws.length ? `
+      <div class="mvw-summary-section-title">주요 키워드</div>
+      <div class="mvw-summary-keywords">
+        ${topKws.map(k => `
+          <span class="mvw-summary-kw-chip"
+                style="font-size:${Math.min(11 + k.count, 18)}px">
+            ${k.word}
+          </span>`).join('')}
+      </div>` : ''}
+
+      ${isYearly ? `
+      <button class="mvw-summary-refresh-btn"
+              onclick="Mob._refreshSummary('${type}')">
+        <i class="ti ti-refresh"></i> 결산 새로 생성
+      </button>` : `
+      <button class="mvw-summary-refresh-btn"
+              onclick="Mob._refreshSummary('${type}')">
+        <i class="ti ti-refresh"></i> 새로 생성
+      </button>`}`;
+  },
+
+  async _refreshSummary(type) {
+    const now   = new Date();
+    const y     = now.getFullYear();
+    const m     = String(now.getMonth() + 1).padStart(2, '0');
+    const half  = now.getMonth() < 6 ? 'H1' : 'H2';
+    const period = type === 'monthly'   ? `${y}-${m}`
+                 : type === 'half-year' ? `${y}-${half}`
+                 :                        `${y}`;
+    try {
+      await fetchJSON(`/api/summary/${type}/${period}?force=1`, {}, 60000);
+      toast('결산 새로 생성됐어요', 'ok');
+      this.loadSummary(type, null);
+    } catch { toast('결산 생성 실패', 'err'); }
+  },
+
 
 });

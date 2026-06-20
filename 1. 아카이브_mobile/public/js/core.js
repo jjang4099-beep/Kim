@@ -137,6 +137,16 @@ const state = {
     answered: [],
     cat     : 'all',
   },
+  /* 라이프 서재 */
+  lifeItems      : [],
+  lifeFilter     : 'all',
+  selectedMood   : '',
+  addType        : 'knowledge',   /* 추가 모달 탭: 'knowledge' | 'image' | 'life' */
+  lifePhotos     : [],
+  /* 카테고리 */
+  userCategories : [],
+  /* 결산 */
+  summaryType    : 'monthly',
 };
 
 /* ──────────────────────────────────────────────

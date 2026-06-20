@@ -1243,9 +1243,99 @@ Object.assign(Mob, {
      모달 일괄 닫기 (추가 모달만 — 상세는 인라인 아코디언)
   ══════════════════════════════════════════ */
   _hideAllModals() {
-    ['mobAddModal'].forEach(id => {
+    ['mobAddModal', 'categoryManagerModal'].forEach(id => {
       const m = el(id); if (m) m.hidden = true;
     });
+    this._closeCategorySheet();
+  },
+
+  /* ══════════════════════════════════════════
+     카테고리 확인 토스트 + 바텀시트
+  ══════════════════════════════════════════ */
+  _showCategoryConfirm(item) {
+    if (!item) return;
+    const catName = item.category || item.domain || '기타';
+    const t = el('mobToast');
+    if (!t) return;
+    t.innerHTML = `<span>📁 <b>${catName}</b>로 분류됐어요</span>
+      <button onclick="Mob._changeCategoryQuick('${item.id || item._id}')"
+              style="margin-left:8px;text-decoration:underline;background:none;border:none;color:inherit;cursor:pointer;font-size:inherit">
+        바꾸기
+      </button>`;
+    t.className = 'mob-toast ok';
+    t.hidden = false;
+    clearTimeout(t._timer);
+    t._timer = setTimeout(() => { t.hidden = true; t.textContent = ''; }, 6000);
+  },
+
+  async _changeCategoryQuick(itemId) {
+    try {
+      let cats = state.userCategories;
+      if (!cats || !cats.length) {
+        cats = await fetchJSON('/api/categories', {}, 10000);
+        state.userCategories = cats;
+      }
+      this._showCategoryBottomSheet(itemId, cats);
+    } catch { toast('카테고리 불러오기 실패', 'err'); }
+  },
+
+  _showCategoryBottomSheet(itemId, cats) {
+    const overlay = el('categorySheetOverlay');
+    const sheet   = el('categoryBottomSheet');
+    const grid    = el('categoryGrid');
+    if (!sheet || !grid) return;
+
+    grid.innerHTML = cats.map(c => `
+      <button class="mob-cat-chip"
+              onclick="Mob._applyCategory('${itemId}',${c.id},'${c.name}',this)">
+        <span>${c.emoji}</span>
+        <span>${c.name}</span>
+      </button>`).join('') + `
+      <button class="mob-cat-chip add"
+              onclick="Mob._createCategoryPrompt('${itemId}')">
+        <span>➕</span><span>새 카테고리</span>
+      </button>`;
+
+    if (overlay) overlay.hidden = false;
+    sheet.hidden = false;
+    requestAnimationFrame(() => sheet.classList.add('open'));
+  },
+
+  _closeCategorySheet() {
+    const overlay = el('categorySheetOverlay');
+    const sheet   = el('categoryBottomSheet');
+    if (sheet)   { sheet.classList.remove('open'); sheet.hidden = true; }
+    if (overlay) overlay.hidden = true;
+  },
+
+  async _applyCategory(itemId, catId, catName) {
+    try {
+      await fetchJSON(`/api/items/${itemId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userCategoryId: catId, categoryConfirmed: true })
+      });
+      this._closeCategorySheet();
+      toast(`✅ '${catName}'으로 변경됐어요`, 'ok');
+      /* 로컬 state 반영 */
+      const item = state.items.find(i => (i.id || i._id) === itemId);
+      if (item) { item.userCategoryId = catId; item.categoryConfirmed = true; }
+    } catch { toast('변경 실패', 'err'); }
+  },
+
+  async _createCategoryPrompt(itemId) {
+    const name = prompt('새 카테고리 이름을 입력하세요:');
+    if (!name?.trim()) return;
+    try {
+      const newCat = await fetchJSON('/api/categories', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name.trim() })
+      });
+      state.userCategories = [...(state.userCategories || []), newCat];
+      toast(`'${name}' 카테고리 생성됐어요`, 'ok');
+      this._applyCategory(itemId, newCat.id, newCat.name);
+    } catch { toast('카테고리 생성 실패', 'err'); }
   },
 
 });

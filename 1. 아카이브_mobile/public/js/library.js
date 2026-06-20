@@ -361,4 +361,116 @@ Object.assign(Mob, {
     this._applyLibraryFilters();
   },
 
+  /* ══════════════════════════════════════════
+     지식 / 라이프 서재 타입 탭 전환
+  ══════════════════════════════════════════ */
+  setLibType(type, btn) {
+    document.querySelectorAll('.mvw-lib-main-type-tab').forEach(t => t.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    const lifePanel      = el('lifeLibrary');
+    const knowledgePanel = el('knowledgeLibraryPanel');
+    if (lifePanel)      lifePanel.hidden      = (type !== 'life');
+    if (knowledgePanel) knowledgePanel.hidden = (type === 'life');
+    if (type === 'life') this._loadLifeLibrary();
+  },
+
+  /* ── 라이프 서재 로드 ── */
+  async _loadLifeLibrary(mood) {
+    const tl = el('lifeTimeline');
+    if (!tl) return;
+    tl.innerHTML = '<div class="mob-loading"><span class="mob-spin"></span></div>';
+    try {
+      const filter = mood && mood !== 'all' ? mood : null;
+      const url    = filter
+        ? `/api/items/life?mood=${encodeURIComponent(filter)}`
+        : '/api/items/life';
+      const data   = await fetchJSON(url, {}, 20000);
+      state.lifeItems = data.items || [];
+      this._renderLifeTimeline(state.lifeItems);
+    } catch {
+      tl.innerHTML = '<div style="padding:16px;color:var(--text-2);font-size:13px">불러오기 실패</div>';
+    }
+  },
+
+  filterLifeMood(mood, btn) {
+    state.lifeFilter = mood;
+    document.querySelectorAll('.mvw-mood-chip').forEach(c => c.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    this._loadLifeLibrary(mood === 'all' ? null : mood);
+  },
+
+  _renderLifeTimeline(items) {
+    const tl = el('lifeTimeline');
+    if (!tl) return;
+    if (!items.length) {
+      tl.innerHTML = `
+        <div class="mvw-life-empty">
+          <i class="ti ti-camera-heart"></i>
+          <p>아직 라이프 기록이 없어요<br>소중한 순간을 저장해보세요</p>
+          <button class="mvw-life-empty-btn" onclick="Mob.openAdd();Mob.setAddType('life',el('mobAddTabLife'))">
+            <i class="ti ti-plus"></i> 첫 기록 남기기
+          </button>
+        </div>`;
+      return;
+    }
+
+    /* 날짜별 그룹핑 */
+    const groups = {};
+    items.forEach(item => {
+      const d   = new Date(item.life?.date || item.createdAt);
+      const key = toLocalDateStr(d);
+      if (!groups[key]) groups[key] = [];
+      groups[key].push(item);
+    });
+
+    let html = '';
+    Object.entries(groups)
+      .sort(([a], [b]) => b.localeCompare(a))
+      .forEach(([dateKey, dayItems]) => {
+        html += `<div class="mvw-life-date-header">${fmtFull(dateKey)}</div>`;
+        dayItems.forEach(item => {
+          const life      = item.life || {};
+          const hasPhotos = life.photos?.length > 0;
+          const cnt       = life.photos?.length || 0;
+
+          html += `<div class="mvw-life-card${hasPhotos ? ' has-photo' : ''}"
+                        data-id="${item.id}"
+                        onclick="Mob.openLifeDetail('${item.id}')">`;
+
+          if (hasPhotos) {
+            const gridCnt = Math.min(cnt, 4);
+            html += `<div class="mvw-life-photo-grid count-${gridCnt}">`;
+            life.photos.slice(0, 4).forEach((url, i) => {
+              const isMain = (i === 0 && cnt >= 3);
+              html += `<div class="mvw-life-photo-cell${isMain ? ' main' : ''}">
+                <img src="${url}" alt="" loading="lazy"/>
+                ${i === 3 && cnt > 4 ? `<div class="mvw-life-photo-more">+${cnt - 4}</div>` : ''}
+              </div>`;
+            });
+            html += `</div>`;
+          }
+
+          html += `<div class="mvw-life-card-body">
+            ${life.mood     ? `<span class="mvw-life-mood">${life.mood}</span>` : ''}
+            ${item.text     ? `<p class="mvw-life-text">${item.text}</p>` : ''}
+            <div class="mvw-life-meta">
+              ${life.location ? `<span><i class="ti ti-map-pin"></i> ${life.location}</span>` : ''}
+              ${life.weather  ? `<span>${life.weather}</span>` : ''}
+            </div>
+          </div></div>`;
+        });
+      });
+
+    tl.innerHTML = html;
+  },
+
+  /* 라이프 상세 — 현재는 토스트로 대체 (추후 모달) */
+  openLifeDetail(id) {
+    const item = state.lifeItems.find(i => i.id === id);
+    if (!item) return;
+    const life = item.life || {};
+    toast(`${life.mood || ''} ${item.text?.slice(0, 30) || '라이프 기록'}`, '', 3000);
+  },
+
+
 });

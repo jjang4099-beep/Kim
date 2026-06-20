@@ -4082,6 +4082,589 @@ html[data-theme="dark"] .mob-mkt-expand-btn {
 }
 html[data-theme="dark"] .mob-mkt-expand-btn:active,
 html[data-theme="dark"] .mob-card-feed-market.mkt-open .mob-mkt-expand-btn { color: var(--color-premium-gold); }
+
+/* ══════════════════════════════════════════════════════════
+   L1 카테고리 · L2 라이프 · L3 결산 — v68 신규 스타일
+══════════════════════════════════════════════════════════ */
+
+/* ── 서재 메인 타입 탭 (지식 / 라이프) ────────────────── */
+.mvw-lib-main-type-bar {
+  display        : flex;
+  gap            : 6px;
+  padding        : 10px 16px 0;
+  background     : var(--surface);
+  border-bottom  : 1px solid var(--border);
+}
+.mvw-lib-main-type-tab {
+  flex           : 1;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  gap            : 6px;
+  padding        : 8px 0;
+  font-size      : .875rem;
+  font-weight    : 600;
+  color          : var(--text-2);
+  border-bottom  : 2px solid transparent;
+  transition     : color .2s, border-color .2s;
+  border-radius  : 0;
+}
+.mvw-lib-main-type-tab.active {
+  color        : var(--accent);
+  border-color : var(--accent);
+}
+
+/* ── 라이프 무드 필터 ──────────────────────────────────── */
+.mvw-life-mood-bar {
+  display     : flex;
+  gap         : 8px;
+  padding     : 10px 14px;
+  overflow-x  : auto;
+  scrollbar-width: none;
+  background  : var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.mvw-life-mood-bar::-webkit-scrollbar { display: none; }
+.mvw-mood-chip {
+  flex-shrink  : 0;
+  padding      : 5px 13px;
+  border-radius: 99px;
+  border       : 1px solid var(--border);
+  font-size    : .8125rem;
+  color        : var(--text-2);
+  background   : var(--surface);
+  transition   : all .15s;
+  white-space  : nowrap;
+}
+.mvw-mood-chip.active {
+  background   : var(--accent);
+  border-color : var(--accent);
+  color        : #fff;
+}
+
+/* ── 라이프 타임라인 ────────────────────────────────────── */
+.mvw-life-date-header {
+  font-size   : .75rem;
+  font-weight : 700;
+  color       : var(--text-2);
+  padding     : 14px 16px 4px;
+  letter-spacing: .03em;
+}
+.mvw-life-card {
+  margin      : 6px 12px;
+  background  : var(--surface);
+  border-radius: var(--radius-sm);
+  border      : 1px solid var(--border);
+  overflow    : hidden;
+  box-shadow  : var(--shadow);
+}
+.mvw-life-card-body { padding: 10px 12px; }
+.mvw-life-mood {
+  font-size  : 1.25rem;
+  margin-bottom: 4px;
+}
+.mvw-life-text {
+  font-size  : .875rem;
+  color      : var(--text-1);
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break : break-word;
+  margin-bottom: 6px;
+}
+.mvw-life-meta {
+  display    : flex;
+  flex-wrap  : wrap;
+  gap        : 6px;
+  font-size  : .75rem;
+  color      : var(--text-3);
+}
+.mvw-life-meta span { display: flex; align-items: center; gap: 3px; }
+
+/* 사진 그리드 */
+.mvw-life-photo-grid {
+  display  : grid;
+  gap      : 2px;
+}
+.mvw-life-photo-grid.count-1 { grid-template-columns: 1fr; }
+.mvw-life-photo-grid.count-2 { grid-template-columns: 1fr 1fr; }
+.mvw-life-photo-grid.count-3 { grid-template-columns: 1fr 1fr; }
+.mvw-life-photo-grid.count-3 .mvw-life-photo-cell:first-child { grid-column: 1 / -1; }
+.mvw-life-photo-grid.count-4 { grid-template-columns: 1fr 1fr; }
+.mvw-life-photo-cell {
+  position  : relative;
+  aspect-ratio: 4/3;
+  overflow  : hidden;
+  background: var(--bg);
+}
+.mvw-life-photo-cell img { width: 100%; height: 100%; object-fit: cover; }
+.mvw-life-photo-more {
+  position      : absolute;
+  inset         : 0;
+  background    : rgba(0,0,0,.45);
+  color         : #fff;
+  font-size     : 1.25rem;
+  font-weight   : 700;
+  display       : flex;
+  align-items   : center;
+  justify-content: center;
+}
+
+/* 빈 상태 */
+.mvw-life-empty {
+  display        : flex;
+  flex-direction : column;
+  align-items    : center;
+  justify-content: center;
+  padding        : 60px 20px;
+  gap            : 12px;
+  color          : var(--text-3);
+}
+.mvw-life-empty-icon { font-size: 2.5rem; }
+.mvw-life-empty-text { font-size: .875rem; }
+.mvw-life-empty-btn {
+  margin-top   : 4px;
+  padding      : 9px 22px;
+  border-radius: 99px;
+  background   : var(--accent);
+  color        : #fff;
+  font-size    : .875rem;
+  font-weight  : 600;
+}
+
+/* ── 라이프 추가 폼 ─────────────────────────────────────── */
+.mob-life-photo-upload {
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  gap            : 8px;
+  width          : 100%;
+  padding        : 14px;
+  border         : 2px dashed var(--border);
+  border-radius  : var(--radius-sm);
+  font-size      : .875rem;
+  color          : var(--text-2);
+  background     : var(--bg);
+  cursor         : pointer;
+}
+.mob-life-text {
+  width        : 100%;
+  min-height   : 90px;
+  padding      : 10px 12px;
+  border       : 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size    : .875rem;
+  color        : var(--text-1);
+  background   : var(--surface);
+  resize       : vertical;
+}
+.mob-life-meta-row {
+  display    : flex;
+  align-items: center;
+  gap        : 8px;
+}
+.mob-life-meta-label {
+  flex-shrink: 0;
+  font-size  : .8125rem;
+  color      : var(--text-2);
+  min-width  : 52px;
+}
+.mob-life-meta-input {
+  flex         : 1;
+  padding      : 7px 10px;
+  border       : 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size    : .875rem;
+  background   : var(--surface);
+  color        : var(--text-1);
+}
+
+/* 무드 선택 */
+.mob-life-mood-select {
+  display    : flex;
+  gap        : 6px;
+  flex-wrap  : wrap;
+}
+.mob-mood-opt {
+  font-size    : 1.375rem;
+  padding      : 4px 8px;
+  border-radius: 8px;
+  border       : 2px solid transparent;
+  transition   : border-color .15s, background .15s;
+  background   : var(--bg);
+}
+.mob-mood-opt.active {
+  border-color : var(--accent);
+  background   : rgba(37,99,235,.08);
+}
+
+/* 사진 미리보기 */
+.mob-life-photo-preview {
+  display  : flex;
+  gap      : 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.mob-life-preview-thumb {
+  position     : relative;
+  width        : 72px;
+  height       : 72px;
+  border-radius: 8px;
+  overflow     : hidden;
+  border       : 1px solid var(--border);
+}
+.mob-life-preview-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.mob-life-thumb-remove {
+  position      : absolute;
+  top           : 2px;
+  right         : 2px;
+  width         : 20px;
+  height        : 20px;
+  border-radius : 50%;
+  background    : rgba(0,0,0,.6);
+  color         : #fff;
+  font-size     : .625rem;
+  display       : flex;
+  align-items   : center;
+  justify-content: center;
+  line-height   : 1;
+}
+
+/* ── 카테고리 바텀시트 ──────────────────────────────────── */
+.mob-bottom-sheet-overlay {
+  position  : fixed;
+  inset     : 0;
+  background: rgba(0,0,0,.45);
+  z-index   : 400;
+}
+.mob-bottom-sheet {
+  position     : fixed;
+  bottom       : 0;
+  left         : 0;
+  right        : 0;
+  background   : var(--surface);
+  border-radius: 20px 20px 0 0;
+  padding      : 0 0 calc(env(safe-area-inset-bottom) + 16px);
+  z-index      : 401;
+  transform    : translateY(100%);
+  transition   : transform .28s cubic-bezier(.34,1.08,.64,1);
+  max-height   : 75dvh;
+  overflow-y   : auto;
+}
+.mob-bottom-sheet.open { transform: translateY(0); }
+.mob-bottom-sheet-handle {
+  width        : 36px;
+  height       : 4px;
+  border-radius: 2px;
+  background   : var(--border);
+  margin       : 10px auto 0;
+}
+.mob-bottom-sheet-title {
+  font-size  : .9375rem;
+  font-weight: 700;
+  color      : var(--text-1);
+  padding    : 14px 16px 10px;
+}
+
+/* 카테고리 그리드 */
+.mob-category-grid {
+  display              : grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap                  : 8px;
+  padding              : 4px 12px 8px;
+}
+.mob-cat-chip {
+  display        : flex;
+  flex-direction : column;
+  align-items    : center;
+  justify-content: center;
+  gap            : 4px;
+  padding        : 10px 8px;
+  border-radius  : var(--radius-sm);
+  border         : 1px solid var(--border);
+  background     : var(--bg);
+  font-size      : .75rem;
+  color          : var(--text-1);
+  text-align     : center;
+  min-height     : 56px;
+  transition     : background .15s, border-color .15s;
+}
+.mob-cat-chip span:first-child { font-size: 1.25rem; }
+.mob-cat-chip:active,
+.mob-cat-chip.add { border-color: var(--accent); }
+.mob-cat-chip.add { color: var(--accent); }
+
+/* ── 관리 뷰 — 카테고리 칩 스몰 ───────────────────────── */
+.mvw-block-edit-btn {
+  padding      : 4px 10px;
+  border-radius: 99px;
+  border       : 1px solid var(--border);
+  font-size    : .75rem;
+  color        : var(--text-2);
+  background   : var(--surface);
+}
+.mvw-cat-chip-sm {
+  display      : inline-flex;
+  align-items  : center;
+  gap          : 4px;
+  padding      : 4px 10px;
+  border-radius: 99px;
+  border       : 1px solid var(--border);
+  background   : var(--surface);
+  font-size    : .75rem;
+  color        : var(--text-1);
+}
+
+/* ── 카테고리 매니저 모달 ───────────────────────────────── */
+.mvw-catmgr-modal {
+  position     : fixed;
+  inset        : 0;
+  z-index      : 500;
+  background   : rgba(0,0,0,.5);
+  display      : flex;
+  align-items  : flex-end;
+}
+.mvw-catmgr-panel {
+  width        : 100%;
+  max-height   : 80dvh;
+  background   : var(--surface);
+  border-radius: 20px 20px 0 0;
+  padding      : 0 0 calc(env(safe-area-inset-bottom) + 16px);
+  overflow-y   : auto;
+}
+.mvw-catmgr-header {
+  display        : flex;
+  align-items    : center;
+  justify-content: space-between;
+  padding        : 14px 16px;
+  border-bottom  : 1px solid var(--border);
+}
+.mvw-catmgr-title {
+  font-size  : 1rem;
+  font-weight: 700;
+  color      : var(--text-1);
+}
+.mvw-catmgr-close {
+  font-size: 1.25rem;
+  color    : var(--text-2);
+  padding  : 4px;
+}
+.mvw-catmgr-section-title {
+  font-size  : .75rem;
+  font-weight: 700;
+  color      : var(--text-2);
+  padding    : 12px 16px 6px;
+  letter-spacing: .04em;
+}
+.mvw-catmgr-list { padding: 0 12px; }
+.mvw-catmgr-row {
+  display        : flex;
+  align-items    : center;
+  gap            : 8px;
+  padding        : 10px 8px;
+  border-bottom  : 1px solid var(--border);
+  font-size      : .875rem;
+  color          : var(--text-1);
+}
+.mvw-catmgr-row:last-child { border-bottom: none; }
+.mvw-catmgr-row-emoji { font-size: 1.1rem; }
+.mvw-catmgr-row-name  { flex: 1; }
+.mvw-catmgr-del-btn {
+  padding    : 4px 10px;
+  border-radius: 99px;
+  border     : 1px solid #fca5a5;
+  color      : #dc2626;
+  font-size  : .75rem;
+  background : #fef2f2;
+}
+.mvw-catmgr-add-row {
+  display      : flex;
+  gap          : 8px;
+  padding      : 10px 16px;
+  border-top   : 1px solid var(--border);
+  align-items  : center;
+  margin-top   : 6px;
+}
+.mvw-catmgr-input {
+  flex         : 1;
+  padding      : 8px 10px;
+  border       : 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size    : .875rem;
+  background   : var(--bg);
+  color        : var(--text-1);
+}
+.mvw-catmgr-save-btn {
+  padding      : 8px 16px;
+  border-radius: var(--radius-sm);
+  background   : var(--accent);
+  color        : #fff;
+  font-size    : .875rem;
+  font-weight  : 600;
+}
+
+/* ── L3 결산 탭 & 콘텐츠 ───────────────────────────────── */
+.mvw-summary-tabs {
+  display    : flex;
+  gap        : 6px;
+  padding    : 10px 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.mvw-summary-tab {
+  padding      : 6px 14px;
+  border-radius: 99px 99px 0 0;
+  border       : 1px solid transparent;
+  border-bottom: none;
+  font-size    : .8125rem;
+  font-weight  : 600;
+  color        : var(--text-2);
+  background   : var(--bg);
+  transition   : color .15s, background .15s;
+}
+.mvw-summary-tab.active {
+  background : var(--surface);
+  color      : var(--accent);
+  border-color: var(--border);
+  border-bottom-color: var(--surface);
+}
+
+/* 통계 행 */
+.mvw-summary-stats {
+  display              : grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap                  : 0;
+  border-bottom        : 1px solid var(--border);
+}
+.mvw-summary-stat {
+  display        : flex;
+  flex-direction : column;
+  align-items    : center;
+  justify-content: center;
+  padding        : 14px 4px;
+  border-right   : 1px solid var(--border);
+  gap            : 2px;
+}
+.mvw-summary-stat:last-child { border-right: none; }
+.mvw-summary-num {
+  font-size  : 1.375rem;
+  font-weight: 800;
+  color      : var(--accent);
+}
+.mvw-summary-label {
+  font-size: .6875rem;
+  color    : var(--text-2);
+}
+
+/* AI 리뷰 박스 */
+.mvw-summary-ai-review {
+  margin      : 12px 12px 0;
+  padding     : 12px 14px;
+  background  : linear-gradient(135deg, rgba(37,99,235,.06), rgba(99,102,241,.08));
+  border      : 1px solid rgba(37,99,235,.2);
+  border-radius: var(--radius-sm);
+  font-size   : .875rem;
+  line-height : 1.6;
+  color       : var(--text-1);
+  white-space : pre-wrap;
+  word-break  : break-word;
+}
+.mvw-summary-empty {
+  text-align : center;
+  color      : var(--text-3);
+  padding    : 32px 16px;
+  font-size  : .875rem;
+}
+
+/* 카테고리 바 */
+.mvw-summary-section-title {
+  font-size  : .75rem;
+  font-weight: 700;
+  color      : var(--text-2);
+  padding    : 14px 14px 6px;
+  letter-spacing: .04em;
+}
+.mvw-summary-categories { padding: 0 12px; }
+.mvw-summary-cat-bar {
+  display      : flex;
+  align-items  : center;
+  gap          : 8px;
+  padding      : 5px 0;
+  font-size    : .8125rem;
+}
+.mvw-summary-cat-name {
+  flex-shrink  : 0;
+  width        : 68px;
+  color        : var(--text-1);
+  overflow     : hidden;
+  text-overflow: ellipsis;
+  white-space  : nowrap;
+}
+.mvw-summary-bar-wrap {
+  flex         : 1;
+  height       : 6px;
+  border-radius: 3px;
+  background   : var(--border);
+  overflow     : hidden;
+}
+.mvw-summary-bar-fill {
+  height       : 100%;
+  border-radius: 3px;
+  background   : var(--accent);
+  transition   : width .4s ease;
+}
+.mvw-summary-cat-count {
+  flex-shrink: 0;
+  width      : 28px;
+  text-align : right;
+  color      : var(--text-2);
+  font-size  : .75rem;
+}
+
+/* 키워드 클라우드 */
+.mvw-summary-keywords {
+  display    : flex;
+  flex-wrap  : wrap;
+  gap        : 6px;
+  padding    : 6px 12px 14px;
+}
+.mvw-summary-kw-chip {
+  padding      : 4px 10px;
+  border-radius: 99px;
+  border       : 1px solid var(--border);
+  background   : var(--surface);
+  color        : var(--text-1);
+  font-weight  : 600;
+  transition   : background .15s;
+}
+
+/* 새로고침 버튼 */
+.mvw-summary-refresh-btn {
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  gap            : 6px;
+  margin         : 6px 12px 14px;
+  padding        : 8px;
+  border-radius  : var(--radius-sm);
+  border         : 1px solid var(--border);
+  background     : var(--surface);
+  color          : var(--text-2);
+  font-size      : .8125rem;
+}
+
+/* ── 다크 모드 대응 ────────────────────────────────────── */
+html[data-theme="dark"] .mvw-lib-main-type-tab { color: var(--text-2); }
+html[data-theme="dark"] .mvw-lib-main-type-tab.active { color: var(--accent); }
+html[data-theme="dark"] .mvw-mood-chip { background: var(--surface); border-color: var(--border); }
+html[data-theme="dark"] .mvw-life-card { background: var(--surface); border-color: var(--border); }
+html[data-theme="dark"] .mob-bottom-sheet { background: var(--surface); }
+html[data-theme="dark"] .mob-cat-chip { background: #1e293b; border-color: var(--border); }
+html[data-theme="dark"] .mob-cat-chip.add { border-color: var(--accent); }
+html[data-theme="dark"] .mvw-catmgr-panel { background: var(--surface); }
+html[data-theme="dark"] .mvw-catmgr-input { background: #1e293b; color: var(--text-1); }
+html[data-theme="dark"] .mvw-summary-ai-review { background: rgba(37,99,235,.12); border-color: rgba(99,102,241,.3); }
+html[data-theme="dark"] .mvw-summary-tab.active { background: #1e293b; border-color: var(--border); border-bottom-color: #1e293b; }
+html[data-theme="dark"] .mob-life-meta-input,
+html[data-theme="dark"] .mob-life-text        { background: #1e293b; color: var(--text-1); border-color: var(--border); }
 html[data-theme="dark"] .mob-mpa-toggle {
   background   : var(--bg-toggle-button);
   border-color : rgba(226,182,91,.2);

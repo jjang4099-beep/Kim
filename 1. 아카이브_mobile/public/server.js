@@ -41,6 +41,7 @@ const SUBSCRIPTIONS_PATH     = path.join(__dirname, 'data', 'subscriptions.json'
 const USERS_PATH             = path.join(__dirname, 'data', 'users.json');
 const PUSH_SUBS_PATH         = path.join(__dirname, 'data', 'push_subscriptions.json');
 const EXAM_SETTINGS_PATH     = path.join(__dirname, 'data', 'exam_settings.json');
+const SUMMARIES_PATH         = path.join(__dirname, 'data', 'summaries.json');
 
 // ══════════════════════════════════════════════════
 //  Layer 1: 8대 지식 도메인 온톨로지
@@ -277,12 +278,28 @@ async function initSQLiteDB() {
     );
     CREATE INDEX IF NOT EXISTS idx_ehi_item_id ON exam_history_items(item_id);
     CREATE INDEX IF NOT EXISTS idx_ehi_era     ON exam_history_items(era);
+
+    /* ══════════════════════════════════════════════════
+       유저 커스텀 카테고리
+    ══════════════════════════════════════════════════ */
+    CREATE TABLE IF NOT EXISTS user_categories (
+      id         INTEGER PRIMARY KEY AUTOINCREMENT,
+      name       TEXT    NOT NULL,
+      emoji      TEXT    DEFAULT '📁',
+      color      TEXT    DEFAULT '#6b7280',
+      sort_order INTEGER DEFAULT 0,
+      is_default INTEGER DEFAULT 0,
+      modes      TEXT    DEFAULT 'both',
+      created_at TEXT    DEFAULT (datetime('now','localtime'))
+    );
+    CREATE INDEX IF NOT EXISTS idx_uc_sort ON user_categories(sort_order);
   `);
   _migrateFromJSON();
   _migrateLegacyDomains();
   _migrateItemModes();
   _seedEnglishThemes();
   _seedExamKnowledge();
+  _seedDefaultCategories();
   _persistDB();
   console.log('[SQLite] DB 초기화 완료 →', SQLITE_PATH);
 }
@@ -613,6 +630,37 @@ function _queryExamDaily(dateStr) {
   }
 }
 
+/* ══════════════════════════════════════════════════════════
+   기본 카테고리 시드 — user_categories 테이블이 비어있을 때만 실행
+══════════════════════════════════════════════════════════ */
+function _seedDefaultCategories() {
+  try {
+    const existing = _sqlGet('SELECT COUNT(*) AS c FROM user_categories');
+    if (existing && Number(existing.c) > 0) return;
+    const defaults = [
+      { name:'영어',     emoji:'🗽', color:'#4f46e5', modes:'both', is_default:1, order:1 },
+      { name:'경제/시황', emoji:'📈', color:'#059669', modes:'work', is_default:1, order:2 },
+      { name:'역사',     emoji:'🏛️', color:'#92400e', modes:'both', is_default:1, order:3 },
+      { name:'명언',     emoji:'💡', color:'#7c3aed', modes:'both', is_default:1, order:4 },
+      { name:'고사성어', emoji:'📜', color:'#c2410c', modes:'work', is_default:1, order:5 },
+      { name:'수학',     emoji:'📐', color:'#2563eb', modes:'exam', is_default:1, order:6 },
+      { name:'국어',     emoji:'📖', color:'#dc2626', modes:'exam', is_default:1, order:7 },
+      { name:'한국사',   emoji:'🇰🇷', color:'#92400e', modes:'exam', is_default:1, order:8 },
+      { name:'탐구',     emoji:'🔬', color:'#059669', modes:'exam', is_default:1, order:9 },
+      { name:'자격증',   emoji:'📋', color:'#7c3aed', modes:'exam', is_default:1, order:10 },
+      { name:'기타',     emoji:'📌', color:'#6b7280', modes:'both', is_default:1, order:99 },
+    ];
+    const stmt = _sqliteDb.prepare(
+      'INSERT INTO user_categories (name, emoji, color, sort_order, is_default, modes) VALUES (?,?,?,?,?,?)'
+    );
+    for (const d of defaults) stmt.run([d.name, d.emoji, d.color, d.order, d.is_default, d.modes]);
+    stmt.free();
+    console.log('[Categories] 기본 카테고리 시드 완료');
+  } catch (e) {
+    console.warn('[Categories] 시드 실패 (무시):', e.message);
+  }
+}
+
 /** 기존 항목의 domain 필드 백필 (서버 시작 시 1회) */
 function _migrateLegacyDomains() {
   const result = _sqliteDb.exec("SELECT id, data FROM items WHERE category IN ('en','zh','history','economy','youtube','inbox') OR category IS NULL");
@@ -750,6 +798,14 @@ function dbDelete(id) {
   stmt.free();
   _persistDB();
 }
+
+// ──────────────────────────────────────────────────
+//  Summaries DB (data/summaries.json) — 결산 캐시
+//  구조: { "monthly:2026-06": { type, period, stats, aiReview, ... } }
+// ──────────────────────────────────────────────────
+
+function readSummaries()       { return readJSON(SUMMARIES_PATH, {}); }
+function writeSummaries(data)  { writeJSON(SUMMARIES_PATH, data); }
 
 // ──────────────────────────────────────────────────
 //  Daily Feeds DB (data/dailyFeeds.json)
@@ -3472,7 +3528,7 @@ app.patch('/api/items/:id', (req, res) => {
   const items = readDB();
   const item  = items.find(i => i.id === req.params.id);
   if (!item) return res.status(404).json({ success: false, error: '항목을 찾을 수 없습니다.' });
-  const allowed = ['domain', 'tags', 'category', 'keywords', 'summary', 'source', 'text', 'myInsight', 'starred', 'reviewAt', 'reviewCount', 'reviewEase', 'wrongAnswer'];
+  const allowed = ['domain', 'tags', 'category', 'keywords', 'summary', 'source', 'text', 'myInsight', 'starred', 'reviewAt', 'reviewCount', 'reviewEase', 'wrongAnswer', 'userCategoryId', 'categoryConfirmed', 'contentType'];
   /* wrongAnswerMemo 편의 필드 — wrongAnswer.memo 에 저장 */
   if (req.body.wrongAnswerMemo !== undefined && item.wrongAnswer) {
     item.wrongAnswer = { ...item.wrongAnswer, memo: req.body.wrongAnswerMemo };
@@ -4554,6 +4610,230 @@ app.post('/api/log/lecture-click', (req, res) => {
   const { concept, subject, platform, url } = req.body;
   console.log(`[강의클릭] ${subject}/${concept} → ${platform}`);
   res.json({ success: true });
+});
+
+// ══════════════════════════════════════════════════
+//  카테고리 API
+// ══════════════════════════════════════════════════
+
+app.get('/api/categories', (req, res) => {
+  try {
+    const rows = _sqlQuery(
+      'SELECT * FROM user_categories ORDER BY is_default DESC, sort_order ASC, id ASC', []
+    );
+    res.json(rows);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.post('/api/categories', (req, res) => {
+  const { name, emoji, color } = req.body;
+  if (!name) return res.status(400).json({ error: '이름을 입력해주세요' });
+  try {
+    const maxRow  = _sqlGet('SELECT MAX(sort_order) AS m FROM user_categories');
+    const nextOrd = (Number(maxRow?.m) || 0) + 1;
+    getSQLiteDB().run(
+      "INSERT INTO user_categories (name, emoji, color, sort_order, is_default, modes) VALUES (?,?,?,?,0,'both')",
+      [name, emoji || '📁', color || '#6b7280', nextOrd]
+    );
+    const newCat = _sqlGet('SELECT * FROM user_categories WHERE rowid = last_insert_rowid()');
+    _persistDB();
+    res.json(newCat);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.patch('/api/categories/:id', (req, res) => {
+  const { name, emoji, color, sort_order } = req.body;
+  try {
+    const fields = [], vals = [];
+    if (name !== undefined)       { fields.push('name=?');       vals.push(name); }
+    if (emoji !== undefined)      { fields.push('emoji=?');      vals.push(emoji); }
+    if (color !== undefined)      { fields.push('color=?');      vals.push(color); }
+    if (sort_order !== undefined) { fields.push('sort_order=?'); vals.push(sort_order); }
+    if (!fields.length) return res.status(400).json({ error: '수정할 필드가 없습니다' });
+    vals.push(req.params.id);
+    getSQLiteDB().run(`UPDATE user_categories SET ${fields.join(',')} WHERE id=?`, vals);
+    _persistDB();
+    res.json({ success: true });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.delete('/api/categories/:id', (req, res) => {
+  try {
+    /* 포함 아이템의 userCategoryId를 null로 초기화 */
+    const affected = readDB().filter(i => String(i.userCategoryId) === req.params.id);
+    for (const item of affected) {
+      item.userCategoryId     = null;
+      item.categoryConfirmed  = false;
+      item.updatedAt          = new Date().toISOString();
+      dbUpdate(item);
+    }
+    getSQLiteDB().run('DELETE FROM user_categories WHERE id=?', [req.params.id]);
+    _persistDB();
+    res.json({ success: true });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// ══════════════════════════════════════════════════
+//  라이프 서재 API
+// ══════════════════════════════════════════════════
+
+app.get('/api/items/life', (req, res) => {
+  try {
+    const { mood } = req.query;
+    let items = readDB().filter(i => i.contentType === 'life');
+    if (mood) items = items.filter(i => i.life?.mood === mood);
+    items.sort((a, b) => {
+      const da = new Date(a.life?.date || a.createdAt);
+      const db2 = new Date(b.life?.date || b.createdAt);
+      return db2 - da;
+    });
+    res.json({ success: true, items });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+app.post('/api/items/life', upload.array('photos', 10), (req, res) => {
+  try {
+    const { text, mood, location, weather, date, privacy } = req.body;
+    if (!text && (!req.files || !req.files.length)) {
+      return res.status(400).json({ success: false, error: '사진이나 텍스트 중 하나는 필요합니다' });
+    }
+    const photoUrls = (req.files || []).map(f => `/uploads/${f.filename}`);
+    const lifeDate  = date ? new Date(date + 'T00:00:00') : new Date();
+    const item = {
+      id:          uuidv4(),
+      title:       (text || '').slice(0, 50) || '라이프 기록',
+      text:        text || '',
+      category:    'life',
+      contentType: 'life',
+      mode:        'PROFESSIONAL',
+      createdAt:   new Date().toISOString(),
+      date:        toDateStr(lifeDate),
+      life: {
+        mood:     mood     || '',
+        location: location || '',
+        weather:  weather  || '',
+        photos:   photoUrls,
+        privacy:  privacy  || 'private',
+        date:     lifeDate.toISOString(),
+      },
+    };
+    dbInsert(item);
+    res.json({ success: true, item });
+  } catch (e) {
+    res.status(500).json({ success: false, error: '라이프 기록 저장 실패: ' + e.message });
+  }
+});
+
+// ══════════════════════════════════════════════════
+//  결산 API
+// ══════════════════════════════════════════════════
+
+app.get('/api/summary/:type/:period', async (req, res) => {
+  const { type, period } = req.params;
+  const cacheKey = `${type}:${period}`;
+
+  /* 캐시 반환 */
+  const cache = readSummaries();
+  if (cache[cacheKey] && req.query.force !== '1') return res.json(cache[cacheKey]);
+
+  try {
+    /* 기간 계산 */
+    let from, to;
+    if (type === 'monthly') {
+      const [y, m] = period.split('-').map(Number);
+      from = new Date(y, m - 1, 1);
+      to   = new Date(y, m, 0, 23, 59, 59, 999);
+    } else if (type === 'half-year') {
+      const y = Number(period.split('-H')[0]);
+      const h = Number(period.split('-H')[1]);
+      from = new Date(y, h === 1 ? 0 : 6,  1);
+      to   = new Date(y, h === 1 ? 5 : 11, 31, 23, 59, 59, 999);
+    } else {
+      const y = Number(period);
+      from = new Date(y, 0, 1);
+      to   = new Date(y, 11, 31, 23, 59, 59, 999);
+    }
+
+    const allItems  = readDB().filter(i => {
+      const d = new Date(i.createdAt || i.date);
+      return d >= from && d <= to;
+    });
+    const knowledge = allItems.filter(i => i.contentType !== 'life');
+    const lifeItems = allItems.filter(i => i.contentType === 'life');
+
+    /* 카테고리 빈도 */
+    const catCount = {};
+    knowledge.forEach(i => {
+      const cat = i.category || getDomain(i) || '기타';
+      catCount[cat] = (catCount[cat] || 0) + 1;
+    });
+    const topCategories = Object.entries(catCount)
+      .sort(([,a],[,b]) => b - a).slice(0, 5)
+      .map(([name, count]) => ({ name, count }));
+
+    /* 키워드 빈도 */
+    const kwCount = {};
+    knowledge.forEach(i => {
+      ((i.analysis?.keywords) || i.keywords || []).forEach(k => {
+        if (k && k.length > 1) kwCount[k] = (kwCount[k] || 0) + 1;
+      });
+    });
+    const topKeywords = Object.entries(kwCount)
+      .sort(([,a],[,b]) => b - a).slice(0, 10)
+      .map(([word, count]) => ({ word, count }));
+
+    /* 월별 분포 */
+    const monthlyMap = {};
+    allItems.forEach(i => {
+      const d  = new Date(i.createdAt || i.date);
+      const mk = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+      monthlyMap[mk] = (monthlyMap[mk] || 0) + 1;
+    });
+    const monthlyBreakdown = Object.entries(monthlyMap)
+      .sort(([a],[b]) => a.localeCompare(b))
+      .map(([month, count]) => ({ month, count }));
+
+    const highlights = knowledge.filter(i => i.starred).slice(0, 5).map(i => i.id);
+
+    const stats = { totalItems: knowledge.length, totalLife: lifeItems.length,
+                    topCategories, topKeywords, monthlyBreakdown };
+
+    /* AI 총평 */
+    let aiReview = '';
+    if (knowledge.length > 0) {
+      const typeLabel = type === 'monthly' ? '이번 달' : type === 'half-year' ? '반기' : '올해';
+      const prompt = `유저의 ${typeLabel} 학습 데이터야. 총 지식: ${stats.totalItems}개, 많이 배운 분야: ${topCategories.map(c=>c.name).join(', ')}, 주요 키워드: ${topKeywords.slice(0,5).map(k=>k.word).join(', ')}. 따뜻하고 격려하는 톤으로 2~3문장 총평을 한국어로 써줘. 구체적인 숫자와 분야를 언급해줘.`;
+      const raw = await callClaude({ maxTokens: 300, messages: [{ role:'user', content: prompt }] });
+      aiReview = raw || '';
+    }
+
+    const result = { type, period, stats, aiReview, highlights,
+                     generatedAt: new Date().toISOString() };
+    cache[cacheKey] = result;
+    writeSummaries(cache);
+    res.json(result);
+  } catch (e) {
+    res.status(500).json({ error: '결산 생성 실패: ' + e.message });
+  }
+});
+
+app.post('/api/summary/generate', (req, res) => {
+  const { type, period } = req.body;
+  if (!type || !period) return res.status(400).json({ error: 'type, period 필요' });
+  const cache = readSummaries();
+  delete cache[`${type}:${period}`];
+  writeSummaries(cache);
+  res.redirect(`/api/summary/${type}/${period}`);
 });
 
 // ══════════════════════════════════════════════════

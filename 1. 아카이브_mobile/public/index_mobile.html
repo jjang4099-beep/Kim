@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
-  <link rel="stylesheet" href="css/style_mobile.css?v=68"/>
+  <link rel="stylesheet" href="css/style_mobile.css?v=69"/>
   <link rel="stylesheet" href="css/exam.css?v=2"/>
 </head>
 <body>
@@ -159,6 +159,43 @@
   <div class="mob-view" id="viewSummary">
     <div class="mvw-library-wrap">
 
+      <!-- 지식 / 라이프 서재 타입 탭 -->
+      <div class="mvw-lib-main-type-bar" id="libMainTypeBar">
+        <button class="mvw-lib-main-type-tab active" data-type="knowledge"
+                onclick="Mob.setLibType('knowledge',this)">
+          <i class="ti ti-book"></i> 지식
+        </button>
+        <button class="mvw-lib-main-type-tab" data-type="life"
+                onclick="Mob.setLibType('life',this)">
+          <i class="ti ti-camera-heart"></i> 라이프
+        </button>
+      </div>
+
+      <!-- 라이프 서재 패널 -->
+      <div id="lifeLibrary" hidden>
+        <!-- 감정 필터 바 -->
+        <div class="mvw-life-mood-bar" id="lifeMoodBar">
+          <button class="mvw-mood-chip active" data-mood="all"
+                  onclick="Mob.filterLifeMood('all',this)">전체</button>
+          <button class="mvw-mood-chip" data-mood="😊"
+                  onclick="Mob.filterLifeMood('😊',this)">😊</button>
+          <button class="mvw-mood-chip" data-mood="🔥"
+                  onclick="Mob.filterLifeMood('🔥',this)">🔥</button>
+          <button class="mvw-mood-chip" data-mood="😌"
+                  onclick="Mob.filterLifeMood('😌',this)">😌</button>
+          <button class="mvw-mood-chip" data-mood="😢"
+                  onclick="Mob.filterLifeMood('😢',this)">😢</button>
+          <button class="mvw-mood-chip" data-mood="💪"
+                  onclick="Mob.filterLifeMood('💪',this)">💪</button>
+        </div>
+        <div id="lifeTimeline">
+          <div class="mob-loading"><span class="mob-spin"></span> 라이프 기록 불러오는 중…</div>
+        </div>
+      </div>
+
+      <!-- 지식 서재 패널 (기존) -->
+      <div id="knowledgeLibraryPanel">
+
       <!-- 수험생 모드 — 오답/개념 탭 (exam 모드에서만 표시) -->
       <div class="mvw-lib-type-tabs" id="libTypeTabs" hidden>
         <button class="mvw-lib-type-tab" data-type="wrong"
@@ -246,6 +283,8 @@
       <div id="libTimeline">
         <div class="mob-loading"><span class="mob-spin"></span> 서재 불러오는 중…</div>
       </div>
+
+      </div><!-- /knowledgeLibraryPanel -->
 
     </div>
   </div>
@@ -387,6 +426,37 @@
       <div class="mvw-section-block">
         <div class="mvw-block-title"><i class="ti ti-clock"></i> 최근 추가한 지식</div>
         <div class="mvw-recent-list" id="statRecentList">
+          <div class="mob-loading" style="padding:16px 0"><span class="mob-spin"></span></div>
+        </div>
+      </div>
+
+      <!-- ══ 카테고리 관리 ══ -->
+      <div class="mvw-section-block" id="categoryManageBlock">
+        <div class="mvw-block-title">
+          <i class="ti ti-folder"></i> 카테고리 관리
+          <button class="mvw-block-edit-btn" onclick="Mob.openCategoryManager()">
+            <i class="ti ti-settings"></i> 관리
+          </button>
+        </div>
+        <div id="categoryChipList">
+          <div class="mob-loading" style="padding:8px 0"><span class="mob-spin"></span></div>
+        </div>
+      </div>
+
+      <!-- ══ 지식 결산 ══ -->
+      <div class="mvw-section-block" id="summaryBlock">
+        <div class="mvw-block-title">
+          <i class="ti ti-chart-pie"></i> 지식 결산
+        </div>
+        <div class="mvw-summary-tabs">
+          <button class="mvw-summary-tab active"
+                  onclick="Mob.loadSummary('monthly',this)">이번 달</button>
+          <button class="mvw-summary-tab"
+                  onclick="Mob.loadSummary('half-year',this)">반기</button>
+          <button class="mvw-summary-tab"
+                  onclick="Mob.loadSummary('yearly',this)">연간</button>
+        </div>
+        <div id="summaryContent">
           <div class="mob-loading" style="padding:16px 0"><span class="mob-spin"></span></div>
         </div>
       </div>
@@ -561,12 +631,16 @@
     <!-- 탭 모드 선택 -->
     <div class="mob-add-mode-bar">
       <button class="mob-add-mode-btn active" id="mobAddTabText"
-        onclick="Mob.switchAddTab('text',this)">
-        <i class="ti ti-pencil"></i> 텍스트
+        onclick="Mob.setAddType('knowledge',this)">
+        <i class="ti ti-pencil"></i> 지식
       </button>
       <button class="mob-add-mode-btn" id="mobAddTabImage"
-        onclick="Mob.switchAddTab('image',this)">
+        onclick="Mob.setAddType('image',this)">
         <i class="ti ti-camera"></i> 사진 분석
+      </button>
+      <button class="mob-add-mode-btn" id="mobAddTabLife"
+        onclick="Mob.setAddType('life',this)">
+        <i class="ti ti-camera-heart"></i> 라이프
       </button>
     </div>
 
@@ -627,18 +701,101 @@
       <div class="mob-add-status" id="mobImgStatus" hidden></div>
     </div>
 
+    <!-- 라이프 패널 -->
+    <div class="mob-modal-body" id="mobAddLifePane" hidden>
+      <!-- 사진 업로드 -->
+      <div class="mob-life-photo-upload" onclick="el('lifePhotoInput').click()">
+        <i class="ti ti-camera"></i>
+        <span>사진 추가 (최대 10장)</span>
+      </div>
+      <input type="file" id="lifePhotoInput" accept="image/*" multiple hidden
+             onchange="Mob._previewLifePhotos(this)"/>
+      <div class="mob-life-photo-preview" id="lifePhotoPreview"></div>
+
+      <!-- 텍스트 메모 -->
+      <textarea id="lifeTextInput" class="mob-life-text"
+                placeholder="오늘 어떤 하루였나요?"></textarea>
+
+      <!-- 감정 선택 -->
+      <div class="mob-life-meta-row">
+        <span class="mob-life-meta-label">감정</span>
+        <div class="mob-life-mood-select">
+          <button class="mob-mood-opt" onclick="Mob._selectMood('😊',this)">😊</button>
+          <button class="mob-mood-opt" onclick="Mob._selectMood('🔥',this)">🔥</button>
+          <button class="mob-mood-opt" onclick="Mob._selectMood('😌',this)">😌</button>
+          <button class="mob-mood-opt" onclick="Mob._selectMood('😢',this)">😢</button>
+          <button class="mob-mood-opt" onclick="Mob._selectMood('💪',this)">💪</button>
+          <button class="mob-mood-opt" onclick="Mob._selectMood('🤔',this)">🤔</button>
+        </div>
+      </div>
+
+      <!-- 장소 -->
+      <div class="mob-life-meta-row">
+        <span class="mob-life-meta-label"><i class="ti ti-map-pin"></i></span>
+        <input type="text" id="lifeLocationInput"
+               placeholder="장소 (선택)" class="mob-life-meta-input"/>
+      </div>
+
+      <!-- 날짜 -->
+      <div class="mob-life-meta-row">
+        <span class="mob-life-meta-label"><i class="ti ti-calendar"></i></span>
+        <input type="date" id="lifeDateInput" class="mob-life-meta-input"/>
+      </div>
+
+      <!-- 공개 범위 -->
+      <div class="mob-life-meta-row">
+        <span class="mob-life-meta-label"><i class="ti ti-lock"></i></span>
+        <select id="lifePrivacySelect" class="mob-life-meta-input">
+          <option value="private">나만 보기</option>
+          <option value="friends">친구 공개</option>
+          <option value="group">지식방 공개</option>
+        </select>
+      </div>
+
+      <button class="mob-add-submit" onclick="Mob._submitLife()">
+        <i class="ti ti-heart"></i> 기록 저장
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- 카테고리 바텀시트 -->
+<div class="mob-bottom-sheet-overlay" id="categorySheetOverlay" hidden
+     onclick="Mob._closeCategorySheet()"></div>
+<div class="mob-bottom-sheet" id="categoryBottomSheet" hidden>
+  <div class="mob-bottom-sheet-handle"></div>
+  <div class="mob-bottom-sheet-title">카테고리 선택</div>
+  <div class="mob-category-grid" id="categoryGrid">
+    <div class="mob-loading"><span class="mob-spin"></span></div>
+  </div>
+</div>
+
+<!-- 카테고리 관리 모달 -->
+<div class="mob-modal" id="categoryManagerModal" hidden>
+  <div class="mob-modal-sheet mob-add-sheet">
+    <div class="mob-modal-handle"></div>
+    <div class="mob-modal-header">
+      <span class="mob-modal-title"><i class="ti ti-folder"></i> 카테고리 관리</span>
+      <button class="mob-modal-close" onclick="Mob._closeCategoryManager()">
+        <i class="ti ti-x"></i>
+      </button>
+    </div>
+    <div class="mob-modal-body" id="categoryManagerBody">
+      <div class="mob-loading"><span class="mob-spin"></span></div>
+    </div>
   </div>
 </div>
 
 <!-- 토스트 -->
 <div class="mob-toast" id="mobToast" hidden></div>
 
-<script src="js/core.js?v=2"></script>
-<script src="js/home.js?v=1"></script>
+<script src="js/core.js?v=3"></script>
+<script src="js/home.js?v=2"></script>
 <script src="js/feed.js?v=2"></script>
-<script src="js/library.js?v=1"></script>
-<script src="js/manage.js?v=1"></script>
-<script src="js/add.js?v=1"></script>
+<script src="js/library.js?v=2"></script>
+<script src="js/manage.js?v=2"></script>
+<script src="js/add.js?v=2"></script>
 <script src="js/app_exam.js?v=2"></script>
 <script src="js/pwa.js?v=1"></script>
 <script>

@@ -90,10 +90,8 @@ Object.assign(Mob, {
      테마 환경설정 (라이트 Papyrus / 다크 Midnight)
   ══════════════════════════════════════════ */
   _initTheme() {
-    const saved = localStorage.getItem('app-theme');
-    if (saved === 'light' || saved === 'dark') {
-      document.documentElement.setAttribute('data-theme', saved);
-    }
+    const saved = localStorage.getItem('app-theme') || 'light'; // 기본: Papyrus
+    document.documentElement.setAttribute('data-theme', saved);
     this._syncThemeButtons(saved);
   },
 

@@ -493,7 +493,6 @@ const Mob = {
         e.stopPropagation();
         const action = delBtn.dataset.action;
         const id     = card.dataset.id;
-        if (action === 'like')   this._toggleLike(id, delBtn);
         if (action === 'source') this._openSource(id);
         if (action === 'delete') this._deleteItem(id, card);
         if (action === 'copy')   this._copyItemText(id);
@@ -794,29 +793,6 @@ const Mob = {
   },
 
   /** 홈 피드 — 영어 표현 가로형 카드 (레거시, 현재 미사용) */
-  _cardEnglish(item) {
-    const id      = item._id || item.id || '';
-    const p       = this._parseEnglishText(item.text);
-    const expr    = p.expression || item.title || '영어 표현';
-    /* 요약 = 뜻 (없으면 뉘앙스/예문 순으로 대체) */
-    const meaning = p.meaning || p.nuance || p.example || item.summary || '';
-
-    return `
-    <div class="mob-card mob-card-h mob-card-h-en" data-id="${id}">
-      <div class="mob-card-h-body mob-en-body">
-        <div class="mob-card-h-top">
-          <span class="mob-card-cat">English</span>
-          <button class="mob-card-h-del" data-action="delete"
-                  onclick="event.stopPropagation()" title="삭제">
-            <i class="ti ti-x"></i>
-          </button>
-        </div>
-        <div class="mob-card-h-title mob-en-h-expr">${expr}</div>
-        <div class="mob-card-h-summary mob-en-h-meaning">${meaning}</div>
-      </div>
-    </div>`;
-  },
-
   /**
    * 전폭 세로형 카드 v21 — 텍스트 지식 (English · History · Economy · Inbox)
    * 흰 배경 + 파란 왼쪽 border · 카테고리칩+날짜 · 복사/삭제 · 볼드 제목 · 불릿 · 해시태그
@@ -1158,17 +1134,6 @@ const Mob = {
   },
 
   /** 대화문 아코디언 토글 (레거시 — 신규 카드는 _toggleFvEntry 사용) */
-  _toggleDialogue(btn) {
-    const uid   = btn.dataset.uid;
-    const dlgEl = uid ? document.getElementById(uid) : btn.nextElementSibling;
-    if (!dlgEl) return;
-    const isHidden = dlgEl.hidden;
-    dlgEl.hidden = !isHidden;
-    const icon = btn.querySelector('i');
-    if (icon) icon.className = isHidden ? 'ti ti-chevron-up' : 'ti ti-chevron-down';
-    btn.classList.toggle('open', isHidden);
-  },
-
   /** 어휘 표현 항목 1개만 서재에 저장 */
   async _saveVocabEntry(btn) {
     const subId = btn.dataset.sub;
@@ -1688,32 +1653,9 @@ const Mob = {
     return DOMAINS[domain]?.label || catOrDomain;
   },
 
-  _domainIcon(item) {
-    const d = getItemDomain(item);
-    return DOMAINS[d]?.icon || '💡';
-  },
-
-  _domainLabel(item) {
-    const d = getItemDomain(item);
-    return DOMAINS[d] ? `${DOMAINS[d].icon} ${DOMAINS[d].label}` : '💡 기타';
-  },
-
   /* ──────────────────────────────────────────
      홈 카드 액션
   ────────────────────────────────────────── */
-  async _toggleLike(id, btn) {
-    btn.classList.toggle('liked');
-    const liked = btn.classList.contains('liked');
-    toast(liked ? '❤️ 저장됨' : '저장 해제');
-    try {
-      await fetchJSON(`/api/items/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ liked })
-      });
-    } catch {}
-  },
-
   _openSource(id) {
     const item = state.items.find(i => (i._id || i.id) === id);
     if (item?.source) window.open(item.source, '_blank');
@@ -2289,10 +2231,6 @@ const Mob = {
     if (sc) sc.hidden = true;
     this._applyLibraryFilters();
   },
-
-  _filterLibrary(q) { this._applyLibraryFilters(q); },
-
-  openSummary() { this.switchView('summary', el('bnSummary')); },
 
   /* ══════════════════════════════════════════
      관리 뷰 (통계 대시보드)

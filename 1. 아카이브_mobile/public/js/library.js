@@ -74,7 +74,10 @@ Object.assign(Mob, {
     const timelineEl = el('libTimeline');
     if (!timelineEl) return;
 
-    if (!items || items.length === 0) {
+    /* 라이프 항목은 라이프 탭 전용 — 지식 탭에서 제외 (type 또는 category로 판별) */
+    const knowledgeItems = (items || []).filter(i => i.type !== 'life' && i.category !== 'life');
+
+    if (!knowledgeItems.length) {
       timelineEl.innerHTML = searchQ
         ? `<div class="mvw-lib-empty"><i class="ti ti-zoom-question"></i><br>"${searchQ}" 검색 결과 없음</div>`
         : `<div class="mvw-lib-empty">
@@ -89,7 +92,7 @@ Object.assign(Mob, {
 
     /* 날짜별 그룹핑 */
     const groups = {};
-    items.forEach(item => {
+    knowledgeItems.forEach(item => {
       const raw  = item.createdAt || item.savedAt || item.date || '';
       const dateKey = raw ? raw.slice(0, 10) : '날짜 없음';
       if (!groups[dateKey]) groups[dateKey] = [];

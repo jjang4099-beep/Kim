@@ -72,6 +72,7 @@ html[data-theme="dark"] {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   cursor: pointer; min-width: 92px;
   border: 1px solid rgba(255,255,255,.06);
+  transition: border-color .3s, box-shadow .3s, transform .3s;
 }
 .exam-dday-label {
   font-size: 9.5px; font-weight: 600; color: rgba(234,238,247,.62);
@@ -82,6 +83,50 @@ html[data-theme="dark"] {
   font-family: var(--exam-serif);
   font-size: 24px; font-weight: 700; color: #F4F0EA;
   line-height: 1.05; letter-spacing: .01em;
+  transition: color .3s;
+}
+
+/* ── 점증형 D-day — 멀면 잔잔(far), 임박할수록 골드로 또렷 ── */
+/* far: 기본 차분 네이비 (위 기본값 그대로) */
+
+/* near (~30일): 골드 테두리가 살짝 깨어남 */
+.exam-dday-block[data-dday-tier="near"] {
+  border-color: rgba(197,160,89,.45);
+}
+.exam-dday-block[data-dday-tier="near"] .exam-dday-num { color: #EAD9B0; }
+
+/* close (~7일): 골드 테두리 또렷 + 은은한 글로우 + 라벨 골드 */
+.exam-dday-block[data-dday-tier="close"] {
+  border-color: #C5A059;
+  box-shadow: 0 0 0 1px rgba(197,160,89,.35), 0 4px 16px rgba(197,160,89,.22);
+}
+.exam-dday-block[data-dday-tier="close"] .exam-dday-label { color: rgba(197,160,89,.9); }
+.exam-dday-block[data-dday-tier="close"] .exam-dday-num   { color: #E8C97E; }
+
+/* dday (당일): 골드로 가득 — 긴장 최고조, 잔잔한 맥동 */
+.exam-dday-block[data-dday-tier="dday"] {
+  background: linear-gradient(160deg, #2A2410, var(--exam-ink-strong));
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 1px rgba(212,175,55,.5), 0 6px 22px rgba(212,175,55,.3);
+  animation: examDdayPulse 2.4s ease-in-out infinite;
+}
+.exam-dday-block[data-dday-tier="dday"] .exam-dday-label { color: #E8C97E; }
+.exam-dday-block[data-dday-tier="dday"] .exam-dday-num   { color: #F2D98A; }
+
+/* past (시험 지남): 차분히 가라앉힘 */
+.exam-dday-block[data-dday-tier="past"] {
+  background: var(--exam-ink-soft);
+  border-color: var(--exam-ink-border);
+}
+.exam-dday-block[data-dday-tier="past"] .exam-dday-label { color: var(--text-3); }
+.exam-dday-block[data-dday-tier="past"] .exam-dday-num   { color: var(--text-2); }
+
+@keyframes examDdayPulse {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(212,175,55,.5),  0 6px 22px rgba(212,175,55,.28); }
+  50%      { box-shadow: 0 0 0 1px rgba(212,175,55,.75), 0 6px 26px rgba(212,175,55,.5); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .exam-dday-block[data-dday-tier="dday"] { animation: none; }
 }
 .exam-today-stats {
   flex: 1; display: flex; flex-direction: column; gap: 6px;

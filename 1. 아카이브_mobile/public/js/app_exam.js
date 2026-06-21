@@ -33,18 +33,31 @@ const ExamMob = {
   ══════════════════════════════════════════ */
   async _loadDday() {
     try {
-      const data = await fetchJSON('/api/exam/settings');
+      const data  = await fetchJSON('/api/exam/settings');
       const label = el('examDdayLabel');
       const num   = el('examDdayNum');
+      const block = el('examDdayBlock') || document.querySelector('.exam-dday-block');
       if (!data?.examDate) {
         if (label) label.textContent = '시험까지';
         if (num)   num.textContent   = 'D-?';
+        if (block) block.dataset.ddayTier = 'far';
         return;
       }
       const diff = Math.ceil((new Date(data.examDate) - new Date()) / 86400000);
       if (label) label.textContent = data.examName || '시험까지';
       if (num)   num.textContent   = diff > 0 ? `D-${diff}` : (diff === 0 ? 'D-DAY' : `D+${Math.abs(diff)}`);
+      /* 점증형 D-day — 멀면 잔잔, 임박할수록 또렷 */
+      if (block) block.dataset.ddayTier = this._ddayTier(diff);
     } catch {}
+  },
+
+  /* ── D-day 임박도 단계 (CSS에서 강조 강도 결정) ── */
+  _ddayTier(diff) {
+    if (diff < 0)   return 'past';   // 시험 지남
+    if (diff === 0) return 'dday';   // 당일
+    if (diff <= 7)  return 'close';  // 1주 이내 — 가장 또렷
+    if (diff <= 30) return 'near';   // 한 달 이내 — 살짝 긴장
+    return 'far';                    // 그 이상 — 차분
   },
 
   /* ══════════════════════════════════════════

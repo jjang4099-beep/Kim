@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
   <link rel="stylesheet" href="css/style_mobile.css?v=74"/>
-  <link rel="stylesheet" href="css/exam.css?v=3"/>
+  <link rel="stylesheet" href="css/exam.css?v=4"/>
 </head>
 <body>
 
@@ -111,7 +111,7 @@
 
     <!-- 수험생 모드 D-day 헤더 (exam 모드에서만 표시) -->
     <div class="exam-home-header" id="examHomeHeader" hidden>
-      <div class="exam-dday-block" onclick="ExamMob.openExamSettings()">
+      <div class="exam-dday-block" id="examDdayBlock" data-dday-tier="far" onclick="ExamMob.openExamSettings()">
         <span class="exam-dday-label" id="examDdayLabel">시험까지</span>
         <span class="exam-dday-num" id="examDdayNum">D-?</span>
       </div>
@@ -813,7 +813,7 @@
 <script src="js/library.js?v=5"></script>
 <script src="js/manage.js?v=5"></script>
 <script src="js/add.js?v=2"></script>
-<script src="js/app_exam.js?v=3"></script>
+<script src="js/app_exam.js?v=4"></script>
 <script src="js/pwa.js?v=1"></script>
 <script>
 (function() {

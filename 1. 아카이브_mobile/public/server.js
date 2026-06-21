@@ -4124,14 +4124,16 @@ app.post('/api/analyze-image', upload.single('image'), async (req, res) => {
       console.warn('[이미지분석] GEMINI_API_KEY 미설정 — 목업 반환');
       analysisResult = generateMockImageAnalysis(fileName, userHint);
     } else if (examMode) {
-      /* 수험생 오답 분석 프롬프트 */
-      const rawText = await callGeminiWithImageExam(imageBuffer, mimeType, examSubject);
+      /* 수험생 오답 분석 프롬프트 (과외 선생님) */
+      const rawText = await callGeminiWithImageExam(imageBuffer, mimeType, examSubject, userHint);
       const cleaned = rawText.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
       const parsed  = safeParseJSON(cleaned);
-      analysisResult = parsed && parsed.unit ? parsed : {
+      analysisResult = parsed && (parsed.unit || parsed.problemSummary) ? parsed : {
         title: `[${EXAM_SUBJECTS[examSubject] || examSubject}] 오답 분석`,
-        unit: '단원 미분류', whyWrong: rawText.slice(0, 200),
-        keyConceptName: '', keyConceptExplain: '', concepts: [], solvingTip: ''
+        unit: '단원 미분류', problemSummary: rawText.slice(0, 200),
+        requiredConcepts: [], hasSolution: false,
+        solutionReview: { errorStep: '', diagnosis: '', fix: '' },
+        modelSteps: [], whatToReinforce: '', relatedConcepts: []
       };
     } else {
       const rawText = await callGeminiWithImage(imageBuffer, mimeType, userHint);
@@ -4149,20 +4151,24 @@ app.post('/api/analyze-image', upload.single('image'), async (req, res) => {
     let newItem;
 
     if (examMode) {
-      /* 수험생 오답 아이템 구조 */
+      /* 수험생 오답 아이템 구조 — 과외 선생님 분석 */
+      const reqConcepts = Array.isArray(analysisResult.requiredConcepts) ? analysisResult.requiredConcepts : [];
+      const review      = analysisResult.solutionReview || { errorStep: '', diagnosis: '', fix: '' };
+      const related     = Array.isArray(analysisResult.relatedConcepts) ? analysisResult.relatedConcepts : [];
+      const firstConcept = reqConcepts[0] || {};
       newItem = {
         id:        uuidv4(),
         type:      'wrong_answer',
         domain:    'exam',
         category:  'exam',
         title:     analysisResult.title || `[${EXAM_SUBJECTS[examSubject]}] 오답`,
-        text:      analysisResult.whyWrong || '',
-        summary:   analysisResult.whyWrong || '',
+        text:      analysisResult.problemSummary || '',
+        summary:   analysisResult.problemSummary || '',
         mode:      MODE_EXAM,
         imageUrl,
         thumbnailUrl: imageUrl,
         userHint,
-        keywords:  analysisResult.concepts || [],
+        keywords:  related,
         classifier: 'gemini-exam',
         source:    'image-upload',
         date:      toDateStr(now),
@@ -4174,11 +4180,21 @@ app.post('/api/analyze-image', upload.single('image'), async (req, res) => {
           subject:          examSubject,
           subjectName:      EXAM_SUBJECTS[examSubject] || examSubject,
           unit:             analysisResult.unit || '단원 미분류',
-          whyWrong:         analysisResult.whyWrong || '',
-          keyConceptName:   analysisResult.keyConceptName || '',
-          keyConceptExplain:analysisResult.keyConceptExplain || '',
-          concepts:         analysisResult.concepts || [],
-          solvingTip:       analysisResult.solvingTip || '',
+          /* ── 과외 선생님 분석(신규) ── */
+          problemSummary:   analysisResult.problemSummary || '',
+          requiredConcepts: reqConcepts,
+          hasSolution:      !!analysisResult.hasSolution,
+          solutionReview:   { errorStep: review.errorStep || '', diagnosis: review.diagnosis || '', fix: review.fix || '' },
+          modelSteps:       Array.isArray(analysisResult.modelSteps) ? analysisResult.modelSteps : [],
+          whatToReinforce:  analysisResult.whatToReinforce || '',
+          relatedConcepts:  related,
+          /* ── 레거시 호환(구 카드/약점분석이 참조) ── */
+          whyWrong:         review.diagnosis || analysisResult.problemSummary || '',
+          keyConceptName:   firstConcept.term || '',
+          keyConceptExplain:firstConcept.desc || '',
+          concepts:         related,
+          solvingTip:       analysisResult.whatToReinforce || '',
+          /* ── 복습 스케줄 ── */
           reviewStatus:     'pending',
           reviewCount:      0,
           reviewEase:       2.5,
@@ -4377,28 +4393,53 @@ const LECTURE_CHANNELS = {
   cert:    ['에듀윌', '해커스'],
 };
 
-/* 수험생 오답 분석용 Gemini 프롬프트 */
-async function callGeminiWithImageExam(imageBuffer, mimeType, subject = 'math') {
+/* 수험생 오답 분석용 Gemini 프롬프트 — 1:1 과외 선생님 톤 */
+async function callGeminiWithImageExam(imageBuffer, mimeType, subject = 'math', userHint = '') {
   const { GoogleGenerativeAI } = require('@google/generative-ai');
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
   const model = genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL || 'gemini-1.5-flash' });
   const subjectName = EXAM_SUBJECTS[subject] || '수학';
 
-  const prompt = `당신은 수험생 전문 튜터입니다. 이 문제 사진을 분석해주세요.
-과목: ${subjectName}
+  const hintSection = userHint
+    ? `\n\n[학생이 남긴 메모]\n"${userHint}"\n이 메모를 최우선으로 반영해서 짚어주세요.`
+    : '';
+
+  const prompt = `당신은 ${subjectName}을(를) 가르치는 다정하지만 정확한 1:1 과외 선생님입니다.
+학생이 문제 사진을 보냈습니다. 사진에는 (1) 문제만 있을 수도 있고, (2) 문제 + 학생이 직접 푼 풀이과정이 함께 있을 수도 있습니다.
+
+먼저 사진을 꼼꼼히 보고 판단하세요:
+- 학생이 손으로 쓴 풀이/계산/답이 보이면 → 그 풀이를 채점하듯 읽고, 정확히 어느 단계에서 어긋났는지 짚어주세요.
+- 문제만 있으면 → 이 문제를 풀려면 무엇을 알아야 하는지에 집중하세요.
+
+설명은 학생이 "아, 그래서 그렇구나" 하고 이해할 만큼 충분히 자세히, 그러나 군더더기 없이 적으세요.${hintSection}
 
 반드시 아래 JSON 형식으로만 출력하세요 (마크다운 코드블록 없이 순수 JSON):
 {
-  "unit": "단원명 (예: 수열 > 등차수열의 합)",
-  "whyWrong": "틀린 이유 추정 (2~3문장)",
-  "keyConceptName": "핵심 개념명",
-  "keyConceptExplain": "핵심 개념 설명 (3~5문장)",
-  "concepts": ["연관개념1", "연관개념2", "연관개념3"],
-  "solvingTip": "비슷한 문제 풀이 팁 (1~2문장)",
-  "title": "카드 제목 (예: [${subjectName}] 등차수열의 합 오답)"
-}`;
+  "title": "카드 제목 (예: [${subjectName}] 등차수열의 합)",
+  "unit": "대단원 > 소단원 (예: 수열 > 등차수열의 합)",
+  "problemSummary": "이 문제가 무엇을 묻고 있는지 학생 말로 1~2문장 요약",
+  "requiredConcepts": [
+    {"term": "이 문제를 풀려면 반드시 알아야 할 개념명", "desc": "그 개념이 무엇이고 이 문제에서 어떻게 쓰이는지 3~4문장으로 충분히 설명"},
+    {"term": "개념2", "desc": "설명"}
+  ],
+  "hasSolution": true,
+  "solutionReview": {
+    "errorStep": "학생 풀이에서 어긋난 지점을 콕 집어서 (풀이가 없으면 빈 문자열)",
+    "diagnosis": "왜 그렇게 틀렸는지 원인 진단 — 개념 오해인지 계산 실수인지 (풀이가 없으면 빈 문자열)",
+    "fix": "그 부분을 어떻게 바로잡아야 하는지 (풀이가 없으면 빈 문자열)"
+  },
+  "modelSteps": [
+    "1. 모범 풀이 첫 단계",
+    "2. 둘째 단계",
+    "3. 셋째 단계 (정답까지)"
+  ],
+  "whatToReinforce": "과외쌤의 첨언 — 다음에 같은 유형에서 실수하지 않으려면 무엇을 보완해야 하는지 2~3문장, 따뜻하지만 구체적으로",
+  "relatedConcepts": ["연관개념1", "연관개념2", "연관개념3"]
+}
 
-  const timeoutP = new Promise((_, rej) => setTimeout(() => rej(new Error('Gemini 타임아웃')), 25000));
+주의: hasSolution은 사진에 학생 풀이가 실제로 보일 때만 true. 풀이가 없으면 false로 두고 solutionReview의 세 값은 모두 빈 문자열로 두세요.`;
+
+  const timeoutP = new Promise((_, rej) => setTimeout(() => rej(new Error('Gemini 타임아웃')), 30000));
   const result = await Promise.race([
     model.generateContent({
       contents: [{
@@ -4408,7 +4449,7 @@ async function callGeminiWithImageExam(imageBuffer, mimeType, subject = 'math') 
           { text: prompt }
         ]
       }],
-      generationConfig: { maxOutputTokens: 1500, temperature: 0.4 }
+      generationConfig: { maxOutputTokens: 2600, temperature: 0.35 }
     }),
     timeoutP
   ]);

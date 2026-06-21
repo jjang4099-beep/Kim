@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
   <link rel="stylesheet" href="css/style_mobile.css?v=74"/>
-  <link rel="stylesheet" href="css/exam.css?v=2"/>
+  <link rel="stylesheet" href="css/exam.css?v=3"/>
 </head>
 <body>
 
@@ -679,13 +679,14 @@
       <div class="mob-exam-subject-row" id="examSubjectRow" hidden>
         <span class="mob-exam-subject-label"><i class="ti ti-school"></i> 과목 선택</span>
         <div class="mob-exam-subject-chips">
-          <button class="mob-subj-chip active" data-subj="math"    onclick="ExamMob.setSubject('math',this)">📐 수학</button>
-          <button class="mob-subj-chip"        data-subj="korean"  onclick="ExamMob.setSubject('korean',this)">📖 국어</button>
-          <button class="mob-subj-chip"        data-subj="english" onclick="ExamMob.setSubject('english',this)">🗽 영어</button>
-          <button class="mob-subj-chip"        data-subj="history" onclick="ExamMob.setSubject('history',this)">🏛️ 한국사</button>
-          <button class="mob-subj-chip"        data-subj="science" onclick="ExamMob.setSubject('science',this)">🔬 탐구</button>
-          <button class="mob-subj-chip"        data-subj="cert"    onclick="ExamMob.setSubject('cert',this)">📋 자격증</button>
+          <button class="mob-subj-chip active" data-subj="math"    onclick="ExamMob.setSubject('math',this)">수학</button>
+          <button class="mob-subj-chip"        data-subj="korean"  onclick="ExamMob.setSubject('korean',this)">국어</button>
+          <button class="mob-subj-chip"        data-subj="english" onclick="ExamMob.setSubject('english',this)">영어</button>
+          <button class="mob-subj-chip"        data-subj="history" onclick="ExamMob.setSubject('history',this)">한국사</button>
+          <button class="mob-subj-chip"        data-subj="science" onclick="ExamMob.setSubject('science',this)">탐구</button>
+          <button class="mob-subj-chip"        data-subj="cert"    onclick="ExamMob.setSubject('cert',this)">자격증</button>
         </div>
+        <p class="mob-exam-subject-hint">문제와 <b>내 풀이</b>를 함께 찍으면, 어디서 어긋났는지 선생님처럼 짚어드려요.</p>
       </div>
 
       <div class="mob-img-pick-area" id="mobImgPickArea" onclick="el('mobImageInput').click()">
@@ -812,7 +813,7 @@
 <script src="js/library.js?v=5"></script>
 <script src="js/manage.js?v=5"></script>
 <script src="js/add.js?v=2"></script>
-<script src="js/app_exam.js?v=2"></script>
+<script src="js/app_exam.js?v=3"></script>
 <script src="js/pwa.js?v=1"></script>
 <script>
 (function() {

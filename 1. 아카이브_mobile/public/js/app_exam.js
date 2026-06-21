@@ -4,14 +4,14 @@
  */
 'use strict';
 
-/* ── 과목 레이블 맵 ── */
+/* ── 과목 레이블 맵 (이모지 없음 · 학구적 톤) ── */
 const EXAM_SUBJECTS_CLIENT = {
-  math:    { label: '수학',   icon: '📐', color: '#4f46e5' },
-  korean:  { label: '국어',   icon: '📖', color: '#dc2626' },
-  english: { label: '영어',   icon: '🗽', color: '#2563eb' },
-  history: { label: '한국사', icon: '🏛️', color: '#92400e' },
-  science: { label: '탐구',   icon: '🔬', color: '#06b6d4' },
-  cert:    { label: '자격증', icon: '📋', color: '#7c3aed' },
+  math:    { label: '수학',   code: 'MATH' },
+  korean:  { label: '국어',   code: 'KOR'  },
+  english: { label: '영어',   code: 'ENG'  },
+  history: { label: '한국사', code: 'HIST' },
+  science: { label: '탐구',   code: 'SCI'  },
+  cert:    { label: '자격증', code: 'CERT' },
 };
 
 const ExamMob = {
@@ -155,29 +155,36 @@ const ExamMob = {
     } catch { container.innerHTML = '<div class="mvw-empty">불러오기 실패</div>'; }
   },
 
-  /* ── 오답 카드 HTML ── */
+  /* ── 오답 카드 HTML (Archive Row · 학구적) ── */
   _renderWrongCard(item) {
     const w = item.wrongAnswer || {};
     const statusMap = {
-      pending:   { label: '미복습', color: '#ef4444' },
-      reviewing: { label: '복습중', color: '#f59e0b' },
-      done:      { label: '완료',   color: '#22c55e' },
+      pending:   { label: '미복습', cls: 'pending'   },
+      reviewing: { label: '복습중', cls: 'reviewing' },
+      done:      { label: '완료',   cls: 'done'      },
     };
-    const s    = statusMap[w.reviewStatus || 'pending'];
-    const subj = EXAM_SUBJECTS_CLIENT[w.subject] || { label: w.subject || '기타', icon: '📝', color: '#6b7280' };
+    const s       = statusMap[w.reviewStatus || 'pending'];
+    const subj    = EXAM_SUBJECTS_CLIENT[w.subject] || { label: w.subject || '기타', code: 'ETC' };
+    const concept = (w.requiredConcepts?.[0]?.term) || w.keyConceptName || '';
     const nextReview = w.reviewAt
-      ? `<div class="mvw-wrong-next-review"><i class="ti ti-calendar"></i> 다음 복습: ${fmt(w.reviewAt)}</div>`
+      ? `<div class="mvw-wrong-next-review">다음 복습 · ${fmt(w.reviewAt)}</div>`
       : '';
     return `
-    <div class="mvw-wrong-card" onclick="ExamMob.openWrongDetail('${item.id}')">
-      <div class="mvw-wrong-card-top">
-        <span class="mvw-wrong-subj-badge">${subj.icon} ${subj.label}</span>
-        <span class="mvw-wrong-status" style="color:${s.color}">${s.label}</span>
+    <button class="mvw-wrong-card" onclick="ExamMob.openWrongDetail('${item.id}')">
+      <div class="mvw-wrong-pillar">
+        <span class="mvw-wrong-code">${subj.code}</span>
+        <span class="mvw-wrong-rule"></span>
       </div>
-      <div class="mvw-wrong-unit">${w.unit || '단원 미분류'}</div>
-      ${w.keyConceptName ? `<div class="mvw-wrong-concept">${w.keyConceptName}</div>` : ''}
-      ${nextReview}
-    </div>`;
+      <div class="mvw-wrong-content">
+        <div class="mvw-wrong-card-top">
+          <span class="mvw-wrong-subj">${subj.label}</span>
+          <span class="mvw-wrong-status ${s.cls}">${s.label}</span>
+        </div>
+        <div class="mvw-wrong-unit">${w.unit || '단원 미분류'}</div>
+        ${concept ? `<div class="mvw-wrong-concept">${concept}</div>` : ''}
+        ${nextReview}
+      </div>
+    </button>`;
   },
 
   /* ══════════════════════════════════════════
@@ -189,84 +196,131 @@ const ExamMob = {
     const item  = items.find(i => i.id === id);
     if (!item) return;
     const w    = item.wrongAnswer || {};
-    const subj = EXAM_SUBJECTS_CLIENT[w.subject] || { label: w.subject || '기타', icon: '📝' };
+    const subj = EXAM_SUBJECTS_CLIENT[w.subject] || { label: w.subject || '기타', code: 'ETC' };
 
-    const conceptTags = (w.concepts || [])
-      .map(c => `<button class="mvw-wrong-concept-tag" onclick="ExamMob._searchConcept('${c}')">${c}</button>`)
-      .join('');
-
-    const imgHtml = item.imageUrl
-      ? `<img src="${item.imageUrl}" style="width:100%;border-radius:10px;margin-bottom:8px" alt="문제 사진"/>`
-      : '';
-
-    const body = el('examWrongBody');
+    const body  = el('examWrongBody');
     const badge = el('examWrongBadge');
-    if (badge) badge.textContent = `${subj.icon} ${subj.label}`;
+    if (badge) badge.textContent = subj.label;
 
-    if (body) body.innerHTML = `
-      ${imgHtml}
+    if (body) body.innerHTML = this._renderTutorReport(item, w, id);
 
-      <div class="mvw-wrong-detail-section">
-        <div class="mvw-wrong-detail-section-title">📌 단원</div>
-        <div class="mvw-wrong-detail-unit">${w.unit || '단원 미분류'}</div>
-      </div>
-
-      ${w.whyWrong ? `<div class="mvw-wrong-detail-section">
-        <div class="mvw-wrong-detail-section-title">❌ 틀린 이유</div>
-        <div class="mvw-wrong-detail-text">${w.whyWrong}</div>
-      </div>` : ''}
-
-      ${w.keyConceptName ? `<div class="mvw-wrong-detail-section">
-        <div class="mvw-wrong-detail-section-title">💡 핵심 개념 — ${w.keyConceptName}</div>
-        <div class="mvw-wrong-detail-text">${w.keyConceptExplain || ''}</div>
-      </div>` : ''}
-
-      ${conceptTags ? `<div class="mvw-wrong-detail-section">
-        <div class="mvw-wrong-detail-section-title">🔗 연관 개념</div>
-        <div class="mvw-wrong-concept-tags">${conceptTags}</div>
-      </div>` : ''}
-
-      ${w.solvingTip ? `<div class="mvw-wrong-detail-section">
-        <div class="mvw-wrong-detail-section-title">📝 풀이 팁</div>
-        <div class="mvw-wrong-detail-text">${w.solvingTip}</div>
-      </div>` : ''}
-
-      <div class="mvw-wrong-detail-section" id="wrongDetailLecture">
-        <div class="mvw-wrong-detail-section-title">🎥 추천 강의</div>
-        <div id="wrongLectureLinks"><div class="mob-loading"><span class="mob-spin"></span></div></div>
-      </div>
-
-      <div class="mvw-wrong-detail-section">
-        <div class="mvw-wrong-detail-section-title">📓 나의 메모</div>
-        <textarea class="mvw-wrong-memo-textarea" id="wrongMemoInput"
-          placeholder="이 문제에 대한 메모를 남겨보세요…">${w.memo || ''}</textarea>
-        <button onclick="ExamMob._saveMemo('${id}')"
-          style="margin-top:8px;padding:8px 16px;border-radius:8px;border:none;background:#4f46e5;color:#fff;font-size:13px;font-weight:700;cursor:pointer">
-          메모 저장
-        </button>
-      </div>
-
-      <div class="mvw-wrong-detail-section">
-        <div class="mvw-wrong-detail-section-title">오늘 이 개념, 어때요?</div>
-        <div class="mvw-review-eval-row">
-          <button class="mvw-review-eval-btn" onclick="ExamMob._reviewWrong('${id}',1)">
-            <span style="font-size:22px">😰</span> 몰라요
-          </button>
-          <button class="mvw-review-eval-btn" onclick="ExamMob._reviewWrong('${id}',3)">
-            <span style="font-size:22px">🙂</span> 헷갈려요
-          </button>
-          <button class="mvw-review-eval-btn" onclick="ExamMob._reviewWrong('${id}',5)">
-            <span style="font-size:22px">😎</span> 알아요
-          </button>
-        </div>
-      </div>
-    `;
-
-    /* 강의 추천 비동기 로드 */
-    if (w.keyConceptName) this._loadLectureRecommend(w.keyConceptName, w.subject);
+    /* 강의 추천 비동기 로드 — 핵심 개념 기준 */
+    const lectureKey = (w.requiredConcepts?.[0]?.term) || w.keyConceptName;
+    if (lectureKey) this._loadLectureRecommend(lectureKey, w.subject);
 
     const modal = el('examWrongModal');
     if (modal) modal.hidden = false;
+  },
+
+  /* ── 과외 선생님 분석 리포트 렌더 (신규 구조 + 레거시 폴백) ── */
+  _renderTutorReport(item, w, id) {
+    const esc = (t) => String(t ?? '');
+
+    /* 1) 문제 사진 */
+    const imgHtml = item.imageUrl
+      ? `<img class="mvw-tutor-photo" src="${item.imageUrl}" alt="문제 사진"/>`
+      : '';
+
+    /* 2) 단원 + 문제 요약 */
+    const headerHtml = `
+      <div class="mvw-tutor-head">
+        <div class="mvw-tutor-unit">${esc(w.unit) || '단원 미분류'}</div>
+        ${w.problemSummary ? `<div class="mvw-tutor-problem">${esc(w.problemSummary)}</div>` : ''}
+      </div>`;
+
+    /* 3) 필수 개념 — 자세한 설명 (신규: requiredConcepts / 레거시: keyConcept) */
+    const reqConcepts = Array.isArray(w.requiredConcepts) ? w.requiredConcepts : [];
+    let conceptsHtml = '';
+    if (reqConcepts.length) {
+      conceptsHtml = `
+      <section class="mvw-tutor-sec">
+        <div class="mvw-tutor-sec-hd">이 문제를 풀려면</div>
+        ${reqConcepts.map(c => `
+          <div class="mvw-tutor-concept">
+            <div class="mvw-tutor-concept-term">${esc(c.term)}</div>
+            <div class="mvw-tutor-concept-desc">${esc(c.desc)}</div>
+          </div>`).join('')}
+      </section>`;
+    } else if (w.keyConceptName) {
+      conceptsHtml = `
+      <section class="mvw-tutor-sec">
+        <div class="mvw-tutor-sec-hd">핵심 개념</div>
+        <div class="mvw-tutor-concept">
+          <div class="mvw-tutor-concept-term">${esc(w.keyConceptName)}</div>
+          <div class="mvw-tutor-concept-desc">${esc(w.keyConceptExplain)}</div>
+        </div>
+      </section>`;
+    }
+
+    /* 4) 내 풀이 첨삭 — 풀이가 사진에 있을 때만 */
+    const rv = w.solutionReview || {};
+    const hasReview = w.hasSolution && (rv.errorStep || rv.diagnosis || rv.fix);
+    const reviewHtml = hasReview ? `
+      <section class="mvw-tutor-sec mvw-tutor-review">
+        <div class="mvw-tutor-sec-hd accent">내 풀이 첨삭</div>
+        ${rv.errorStep ? `<div class="mvw-tutor-review-row"><span class="mvw-tutor-review-k">어긋난 지점</span><div class="mvw-tutor-review-v">${esc(rv.errorStep)}</div></div>` : ''}
+        ${rv.diagnosis ? `<div class="mvw-tutor-review-row"><span class="mvw-tutor-review-k">원인</span><div class="mvw-tutor-review-v">${esc(rv.diagnosis)}</div></div>` : ''}
+        ${rv.fix ? `<div class="mvw-tutor-review-row"><span class="mvw-tutor-review-k">고치는 법</span><div class="mvw-tutor-review-v">${esc(rv.fix)}</div></div>` : ''}
+      </section>` : '';
+
+    /* 5) 모범 풀이 단계 */
+    const steps = Array.isArray(w.modelSteps) ? w.modelSteps : [];
+    const stepsHtml = steps.length ? `
+      <section class="mvw-tutor-sec">
+        <div class="mvw-tutor-sec-hd">모범 풀이</div>
+        <ol class="mvw-tutor-steps">
+          ${steps.map(s => `<li>${esc(String(s).replace(/^\s*\d+[.)]\s*/, ''))}</li>`).join('')}
+        </ol>
+      </section>` : '';
+
+    /* 6) 과외쌤 첨언 — 보완점 */
+    const reinforce = w.whatToReinforce || (reqConcepts.length ? '' : w.solvingTip);
+    const reinforceHtml = reinforce ? `
+      <section class="mvw-tutor-coach">
+        <div class="mvw-tutor-coach-label">선생님 한마디</div>
+        <div class="mvw-tutor-coach-text">${esc(reinforce)}</div>
+      </section>` : '';
+
+    /* 7) 연관 개념 태그 */
+    const related = (Array.isArray(w.relatedConcepts) && w.relatedConcepts.length)
+      ? w.relatedConcepts : (w.concepts || []);
+    const tagsHtml = related.length ? `
+      <section class="mvw-tutor-sec">
+        <div class="mvw-tutor-sec-hd">연관 개념</div>
+        <div class="mvw-wrong-concept-tags">
+          ${related.map(c => `<button class="mvw-wrong-concept-tag" onclick="ExamMob._searchConcept('${esc(c)}')">${esc(c)}</button>`).join('')}
+        </div>
+      </section>` : '';
+
+    /* 8) 추천 강의 (비동기) */
+    const lectureHtml = `
+      <section class="mvw-tutor-sec" id="wrongDetailLecture">
+        <div class="mvw-tutor-sec-hd">추천 강의</div>
+        <div id="wrongLectureLinks"><div class="mob-loading"><span class="mob-spin"></span></div></div>
+      </section>`;
+
+    /* 9) 메모 */
+    const memoHtml = `
+      <section class="mvw-tutor-sec">
+        <div class="mvw-tutor-sec-hd">나의 메모</div>
+        <textarea class="mvw-wrong-memo-textarea" id="wrongMemoInput"
+          placeholder="이 문제에 대한 메모를 남겨보세요…">${esc(w.memo)}</textarea>
+        <button class="mvw-tutor-memo-save" onclick="ExamMob._saveMemo('${id}')">메모 저장</button>
+      </section>`;
+
+    /* 10) 복습 평가 */
+    const evalHtml = `
+      <section class="mvw-tutor-sec mvw-tutor-eval">
+        <div class="mvw-tutor-sec-hd">오늘 이 개념, 어때요?</div>
+        <div class="mvw-review-eval-row">
+          <button class="mvw-review-eval-btn" onclick="ExamMob._reviewWrong('${id}',1)">몰라요</button>
+          <button class="mvw-review-eval-btn" onclick="ExamMob._reviewWrong('${id}',3)">헷갈려요</button>
+          <button class="mvw-review-eval-btn" onclick="ExamMob._reviewWrong('${id}',5)">알아요</button>
+        </div>
+      </section>`;
+
+    return imgHtml + headerHtml + conceptsHtml + reviewHtml + stepsHtml
+         + reinforceHtml + tagsHtml + lectureHtml + memoHtml + evalHtml;
   },
 
   /* 오답 상세 모달 닫기 */
@@ -285,7 +339,7 @@ const ExamMob = {
       container.innerHTML = data.links.map(link => `
         <a class="mvw-lecture-card" href="${link.url}" target="_blank" rel="noopener"
            onclick="ExamMob._logLectureClick('${concept}','${subject}','${link.platform}','${link.url}')">
-          <span class="mvw-lecture-card-icon">${link.platform === 'YouTube' ? '📹' : '📚'}</span>
+          <span class="mvw-lecture-card-icon"><i class="ti ti-player-play"></i></span>
           <div class="mvw-lecture-card-body">
             <div class="mvw-lecture-card-title">${link.title}</div>
             <div class="mvw-lecture-card-platform">${link.platform}</div>
@@ -361,7 +415,7 @@ const ExamMob = {
     }
     container.innerHTML = data.topWeakness.map((w, i) => `
       <div class="mvw-weakness-item">
-        <span class="mvw-weakness-rank">${['🥇','🥈','🥉'][i]}</span>
+        <span class="mvw-weakness-rank">${i + 1}</span>
         <div class="mvw-weakness-body">
           <div class="mvw-weakness-name">${w.subjectName} · ${w.unit}</div>
           <div class="mvw-weakness-bar">
@@ -390,10 +444,10 @@ const ExamMob = {
     container.innerHTML = Object.entries(counts)
       .sort(([,a],[,b]) => b - a)
       .map(([subj, count]) => {
-        const info = EXAM_SUBJECTS_CLIENT[subj] || { label: subj, icon: '📝' };
+        const info = EXAM_SUBJECTS_CLIENT[subj] || { label: subj };
         const pct  = Math.round((count / total) * 100);
         return `<div class="mvw-exam-subject-bar-row">
-          <span class="mvw-exam-subject-bar-label">${info.icon} ${info.label}</span>
+          <span class="mvw-exam-subject-bar-label">${info.label}</span>
           <div class="mvw-exam-subject-bar-track">
             <div class="mvw-exam-subject-bar-fill" style="width:${pct}%"></div>
           </div>

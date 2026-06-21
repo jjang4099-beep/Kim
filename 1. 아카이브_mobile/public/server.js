@@ -4527,6 +4527,29 @@ app.post('/api/exam/daily-knowledge/save', (req, res) => {
           }))
         }
       };
+    } else if (kind === 'word') {
+      /* 단어 1개 단위 저장 — packId로 정확히 특정 */
+      const { packId } = req.body || {};
+      const w = packId
+        ? _sqlGet(`SELECT w.* FROM exam_vocab_words w
+                   JOIN exam_vocab_themes t ON w.theme_id = t.id
+                   WHERE t.pack_id = ? AND w.word_id = ? LIMIT 1`, [packId, id])
+        : _sqlGet('SELECT * FROM exam_vocab_words WHERE word_id = ? LIMIT 1', [id]);
+      if (!w) return res.status(404).json({ success: false, error: '단어를 찾을 수 없습니다.' });
+      const text = [`${w.word} (${w.pos}) — ${w.meaning}`, w.example_en, w.example_ko]
+        .filter(Boolean).join('\n');
+      item = {
+        id: `exw_${packId || 'x'}_${w.word_id}`, type: 'exam_word',
+        mode: MODE_EXAM, category: 'exam', domain: 'exam',
+        title: `${w.word} — ${w.meaning}`,
+        text, summary: w.meaning || '',
+        date, createdAt: now.toISOString(),
+        examWord: {
+          id: w.word_id, word: w.word, pos: w.pos, meaning: w.meaning,
+          exampleEn: w.example_en, exampleKo: w.example_ko,
+          csatRef: w.csat_ref, synonyms: w.synonyms, packId: packId || ''
+        }
+      };
     } else if (kind === 'history') {
       const h = _sqlGet('SELECT * FROM exam_history_items WHERE item_id = ?', [id]);
       if (!h) return res.status(404).json({ success: false, error: '한국사 항목을 찾을 수 없습니다.' });

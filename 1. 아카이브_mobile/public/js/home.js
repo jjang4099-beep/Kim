@@ -224,6 +224,8 @@ Object.assign(Mob, {
     /* ── 피드/수험 상태 먼저 확인 (빈 상태 판단에 필요) ── */
     const hasFeedPreview = state.feedItems && state.feedItems.length > 0;
     const ex = (this._modeEnum() === 'EXAM_PREP') ? state.examDaily : null;
+    /* 저장된 수험 지식 id 동기화 — 단어/팩/한국사 토글 상태가 새로고침 후에도 유지 */
+    if (ex) this._examSavedIds = new Set((state.items || []).map(i => i.id));
     const examCards = ex ? [ex.vocab ? 1 : 0, ex.history ? 1 : 0].reduce((a, b) => a + b, 0) : 0;
     const hasExamDaily = examCards > 0;
 
@@ -423,28 +425,38 @@ Object.assign(Mob, {
      수험생 모드 배달 카드 — 영어 단어 / 한국사
   ══════════════════════════════════════════ */
 
-  /** 오늘의 수능 영어 단어 팩 카드 */
+  /** 오늘의 수능 영어 단어 팩 카드 — 단어별 저장 토글 */
   _cardExamVocab(v) {
     if (!v || !v.words?.length) return '';
     const saved = this._examSavedIds?.has(`exv_${v.packId}`);
-    const words = v.words.map(w => `
-      <li class="mob-exv-word">
-        <div class="mob-exv-word-top">
-          <span class="mob-exv-term">${w.word}</span>
-          ${w.pos ? `<span class="mob-exv-pos">${w.pos}</span>` : ''}
+    const words = v.words.map(w => {
+      const wSaved = this._examSavedIds?.has(`exw_${v.packId}_${w.id}`);
+      return `
+      <li class="mob-exv-word${wSaved ? ' saved' : ''}">
+        <div class="mob-exv-word-main">
+          <div class="mob-exv-word-top">
+            <span class="mob-exv-term">${w.word}</span>
+            ${w.pos ? `<span class="mob-exv-pos">${w.pos}</span>` : ''}
+          </div>
+          <div class="mob-exv-mean">${w.meaning}</div>
+          ${w.exampleEn ? `<div class="mob-exv-ex">${w.exampleEn}${w.exampleKo ? `<span class="mob-exv-ex-ko">${w.exampleKo}</span>` : ''}</div>` : ''}
+          ${w.csatRef ? `<div class="mob-exv-ref"><i class="ti ti-bookmark"></i> ${w.csatRef}</div>` : ''}
         </div>
-        <div class="mob-exv-mean">${w.meaning}</div>
-        ${w.exampleEn ? `<div class="mob-exv-ex">${w.exampleEn}${w.exampleKo ? `<span class="mob-exv-ex-ko">${w.exampleKo}</span>` : ''}</div>` : ''}
-        ${w.csatRef ? `<div class="mob-exv-ref"><i class="ti ti-bookmark"></i> ${w.csatRef}</div>` : ''}
-      </li>`).join('');
+        <button class="mob-exv-save${wSaved ? ' saved' : ''}"
+          onclick="event.stopPropagation();Mob._toggleExamWord('${v.packId}','${w.id}',this)"
+          title="${wSaved ? '서재에서 빼기' : '서재에 저장'}" aria-pressed="${wSaved ? 'true' : 'false'}">
+          <i class="ti ti-${wSaved ? 'bookmark-filled' : 'bookmark'}"></i>
+        </button>
+      </li>`;
+    }).join('');
     return `
     <article class="mob-exam-card mob-exam-vocab">
       <div class="mob-exam-card-hd">
-        <span class="mob-exam-badge">🗽 수능 영단어</span>
+        <span class="mob-exam-badge">수능 영단어</span>
         <button class="mob-hum-save-btn${saved ? ' saved' : ''}"
           onclick="event.stopPropagation();Mob._saveExamKnowledge('vocab','${v.packId}',this)"
-          title="${saved ? '저장됨' : '서재에 저장'}" ${saved ? 'disabled' : ''}>
-          <i class="ti ti-${saved ? 'bookmark-filled' : 'bookmark'}"></i>
+          title="${saved ? '저장됨 (전체)' : '단어 전체 저장'}" ${saved ? 'disabled' : ''}>
+          <i class="ti ti-${saved ? 'bookmark-filled' : 'bookmarks'}"></i>
         </button>
       </div>
       <h3 class="mob-exam-title">${v.themeTitle}</h3>
@@ -460,7 +472,7 @@ Object.assign(Mob, {
     return `
     <article class="mob-exam-card mob-exam-history">
       <div class="mob-exam-card-hd">
-        <span class="mob-exam-badge hist">🏛️ 한국사${h.eraLabel ? ` · ${h.eraLabel}` : ''}</span>
+        <span class="mob-exam-badge hist">한국사${h.eraLabel ? ` · ${h.eraLabel}` : ''}</span>
         <button class="mob-hum-save-btn${saved ? ' saved' : ''}"
           onclick="event.stopPropagation();Mob._saveExamKnowledge('history','${h.id}',this)"
           title="${saved ? '저장됨' : '서재에 저장'}" ${saved ? 'disabled' : ''}>
@@ -469,8 +481,8 @@ Object.assign(Mob, {
       </div>
       <h3 class="mob-exam-title">${h.title}</h3>
       ${h.summary ? `<p class="mob-exam-summary">${h.summary}</p>` : ''}
-      ${h.keyPoint ? `<div class="mob-exam-keypoint"><b>📌 핵심</b> ${h.keyPoint}</div>` : ''}
-      ${h.examTip ? `<div class="mob-exam-tipbox"><b>💡 시험팁</b> ${h.examTip}</div>` : ''}
+      ${h.keyPoint ? `<div class="mob-exam-keypoint"><b>핵심</b> ${h.keyPoint}</div>` : ''}
+      ${h.examTip ? `<div class="mob-exam-tipbox"><b>시험팁</b> ${h.examTip}</div>` : ''}
     </article>`;
   },
 
@@ -497,6 +509,52 @@ Object.assign(Mob, {
     } catch {
       if (btn) { btn.disabled = false; btn.innerHTML = '<i class="ti ti-bookmark"></i>'; }
       toast('저장 실패', 'err');
+    }
+  },
+
+  /** 단어 1개 서재 저장/해제 토글 */
+  async _toggleExamWord(packId, wordId, btn) {
+    if (!btn || btn.dataset.busy === '1') return;
+    const itemId   = `exw_${packId}_${wordId}`;
+    const isSaved  = btn.classList.contains('saved');
+    const li       = btn.closest('.mob-exv-word');
+    btn.dataset.busy = '1';
+    const original = btn.innerHTML;
+    btn.innerHTML  = '<span class="mob-spin"></span>';
+    try {
+      if (isSaved) {
+        /* 해제 — 서재에서 제거 */
+        const data = await fetchJSON(`/api/items/${itemId}`, { method: 'DELETE' });
+        if (data.success === false) throw new Error(data.error || '');
+        this._examSavedIds?.delete(itemId);
+        btn.classList.remove('saved');
+        li?.classList.remove('saved');
+        btn.innerHTML = '<i class="ti ti-bookmark"></i>';
+        btn.title = '서재에 저장';
+        btn.setAttribute('aria-pressed', 'false');
+        toast('서재에서 뺐어요', 'ok');
+      } else {
+        /* 저장 */
+        const data = await fetchJSON('/api/exam/daily-knowledge/save', {
+          method : 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body   : JSON.stringify({ kind: 'word', id: wordId, packId })
+        });
+        if (!data.success) throw new Error(data.error || '');
+        (this._examSavedIds ||= new Set()).add(data.id || itemId);
+        btn.classList.add('saved');
+        li?.classList.add('saved');
+        btn.innerHTML = '<i class="ti ti-bookmark-filled"></i>';
+        btn.title = '서재에서 빼기';
+        btn.setAttribute('aria-pressed', 'true');
+        toast(data.alreadySaved ? '이미 저장된 단어예요' : '단어를 서재에 저장했어요', 'ok');
+      }
+      state.libraryLoaded = false;
+    } catch {
+      btn.innerHTML = original;
+      toast('처리 실패', 'err');
+    } finally {
+      btn.dataset.busy = '';
     }
   },
 

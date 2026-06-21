@@ -2575,17 +2575,41 @@ html[data-theme="dark"] .mob-section-hd.past .mob-section-badge {
   gap           : 10px;
 }
 .mob-exv-word {
+  display      : flex;
+  align-items  : flex-start;
+  gap          : 8px;
   padding      : 10px 12px;
   background   : var(--bg);
   border-radius: 8px;
+  transition   : background .2s, box-shadow .2s;
 }
+.mob-exv-word.saved {
+  background : var(--exam-ink-soft, #EAEEF7);
+  box-shadow : inset 2.5px 0 0 var(--exam-ink, #2A3C66);
+}
+.mob-exv-word-main { flex: 1; min-width: 0; }
 .mob-exv-word-top { display: flex; align-items: baseline; gap: 8px; }
-.mob-exv-term     { font-size: 15px; font-weight: 800; color: #2563eb; }
+.mob-exv-term     { font-size: 15px; font-weight: 800; color: var(--exam-ink, #2563eb); }
 .mob-exv-pos      { font-size: 11px; color: var(--text-2); }
 .mob-exv-mean     { font-size: 13px; font-weight: 600; color: var(--text-1); margin-top: 3px; }
 .mob-exv-ex       { font-size: 12px; color: var(--text-2); margin-top: 5px; line-height: 1.5; }
 .mob-exv-ex-ko    { display: block; color: var(--text-3); margin-top: 1px; }
 .mob-exv-ref      { font-size: 11px; color: var(--text-3); margin-top: 5px; display: flex; align-items: center; gap: 3px; }
+
+/* 단어별 서재 저장 토글 */
+.mob-exv-save {
+  flex-shrink: 0; width: 34px; height: 34px; border-radius: 8px;
+  border: 1.5px solid var(--border); background: var(--surface);
+  color: var(--text-3); font-size: 17px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: color .15s, border-color .15s, background .15s, transform .1s;
+}
+.mob-exv-save:active { transform: scale(.86); }
+.mob-exv-save.saved {
+  color: var(--exam-ink, #2A3C66);
+  border-color: var(--exam-ink, #2A3C66);
+  background: var(--exam-ink-soft, #EAEEF7);
+}
 
 /* 다크모드 — 블루/브라운 톤을 밝게 보정해 가독성 확보 */
 html[data-theme="dark"] .mob-exv-term,

@@ -4422,7 +4422,8 @@ async function callGeminiWithImageExam(imageBuffer, mimeType, subject = 'math', 
 - 문제만 있으면 → 이 문제를 풀려면 무엇을 알아야 하는지에 집중하세요.
 
 학생에게 보여줄 흐름은 반드시 [정답 → 풀이 과정 → 개념 설명] 순서입니다.
-설명은 학생이 "아, 그래서 그렇구나" 하고 이해할 만큼 충분히 자세히, 그러나 군더더기 없이 적으세요.${hintSection}
+설명은 학생이 "아, 그래서 그렇구나" 하고 이해할 만큼은 자세히, 그러나 핵심 위주로 간결하게 적으세요.
+전체 응답이 너무 길어지지 않도록 각 항목은 꼭 필요한 만큼만 쓰세요.${hintSection}
 
 [수식 표기 규칙 — 매우 중요]
 - 절대로 LaTeX나 역슬래시(\\)를 쓰지 마세요. (\\frac, \\sqrt, \\times 등 금지)
@@ -4441,8 +4442,8 @@ async function callGeminiWithImageExam(imageBuffer, mimeType, subject = 'math', 
     "3. 정답에 도달하는 마지막 단계"
   ],
   "requiredConcepts": [
-    {"term": "이 문제를 풀려면 반드시 알아야 할 개념명", "desc": "그 개념이 무엇이고 이 문제에서 어떻게 쓰이는지 3~4문장으로 충분히 설명"},
-    {"term": "개념2", "desc": "설명"}
+    {"term": "이 문제를 풀려면 반드시 알아야 할 개념명", "desc": "그 개념이 무엇이고 이 문제에서 어떻게 쓰이는지 2~3문장으로 설명"},
+    {"term": "개념2 (필요할 때만)", "desc": "설명"}
   ],
   "hasSolution": true,
   "solutionReview": {
@@ -4456,7 +4457,7 @@ async function callGeminiWithImageExam(imageBuffer, mimeType, subject = 'math', 
 
 주의: hasSolution은 사진에 학생 풀이가 실제로 보일 때만 true. 풀이가 없으면 false로 두고 solutionReview의 세 값은 모두 빈 문자열로 두세요.`;
 
-  const timeoutP = new Promise((_, rej) => setTimeout(() => rej(new Error('Gemini 타임아웃')), 30000));
+  const timeoutP = new Promise((_, rej) => setTimeout(() => rej(new Error('Gemini 타임아웃')), 45000));
   const result = await Promise.race([
     model.generateContent({
       contents: [{
@@ -4466,11 +4467,21 @@ async function callGeminiWithImageExam(imageBuffer, mimeType, subject = 'math', 
           { text: prompt }
         ]
       }],
-      generationConfig: { maxOutputTokens: 2600, temperature: 0.35 }
+      generationConfig: { maxOutputTokens: 4096, temperature: 0.35 }
     }),
     timeoutP
   ]);
-  return result.response.text();
+
+  /* finishReason 로깅 + 잘림(MAX_TOKENS) 시에도 부분 텍스트 안전 추출 */
+  const cand   = result?.response?.candidates?.[0];
+  const reason = cand?.finishReason;
+  if (reason && reason !== 'STOP') console.warn(`[이미지분석/exam] finishReason: ${reason}`);
+  let text = '';
+  try { text = result.response.text() || ''; } catch { /* MAX_TOKENS 등에서 throw 방지 */ }
+  if (!text && cand?.content?.parts?.length) {
+    text = cand.content.parts.map(p => p.text || '').join('');
+  }
+  return text;
 }
 
 /* ══════════════════════════════════════════════════

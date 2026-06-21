@@ -141,7 +141,7 @@ Object.assign(Mob, {
           <div class="swipe-layer-delete"><i class="ti ti-trash"></i><span>삭제</span></div>
           <div class="kmc-content">
             <div class="kmc-top">
-              <span class="kmc-badge">${cc.icon} ${cc.label}</span>
+              <span class="kmc-badge">${cc.label}</span>
               <i class="ti ti-chevron-down kmc-chev"></i>
             </div>
             <h3 class="kmc-title">${title}</h3>

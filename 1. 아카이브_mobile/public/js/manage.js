@@ -360,7 +360,7 @@ Object.assign(Mob, {
       if (!cats.length) { wrap.innerHTML = '<div style="font-size:13px;color:var(--text-2)">카테고리 없음</div>'; return; }
       wrap.innerHTML = cats.map(c =>
         `<span class="mvw-cat-chip-sm" style="border-color:${c.color};color:${c.color}">
-           ${c.emoji} ${c.name}
+           ${c.name}
          </span>`
       ).join('');
     } catch { wrap.innerHTML = '<div style="font-size:12px;color:var(--text-2)">불러오기 실패</div>'; }
@@ -390,7 +390,6 @@ Object.assign(Mob, {
       <div class="mvw-catmgr-list">
         ${cats.filter(c => c.is_default).map(c => `
           <div class="mvw-catmgr-item">
-            <span class="mvw-catmgr-emoji">${c.emoji}</span>
             <span class="mvw-catmgr-name">${c.name}</span>
             <span class="mvw-catmgr-modes">${
               c.modes === 'work' ? '<span class="mvw-catmgr-badge work">직장인</span>' :
@@ -404,7 +403,6 @@ Object.assign(Mob, {
       <div class="mvw-catmgr-list" id="customCatList">
         ${customCats.length ? customCats.map(c => `
           <div class="mvw-catmgr-item">
-            <span class="mvw-catmgr-emoji">${c.emoji}</span>
             <span class="mvw-catmgr-name">${c.name}</span>
             <button class="mvw-catmgr-del-btn" onclick="Mob._deleteCategory(${c.id},'${c.name}')">
               <i class="ti ti-trash"></i>
@@ -415,7 +413,6 @@ Object.assign(Mob, {
 
       <div class="mvw-catmgr-add-row">
         <input type="text" id="newCatName"    class="mvw-catmgr-input" placeholder="카테고리 이름"/>
-        <input type="text" id="newCatEmoji"   class="mvw-catmgr-input mvw-catmgr-emoji-input" placeholder="😊" maxlength="2"/>
         <button class="mvw-catmgr-add-btn" onclick="Mob._saveNewCategory()">
           <i class="ti ti-plus"></i> 추가
         </button>

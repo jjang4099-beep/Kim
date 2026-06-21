@@ -1235,8 +1235,16 @@ function safeParseJSON(text) {
     // 1차 시도: 그대로 파싱
     try { return JSON.parse(block); } catch {}
     // 2차 시도: 문자열 내 제어문자 이스케이프 후 파싱
-    return JSON.parse(fixJsonControlChars(block));
+    try { return JSON.parse(fixJsonControlChars(block)); } catch {}
+    // 3차 시도: 잘못된 역슬래시(LaTeX 등) 정리 후 파싱 — \frac, \sqrt 같은 무효 이스케이프 방어
+    return JSON.parse(fixJsonControlChars(sanitizeJsonBackslashes(block)));
   } catch { return null; }
+}
+
+/** JSON 문자열 안의 유효하지 않은 역슬래시를 제거/정규화 (모델이 LaTeX를 뱉을 때 파싱 깨짐 방지) */
+function sanitizeJsonBackslashes(str) {
+  // 유효한 JSON 이스케이프(\" \\ \/ \b \f \n \r \t \uXXXX)가 아닌 역슬래시는 한 칸 띄워 제거
+  return str.replace(/\\(?!["\\/bfnrtu])/g, '');
 }
 
 // ══════════════════════════════════════════════════
@@ -4128,10 +4136,11 @@ app.post('/api/analyze-image', upload.single('image'), async (req, res) => {
       const rawText = await callGeminiWithImageExam(imageBuffer, mimeType, examSubject, userHint);
       const cleaned = rawText.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
       const parsed  = safeParseJSON(cleaned);
-      analysisResult = parsed && (parsed.unit || parsed.problemSummary) ? parsed : {
-        title: `[${EXAM_SUBJECTS[examSubject] || examSubject}] 오답 분석`,
-        unit: '단원 미분류', problemSummary: rawText.slice(0, 200),
-        requiredConcepts: [], hasSolution: false,
+      analysisResult = parsed && (parsed.unit || parsed.problemSummary || parsed.answer) ? parsed : {
+        title: `[${EXAM_SUBJECTS[examSubject] || examSubject}] 문제 분석`,
+        unit: '단원 미분류',
+        problemSummary: '이미지를 분석했지만 형식을 정리하지 못했어요. 더 또렷한 사진으로 다시 시도해 주세요.',
+        answer: '', requiredConcepts: [], hasSolution: false,
         solutionReview: { errorStep: '', diagnosis: '', fix: '' },
         modelSteps: [], whatToReinforce: '', relatedConcepts: []
       };
@@ -4182,6 +4191,7 @@ app.post('/api/analyze-image', upload.single('image'), async (req, res) => {
           unit:             analysisResult.unit || '단원 미분류',
           /* ── 과외 선생님 분석(신규) ── */
           problemSummary:   analysisResult.problemSummary || '',
+          answer:           analysisResult.answer || '',
           requiredConcepts: reqConcepts,
           hasSolution:      !!analysisResult.hasSolution,
           solutionReview:   { errorStep: review.errorStep || '', diagnosis: review.diagnosis || '', fix: review.fix || '' },
@@ -4411,13 +4421,25 @@ async function callGeminiWithImageExam(imageBuffer, mimeType, subject = 'math', 
 - 학생이 손으로 쓴 풀이/계산/답이 보이면 → 그 풀이를 채점하듯 읽고, 정확히 어느 단계에서 어긋났는지 짚어주세요.
 - 문제만 있으면 → 이 문제를 풀려면 무엇을 알아야 하는지에 집중하세요.
 
+학생에게 보여줄 흐름은 반드시 [정답 → 풀이 과정 → 개념 설명] 순서입니다.
 설명은 학생이 "아, 그래서 그렇구나" 하고 이해할 만큼 충분히 자세히, 그러나 군더더기 없이 적으세요.${hintSection}
 
-반드시 아래 JSON 형식으로만 출력하세요 (마크다운 코드블록 없이 순수 JSON):
+[수식 표기 규칙 — 매우 중요]
+- 절대로 LaTeX나 역슬래시(\\)를 쓰지 마세요. (\\frac, \\sqrt, \\times 등 금지)
+- 수식은 사람이 읽는 평범한 텍스트로: 분수는 "3/2", 거듭제곱은 "x^2", 첨자는 "a_n", 루트는 "√2", 곱셈은 "×", 나눗셈은 "÷", 부등호는 "≤ ≥ ≠", 원주율은 "π" 처럼.
+- 부등호 < 와 > 는 꼭 필요할 때만 쓰고, 가능하면 "이하/이상/미만/초과" 같은 한국어로 풀어 쓰세요.
+
+반드시 아래 JSON 형식으로만 출력하세요 (마크다운 코드블록 없이 순수 JSON, 모든 문자열에 역슬래시 금지):
 {
   "title": "카드 제목 (예: [${subjectName}] 등차수열의 합)",
   "unit": "대단원 > 소단원 (예: 수열 > 등차수열의 합)",
   "problemSummary": "이 문제가 무엇을 묻고 있는지 학생 말로 1~2문장 요약",
+  "answer": "이 문제의 정답을 명확히 (예: 정답은 3번, 또는 42, 또는 x = 5). 객관식이면 번호와 값 모두.",
+  "modelSteps": [
+    "1. 풀이 과정 첫 단계 (왜 이렇게 하는지 한마디 포함)",
+    "2. 둘째 단계",
+    "3. 정답에 도달하는 마지막 단계"
+  ],
   "requiredConcepts": [
     {"term": "이 문제를 풀려면 반드시 알아야 할 개념명", "desc": "그 개념이 무엇이고 이 문제에서 어떻게 쓰이는지 3~4문장으로 충분히 설명"},
     {"term": "개념2", "desc": "설명"}
@@ -4428,11 +4450,6 @@ async function callGeminiWithImageExam(imageBuffer, mimeType, subject = 'math', 
     "diagnosis": "왜 그렇게 틀렸는지 원인 진단 — 개념 오해인지 계산 실수인지 (풀이가 없으면 빈 문자열)",
     "fix": "그 부분을 어떻게 바로잡아야 하는지 (풀이가 없으면 빈 문자열)"
   },
-  "modelSteps": [
-    "1. 모범 풀이 첫 단계",
-    "2. 둘째 단계",
-    "3. 셋째 단계 (정답까지)"
-  ],
   "whatToReinforce": "과외쌤의 첨언 — 다음에 같은 유형에서 실수하지 않으려면 무엇을 보완해야 하는지 2~3문장, 따뜻하지만 구체적으로",
   "relatedConcepts": ["연관개념1", "연관개념2", "연관개념3"]
 }

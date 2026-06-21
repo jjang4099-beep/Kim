@@ -217,21 +217,30 @@ const ExamMob = {
 
     if (body) body.innerHTML = this._renderTutorReport(item, w, id);
 
-    /* 강의 추천 비동기 로드 — 핵심 개념 기준 */
-    const lectureKey = (w.requiredConcepts?.[0]?.term) || w.keyConceptName;
-    if (lectureKey) this._loadLectureRecommend(lectureKey, w.subject);
-
     const modal = el('examWrongModal');
     if (modal) modal.hidden = false;
   },
 
-  /* ── 과외 선생님 분석 리포트 렌더 (신규 구조 + 레거시 폴백) ── */
+  /* ── HTML 이스케이프 (수식의 <, >, & 가 태그로 먹혀 깨지는 것 방지) ── */
+  _esc(t) {
+    return String(t ?? '')
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  },
+  /* 작은따옴표 onclick 인자용 — JS 문자열 안전 + HTML 안전 */
+  _jsArg(t) {
+    return String(t ?? '')
+      .replace(/\\/g, '\\\\').replace(/'/g, "\\'")
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  },
+
+  /* ── 과외 선생님 분석 리포트 렌더 (정답→풀이→개념 / 신규+레거시 폴백) ── */
   _renderTutorReport(item, w, id) {
-    const esc = (t) => String(t ?? '');
+    const esc = (t) => this._esc(t);
 
     /* 1) 문제 사진 */
     const imgHtml = item.imageUrl
-      ? `<img class="mvw-tutor-photo" src="${item.imageUrl}" alt="문제 사진"/>`
+      ? `<img class="mvw-tutor-photo" src="${this._esc(item.imageUrl)}" alt="문제 사진"/>`
       : '';
 
     /* 2) 단원 + 문제 요약 */
@@ -241,13 +250,30 @@ const ExamMob = {
         ${w.problemSummary ? `<div class="mvw-tutor-problem">${esc(w.problemSummary)}</div>` : ''}
       </div>`;
 
-    /* 3) 필수 개념 — 자세한 설명 (신규: requiredConcepts / 레거시: keyConcept) */
+    /* 3) 정답 — 가장 먼저, 또렷하게 */
+    const answerHtml = w.answer ? `
+      <section class="mvw-tutor-answer">
+        <span class="mvw-tutor-answer-label">정답</span>
+        <span class="mvw-tutor-answer-val">${esc(w.answer)}</span>
+      </section>` : '';
+
+    /* 4) 풀이 과정 — 단계별 */
+    const steps = Array.isArray(w.modelSteps) ? w.modelSteps : [];
+    const stepsHtml = steps.length ? `
+      <section class="mvw-tutor-sec">
+        <div class="mvw-tutor-sec-hd">풀이 과정</div>
+        <ol class="mvw-tutor-steps">
+          ${steps.map(s => `<li>${esc(String(s).replace(/^\s*\d+[.)]\s*/, ''))}</li>`).join('')}
+        </ol>
+      </section>` : '';
+
+    /* 5) 개념 설명 — 자세히 (신규: requiredConcepts / 레거시: keyConcept) */
     const reqConcepts = Array.isArray(w.requiredConcepts) ? w.requiredConcepts : [];
     let conceptsHtml = '';
     if (reqConcepts.length) {
       conceptsHtml = `
       <section class="mvw-tutor-sec">
-        <div class="mvw-tutor-sec-hd">이 문제를 풀려면</div>
+        <div class="mvw-tutor-sec-hd">개념 설명</div>
         ${reqConcepts.map(c => `
           <div class="mvw-tutor-concept">
             <div class="mvw-tutor-concept-term">${esc(c.term)}</div>
@@ -257,7 +283,7 @@ const ExamMob = {
     } else if (w.keyConceptName) {
       conceptsHtml = `
       <section class="mvw-tutor-sec">
-        <div class="mvw-tutor-sec-hd">핵심 개념</div>
+        <div class="mvw-tutor-sec-hd">개념 설명</div>
         <div class="mvw-tutor-concept">
           <div class="mvw-tutor-concept-term">${esc(w.keyConceptName)}</div>
           <div class="mvw-tutor-concept-desc">${esc(w.keyConceptExplain)}</div>
@@ -265,7 +291,7 @@ const ExamMob = {
       </section>`;
     }
 
-    /* 4) 내 풀이 첨삭 — 풀이가 사진에 있을 때만 */
+    /* 6) 내 풀이 첨삭 — 풀이가 사진에 있을 때만 */
     const rv = w.solutionReview || {};
     const hasReview = w.hasSolution && (rv.errorStep || rv.diagnosis || rv.fix);
     const reviewHtml = hasReview ? `
@@ -276,17 +302,7 @@ const ExamMob = {
         ${rv.fix ? `<div class="mvw-tutor-review-row"><span class="mvw-tutor-review-k">고치는 법</span><div class="mvw-tutor-review-v">${esc(rv.fix)}</div></div>` : ''}
       </section>` : '';
 
-    /* 5) 모범 풀이 단계 */
-    const steps = Array.isArray(w.modelSteps) ? w.modelSteps : [];
-    const stepsHtml = steps.length ? `
-      <section class="mvw-tutor-sec">
-        <div class="mvw-tutor-sec-hd">모범 풀이</div>
-        <ol class="mvw-tutor-steps">
-          ${steps.map(s => `<li>${esc(String(s).replace(/^\s*\d+[.)]\s*/, ''))}</li>`).join('')}
-        </ol>
-      </section>` : '';
-
-    /* 6) 과외쌤 첨언 — 보완점 */
+    /* 7) 과외쌤 첨언 — 보완점 */
     const reinforce = w.whatToReinforce || (reqConcepts.length ? '' : w.solvingTip);
     const reinforceHtml = reinforce ? `
       <section class="mvw-tutor-coach">
@@ -294,23 +310,16 @@ const ExamMob = {
         <div class="mvw-tutor-coach-text">${esc(reinforce)}</div>
       </section>` : '';
 
-    /* 7) 연관 개념 태그 */
+    /* 8) 연관 개념 태그 */
     const related = (Array.isArray(w.relatedConcepts) && w.relatedConcepts.length)
       ? w.relatedConcepts : (w.concepts || []);
     const tagsHtml = related.length ? `
       <section class="mvw-tutor-sec">
         <div class="mvw-tutor-sec-hd">연관 개념</div>
         <div class="mvw-wrong-concept-tags">
-          ${related.map(c => `<button class="mvw-wrong-concept-tag" onclick="ExamMob._searchConcept('${esc(c)}')">${esc(c)}</button>`).join('')}
+          ${related.map(c => `<button class="mvw-wrong-concept-tag" onclick="ExamMob._searchConcept('${this._jsArg(c)}')">${esc(c)}</button>`).join('')}
         </div>
       </section>` : '';
-
-    /* 8) 추천 강의 (비동기) */
-    const lectureHtml = `
-      <section class="mvw-tutor-sec" id="wrongDetailLecture">
-        <div class="mvw-tutor-sec-hd">추천 강의</div>
-        <div id="wrongLectureLinks"><div class="mob-loading"><span class="mob-spin"></span></div></div>
-      </section>`;
 
     /* 9) 메모 */
     const memoHtml = `
@@ -332,8 +341,9 @@ const ExamMob = {
         </div>
       </section>`;
 
-    return imgHtml + headerHtml + conceptsHtml + reviewHtml + stepsHtml
-         + reinforceHtml + tagsHtml + lectureHtml + memoHtml + evalHtml;
+    /* 순서: 사진 → 단원/문제 → 정답 → 풀이 과정 → 개념 설명 → 첨삭 → 보완점 → 연관개념 → 메모 → 평가 */
+    return imgHtml + headerHtml + answerHtml + stepsHtml + conceptsHtml
+         + reviewHtml + reinforceHtml + tagsHtml + memoHtml + evalHtml;
   },
 
   /* 오답 상세 모달 닫기 */

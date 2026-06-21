@@ -250,6 +250,23 @@ html[data-theme="dark"] {
   font-size: 14px; color: var(--text-2); line-height: 1.6; margin-top: 6px;
 }
 
+/* 정답 — 또렷한 잉크 박스 (가장 먼저) */
+.mvw-tutor-answer {
+  display: flex; align-items: center; gap: 12px;
+  margin: 14px 0 2px; padding: 14px 16px;
+  background: var(--exam-ink-strong); border-radius: 12px;
+}
+.mvw-tutor-answer-label {
+  flex-shrink: 0;
+  font-family: var(--exam-serif);
+  font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(234,238,247,.6);
+}
+.mvw-tutor-answer-val {
+  font-family: var(--exam-serif);
+  font-size: 18px; font-weight: 700; color: #F2D98A; line-height: 1.35;
+}
+
 /* 섹션 공통 */
 .mvw-tutor-sec { padding: 14px 0; border-bottom: 1px solid var(--border); }
 .mvw-tutor-sec:last-child { border-bottom: none; }

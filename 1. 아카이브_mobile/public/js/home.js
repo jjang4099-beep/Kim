@@ -391,22 +391,23 @@ Object.assign(Mob, {
   ───────────────────────────────────────────── */
   _cardFeedPreview(item) {
     const subId   = item.subId || '';
-    const chip    = FEED_CHIP_MAP[subId] || { icon: '📚', label: item.label || '지식', color: '#2563eb' };
+    const arch    = FEED_ARCHIVE_MAP?.[subId] || { code: '◆', full: item.label || '지식' };
     const title   = item.title   || item.label || '오늘의 지식';
     const summary = item.summary || '';
-    /* 영어/중국어는 표현 수도 표시 */
-    const extra = item.vocabEntries?.length
-      ? ` · ${item.vocabEntries.length}개 표현`
-      : '';
+    const extra   = item.vocabEntries?.length ? ` · ${item.vocabEntries.length} Entries` : '';
+    const snippet = summary.length > 62 ? summary.slice(0, 60) + '…' : summary;
 
     return `
     <button class="mob-feed-preview-card"
-            style="border-left-color:${chip.color}"
             onclick="event.stopPropagation();Mob._goToFeedFiltered('${subId}')">
-      <div class="mob-fpc-left">
-        <div class="mob-fpc-badge" style="color:${chip.color}">${chip.label}${extra}</div>
+      <div class="mob-fpc-pillar">
+        <span class="mob-fpc-code">${arch.code}</span>
+        <span class="mob-fpc-rule"></span>
+      </div>
+      <div class="mob-fpc-content">
+        <span class="mob-fpc-cat">${arch.full}${extra}</span>
         <div class="mob-fpc-title">${title}</div>
-        ${summary ? `<div class="mob-fpc-summary">${summary.slice(0, 55)}${summary.length > 55 ? '…' : ''}</div>` : ''}
+        ${snippet ? `<div class="mob-fpc-summary">${snippet}</div>` : ''}
       </div>
       <i class="ti ti-chevron-right mob-fpc-arrow"></i>
     </button>`;

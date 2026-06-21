@@ -112,6 +112,17 @@ const FEED_CHIP_MAP = {
   idiom_daily: { icon: '📜',  label: '고사성어',  color: '#c2410c' },
 };
 
+/* Archive Row 모노그램 맵 (subId → 약어 코드 + 영문 전칭) */
+const FEED_ARCHIVE_MAP = {
+  en_expr    : { code: 'EN',  full: 'English Expression' },
+  zh_expr    : { code: 'ZH',  full: 'Chinese Expression' },
+  us_market  : { code: 'MKT', full: 'Global Market'      },
+  kr_market  : { code: 'KRX', full: 'Korean Market'      },
+  hist_daily : { code: 'HIS', full: 'Historical Records'  },
+  quote_daily: { code: 'QUO', full: 'Quotation'           },
+  idiom_daily: { code: 'IDM', full: 'Classical Idiom'     },
+};
+
 /* ──────────────────────────────────────────────
    전역 상태 — 모든 앱 상태는 이 객체에만 저장
 ────────────────────────────────────────────── */

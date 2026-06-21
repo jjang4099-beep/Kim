@@ -404,7 +404,7 @@ Object.assign(Mob, {
             style="border-left-color:${chip.color}"
             onclick="event.stopPropagation();Mob._goToFeedFiltered('${subId}')">
       <div class="mob-fpc-left">
-        <div class="mob-fpc-badge" style="color:${chip.color}">${chip.icon} ${chip.label}${extra}</div>
+        <div class="mob-fpc-badge" style="color:${chip.color}">${chip.label}${extra}</div>
         <div class="mob-fpc-title">${title}</div>
         ${summary ? `<div class="mob-fpc-summary">${summary.slice(0, 55)}${summary.length > 55 ? '…' : ''}</div>` : ''}
       </div>
@@ -523,7 +523,7 @@ Object.assign(Mob, {
     return `
     <div class="mob-card mob-dlv-summary" data-id="${id}">
       <div class="mob-dls-top">
-        <span class="mob-dls-badge">${catIcon} ${this._catLabel(cat)}</span>
+        <span class="mob-dls-badge">${this._catLabel(cat)}</span>
         <span class="mob-dls-meta-r">
           ${dateStr ? `<span class="mob-dls-date">${dateStr}</span>` : ''}
           <i class="ti ti-chevron-down mob-dls-chev"></i>
@@ -765,7 +765,7 @@ Object.assign(Mob, {
     return `
     <div class="mob-card mob-card-v${hasDetail ? '' : ' no-detail'}" data-id="${id}" data-domain="${domain}">
       <div class="mob-card-v-top">
-        <span class="mob-card-v-cat" style="--domain-color:${domMeta.color}">${catIcon} ${catLabel} · ${dateStr}</span>
+        <span class="mob-card-v-cat" style="--domain-color:${domMeta.color}">${catLabel} · ${dateStr}</span>
         <div class="mob-card-v-acts">
           <button class="mob-card-v-del"
                   onclick="event.stopPropagation();Mob._deleteItem('${id}',this.closest('.mob-card'))" title="삭제">

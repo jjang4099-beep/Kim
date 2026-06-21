@@ -71,71 +71,104 @@ Object.assign(Mob, {
     }
   },
 
-  /* ── 이미지 분석 ── */
+  /* ── 이미지 분석 (다중 첨부) ── */
   handleImageSelect(input) {
-    const file = input.files?.[0];
-    if (!file) return;
-    state.selectedImageFile = file;
-    const previewImg = el('mobImgPreviewImg');
-    if (previewImg) previewImg.src = URL.createObjectURL(file);
+    const files = Array.from(input.files || []);
+    if (!files.length) return;
+    state.selectedImageFiles = (state.selectedImageFiles || []).concat(files);
+    input.value = '';   // 누적 선택 + 같은 파일 재선택 허용
+    this._renderImageThumbs();
+  },
+
+  _renderImageThumbs() {
+    const files  = state.selectedImageFiles || [];
+    if (!files.length) { this.resetImageInput(); return; }
+    const isExam = localStorage.getItem('userMode') === 'exam';
+    const grid   = el('mobImgThumbGrid');
     el('mobImgPickArea').hidden   = true;
     el('mobImgPreviewRow').hidden = false;
-    el('mobImgSubmitBtn').hidden  = false;
+    el('mobImgSubmitBtn').hidden  = isExam;     // 직장인 = 단일 버튼
+    el('examImgBtnRow').hidden    = !isExam;    // 수험생 = 보관/분석
+    if (grid) {
+      grid.innerHTML = files.map((f, i) => `
+        <div class="mob-img-thumb">
+          <img src="${URL.createObjectURL(f)}" alt=""/>
+          <button class="mob-img-thumb-x" onclick="Mob._removeImageAt(${i})" title="제거"><i class="ti ti-x"></i></button>
+        </div>`).join('') +
+        `<button class="mob-img-thumb-add" onclick="el('mobImageInput').click()" title="더 추가"><i class="ti ti-plus"></i></button>`;
+    }
+  },
+
+  _removeImageAt(idx) {
+    state.selectedImageFiles = (state.selectedImageFiles || []).filter((_, i) => i !== idx);
+    this._renderImageThumbs();
   },
 
   resetImageInput() {
-    state.selectedImageFile = null;
+    state.selectedImageFiles = [];
+    state.selectedImageFile  = null;
     const input = el('mobImageInput');
     if (input) input.value = '';
-    const previewImg = el('mobImgPreviewImg');
-    if (previewImg) previewImg.src = '';
+    const grid = el('mobImgThumbGrid');
+    if (grid) grid.innerHTML = '';
     el('mobImgPickArea').hidden   = false;
     el('mobImgPreviewRow').hidden = true;
     el('mobImgSubmitBtn').hidden  = true;
+    el('examImgBtnRow').hidden    = true;
     el('mobImgStatus').hidden     = true;
     el('mobImgMemo').value        = '';
   },
 
-  async submitImageAnalysis() {
-    if (!state.selectedImageFile) { toast('이미지를 선택하세요'); return; }
-    const btn    = el('mobImgSubmitBtn');
+  /* action: 'analyze'(지금 분석) | 'store'(보관 후 백그라운드 분석) */
+  async submitImageAnalysis(action = 'analyze') {
+    const files = state.selectedImageFiles || [];
+    if (!files.length) { toast('사진을 선택하세요'); return; }
+    const isExam = localStorage.getItem('userMode') === 'exam';
+    const store  = isExam && action === 'store';
     const status = el('mobImgStatus');
     const memo   = el('mobImgMemo')?.value.trim() || '';
 
-    btn.disabled = true;
-    btn.innerHTML = `<span class="mob-spin"></span> AI 분석 중…`;
-    status.textContent = '이미지를 분석하고 있습니다…'; status.hidden = false;
+    /* 눌린 버튼 스피너 + 전체 비활성화 */
+    const allBtns = isExam
+      ? [el('examImgBtnRow')?.querySelector('.mob-img-btn-store'),
+         el('examImgBtnRow')?.querySelector('.mob-img-btn-analyze')]
+      : [el('mobImgSubmitBtn')];
+    const activeBtn = store ? allBtns[0] : allBtns[allBtns.length - 1];
+    const activeOrig = activeBtn ? activeBtn.innerHTML : '';
+    allBtns.forEach(b => { if (b) b.disabled = true; });
+    if (activeBtn) activeBtn.innerHTML = `<span class="mob-spin"></span> ${store ? '보관 중…' : '분석 중…'}`;
+    status.textContent = store ? '사진을 보관하고 있어요…' : '문제를 분석하고 있어요…';
+    status.hidden = false;
 
     try {
-      const isExam = localStorage.getItem('userMode') === 'exam';
       const formData = new FormData();
-      formData.append('image', state.selectedImageFile);
+      files.forEach(f => formData.append('image', f));   // 다중 첨부
       if (memo) formData.append('memo', memo);
       if (isExam) {
         formData.append('mode', 'exam');
         formData.append('subject', ExamMob.selectedSubject || 'math');
-        status.textContent = '오답을 분석하고 있습니다…';
+        formData.append('action', action);
       } else {
-        formData.append('mode', 'work');   // 직장인 모드 명시 적재
+        formData.append('mode', 'work');
       }
 
       const ctrl  = new AbortController();
-      const timer = setTimeout(() => ctrl.abort(), 90000);
+      const timer = setTimeout(() => ctrl.abort(), store ? 30000 : 90000);
       const res   = await fetch('/api/analyze-image', { method:'POST', body:formData, signal:ctrl.signal });
       clearTimeout(timer);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
-      if (!data.success) throw new Error(data.error || '분석 실패');
+      if (!data.success) throw new Error(data.error || '처리 실패');
 
-      toast('🔬 이미지 분석 완료!', 'ok');
+      toast(store ? '보관했어요 · 분석은 백그라운드에서 진행돼요' : '분석 완료!', 'ok');
       this.closeAdd();
       this._loadHomeItems();
     } catch (e) {
       status.textContent = '실패: ' + (e.message || '다시 시도해주세요');
-      toast('분석 실패', 'err');
+      toast(store ? '보관 실패' : '분석 실패', 'err');
     } finally {
-      btn.disabled = false;
-      btn.innerHTML = `<i class="ti ti-eye-spark"></i> AI 비서에게 분석 요청`;
+      allBtns.forEach(b => { if (b) b.disabled = false; });
+      if (activeBtn) activeBtn.innerHTML = activeOrig;
     }
   },
 

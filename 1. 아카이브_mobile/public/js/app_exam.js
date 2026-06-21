@@ -170,18 +170,33 @@ const ExamMob = {
 
   /* ── 오답 카드 HTML (Archive Row · 학구적) ── */
   _renderWrongCard(item) {
-    const w = item.wrongAnswer || {};
-    const statusMap = {
-      pending:   { label: '미복습', cls: 'pending'   },
-      reviewing: { label: '복습중', cls: 'reviewing' },
-      done:      { label: '완료',   cls: 'done'      },
-    };
-    const s       = statusMap[w.reviewStatus || 'pending'];
-    const subj    = EXAM_SUBJECTS_CLIENT[w.subject] || { label: w.subject || '기타', code: 'ETC' };
+    const w        = item.wrongAnswer || {};
+    const subj     = EXAM_SUBJECTS_CLIENT[w.subject] || { label: w.subject || '기타', code: 'ETC' };
+    const aStatus  = item.analysisStatus;
+    const analyzed = !aStatus || aStatus === 'done';   // 필드 없는 레거시 = 완료로 간주
+    const photoCnt = item.imageUrls?.length || (item.imageUrl ? 1 : 0);
+
+    /* 상태 배지: 분석 전이면 분석 상태, 완료면 복습 상태 */
+    let statusHtml;
+    if (aStatus === 'analyzing')      statusHtml = '<span class="mvw-wrong-status analyzing"><span class="mob-spin"></span> 분석 중</span>';
+    else if (aStatus === 'pending')   statusHtml = '<span class="mvw-wrong-status waiting">분석 대기</span>';
+    else if (aStatus === 'failed')    statusHtml = '<span class="mvw-wrong-status failed">분석 실패</span>';
+    else {
+      const sm = { pending:{label:'미복습',cls:'pending'}, reviewing:{label:'복습중',cls:'reviewing'}, done:{label:'완료',cls:'done'} };
+      const s  = sm[w.reviewStatus || 'pending'];
+      statusHtml = `<span class="mvw-wrong-status ${s.cls}">${s.label}</span>`;
+    }
+
     const concept = (w.requiredConcepts?.[0]?.term) || w.keyConceptName || '';
-    const nextReview = w.reviewAt
-      ? `<div class="mvw-wrong-next-review">다음 복습 · ${fmt(w.reviewAt)}</div>`
-      : '';
+    const unitTxt = analyzed
+      ? (w.unit || '단원 미분류')
+      : (aStatus === 'failed' ? '분석하지 못했어요' : '분석 대기 중');
+    const subTxt  = analyzed
+      ? (concept ? `<div class="mvw-wrong-concept">${this._esc(concept)}</div>` : '')
+      : `<div class="mvw-wrong-concept">사진 ${photoCnt}장 · ${aStatus === 'analyzing' ? '분석 중…' : '탭하면 지금 분석'}</div>`;
+    const nextReview = (analyzed && w.reviewAt)
+      ? `<div class="mvw-wrong-next-review">다음 복습 · ${fmt(w.reviewAt)}</div>` : '';
+
     return `
     <button class="mvw-wrong-card" onclick="ExamMob.openWrongDetail('${item.id}')">
       <div class="mvw-wrong-pillar">
@@ -191,10 +206,10 @@ const ExamMob = {
       <div class="mvw-wrong-content">
         <div class="mvw-wrong-card-top">
           <span class="mvw-wrong-subj">${subj.label}</span>
-          <span class="mvw-wrong-status ${s.cls}">${s.label}</span>
+          ${statusHtml}
         </div>
-        <div class="mvw-wrong-unit">${w.unit || '단원 미분류'}</div>
-        ${concept ? `<div class="mvw-wrong-concept">${concept}</div>` : ''}
+        <div class="mvw-wrong-unit">${this._esc(unitTxt)}</div>
+        ${subTxt}
         ${nextReview}
       </div>
     </button>`;
@@ -234,14 +249,52 @@ const ExamMob = {
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   },
 
+  /* ── 보관된 오답 지금 분석 ── */
+  async analyzeNow(id, btn) {
+    if (btn) { btn.disabled = true; btn.innerHTML = '<span class="mob-spin"></span> 분석 중…'; }
+    try {
+      const data = await fetchJSON(`/api/exam/wrong/${id}/analyze`, { method: 'POST' }, 90000);
+      if (!data.success) throw new Error(data.error || '');
+      toast('분석 완료!', 'ok');
+      this.openWrongDetail(id);          // 상세 새로 그림
+      this._loadWrongAnswerLibrary();    // 목록 상태 갱신
+    } catch (e) {
+      if (btn) { btn.disabled = false; btn.innerHTML = '<i class="ti ti-sparkles"></i> 지금 분석하기'; }
+      toast('분석 실패 — 다시 시도해 주세요', 'err');
+    }
+  },
+
   /* ── 과외 선생님 분석 리포트 렌더 (정답→풀이→개념 / 신규+레거시 폴백) ── */
   _renderTutorReport(item, w, id) {
     const esc = (t) => this._esc(t);
 
-    /* 1) 문제 사진 */
-    const imgHtml = item.imageUrl
-      ? `<img class="mvw-tutor-photo" src="${this._esc(item.imageUrl)}" alt="문제 사진"/>`
-      : '';
+    /* 1) 문제 사진 (다중) */
+    const urls = item.imageUrls?.length ? item.imageUrls : (item.imageUrl ? [item.imageUrl] : []);
+    const imgHtml = urls.map(u => `<img class="mvw-tutor-photo" src="${this._esc(u)}" alt="문제 사진"/>`).join('');
+
+    /* 분석 전(보관·분석중·실패) → 사진 + 안내 + 지금 분석 버튼 */
+    const aStatus  = item.analysisStatus;
+    const analyzed = !aStatus || aStatus === 'done';
+    if (!analyzed) {
+      const analyzing = aStatus === 'analyzing';
+      const failed    = aStatus === 'failed';
+      const memoHtml = `
+        <section class="mvw-tutor-sec">
+          <div class="mvw-tutor-sec-hd">나의 메모</div>
+          <textarea class="mvw-wrong-memo-textarea" id="wrongMemoInput"
+            placeholder="이 문제에 대한 메모를 남겨보세요…">${esc(w.memo)}</textarea>
+          <button class="mvw-tutor-memo-save" onclick="ExamMob._saveMemo('${id}')">메모 저장</button>
+        </section>`;
+      return imgHtml + `
+        <section class="mvw-tutor-pending">
+          <div class="mvw-tutor-pending-title">${analyzing ? '분석 중이에요…' : (failed ? '분석하지 못했어요' : '아직 분석 전이에요')}</div>
+          <div class="mvw-tutor-pending-sub">${analyzing
+            ? '잠시 후 다시 열어보면 정답·풀이가 준비돼 있어요.'
+            : (failed ? '사진이 흐리거나 형식을 못 읽었을 수 있어요. 다시 분석해 볼까요?' : '지금 분석하거나, 백그라운드 분석을 기다려도 돼요.')}</div>
+          ${analyzing ? '<div class="mob-loading"><span class="mob-spin"></span> 분석 중</div>'
+            : `<button class="mvw-tutor-analyze-now" onclick="ExamMob.analyzeNow('${id}', this)"><i class="ti ti-sparkles"></i> 지금 분석하기</button>`}
+        </section>` + memoHtml;
+    }
 
     /* 2) 단원 + 문제 요약 */
     const headerHtml = `

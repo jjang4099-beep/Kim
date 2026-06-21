@@ -132,6 +132,7 @@ const state = {
   items            : [],
   searchDebounce   : null,
   selectedImageFile: null,
+  selectedImageFiles: [],   /* 다중 사진 첨부(수험생 보관/분석) */
   feedLoaded       : false,
   feedItems        : [],
   examDaily        : null,   /* 수험생 모드 오늘의 배달(영어단어+한국사) */

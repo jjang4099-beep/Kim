@@ -23,8 +23,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
-  <link rel="stylesheet" href="css/style_mobile.css?v=75"/>
-  <link rel="stylesheet" href="css/exam.css?v=5"/>
+  <link rel="stylesheet" href="css/style_mobile.css?v=76"/>
+  <link rel="stylesheet" href="css/exam.css?v=6"/>
 </head>
 <body>
 
@@ -672,7 +672,7 @@
 
     <!-- 사진 분석 패널 -->
     <div class="mob-modal-body" id="mobAddImagePane" hidden>
-      <input type="file" id="mobImageInput" accept="image/*"
+      <input type="file" id="mobImageInput" accept="image/*" multiple
         style="display:none" onchange="Mob.handleImageSelect(this)"/>
 
       <!-- 수험생 모드 — 과목 선택 (exam 모드에서만 표시) -->
@@ -691,30 +691,41 @@
 
       <div class="mob-img-pick-area" id="mobImgPickArea" onclick="el('mobImageInput').click()">
         <i class="ti ti-camera-plus"></i>
-        <p>탭하여 사진 촬영 또는 갤러리에서 선택</p>
-        <span>JPG · PNG · WEBP · 최대 10MB</span>
+        <p>탭하여 촬영 또는 갤러리에서 선택</p>
+        <span>여러 장 선택 가능 · JPG · PNG · WEBP · 장당 최대 10MB</span>
       </div>
 
-      <div class="mob-img-preview-row" id="mobImgPreviewRow" hidden>
-        <div class="mob-img-thumb-wrap">
-          <img id="mobImgPreviewImg" src="" alt="미리보기"/>
-          <button class="mob-img-reset-btn" onclick="Mob.resetImageInput()" title="다시 선택">
-            <i class="ti ti-refresh"></i>
-          </button>
-        </div>
+      <div class="mob-img-preview-wrap" id="mobImgPreviewRow" hidden>
+        <div class="mob-img-thumb-grid" id="mobImgThumbGrid"></div>
         <div class="mob-img-memo-wrap">
           <label class="mob-img-memo-label">
-            <i class="ti ti-message-chatbot"></i> AI에게 질문 (선택)
+            <i class="ti ti-message-chatbot"></i> 메모 / 질문 (선택)
           </label>
           <textarea id="mobImgMemo" class="mob-img-memo"
-            placeholder="예: 이 수식을 단계별로 설명해줘…" rows="4"></textarea>
+            placeholder="예: 3번이 왜 답인지 모르겠어요 / 이 단원 개념만 정리해줘…" rows="3"></textarea>
         </div>
       </div>
 
+      <!-- 직장인 모드 — 단일 분석 버튼 -->
       <button class="mob-add-submit mob-img-submit" id="mobImgSubmitBtn"
-        onclick="Mob.submitImageAnalysis()" hidden>
+        onclick="Mob.submitImageAnalysis('analyze')" hidden>
         <i class="ti ti-eye-spark"></i> AI 비서에게 분석 요청
       </button>
+
+      <!-- 수험생 모드 — 보관하기 / 분석하기 두 버튼 -->
+      <div class="mob-img-dual-btns" id="examImgBtnRow" hidden>
+        <button class="mob-img-btn-store" onclick="Mob.submitImageAnalysis('store')">
+          <i class="ti ti-archive"></i>
+          <span>보관하기</span>
+          <em>저장 후 백그라운드 분석</em>
+        </button>
+        <button class="mob-img-btn-analyze" onclick="Mob.submitImageAnalysis('analyze')">
+          <i class="ti ti-sparkles"></i>
+          <span>분석하기</span>
+          <em>지금 바로 풀이 받기</em>
+        </button>
+      </div>
+
       <div class="mob-add-status" id="mobImgStatus" hidden></div>
     </div>
 
@@ -807,13 +818,13 @@
 <!-- 토스트 -->
 <div class="mob-toast" id="mobToast" hidden></div>
 
-<script src="js/core.js?v=4"></script>
-<script src="js/home.js?v=12"></script>
+<script src="js/core.js?v=5"></script>
+<script src="js/home.js?v=13"></script>
 <script src="js/feed.js?v=3"></script>
 <script src="js/library.js?v=5"></script>
 <script src="js/manage.js?v=5"></script>
-<script src="js/add.js?v=2"></script>
-<script src="js/app_exam.js?v=5"></script>
+<script src="js/add.js?v=3"></script>
+<script src="js/app_exam.js?v=6"></script>
 <script src="js/pwa.js?v=1"></script>
 <script>
 (function() {

@@ -1100,6 +1100,45 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 .mob-img-memo:focus  { border-color: var(--accent); }
 .mob-img-submit { margin-top: 0; margin-bottom: 4px; }
 
+/* ── 다중 사진 첨부 (그리드) ── */
+.mob-img-preview-wrap { display: flex; flex-direction: column; gap: 12px; margin-bottom: 10px; }
+.mob-img-thumb-grid   { display: flex; flex-wrap: wrap; gap: 8px; }
+.mob-img-thumb {
+  position: relative; width: 72px; height: 96px; flex-shrink: 0;
+  border-radius: 8px; overflow: hidden; border: 1px solid var(--border);
+}
+.mob-img-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.mob-img-thumb-x {
+  position: absolute; top: 3px; right: 3px; width: 20px; height: 20px;
+  border-radius: 50%; background: rgba(0,0,0,.6); color: #fff; font-size: 12px;
+  display: flex; align-items: center; justify-content: center;
+}
+.mob-img-thumb-add {
+  width: 72px; height: 96px; flex-shrink: 0; border-radius: 8px;
+  border: 1.5px dashed var(--border); background: var(--bg);
+  color: var(--text-3); font-size: 22px;
+  display: flex; align-items: center; justify-content: center;
+}
+.mob-img-thumb-add:active { border-color: var(--exam-ink, var(--accent)); color: var(--exam-ink, var(--accent)); }
+
+/* ── 보관하기 / 분석하기 두 버튼 ── */
+.mob-img-dual-btns { display: flex; gap: 10px; margin-bottom: 4px; }
+.mob-img-btn-store, .mob-img-btn-analyze {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 1px;
+  padding: 12px 8px; border-radius: 12px; cursor: pointer;
+  border: 1.5px solid var(--exam-ink, var(--accent));
+  transition: transform .1s, opacity .15s;
+}
+.mob-img-btn-store:active, .mob-img-btn-analyze:active { transform: scale(.97); }
+.mob-img-btn-store:disabled, .mob-img-btn-analyze:disabled { opacity: .6; }
+.mob-img-btn-store   { background: var(--surface); color: var(--exam-ink, var(--accent)); }
+.mob-img-btn-analyze { background: var(--exam-ink, var(--accent)); color: #F4F0EA; }
+.mob-img-btn-store i, .mob-img-btn-analyze i { font-size: 19px; }
+.mob-img-btn-store span, .mob-img-btn-analyze span { font-size: 14px; font-weight: 700; }
+.mob-img-btn-store em, .mob-img-btn-analyze em {
+  font-size: 10.5px; font-weight: 500; font-style: normal; opacity: .82;
+}
+
 /* ══════════════════════════════════════════════════════════
    토스트
 ══════════════════════════════════════════════════════════ */

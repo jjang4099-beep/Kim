@@ -222,10 +222,33 @@ html[data-theme="dark"] {
   font-size: 10.5px; font-weight: 700; color: var(--exam-ink);
   letter-spacing: .12em; text-transform: uppercase;
 }
-.mvw-wrong-status { font-size: 11.5px; font-weight: 700; }
+.mvw-wrong-status { font-size: 11.5px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
 .mvw-wrong-status.pending   { color: #C0392B; }
 .mvw-wrong-status.reviewing { color: #B8860B; }
 .mvw-wrong-status.done      { color: #1E7A46; }
+.mvw-wrong-status.waiting   { color: var(--text-3); }
+.mvw-wrong-status.analyzing { color: var(--exam-ink); }
+.mvw-wrong-status.failed    { color: #C0392B; }
+.mvw-wrong-status .mob-spin { width: 11px; height: 11px; border-width: 2px; }
+
+/* 분석 전(보관/분석중/실패) 상세 안내 */
+.mvw-tutor-pending {
+  text-align: center; padding: 22px 16px 8px;
+}
+.mvw-tutor-pending-title {
+  font-family: var(--exam-serif);
+  font-size: 16px; font-weight: 700; color: var(--text-1); margin-bottom: 6px;
+}
+.mvw-tutor-pending-sub {
+  font-size: 13px; color: var(--text-2); line-height: 1.6; margin-bottom: 16px;
+}
+.mvw-tutor-analyze-now {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 12px 22px; border-radius: 10px; border: none;
+  background: var(--exam-ink); color: #F4F0EA;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+}
+.mvw-tutor-analyze-now:disabled { opacity: .6; }
 .mvw-wrong-unit { font-size: 15px; font-weight: 700; color: var(--text-1); line-height: 1.35; }
 .mvw-wrong-concept { font-size: 13px; color: var(--text-2); margin-top: 3px; }
 .mvw-wrong-next-review { font-size: 11px; color: var(--text-3); margin-top: 6px; letter-spacing: .02em; }

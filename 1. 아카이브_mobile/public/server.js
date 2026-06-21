@@ -4097,164 +4097,208 @@ JSON 형식으로만 출력:
  *   5. 임시 파일 정리 (multer dest의 무작위 파일명 제거)
  *   6. 결과 반환
  */
-app.post('/api/analyze-image', upload.single('image'), async (req, res) => {
-  if (!req.file) {
+const IMG_EXT_MAP = {
+  'image/jpeg': '.jpg', 'image/png': '.png', 'image/webp': '.webp',
+  'image/gif': '.gif',  'image/heic': '.heic', 'image/heif': '.heif'
+};
+function mimeFromUrl(u) {
+  const e = (u || '').toLowerCase();
+  if (e.endsWith('.png'))  return 'image/png';
+  if (e.endsWith('.webp')) return 'image/webp';
+  if (e.endsWith('.gif'))  return 'image/gif';
+  if (e.endsWith('.heic')) return 'image/heic';
+  if (e.endsWith('.heif')) return 'image/heif';
+  return 'image/jpeg';
+}
+/* multer 임시 업로드 → 영구 경로 이동 → [{ url, path, mimeType }] */
+function persistUploads(files) {
+  return files.map(f => {
+    const ext       = IMG_EXT_MAP[f.mimetype] || '.jpg';
+    const fileName  = `${uuidv4()}${ext}`;
+    const finalPath = path.join(UPLOADS_DIR, fileName);
+    fs.renameSync(f.path, finalPath);
+    return { url: `/uploads/${fileName}`, path: finalPath, mimeType: f.mimetype };
+  });
+}
+
+/* 수험생 오답 아이템 기본 골격 (분석 전/대기 상태) */
+function buildExamItemBase(subject, imageUrls, userHint, now) {
+  return {
+    id: uuidv4(), type: 'wrong_answer', domain: 'exam', category: 'exam',
+    title: `[${EXAM_SUBJECTS[subject] || subject}] 오답`,
+    text: '', summary: '', mode: MODE_EXAM,
+    imageUrl: imageUrls[0], thumbnailUrl: imageUrls[0], imageUrls,
+    userHint, keywords: [], classifier: 'gemini-exam', source: 'image-upload',
+    date: toDateStr(now), time: toTimeStr(now),
+    createdAt: now.toISOString(), updatedAt: now.toISOString(), insights: [],
+    analysisStatus: 'pending',
+    wrongAnswer: {
+      subject, subjectName: EXAM_SUBJECTS[subject] || subject, unit: '단원 미분류',
+      problemSummary: '', answer: '', requiredConcepts: [], hasSolution: false,
+      solutionReview: { errorStep: '', diagnosis: '', fix: '' }, modelSteps: [],
+      whatToReinforce: '', relatedConcepts: [],
+      whyWrong: '', keyConceptName: '', keyConceptExplain: '', concepts: [], solvingTip: '',
+      reviewStatus: 'pending', reviewCount: 0, reviewEase: 2.5, reviewAt: null, lastReview: null,
+    }
+  };
+}
+
+/* analysisResult → 아이템에 분석 결과 반영 (분석 완료 처리) */
+function applyExamAnalysis(item, a, subject) {
+  const reqConcepts = Array.isArray(a.requiredConcepts) ? a.requiredConcepts : [];
+  const review      = a.solutionReview || {};
+  const related     = Array.isArray(a.relatedConcepts) ? a.relatedConcepts : [];
+  const first       = reqConcepts[0] || {};
+  item.title   = a.title || item.title;
+  item.text    = a.problemSummary || '';
+  item.summary = a.problemSummary || '';
+  item.keywords = related;
+  item.analysisStatus = 'done';
+  item.updatedAt = new Date().toISOString();
+  item.wrongAnswer = {
+    ...item.wrongAnswer,
+    unit: a.unit || '단원 미분류',
+    problemSummary: a.problemSummary || '', answer: a.answer || '',
+    requiredConcepts: reqConcepts, hasSolution: !!a.hasSolution,
+    solutionReview: { errorStep: review.errorStep || '', diagnosis: review.diagnosis || '', fix: review.fix || '' },
+    modelSteps: Array.isArray(a.modelSteps) ? a.modelSteps : [],
+    whatToReinforce: a.whatToReinforce || '', relatedConcepts: related,
+    whyWrong: review.diagnosis || a.problemSummary || '',
+    keyConceptName: first.term || '', keyConceptExplain: first.desc || '',
+    concepts: related, solvingTip: a.whatToReinforce || '',
+  };
+}
+
+/* 저장된 이미지들로 과외 분석 실행 → analysisResult | null */
+async function runExamImageAnalysis(stored, subject, userHint) {
+  if (!process.env.GEMINI_API_KEY) return null;
+  const images = stored.map(s => ({ buffer: fs.readFileSync(s.path), mimeType: s.mimeType }));
+  const rawText = await callGeminiWithImageExam(images, subject, userHint);
+  const cleaned = (rawText || '').replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
+  const parsed  = safeParseJSON(cleaned);
+  return (parsed && (parsed.unit || parsed.problemSummary || parsed.answer)) ? parsed : null;
+}
+
+/* 보관된 오답 1건을 분석 → DB 업데이트 (백그라운드/지금 분석 공용) */
+async function analyzeStoredExamItemById(itemId) {
+  const item = readDB().find(i => i.id === itemId);
+  if (!item || item.type !== 'wrong_answer') return;
+  const subject = item.wrongAnswer?.subject || 'math';
+  const urls    = item.imageUrls?.length ? item.imageUrls : (item.imageUrl ? [item.imageUrl] : []);
+  if (!urls.length) return;
+  const stored  = urls.map(u => ({ path: path.join(UPLOADS_DIR, path.basename(u)), mimeType: mimeFromUrl(u) }));
+  item.analysisStatus = 'analyzing'; item.updatedAt = new Date().toISOString(); dbUpdate(item);
+  try {
+    const a = await runExamImageAnalysis(stored, subject, item.userHint || '');
+    const fresh = readDB().find(i => i.id === itemId) || item;
+    if (a) { applyExamAnalysis(fresh, a, subject); }
+    else   { fresh.analysisStatus = 'failed'; fresh.updatedAt = new Date().toISOString(); }
+    dbUpdate(fresh);
+    console.log(`[오답분석] ${itemId} → ${fresh.analysisStatus}`);
+  } catch (e) {
+    console.error('[오답분석] 실패:', e.message);
+    const fresh = readDB().find(i => i.id === itemId);
+    if (fresh) { fresh.analysisStatus = 'failed'; fresh.updatedAt = new Date().toISOString(); dbUpdate(fresh); }
+  }
+}
+
+app.post('/api/analyze-image', upload.array('image', 10), async (req, res) => {
+  const files = req.files || [];
+  if (!files.length) {
     return res.status(400).json({ success: false, error: '이미지 파일이 없습니다.' });
   }
 
-  const userHint   = (req.body.memo || '').trim();
-  const examMode   = req.body.mode === 'exam';
+  const userHint    = (req.body.memo || '').trim();
+  const examMode    = req.body.mode === 'exam';
+  const action      = req.body.action === 'store' ? 'store' : 'analyze';  // 기본=분석
   const examSubject = (req.body.subject || 'math').trim();
-  const tmpPath    = req.file.path;
-  const mimeType   = req.file.mimetype;
 
-  // 확장자 결정
-  const extMap = {
-    'image/jpeg': '.jpg', 'image/png': '.png', 'image/webp': '.webp',
-    'image/gif': '.gif',  'image/heic': '.heic', 'image/heif': '.heif'
-  };
-  const ext      = extMap[mimeType] || '.jpg';
-  const fileName = `${uuidv4()}${ext}`;
-  const finalPath = path.join(UPLOADS_DIR, fileName);
-  const imageUrl  = `/uploads/${fileName}`;
-
+  let stored = [];
   try {
-    // 임시 파일 → 영구 경로로 이동
-    fs.renameSync(tmpPath, finalPath);
+    stored = persistUploads(files);
+    console.log(`[이미지분석] ${stored.length}장 저장 (mode=${examMode ? 'exam' : 'work'}, action=${action})`);
 
-    console.log(`[이미지분석] 파일 저장: ${fileName} (${mimeType}, ${(req.file.size/1024).toFixed(0)}KB)`);
-
-    // ── Gemini 멀티모달 분석 ──
-    let analysisResult;
-    const imageBuffer = fs.readFileSync(finalPath);
-
-    if (!process.env.GEMINI_API_KEY) {
-      console.warn('[이미지분석] GEMINI_API_KEY 미설정 — 목업 반환');
-      analysisResult = generateMockImageAnalysis(fileName, userHint);
-    } else if (examMode) {
-      /* 수험생 오답 분석 프롬프트 (과외 선생님) */
-      const rawText = await callGeminiWithImageExam(imageBuffer, mimeType, examSubject, userHint);
-      const cleaned = rawText.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
-      const parsed  = safeParseJSON(cleaned);
-      analysisResult = parsed && (parsed.unit || parsed.problemSummary || parsed.answer) ? parsed : {
-        title: `[${EXAM_SUBJECTS[examSubject] || examSubject}] 문제 분석`,
-        unit: '단원 미분류',
-        problemSummary: '이미지를 분석했지만 형식을 정리하지 못했어요. 더 또렷한 사진으로 다시 시도해 주세요.',
-        answer: '', requiredConcepts: [], hasSolution: false,
-        solutionReview: { errorStep: '', diagnosis: '', fix: '' },
-        modelSteps: [], whatToReinforce: '', relatedConcepts: []
-      };
-    } else {
-      const rawText = await callGeminiWithImage(imageBuffer, mimeType, userHint);
-      const cleaned = rawText.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
-      const parsed  = safeParseJSON(cleaned);
-      if (parsed && parsed.title) {
-        analysisResult = parsed;
+    // ══ 직장인 모드 — 단일 분석 유지(첫 장) ══
+    if (!examMode) {
+      const s0 = stored[0];
+      let analysisResult;
+      if (!process.env.GEMINI_API_KEY) {
+        analysisResult = generateMockImageAnalysis(path.basename(s0.url), userHint);
       } else {
-        console.warn('[이미지분석] JSON 파싱 실패 — 원문 저장');
-        analysisResult = { title: '사진 분석 결과', summary: rawText.slice(0, 100), concepts: [], steps: [], fullAnalysis: rawText };
+        const rawText = await callGeminiWithImage(fs.readFileSync(s0.path), s0.mimeType, userHint);
+        const cleaned = rawText.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
+        const parsed  = safeParseJSON(cleaned);
+        analysisResult = (parsed && parsed.title) ? parsed
+          : { title: '사진 분석 결과', summary: rawText.slice(0, 100), concepts: [], steps: [], fullAnalysis: rawText };
       }
+      const now = new Date();
+      const newItem = {
+        id: uuidv4(), type: 'image_analysis', category: 'inbox', mode: normalizeMode(req.body.mode),
+        title: analysisResult.title || '사진 분석 결과',
+        text: analysisResult.summary || '', summary: analysisResult.summary || '',
+        aiSummary: analysisResult.fullAnalysis || '',
+        concepts: analysisResult.concepts || [], steps: analysisResult.steps || [],
+        imageUrl: s0.url, thumbnailUrl: s0.url, userHint,
+        keywords: (analysisResult.concepts || []).slice(0, 3).map(c => c.term || ''),
+        classifier: 'gemini-vision', source: 'image-upload',
+        date: toDateStr(now), time: toTimeStr(now),
+        createdAt: now.toISOString(), updatedAt: now.toISOString(), insights: []
+      };
+      dbInsert(newItem);
+      return res.status(201).json({ success: true, item: newItem, analysis: analysisResult });
     }
 
-    const now = new Date();
-    let newItem;
+    // ══ 수험생 모드 ══
+    const now       = new Date();
+    const imageUrls = stored.map(s => s.url);
+    const item      = buildExamItemBase(examSubject, imageUrls, userHint, now);
 
-    if (examMode) {
-      /* 수험생 오답 아이템 구조 — 과외 선생님 분석 */
-      const reqConcepts = Array.isArray(analysisResult.requiredConcepts) ? analysisResult.requiredConcepts : [];
-      const review      = analysisResult.solutionReview || { errorStep: '', diagnosis: '', fix: '' };
-      const related     = Array.isArray(analysisResult.relatedConcepts) ? analysisResult.relatedConcepts : [];
-      const firstConcept = reqConcepts[0] || {};
-      newItem = {
-        id:        uuidv4(),
-        type:      'wrong_answer',
-        domain:    'exam',
-        category:  'exam',
-        title:     analysisResult.title || `[${EXAM_SUBJECTS[examSubject]}] 오답`,
-        text:      analysisResult.problemSummary || '',
-        summary:   analysisResult.problemSummary || '',
-        mode:      MODE_EXAM,
-        imageUrl,
-        thumbnailUrl: imageUrl,
-        userHint,
-        keywords:  related,
-        classifier: 'gemini-exam',
-        source:    'image-upload',
-        date:      toDateStr(now),
-        time:      toTimeStr(now),
-        createdAt: now.toISOString(),
-        updatedAt: now.toISOString(),
-        insights:  [],
-        wrongAnswer: {
-          subject:          examSubject,
-          subjectName:      EXAM_SUBJECTS[examSubject] || examSubject,
-          unit:             analysisResult.unit || '단원 미분류',
-          /* ── 과외 선생님 분석(신규) ── */
-          problemSummary:   analysisResult.problemSummary || '',
-          answer:           analysisResult.answer || '',
-          requiredConcepts: reqConcepts,
-          hasSolution:      !!analysisResult.hasSolution,
-          solutionReview:   { errorStep: review.errorStep || '', diagnosis: review.diagnosis || '', fix: review.fix || '' },
-          modelSteps:       Array.isArray(analysisResult.modelSteps) ? analysisResult.modelSteps : [],
-          whatToReinforce:  analysisResult.whatToReinforce || '',
-          relatedConcepts:  related,
-          /* ── 레거시 호환(구 카드/약점분석이 참조) ── */
-          whyWrong:         review.diagnosis || analysisResult.problemSummary || '',
-          keyConceptName:   firstConcept.term || '',
-          keyConceptExplain:firstConcept.desc || '',
-          concepts:         related,
-          solvingTip:       analysisResult.whatToReinforce || '',
-          /* ── 복습 스케줄 ── */
-          reviewStatus:     'pending',
-          reviewCount:      0,
-          reviewEase:       2.5,
-          reviewAt:         null,
-          lastReview:       null,
-        }
-      };
+    // ── 보관하기: 즉시 저장(분석 대기) → 응답 → 백그라운드 분석 ──
+    if (action === 'store') {
+      item.analysisStatus = 'pending';
+      dbInsert(item);
+      console.log(`[이미지분석] 보관 완료(분석 대기): ${item.id} (${imageUrls.length}장)`);
+      res.status(201).json({ success: true, stored: true, item });
+      if (process.env.GEMINI_API_KEY) {
+        setImmediate(() => analyzeStoredExamItemById(item.id).catch(() => {}));
+      }
+      return;
+    }
+
+    // ── 분석하기: 지금 바로 분석 ──
+    const a = await runExamImageAnalysis(stored, examSubject, userHint);
+    if (a) {
+      applyExamAnalysis(item, a, examSubject);
     } else {
-      newItem = {
-        id:           uuidv4(),
-        type:         'image_analysis',
-        category:     'inbox',
-        mode:         normalizeMode(req.body.mode),
-        title:        analysisResult.title || '사진 분석 결과',
-        text:         analysisResult.summary || '',
-        summary:      analysisResult.summary || '',
-        aiSummary:    analysisResult.fullAnalysis || '',
-        concepts:     analysisResult.concepts || [],
-        steps:        analysisResult.steps || [],
-        imageUrl,
-        thumbnailUrl: imageUrl,
-        userHint,
-        keywords:     (analysisResult.concepts || []).slice(0, 3).map(c => c.term || ''),
-        classifier:   'gemini-vision',
-        source:       'image-upload',
-        date:         toDateStr(now),
-        time:         toTimeStr(now),
-        createdAt:    now.toISOString(),
-        updatedAt:    now.toISOString(),
-        insights:     []
-      };
+      item.analysisStatus = process.env.GEMINI_API_KEY ? 'failed' : 'pending';
     }
-
-    dbInsert(newItem);
-
-    console.log(`[이미지분석] 저장 완료: "${newItem.title}" → ${newItem.id}`);
-
-    return res.status(201).json({
-      success: true,
-      item:    newItem,
-      analysis: analysisResult
-    });
+    dbInsert(item);
+    console.log(`[이미지분석] 분석 완료: "${item.title}" → ${item.id} (${item.analysisStatus})`);
+    return res.status(201).json({ success: true, item, analysis: a || null });
 
   } catch (e) {
     console.error('[이미지분석] 실패:', e.message);
-    // 임시 파일 정리
-    try { if (fs.existsSync(tmpPath)) fs.unlinkSync(tmpPath); } catch {}
-    try { if (fs.existsSync(finalPath)) fs.unlinkSync(finalPath); } catch {}
+    stored.forEach(s => { try { if (fs.existsSync(s.path)) fs.unlinkSync(s.path); } catch {} });
+    files.forEach(f  => { try { if (fs.existsSync(f.path)) fs.unlinkSync(f.path); } catch {} });
     return res.status(500).json({ success: false, error: e.message });
   }
+});
+
+/* POST /api/exam/wrong/:id/analyze — 보관된 오답을 지금 분석 (대기/실패분 수동 분석) */
+app.post('/api/exam/wrong/:id/analyze', async (req, res) => {
+  const item = readDB().find(i => i.id === req.params.id);
+  if (!item || item.type !== 'wrong_answer') {
+    return res.status(404).json({ success: false, error: '오답을 찾을 수 없습니다.' });
+  }
+  if (!process.env.GEMINI_API_KEY) {
+    return res.status(400).json({ success: false, error: '분석 기능이 비활성화되어 있어요.' });
+  }
+  if (item.analysisStatus === 'analyzing') {
+    return res.json({ success: true, item, analyzing: true });
+  }
+  await analyzeStoredExamItemById(item.id);
+  const updated = readDB().find(i => i.id === item.id);
+  return res.json({ success: true, item: updated });
 });
 
 // ══════════════════════════════════════════════════
@@ -4403,12 +4447,17 @@ const LECTURE_CHANNELS = {
   cert:    ['에듀윌', '해커스'],
 };
 
-/* 수험생 오답 분석용 Gemini 프롬프트 — 1:1 과외 선생님 톤 */
-async function callGeminiWithImageExam(imageBuffer, mimeType, subject = 'math', userHint = '') {
+/* 수험생 오답 분석용 Gemini 프롬프트 — 1:1 과외 선생님 톤
+   images: [{ buffer, mimeType }] 배열 (한 문제가 여러 장에 걸쳐 있을 수 있음) */
+async function callGeminiWithImageExam(images, subject = 'math', userHint = '') {
   const { GoogleGenerativeAI } = require('@google/generative-ai');
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
   const model = genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL || 'gemini-1.5-flash' });
   const subjectName = EXAM_SUBJECTS[subject] || '수학';
+  const imgList = Array.isArray(images) ? images : [images];
+  const multiNote = imgList.length > 1
+    ? `\n\n사진이 ${imgList.length}장 첨부되었습니다. 한 문제가 여러 장에 나뉘어 있을 수 있으니 모두 종합해서 분석하세요.`
+    : '';
 
   const hintSection = userHint
     ? `\n\n[학생이 남긴 메모]\n"${userHint}"\n이 메모를 최우선으로 반영해서 짚어주세요.`
@@ -4423,7 +4472,7 @@ async function callGeminiWithImageExam(imageBuffer, mimeType, subject = 'math', 
 
 학생에게 보여줄 흐름은 반드시 [정답 → 풀이 과정 → 개념 설명] 순서입니다.
 설명은 학생이 "아, 그래서 그렇구나" 하고 이해할 만큼은 자세히, 그러나 핵심 위주로 간결하게 적으세요.
-전체 응답이 너무 길어지지 않도록 각 항목은 꼭 필요한 만큼만 쓰세요.${hintSection}
+전체 응답이 너무 길어지지 않도록 각 항목은 꼭 필요한 만큼만 쓰세요.${multiNote}${hintSection}
 
 [수식 표기 규칙 — 매우 중요]
 - 절대로 LaTeX나 역슬래시(\\)를 쓰지 마세요. (\\frac, \\sqrt, \\times 등 금지)
@@ -4458,14 +4507,14 @@ async function callGeminiWithImageExam(imageBuffer, mimeType, subject = 'math', 
 주의: hasSolution은 사진에 학생 풀이가 실제로 보일 때만 true. 풀이가 없으면 false로 두고 solutionReview의 세 값은 모두 빈 문자열로 두세요.`;
 
   const timeoutP = new Promise((_, rej) => setTimeout(() => rej(new Error('Gemini 타임아웃')), 45000));
+  const imageParts = imgList.map(im => ({
+    inlineData: { mimeType: im.mimeType, data: im.buffer.toString('base64') }
+  }));
   const result = await Promise.race([
     model.generateContent({
       contents: [{
         role: 'user',
-        parts: [
-          { inlineData: { mimeType, data: imageBuffer.toString('base64') } },
-          { text: prompt }
-        ]
+        parts: [ ...imageParts, { text: prompt } ]
       }],
       generationConfig: { maxOutputTokens: 4096, temperature: 0.35 }
     }),

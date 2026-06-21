@@ -84,6 +84,9 @@ Object.assign(Mob, {
       el('examSubjectRow')?.setAttribute('hidden', '');
       el('examDashboard')?.setAttribute('hidden', '');
     }
+    /* 사진 첨부 버튼 세트는 선택 시점에 모드별로 토글되므로 여기선 항상 숨김 리셋 */
+    el('examImgBtnRow')?.setAttribute('hidden', '');
+    el('mobImgSubmitBtn')?.setAttribute('hidden', '');
   },
 
   /* ══════════════════════════════════════════

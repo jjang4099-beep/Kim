@@ -518,9 +518,6 @@ Object.assign(Mob, {
       .replace(/^[•\-·]\s*/, '').trim();
     const snippet = rawSummary.length > 62 ? rawSummary.slice(0, 62) + '…' : rawSummary;
 
-    const catIconMap = { en:'🌐', history:'🏛️', economy:'📈', inbox:'📌', youtube:'▶️' };
-    const catIcon    = catIconMap[cat] || '💡';
-
     return `
     <div class="mob-card mob-dlv-summary" data-id="${id}">
       <div class="mob-dls-top">

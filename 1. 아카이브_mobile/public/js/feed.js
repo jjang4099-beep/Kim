@@ -23,13 +23,12 @@ Object.assign(Mob, {
     const themeTitle   = item.themeTitle     || '';
     const themeTitleEn = item.themeTitleEn   || '';
     const masterPara   = item.masterParagraph || null;
-    const langIcon     = item.label?.includes('중국') ? '🐉' : '🗽';
     const isThemePack  = !!themeTitle;
 
     /* ── 테마 타이틀 밴드 (팩 전용) ── */
     const themeBand = isThemePack ? `
     <div class="mob-fv-theme-band">
-      <div class="mob-fv-theme-kicker">🏷️ 오늘의 테마 팩</div>
+      <div class="mob-fv-theme-kicker">오늘의 테마 팩</div>
       <div class="mob-fv-theme-title">${themeTitle}</div>
       ${themeTitleEn ? `<div class="mob-fv-theme-title-en">${themeTitleEn}</div>` : ''}
     </div>` : '';
@@ -84,7 +83,7 @@ Object.assign(Mob, {
     return `
     <div class="mob-card mob-card-feed" data-id="">
       <div class="mob-feed-card-hd">
-        <span class="mob-feed-badge mob-feed-badge-lang">${langIcon} ${item.label || '표현'}</span>
+        <span class="mob-feed-badge mob-feed-badge-lang">${item.label || '표현'}</span>
         ${dayOfWeek && !isThemePack ? `<span class="mob-feed-day-theme">${dayOfWeek}요일 · ${theme}</span>` : ''}
         <div class="mob-feed-card-hd-r">
           <span class="mob-feed-card-date">${date}</span>
@@ -108,7 +107,7 @@ Object.assign(Mob, {
             ${isSavedLang ? 'disabled' : ''}>
           <i class="ti ti-device-floppy"></i> ${isSavedLang ? '저장됨' : '전체 저장'}
         </button>
-        <span class="mob-feed-ai-tag">${item.aiGenerated ? '✨ AI 생성' : (item.pack_id ? '📦 테마팩' : '📋 DB')}</span>
+        <span class="mob-feed-ai-tag">${item.aiGenerated ? 'AI 생성' : (item.pack_id ? '테마팩' : 'DB')}</span>
       </div>
     </div>`;
   },
@@ -130,7 +129,6 @@ Object.assign(Mob, {
     return `
     <div class="mob-master-para">
       <div class="mob-mpa-hd">
-        <span class="mob-mpa-fire">🔥</span>
         <div class="mob-mpa-hd-text">
           <div class="mob-mpa-title">The Master Paragraph</div>
           <div class="mob-mpa-sub">오늘 배운 ${highlights.length}개 표현을 하나의 문맥으로 마스터하기</div>
@@ -281,7 +279,7 @@ Object.assign(Mob, {
     return `
     <div class="mob-card mob-hum-card">
       <div class="mob-hum-badge-row">
-        <span class="mob-hum-badge">🏛️ 역사 · ${item.era || '역사'}</span>
+        <span class="mob-hum-badge">역사 · ${item.era || '세계사'}</span>
         <div class="mob-hum-badge-row-r">
           <span class="mob-hum-period">${item.period || ''}</span>
           ${saveBtn}
@@ -291,13 +289,12 @@ Object.assign(Mob, {
         <div class="mob-hum-title">${item.title || '오늘의 역사'}</div>
         ${frontLesson ? `
         <div class="mob-hum-lesson">
-          <i class="ti ti-bulb" style="flex-shrink:0;font-size:15px;margin-top:1px;color:#d97706"></i>
           <span>${frontLesson}</span>
         </div>` : ''}
       </div>
       ${hasExpand ? `
       <button class="mob-hum-behind-btn" onclick="event.stopPropagation();Mob._toggleBehindStory(this)">
-        비하인드 스토리 보기 🕵️ <i class="ti ti-chevron-down"></i>
+        비하인드 스토리 보기 <i class="ti ti-chevron-down"></i>
       </button>
       <div class="mob-hum-behind-panel">
         ${behindSect}${lessonSect}
@@ -310,11 +307,11 @@ Object.assign(Mob, {
     const behindBlock = item.behindStory ? `
       <button class="mob-hum-behind-btn"
               onclick="event.stopPropagation();Mob._toggleBehindStory(this)">
-        비하인드 스토리 보기 🕵️ <i class="ti ti-chevron-down"></i>
+        비하인드 스토리 보기 <i class="ti ti-chevron-down"></i>
       </button>
       <div class="mob-hum-behind-panel">
         <div class="mob-hum-behind-txt">${item.behindStory}</div>
-        ${item.context ? `<div class="mob-hum-behind-context">📍 맥락: ${item.context}</div>` : ''}
+        ${item.context ? `<div class="mob-hum-behind-context">맥락: ${item.context}</div>` : ''}
       </div>` : '';
     const subId = item.subId || '';
     const date  = item.date  || '';
@@ -330,7 +327,7 @@ Object.assign(Mob, {
     return `
     <div class="mob-card mob-hum-card mob-hum-quote-card">
       <div class="mob-hum-badge-row">
-        <span class="mob-hum-badge">💡 오늘의 명언</span>
+        <span class="mob-hum-badge">오늘의 명언</span>
         <div class="mob-hum-badge-row-r">
           <span class="mob-hum-author-badge">${item.author || ''}</span>
           ${saveBtn}
@@ -345,7 +342,6 @@ Object.assign(Mob, {
       ${item.application ? `
       <div class="mob-hum-content">
         <div class="mob-hum-application">
-          <i class="ti ti-sparkles" style="flex-shrink:0;font-size:14px;margin-top:1px"></i>
           <span>${item.application}</span>
         </div>
       </div>` : ''}
@@ -388,7 +384,7 @@ Object.assign(Mob, {
     return `
     <div class="mob-card mob-hum-card mob-hum-idiom-card">
       <div class="mob-hum-badge-row">
-        <span class="mob-hum-badge">📜 고사성어</span>
+        <span class="mob-hum-badge">고사성어</span>
         <div class="mob-hum-badge-row-r">
           <span class="mob-hum-hanja">${item.hanja || ''}</span>
           ${saveBtn}
@@ -397,11 +393,11 @@ Object.assign(Mob, {
       <div class="mob-hum-content">
         <div class="mob-hum-idiom-title">${item.idiom || item.title || ''}</div>
         ${item.meaning ? `<div class="mob-hum-meaning">${item.meaning}</div>` : ''}
-        ${item.origin ? `<div class="mob-hum-origin"><i class="ti ti-book-2" style="font-size:11px;color:#d97706"></i> ${item.origin}</div>` : ''}
+        ${item.origin ? `<div class="mob-hum-origin">${item.origin}</div>` : ''}
       </div>
       ${hasExpand ? `
       <button class="mob-hum-behind-btn" onclick="event.stopPropagation();Mob._toggleBehindStory(this)">
-        자세히 보기 🕵️ <i class="ti ti-chevron-down"></i>
+        자세히 보기 <i class="ti ti-chevron-down"></i>
       </button>
       <div class="mob-hum-behind-panel">
         ${storySect}${applSect}${behindSect}
@@ -416,8 +412,8 @@ Object.assign(Mob, {
     const isOpen = panel.classList.toggle('open');
     btn.classList.toggle('open', isOpen);
     btn.innerHTML = isOpen
-      ? '비하인드 스토리 접기 👆 <i class="ti ti-chevron-up"></i>'
-      : '비하인드 스토리 보기 🕵️ <i class="ti ti-chevron-down"></i>';
+      ? '비하인드 스토리 접기 <i class="ti ti-chevron-up"></i>'
+      : '비하인드 스토리 보기 <i class="ti ti-chevron-down"></i>';
   },
 
   /** 오늘의 지식 배달 카드 (type: 'daily_delivery') — v26 프리미엄 아카이브 리포트 */
@@ -430,9 +426,6 @@ Object.assign(Mob, {
     const cat      = item.category || 'inbox';
     const catLabel = this._catLabel(cat);
     const rawD     = item.createdAt || item.savedAt || '';
-
-    const catIconMap = { en:'🌐', history:'🏛️', economy:'📈', inbox:'📌', youtube:'▶️' };
-    const catIcon    = catIconMap[cat] || '💡';
 
     const DOW     = ['일','월','화','수','목','금','토'];
     const dateStr = rawD
@@ -469,7 +462,7 @@ Object.assign(Mob, {
     return `
     <div class="mob-card mob-dlv-card" data-id="${id}">
       <div class="mob-dlv-badge-row">
-        <span class="mob-dlv-badge">${catIcon} ${dayName ? dayName + ' · ' : ''}${catLabel}</span>
+        <span class="mob-dlv-badge">${dayName ? dayName + ' · ' : ''}${catLabel}</span>
         <div class="mob-dlv-badge-right">
           <span class="mob-dlv-date">${dateStr}</span>
           <button class="mob-dlv-save-btn"
@@ -489,7 +482,6 @@ Object.assign(Mob, {
         ${conceptsHTML ? `<div class="mob-dlv-concepts">${conceptsHTML}</div>` : ''}
         ${reminder ? `
         <div class="mob-dlv-reminder">
-          <span class="mob-dlv-reminder-icon">✨</span>
           <span>${reminder}</span>
         </div>` : ''}
       </div>
@@ -534,7 +526,6 @@ Object.assign(Mob, {
     const indicators = item.indicators || [];
     const subId      = item.subId || '';
     const date       = item.date  || '';
-    const isUS       = (item.label || '').includes('미국') || (item.subId || '').includes('us');
 
     // 상단 지표 칩 (최대 3개)
     const topInds = indicators.slice(0, 3);
@@ -592,7 +583,7 @@ Object.assign(Mob, {
     return `
     <div class="mob-card mob-card-feed mob-card-feed-market" data-id="">
       <div class="mob-feed-card-hd">
-        <span class="mob-feed-badge mob-feed-badge-market">${isUS ? '🗽' : '🐯'} ${item.label || '시황'}</span>
+        <span class="mob-feed-badge mob-feed-badge-market">${item.label || '시황'}</span>
         <div class="mob-feed-card-hd-r">
           <span class="mob-feed-card-date">${date}</span>
           ${subId ? `<button class="mob-feed-card-save-btn${isSavedMkt ? ' saved' : ''}"
@@ -624,7 +615,7 @@ Object.assign(Mob, {
         <button class="mob-feed-save-btn" onclick="event.stopPropagation();Mob._saveFeedToArchive('${subId}','${date}',this)">
           <i class="ti ti-device-floppy"></i> 서재에 저장
         </button>
-        <span class="mob-feed-ai-tag">${item.aiGenerated ? '✨ AI 생성' : '📋 샘플'}</span>
+        <span class="mob-feed-ai-tag">${item.aiGenerated ? 'AI 생성' : '샘플'}</span>
       </div>
     </div>`;
   },

@@ -1119,17 +1119,21 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 /* ══════════════════════════════════════════════════════════
    배달 피드 카드  (language · market)
 ══════════════════════════════════════════════════════════ */
-.mob-card-feed { border-left: 3px solid var(--accent); }
+.mob-card-feed { border-left: 3px solid #C5A059; }
 
 .mob-feed-card-hd {
   display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;
 }
+/* 통일 골드 배지 — 모든 배달 카드 공통 (라이트 Papyrus) */
 .mob-feed-badge {
-  font-size: 11px; font-weight: 700; padding: 3px 9px;
-  border-radius: 99px; color: #fff; background: var(--accent);
+  font-size: 11px; font-weight: 700; padding: 3px 10px;
+  border-radius: 99px;
+  color: #9A6F1B; background: #F4ECD8;
+  border: 1px solid rgba(154,111,27,.22);
+  letter-spacing: .02em;
 }
-.mob-feed-badge-lang   { background: #4f46e5; }
-.mob-feed-badge-market { background: #059669; }
+.mob-feed-badge-lang   { color: #9A6F1B; background: #F4ECD8; }
+.mob-feed-badge-market { color: #9A6F1B; background: #F4ECD8; }
 .mob-feed-card-date    { font-size: 11px; color: var(--text-3); }
 
 /* 어휘 리스트 */
@@ -1462,7 +1466,7 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 /* ══════════════════════════════════════════════════════════
    v20 — 시황 피드 고도화: 증시 지표 배너 · 3줄 요약 · 체크포인트
 ══════════════════════════════════════════════════════════ */
-.mob-card-feed-market { border-left-color: #059669; }
+.mob-card-feed-market { border-left-color: #C5A059; }
 
 /* ── 증시 지표 배너 ── */
 .mob-feed-indicators {
@@ -1847,8 +1851,9 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 .mob-dlv-badge {
   display      : inline-flex; align-items: center; gap: 5px;
   font-size    : 11px; font-weight: 700;
-  color        : var(--accent);
-  background   : #e8efff;
+  color        : #9A6F1B;
+  background    : #F4ECD8;
+  border        : 1px solid rgba(154,111,27,.22);
   padding      : 4px 10px; border-radius: 99px;
   letter-spacing: .03em; flex-shrink: 0;
 }
@@ -1864,13 +1869,13 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 .mob-dlv-save-btn {
   display    : flex; align-items: center; justify-content: center;
   width      : 28px; height: 28px; border-radius: 8px;
-  background : #eff6ff; color: var(--accent);
+  background : #F4ECD8; color: #9A6F1B;
   font-size  : 14px; border: none; cursor: pointer;
   transition : background .15s, color .15s, transform .1s;
   flex-shrink: 0;
   -webkit-tap-highlight-color: transparent;
 }
-.mob-dlv-save-btn:active   { background: var(--accent); color: #fff; transform: scale(.9); }
+.mob-dlv-save-btn:active   { background: #9A6F1B; color: #fff; transform: scale(.9); }
 .mob-dlv-save-btn:disabled { opacity: .5; cursor: default; }
 
 /* ── 타이틀 행 (클릭 시 아코디언 토글) ── */
@@ -2061,11 +2066,11 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 .mob-hum-card {
   padding      : 0;
   cursor       : default;
-  border-left  : 3px solid #d97706;
-  background   : linear-gradient(160deg, #fffdf7 0%, #fdf9f0 100%);
-  border-top   : 1px solid #fde68a;
-  border-right : 1px solid #fde68a;
-  border-bottom: 1px solid #fde68a;
+  border-left  : 3px solid #C5A059;
+  background   : var(--mob-card);
+  border-top   : 1px solid var(--mob-border);
+  border-right : 1px solid var(--mob-border);
+  border-bottom: 1px solid var(--mob-border);
   overflow     : hidden;
 }
 
@@ -2075,7 +2080,7 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   align-items    : center;
   justify-content: space-between;
   padding        : 10px 14px 8px;
-  border-bottom  : 1px solid #fde68a;
+  border-bottom  : 1px solid var(--mob-border);
 }
 
 /* 인문학 카드 배지 행 우측 그룹 (텍스트 + 저장 버튼) */
@@ -2093,18 +2098,18 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   width          : 26px;
   height         : 26px;
   border-radius  : 6px;
-  border         : 1.5px solid #fde68a;
+  border         : 1.5px solid rgba(154,111,27,.3);
   background     : transparent;
-  color          : #92400e;
+  color          : #9A6F1B;
   font-size      : 14px;
   cursor         : pointer;
   transition     : background .15s, color .15s, transform .1s;
   flex-shrink    : 0;
 }
-.mob-hum-save-btn:hover           { background: #fef3c7; }
+.mob-hum-save-btn:hover           { background: #F4ECD8; }
 .mob-hum-save-btn:active          { transform: scale(.88); }
 .mob-hum-save-btn.saved,
-.mob-hum-save-btn:disabled        { color: #d97706; border-color: #d97706; background: #fef9e7; cursor: default; }
+.mob-hum-save-btn:disabled        { color: #9A6F1B; border-color: #9A6F1B; background: #F4ECD8; cursor: default; }
 
 /* 피드 카드 헤더 우측 그룹 (날짜 + 저장 아이콘) */
 .mob-feed-card-hd-r {
@@ -2132,7 +2137,7 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 .mob-feed-card-save-btn:hover     { background: var(--bg-2); }
 .mob-feed-card-save-btn:active    { transform: scale(.88); }
 .mob-feed-card-save-btn.saved,
-.mob-feed-card-save-btn:disabled  { color: var(--accent); border-color: var(--accent); background: #eff6ff; cursor: default; }
+.mob-feed-card-save-btn:disabled  { color: #9A6F1B; border-color: #9A6F1B; background: #F4ECD8; cursor: default; }
 
 /* 이미 저장된 언어 피드 전체저장 버튼 */
 .mob-feed-save-btn.saved          { opacity: .65; cursor: default; }
@@ -2140,8 +2145,9 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
 .mob-hum-badge {
   display      : inline-flex; align-items: center; gap: 5px;
   font-size    : 11px; font-weight: 700;
-  color        : #92400e;
-  background   : #fef3c7;
+  color        : #9A6F1B;
+  background    : #F4ECD8;
+  border        : 1px solid rgba(154,111,27,.22);
   padding      : 4px 10px; border-radius: 99px;
   letter-spacing: .03em; flex-shrink: 0;
 }
@@ -4293,6 +4299,25 @@ html[data-theme="dark"] .mob-mkt-expand-btn {
 }
 html[data-theme="dark"] .mob-mkt-expand-btn:active,
 html[data-theme="dark"] .mob-card-feed-market.mkt-open .mob-mkt-expand-btn { color: var(--color-premium-gold); }
+
+/* 배달 카드 배지 — 다크 골드 통일 (영어/시황/데일리, 라이트 베이지가 뜨지 않도록) */
+html[data-theme="dark"] .mob-feed-badge,
+html[data-theme="dark"] .mob-feed-badge-lang,
+html[data-theme="dark"] .mob-feed-badge-market,
+html[data-theme="dark"] .mob-dlv-badge {
+  background: var(--bg-badge-gold);
+  color     : var(--color-premium-gold);
+  border    : 1px solid rgba(226,182,91,.3);
+}
+/* 배달 카드 좌측 강조선 — 다크 골드 통일 */
+html[data-theme="dark"] .mob-card-feed,
+html[data-theme="dark"] .mob-card-feed-market { border-left-color: var(--color-premium-gold); }
+/* 배달 카드 저장 버튼 saved 상태 — 다크 골드 */
+html[data-theme="dark"] .mob-feed-card-save-btn.saved,
+html[data-theme="dark"] .mob-feed-card-save-btn:disabled,
+html[data-theme="dark"] .mob-dlv-save-btn {
+  background: var(--bg-badge-gold); color: var(--color-premium-gold); border-color: rgba(226,182,91,.35);
+}
 
 /* ══════════════════════════════════════════════════════════
    L1 카테고리 · L2 라이프 · L3 결산 — v68 신규 스타일

@@ -184,6 +184,47 @@ html[data-theme="dark"] {
 }
 
 /* ══════════════════════════════════════════
+   오답 노트 — 문제집 PDF 내보내기 툴바
+══════════════════════════════════════════ */
+.mvw-wrong-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px 2px;
+}
+.mvw-wrong-toolbar-title { font-size: 13px; font-weight: 700; color: var(--text-2); }
+.mvw-wrong-export {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 9px;
+  border: 1.5px solid var(--exam-ink); background: var(--exam-ink-soft);
+  color: var(--exam-ink); font-size: 12.5px; font-weight: 700;
+  cursor: pointer; transition: all .15s;
+}
+.mvw-wrong-export:active { transform: scale(.97); }
+.mvw-wrong-export i { font-size: 15px; }
+
+/* ══════════════════════════════════════════
+   오답 노트 — 과목 필터 칩 바 (가로 스크롤)
+══════════════════════════════════════════ */
+.mvw-wrong-subjbar {
+  display: flex; gap: 8px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  padding: 6px 16px 12px; scrollbar-width: none;
+}
+.mvw-wrong-subjbar::-webkit-scrollbar { display: none; }
+.mvw-wrong-subjchip {
+  flex: 0 0 auto; display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: 999px;
+  border: 1px solid var(--exam-ink-border); background: var(--surface);
+  color: var(--text-2); font-size: 12.5px; font-weight: 600;
+  white-space: nowrap; cursor: pointer; transition: all .15s;
+}
+.mvw-wrong-subjchip:active { transform: scale(.96); }
+.mvw-wrong-subjchip.active {
+  background: var(--exam-ink); border-color: var(--exam-ink); color: #F4F0EA;
+}
+.mvw-wrong-subjchip-n { font-size: 11px; font-weight: 700; opacity: .75; }
+.mvw-wrong-subjchip.active .mvw-wrong-subjchip-n { opacity: .95; }
+
+/* ══════════════════════════════════════════
    오답 노트 카드 — Archive Row (모노그램 기둥 + 본문)
 ══════════════════════════════════════════ */
 .mvw-wrong-card {

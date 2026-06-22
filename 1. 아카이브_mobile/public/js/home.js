@@ -280,7 +280,7 @@ Object.assign(Mob, {
     /* ── 수험생 모드 배달 카드 (영어단어 + 한국사) ── */
     if (hasExamDaily) {
       html += '<div class="mob-card-list">';
-      if (ex.vocab)   html += this._cardExamVocab(ex.vocab);
+      if (ex.vocab)   html += this._cardExamVocab(ex.vocab, true);   /* 홈: 접힘(더 보기) */
       if (ex.history) html += this._cardExamHistory(ex.history);
       html += '</div>';
     }
@@ -405,7 +405,7 @@ Object.assign(Mob, {
     return `
     <button class="mob-feed-preview-card"
             onclick="event.stopPropagation();Mob._goToFeedFiltered('${subId}')">
-      <div class="mob-fpc-pillar">
+      <div class="mob-fpc-pillar arch-${(arch.code || '').toLowerCase()}">
         <span class="mob-fpc-code">${arch.code}</span>
         <span class="mob-fpc-rule"></span>
       </div>
@@ -429,9 +429,10 @@ Object.assign(Mob, {
   ══════════════════════════════════════════ */
 
   /** 오늘의 수능 영어 단어 팩 카드 — 단어별 저장 토글 */
-  _cardExamVocab(v) {
+  _cardExamVocab(v, collapsed = false) {
     if (!v || !v.words?.length) return '';
     const saved = this._examSavedIds?.has(`exv_${v.packId}`);
+    const PREVIEW = 3;   /* 홈에서는 앞 N개만 보이고 나머지는 '더 보기'로 펼침 */
     const words = v.words.map(w => {
       const wSaved = this._examSavedIds?.has(`exw_${v.packId}_${w.id}`);
       return `
@@ -452,6 +453,7 @@ Object.assign(Mob, {
         </button>
       </li>`;
     }).join('');
+    const useCollapse = collapsed && v.words.length > PREVIEW;
     return `
     <article class="mob-exam-card mob-exam-vocab">
       <div class="mob-exam-card-hd">
@@ -464,8 +466,23 @@ Object.assign(Mob, {
       </div>
       <h3 class="mob-exam-title">${v.themeTitle}</h3>
       ${v.tip ? `<p class="mob-exam-tip">${v.tip}</p>` : ''}
-      <ul class="mob-exv-list">${words}</ul>
+      <ul class="mob-exv-list${useCollapse ? ' collapsed' : ''}" data-preview="${PREVIEW}">${words}</ul>
+      ${useCollapse ? `<button class="mob-exv-more-btn" data-more="${v.words.length - PREVIEW}"
+        onclick="event.stopPropagation();Mob._toggleExamVocabMore(this)">
+        <span class="mob-exv-more-txt">단어 ${v.words.length - PREVIEW}개 더 보기</span>
+        <i class="ti ti-chevron-down"></i>
+      </button>` : ''}
     </article>`;
+  },
+
+  /* 홈 영단어 카드 '더 보기/접기' 토글 */
+  _toggleExamVocabMore(btn) {
+    const ul = btn.closest('.mob-exam-vocab')?.querySelector('.mob-exv-list');
+    if (!ul) return;
+    const stillCollapsed = ul.classList.toggle('collapsed');
+    btn.classList.toggle('open', !stillCollapsed);
+    const txt = btn.querySelector('.mob-exv-more-txt');
+    if (txt) txt.textContent = stillCollapsed ? `단어 ${btn.dataset.more}개 더 보기` : '접기';
   },
 
   /** 오늘의 한국사 지식 카드 */
@@ -990,6 +1007,33 @@ Object.assign(Mob, {
     }
   },
 
+  /**
+   * 배달 언어 entry → 원어민 비밀 노트 / Dialogue / Example 섹션 HTML (공유)
+   * 지식배달 카드(feed.js)와 서재 상세(_buildExpandBody)가 동일 포맷을 쓰도록 한 곳에서 생성.
+   */
+  _fvEntrySections(e, isThemePack) {
+    const dlgLines = (e.dialogue || '').replace(/\\n/g, '\n').split('\n').map(l => l.trim()).filter(Boolean);
+    const dlgHTML  = dlgLines.map(l => {
+      /* 화자: 패턴 — A/B/甲/乙 및 임의 이름(Team Lead, You, Manager 등) */
+      if (/^[A-Za-z가-힣\s]{1,24}:\s/.test(l)) {
+        const ci = l.indexOf(':');
+        const sp = l.slice(0, ci).trim();
+        const tx = l.slice(ci + 1).trim();
+        return `<div class="mob-fv-dlg-line"><span class="mob-fv-dlg-sp">${sp}</span><span>${tx}</span></div>`;
+      }
+      if (l.startsWith('[해석:') || l.startsWith('[解:'))
+        return `<div class="mob-fv-dlg-tr">${l.replace(/^\[해석:|^\[解:/, '').replace(/\]$/, '').trim()}</div>`;
+      return `<div class="mob-fv-dlg-line"><span>${l}</span></div>`;
+    }).join('');
+
+    const nuanceLbl = isThemePack ? '원어민 비밀 노트' : 'Nuance';
+    return [
+      e.nuance         ? `<div class="mob-fv-sect"><div class="mob-fv-sect-lbl">${nuanceLbl}</div><div class="mob-fv-sect-txt">${e.nuance}</div></div>` : '',
+      dlgHTML          ? `<div class="mob-fv-sect"><div class="mob-fv-sect-lbl">Dialogue</div><div class="mob-fv-dlg">${dlgHTML}</div></div>` : '',
+      e.sourceSentence ? `<div class="mob-fv-sect"><div class="mob-fv-sect-lbl">Example</div><div class="mob-fv-sect-txt mob-fv-italic">"${e.sourceSentence}"</div>${e.practiceSentence ? `<div class="mob-fv-sect-txt mob-fv-practice">${e.practiceSentence}</div>` : ''}</div>` : ''
+    ].filter(Boolean).join('');
+  },
+
   /** 인라인 확장 본문 HTML 빌더 — 타입별 콘텐츠 섹션만 (버튼/평가/인사이트 제거) */
   _buildExpandBody(item, id) {
     const m    = item.analysis || {};
@@ -1038,8 +1082,46 @@ Object.assign(Mob, {
         body += `<div class="mob-detail-reminder">✨ ${item.reminder}</div>`;
       }
 
+    } else if ((type === 'language' || cat === 'en') &&
+               ((item.vocabEntries || []).length || (item.feedData?.vocabEntries || []).length)) {
+      /* 서재에 저장된 언어 피드 — 지식배달과 동일한 풍부한 포맷
+         (원어민 비밀 노트 / Dialogue / Example). 데이터는 top-level 또는 feedData에서. */
+      const fd          = item.feedData || {};
+      const vEntries    = (item.vocabEntries && item.vocabEntries.length) ? item.vocabEntries : (fd.vocabEntries || []);
+      const themeTitle  = item.themeTitle   || fd.themeTitle   || '';
+      const themeTitleEn= item.themeTitleEn || fd.themeTitleEn || '';
+      const isThemePack = !!themeTitle;
+      const masterPara  = item.masterParagraph || fd.masterParagraph || null;
+
+      if (isThemePack) {
+        body += `<div class="mob-fv-theme-band">
+          <div class="mob-fv-theme-kicker">테마 팩</div>
+          <div class="mob-fv-theme-title">${themeTitle}</div>
+          ${themeTitleEn ? `<div class="mob-fv-theme-title-en">${themeTitleEn}</div>` : ''}
+        </div>`;
+      }
+
+      body += `<div class="mob-feed-vocab-list mob-lib-vocab-list">` + vEntries.map((e, i) => {
+        const sects = this._fvEntrySections(e, isThemePack);
+        return `
+        <div class="mob-fv-item mob-lib-fv-item">
+          <div class="mob-fv-front">
+            <span class="mob-fv-num">${i + 1}</span>
+            <div class="mob-fv-main">
+              <div class="mob-fv-expr">${e.expression || ''}</div>
+              <div class="mob-fv-meaning">${e.meaning || ''}</div>
+            </div>
+          </div>
+          ${sects ? `<div class="mob-lib-fv-body">${sects}</div>` : ''}
+        </div>`;
+      }).join('') + `</div>`;
+
+      if (masterPara && this._renderMasterParagraph) {
+        body += this._renderMasterParagraph(masterPara);
+      }
+
     } else if (cat === 'en') {
-      /* 영어 표현 아이템 */
+      /* 단건 영어 표현 아이템 (vocabEntries 없음) — 텍스트 파싱 폴백 */
       const p = this._parseEnglishText(item.text || '');
       const fields = [
         { label: '뜻',    val: p.meaning  },
@@ -1056,43 +1138,6 @@ Object.assign(Mob, {
           </div>`).join('')}
         </div>`;
       }
-
-    } else if (type === 'language' && (item.vocabEntries || []).length) {
-      /* 서재에 저장된 언어 피드 (vocabEntries 보유) */
-      body += `<div class="mob-detail-section">
-        <div class="mob-detail-sec-label">표현 목록</div>
-        ${(item.vocabEntries || []).map(e => {
-          const dlgLines = (e.dialogue || '').replace(/\\n/g, '\n').split('\n').map(l => l.trim()).filter(Boolean);
-          const dlgHTML  = dlgLines.map(l => {
-            if (/^(A|B|甲|乙):/.test(l)) {
-              const ci = l.indexOf(':');
-              const sp = l.slice(0, ci).trim();
-              const isA = sp === 'A' || sp === '甲';
-              return `<div class="mob-dlg-line ${isA ? 'mob-dlg-a' : 'mob-dlg-b'}">
-                <span class="mob-dlg-speaker">${sp}</span>
-                <span class="mob-dlg-text">${l.slice(ci + 1).trim()}</span>
-              </div>`;
-            }
-            return `<div class="mob-dlg-line"><span class="mob-dlg-text">${l}</span></div>`;
-          }).join('');
-          return `<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)">
-            <div class="mob-detail-en-expr" style="font-size:18px;margin-bottom:8px">${e.expression || ''}</div>
-            ${[
-              { label:'뜻',   val: e.meaning },
-              { label:'뉘앙스', val: e.nuance },
-              { label:'예문',  val: e.sourceSentence },
-              { label:'연습',  val: e.practiceSentence },
-            ].filter(f => f.val).map(f => `<div class="mob-detail-field-row">
-              <span class="mob-detail-field-label">${f.label}</span>
-              <span class="mob-detail-field-val">${f.val}</span>
-            </div>`).join('')}
-            ${dlgHTML ? `<div class="mob-detail-dialogue-wrap">
-              <div class="mob-detail-sec-label" style="margin-top:10px">대화문</div>
-              <div class="mob-detail-dialogue">${dlgHTML}</div>
-            </div>` : ''}
-          </div>`;
-        }).join('')}
-      </div>`;
 
     } else if (type === 'humanities') {
       /* 서재에 저장된 인문학 피드 */

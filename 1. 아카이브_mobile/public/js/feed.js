@@ -35,26 +35,8 @@ Object.assign(Mob, {
 
     /* ── 개별 어휘 항목 렌더링 ── */
     const vocabHTML = entries.map((e, i) => {
-      const dlgLines = (e.dialogue || '').replace(/\\n/g, '\n').split('\n').map(l => l.trim()).filter(Boolean);
-      const dlgHTML  = dlgLines.map(l => {
-        /* 화자: 패턴 — A/B/甲/乙 및 임의 이름(Team Lead, You, Manager 등) */
-        if (/^[A-Za-z가-힣\s]{1,24}:\s/.test(l)) {
-          const ci = l.indexOf(':');
-          const sp = l.slice(0, ci).trim();
-          const tx = l.slice(ci + 1).trim();
-          return `<div class="mob-fv-dlg-line"><span class="mob-fv-dlg-sp">${sp}</span><span>${tx}</span></div>`;
-        }
-        if (l.startsWith('[해석:') || l.startsWith('[解:'))
-          return `<div class="mob-fv-dlg-tr">${l.replace(/^\[해석:|^\[解:/, '').replace(/\]$/, '').trim()}</div>`;
-        return `<div class="mob-fv-dlg-line"><span>${l}</span></div>`;
-      }).join('');
-
-      const nuanceLbl = isThemePack ? '원어민 비밀 노트' : 'Nuance';
-      const sects = [
-        e.nuance         ? `<div class="mob-fv-sect"><div class="mob-fv-sect-lbl">${nuanceLbl}</div><div class="mob-fv-sect-txt">${e.nuance}</div></div>` : '',
-        dlgHTML          ? `<div class="mob-fv-sect"><div class="mob-fv-sect-lbl">Dialogue</div><div class="mob-fv-dlg">${dlgHTML}</div></div>` : '',
-        e.sourceSentence ? `<div class="mob-fv-sect"><div class="mob-fv-sect-lbl">Example</div><div class="mob-fv-sect-txt mob-fv-italic">"${e.sourceSentence}"</div>${e.practiceSentence ? `<div class="mob-fv-sect-txt mob-fv-practice">${e.practiceSentence}</div>` : ''}</div>` : ''
-      ].filter(Boolean).join('');
+      /* 원어민 비밀 노트 / Dialogue / Example 섹션은 공유 헬퍼로 생성 (서재 상세와 동일 포맷) */
+      const sects = this._fvEntrySections(e, isThemePack);
 
       return `
       <div class="mob-fv-item">
@@ -707,14 +689,10 @@ Object.assign(Mob, {
     const dateEl  = el('feedViewDate');
     if (!content) return;
 
-    /* 모드 격리: 배달 지식은 직장인 전용. 수험생 모드면 전문직 피드 원천 배제 */
+    /* 모드 격리: 일반 지식 배달은 직장인 전용.
+       수험생 모드는 일반 배달 대신 '오늘의 수능 영단어 + 한국사 개념' 배달을 보여준다. */
     if (this._modeEnum() === 'EXAM_PREP') {
-      state.feedItems = [];
-      content.innerHTML = `<div class="mob-loading" style="flex-direction:column;gap:8px">
-        <i class="ti ti-school" style="font-size:34px;color:var(--text-3)"></i>
-        <span style="font-size:13px;color:var(--text-2)">수험생 모드에서는 일반 지식 배달이 제공되지 않습니다.</span>
-        <small style="color:var(--text-3)">시험에 나오는 것만 — 오답노트와 학습에 집중하세요.</small>
-      </div>`;
+      await this._loadExamFeedView(dateEl);
       return;
     }
 
@@ -790,6 +768,49 @@ Object.assign(Mob, {
           </button>
         </div>`;
     }
+  },
+
+  /* 수험생 모드 배달 뷰 — 오늘의 수능 영단어 + 한국사 (홈과 동일 카드 재사용) */
+  async _loadExamFeedView(dateEl) {
+    const content = el('mobFeedViewContent');
+    if (!content) return;
+    state.feedItems = [];
+    if (el('feedFilterBar')) el('feedFilterBar').innerHTML = '';
+
+    const today = new Date();
+    if (dateEl) dateEl.textContent = today.toLocaleDateString('ko-KR',
+      { year:'numeric', month:'long', day:'numeric', weekday:'long' });
+
+    /* 홈에서 이미 받아둔 examDaily 재사용, 없으면 지금 받아온다 */
+    if (!state.examDaily) {
+      content.innerHTML = `<div class="mob-loading"><span class="mob-spin"></span> 오늘의 배달 불러오는 중…</div>`;
+      try {
+        const ex = await fetchJSON('/api/exam/daily-knowledge', {}, 12000);
+        if (ex?.success) state.examDaily = ex;
+      } catch {}
+    }
+
+    const ex = state.examDaily;
+    if (!ex || (!ex.vocab && !ex.history)) {
+      content.innerHTML = `<div class="mob-loading" style="flex-direction:column;gap:8px">
+        <i class="ti ti-school" style="font-size:34px;color:var(--text-3)"></i>
+        <span style="font-size:13px;color:var(--text-2)">오늘의 배달이 아직 준비되지 않았어요.</span>
+        <small style="color:var(--text-3)">잠시 후 다시 확인해 주세요.</small>
+      </div>`;
+      return;
+    }
+
+    /* 저장 토글 상태 동기화 (단어/팩/한국사 북마크가 새로고침 후에도 유지) */
+    this._examSavedIds = new Set((state.items || []).map(i => i.id));
+
+    let html = `<div class="mob-card-list" style="padding:4px 0 12px">`;
+    if (ex.vocab)   html += this._cardExamVocab(ex.vocab);
+    if (ex.history) html += this._cardExamHistory(ex.history);
+    html += `</div>`;
+    content.innerHTML = html;
+    state.feedLoaded = true;
+    const badge = el('mobFeedBadge');
+    if (badge) badge.hidden = true;
   },
 
   _renderFeedView() {

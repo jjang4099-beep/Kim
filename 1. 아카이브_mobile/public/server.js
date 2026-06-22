@@ -3185,7 +3185,13 @@ app.post('/api/daily-feed/:date/:subId/save', async (req, res) => {
   // 서재에 저장
   let text;
   if (feed.type === 'language') {
-    text = `[영어 배달 ${date}] ${feed.title}\n` + (feed.vocabEntries || []).map(e => `• ${e.expression}: ${e.meaning}`).join('\n');
+    /* 검색·폴백용 텍스트도 뉘앙스/예문까지 보강 (렌더는 구조화 데이터 사용) */
+    text = `[영어 배달 ${date}] ${feed.title}\n` + (feed.vocabEntries || []).map(e => {
+      const parts = [`• ${e.expression}: ${e.meaning}`];
+      if (e.nuance)         parts.push(`  뉘앙스: ${e.nuance}`);
+      if (e.sourceSentence) parts.push(`  예문: ${e.sourceSentence}`);
+      return parts.join('\n');
+    }).join('\n');
   } else if (feed.type === 'humanities') {
     const parts = [`[인문학 배달 ${date}] ${feed.title}`];
     if (feed.summary)     parts.push(feed.summary);
@@ -3217,6 +3223,17 @@ app.post('/api/daily-feed/:date/:subId/save', async (req, res) => {
     insights:   [],
     feedData:   feed
   };
+
+  /* 언어 피드: 구조화 필드를 top-level에도 적재 → 서재 상세가 배달과 동일 포맷으로 렌더 */
+  if (feed.type === 'language') {
+    newItem.vocabEntries   = feed.vocabEntries   || [];
+    newItem.themeTitle     = feed.themeTitle     || '';
+    newItem.themeTitleEn   = feed.themeTitleEn   || '';
+    newItem.masterParagraph= feed.masterParagraph|| null;
+    newItem.subCategory    = feed.subCategory    || '';
+    /* 카드 제목은 '[영어 배달 날짜]' 접두 없이 테마/제목으로 깔끔하게 */
+    newItem.title          = feed.themeTitle || feed.title || '오늘의 표현';
+  }
 
   dbInsert(newItem);
 
@@ -4248,39 +4265,155 @@ app.post('/api/analyze-image', upload.array('image', 10), async (req, res) => {
       return res.status(201).json({ success: true, item: newItem, analysis: analysisResult });
     }
 
-    // ══ 수험생 모드 ══
-    const now       = new Date();
-    const imageUrls = stored.map(s => s.url);
-    const item      = buildExamItemBase(examSubject, imageUrls, userHint, now);
+    // ══ 수험생 모드 — 사진 1장당 오답 1건(각각 독립 분석) ══
+    const now   = new Date();
+    /* 사진마다 별도 오답 아이템 생성 → 각 문제가 자기 카드/분석을 가진다 */
+    const items = stored.map(s => buildExamItemBase(examSubject, [s.url], userHint, now));
 
-    // ── 보관하기: 즉시 저장(분석 대기) → 응답 → 백그라운드 분석 ──
+    // ── 보관하기: N건 즉시 저장(분석 대기) → 응답 → 순차 백그라운드 분석 ──
     if (action === 'store') {
-      item.analysisStatus = 'pending';
-      dbInsert(item);
-      console.log(`[이미지분석] 보관 완료(분석 대기): ${item.id} (${imageUrls.length}장)`);
-      res.status(201).json({ success: true, stored: true, item });
+      items.forEach(it => { it.analysisStatus = 'pending'; dbInsert(it); });
+      console.log(`[이미지분석] 보관 완료(분석 대기): ${items.length}건`);
+      res.status(201).json({ success: true, stored: true, count: items.length, items });
       if (process.env.GEMINI_API_KEY) {
-        setImmediate(() => analyzeStoredExamItemById(item.id).catch(() => {}));
+        /* 레이트리밋 보호를 위해 순차 분석 */
+        setImmediate(async () => {
+          for (const it of items) { await analyzeStoredExamItemById(it.id).catch(() => {}); }
+        });
       }
       return;
     }
 
-    // ── 분석하기: 지금 바로 분석 ──
-    const a = await runExamImageAnalysis(stored, examSubject, userHint);
-    if (a) {
-      applyExamAnalysis(item, a, examSubject);
-    } else {
-      item.analysisStatus = process.env.GEMINI_API_KEY ? 'failed' : 'pending';
-    }
-    dbInsert(item);
-    console.log(`[이미지분석] 분석 완료: "${item.title}" → ${item.id} (${item.analysisStatus})`);
-    return res.status(201).json({ success: true, item, analysis: a || null });
+    // ── 분석하기: 각 사진을 지금 바로(병렬) 분석 ──
+    await Promise.all(items.map(async (it, i) => {
+      const a = await runExamImageAnalysis([stored[i]], examSubject, userHint).catch(() => null);
+      if (a) applyExamAnalysis(it, a, examSubject);
+      else   it.analysisStatus = process.env.GEMINI_API_KEY ? 'failed' : 'pending';
+      dbInsert(it);
+    }));
+    const doneCnt = items.filter(it => it.analysisStatus === 'done').length;
+    console.log(`[이미지분석] 분석 완료: ${doneCnt}/${items.length}건`);
+    return res.status(201).json({ success: true, count: items.length, items });
 
   } catch (e) {
     console.error('[이미지분석] 실패:', e.message);
     stored.forEach(s => { try { if (fs.existsSync(s.path)) fs.unlinkSync(s.path); } catch {} });
     files.forEach(f  => { try { if (fs.existsSync(f.path)) fs.unlinkSync(f.path); } catch {} });
     return res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+/* GET /api/exam/wrong/export-pdf?subject=all|math|… — 오답 문제 사진을 깨끗한 문제집 PDF로
+   A4 세로, 한 페이지에 2×2(=4문제). 분석/정답 없이 '문제 사진'만 — 다시 풀어보기용.
+   pdf-lib는 한글 글리프를 못 그리므로 PDF 내부 텍스트는 영문/숫자만(문제는 이미지). */
+const PDF_SUBJECT_EN = {
+  all: 'All Subjects', math: 'Mathematics', korean: 'Korean', english: 'English',
+  history: 'Korean History', science: 'Science', cert: 'Certificate', etc: 'Others',
+};
+app.get('/api/exam/wrong/export-pdf', async (req, res) => {
+  try {
+    const subject = (req.query.subject || 'all').trim();
+    const KNOWN   = ['math', 'korean', 'english', 'history', 'science', 'cert'];
+
+    let items = readDB().filter(i => i.type === 'wrong_answer' && i.mode === MODE_EXAM);
+    if (subject !== 'all') {
+      items = subject === 'etc'
+        ? items.filter(i => !KNOWN.includes(i.wrongAnswer?.subject))
+        : items.filter(i => i.wrongAnswer?.subject === subject);
+    }
+    /* 누적 순(오래된 → 최신)으로 문제 번호 부여 */
+    items.sort((a, b) => new Date(a.createdAt || a.date) - new Date(b.createdAt || b.date));
+
+    /* 문제 사진 경로 수집 (사진 1장 = 문제 1개) */
+    const photos = [];
+    items.forEach(it => {
+      const urls = it.imageUrls?.length ? it.imageUrls : (it.imageUrl ? [it.imageUrl] : []);
+      urls.forEach(u => {
+        const p = path.join(UPLOADS_DIR, path.basename(u));
+        if (fs.existsSync(p)) photos.push({ path: p, mime: mimeFromUrl(u) });
+      });
+    });
+    if (!photos.length) {
+      return res.status(404).json({ success: false, error: '내보낼 오답 문제가 없습니다.' });
+    }
+
+    const { PDFDocument, rgb, StandardFonts } = require('pdf-lib');
+    const pdf   = await PDFDocument.create();
+    const font  = await pdf.embedFont(StandardFonts.Helvetica);
+    const fontB = await pdf.embedFont(StandardFonts.HelveticaBold);
+
+    /* A4 세로 레이아웃 (pt) */
+    const PAGE_W = 595.28, PAGE_H = 841.89, M = 40, HEADER_H = 50, GUT = 16;
+    const usableW = PAGE_W - 2 * M;
+    const usableH = PAGE_H - 2 * M - HEADER_H;
+    const colW = (usableW - GUT) / 2;
+    const rowH = (usableH - GUT) / 2;
+    const gridTopY = PAGE_H - M - HEADER_H;
+    const ink  = rgb(0.165, 0.235, 0.40);   /* #2A3C66 */
+    const gray = rgb(0.45, 0.50, 0.62);
+    const lineGray = rgb(0.80, 0.82, 0.88);
+
+    const cellRect = (j) => {
+      const c = j % 2, r = Math.floor(j / 2);
+      return { x: M + c * (colW + GUT), yTop: gridTopY - r * (rowH + GUT), w: colW, h: rowH };
+    };
+    const embedAuto = async (photo) => {
+      const buf = fs.readFileSync(photo.path);
+      return photo.mime === 'image/png' ? pdf.embedPng(buf) : pdf.embedJpg(buf);
+    };
+
+    const subjEn   = PDF_SUBJECT_EN[subject] || 'Wrong Answers';
+    const dateStr  = toDateStr(new Date());
+    const totalPg  = Math.ceil(photos.length / 4);
+
+    for (let i = 0; i < photos.length; i += 4) {
+      const pageNo = i / 4 + 1;
+      const page   = pdf.addPage([PAGE_W, PAGE_H]);
+
+      /* 헤더 */
+      page.drawText('WRONG-ANSWER WORKSHEET', { x: M, y: PAGE_H - M - 12, size: 8.5, font, color: gray });
+      page.drawText(subjEn, { x: M, y: PAGE_H - M - 30, size: 15, font: fontB, color: ink });
+      const rt  = `${dateStr}    p.${pageNo} / ${totalPg}`;
+      const rtW = font.widthOfTextAtSize(rt, 9);
+      page.drawText(rt, { x: PAGE_W - M - rtW, y: PAGE_H - M - 12, size: 9, font, color: gray });
+      page.drawLine({
+        start: { x: M, y: gridTopY + 8 }, end: { x: PAGE_W - M, y: gridTopY + 8 },
+        thickness: 1, color: ink,
+      });
+
+      for (let j = 0; j < 4 && (i + j) < photos.length; j++) {
+        const num = i + j + 1;
+        const { x, yTop, w, h } = cellRect(j);
+        /* 셀 테두리 */
+        page.drawRectangle({ x, y: yTop - h, width: w, height: h, borderColor: lineGray, borderWidth: 1, color: rgb(1, 1, 1) });
+        /* 문제 번호 */
+        page.drawText(String(num), { x: x + 11, y: yTop - 20, size: 13, font: fontB, color: ink });
+
+        /* 이미지 박스(번호줄 아래) */
+        const padX = 12, labelH = 26, padB = 12;
+        const boxX = x + padX, boxW = w - 2 * padX;
+        const boxH = h - labelH - padB, boxY = yTop - labelH - boxH;
+        try {
+          const img = await embedAuto(photos[i + j]);
+          const scale = Math.min(boxW / img.width, boxH / img.height);
+          const dw = img.width * scale, dh = img.height * scale;
+          page.drawImage(img, { x: boxX + (boxW - dw) / 2, y: boxY + (boxH - dh) / 2, width: dw, height: dh });
+        } catch {
+          page.drawText('(image unavailable)', { x: boxX + 8, y: boxY + boxH / 2, size: 9, font, color: gray });
+        }
+      }
+    }
+
+    const bytes = await pdf.save();
+    const asciiName = `wrong-answers-${subject}-${dateStr}.pdf`;
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename="${asciiName}"`);
+    res.setHeader('Content-Length', bytes.length);
+    console.log(`[오답PDF] ${subject} ${photos.length}문제 / ${totalPg}쪽`);
+    return res.end(Buffer.from(bytes));
+  } catch (e) {
+    console.error('[오답PDF] 실패:', e.message);
+    return res.status(500).json({ success: false, error: 'PDF 생성 실패: ' + e.message });
   }
 });
 

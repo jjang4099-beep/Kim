@@ -121,12 +121,14 @@ const ExamMob = {
     if (type === 'wrong') {
       el('wrongAnswerTimeline')?.removeAttribute('hidden');
       el('libTimeline')?.setAttribute('hidden', '');
+      el('libFilterBar')?.setAttribute('hidden', '');   /* 매거진 카테고리 필터는 오답뷰에서 숨김 */
       el('libAiToggle')?.setAttribute('hidden', '');
       el('libSearchWrap')?.setAttribute('hidden', '');
       this._loadWrongAnswerLibrary();
     } else {
       el('wrongAnswerTimeline')?.setAttribute('hidden', '');
       el('libTimeline')?.removeAttribute('hidden');
+      el('libFilterBar')?.removeAttribute('hidden');
       el('libAiToggle')?.removeAttribute('hidden');
       el('libSearchWrap')?.removeAttribute('hidden');
     }
@@ -138,34 +140,134 @@ const ExamMob = {
   async _loadWrongAnswerLibrary(subject) {
     const container = el('wrongAnswerTimeline');
     if (!container) return;
+    if (subject) state.wrongFilter = subject;   /* 하위호환: 인자로 과목 지정 시 필터 세팅 */
     container.innerHTML = '<div class="mob-loading"><span class="mob-spin"></span> 오답 불러오는 중…</div>';
     try {
-      const data  = await fetchJSON('/api/items?limit=500');
-      const items = (data?.items ?? data ?? []).filter(i => i.type === 'wrong_answer');
-      const filtered = subject && subject !== 'all'
-        ? items.filter(i => i.wrongAnswer?.subject === subject)
-        : items;
-      if (!filtered.length) {
-        container.innerHTML = '<div class="mvw-empty"><i class="ti ti-clipboard-x" style="font-size:36px;display:block;margin-bottom:8px;opacity:.35"></i>아직 오답이 없어요!<br>추가 탭에서 사진을 찍어 분석해 보세요.</div>';
-        return;
-      }
-      /* 날짜 그룹핑 */
-      const groups = {};
-      filtered.forEach(i => {
-        const d = i.date || '날짜 없음';
-        if (!groups[d]) groups[d] = [];
-        groups[d].push(i);
-      });
-      let html = '';
-      Object.entries(groups).sort(([a],[b]) => b > a ? 1 : -1).forEach(([date, items]) => {
-        html += `<div class="mob-section-hd" style="margin-top:12px">
-          <span>${date}</span>
-          <span class="mob-section-badge">${items.length}개</span>
-        </div>`;
-        items.forEach(i => { html += this._renderWrongCard(i); });
-      });
-      container.innerHTML = html;
+      const data = await fetchJSON('/api/items?limit=500');
+      state.wrongItems = (data?.items ?? data ?? []).filter(i => i.type === 'wrong_answer');
+      this._renderWrongLibrary();
     } catch { container.innerHTML = '<div class="mvw-empty">불러오기 실패</div>'; }
+  },
+
+  /* ── 오답 서재 렌더 — 과목 칩(상단) + 기간(월) 그룹 ── */
+  _renderWrongLibrary() {
+    const container = el('wrongAnswerTimeline');
+    if (!container) return;
+    const all = state.wrongItems || [];
+
+    if (!all.length) {
+      container.innerHTML = '<div class="mvw-empty"><i class="ti ti-clipboard-x" style="font-size:36px;display:block;margin-bottom:8px;opacity:.35"></i>아직 오답이 없어요!<br>추가 탭에서 사진을 찍어 분석해 보세요.</div>';
+      return;
+    }
+
+    /* 과목별 카운트 (미정의 과목은 etc로) */
+    const counts = {};
+    all.forEach(i => {
+      const s = i.wrongAnswer?.subject;
+      const key = EXAM_SUBJECTS_CLIENT[s] ? s : 'etc';
+      counts[key] = (counts[key] || 0) + 1;
+    });
+
+    const filter = state.wrongFilter || 'all';
+
+    /* 과목 칩 바 — 전체 + 보유한 과목만 (정의 순서) + 기타 */
+    let chips = `<button class="mvw-wrong-subjchip${filter === 'all' ? ' active' : ''}"
+      onclick="ExamMob._filterWrong('all')">전체 <span class="mvw-wrong-subjchip-n">${all.length}</span></button>`;
+    Object.keys(EXAM_SUBJECTS_CLIENT).filter(s => counts[s]).forEach(s => {
+      chips += `<button class="mvw-wrong-subjchip${filter === s ? ' active' : ''}"
+        onclick="ExamMob._filterWrong('${s}')">${EXAM_SUBJECTS_CLIENT[s].label} <span class="mvw-wrong-subjchip-n">${counts[s]}</span></button>`;
+    });
+    if (counts.etc) {
+      chips += `<button class="mvw-wrong-subjchip${filter === 'etc' ? ' active' : ''}"
+        onclick="ExamMob._filterWrong('etc')">기타 <span class="mvw-wrong-subjchip-n">${counts.etc}</span></button>`;
+    }
+    const chipBar = `<div class="mvw-wrong-subjbar">${chips}</div>`;
+
+    /* 문제집 PDF 내보내기 툴바 */
+    const toolbar = `
+      <div class="mvw-wrong-toolbar">
+        <span class="mvw-wrong-toolbar-title">오답 문제집</span>
+        <button class="mvw-wrong-export" onclick="ExamMob.exportWrongPdf()">
+          <i class="ti ti-file-export"></i> PDF 내보내기
+        </button>
+      </div>`;
+
+    /* 필터 적용 */
+    const filtered = filter === 'all' ? all
+      : filter === 'etc' ? all.filter(i => !EXAM_SUBJECTS_CLIENT[i.wrongAnswer?.subject])
+      : all.filter(i => i.wrongAnswer?.subject === filter);
+
+    if (!filtered.length) {
+      container.innerHTML = toolbar + chipBar + '<div class="mvw-empty">이 과목에는 아직 오답이 없어요.</div>';
+      return;
+    }
+
+    /* 기간(월) 그룹핑 */
+    const groups = {};
+    filtered.forEach(i => {
+      const key = (i.date || i.createdAt || '').slice(0, 7) || '날짜 없음';   /* YYYY-MM */
+      (groups[key] = groups[key] || []).push(i);
+    });
+    const keys = Object.keys(groups).sort((a, b) =>
+      a === '날짜 없음' ? 1 : b === '날짜 없음' ? -1 : b.localeCompare(a));
+
+    let html = toolbar + chipBar;
+    keys.forEach(key => {
+      html += `<div class="mob-section-hd" style="margin-top:14px">
+        <span>${this._periodLabel(key)}</span>
+        <span class="mob-section-badge">${groups[key].length}개</span>
+      </div>`;
+      groups[key]
+        .sort((a, b) => new Date(b.createdAt || b.date) - new Date(a.createdAt || a.date))
+        .forEach(i => { html += this._renderWrongCard(i); });
+    });
+    container.innerHTML = html;
+  },
+
+  /* YYYY-MM → "2026년 6월" */
+  _periodLabel(key) {
+    if (key === '날짜 없음') return '날짜 없음';
+    const [y, m] = key.split('-');
+    return `${y}년 ${parseInt(m, 10)}월`;
+  },
+
+  /* 과목 칩 클릭 → 필터 변경 후 재렌더 (재요청 없음) */
+  _filterWrong(subject) {
+    state.wrongFilter = subject;
+    this._renderWrongLibrary();
+  },
+
+  /* 현재 필터의 오답 문제들을 깨끗한 문제집 PDF로 내보내기 (4문제/페이지) */
+  async exportWrongPdf() {
+    const subject = state.wrongFilter || 'all';
+    const all     = state.wrongItems || [];
+    const KNOWN   = Object.keys(EXAM_SUBJECTS_CLIENT);
+    const filtered = subject === 'all' ? all
+      : subject === 'etc' ? all.filter(i => !KNOWN.includes(i.wrongAnswer?.subject))
+      : all.filter(i => i.wrongAnswer?.subject === subject);
+    if (!filtered.length) { toast('내보낼 오답이 없어요', 'err'); return; }
+
+    toast('문제집 PDF 만드는 중…');
+    try {
+      /* 바이너리 응답이라 fetchJSON 대신 raw fetch (다운로드 전용) */
+      const res = await fetch(`/api/exam/wrong/export-pdf?subject=${encodeURIComponent(subject)}`);
+      if (!res.ok) {
+        let msg = 'PDF 생성 실패';
+        try { msg = (await res.json()).error || msg; } catch {}
+        throw new Error(msg);
+      }
+      const blob  = await res.blob();
+      const url   = URL.createObjectURL(blob);
+      const label = subject === 'all' ? '전체' : (EXAM_SUBJECTS_CLIENT[subject]?.label || subject);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `오답문제집_${label}_${toLocalDateStr()}.pdf`;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 5000);
+      toast('PDF 저장 완료!', 'ok');
+    } catch (e) {
+      toast(e.message || 'PDF 생성 실패', 'err');
+    }
   },
 
   /* ── 오답 카드 HTML (Archive Row · 학구적) ── */

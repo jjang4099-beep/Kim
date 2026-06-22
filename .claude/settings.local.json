@@ -17,7 +17,8 @@
       "Bash(curl -s -X POST http://127.0.0.1:3000/api/items -H \"Content-Type: application/json\" -d '{\"text\":\"https://www.bbc.com/news\"}')",
       "Bash(node -e ' *)",
       "Bash(curl -s http://127.0.0.1:3000/api/categories)",
-      "PowerShell(\\(Get-Content \"C:\\\\Users\\\\jjang\\\\Desktop\\\\SJ아카이브\\\\app.js\" | Measure-Object -Line\\).Lines)"
+      "PowerShell(\\(Get-Content \"C:\\\\Users\\\\jjang\\\\Desktop\\\\SJ아카이브\\\\app.js\" | Measure-Object -Line\\).Lines)",
+      "Bash(git add *)"
     ]
   }
 }

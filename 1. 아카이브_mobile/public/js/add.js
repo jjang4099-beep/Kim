@@ -119,6 +119,30 @@ Object.assign(Mob, {
     el('mobImgMemo').value        = '';
   },
 
+  /* 이미지 압축 헬퍼 — canvas 리사이즈 max 1200px, JPEG quality 0.82 */
+  async _compressImage(file, maxPx = 1200, quality = 0.82) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      const url = URL.createObjectURL(file);
+      img.onload = () => {
+        URL.revokeObjectURL(url);
+        const { naturalWidth: w, naturalHeight: h } = img;
+        const scale = Math.min(1, maxPx / Math.max(w, h));
+        const cw = Math.round(w * scale);
+        const ch = Math.round(h * scale);
+        const canvas = document.createElement('canvas');
+        canvas.width  = cw;
+        canvas.height = ch;
+        canvas.getContext('2d').drawImage(img, 0, 0, cw, ch);
+        canvas.toBlob(blob => {
+          resolve(new File([blob], file.name.replace(/\.\w+$/, '.jpg'), { type: 'image/jpeg' }));
+        }, 'image/jpeg', quality);
+      };
+      img.onerror = () => { URL.revokeObjectURL(url); resolve(file); };
+      img.src = url;
+    });
+  },
+
   /* action: 'analyze'(지금 분석) | 'store'(보관 후 백그라운드 분석) */
   async submitImageAnalysis(action = 'analyze') {
     const files = state.selectedImageFiles || [];
@@ -137,12 +161,14 @@ Object.assign(Mob, {
     const activeOrig = activeBtn ? activeBtn.innerHTML : '';
     allBtns.forEach(b => { if (b) b.disabled = true; });
     if (activeBtn) activeBtn.innerHTML = `<span class="mob-spin"></span> ${store ? '보관 중…' : '분석 중…'}`;
-    status.textContent = store ? '사진을 보관하고 있어요…' : '문제를 분석하고 있어요…';
+    status.textContent = store ? '사진 압축 후 보관해요…' : '문제를 분석하고 있어요…';
     status.hidden = false;
 
     try {
+      /* 업로드 전 사진 압축 (max 1200px, JPEG 0.82) — 전송량 대폭 감소 */
+      const compressed = await Promise.all(files.map(f => this._compressImage(f)));
       const formData = new FormData();
-      files.forEach(f => formData.append('image', f));   // 다중 첨부
+      compressed.forEach(f => formData.append('image', f));   // 다중 첨부
       if (memo) formData.append('memo', memo);
       if (isExam) {
         formData.append('mode', 'exam');
@@ -153,14 +179,17 @@ Object.assign(Mob, {
       }
 
       const ctrl  = new AbortController();
-      const timer = setTimeout(() => ctrl.abort(), store ? 30000 : 90000);
+      const timer = setTimeout(() => ctrl.abort(), store ? 120000 : 90000);
       const res   = await fetch('/api/analyze-image', { method:'POST', body:formData, signal:ctrl.signal });
       clearTimeout(timer);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       if (!data.success) throw new Error(data.error || '처리 실패');
 
-      toast(store ? '보관했어요 · 분석은 백그라운드에서 진행돼요' : '분석 완료!', 'ok');
+      const n = data.count || 1;
+      toast(store
+        ? `${n}건 보관했어요 · 분석은 백그라운드에서 진행돼요`
+        : `${n}건 분석 완료!`, 'ok');
       this.closeAdd();
       this._loadHomeItems();
     } catch (e) {

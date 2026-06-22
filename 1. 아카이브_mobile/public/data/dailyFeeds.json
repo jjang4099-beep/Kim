@@ -1919,5 +1919,224 @@
       ],
       "aiGenerated": true
     }
+  },
+  "2026-06-21": {
+    "en_expr": {
+      "id": "2026-06-21::en_expr",
+      "date": "2026-06-21",
+      "subId": "en_expr",
+      "createdAt": "2026-06-20T23:43:37.828Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "language",
+      "category": "en",
+      "subCategory": "",
+      "label": "US 영어 표현",
+      "title": "[일] 번아웃에서 자신을 지킬 때: Running on empty 외 4개",
+      "summary": "일요일 — 번아웃에서 자신을 지킬 때",
+      "theme": "",
+      "themeTitle": "번아웃에서 자신을 지킬 때",
+      "themeTitleEn": "Protecting Yourself from Burnout",
+      "dayOfWeek": "일",
+      "vocabEntries": [
+        {
+          "item_id": "PACK_EN_007_E1",
+          "expression": "Running on empty",
+          "meaning": "기력이 완전히 소진된 상태",
+          "nuance": "자동차 연료가 바닥난 상태에서 온 비유다. 피곤하다는 것을 넘어서, 기능하는 데 필요한 최소 에너지도 남지 않은 위험한 상태를 가리킨다. 번아웃 직전의 신호를 표현할 때 가장 정확한 표현이다.",
+          "dialogue": "A: You've worked 60-hour weeks for a month. How are you holding up?\nB: Honestly, I'm running on empty. My focus is gone and I can't think clearly anymore.\nA: That's your body telling you something important.\nB: I know. I need to stop before I crash completely.",
+          "dialogueKo": "",
+          "sourceSentence": "Running on empty doesn't make you productive — it makes you fragile and prone to mistakes.",
+          "practiceSentence": "'I realized I was running on empty when...'으로 시작하는 자신의 경험을 설명해보세요."
+        },
+        {
+          "item_id": "PACK_EN_007_E2",
+          "expression": "Decompress",
+          "meaning": "긴장을 풀다, 스트레스를 해소하다",
+          "nuance": "'Relax'보다 더 의도적이고 능동적인 회복 과정을 뜻한다. 압축 파일이 풀리듯, 쌓인 스트레스와 긴장이 서서히 해소되는 이미지다. '쉬다'라기보다 '회복하다'에 가까우며, 혼자만의 시간이든 운동이든 자신에게 맞는 방식을 적극적으로 선택하는 행위다.",
+          "dialogue": "A: The deadline's over. What are you doing this weekend?\nB: Just decompressing — no meetings, no email, no screens. Just a long hike.\nA: That sounds perfect. I always forget to decompress properly after big sprints.\nB: Recovery is part of the performance, not separate from it.",
+          "dialogueKo": "",
+          "sourceSentence": "Top athletes build decompression time into their training cycles — so should professionals.",
+          "practiceSentence": "'The most effective way I decompress is...'로 시작하는 자신만의 회복법을 영어로 설명해보세요."
+        },
+        {
+          "item_id": "PACK_EN_007_E3",
+          "expression": "Burning the candle at both ends",
+          "meaning": "밤낮으로 무리하게 혹사시키다",
+          "nuance": "양쪽을 동시에 태우는 초는 두 배 빠르게 타버린다. 밤을 새우는 동시에 이른 아침부터 일하거나, 직장과 사이드 프로젝트를 동시에 과도하게 뛰는 상황을 가리킨다. 단기 생산성을 위해 장기 건강을 저당 잡히는 패턴이다.",
+          "dialogue": "A: You're up at 5 AM for workouts and working until midnight?\nB: I've been burning the candle at both ends for months. I thought I could sustain it.\nA: Nobody can. What's your plan?\nB: I'm cutting the morning workout to three days. Sleep has to come first.",
+          "dialogueKo": "",
+          "sourceSentence": "She burned the candle at both ends through her twenties and paid for it with her health in her thirties.",
+          "practiceSentence": "'I know I'm burning the candle at both ends when I notice...'로 시작하는 자신만의 번아웃 신호를 설명해보세요."
+        },
+        {
+          "item_id": "PACK_EN_007_E4",
+          "expression": "Set boundaries",
+          "meaning": "경계선을 설정하다",
+          "nuance": "물리적 경계가 아닌, 자신의 시간·에너지·감정에 대한 한계선을 명확히 하는 것이다. 경계선 설정은 이기적인 것이 아니라, 지속가능한 협력의 기반이다. 경계가 없는 사람은 결국 모두에게 덜 줄 수밖에 없게 된다.",
+          "dialogue": "A: My manager expects me to answer messages at 11 PM.\nB: That's the time to set boundaries. A clear, calm conversation about your availability window.\nA: What if they react badly?\nB: If a boundary conversation creates conflict, that itself tells you something important about the environment.",
+          "dialogueKo": "",
+          "sourceSentence": "Setting boundaries at work isn't about working less — it's about protecting your capacity to work well.",
+          "practiceSentence": "'A boundary I need to set in my life right now is...'로 시작하여 구체적인 상황을 설명해보세요."
+        },
+        {
+          "item_id": "PACK_EN_007_E5",
+          "expression": "One day at a time",
+          "meaning": "하루하루 차근차근 해나가다",
+          "nuance": "압도적인 상황에서 전체를 보면 마비된다. '오늘 하루'에만 집중하는 것이 불안을 줄이고 실제로 앞으로 나아가게 한다. 번아웃 회복, 큰 변화의 적응, 장기 치료 과정 등에서 가장 실용적인 생존 전략이다.",
+          "dialogue": "A: I don't know how you're managing with everything on your plate right now.\nB: I'm just taking it one day at a time. Today's goal is just today's goal.\nA: That sounds simple but I imagine it's hard to stick to.\nB: It is. But it beats being paralyzed by everything at once.",
+          "dialogueKo": "",
+          "sourceSentence": "When facing overwhelming change, one day at a time isn't giving up on the future — it's how you get there.",
+          "practiceSentence": "'Taking things one day at a time helps me most when...'으로 시작하는 문장을 만들어보세요."
+        }
+      ],
+      "masterParagraph": {
+        "text": "There's a particular kind of exhaustion that sets in when you've been **running on empty** for too long — when rest feels like a luxury and productivity has become your identity. These are the moments when you most need to **decompress**, yet feel most guilty doing so. The truth is that **burning the candle at both ends** doesn't make you more committed — it makes you less capable. Sustainable performance begins the moment you **set boundaries** that protect your energy, and continues when you learn to take the process **one day at a time**, without demanding the whole mountain at once.",
+        "translation": "너무 오래 방전된 상태로 달려왔을 때 찾아오는 특별한 피로감이 있다. 쉬는 것이 사치처럼 느껴지고, 생산성이 정체성이 되어버린 상태. 바로 그 순간이 긴장을 가장 풀어야 할 때이지만, 동시에 가장 죄책감이 드는 때다. 밤낮으로 무리하는 것은 더 헌신적인 것이 아니라, 더 무능하게 만든다. 지속 가능한 성과는 에너지를 보호하는 경계선을 설정하는 순간 시작되고, 한꺼번에 산 전체를 요구하지 않고 하루하루 해나가는 법을 배울 때 이어진다.",
+        "highlights": [
+          "running on empty",
+          "decompress",
+          "burning the candle at both ends",
+          "set boundaries",
+          "one day at a time"
+        ]
+      },
+      "pack_id": "PACK_EN_007",
+      "aiGenerated": false
+    },
+    "hist_daily": {
+      "id": "2026-06-21::hist_daily",
+      "date": "2026-06-21",
+      "subId": "hist_daily",
+      "createdAt": "2026-06-20T23:43:37.884Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "history",
+      "label": "역사 지식 한줌",
+      "category": "history",
+      "item_id": "HI_020",
+      "era": "세계사",
+      "period": "1927~1991년",
+      "title": "팬아메리칸 항공의 몰락 — 너무 앞선 기업의 비극",
+      "summary": "한때 '세계에서 가장 혁신적인 항공사'였던 팬아메리칸 항공(팬암)은 1991년 파산했다. 수십 년을 앞서간 기업이 왜 사라졌는가.",
+      "summary3": "",
+      "behindStory": "팬아메리칸 항공(Pan American World Airways)은 혁신의 연대기였다. 1970년 보잉 747을 세계 최초로 운항했고, 1988년에는 민간 우주여행 좌석 예약을 받기 시작했다(지구 궤도 여행권 판매). 그러나 팬암은 세 가지 충격을 연달아 맞았다. 1973년 오일 쇼크로 항공 연료비가 폭등했고, 1978년 항공 규제 완화(Deregulation)로 저가 경쟁자들이 쏟아졌으며, 1988년 로커비 폭탄 테러로 보잉 747이 스코틀랜드 상공에서 격추되며 270명이 사망해 브랜드 이미지가 치명타를 입었다. 팬암의 비극은 혁신 능력과 생존 능력이 별개라는 것을 보여준다. 아무리 미래를 앞서 준비해도 현재의 재무 구조와 위기 대응 능력이 없으면 무너진다. '혁신 없이 죽거나, 혁신을 감당 못해 죽는' 두 가지 죽음 사이에서 기업의 지속 가능성이 결정된다.",
+      "lesson": "",
+      "aiGenerated": false
+    },
+    "quote_daily": {
+      "id": "2026-06-21::quote_daily",
+      "date": "2026-06-21",
+      "subId": "quote_daily",
+      "createdAt": "2026-06-20T23:43:37.892Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "quote",
+      "label": "오늘의 명언",
+      "category": "inbox",
+      "title": "\"할 수 있다고 생각하든 없다고 생각하든, 둘 다 옳다\" — 헨리 포드",
+      "quote": "Whether you think you can, or you think you can't — you're right.",
+      "quoteKo": "당신이 할 수 있다고 생각하든, 할 수 없다고 생각하든 — 둘 다 맞다.",
+      "author": "헨리 포드",
+      "authorInfo": "헨리 포드 (1863–1947), 포드 자동차 창업자이자 대량생산 시스템의 아버지.",
+      "context": "포드는 자동차 왕이 되기 전 수차례 사업에 실패했으며, 이 말은 자서전 인터뷰에서 나왔습니다.",
+      "behindStory": "포드가 이 명언을 남기게 된 배경에는 자신의 세 번의 파산 경험이 있습니다. 포드는 실패할 때마다 \"해낼 수 있다\"는 믿음만으로 재기했고, 반대로 자신을 의심하는 직원들이 실제로 성과를 내지 못하는 것을 반복해 목격했습니다. 이 경험에서 나온 실용적 통찰이 세계에서 가장 유명한 동기부여 명언이 됐습니다.",
+      "application": "오늘 어려운 과제 앞에서 \"못 할 것 같다\"는 생각이 든다면, 그 생각 자체가 실패의 절반임을 기억하세요.",
+      "aiGenerated": false
+    },
+    "idiom_daily": {
+      "id": "2026-06-21::idiom_daily",
+      "date": "2026-06-21",
+      "subId": "idiom_daily",
+      "createdAt": "2026-06-20T23:43:37.893Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "idiom",
+      "label": "오늘의 고사성어",
+      "category": "history",
+      "title": "와신상담 (臥薪嘗膽)",
+      "idiom": "와신상담",
+      "hanja": "臥薪嘗膽",
+      "meaning": "원수를 갚거나 목적 달성을 위해 온갖 고난을 견디며 분발함",
+      "origin": "사마천의 《사기》 월왕구천세가(越王勾踐世家)에서 유래",
+      "story": "춘추시대 오나라 왕 부차는 패배의 굴욕을 잊지 않기 위해 매일 가시 방석(薪) 위에서 잠을 잤습니다. 월나라 왕 구천은 부차에게 항복 후 3년간 노예처럼 살다 귀국해, 쓸개(膽)를 핥으며 복수의 불씨를 키웠습니다. 결국 구천은 22년 후 오나라를 멸망시켰습니다.",
+      "behindStory": "와신상담의 주인공 구천은 항복 후 오나라에서 부차의 말을 돌보는 마부 일까지 했습니다. 흥미로운 점은 부차가 구천을 귀국시킨 이유가, 구천의 신하 범려가 절세미녀 서시(西施)를 바쳐 부차의 눈을 멀게 했기 때문이라는 설도 있다는 것입니다. 이 와신상담의 고사는 훗날 일본의 무사도에도 영향을 줬다는 역사적 기록이 있습니다.",
+      "application": "예: 장기 프로젝트가 번번이 실패해도 포기하지 마세요 — 와신상담의 자세로 실력을 쌓다 보면 반드시 기회가 옵니다.",
+      "aiGenerated": false
+    },
+    "us_market": {
+      "id": "2026-06-21::us_market",
+      "date": "2026-06-21",
+      "subId": "us_market",
+      "createdAt": "2026-06-20T23:43:37.830Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "market",
+      "category": "economy",
+      "subCategory": "미국 증시 · 경제",
+      "label": "미국 시황",
+      "title": "미 증시: 금리 인하 기대와 인플레 경계",
+      "summary": "미국 증시는 연준의 금리 인하 기대감 속 인플레이션 둔화 여부와 기업 실적에 주목하며 변동성을 보이고 있습니다.",
+      "indicators": [
+        {
+          "name": "S&P 500",
+          "value": "5200.50",
+          "change": "+0.35%",
+          "dir": "up"
+        },
+        {
+          "name": "나스닥",
+          "value": "16300.20",
+          "change": "+0.55%",
+          "dir": "up"
+        },
+        {
+          "name": "다우 지수",
+          "value": "39050",
+          "change": "+0.20%",
+          "dir": "up"
+        },
+        {
+          "name": "미 국채 10년물",
+          "value": "4.32%",
+          "change": "+2 bp",
+          "dir": "up"
+        },
+        {
+          "name": "VIX 공포지수",
+          "value": "13.8",
+          "change": "-0.5",
+          "dir": "down"
+        }
+      ],
+      "summary3": "• 연준의 금리 인하 시점은 인플레이션 지표에 따라 유동적입니다.\n• AI 관련 기술주와 방어적 섹터에 대한 관심이 교차하고 있습니다.\n• 핵심 지표 확인 후 장기적 관점에서 분산 투자 전략이 유효합니다.",
+      "checkpoints": [
+        "다음 FOMC 회의록 및 연준 위원 발언",
+        "미국 CPI 및 PCE 물가 지표 발표",
+        "주요 기업 실적 발표 및 가이던스"
+      ],
+      "report": "## 시장 흐름\n연준의 통화정책 불확실성이 시장 변동성을 키우는 가운데, 견조한 고용 지표와 여전한 인플레이션 압력이 금리 인하 시점을 지연시킬 수 있다는 우려가 커지고 있습니다. 지정학적 긴장도 유가 변동성을 자극하며 투자 심리에 영향을 줍니다.\n\n## 투자 인사이트\n금리 인하 기대와 인플레이션 경계 사이에서 균형을 찾아야 합니다. 단기적 시장 흐름에 일희일비하기보다, 기업의 실적 개선 여부와 거시경제 지표 변화를 종합적으로 분석하여 포트폴리오를 조정하는 지혜가 필요합니다.",
+      "aiEconomicKnowledge": [
+        {
+          "term": "연준(Fed) 금리 정책",
+          "importance": "연준의 기준금리 결정은 대출 금리, 기업 투자, 소비 등 경제 전반에 막대한 영향을 미칩니다. 0.25%p 금리 인상만으로도 시중 유동성이 크게 위축될 수 있습니다.",
+          "connection": "주택담보대출 이자율, 예금 금리, 주식 시장의 방향성에 직접적인 영향을 줍니다."
+        },
+        {
+          "term": "달러 인덱스(DXY)",
+          "importance": "유로, 엔 등 6개 주요 통화 대비 달러 가치를 나타내며, 100 이상은 강달러를 의미합니다. 강달러는 수출 기업에 불리하고 수입 물가를 낮추는 효과가 있습니다.",
+          "connection": "해외 직구 시 환율, 해외 여행 경비, 국내 수출 기업의 경쟁력에 영향을 미칩니다."
+        },
+        {
+          "term": "채권 수익률 곡선",
+          "importance": "단기채와 장기채 수익률의 차이를 보여주며, 일반적으로 장기채 수익률이 높습니다. 단기채 수익률이 장기채를 역전하는 '역전'은 경기 침체의 강력한 선행 지표로 여겨지며, 과거 여러 위기를 90% 이상 예측했습니다.",
+          "connection": "미래 경기 전망을 예측하고, 은행의 대출 마진율에 영향을 주어 금융 시장 안정성에 기여합니다."
+        }
+      ],
+      "aiGenerated": true
+    }
   }
 }

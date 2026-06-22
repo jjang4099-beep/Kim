@@ -23,8 +23,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
-  <link rel="stylesheet" href="css/style_mobile.css?v=76"/>
-  <link rel="stylesheet" href="css/exam.css?v=6"/>
+  <link rel="stylesheet" href="css/style_mobile.css?v=79"/>
+  <link rel="stylesheet" href="css/exam.css?v=8"/>
 </head>
 <body>
 
@@ -818,29 +818,33 @@
 <!-- 토스트 -->
 <div class="mob-toast" id="mobToast" hidden></div>
 
-<script src="js/core.js?v=5"></script>
-<script src="js/home.js?v=13"></script>
-<script src="js/feed.js?v=3"></script>
+<script src="js/core.js?v=6"></script>
+<script src="js/home.js?v=16"></script>
+<script src="js/feed.js?v=5"></script>
 <script src="js/library.js?v=5"></script>
 <script src="js/manage.js?v=5"></script>
-<script src="js/add.js?v=3"></script>
-<script src="js/app_exam.js?v=6"></script>
+<script src="js/add.js?v=5"></script>
+<script src="js/app_exam.js?v=9"></script>
 <script src="js/pwa.js?v=1"></script>
 <script>
 (function() {
   var entrance = document.getElementById('appEntrance');
   if (!entrance) return;
 
-  // 모드가 이미 선택된 경우 진입 화면 즉시 숨김
+  var splash = document.getElementById('aepSplash');
+  var select = document.getElementById('aepSelect');
+
+  // 모드가 이미 선택된 경우: 로고 스플래시만 잠깐 보여주고 곧바로 앱으로(모드 선택 건너뜀)
   if (localStorage.getItem('userMode')) {
-    entrance.style.display = 'none';
+    setTimeout(function() {
+      entrance.style.transition = 'opacity 0.4s ease';
+      entrance.style.opacity    = '0';
+      setTimeout(function() { entrance.style.display = 'none'; }, 400);
+    }, 1500);
     return;
   }
 
-  // Phase 1 → Phase 2 전환: 1.8초 후 스플래시 → 모드 선택
-  var splash  = document.getElementById('aepSplash');
-  var select  = document.getElementById('aepSelect');
-
+  // 최초 진입: Phase 1 → Phase 2 (1.8초 후 스플래시 → 모드 선택)
   setTimeout(function() {
     splash.style.transition = 'opacity 0.4s ease';
     splash.style.opacity    = '0';

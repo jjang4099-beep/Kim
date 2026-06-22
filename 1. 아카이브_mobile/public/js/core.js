@@ -136,6 +136,8 @@ const state = {
   feedLoaded       : false,
   feedItems        : [],
   examDaily        : null,   /* 수험생 모드 오늘의 배달(영어단어+한국사) */
+  wrongItems       : [],     /* 오답노트 전체(과목 필터·기간 그룹용 캐시) */
+  wrongFilter      : 'all',  /* 오답노트 과목 필터 (all | math | korean | …) */
   activeFeedFilter : 'all',
   pendingFeedFilter: null,
   libraryLoaded    : false,

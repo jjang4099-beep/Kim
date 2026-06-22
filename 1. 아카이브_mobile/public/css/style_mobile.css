@@ -2474,6 +2474,33 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   background: rgba(197,160,89,.4);
 }
 
+/* ── 카테고리별 파스텔 북마크 리본 (Soft Academic Palette) ──
+   왼쪽 모노그램 기둥에만 은은한 색을 입혀 색으로 분류가 한눈에. */
+.mob-fpc-pillar.arch-en  { background: #E2EAF4; }
+.mob-fpc-pillar.arch-his { background: #EAE4DB; }
+.mob-fpc-pillar.arch-quo { background: #F3E8EE; }
+.mob-fpc-pillar.arch-idm { background: #E4EFE7; }
+.mob-fpc-pillar.arch-mkt { background: #FDF2E2; }
+.mob-fpc-pillar.arch-zh  { background: #F4E6E2; }
+.mob-fpc-pillar.arch-krx { background: #E2EFF0; }
+
+.mob-fpc-pillar.arch-en  .mob-fpc-code { color: #1E3A8A; }
+.mob-fpc-pillar.arch-his .mob-fpc-code { color: #4A3E3D; }
+.mob-fpc-pillar.arch-quo .mob-fpc-code { color: #6B21A8; }
+.mob-fpc-pillar.arch-idm .mob-fpc-code { color: #065F46; }
+.mob-fpc-pillar.arch-mkt .mob-fpc-code { color: #92400E; }
+.mob-fpc-pillar.arch-zh  .mob-fpc-code { color: #9A3412; }
+.mob-fpc-pillar.arch-krx .mob-fpc-code { color: #0E7490; }
+
+/* 리본 위 구분선은 글자 톤을 옅게 따라가도록 */
+.mob-fpc-pillar.arch-en  .mob-fpc-rule { background: rgba(30,58,138,.30); }
+.mob-fpc-pillar.arch-his .mob-fpc-rule { background: rgba(74,62,61,.30); }
+.mob-fpc-pillar.arch-quo .mob-fpc-rule { background: rgba(107,33,168,.28); }
+.mob-fpc-pillar.arch-idm .mob-fpc-rule { background: rgba(6,95,70,.28); }
+.mob-fpc-pillar.arch-mkt .mob-fpc-rule { background: rgba(146,64,14,.28); }
+.mob-fpc-pillar.arch-zh  .mob-fpc-rule { background: rgba(154,52,18,.28); }
+.mob-fpc-pillar.arch-krx .mob-fpc-rule { background: rgba(14,116,137,.28); }
+
 /* 카드 본문 */
 .mob-fpc-content {
   flex          : 1;
@@ -2528,6 +2555,23 @@ html[data-theme="dark"] .mob-feed-preview-card {
 }
 html[data-theme="dark"] .mob-feed-preview-card:active { background: #1a2348; }
 html[data-theme="dark"] .mob-fpc-pillar { border-right-color: rgba(255,255,255,.07); }
+
+/* 다크: 파스텔 대신 깊은 반투명 틴트 + 밝은 글자 */
+html[data-theme="dark"] .mob-fpc-pillar.arch-en  { background: rgba(96,140,210,.14); }
+html[data-theme="dark"] .mob-fpc-pillar.arch-his { background: rgba(180,160,140,.13); }
+html[data-theme="dark"] .mob-fpc-pillar.arch-quo { background: rgba(170,110,190,.14); }
+html[data-theme="dark"] .mob-fpc-pillar.arch-idm { background: rgba(90,170,130,.14); }
+html[data-theme="dark"] .mob-fpc-pillar.arch-mkt { background: rgba(210,160,80,.14); }
+html[data-theme="dark"] .mob-fpc-pillar.arch-zh  { background: rgba(200,110,80,.14); }
+html[data-theme="dark"] .mob-fpc-pillar.arch-krx { background: rgba(80,170,180,.14); }
+
+html[data-theme="dark"] .mob-fpc-pillar.arch-en  .mob-fpc-code { color: #A9C2EE; }
+html[data-theme="dark"] .mob-fpc-pillar.arch-his .mob-fpc-code { color: #D8C7B2; }
+html[data-theme="dark"] .mob-fpc-pillar.arch-quo .mob-fpc-code { color: #D9B3E6; }
+html[data-theme="dark"] .mob-fpc-pillar.arch-idm .mob-fpc-code { color: #A9DCC0; }
+html[data-theme="dark"] .mob-fpc-pillar.arch-mkt .mob-fpc-code { color: #E5C58C; }
+html[data-theme="dark"] .mob-fpc-pillar.arch-zh  .mob-fpc-code { color: #E6B49C; }
+html[data-theme="dark"] .mob-fpc-pillar.arch-krx .mob-fpc-code { color: #9CD2DA; }
 html[data-theme="dark"] .mob-fpc-title  { color: #EDE8DF; }
 html[data-theme="dark"] .mob-fpc-summary { color: #7A6E60; }
 html[data-theme="dark"] .mob-section-hd { border-top-color: #C5A059; color: #C5A059; }
@@ -2613,6 +2657,29 @@ html[data-theme="dark"] .mob-section-hd.past .mob-section-badge {
   flex-direction: column;
   gap           : 10px;
 }
+/* 홈: 접힘 상태 — 앞 3개만 노출(나머지 숨김) */
+.mob-exv-list.collapsed > .mob-exv-word:nth-child(n+4) { display: none; }
+/* 더 보기 / 접기 버튼 */
+.mob-exv-more-btn {
+  margin-top   : 10px;
+  width        : 100%;
+  display      : flex;
+  align-items  : center;
+  justify-content: center;
+  gap          : 5px;
+  padding      : 9px 0;
+  border       : 1px solid var(--exam-ink-border, var(--border));
+  border-radius: 8px;
+  background   : var(--exam-ink-soft, var(--bg));
+  color        : var(--exam-ink, var(--text-2));
+  font-size    : 12.5px;
+  font-weight  : 700;
+  cursor       : pointer;
+  transition   : background .15s;
+}
+.mob-exv-more-btn:active { transform: scale(.99); }
+.mob-exv-more-btn i { font-size: 15px; transition: transform .2s; }
+.mob-exv-more-btn.open i { transform: rotate(180deg); }
 .mob-exv-word {
   display      : flex;
   align-items  : flex-start;
@@ -3581,6 +3648,19 @@ html[data-theme="dark"] .mob-exam-history        { border-left-color: #d97706; }
   color      : var(--text-muted);
   font-style : normal;
   line-height: 1.5;
+}
+
+/* ── 서재 상세: 배달과 동일한 언어 entry (아코디언 없이 항상 펼침) ── */
+.mob-lib-vocab-list {
+  border       : 1px solid var(--mob-border, var(--border));
+  border-radius: 12px;
+  overflow     : hidden;
+  margin       : 6px 0 4px;
+  gap          : 0;                     /* 항목 간 구분은 border-top으로 */
+}
+.mob-lib-fv-item { border-radius: 0; }
+.mob-lib-fv-body {                      /* .mob-fv-body 와 달리 max-height 제한 없음 */
+  background: var(--bg-card-expanded);
 }
 
 /* ── Master Paragraph ── */

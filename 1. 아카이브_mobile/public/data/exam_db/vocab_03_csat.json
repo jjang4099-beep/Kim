@@ -1,0 +1,397 @@
+{
+  "meta": {
+    "batch": 3,
+    "theme": "수능 영단어 테마팩 — 추론·사회경제·심리·논리연결·환경·소통",
+    "id_range": {
+      "exam_vocab_themes": "EV_PACK_013 ~ EV_PACK_018",
+      "words": "EV_061 ~ EV_090"
+    },
+    "created": "2026-06-22"
+  },
+  "exam_vocab_themes": [
+    {
+      "id": "EV_PACK_013",
+      "theme_title": "추론·추측 핵심 동사",
+      "level": "high",
+      "tip": "빈칸 추론 및 글의 목적 파악 유형에서 논리적 사고를 나타내는 동사군. '~라고 추론하다/추측하다'의 뉘앙스 차이를 구분해 쓸 수 있어야 한다.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_061",
+          "order": 1,
+          "word": "infer",
+          "pos": "동사",
+          "meaning": "추론하다, 유추하다",
+          "example_en": "From the context, we can infer that the author disagrees with the policy.",
+          "example_ko": "문맥으로부터 저자가 그 정책에 반대한다는 것을 추론할 수 있다.",
+          "csat_ref": "수능 빈칸 추론 유형 (21번·29번·34번) 빈출",
+          "synonyms": "deduce, conclude, derive"
+        },
+        {
+          "id": "EV_062",
+          "order": 2,
+          "word": "deduce",
+          "pos": "동사",
+          "meaning": "연역하다, 추론하다 (논리적 근거 기반)",
+          "example_en": "Scientists deduced the presence of the planet from irregularities in the orbit of a nearby star.",
+          "example_ko": "과학자들은 인근 별의 궤도 불규칙성으로부터 그 행성의 존재를 추론했다.",
+          "csat_ref": "수능 과학 지문 추론 유형",
+          "synonyms": "infer, reason, conclude"
+        },
+        {
+          "id": "EV_063",
+          "order": 3,
+          "word": "speculate",
+          "pos": "동사",
+          "meaning": "추측하다, 사색하다 (근거 불충분한 추측)",
+          "example_en": "Researchers can only speculate about the cause of the ancient civilization's collapse.",
+          "example_ko": "연구자들은 그 고대 문명 붕괴의 원인에 대해 추측만 할 수 있을 뿐이다.",
+          "csat_ref": "수능 역사·문화 지문 빈출",
+          "synonyms": "guess, hypothesize, conjecture"
+        },
+        {
+          "id": "EV_064",
+          "order": 4,
+          "word": "presume",
+          "pos": "동사",
+          "meaning": "추정하다, 가정하다 (사실일 것이라 여기다)",
+          "example_en": "We presume that students who participate actively learn more effectively.",
+          "example_ko": "우리는 능동적으로 참여하는 학생들이 더 효과적으로 배운다고 추정한다.",
+          "csat_ref": "수능 주장 파악·요지 유형",
+          "synonyms": "assume, suppose, take for granted"
+        },
+        {
+          "id": "EV_065",
+          "order": 5,
+          "word": "conjecture",
+          "pos": "명사/동사",
+          "meaning": "추측, 추정 (명사) / 추측하다 (동사)",
+          "example_en": "Without more data, any explanation remains mere conjecture.",
+          "example_ko": "더 많은 데이터 없이, 어떤 설명도 단순한 추측에 불과하다.",
+          "csat_ref": "수능 빈칸 추론 고난도 유형",
+          "synonyms": "speculation, hypothesis, supposition"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_014",
+      "theme_title": "사회·경제 필수 어휘",
+      "level": "high",
+      "tip": "사회현상·경제 지문은 수능에서 빈도가 높다. 특히 '불평등·희소성·지속가능성' 관련 어휘가 빈칸·순서·삽입 문제로 자주 출제된다.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_066",
+          "order": 1,
+          "word": "prevalent",
+          "pos": "형용사",
+          "meaning": "만연한, 널리 퍼진",
+          "example_en": "The use of smartphones has become prevalent among all age groups.",
+          "example_ko": "스마트폰 사용이 모든 연령대에 걸쳐 만연해졌다.",
+          "csat_ref": "2023학년도 수능 34번 유형",
+          "synonyms": "widespread, common, dominant"
+        },
+        {
+          "id": "EV_067",
+          "order": 2,
+          "word": "scarce",
+          "pos": "형용사",
+          "meaning": "부족한, 희소한",
+          "example_en": "Clean drinking water is becoming increasingly scarce in many regions of the world.",
+          "example_ko": "깨끗한 식수가 세계 많은 지역에서 점점 더 부족해지고 있다.",
+          "csat_ref": "수능 환경·자원 지문 빈출",
+          "synonyms": "rare, insufficient, limited"
+        },
+        {
+          "id": "EV_068",
+          "order": 3,
+          "word": "disparity",
+          "pos": "명사",
+          "meaning": "격차, 불균형, 불평등",
+          "example_en": "The growing economic disparity between the wealthy and the poor is a major social concern.",
+          "example_ko": "부유층과 빈곤층 사이의 늘어나는 경제적 격차는 주요한 사회적 우려사항이다.",
+          "csat_ref": "수능 사회 지문 고난도 어휘",
+          "synonyms": "inequality, gap, imbalance"
+        },
+        {
+          "id": "EV_069",
+          "order": 4,
+          "word": "sustain",
+          "pos": "동사",
+          "meaning": "유지하다, 지속시키다",
+          "example_en": "It is difficult to sustain economic growth without addressing environmental degradation.",
+          "example_ko": "환경 악화를 해결하지 않고 경제 성장을 지속시키기는 어렵다.",
+          "csat_ref": "2022학년도 수능 빈칸 추론 유형",
+          "synonyms": "maintain, support, uphold"
+        },
+        {
+          "id": "EV_070",
+          "order": 5,
+          "word": "volatile",
+          "pos": "형용사",
+          "meaning": "변동이 심한, 불안정한",
+          "example_en": "The stock market has been highly volatile due to global economic uncertainty.",
+          "example_ko": "세계 경제 불확실성으로 인해 주식 시장이 매우 불안정했다.",
+          "csat_ref": "수능 경제 지문 고급 형용사",
+          "synonyms": "unstable, unpredictable, fluctuating"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_015",
+      "theme_title": "심리·행동 관련 고급 형용사",
+      "level": "high",
+      "tip": "심리학·행동과학 지문은 빈칸 추론과 어법성 판단에 자주 등장한다. 상태를 묘사하는 형용사의 정확한 의미 구분이 핵심이다.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_071",
+          "order": 1,
+          "word": "resilient",
+          "pos": "형용사",
+          "meaning": "회복력 있는, 탄력적인",
+          "example_en": "Resilient individuals tend to recover more quickly from failure and adversity.",
+          "example_ko": "회복력 있는 개인들은 실패와 역경으로부터 더 빠르게 회복하는 경향이 있다.",
+          "csat_ref": "수능 심리·성격 지문 빈출 형용사",
+          "synonyms": "adaptable, tough, flexible"
+        },
+        {
+          "id": "EV_072",
+          "order": 2,
+          "word": "ambivalent",
+          "pos": "형용사",
+          "meaning": "양면 감정을 가진, 상반된 감정의",
+          "example_en": "She felt ambivalent about the promotion, torn between excitement and fear.",
+          "example_ko": "그녀는 승진에 대해 흥분과 두려움 사이에서 양면 감정을 느꼈다.",
+          "csat_ref": "수능 심리 묘사 지문 고급 어휘",
+          "synonyms": "conflicted, uncertain, torn"
+        },
+        {
+          "id": "EV_073",
+          "order": 3,
+          "word": "empathetic",
+          "pos": "형용사",
+          "meaning": "공감하는, 감정이입을 잘 하는",
+          "example_en": "An empathetic leader listens carefully and understands the perspectives of others.",
+          "example_ko": "공감하는 리더는 주의 깊게 듣고 타인의 관점을 이해한다.",
+          "csat_ref": "수능 리더십·심리 지문",
+          "synonyms": "compassionate, understanding, sensitive"
+        },
+        {
+          "id": "EV_074",
+          "order": 4,
+          "word": "complacent",
+          "pos": "형용사",
+          "meaning": "자기만족에 빠진, 현실에 안주하는",
+          "example_en": "Companies that become complacent often fail to notice emerging competitors.",
+          "example_ko": "자기만족에 빠진 기업들은 종종 떠오르는 경쟁자들을 알아차리지 못한다.",
+          "csat_ref": "수능 경영·심리 지문 빈출",
+          "synonyms": "self-satisfied, smug, content"
+        },
+        {
+          "id": "EV_075",
+          "order": 5,
+          "word": "aloof",
+          "pos": "형용사",
+          "meaning": "냉담한, 거리를 두는",
+          "example_en": "Despite his aloof manner, he was deeply concerned about the welfare of his team.",
+          "example_ko": "냉담한 태도에도 불구하고, 그는 팀의 복지에 깊은 관심을 가지고 있었다.",
+          "csat_ref": "수능 인물 묘사·심리 지문",
+          "synonyms": "distant, detached, reserved"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_016",
+      "theme_title": "학술·논리 연결어",
+      "level": "high",
+      "tip": "글의 흐름 파악, 순서 배열, 삽입 문제에서 결정적인 역할을 하는 연결어. 전환 관계(역접·인과·조건)를 명확히 구분하는 것이 핵심이다.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_076",
+          "order": 1,
+          "word": "consequently",
+          "pos": "부사",
+          "meaning": "결과적으로, 따라서",
+          "example_en": "The experiment failed repeatedly; consequently, the team reconsidered the entire methodology.",
+          "example_ko": "실험이 반복적으로 실패했다. 결과적으로 팀은 전체 방법론을 재고했다.",
+          "csat_ref": "수능 글의 흐름 파악·순서 배열 유형",
+          "synonyms": "therefore, thus, as a result"
+        },
+        {
+          "id": "EV_077",
+          "order": 2,
+          "word": "nevertheless",
+          "pos": "부사",
+          "meaning": "그럼에도 불구하고",
+          "example_en": "The task was incredibly difficult; nevertheless, she completed it on time.",
+          "example_ko": "그 과제는 믿을 수 없이 어려웠다. 그럼에도 불구하고, 그녀는 그것을 제때에 완성했다.",
+          "csat_ref": "수능 역접 연결어 — 빈칸 및 순서 유형",
+          "synonyms": "however, nonetheless, yet"
+        },
+        {
+          "id": "EV_078",
+          "order": 3,
+          "word": "albeit",
+          "pos": "접속사",
+          "meaning": "비록 ~이지만",
+          "example_en": "The new policy was a step forward, albeit a small one.",
+          "example_ko": "새 정책은 비록 작은 것이지만 한 걸음 나아간 것이었다.",
+          "csat_ref": "수능 고난도 문법·어법성 판단 유형",
+          "synonyms": "although, even though, though"
+        },
+        {
+          "id": "EV_079",
+          "order": 4,
+          "word": "whereas",
+          "pos": "접속사",
+          "meaning": "반면에, ~인 데 반하여",
+          "example_en": "Some students thrive in competitive environments, whereas others perform better with cooperation.",
+          "example_ko": "어떤 학생들은 경쟁적인 환경에서 잘 성장하는 반면, 다른 학생들은 협력 시 더 잘 수행한다.",
+          "csat_ref": "수능 대조·비교 지문 연결어",
+          "synonyms": "while, in contrast, on the other hand"
+        },
+        {
+          "id": "EV_080",
+          "order": 5,
+          "word": "simultaneously",
+          "pos": "부사",
+          "meaning": "동시에",
+          "example_en": "The brain can process emotional and rational information simultaneously.",
+          "example_ko": "뇌는 감정적 정보와 이성적 정보를 동시에 처리할 수 있다.",
+          "csat_ref": "수능 과학·심리 지문 시간 관계 부사",
+          "synonyms": "concurrently, at the same time, together"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_017",
+      "theme_title": "환경·과학 필수 어휘",
+      "level": "high",
+      "tip": "환경 문제는 최근 수능에서 꾸준히 출제되는 영역이다. 지속가능성·생태계 관련 어휘는 빈칸 추론과 요지 파악 문제에서 자주 등장한다.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_081",
+          "order": 1,
+          "word": "sustainable",
+          "pos": "형용사",
+          "meaning": "지속 가능한",
+          "example_en": "Transitioning to renewable energy sources is essential for sustainable development.",
+          "example_ko": "재생 가능 에너지원으로의 전환은 지속 가능한 발전에 필수적이다.",
+          "csat_ref": "수능 환경 지문 최빈출 어휘",
+          "synonyms": "eco-friendly, maintainable, viable"
+        },
+        {
+          "id": "EV_082",
+          "order": 2,
+          "word": "biodiversity",
+          "pos": "명사",
+          "meaning": "생물 다양성",
+          "example_en": "The loss of biodiversity threatens the stability of entire ecosystems.",
+          "example_ko": "생물 다양성의 손실은 전체 생태계의 안정성을 위협한다.",
+          "csat_ref": "수능 환경·생태 지문 핵심 명사",
+          "synonyms": "species variety, ecological diversity"
+        },
+        {
+          "id": "EV_083",
+          "order": 3,
+          "word": "renewable",
+          "pos": "형용사",
+          "meaning": "재생 가능한",
+          "example_en": "Solar and wind power are among the most promising renewable energy sources.",
+          "example_ko": "태양열과 풍력은 가장 유망한 재생 가능 에너지원 중 하나이다.",
+          "csat_ref": "수능 에너지·환경 지문 빈출",
+          "synonyms": "replenishable, sustainable, clean"
+        },
+        {
+          "id": "EV_084",
+          "order": 4,
+          "word": "habitat",
+          "pos": "명사",
+          "meaning": "서식지",
+          "example_en": "Urban expansion is destroying the natural habitat of many endangered species.",
+          "example_ko": "도시 확장이 많은 멸종 위기 종들의 자연 서식지를 파괴하고 있다.",
+          "csat_ref": "수능 생태·환경 지문 빈출 명사",
+          "synonyms": "natural environment, dwelling, ecosystem"
+        },
+        {
+          "id": "EV_085",
+          "order": 5,
+          "word": "ecosystem",
+          "pos": "명사",
+          "meaning": "생태계",
+          "example_en": "Every organism in an ecosystem plays a role in maintaining the balance of nature.",
+          "example_ko": "생태계의 모든 유기체는 자연의 균형을 유지하는 데 역할을 담당한다.",
+          "csat_ref": "수능 생물·환경 지문 기본 명사",
+          "synonyms": "biome, ecological system, natural community"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_018",
+      "theme_title": "소통·설득 관련 어휘",
+      "level": "high",
+      "tip": "스피치·커뮤니케이션·설득력 관련 지문에서 핵심 어휘. 특히 언어 표현력을 묘사하는 형용사와 명사의 정확한 의미 구분이 필요하다.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_086",
+          "order": 1,
+          "word": "eloquent",
+          "pos": "형용사",
+          "meaning": "웅변적인, 말을 잘 하는, 설득력 있는",
+          "example_en": "Her eloquent speech moved the audience to tears.",
+          "example_ko": "그녀의 웅변적인 연설은 청중을 눈물짓게 했다.",
+          "csat_ref": "수능 언어·의사소통 지문 빈출 형용사",
+          "synonyms": "articulate, persuasive, expressive"
+        },
+        {
+          "id": "EV_087",
+          "order": 2,
+          "word": "persuasive",
+          "pos": "형용사",
+          "meaning": "설득력 있는",
+          "example_en": "A persuasive argument relies on both logic and emotional appeal.",
+          "example_ko": "설득력 있는 주장은 논리와 감성적 호소 모두에 의존한다.",
+          "csat_ref": "수능 논증·설득 지문 핵심 형용사",
+          "synonyms": "convincing, compelling, influential"
+        },
+        {
+          "id": "EV_088",
+          "order": 3,
+          "word": "articulate",
+          "pos": "형용사/동사",
+          "meaning": "명확하게 표현하는 (형용사) / 명확하게 말하다 (동사)",
+          "example_en": "She was able to articulate her ideas clearly, even under pressure.",
+          "example_ko": "그녀는 압박 속에서도 자신의 생각을 명확하게 표현할 수 있었다.",
+          "csat_ref": "수능 어법성 판단·빈칸 유형",
+          "synonyms": "expressive, fluent, clear"
+        },
+        {
+          "id": "EV_089",
+          "order": 4,
+          "word": "concise",
+          "pos": "형용사",
+          "meaning": "간결한, 핵심만 담은",
+          "example_en": "A concise summary is more effective than a lengthy explanation.",
+          "example_ko": "간결한 요약이 장황한 설명보다 더 효과적이다.",
+          "csat_ref": "수능 글의 요지 파악·빈칸 추론",
+          "synonyms": "brief, succinct, compact"
+        },
+        {
+          "id": "EV_090",
+          "order": 5,
+          "word": "rhetoric",
+          "pos": "명사",
+          "meaning": "수사학, 언어 기술 (때로 '공허한 말'의 부정적 뉘앙스도 있음)",
+          "example_en": "The politician's rhetoric was powerful but lacked concrete policy proposals.",
+          "example_ko": "그 정치인의 수사는 강력했지만 구체적인 정책 제안이 부족했다.",
+          "csat_ref": "수능 언어·철학 지문 고급 명사",
+          "synonyms": "oratory, eloquence, language skill"
+        }
+      ]
+    }
+  ]
+}

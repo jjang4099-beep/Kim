@@ -2138,5 +2138,224 @@
       ],
       "aiGenerated": true
     }
+  },
+  "2026-06-22": {
+    "en_expr": {
+      "id": "2026-06-22::en_expr",
+      "date": "2026-06-22",
+      "subId": "en_expr",
+      "createdAt": "2026-06-22T12:57:52.809Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "language",
+      "category": "en",
+      "subCategory": "",
+      "label": "US 영어 표현",
+      "title": "[월] 인간관계의 깊이를 만드는 순간: On the same wavelength 외 4개",
+      "summary": "월요일 — 인간관계의 깊이를 만드는 순간",
+      "theme": "",
+      "themeTitle": "인간관계의 깊이를 만드는 순간",
+      "themeTitleEn": "Building Depth in Human Relationships",
+      "dayOfWeek": "월",
+      "vocabEntries": [
+        {
+          "item_id": "PACK_EN_008_E1",
+          "expression": "On the same wavelength",
+          "meaning": "서로 잘 통하다, 같은 주파수에 있다",
+          "nuance": "무선 통신에서 같은 주파수여야 신호가 전달되듯, 사람 사이에서도 생각·감각·가치관이 비슷하게 맞을 때 소통이 자연스럽게 흐른다는 은유다. '말 안 해도 통하는' 깊은 상호이해의 상태를 나타낸다.",
+          "dialogue": "A: I've never had a collaborator I clicked with so instantly.\nB: Same. We're completely on the same wavelength — it saves so much energy.\nA: What do you think makes that happen?\nB: Shared values, similar working styles, and a mutual willingness to be direct.",
+          "dialogueKo": "",
+          "sourceSentence": "Great creative partnerships are built on being on the same wavelength about both the work and the process.",
+          "practiceSentence": "'I know I'm on the same wavelength with someone when...'으로 시작하는 문장을 만들어보세요."
+        },
+        {
+          "item_id": "PACK_EN_008_E2",
+          "expression": "Clear the air",
+          "meaning": "오해나 불편함을 솔직하게 해소하다",
+          "nuance": "공기가 탁할 때는 창문을 열어 환기해야 한다. 관계에서의 '탁함'은 쌓인 오해, 말 못 한 불만, 어색한 사건들이다. 'Clear the air'는 그것을 직접 꺼내 해결하자는 적극적 제안이다. 문제를 무시하는 것(avoid)과 정면으로 싸우는 것(confront)의 중간 지점이다.",
+          "dialogue": "A: Can we talk? Things have been weird since the team meeting.\nB: Yes. I'm glad you said something — let's clear the air.\nA: I felt my idea was dismissed without a fair hearing.\nB: I understand why it felt that way. Let me explain what was going through my mind.",
+          "dialogueKo": "",
+          "sourceSentence": "The best friendships survive difficult moments because both people are willing to clear the air directly.",
+          "practiceSentence": "'A time I needed to clear the air with someone was when...'으로 시작하는 경험을 떠올려보세요."
+        },
+        {
+          "item_id": "PACK_EN_008_E3",
+          "expression": "Touch base",
+          "meaning": "서로 연락해서 상황을 공유하다, 가볍게 안부를 나누다",
+          "nuance": "야구에서 주자가 베이스를 밟아 연결을 확인하는 것에서 유래. 관계를 단절 없이 유지하는 최소한의 행위를 뜻한다. 깊은 대화가 아닌 '살아있음'을 확인하는 가벼운 연결이며, 장기적 관계 유지의 핵심 도구다.",
+          "dialogue": "A: I feel bad — I haven't reached out to my old mentor in almost a year.\nB: Just touch base. A short message is enough to reopen the channel.\nA: What if it's awkward after so long?\nB: Good relationships don't expire. They just need a small activation.",
+          "dialogueKo": "",
+          "sourceSentence": "Successful professionals deliberately touch base with their networks regularly, not just when they need something.",
+          "practiceSentence": "'I try to touch base with [type of person] regularly because...'로 시작하는 문장을 만들어보세요."
+        },
+        {
+          "item_id": "PACK_EN_008_E4",
+          "expression": "Don't burn bridges",
+          "meaning": "관계를 완전히 끊거나 망치지 마라",
+          "nuance": "강을 건넌 뒤 다리를 불태우면 다시는 돌아올 수 없다. 현실에서 업계는 좁고, 적은 예상치 못한 곳에서 나타난다. 감정적으로 관계를 망치는 것은 단기적 해방감을 주지만 장기적 네트워크를 손상시킨다. 그렇다고 진심을 억압하라는 게 아니라, 떠나더라도 품위 있게 떠나라는 원칙이다.",
+          "dialogue": "A: I want to quit by sending a brutal honest email about everything wrong with this company.\nB: Don't burn bridges. You can be honest without being scorched earth.\nA: They deserve to hear the truth.\nB: Write the email, sit on it 24 hours, then decide what actually needs to be said.",
+          "dialogueKo": "",
+          "sourceSentence": "The most professional people leave every situation — jobs, relationships, partnerships — without burning bridges.",
+          "practiceSentence": "'A situation where I was tempted to burn bridges but didn't was...'로 시작하는 문장을 만들어보세요."
+        },
+        {
+          "item_id": "PACK_EN_008_E5",
+          "expression": "Reach out",
+          "meaning": "먼저 연락하다, 손을 내밀다",
+          "nuance": "'Contact'나 'message'가 단순한 행위라면, 'reach out'에는 거리를 좁히려는 의지와 취약성이 담겨 있다. 먼저 연락하는 것은 자존심을 내려놓는 행위이며, 동시에 관계에 가장 큰 투자 중 하나다. 도움을 요청할 때, 오래된 관계를 다시 시작할 때, 감사를 전할 때 모두 쓴다.",
+          "dialogue": "A: I've been thinking about reaching out to my old college professor. We lost touch.\nB: Do it. People almost always appreciate hearing from someone they mentored.\nA: What if they don't remember me?\nB: They will. And even if they don't — the act of reaching out says something about you.",
+          "dialogueKo": "",
+          "sourceSentence": "The single best career move most people never make is reaching out first, before they need something.",
+          "practiceSentence": "'I want to reach out to [someone] because...'로 시작하는 문장을 실제 상황에 맞게 만들어보세요."
+        }
+      ],
+      "masterParagraph": {
+        "text": "The deepest relationships in life are rarely built in a single moment — they are maintained through small, consistent acts. When you are lucky enough to find someone you are **on the same wavelength** with, protect that connection. When something feels off, have the courage to **clear the air** rather than letting distance grow. **Touch base** with the people who matter, even when life gets busy. Never **burn bridges** out of frustration, because the people you meet on the way up are the same people you'll need on the way down. And sometimes, the most powerful thing you can do is simply **reach out** first — not because you need something, but because you still care.",
+        "translation": "삶에서 가장 깊은 관계들은 단 한 번의 순간에 만들어지지 않는다. 작고 지속적인 행동들로 유지된다. 잘 통하는 사람을 만나는 행운이 생기면, 그 연결을 지켜라. 뭔가 어색함이 느껴지면, 거리가 멀어지도록 두는 대신 용기를 내어 솔직하게 해소하라. 삶이 바빠져도 중요한 사람들과 가볍게 안부를 나눠라. 화가 나더라도 관계를 망치지 마라. 올라가는 길에서 만나는 사람이 내려가는 길에서 다시 필요한 사람이기 때문이다. 그리고 때로는, 먼저 연락하는 것이 가장 강력한 행동이다. 무언가 필요해서가 아니라, 아직 신경 쓰기 때문에.",
+        "highlights": [
+          "on the same wavelength",
+          "clear the air",
+          "touch base",
+          "burn bridges",
+          "reach out"
+        ]
+      },
+      "pack_id": "PACK_EN_008",
+      "aiGenerated": false
+    },
+    "hist_daily": {
+      "id": "2026-06-22::hist_daily",
+      "date": "2026-06-22",
+      "subId": "hist_daily",
+      "createdAt": "2026-06-22T12:57:52.848Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "history",
+      "label": "역사 지식 한줌",
+      "category": "history",
+      "item_id": "HI_062",
+      "era": "세계사",
+      "period": "1968년",
+      "title": "프라하의 봄(1968)과 소련의 진압",
+      "summary": "1968년 체코슬로바키아 공산당 지도자 둡체크는 '인간적인 얼굴을 한 사회주의'를 표방하며 자유화 개혁을 추진했다. 그러나 소련은 8월 바르샤바조약군을 동원해 군사 개입하며 개혁을 짓밟았다. 이 사건은 소련 지배 하에서 공산주의 국가의 독자적 개혁이 불가능함을 보여줬다.",
+      "summary3": "",
+      "behindStory": "프라하의 봄을 진압한 브레즈네프 독트린은 '사회주의 블록의 국가들은 소련의 허락 없이 체제를 변경할 수 없다'는 원칙이었다. 고르바초프가 이 독트린을 폐기(1989)했을 때, 동유럽 도미노 혁명이 바로 시작됐다.",
+      "lesson": "",
+      "aiGenerated": false
+    },
+    "quote_daily": {
+      "id": "2026-06-22::quote_daily",
+      "date": "2026-06-22",
+      "subId": "quote_daily",
+      "createdAt": "2026-06-22T12:57:52.853Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "quote",
+      "label": "오늘의 명언",
+      "category": "inbox",
+      "title": "\"우리가 정복하는 것은 산이 아니라 우리 자신이다.…\" — 에드먼드 힐러리",
+      "quote": "It is not the mountain we conquer but ourselves.",
+      "quoteKo": "우리가 정복하는 것은 산이 아니라 우리 자신이다.",
+      "author": "에드먼드 힐러리",
+      "authorInfo": "1919-2008, 뉴질랜드의 산악인이자 탐험가로, 에베레스트 산을 최초로 등정한 인물입니다.",
+      "context": "에베레스트 등정 이후 힐러리는 등반의 진정한 의미가 외적인 목표 달성보다는 자기 한계와 두려움을 극복하는 내면의 승리에 있음을 강조했습니다.",
+      "behindStory": "힐러리는 에베레스트 등정 후 언론의 찬사를 받았을 때, '우리가 산을 정복했다'는 표현 대신 '우리가 우리 자신을 정복했다'는 말을 자주 사용했습니다. 그는 등반 과정에서 수많은 역경과 죽음의 문턱을 넘으며, 물리적인 장애물보다 자기 의심과 절망과의 싸움이 훨씬 더 컸음을 깨달았기 때문입니다.",
+      "application": "오늘 성재님은 직면한 업무나 자기계발 과제를 단순히 외적인 목표 달성으로만 보지 않고, 그 과정에서 자신의 역량을 시험하고 내면을 성장시키는 기회로 삼을 수 있습니다.",
+      "aiGenerated": true
+    },
+    "idiom_daily": {
+      "id": "2026-06-22::idiom_daily",
+      "date": "2026-06-22",
+      "subId": "idiom_daily",
+      "createdAt": "2026-06-22T12:57:52.854Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "idiom",
+      "label": "오늘의 고사성어",
+      "category": "history",
+      "title": "파사현정 (破邪顯正)",
+      "idiom": "파사현정",
+      "hanja": "破邪顯正",
+      "meaning": "그릇된 것을 깨뜨리고 올바른 것을 드러낸다",
+      "origin": "출처: 『대지도론(大智度論)』 및 불교 경전",
+      "story": "용수보살이 당대의 그릇된 사상과 집착을 논파하며 중관(中觀)의 바른 이치를 세상에 드러냈다는 데서 유래했다. 이후 조선시대 성리학자들이 불교와 도교의 영향력을 비판하며 유학의 정통성을 확립할 때 자주 인용했다.",
+      "behindStory": "원래는 불교 용어였으나, 조선 성리학자들이 역설적으로 불교를 배척하며 이 말을 차용했다. 특히 퇴계 이황은 사단칠정 논쟁에서 그릇된 해석을 바로잡을 때 이 표현을 즐겨 썼으며, 변화의 시대마다 구습을 깨고 새 질서를 세우는 명분으로 활용됐다.",
+      "application": "예: 조직 내 비효율적 관행이 고착화됐을 때, 데이터로 문제를 명확히 지적하고 개선안을 제시하며 혁신을 이끌 때",
+      "aiGenerated": true
+    },
+    "us_market": {
+      "id": "2026-06-22::us_market",
+      "date": "2026-06-22",
+      "subId": "us_market",
+      "createdAt": "2026-06-22T12:57:52.811Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "market",
+      "category": "economy",
+      "subCategory": "미국 증시 · 경제",
+      "label": "미국 시황",
+      "title": "연준 피벗 기대와 채권시장 신호",
+      "summary": "금리 인하 기대감 속 증시 상승세, 장단기 금리차 정상화 신호가 경기 전환점 암시",
+      "indicators": [
+        {
+          "name": "S&P 500",
+          "value": "4783.45",
+          "change": "+1.23%",
+          "dir": "up"
+        },
+        {
+          "name": "나스닥",
+          "value": "15055.65",
+          "change": "+1.67%",
+          "dir": "up"
+        },
+        {
+          "name": "다우 지수",
+          "value": "37405",
+          "change": "+0.85%",
+          "dir": "up"
+        },
+        {
+          "name": "미 국채 10년물",
+          "value": "3.88%",
+          "change": "+5 bp",
+          "dir": "up"
+        },
+        {
+          "name": "VIX 공포지수",
+          "value": "12.8",
+          "change": "-0.9",
+          "dir": "down"
+        }
+      ],
+      "summary3": "• 연준의 통화정책 전환 시그널에 시장 유동성 개선 기대감 확산\n• 기술주 중심 랠리 지속, 반도체·AI 인프라 섹터로 자금 집중\n• 장기 채권 수익률 안정화로 밸류에이션 부담 완화, 리스크온 포지셔닝 강화",
+      "checkpoints": [
+        "체크포인트 1: 다음 FOMC 의사록 발표 시 '인하 시기' 관련 위원들의 온도차 확인",
+        "체크포인트 2: 2년-10년 국채 금리차 추��� - 역전 해소 지속 여부가 경기 사이클 전환 신호",
+        "체크포인트 3: 달러인덱스 102선 지지 여부 - 약달러 시 신흥국 자산 유입 확대 가능성"
+      ],
+      "report": "## 시장 흐름\n연준이 금리 인상 사이클 종료를 명확히 하며 시장은 2024년 상반기 금리 인하 시나리오를 가격에 반영 중입니다. 특히 2년-10년 국채 금리 역전 현상이 해소 수준으로 좁혀지며 경기 침체 우려가 완화되고 있습니다. 장기 채권 수익률 안정화는 성장주 밸류에이션 압박을 덜어주며 기술주 중심 상승세를 견인하고 있습니다.\n\n## 투자 인사이트\n금리 정점 통과 국면에서 듀레이션이 긴 성장주가 수혜를 받는 패턴이 반복되고 있습니다. 다만 연준의 점도표와 실제 인하 시기 간 괴리 발생 시 변동성이 급증할 수 있어 VIX 지수 15선 돌파 여부를 모니터링해야 합니다. 달러 약세 국면에서 금과 원자재 자산의 헤지 기능도 점검이 필요한 시점입니다.",
+      "aiEconomicKnowledge": [
+        {
+          "term": "수익률 곡선 역전(Yield Curve Inversion)",
+          "importance": "단기 국채(2년물) 금리가 장기 국채(10년물)보다 높아지는 현상으로, 역사적으로 이 신호 발생 후 평균 12~18개�� 내 경기 침체가 왔습니다. 2023년 7월 최대 -108bp까지 벌어진 역전폭이 현재 -20bp 수준으로 좁혀지며 경기 전환 신호로 해석됩니다.",
+          "connection": "주택담보대출이나 예금 금리는 장기 국채 금리를 따라가므로, 수익률 곡선 정상화는 대출 금리 안정과 은행 예금 금리 조정의 신호입니다."
+        },
+        {
+          "term": "연준 피벗(Fed Pivot)",
+          "importance": "연준이 긴축에서 완화로 통화정책 방향을 전환하는 결정적 순간을 의미합니다. 2023년 기준금리 5.25~5.50%에서 시장은 2024년 125bp(1.25%p) 인하를 예상하며, 이는 자산 가격 재평가의 촉매제가 됩니다.",
+          "connection": "카드 대출 금리, 자동차 할부 금리 등이 기준금리 변화를 6개월 시차를 두고 따라가므로, 피벗 신호는 실생활 이자 부담 감소의 전조입니다."
+        },
+        {
+          "term": "듀레이션 리스크(Duration Risk)",
+          "importance": "채권이나 주식의 현금흐름이 미래에 집중될수록 금리 변화에 가격이 민감해지는 특성입니다. 금리 1% 하락 시 듀레이션 10인 자산은 약 10% 가격 상승하며, 현재 기술주들이 이 수혜를 받고 있습니다.",
+          "connection": "장기 적립식 펀드나 연금 상품의 수익률이 금리 하락기에 개선되는 이유가 바로 듀레이션 효과 때문입니다."
+        }
+      ],
+      "aiGenerated": true
+    }
   }
 }

@@ -3093,6 +3093,46 @@ html[data-theme="dark"] .mob-exam-history        { border-left-color: #d97706; }
 .knowledge-magazine-card > .mob-inline-detail { margin-top: 4px; }
 .knowledge-magazine-card.inline-open { cursor: default; }
 
+/* ── YouTube 서재 카드 — 좌 썸네일 + 우 제목/요약 (홈과 동일 형식) ── */
+.kmc-yt-row {
+  display    : flex;
+  gap        : 12px;
+  align-items: flex-start;
+}
+.kmc-yt-thumb {
+  position     : relative;
+  flex-shrink  : 0;
+  width        : 130px;
+  aspect-ratio : 16 / 9;
+  border-radius: 10px;
+  overflow     : hidden;
+  background   : #000;
+}
+.kmc-yt-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.kmc-yt-play {
+  position      : absolute;
+  inset         : 0;
+  display       : flex;
+  align-items   : center;
+  justify-content: center;
+  color         : #fff;
+  font-size     : 30px;
+  pointer-events: none;
+}
+.kmc-yt-play i { filter: drop-shadow(0 1px 4px rgba(0,0,0,.6)); }
+.kmc-yt-body { flex: 1; min-width: 0; }     /* min-width:0 → 제목 말줄임 가능 */
+.kmc-yt .kmc-top   { margin-bottom: 6px; }
+.kmc-yt .kmc-title {
+  font-size  : 14.5px;
+  margin     : 0 0 5px;
+  display    : -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow   : hidden;
+}
+/* YouTube 뱃지 — 레드 틴트 (라이트/다크 모두 가독) */
+.kmc-yt .kmc-badge { background: rgba(229,57,53,.12); color: #e53935; }
+
 .mvw-lib-empty {
   text-align : center;
   padding    : 60px 24px;

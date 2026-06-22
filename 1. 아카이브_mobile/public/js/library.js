@@ -137,17 +137,40 @@ Object.assign(Mob, {
         const id      = item._id || item.id;
         const cc      = this._libCardCat(item);   /* 프리미엄 카테고리 뱃지 */
 
-        html += `<article class="knowledge-magazine-card" data-id="${id}" onclick="Mob._toggleDetail(this,'${id}')">
-          <div class="swipe-layer-delete"><i class="ti ti-trash"></i><span>삭제</span></div>
-          <div class="kmc-content">
-            <div class="kmc-top">
-              <span class="kmc-badge">${cc.label}</span>
-              <i class="ti ti-chevron-down kmc-chev"></i>
+        /* YouTube 영상 → 썸네일 + 우측 제목/요약 가로 카드 (홈과 동일 형식) */
+        const isYt  = (item.type === 'youtube' || item.category === 'youtube');
+        const thumb = item.thumbnail || m.thumbnail || '';
+        if (isYt && thumb) {
+          html += `<article class="knowledge-magazine-card kmc-yt" data-id="${id}" onclick="Mob._toggleDetail(this,'${id}')">
+            <div class="swipe-layer-delete"><i class="ti ti-trash"></i><span>삭제</span></div>
+            <div class="kmc-yt-row">
+              <div class="kmc-yt-thumb">
+                <img src="${thumb}" alt="" loading="lazy"/>
+                <span class="kmc-yt-play"><i class="ti ti-brand-youtube"></i></span>
+              </div>
+              <div class="kmc-content kmc-yt-body">
+                <div class="kmc-top">
+                  <span class="kmc-badge">${cc.label}</span>
+                  <i class="ti ti-chevron-down kmc-chev"></i>
+                </div>
+                <h3 class="kmc-title">${title}</h3>
+                ${sub ? `<p class="kmc-sub">${sub}${sub.length >= 120 ? '…' : ''}</p>` : ''}
+              </div>
             </div>
-            <h3 class="kmc-title">${title}</h3>
-            ${sub ? `<p class="kmc-sub">${sub}${sub.length >= 120 ? '…' : ''}</p>` : ''}
-          </div>
-        </article>`;
+          </article>`;
+        } else {
+          html += `<article class="knowledge-magazine-card" data-id="${id}" onclick="Mob._toggleDetail(this,'${id}')">
+            <div class="swipe-layer-delete"><i class="ti ti-trash"></i><span>삭제</span></div>
+            <div class="kmc-content">
+              <div class="kmc-top">
+                <span class="kmc-badge">${cc.label}</span>
+                <i class="ti ti-chevron-down kmc-chev"></i>
+              </div>
+              <h3 class="kmc-title">${title}</h3>
+              ${sub ? `<p class="kmc-sub">${sub}${sub.length >= 120 ? '…' : ''}</p>` : ''}
+            </div>
+          </article>`;
+        }
       });
 
       html += `</div></div>`;
@@ -175,6 +198,9 @@ Object.assign(Mob, {
     if (st === 'history') return { key: 'history', label: '역사',     icon: '🏛️' };
     if (st === 'quote')   return { key: 'quote',   label: '명언',     icon: '💡' };
     if (st === 'idiom')   return { key: 'idiom',   label: '고사성어', icon: '📜' };
+    /* YouTube — 영상은 별도 카테고리 */
+    if (item.type === 'youtube' || item.category === 'youtube')
+      return { key: 'youtube', label: 'YouTube', icon: '▶' };
     const dom = getItemDomain(item);
     if (item.category === 'en' || dom === 'language')
       return { key: 'english', label: 'English', icon: '🌐' };

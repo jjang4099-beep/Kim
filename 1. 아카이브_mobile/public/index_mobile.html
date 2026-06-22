@@ -2,6 +2,13 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8"/>
+  <!-- 테마를 첫 페인트 전에 적용 — 시스템 다크 색 누수(라이트 모드에서 검은 배경) 방지 -->
+  <script>
+    (function(){
+      try { document.documentElement.setAttribute('data-theme', localStorage.getItem('app-theme') || 'light'); }
+      catch(e) { document.documentElement.setAttribute('data-theme', 'light'); }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <meta name="mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -23,7 +30,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
-  <link rel="stylesheet" href="css/style_mobile.css?v=80"/>
+  <link rel="stylesheet" href="css/style_mobile.css?v=81"/>
   <link rel="stylesheet" href="css/exam.css?v=8"/>
 </head>
 <body>

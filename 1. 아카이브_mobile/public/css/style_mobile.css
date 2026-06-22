@@ -5191,8 +5191,10 @@ html[data-theme="light"] .mvw-quiz-btn.wrong                 { background: #fff5
 /* ═══════════════════════════════════════════════
    다크 모드 (v32) — 시스템 설정 자동 추종
 ═══════════════════════════════════════════════ */
+/* 시스템 다크 — data-theme 미설정 시에만 적용되는 폴백.
+   앱은 항상 data-theme(light/dark)를 명시하므로 이 블록은 라이트 모드로 누수되지 않음. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
     --surface : #1b2232;
     --bg      : #0f1420;
     --bg-2    : #1b2232;

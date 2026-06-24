@@ -9,7 +9,9 @@
   "scripts": {
     "start": "node public/server.js",
     "dev": "nodemon public/server.js",
-    "gen-icons": "node scripts/generate-icons.js"
+    "gen-icons": "node scripts/generate-icons.js",
+    "scan-ids": "node ../scripts/_scan_ids.js",
+    "build-work": "node scripts/buildWorkContent.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

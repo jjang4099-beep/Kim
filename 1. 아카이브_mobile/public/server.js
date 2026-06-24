@@ -943,7 +943,7 @@ function buildPushPayload(feeds) {
 const DEFAULT_USER = {
   id: 'sj', name: 'SJ', delivery_time: '07:30',
   timezone: 'Asia/Seoul',
-  enabled_feeds: ['en_expr', 'us_market', 'hist_daily', 'quote_daily', 'idiom_daily'],
+  enabled_feeds: ['en_expr', 'us_market', 'hist_daily', 'idiom_daily', 'liber_classic', 'insight_daily'],
   feed_settings: {
     en_expr:   { count: 10, themes: ['business_meeting', 'office_email'], level: 'advanced' },
     zh_expr:   { count: 7,  themes: ['biz_hsk', 'biz_trip'],             level: 'advanced' },
@@ -1914,14 +1914,108 @@ async function generateIdiomFeed(sub) {
   };
 }
 
+/* ══════════════════════════════════════════════════════════
+   직장인 전용 콘텐츠 (work_db) — 고전 LIBER / 인사이트 / 고사성어
+   public/data/work_db/*.json → 메모리 캐시 → 배달 회전 서빙 (AI 호출 0원)
+   ⚠️ 직장인(PROFESSIONAL) 전용. 수험생(exam_db) 경로와 완전 분리.
+══════════════════════════════════════════════════════════ */
+let _wdb = null;
+function loadWorkDB() {
+  if (_wdb) return _wdb;
+  const dir = path.join(__dirname, 'data', 'work_db');
+  const db  = { classic_quotes: [], idiom_cards: [], daily_insights: [] };
+  try {
+    if (fs.existsSync(dir)) {
+      for (const file of fs.readdirSync(dir).filter(f => f.endsWith('.json'))) {
+        try {
+          const batch = JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8'));
+          for (const key of Object.keys(db)) if (Array.isArray(batch[key])) db[key].push(...batch[key]);
+        } catch (e) { console.warn(`[WorkDB] ${file} 파싱 실패:`, e.message); }
+      }
+    }
+    console.log(`[WorkDB] 로드 CLQ:${db.classic_quotes.length} IDC:${db.idiom_cards.length} INS:${db.daily_insights.length}`);
+  } catch (e) { console.warn('[WorkDB] 로드 실패:', e.message); }
+  _wdb = db;
+  return db;
+}
+
+/* 고전 구절(LIBER) 피드 — 미배달 우선 회전 */
+function generateLiberFeed(sub) {
+  const pool = loadWorkDB().classic_quotes;
+  if (!pool.length) return null;
+  const [q] = pickUnseenItems(pool, getRecentDeliveredIDs(sub.id, 90), 1);
+  if (!q) return null;
+  console.log(`[WorkDB] LIBER 서빙 (${q.id} · ${q.book})`);
+  return {
+    type: 'humanities', subType: 'liber', subId: sub.id, label: sub.label, category: 'inbox',
+    item_id: q.id, title: `${q.book} — ${q.author}`,
+    book: q.book, author: q.author, era: q.era || '', quote: q.quote || '',
+    source: q.source || '', theme: q.theme || '', context: q.context || '',
+    tags: q.tags || [], aiGenerated: false,
+  };
+}
+
+/* 오늘의 인사이트 피드 — 요일 카테고리 우선, 없으면 전체에서 미배달 회전 */
+function generateInsightFeed(sub) {
+  const all = loadWorkDB().daily_insights;
+  if (!all.length) return null;
+  const dow  = new Date().getDay();
+  const seen = getRecentDeliveredIDs(sub.id, 60);
+  let pool = all.filter(i => i.dayOfWeek === dow);
+  if (!pool.length) pool = all;
+  let [it] = pickUnseenItems(pool, seen, 1);
+  if (!it) [it] = pickUnseenItems(all, seen, 1);
+  if (!it) return null;
+  console.log(`[WorkDB] 인사이트 서빙 (${it.id} · ${it.topic})`);
+  return {
+    type: 'humanities', subType: 'insight', subId: sub.id, label: sub.label, category: 'inbox',
+    item_id: it.id, title: `${it.label} — ${it.topic}`,
+    topic: it.topic, headline: it.headline || '', body: it.body || '', realLife: it.realLife || '',
+    question: it.question || '', tags: it.tags || [], icon: it.icon || '💡', color: it.color || '#7c3aed',
+    subCategory: it.subCategory || '', aiGenerated: false,
+  };
+}
+
+/* 고사성어 피드 (work_db DB-first) — 기존 프론트 idiom 카드 필드로 매핑 */
+function generateIdiomFeedDB(sub) {
+  const pool = loadWorkDB().idiom_cards;
+  if (!pool.length) return null;
+  const [c] = pickUnseenItems(pool, getRecentDeliveredIDs(sub.id, 90), 1);
+  if (!c) return null;
+  console.log(`[WorkDB] 고사성어 서빙 (${c.id} · ${c.idiom})`);
+  return {
+    type: 'humanities', subType: 'idiom', subId: sub.id, label: sub.label, category: 'history',
+    item_id: c.id, title: `${c.idiom || ''} (${c.hanja || ''})`,
+    idiom: c.idiom || '', hanja: c.hanja || '', meaning: c.meaning || '',
+    origin: c.origin || '', story: c.example || '', behindStory: '',
+    application: c.modernUse || '', aiGenerated: false,
+  };
+}
+
 /**
- * 인문학 피드 타입 디스패처 (역사 / 명언 / 고사성어)
- * DB-First: knowledge_db에 항목이 있으면 AI 호출 없이 즉시 반환 (비용 0원)
+ * 인문학 피드 타입 디스패처 (역사 / 명언 / 고사성어 / 고전 / 인사이트)
+ * DB-First: knowledge_db·work_db에 항목이 있으면 AI 호출 없이 즉시 반환 (비용 0원)
  * DB 항목 부족 시 기존 AI 생성 함수로 폴백
  */
 async function generateHumanitiesFeed(sub, user) {
   const subType = sub.subType || '';
   const kdb     = loadKnowledgeDB();
+
+  /* ── 고전 LIBER (work_db) ── */
+  if (subType === 'liber' || sub.id === 'liber_classic') {
+    const feed = generateLiberFeed(sub);
+    if (feed) return feed;
+  }
+  /* ── 오늘의 인사이트 (work_db) ── */
+  if (subType === 'insight' || sub.id === 'insight_daily') {
+    const feed = generateInsightFeed(sub);
+    if (feed) return feed;
+  }
+  /* ── 고사성어 work_db DB-first (없으면 아래 기존 AI 경로로 폴백) ── */
+  if (subType === 'idiom' || sub.id === 'idiom_daily') {
+    const feed = generateIdiomFeedDB(sub);
+    if (feed) return feed;
+  }
 
   /* ── 역사 피드 ── */
   if (subType === 'history' || sub.id === 'hist_daily') {
@@ -2902,7 +2996,7 @@ app.patch('/api/delivery-settings/all', (req, res) => {
   if (!user.feed_settings) user.feed_settings = {};
 
   const { feedId, settings } = req.body;
-  const VALID_FEED_IDS = ['en_expr', 'zh_expr', 'us_market', 'kr_market', 'hist_daily', 'quote_daily', 'idiom_daily'];
+  const VALID_FEED_IDS = ['en_expr', 'zh_expr', 'us_market', 'kr_market', 'hist_daily', 'quote_daily', 'idiom_daily', 'liber_classic', 'insight_daily'];
   if (!VALID_FEED_IDS.includes(feedId)) {
     return res.status(400).json({ success: false, error: '유효하지 않은 feedId' });
   }

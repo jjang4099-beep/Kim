@@ -2357,5 +2357,284 @@
       ],
       "aiGenerated": true
     }
+  },
+  "2026-06-24": {
+    "en_expr": {
+      "id": "2026-06-24::en_expr",
+      "date": "2026-06-24",
+      "subId": "en_expr",
+      "createdAt": "2026-06-24T12:19:09.338Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "language",
+      "category": "en",
+      "subCategory": "motivating_your_team",
+      "label": "US 영어 표현",
+      "title": "[수] 팀원을 동기부여하고 인정할 때: I want to recognize what you did. 외 4개",
+      "summary": "수요일 — 팀원을 동기부여하고 인정할 때",
+      "theme": "motivating_your_team",
+      "themeTitle": "팀원을 동기부여하고 인정할 때",
+      "themeTitleEn": "Motivating and Recognizing Your Team",
+      "dayOfWeek": "수",
+      "vocabEntries": [
+        {
+          "item_id": "PACK_EN_020_01",
+          "expression": "I want to recognize what you did.",
+          "meaning": "당신이 한 일을 인정하고 싶어요.",
+          "nuance": "성과에 대한 인정은 보너스나 승진만큼이나 강력한 동기부여 도구입니다. 특히 공개적인 자리나 즉각적인 인정은 '내 노력이 보이고 있다'는 심리적 안전감을 줍니다. 막연한 칭찬('잘했어')보다 구체적인 행동을 명시하는 것이 훨씬 효과적입니다 — '당신이 클라이언트와의 위기 상황에서 보여준 침착함을 인정하고 싶어요'처럼.",
+          "dialogue": "You: Before we move on, I want to recognize what you did this week. You rewrote the entire API documentation in three days to meet the launch deadline.\nDeveloper: It was a lot of nights, honestly.\nYou: And it showed. The client team specifically mentioned how clear it was. That kind of work doesn't go unnoticed.\nDeveloper: That really means a lot to hear.",
+          "dialogueKo": "",
+          "sourceSentence": "She made it a habit to open every team meeting by recognizing what someone had done — morale improved within a month.",
+          "practiceSentence": "I want to recognize what you did on the Johnson account — handling that objection under pressure was exactly the kind of leadership we need."
+        },
+        {
+          "item_id": "PACK_EN_020_02",
+          "expression": "I trust your judgment on this.",
+          "meaning": "이 부분은 당신의 판단을 믿어요.",
+          "nuance": "자율성은 내재적 동기부여의 핵심입니다. '내가 결정해줄게'가 아니라 '당신이 결정해도 돼'라는 말은 권한 위임의 가장 강력한 표현입니다. 이 말을 들은 사람은 단순한 실행자가 아닌 의사결정자로서의 책임감을 갖게 됩니다. 단, 이 표현은 실제로 그 사람의 역량을 신뢰할 때만 써야 합니다 — 겉으로만 위임하고 나중에 개입하면 오히려 신뢰를 깨뜨립니다.",
+          "dialogue": "You: I trust your judgment on this vendor. You've done the due diligence and know the requirements better than anyone.\nLead: Are you sure? It's a big contract.\nYou: That's exactly why I want you to make the call. You've earned it.\nLead: Okay. I'll go with Option B and document my reasoning.",
+          "dialogueKo": "",
+          "sourceSentence": "He didn't micromanage — he'd say 'I trust your judgment on this' and mean it, which made the team perform at a higher level.",
+          "practiceSentence": "I trust your judgment on the hiring decision — you've interviewed all three candidates and you know what the team needs."
+        },
+        {
+          "item_id": "PACK_EN_020_03",
+          "expression": "What do you need from me to make this happen?",
+          "meaning": "이것을 실현하기 위해 제가 어떻게 도와드릴까요?",
+          "nuance": "리더십의 방향을 '내가 지시한다'에서 '내가 지원한다'로 바꾸는 표현입니다. 이 질문은 팀원에게 주체성을 돌려주고, 관리자는 장애물을 제거하는 역할로 자신을 재정의합니다. 서번트 리더십(servant leadership)의 핵심 언어이기도 합니다. 이 질문을 진심으로 묻고 실제로 행동으로 옮기는 리더를 팀원은 신뢰하고 따릅니다.",
+          "dialogue": "Team Member: I know what needs to be done, but there are three blockers I can't resolve on my own.\nYou: Tell me what they are. What do you need from me to make this happen?\nTeam Member: I need access to the Q3 data, a sign-off from legal, and a 30-minute conversation with the CTO.\nYou: I can get you all three by Friday. Let's remove those blockers.",
+          "dialogueKo": "",
+          "sourceSentence": "The project turned around when the director stopped asking for status updates and started asking 'what do you need from me to make this happen?'",
+          "practiceSentence": "You've got the vision and the skills to pull this off. What do you need from me to make this happen?"
+        },
+        {
+          "item_id": "PACK_EN_020_04",
+          "expression": "You've really grown in this role.",
+          "meaning": "이 역할에서 정말 많이 성장했어요.",
+          "nuance": "성과(what someone did)를 인정하는 것과 성장(how someone has developed)을 인정하는 것은 다릅니다. 성장에 대한 인정은 더 깊은 수준의 동기부여를 만듭니다 — '내가 더 나은 사람이 됐다'는 것을 누군가 알아봤다는 느낌이기 때문입니다. 성과 리뷰나 1:1 미팅에서 단순한 결과 평가를 넘어 이 표현을 쓰면 훨씬 기억에 남는 대화가 됩니다.",
+          "dialogue": "You: I want to say something that's not about deliverables. You've really grown in this role over the past year.\nYuna: In what way?\nYou: A year ago you'd ask for my approval on every decision. Now you own the whole process and only escalate when you genuinely need to. That's a big shift.\nYuna: I hadn't thought about it that way. Thank you.",
+          "dialogueKo": "",
+          "sourceSentence": "The best feedback she ever received wasn't about a specific project — it was her manager saying 'you've really grown in this role,' and naming exactly how.",
+          "practiceSentence": "You've really grown in this role — the confidence you bring to client conversations now is completely different from six months ago."
+        },
+        {
+          "item_id": "PACK_EN_020_05",
+          "expression": "I've got your back.",
+          "meaning": "내가 당신 편이에요. 믿고 해요.",
+          "nuance": "등 뒤(back)를 지켜준다는 이미지에서 나온 표현입니다. 단순한 응원이 아니라, '당신이 어떤 위험을 감수하든 내가 방패가 되어줄 것'이라는 구체적인 보호의 약속입니다. 팀원이 새로운 시도를 두려워하거나, 실패가 두려워서 도전을 망설일 때 이 말 한 마디가 심리적 안전감을 만들어 행동을 가능하게 합니다.",
+          "dialogue": "Team Member: I want to try a completely different approach for this pitch, but I'm worried if it doesn't land, it'll reflect badly on the team.\nYou: Try it. I've got your back. If it doesn't work, we'll learn from it together. If it does, that's a new playbook for all of us.\nTeam Member: Okay. I'll go for it.\nYou: That's what I wanted to hear.",
+          "dialogueKo": "",
+          "sourceSentence": "The team started taking creative risks the moment their new manager said 'I've got your back' and proved it when things went sideways.",
+          "practiceSentence": "Present your recommendation honestly, even if it's unpopular. I've got your back in that room."
+        }
+      ],
+      "masterParagraph": {
+        "text": "The best leaders I've worked for had one thing in common: they made you feel seen. When something went well, they'd say, '**I want to recognize what you did**' — and name the specific action, not just the outcome. When a decision needed to be made, they'd say, '**I trust your judgment on this**' and actually step back. When things got hard, they asked, '**What do you need from me to make this happen?**' — then removed the blockers. And over time, they noticed not just what you delivered but who you'd become: '**You've really grown in this role.**' When something felt risky, they looked you in the eye and said, '**I've got your back.**' That's not management. That's the reason people stay.",
+        "translation": "내가 함께 일한 최고의 리더들에게는 한 가지 공통점이 있었다: 그들은 당신을 보이게 만들었다. 좋은 일이 있을 때 그들은 '당신이 한 일을 인정하고 싶어요'라고 말했다 — 그리고 결과가 아닌 구체적인 행동을 언급했다. 결정이 필요할 때 그들은 '이 부분은 당신의 판단을 믿어요'라고 말하고 실제로 물러났다. 힘들어질 때 그들은 '이것을 실현하기 위해 제가 어떻게 도와드릴까요?'라고 물었다 — 그리고 장애물을 제거했다. 그리고 시간이 지나면서 그들은 당신이 무엇을 해냈는지만이 아니라 당신이 누가 됐는지를 알아차렸다: '이 역할에서 정말 많이 성장했어요.' 무언가가 위험하게 느껴질 때 그들은 눈을 맞추고 말했다: '내가 당신 편이에요.' 그것은 관리가 아니다. 그것이 사람들이 남아 있는 이유다.",
+        "highlights": [
+          "I want to recognize what you did",
+          "I trust your judgment on this",
+          "What do you need from me to make this happen?",
+          "You've really grown in this role",
+          "I've got your back"
+        ]
+      },
+      "pack_id": "PACK_EN_020",
+      "aiGenerated": false
+    },
+    "hist_daily": {
+      "id": "2026-06-24::hist_daily",
+      "date": "2026-06-24",
+      "subId": "hist_daily",
+      "createdAt": "2026-06-24T12:19:09.356Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "history",
+      "label": "역사 지식 한줌",
+      "category": "history",
+      "item_id": "HI_034",
+      "era": "세계사",
+      "period": "1789년 7월 14일",
+      "title": "프랑스 혁명 — 바스티유 감옥 함락과 절대왕정의 종말",
+      "summary": "1789년 7월 14일, 파리 시민들이 바스티유 감옥을 습격했다. 이 날 하나의 절대왕정이 무너지고 '자유·평등·박애'의 근대 민주주의 원칙이 탄생했다.",
+      "summary3": "",
+      "behindStory": "루이 16세 치하의 프랑스는 국가 재정이 파산 직전이었다. 미국 독립전쟁 지원으로 빚이 쌓인 데다, 귀족과 성직자는 면세 특권을 누리며 세금 부담은 오로지 평민(제3신분)에게 집중됐다. 1789년 5월 루이 16세가 175년 만에 소집한 삼부회에서 제3신분 대표들이 국민의회를 선언하자 왕은 군대를 파리로 집결시켰다. 분노한 파리 시민들이 7월 14일 왕정 전제의 상징이었던 바스티유 감옥을 습격했다. 실제로 안에 수감된 죄수는 단 7명이었지만, 이 사건의 상징성은 절대적이었다. 이후 귀족들의 특권이 폐지되고 '인간과 시민의 권리 선언(인권선언)'이 발표됐다. 프랑스 혁명은 '국민주권', '법 앞의 평등', '사유재산권' 등 현대 민주주의와 자본주의를 떠받치는 원칙들을 세계에 전파했다. 7월 14일은 지금도 프랑스 국경일(바스티유의 날)이다.",
+      "lesson": "",
+      "aiGenerated": false
+    },
+    "idiom_daily": {
+      "id": "2026-06-24::idiom_daily",
+      "date": "2026-06-24",
+      "subId": "idiom_daily",
+      "createdAt": "2026-06-24T12:19:09.365Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "idiom",
+      "label": "오늘의 고사성어",
+      "category": "history",
+      "item_id": "IDC_002",
+      "title": "지피지기 (知彼知己)",
+      "idiom": "지피지기",
+      "hanja": "知彼知己",
+      "meaning": "상대방을 알고 나 자신을 알면 백 번 싸워도 위태롭지 않다는 뜻으로, 상대와 자신의 강약점을 정확히 파악해야 어떤 상황에서도 유리한 결과를 이끌어낼 수 있다는 의미이다.",
+      "origin": "중국 춘추시대 손무(孫武)가 저술한 병법서 《손자병법(孫子兵法)》 모공편(謀攻篇)에서 유래하였으며, '知彼知己 百戰不殆(지피지기 백전불태)'라는 원문으로 전해진다.",
+      "story": "신제품 출시 전에 경쟁사의 가격 전략과 자사의 기술력을 면밀히 분석한 것이야말로 지피지기의 실천이었다.",
+      "behindStory": "",
+      "application": "경쟁사 분석 보고서를 작성할 때 상대 기업의 강점·약점뿐 아니라 우리 팀의 역량 한계까지 냉정하게 짚어보는 과정에서 이 성어를 활용할 수 있다. 중요한 협상 자리에 앞서 상대방의 요구사항과 의사결정 구조를 사전에 파악하고, 동시에 우리 측이 양보할 수 있는 범위를 명확히 정리해 두는 것이 지피지기의 전형적인 적용 사례이다. 또한 인사 면접이나 프레젠테이션 전에 평가자의 관심사와 조직 문화를 조사하고 자신의 강점을 그에 맞게 어필하는 전략도 같은 맥락으로 볼 수 있다.",
+      "aiGenerated": false
+    },
+    "quote_daily": {
+      "id": "2026-06-24::quote_daily",
+      "date": "2026-06-24",
+      "subId": "quote_daily",
+      "createdAt": "2026-06-24T12:19:18.911Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "quote",
+      "label": "오늘의 명언",
+      "category": "inbox",
+      "title": "\"천재는 1%의 영감과 99%의 땀으로 이루어진다.…\" — 토머스 에디슨",
+      "quote": "Genius is one percent inspiration and ninety-nine percent perspiration.",
+      "quoteKo": "천재는 1%의 영감과 99%의 땀으로 이루어진다.",
+      "author": "토머스 에디슨",
+      "authorInfo": "미국의 발명가이자 사업가 (1847-1931), 전구·축음기 등 1,000개 이상의 특허를 보유한 '멘로파크의 마법사'",
+      "context": "에디슨이 기자들에게 자신의 발명 성공 비결을 묻는 질문에 답하며 한 말로, 타고난 재능보다 끊임없는 노력의 중요성을 강조한 명언입니다.",
+      "behindStory": "에디슨은 전구 필라멘트를 개발하며 6,000가지 이상의 재료를 실험했고, 대나무에서 탄화 필라멘트를 찾기까지 무려 1만 번 가까이 실패했습니다. 조수가 '1만 번이나 실패했다'고 낙담하자 에디슨은 '나는 실패한 게 아니라 작동하지 않는 1만 가지 방법을 발견한 것'이라고 답했습니다. 실제로 그는 하루 18시간씩 일했으며, 연구실에 간이침대를 두고 잠을 줄여가며 실험에 매진했습니다.",
+      "application": "오늘 업무에서 마주한 난관�� '실패'가 아닌 '작동하지 않는 방법의 발견'으로 재정의하고, 한 번 더 시도해보는 것으로 하루를 마무리해보세요.",
+      "aiGenerated": true
+    },
+    "us_market": {
+      "id": "2026-06-24::us_market",
+      "date": "2026-06-24",
+      "subId": "us_market",
+      "createdAt": "2026-06-24T12:19:18.911Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "market",
+      "category": "economy",
+      "subCategory": "미국 증시 · 경제",
+      "label": "미국 시황",
+      "title": "연준 긴축 종료 신호와 인플레 재점화 우려",
+      "summary": "금리 동결 기조 속 장기채 금리 상승과 달러 강세가 긴축 효과를 대체하며 시장은 soft landing 시나리오를 재평가 중",
+      "indicators": [
+        {
+          "name": "S&P 500",
+          "value": "4783.45",
+          "change": "+0.57%",
+          "dir": "up"
+        },
+        {
+          "name": "나스닥",
+          "value": "15011.35",
+          "change": "+0.82%",
+          "dir": "up"
+        },
+        {
+          "name": "다우 지수",
+          "value": "37440",
+          "change": "+0.36%",
+          "dir": "up"
+        },
+        {
+          "name": "미 국채 10년물",
+          "value": "4.25%",
+          "change": "+8 bp",
+          "dir": "up"
+        },
+        {
+          "name": "VIX 공포지수",
+          "value": "13.2",
+          "change": "-0.4",
+          "dir": "down"
+        }
+      ],
+      "summary3": "• 연준의 금리 동결 장기화 전망 속에서도 장기채 금리가 4%대 중반을 유지하며 실질 긴축 효과 지속\n• 빅테크 실적 시즌 기대감과 AI 투자 모멘텀이 나스닥 강세를 견인하나 밸류에이션 부담 가중\n• 기관 투자자들의 현금 비중 확대와 헤지 포지션 증가로 상승장 내 방어적 포트폴리오 전환 감지",
+      "checkpoints": [
+        "체크포인트 1: 2월 FOMC 의사록 공개 시 위원들의 금리 인하 시점 논의 - dot plot 전망치와의 괴리 확인",
+        "체크포인트 2: 미국 Core PCE 물가지수 월간 변화율 - 0.3% 상회 시 금리 인하 지연 우려 재점화",
+        "체크포인트 3: 달러 인덱스 105 돌파 여부 - 신흥국 자본 유출과 글로벌 유동성 축소 신호로 작용"
+      ],
+      "report": "## 시장 흐름\n연준의 긴축 사이클 종료 이후에도 장기채 금리가 고공행진을 이어가는 '채권 자경단' 현상이 나타나고 있습니다. 재정 적자 우려와 term premium 상승으로 10년물 금리가 4%대를 고수하며 사실상 연준을 대신해 긴축 역할을 수행 중입니다. 이는 주택담보대출 금리를 7%대로 끌어올리며 실물경제에 냉각 효과를 전달하고 있으나, 고용시장의 견조함과 소비 회복세가 맞물리며 경기침체 없는 연착륙 가능성을 높이고 있습니다.\n\n## 투자 인사이트\n현재 시장은 '골디락스의 역설' 구간입니다. 경제가 너무 좋으면 금리 인하가 지연되고, 너무 나쁘면 실적 악화 우려가 부각되는 딜레마 상황입니다. 이럴 때는 캐시플로우가 확실한 우량 배당주와 방어적 섹터(필수소비재, 헬스케어)로 포트폴리오 ��부를 재조정하되, 장기 성장 테마인 AI 인프라와 반도체는 변동성 구간에서 분할 매수 전략이 유효합니다. 달러 강세 국면에서는 환헤지 비용도 고려해야 합니다.",
+      "aiEconomicKnowledge": [
+        {
+          "term": "Term Premium (기간 프리미엄)",
+          "importance": "투자자가 장기채를 보유할 때 요구하는 추가 수익률로, 최근 10년물 기준 0.3%p까지 상승했습니다. 이는 재정 적자 확대와 연준의 양적긴축(QT)으로 채권 공급은 늘고 수요는 줄어 투자자들이 더 높은 보상을 요구한다는 신호입니다.",
+          "connection": "주택담보대출, 기업 대출 금리의 기준이 되어 내 대출 이자와 직결되며, 부동산 시장 냉각의 핵심 변수입니다."
+        },
+        {
+          "term": "Core PCE (개인소비지출 물가지수)",
+          "importance": "연준이 가장 중시하는 인플레이션 지표로, 목표치 2%에 대해 현재 2.9% 수준입니다. CPI와 달리 소비 패턴 변화를 반영해 주거비 비중이 낮고, 연준의 금리 결정에 직접적 영향을 미칩니다.",
+          "connection": "이 지수가 높으면 금리 인하가 늦어져 예금 이자는 유지되지만, 대출 부담과 주식 밸류에이션 압박이 지속됩니다."
+        },
+        {
+          "term": "Yield Curve (수익률 곡선)",
+          "importance": "단기-장기 국채 금리 차이로 경기를 예측하는 지표입니다. 역전 상태(단기>장기)가 18개월 지속된 후 정상화되면 평균 6-12개월 내 경기침체가 왔던 역사적 패턴이 있습니다.",
+          "connection": "은행 예금(단기) 금리가 적금(장기)보다 높은 현상과 같으며, 이는 은행들의 대출 마진 축소로 이어져 신용경색 가능성을 높입니다."
+        }
+      ],
+      "aiGenerated": true
+    },
+    "liber_classic": {
+      "id": "2026-06-24::liber_classic",
+      "date": "2026-06-24",
+      "subId": "liber_classic",
+      "createdAt": "2026-06-24T12:20:36.369Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "liber",
+      "label": "오늘의 고전",
+      "category": "inbox",
+      "item_id": "CLQ_001",
+      "title": "명상록 — 마르쿠스 아우렐리우스",
+      "book": "명상록",
+      "author": "마르쿠스 아우렐리우스",
+      "era": "Stoicism",
+      "quote": "당신을 해치는 것은 사건 자체가 아니라, 그 사건에 대한 당신의 판단이다. 그리고 그 판단은 언제든 지울 수 있는 힘이 당신 안에 있다.",
+      "source": "제4권 7절",
+      "theme": "태도",
+      "context": "직장에서 부당한 피드백이나 예상치 못한 실패를 마주할 때, 우리는 흔히 상황 자체를 고통의 원인으로 착각한다. 아우렐리우스는 외부 사건이 아닌 내면의 해석이 감정을 결정한다고 말한다. 반응을 선택할 수 있다는 이 자각이야말로 직장인이 가질 수 있는 가장 강력한 자유다.",
+      "tags": [
+        "철학",
+        "자기계발",
+        "스토아",
+        "내면",
+        "절제"
+      ],
+      "aiGenerated": false
+    },
+    "insight_daily": {
+      "id": "2026-06-24::insight_daily",
+      "date": "2026-06-24",
+      "subId": "insight_daily",
+      "createdAt": "2026-06-24T12:20:36.370Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "insight",
+      "label": "오늘의 인사이트",
+      "category": "inbox",
+      "item_id": "INS_002",
+      "title": "심리학 — 더닝-크루거 효과",
+      "topic": "더닝-크루거 효과",
+      "headline": "'나 좀 아는데?' 싶을 때가 가장 위험한 순간이다",
+      "body": "더닝-크루거 효과란, 실력이 낮을수록 자신의 능력을 과대평가하고, 실력이 높아질수록 오히려 자신을 과소평가하는 심리 현상이다. 쉽게 말해, 조금 배운 사람이 가장 자신만만하고, 진짜 전문가일수록 '내가 아직 멀었다'고 느낀다. 이 현상은 1999년 심리학자 더닝과 크루거가 실험으로 증명했으며, 무지할수록 자신의 무지를 인식하지 못하는 '이중 저주' 구조를 가진다. 내가 지금 확신에 차 있다면, 그 확신이 실력에서 오는 건지 무지에서 오는 건지 점검할 필요가 있다.",
+      "realLife": "입사 6개월 차 신입이 회의에서 베테랑 선배 기획안에 '이건 그냥 이렇게 하면 되지 않나요?'라고 자신 있게 말하는 상황이 전형적인 예다. 반대로, 10년 차 팀장이 '제가 잘 모를 수도 있는데…'라고 조심스럽게 의견을 내는 장면도 같은 효과의 반대쪽 끝이다. 새 툴이나 기술을 하루 이틀 익힌 뒤 '이거 별거 없네'라고 느끼며 깊이 공부를 멈추는 것도 이 함정에 빠진 신호다.",
+      "question": "내가 지금 가장 자신 있는 분야에서, 내가 모른다는 사실조차 모르고 있는 것은 무엇일까?",
+      "tags": [
+        "자기인식",
+        "더닝크루거",
+        "직장심리",
+        "성장마인드셋",
+        "메타인지"
+      ],
+      "icon": "🧠",
+      "color": "#7c3aed",
+      "subCategory": "psychology",
+      "aiGenerated": false
+    }
   }
 }

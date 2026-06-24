@@ -1,0 +1,572 @@
+{
+  "meta": {
+    "batch": 9,
+    "theme": "변화관리·고객중심·실행력·번아웃·글로벌",
+    "id_range": {
+      "english_theme_packs": "PACK_EN_023 ~ PACK_EN_027",
+      "english": "EN_301 ~ EN_325"
+    },
+    "created": "2026-06-24"
+  },
+  "english_theme_packs": [
+    {
+      "id": "PACK_EN_023",
+      "theme_key": "change_management",
+      "theme_title": "변화와 전환을 이끌어갈 때",
+      "theme_title_en": "Leading Through Change",
+      "level": "advanced",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_023_01",
+          "order": 1,
+          "expression": "Embrace the change.",
+          "meaning": "변화를 받아들이고 적극적으로 수용하다.",
+          "nuance": "조직에서 변화는 대부분 저항을 만납니다. 'Embrace'는 단순히 변화를 '받아들이는 것(accept)'을 넘어 팔 벌려 껴안는 것처럼 적극적으로 歡迎하는 뉘앙스입니다. 리더가 이 표현을 쓸 때는 팀에게 '변화가 위협이 아니라 기회'라는 신호를 보내는 것입니다. 단, 'embrace'만 외치고 왜 변화해야 하는지 설명하지 않으면 공허한 구호가 됩니다 — 맥락과 이유가 반드시 따라와야 합니다.",
+          "dialogue": "Team Member: The new workflow feels foreign. I preferred the old system.\nYou: I hear you — change is uncomfortable at first. But I want us to embrace the change, not just tolerate it. The old system was costing us four hours per project in rework.\nTeam Member: I didn't realize it was that significant.\nYou: It was. Give the new workflow three weeks. If we still see problems, we revisit.",
+          "example": "The CEO asked everyone to embrace the change not because it was easy, but because staying still was riskier than moving.",
+          "practice": "The teams that embrace the change fastest will have the biggest advantage when the market shifts."
+        },
+        {
+          "id": "PACK_EN_023_02",
+          "order": 2,
+          "expression": "Bridge the gap",
+          "meaning": "간극을 메우다, 차이를 좁히다.",
+          "nuance": "현재 상태와 목표 상태 사이의 거리를 좁히는 행위를 뜻합니다. 조직 변화에서 'gap'은 기술 격차, 문화 격차, 세대 격차 등 여러 형태로 나타납니다. 이 표현을 쓰는 사람은 문제를 추상적으로 바라보는 것이 아니라 '구체적으로 무엇이 부족하고 어떻게 채울 것인가'를 생각한다는 인상을 줍니다.",
+          "dialogue": "Director: There's a clear disconnect between what leadership wants and what the frontline team understands.\nYou: We need to bridge the gap. My suggestion is a monthly 'strategy to execution' session — leadership translates decisions into ground-level implications.\nDirector: That's exactly the kind of mechanism we're missing.\nYou: I can design the first session. Two hours, cross-functional, with real Q&A.",
+          "example": "The new onboarding program was designed specifically to bridge the gap between what graduates learn at university and what the job actually requires.",
+          "practice": "Our job this quarter is to bridge the gap between the vision we announced and the daily reality our people are living."
+        },
+        {
+          "id": "PACK_EN_023_03",
+          "order": 3,
+          "expression": "Resistance to change",
+          "meaning": "변화에 대한 저항",
+          "nuance": "조직 변화에서 저항은 예외가 아니라 규칙입니다. '왜 사람들은 저항하는가'를 이해하는 것이 변화 관리의 핵심입니다. 저항의 원인은 보통 세 가지입니다: 모르기 때문에(정보 부족), 할 수 없기 때문에(기술 부족), 하기 싫기 때문에(동기 부족). 이 원인을 구분하지 않고 저항을 일괄적으로 '부정적인 것'으로 대하면 변화는 실패합니다.",
+          "dialogue": "You: We're seeing a lot of resistance to change with the new CRM rollout.\nConsultant: What kind of resistance? Is it 'I don't understand it', 'I can't use it', or 'I don't want to use it'?\nYou: Mostly the second — people weren't trained properly.\nConsultant: Then it's not resistance, it's a training gap. Fix the training and the resistance will likely disappear.",
+          "example": "The merger failed not because the strategy was wrong, but because resistance to change was never addressed — people were told what was happening, not why.",
+          "practice": "Resistance to change is information. Instead of pushing harder, let's ask what it's telling us."
+        },
+        {
+          "id": "PACK_EN_023_04",
+          "order": 4,
+          "expression": "Stay the course.",
+          "meaning": "흔들리지 말고 계속 나아가다, 경로를 유지하다.",
+          "nuance": "항해에서 폭풍이 와도 목적지를 향해 방향을 유지한다는 이미지에서 나왔습니다. 변화 과정에서 단기적인 어려움이나 비판이 있을 때, 장기적 목표를 향해 계속 나아가자는 의지를 표현합니다. 단, 'stay the course'는 잘못된 방향으로 고집을 부리는 것과는 다릅니다 — 새로운 정보가 나왔을 때는 방향을 수정할 줄도 알아야 합니다.",
+          "dialogue": "Board Member: The first two quarters are ugly. Maybe we pivoted too early.\nCEO: I understand the pressure, but I think we need to stay the course. The data from our pilot markets shows the model is working — it just takes time to scale.\nBoard Member: How much time?\nCEO: Give us two more quarters with the current strategy before we revisit.",
+          "example": "Halfway through the restructuring, when the noise got loudest, the leadership team made a deliberate decision to stay the course.",
+          "practice": "We knew this transition would be painful in the short term. Stay the course — the results are starting to show."
+        },
+        {
+          "id": "PACK_EN_023_05",
+          "order": 5,
+          "expression": "Change is the only constant.",
+          "meaning": "변화만이 변하지 않는다. (헤라클레이토스의 철학)",
+          "nuance": "고대 그리스 철학자 헤라클레이토스의 사상을 현대 비즈니스 언어로 풀어낸 표현입니다. 변화를 예외적 사건이 아니라 일상적 조건으로 받아들이는 마인드셋을 담고 있습니다. 변화에 지쳐 있는 팀에게 쓸 때는 공감 없이 이 문장만 던지면 공허하게 들립니다 — '그렇기 때문에 우리는 변화에 적응하는 근육을 키워야 한다'는 구체적인 방향과 함께 써야 설득력이 생깁니다.",
+          "dialogue": "New Employee: I feel like every time I get comfortable with a process, it changes.\nYou: I know how that feels. Change is the only constant in this industry. The trick isn't to get comfortable with any one process — it's to get comfortable with changing itself.\nNew Employee: That's a different way to think about it.\nYou: The people who do best here are the ones who treat adaptability as a skill, not a burden.",
+          "example": "She opened every annual strategy meeting the same way: 'Change is the only constant — so let's decide which changes we make intentionally.'",
+          "practice": "Change is the only constant — so the question isn't whether to change, it's how fast and how well."
+        }
+      ],
+      "master_paragraph": {
+        "text": "Leading through transformation means being honest about what it costs. Not everyone will **embrace the change** immediately — that's not failure, it's human nature. What matters is understanding the **resistance to change**: is it confusion, capability, or conviction? Our job is to **bridge the gap** between where people are and where the organization needs to go — with training, clarity, and time. Some days the pressure to reverse course will feel overwhelming. Those are the days to **stay the course** — not out of stubbornness, but because the data still points the same direction. And when the team asks 'why is this happening again?' the honest answer is this: **change is the only constant**, and the real competitive advantage isn't any particular strategy — it's the speed at which we adapt to the next one.",
+        "translation": "전환을 이끈다는 것은 그 대가에 대해 솔직해지는 것을 의미합니다. 모든 사람이 즉시 변화를 적극 수용하지는 않을 것입니다 — 그것은 실패가 아니라 인간의 본성입니다. 중요한 것은 변화에 대한 저항을 이해하는 것입니다: 혼란인지, 역량 부족인지, 의지 부족인지. 우리의 역할은 사람들이 현재 있는 곳과 조직이 가야 하는 곳 사이의 간극을 메우는 것입니다 — 교육, 명확한 소통, 그리고 시간으로. 어떤 날은 경로를 되돌리라는 압박이 압도적으로 느껴질 것입니다. 그런 날이 바로 흔들리지 말고 계속 나아가야 할 때입니다 — 고집이 아니라, 데이터가 여전히 같은 방향을 가리키기 때문에. 그리고 팀이 '왜 또 이런 일이 생기나요?'라고 물을 때 솔직한 답은 이것입니다: 변화만이 변하지 않는다 — 그리고 진정한 경쟁 우위는 어떤 특정 전략이 아니라, 다음 변화에 적응하는 속도입니다.",
+        "highlights": ["embrace the change", "resistance to change", "bridge the gap", "stay the course", "change is the only constant"]
+      }
+    },
+    {
+      "id": "PACK_EN_024",
+      "theme_key": "customer_centric_thinking",
+      "theme_title": "고객 중심으로 생각하고 말할 때",
+      "theme_title_en": "Customer-Centric Thinking",
+      "level": "intermediate",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_024_01",
+          "order": 1,
+          "expression": "Put yourself in the customer's shoes.",
+          "meaning": "고객의 입장이 되어 생각하다.",
+          "nuance": "직역하면 '고객의 신발을 신어보라'는 표현입니다. 공감(empathy)의 본질 — 타인의 관점으로 세상을 경험해보는 것 — 을 생생하게 담고 있습니다. 제품 설계, 불만 처리, 마케팅 카피를 작성할 때 '우리가 말하고 싶은 것'이 아닌 '고객이 듣고 싶은 것'을 먼저 생각하게 하는 전환 장치입니다.",
+          "dialogue": "Designer: I think the new onboarding flow is clean and intuitive.\nYou: Let's put ourselves in the customer's shoes for a second. They're opening this for the first time at 11 PM after a long day. Does 'clean and intuitive' still hold?\nDesigner: Honestly... the fourth step might be one too many.\nYou: That's what I was thinking. Let's see if we can fold steps three and four.",
+          "example": "Before finalizing the complaint response template, the support lead asked everyone to put themselves in the customer's shoes and read it aloud.",
+          "practice": "Before we send this pricing change announcement, let's put ourselves in the customer's shoes — what's the first question they'll have?"
+        },
+        {
+          "id": "PACK_EN_024_02",
+          "order": 2,
+          "expression": "Customer pain point",
+          "meaning": "고객이 겪는 불편함, 해결되지 않은 문제",
+          "nuance": "'Pain point'는 단순한 불편함이 아니라, 고객이 현재 감수하고 있는 마찰(friction)과 비용(cost)을 의미합니다. 이 개념이 중요한 이유는 진짜 고객 문제를 찾는 것이 제품과 서비스의 출발점이기 때문입니다. '있으면 좋은 기능'이 아닌 '없으면 고통스러운 문제'를 먼저 해결해야 고객이 돈을 냅니다.",
+          "dialogue": "PM: What's the core customer pain point we're solving with this feature?\nEngineer: Users have to manually export data, reformat it in Excel, then re-import. It's a 45-minute process they do every week.\nPM: That's a real pain point — not a nice-to-have. If we eliminate that 45 minutes, how many users does it affect?\nEngineer: About 60% of our power users. That's the retention risk segment.",
+          "example": "The startup succeeded not because the product was beautiful, but because they identified a pain point that everyone had stopped noticing — and solved it.",
+          "practice": "We've been building features. Let's go back to fundamentals: what is the number one customer pain point we haven't addressed yet?"
+        },
+        {
+          "id": "PACK_EN_024_03",
+          "order": 3,
+          "expression": "Voice of the customer (VOC)",
+          "meaning": "고객의 목소리, 고객 의견 수집 체계",
+          "nuance": "VOC는 설문, 인터뷰, 리뷰, 지원 티켓 등 다양한 채널에서 수집한 고객의 생생한 언어와 감정을 조직 내 의사결정에 반영하는 프로세스를 말합니다. '우리가 생각하는 고객'이 아닌 '실제 고객이 말하는 것'에 귀를 기울이는 것이 핵심입니다. 조직이 내부 논리에만 빠질 때 'Let's go back to the voice of the customer'는 논의를 현실로 돌려놓는 강력한 리셋 버튼입니다.",
+          "dialogue": "Marketing: Our hypothesis is that customers want more premium features.\nYou: Let's validate that against the voice of the customer. What are the top ten support tickets this month saying?\nMarketing: Actually... most of them are about reliability issues with the existing features.\nYou: So the hypothesis is wrong. They don't want more — they want what they have to work better.",
+          "example": "Every quarterly planning session started with a 30-minute VOC review — actual customer quotes, NPS verbatims, and support escalations.",
+          "practice": "Before we finalize the roadmap, I want to run it through the voice of the customer. What are real users saying they need?"
+        },
+        {
+          "id": "PACK_EN_024_04",
+          "order": 4,
+          "expression": "Exceed expectations",
+          "meaning": "기대 이상을 해내다, 기대를 뛰어넘다.",
+          "nuance": "기대를 충족하는 것(meet expectations)은 고객 유지의 기본값이고, 기대를 뛰어넘는 것(exceed expectations)이 충성 고객과 입소문을 만드는 차이입니다. 서비스 업계에서는 '고객이 기대한 것'과 '고객이 경험한 것' 사이의 긍정적인 차이를 의도적으로 설계하는 것이 핵심 전략이 됩니다. 작은 디테일 하나가 기대를 뛰어넘는 순간을 만들기도 합니다.",
+          "dialogue": "You: The client said delivery by Friday. Can we make Thursday?\nTeam: It's tight but possible.\nYou: Let's go for it. Exceeding expectations on timing is one of the fastest ways to build trust. They'll remember that we were early.\nTeam: Agreed. I'll restructure the sprint to make Thursday work.",
+          "example": "The hotel didn't just meet expectations — they'd left a handwritten note and a local snack in the room. It exceeded expectations in a way that cost almost nothing.",
+          "practice": "Our standard is not to meet the brief but to exceed expectations — what's one thing we can add that the client isn't expecting?"
+        },
+        {
+          "id": "PACK_EN_024_05",
+          "order": 5,
+          "expression": "Turn a complaint into an opportunity.",
+          "meaning": "불만을 기회로 바꾸다.",
+          "nuance": "연구에 따르면 불만을 잘 해결받은 고객은 처음부터 문제가 없었던 고객보다 더 높은 충성도를 보입니다 — 이것을 '서비스 회복 역설(Service Recovery Paradox)'이라고 합니다. 불만 고객은 '우리 서비스에 여전히 기대를 갖고 있는 사람'입니다. 불만을 이미 떠난 사람은 아무 말도 하지 않습니다. 불만을 제대로 받아들이고 대응하면, 그 과정 자체가 더 강한 신뢰 관계를 만들 수 있습니다.",
+          "dialogue": "Support Lead: We got a strongly worded complaint from one of our biggest accounts today.\nYou: Let's turn this complaint into an opportunity. Who's calling them today — not emailing, calling?\nSupport Lead: I can do it.\nYou: Find out what broke down and what would make it right. Then go one step further than what they ask for.",
+          "example": "The team had learned to treat complaints as signals: every time they turned a complaint into an opportunity, it uncovered a product gap their internal reviews had missed.",
+          "practice": "This negative review is actually useful. Let's turn this complaint into an opportunity and respond in a way that wins back this customer."
+        }
+      ],
+      "master_paragraph": {
+        "text": "The best customer-centric teams have a discipline: before any major decision, they **put themselves in the customer's shoes** and ask what the experience actually feels like from the other side. They build their roadmaps around real **customer pain points** — not assumptions — and they validate every hypothesis against the **voice of the customer**. Their standard isn't to deliver what was promised; it's to **exceed expectations** by at least one deliberate, unexpected gesture. And when things go wrong — as they always eventually do — they know that how you respond matters more than the failure itself. A well-handled complaint can do more for loyalty than ten perfect transactions. Learn to **turn every complaint into an opportunity**, and your most frustrated customers can become your most vocal advocates.",
+        "translation": "가장 훌륭한 고객 중심 팀들에게는 하나의 원칙이 있습니다: 중요한 결정을 내리기 전에 반드시 고객의 입장이 되어 상대편에서 경험이 어떤 느낌인지 묻습니다. 그들은 가정이 아닌 진짜 고객의 불편함을 중심으로 로드맵을 만들고, 모든 가설을 고객의 목소리로 검증합니다. 그들의 기준은 약속한 것을 전달하는 것이 아니라, 적어도 하나의 의도적이고 예상치 못한 제스처로 기대를 뛰어넘는 것입니다. 그리고 일이 잘못될 때 — 언제나 그런 날이 오듯 — 그들은 실패 자체보다 대응 방식이 더 중요하다는 것을 알고 있습니다. 잘 처리된 불만은 열 번의 완벽한 거래보다 충성도를 더 높일 수 있습니다. 모든 불만을 기회로 바꾸는 법을 배우면, 가장 불만스러웠던 고객이 가장 열렬한 지지자가 될 수 있습니다.",
+        "highlights": ["put themselves in the customer's shoes", "customer pain points", "voice of the customer", "exceed expectations", "turn every complaint into an opportunity"]
+      }
+    },
+    {
+      "id": "PACK_EN_025",
+      "theme_key": "getting_things_done",
+      "theme_title": "실행하고 완수하는 사람이 쓰는 표현",
+      "theme_title_en": "The Language of Execution",
+      "level": "intermediate",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_025_01",
+          "order": 1,
+          "expression": "Own it.",
+          "meaning": "책임지다, 주인 의식을 갖다.",
+          "nuance": "'Own'은 소유한다는 의미지만, 직장에서는 '온전히 책임진다'는 의미로 쓰입니다. 'Take responsibility'보다 훨씬 강하고 능동적인 표현입니다. 단순히 잘못을 인정하는 것을 넘어, 결과가 어떻게 나오든 그 결과의 주인이 된다는 선언입니다. 'Who owns this project?'라는 질문에 아무도 손을 들지 않을 때, 'I'll own it'이라고 말하는 사람이 조직에서 리더로 성장합니다.",
+          "dialogue": "Manager: This project has been bouncing between teams for three weeks with no clear owner.\nYou: I'll own it. Give me the full scope and I'll have a plan by Monday.\nManager: Are you sure? It's messier than it looks.\nYou: That's fine. Mess is fixable if there's someone accountable. I'll own the outcome.",
+          "example": "The culture shifted when leadership stopped asking 'whose fault was this?' and started asking 'who will own fixing it?'",
+          "practice": "Don't wait for someone to assign this to you. Own it — take it from problem to solution and report back."
+        },
+        {
+          "id": "PACK_EN_025_02",
+          "order": 2,
+          "expression": "Bias toward action",
+          "meaning": "행동 쪽으로 기울다, 먼저 행동하는 성향",
+          "nuance": "아마존의 리더십 원칙 중 하나로 유명해진 표현입니다. 완벽한 정보가 없을 때도 '분석 마비(analysis paralysis)' 없이 결정하고 행동하는 성향을 의미합니다. 'Bias toward action'은 무모함이 아니라, '행동하면서 배우는 것이 기다리면서 계획하는 것보다 빠르다'는 철학입니다. 특히 스타트업과 빠른 시장 환경에서는 이 성향이 결정적인 경쟁 우위가 됩니다.",
+          "dialogue": "Analyst: We don't have enough data to be fully confident in this decision yet.\nYou: We never will. I have a bias toward action here — let's make a reversible decision now and course-correct when we learn more.\nAnalyst: What if we're wrong?\nYou: Then we'll be wrong faster and know sooner. That's still better than waiting three months.",
+          "example": "What separated the two co-founders was simple: one had a bias toward action and shipped; the other waited for certainty and shipped too late.",
+          "practice": "When in doubt, default to a bias toward action. A 70% decision made today beats a 95% decision made next month."
+        },
+        {
+          "id": "PACK_EN_025_03",
+          "order": 3,
+          "expression": "Follow through",
+          "meaning": "끝까지 해내다, 말한 것을 실행에 옮기다.",
+          "nuance": "골프나 테니스에서 공을 친 이후에도 스윙 동작을 끝까지 완성하는 'follow through'에서 나온 표현입니다. 시작은 많은 사람이 하지만, 끝까지 해내는 사람은 적습니다. 회의에서 '내가 할게요'라고 했던 사람이 다음 주에 아무것도 하지 않은 상황은 조직에서 가장 흔한 실망 중 하나입니다. Follow through는 신뢰의 화폐입니다 — 작은 약속이라도 지키는 습관이 쌓이면 그 사람에 대한 신뢰는 비례해서 높아집니다.",
+          "dialogue": "You: Last week you said you'd send the updated scope document by Wednesday. That's what we're still waiting on.\nColleague: I got pulled into other things.\nYou: I understand, but I need you to follow through on commitments, even small ones. It's affecting the whole team's planning.\nColleague: You're right. I'll send it today before 5 PM.",
+          "example": "She wasn't the most creative person on the team, but she followed through on every single commitment — and that made her indispensable.",
+          "practice": "It's not about saying yes to everything. It's about following through on the things you do say yes to."
+        },
+        {
+          "id": "PACK_EN_025_04",
+          "order": 4,
+          "expression": "Done is better than perfect.",
+          "meaning": "완벽한 것보다 완성된 것이 낫다.",
+          "nuance": "페이스북(현 메타)의 초기 문화 원칙 중 하나로 알려진 표현입니다. 완벽주의가 실행을 막을 때 쓰는 실용주의적 대응 언어입니다. 이 표현의 의미는 '낮은 품질로 출시해도 된다'가 아니라, '90%에서 멈추고 배우는 것이 100%를 기다리다 기회를 놓치는 것보다 낫다'는 것입니다. 특히 빠르게 움직여야 하는 초기 단계나 실험적 프로젝트에서 팀을 앞으로 나아가게 하는 표현입니다.",
+          "dialogue": "Designer: I still want to adjust the spacing on the landing page before we launch.\nYou: Done is better than perfect here. We've been at 95% for two weeks. The additional 5% won't move our conversion rate as much as getting real user data will.\nDesigner: I know you're right. It's hard to let go.\nYou: Ship it. Fix version 1.1 based on what users actually respond to.",
+          "example": "The competitor launched first with a messier product and owned the market. Done was better than perfect — the timing was everything.",
+          "practice": "We're overthinking this. Done is better than perfect — send the draft and we'll refine based on feedback."
+        },
+        {
+          "id": "PACK_EN_025_05",
+          "order": 5,
+          "expression": "Results speak for themselves.",
+          "meaning": "결과가 모든 것을 말해준다.",
+          "nuance": "말이나 약속이 아닌 실제 결과로 자신의 가치를 증명하는 태도를 담은 표현입니다. 이 표현을 자신에 대해 쓸 때는 '겸손하게 결과로만 이야기한다'는 인상을 주고, 팀이나 전략에 대해 쓸 때는 논쟁을 끝내는 방식으로 작동합니다. 단, 이 표현은 결과가 실제로 좋을 때만 힘이 있습니다 — 결과가 없는 상황에서 쓰면 오히려 공허하게 들립니다.",
+          "dialogue": "Skeptic: I'm still not convinced the new sales methodology is working.\nYou: Fair enough. Let's look at the numbers. Pipeline velocity is up 34%, close rate is up 12%, and deal size is up 18% since implementation. The results speak for themselves.\nSkeptic: Those are significant improvements.\nYou: Which is why I'd rather show you the data than argue the theory.",
+          "example": "He never oversold himself in interviews — he just brought a portfolio of outcomes and let the results speak for themselves.",
+          "practice": "I don't need to defend the approach anymore. Run the pilot, and the results will speak for themselves."
+        }
+      ],
+      "master_paragraph": {
+        "text": "The most effective people I've worked with share a set of instincts. When something falls through the cracks, they don't wait to be asked — they say '**I'll own it**' and mean it. They have a **bias toward action**: when information is incomplete, they make a reversible decision, move, and adjust. They **follow through** on every commitment, even the small ones — because small promises broken are the fastest way to erode trust. When perfectionism threatens to stall progress, they remind themselves: '**Done is better than perfect.**' Ship it, learn from it, improve it. And at the end of the day, they don't need to explain or defend their work. **The results speak for themselves.** These aren't talents. They're habits — and habits can be built.",
+        "translation": "내가 함께 일한 가장 효과적인 사람들은 공통된 본능을 공유합니다. 무언가가 틈새로 빠질 때 그들은 요청받기를 기다리지 않습니다 — '내가 책임지겠습니다'라고 말하고 그 말을 지킵니다. 그들은 행동 쪽으로 기웁니다: 정보가 불완전할 때도 되돌릴 수 있는 결정을 내리고, 움직이고, 조정합니다. 그들은 모든 약속을 끝까지 해냅니다, 작은 것까지도 — 작은 약속을 어기는 것이 신뢰를 가장 빠르게 무너뜨리는 방법이기 때문입니다. 완벽주의가 진행을 막겠다고 위협할 때 그들은 스스로를 일깨웁니다: '완벽한 것보다 완성된 것이 낫다.' 출시하고, 배우고, 개선합니다. 그리고 하루가 끝날 때 그들은 자신의 일을 설명하거나 방어할 필요가 없습니다. 결과가 모든 것을 말해줍니다. 이것들은 재능이 아닙니다. 습관입니다 — 그리고 습관은 만들 수 있습니다.",
+        "highlights": ["I'll own it", "bias toward action", "follow through", "Done is better than perfect", "The results speak for themselves"]
+      }
+    },
+    {
+      "id": "PACK_EN_026",
+      "theme_key": "burnout_and_boundaries",
+      "theme_title": "번아웃을 예방하고 경계를 지킬 때",
+      "theme_title_en": "Setting Boundaries and Preventing Burnout",
+      "level": "intermediate",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_026_01",
+          "order": 1,
+          "expression": "I need to protect my time.",
+          "meaning": "제 시간을 지켜야 해요.",
+          "nuance": "시간은 돈과 달리 빌리거나 저축할 수 없는 유일한 자원입니다. '시간을 보호한다'는 표현은 수동적인 '시간이 없어요'가 아니라, 자신의 가장 중요한 자원을 능동적으로 관리한다는 주체적인 태도를 담고 있습니다. 이 표현은 자기 관리의 언어이지만, 직장에서 명확한 우선순위를 갖고 있는 전문가라는 인상도 함께 줍니다.",
+          "dialogue": "Colleague: Can you join the 4 PM brainstorm today? It's just informal.\nYou: I need to protect my time this afternoon — I have a critical deadline by 6 PM. Can I contribute asynchronously? Send me the questions and I'll add my thoughts in a doc.\nColleague: That actually works better. I'll share the doc.\nYou: Perfect. I'll add my input by 5.",
+          "example": "She blocked her 9–11 AM as 'deep work' every day and protected that time like a meeting with her most important client.",
+          "practice": "I need to protect my time this week — I'm triaging ruthlessly. What's the one thing that genuinely needs me versus what can go to the team?"
+        },
+        {
+          "id": "PACK_EN_026_02",
+          "order": 2,
+          "expression": "I'm at capacity.",
+          "meaning": "지금 할 수 있는 한계에 와 있어요. 더 이상 여유가 없어요.",
+          "nuance": "물리적인 저장 용량(capacity)에서 나온 표현으로, 업무 수용 한계를 명확하게 표현합니다. 'I'm busy'보다 훨씬 구체적이고 전문적입니다 — '바쁜 것'이 아니라 '이미 가득 찬 것'이라는 차이입니다. 이 표현을 쓸 수 있는 사람은 자신의 업무 부하를 객관적으로 인식하고 있는 사람입니다. 여기에 대안(위임, 일정 조정, 우선순위 재정렬)을 함께 제시하면 더욱 완성된 커뮤니케이션이 됩니다.",
+          "dialogue": "Manager: Can you take on the vendor review this week?\nYou: I want to be transparent — I'm at capacity right now with the product launch and the Q3 report. If you need the vendor review done well, something else needs to come off my plate, or we push it to next week.\nManager: Let's push the vendor review to Monday. The product launch is more critical.\nYou: That works. I'll calendar it for Monday morning.",
+          "example": "Instead of silently overloading and underdelivering, he told his manager 'I'm at capacity' — and they reprioritized together.",
+          "practice": "I'm at capacity this sprint. I can take this on, but I need to know which of my current three priorities gets deprioritized."
+        },
+        {
+          "id": "PACK_EN_026_03",
+          "order": 3,
+          "expression": "Disconnect to recharge.",
+          "meaning": "재충전을 위해 연결을 끊다.",
+          "nuance": "스마트폰을 충전하려면 반드시 꽂아두어야 하듯, 사람도 에너지를 회복하려면 의식적으로 일과 디지털 기기에서 연결을 끊는 시간이 필요하다는 은유입니다. 항상 연결된(always-on) 현대 직장 문화에서 의식적인 단절은 사치가 아니라 지속 가능한 성과의 조건이 됩니다. 이 표현을 쓰는 리더는 팀에게 '쉬는 것은 허락된 것'이라는 문화적 신호를 보냅니다.",
+          "dialogue": "You: I noticed you've been sending emails past midnight every day this week.\nTeam Member: I just want to stay on top of everything.\nYou: I appreciate the dedication, but you need to disconnect to recharge. Sustainable performance requires recovery time. The emails can wait until morning.\nTeam Member: I feel guilty not responding.\nYou: That's something we need to fix as a culture, not as a personal habit.",
+          "example": "She put an autoresponder on after 7 PM that said 'recharging — will respond tomorrow' and her work quality improved within two weeks.",
+          "practice": "This weekend, fully disconnect to recharge. No Slack, no email. You'll bring a clearer mind back on Monday."
+        },
+        {
+          "id": "PACK_EN_026_04",
+          "order": 4,
+          "expression": "Saying no is a strategy.",
+          "meaning": "'아니오'라고 말하는 것도 전략이다.",
+          "nuance": "Yes를 많이 하는 것이 헌신처럼 보이지만, 모든 것에 Yes를 하면 아무것도 제대로 할 수 없습니다. 'No'는 거절이 아니라 우선순위의 표현입니다 — 이것에 No를 하는 것은 더 중요한 것에 Yes를 하기 위해서입니다. 애플의 스티브 잡스는 '천 가지에 노(No)를 말하는 것이 집중이다'라고 말했습니다. 이 표현을 쓸 수 있는 사람은 자신의 가장 중요한 기여가 무엇인지 알고 있는 사람입니다.",
+          "dialogue": "New Manager: I've been saying yes to every meeting invitation. I'm exhausted and I'm not adding value in any of them.\nYou: Saying no is a strategy. Which meetings actually require your presence versus your input? Those are different things.\nNew Manager: Probably only three out of the twelve.\nYou: Send your thoughts async for the other nine and watch your effectiveness go up.",
+          "example": "The product team's quality improved dramatically when the PM started saying no to everything that wasn't on the top three priorities.",
+          "practice": "Saying no is a strategy. Every yes you give to a low-priority request is a no to something that matters."
+        },
+        {
+          "id": "PACK_EN_026_05",
+          "order": 5,
+          "expression": "Sustainable pace",
+          "meaning": "지속 가능한 속도, 오랫동안 유지할 수 있는 업무 리듬",
+          "nuance": "마라톤을 단거리처럼 뛰면 중간에 쓰러집니다. 'Sustainable pace'는 단기 성과를 극대화하기 위해 장기 능력을 소진하는 것이 아니라, 오랫동안 높은 수준을 유지하는 리듬을 찾는 것입니다. 애자일 방법론에서도 '팀이 지속 가능한 속도로 일하는 것'을 핵심 원칙으로 삼습니다. 이 표현은 개인과 팀 모두에게 적용됩니다 — 번아웃은 개인의 실패가 아니라 시스템의 실패입니다.",
+          "dialogue": "You: The team has been sprinting for eight weeks straight. Velocity is up, but I'm seeing quality issues and sick days increasing.\nDirector: We can't slow down — the roadmap is aggressive.\nYou: I understand, but this isn't a sustainable pace. If two key people burn out and leave, we lose six months of momentum. One lighter week now prevents that scenario.\nDirector: Okay. Plan a recovery sprint for next week.",
+          "example": "The engineering team that won the five-year contract wasn't the fastest — it was the one that ran at a sustainable pace and never missed a milestone.",
+          "practice": "We can push hard for a sprint, but let's make sure we return to a sustainable pace before the next cycle or we'll erode the team."
+        }
+      ],
+      "master_paragraph": {
+        "text": "High performance is not about doing more — it's about doing the right things at a pace you can maintain. That starts with **protecting your time**: blocking it, defending it, and treating it as your most finite resource. When the load exceeds capacity, say so: '**I'm at capacity**' is not a complaint — it's operational clarity. Learn to **disconnect to recharge**; the brain isn't built for always-on, and pretending otherwise is how performance quietly degrades. Understand that **saying no is a strategy** — every yes to a low-priority item is a no to something that matters more. And anchor everything to a **sustainable pace**. Because the goal isn't to sprint as hard as possible for six months and burn out. The goal is to still be delivering excellent work five years from now.",
+        "translation": "고성과는 더 많이 하는 것이 아닙니다 — 유지할 수 있는 속도로 올바른 것들을 하는 것입니다. 그것은 자신의 시간을 보호하는 것에서 시작됩니다: 차단하고, 지키고, 가장 유한한 자원으로 대우하는 것. 부하가 한계를 넘을 때 말하세요: '지금 할 수 있는 한계에 와 있어요'는 불평이 아닙니다 — 업무적 명확성입니다. 재충전을 위해 연결을 끊는 법을 배우세요; 뇌는 항상 연결된 상태를 위해 만들어지지 않았고, 그것을 모른 척하는 것이 성과가 조용히 저하되는 방식입니다. '아니오'라고 말하는 것도 전략임을 이해하세요 — 낮은 우선순위 항목에 대한 모든 예스는 더 중요한 것에 대한 노입니다. 그리고 모든 것을 지속 가능한 속도에 고정하세요. 왜냐하면 목표는 6개월 동안 최대한 빠르게 달리다가 번아웃하는 것이 아니기 때문입니다. 목표는 5년 후에도 여전히 탁월한 성과를 내는 것입니다.",
+        "highlights": ["protecting your time", "I'm at capacity", "disconnect to recharge", "saying no is a strategy", "sustainable pace"]
+      }
+    },
+    {
+      "id": "PACK_EN_027",
+      "theme_key": "cross_cultural_global_business",
+      "theme_title": "글로벌 비즈니스와 문화 차이를 넘을 때",
+      "theme_title_en": "Cross-Cultural Business Communication",
+      "level": "advanced",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_027_01",
+          "order": 1,
+          "expression": "Let me make sure I understood correctly.",
+          "meaning": "제가 제대로 이해했는지 확인해볼게요.",
+          "nuance": "다국적 대화에서 가장 위험한 것은 '이해했다고 가정하는 것'입니다. 언어뿐 아니라 문화적 표현 방식의 차이가 의미를 바꾸기 때문입니다. 이 표현은 '나는 완전히 이해하지 못했을 수 있다'는 겸손함과, '정확한 이해가 중요하다'는 프로다운 태도를 동시에 담고 있습니다. 특히 중요한 결정이나 계약 관련 대화 후에 반드시 쓰는 습관을 들이면 오해를 방지할 수 있습니다.",
+          "dialogue": "Client (Japan): We feel the timeline could be more... accommodating.\nYou: Let me make sure I understood correctly. Are you suggesting we extend the deadline, or are you saying the current timeline creates difficulty on your end that we should be aware of?\nClient: We would appreciate more flexibility in the final two weeks.\nYou: Understood. Let me come back to you with a revised schedule by end of day.",
+          "example": "Before leaving the meeting, she summarized every decision with 'let me make sure I understood correctly' — it caught two significant misalignments before they became problems.",
+          "practice": "Let me make sure I understood correctly before we proceed — you'd like the report in English but the executive summary in Korean as well?"
+        },
+        {
+          "id": "PACK_EN_027_02",
+          "order": 2,
+          "expression": "Culturally sensitive",
+          "meaning": "문화적으로 민감한, 문화 차이를 배려하는",
+          "nuance": "글로벌 협업에서 실수는 대부분 나쁜 의도가 아니라 문화적 무지에서 비롯됩니다. 'Culturally sensitive'한 사람은 자신의 문화적 기준을 보편적 기준으로 강요하지 않습니다. 예를 들어, 직접적 의사소통을 선호하는 저맥락 문화(독일·미국)와 간접적 의사소통을 선호하는 고맥락 문화(일본·한국)를 구분하지 못하면 '거절하지 않는다'와 '모호하게 거절한다'를 혼동하게 됩니다.",
+          "dialogue": "You: Before we go into the negotiation with the Osaka team, let's make sure we're being culturally sensitive. In Japanese business culture, 'that might be difficult' often means no.\nColleague: So silence or vague responses aren't necessarily agreement?\nYou: Exactly. And they may need consensus within their team before committing. Don't interpret deliberation as hesitation.\nColleague: Good to know. I almost pushed for a same-day decision.",
+          "example": "The campaign failed in Southeast Asia not because the product was wrong, but because the messaging wasn't culturally sensitive — it felt arrogant to local audiences.",
+          "practice": "Before we finalize the contract language, let's run it by someone culturally sensitive to the Korean market — some phrasing translates differently."
+        },
+        {
+          "id": "PACK_EN_027_03",
+          "order": 3,
+          "expression": "Lost in translation",
+          "meaning": "번역 또는 소통 과정에서 의미가 전달되지 않다.",
+          "nuance": "소피아 코폴라의 영화 제목으로도 유명하지만, 비즈니스에서는 아주 구체적인 현상을 가리킵니다. 글자 그대로의 번역이 다른 문화권에서 전혀 다른 의미를 가질 수 있고, 유머·관용어·비유는 특히 취약합니다. 글로벌 팀에서 이 표현을 쓸 때는 '의도한 바와 전달된 바가 다를 수 있다'는 인식을 공유하는 것 자체가 더 나은 소통의 시작입니다.",
+          "dialogue": "You: The Korean team seemed disengaged after the presentation. I'm not sure why.\nColleague: Some of your analogies might have been lost in translation — the baseball metaphors especially won't land the same way.\nYou: I hadn't thought about that. What should I have used instead?\nColleague: Keep analogies concrete and visual. Sports metaphors are heavily cultural.",
+          "example": "The slogan worked brilliantly in English but was completely lost in translation in Mandarin — the agency had to rebuild the campaign from scratch.",
+          "practice": "The humor in this copy will likely get lost in translation. Let's rewrite the concept in a way that works across cultures."
+        },
+        {
+          "id": "PACK_EN_027_04",
+          "order": 4,
+          "expression": "Common ground",
+          "meaning": "공통점, 공통 기반, 서로 동의하는 영역",
+          "nuance": "다른 문화, 다른 목표, 다른 이해관계를 가진 사람들 사이에서 협업을 가능하게 하는 것은 차이를 없애는 것이 아니라 공통점을 찾는 것입니다. 'Find common ground'는 협상, 갈등 해소, 파트너십 구축 모두에서 쓰이는 표현입니다. 차이에 집중하면 분리되고, 공통점에 집중하면 연결됩니다.",
+          "dialogue": "You: The German team prioritizes process and documentation. Our team moves fast and documents later. There's tension.\nConsultant: Find the common ground first. What outcome do both teams care about equally?\nYou: Both teams want zero production incidents.\nConsultant: Start there. Design the process around that shared goal, and the documentation question becomes secondary.",
+          "example": "The joint venture almost collapsed before both CEOs stopped arguing about structure and started looking for common ground — it turned out they both wanted the same end customer.",
+          "practice": "We won't agree on everything in this negotiation. Let's first identify the common ground and build the agreement outward from there."
+        },
+        {
+          "id": "PACK_EN_027_05",
+          "order": 5,
+          "expression": "Think globally, act locally.",
+          "meaning": "전 세계적으로 생각하되, 현지에서는 현지 방식으로 행동하라.",
+          "nuance": "글로벌 전략과 로컬 실행 사이의 긴장을 해소하는 가장 유명한 경영 원칙 중 하나입니다. 맥도날드가 인도에서 소고기 버거를 팔지 않는 것, 넷플릭스가 각 나라에서 현지 콘텐츠를 제작하는 것이 이 원칙의 실천입니다. 본사의 일관성(global)과 현지의 관련성(local) 사이에서 어느 쪽에 더 많은 자율성을 줄 것인지는 글로벌 기업이 늘 씨름하는 질문입니다.",
+          "dialogue": "HQ: We want to standardize the customer experience across all 14 markets.\nYou: I agree on the brand standard, but the execution needs to think globally, act locally. The payment experience in Korea needs to support Kakao Pay. The customer service hours in Germany need to align with local labor law.\nHQ: So you're saying the 'what' stays consistent, but the 'how' adapts?\nYou: Exactly. Same destination, different routes.",
+          "example": "The campaign succeeded in every market because the creative director insisted on 'think globally, act locally' — the core message was universal but the visuals were specific to each culture.",
+          "practice": "Our product strategy should think globally, act locally — the core value proposition stays, but the UX and support model adapts to each region."
+        }
+      ],
+      "master_paragraph": {
+        "text": "Working across cultures requires a particular kind of humility. Before any major decision, pause and say: '**Let me make sure I understood correctly.**' Misunderstandings rarely announce themselves — they just quietly become problems. Being **culturally sensitive** isn't about tiptoeing; it's about understanding that directness, silence, and agreement mean different things in different rooms. Know that nuance, humor, and context can get **lost in translation** — what lands perfectly in one language may land nowhere in another. In every cross-cultural negotiation, anchor the conversation first in **common ground** — what both parties care about equally — and build outward from there. And when building global products or teams, remember the principle that never goes out of date: **think globally, act locally.** The brand stays consistent. The experience adapts.",
+        "translation": "문화를 넘어 일하는 것은 특별한 종류의 겸손함을 필요로 합니다. 중요한 결정 전에 잠시 멈추고 말하세요: '제가 제대로 이해했는지 확인해볼게요.' 오해는 거의 스스로를 드러내지 않습니다 — 그냥 조용히 문제가 됩니다. 문화적으로 민감하다는 것은 발끝으로 걷는 것이 아닙니다; 솔직함, 침묵, 그리고 동의가 다른 방에서 다른 것을 의미한다는 것을 이해하는 것입니다. 뉘앙스, 유머, 맥락이 번역 과정에서 사라질 수 있다는 것을 아세요 — 한 언어에서 완벽하게 전달되는 것이 다른 언어에서는 전혀 전달되지 않을 수 있습니다. 모든 다문화 협상에서 먼저 공통점 — 양측이 동등하게 중요하게 여기는 것 — 에 대화를 고정하고 그곳에서 바깥으로 확장하세요. 그리고 글로벌 제품이나 팀을 구축할 때 절대 시대에 뒤처지지 않는 원칙을 기억하세요: 전 세계적으로 생각하되, 현지에서는 현지 방식으로. 브랜드는 일관성을 유지합니다. 경험은 적응합니다.",
+        "highlights": ["Let me make sure I understood correctly", "culturally sensitive", "lost in translation", "common ground", "think globally, act locally"]
+      }
+    }
+  ],
+  "english_expressions": [
+    {
+      "id": "EN_301",
+      "expression": "The ball is in your court.",
+      "meaning": "이제 당신 차례예요. 다음 행동은 당신에게 달려 있어요.",
+      "level": "beginner",
+      "theme": "negotiation",
+      "example": "We've submitted the proposal and answered every question. The ball is in their court now.",
+      "dialogue": "A: Have you heard back from the client on the revised terms?\nB: Not yet. We sent everything last Thursday. The ball is in their court.\nA: Should we follow up?\nB: Give them until end of week. Following up too soon can feel like pressure."
+    },
+    {
+      "id": "EN_302",
+      "expression": "Cut to the chase.",
+      "meaning": "핵심만 말하다, 서론 없이 본론으로 가다.",
+      "level": "beginner",
+      "theme": "communication",
+      "example": "We have five minutes before the next meeting — let's cut to the chase. What do you need from me?",
+      "dialogue": "A: I wanted to provide some context first, going back to Q1 when we initially—\nB: Sorry to interrupt, but can we cut to the chase? I have another call in ten minutes.\nA: Of course. Bottom line: we need an extra $50K to hit the target.\nB: Okay. Send me the breakdown and I'll look at it tonight."
+    },
+    {
+      "id": "EN_303",
+      "expression": "Think on your feet.",
+      "meaning": "즉흥적으로 빠르게 생각하다, 임기응변하다.",
+      "level": "intermediate",
+      "theme": "communication",
+      "example": "The client threw three unexpected questions at her, but she thought on her feet and handled all of them confidently.",
+      "dialogue": "A: How do you prepare for Q&A sessions where you don't know what's coming?\nB: You can't over-prepare for the unknown. You practice thinking on your feet — I do mock sessions where people throw curveball questions.\nA: And that actually helps?\nB: It builds the muscle. You get more comfortable with uncertainty."
+    },
+    {
+      "id": "EN_304",
+      "expression": "Foot in the door",
+      "meaning": "첫 발을 들여놓다, 기회를 잡다 (작은 것부터 시작해 더 큰 것을 노리다)",
+      "level": "intermediate",
+      "theme": "career",
+      "example": "The internship wasn't glamorous, but it was a foot in the door at one of the best agencies in the country.",
+      "dialogue": "A: This project doesn't pay much and isn't exactly my area.\nB: Take it. It's a foot in the door with a client who buys ten times this annually.\nA: So the long game is to land their bigger budget next year?\nB: Exactly. Show them what you can do on the small project."
+    },
+    {
+      "id": "EN_305",
+      "expression": "Run it by someone",
+      "meaning": "~에게 검토·확인을 받다, 의견을 구하다.",
+      "level": "beginner",
+      "theme": "collaboration",
+      "example": "Before we finalize the contract, let's run it by legal.",
+      "dialogue": "A: I drafted the client response. Should I send it now?\nB: Run it by me first — I want to make sure the tone is right given the history.\nA: Give me five minutes to share my screen.\nB: Better safe than sorry on this one."
+    },
+    {
+      "id": "EN_306",
+      "expression": "The devil is in the details.",
+      "meaning": "세부 사항 속에 함정이 있다. 작은 것을 간과하면 큰 문제가 된다.",
+      "level": "intermediate",
+      "theme": "strategy",
+      "example": "The framework looks solid, but the devil is in the details — let's go line by line through the implementation plan.",
+      "dialogue": "A: The high-level strategy makes sense to everyone in the room.\nB: Good. Now the devil is in the details. How exactly do we migrate 4 million records without downtime?\nA: That's where we need engineering in the conversation.\nB: Bring them in tomorrow. Strategy without execution detail is just a slide deck."
+    },
+    {
+      "id": "EN_307",
+      "expression": "Bite off more than you can chew",
+      "meaning": "감당할 수 있는 것 이상을 떠맡다.",
+      "level": "intermediate",
+      "theme": "project_management",
+      "example": "We bit off more than we could chew with this roadmap — four major features in one quarter was unrealistic.",
+      "dialogue": "A: I've committed to three new clients this month on top of the existing workload.\nB: Be honest — did you bite off more than you can chew?\nA: Probably. I was afraid to say no.\nB: Better to reset expectations now than to underdeliver later. Can we have an honest conversation about capacity?"
+    },
+    {
+      "id": "EN_308",
+      "expression": "Bring to the table",
+      "meaning": "기여하다, 가져오다 (능력·제안·자원 등을)",
+      "level": "beginner",
+      "theme": "collaboration",
+      "example": "Before the partnership meeting, ask yourself: what do we bring to the table that the other company doesn't have?",
+      "dialogue": "A: Why should the venture capital firm invest in us over the other four startups?\nB: We bring to the table something no one else has — a distribution network of 300 independent pharmacies across Southeast Asia.\nA: That's a real moat.\nB: And it took us six years to build. That's not something they can replicate in 18 months."
+    },
+    {
+      "id": "EN_309",
+      "expression": "On the same wavelength",
+      "meaning": "같은 파장에 있다. 서로 통하다, 생각이 잘 맞다.",
+      "level": "beginner",
+      "theme": "collaboration",
+      "example": "After five minutes of conversation, I knew we were on the same wavelength — we didn't have to explain everything from scratch.",
+      "dialogue": "A: How was the first meeting with the new creative director?\nB: We're completely on the same wavelength. She brought up exactly the brand concerns I'd been sitting on for months without saying.\nA: That's rare. Hold on to that.\nB: I already asked if she wants to co-lead the rebrand."
+    },
+    {
+      "id": "EN_310",
+      "expression": "Keep a low profile.",
+      "meaning": "눈에 띄지 않게 행동하다, 조용히 지내다.",
+      "level": "intermediate",
+      "theme": "communication",
+      "example": "With the acquisition rumours circulating, the CEO advised the team to keep a low profile at the industry event.",
+      "dialogue": "A: Should I post about the new partnership on LinkedIn before the official announcement?\nB: Keep a low profile until the press release goes out. We don't want to scoop our own announcement.\nA: Good point. I'll draft it and have it ready.\nB: Hit send 10 minutes after the official release."
+    },
+    {
+      "id": "EN_311",
+      "expression": "Add fuel to the fire.",
+      "meaning": "불에 기름을 붓다. 이미 안 좋은 상황을 더 악화시키다.",
+      "level": "intermediate",
+      "theme": "communication",
+      "example": "Responding to the negative review with a defensive tone only added fuel to the fire.",
+      "dialogue": "A: The client is already upset about the delay. Should I explain all the reasons it happened?\nB: Don't add fuel to the fire with a list of excuses. Acknowledge the impact, give them the new date, and tell them what's different this time.\nA: So lead with accountability, not explanation?\nB: Always. Explanations come after you've demonstrated you understand the impact."
+    },
+    {
+      "id": "EN_312",
+      "expression": "Walk the talk.",
+      "meaning": "말과 행동이 일치하다, 말한 것을 실천하다.",
+      "level": "intermediate",
+      "theme": "leadership",
+      "example": "She talked about work-life balance in every all-hands — and then logged off at 6 PM every day. She walked the talk.",
+      "dialogue": "A: Our values document says we prioritize employee wellbeing, but people are working 70-hour weeks.\nB: That's the gap between talking and walking the talk. Values on the wall mean nothing if the behavior doesn't match.\nA: How do we fix that?\nB: Start with leadership. Change what gets rewarded — if overwork is celebrated, that IS the culture."
+    },
+    {
+      "id": "EN_313",
+      "expression": "Ahead of the curve",
+      "meaning": "시대보다 앞서가다, 트렌드를 선도하다.",
+      "level": "intermediate",
+      "theme": "strategy",
+      "example": "By investing in AI tooling two years before competitors, they were well ahead of the curve.",
+      "dialogue": "A: Everyone is talking about sustainability reporting now. We started two years ago.\nB: That's exactly what it means to be ahead of the curve. You built the capability before it was required.\nA: It felt early at the time.\nB: That discomfort of being early is the price of leadership."
+    },
+    {
+      "id": "EN_314",
+      "expression": "Get buy-in",
+      "meaning": "동의와 지지를 얻다, 설득하다.",
+      "level": "intermediate",
+      "theme": "leadership",
+      "example": "Before rolling out the new policy, spend two weeks getting buy-in from team leads — top-down rollouts without buy-in always fail.",
+      "dialogue": "A: I want to change the entire sprint process. Can I just announce it next Monday?\nB: If you do that without getting buy-in first, expect passive resistance for months.\nA: So I should consult the team first?\nB: Not consult — involve. Let them shape it. Then it's their idea too.",
+      "theme": "leadership"
+    },
+    {
+      "id": "EN_315",
+      "expression": "Back to square one",
+      "meaning": "원점으로 돌아가다, 처음부터 다시 시작하다.",
+      "level": "beginner",
+      "theme": "project_management",
+      "example": "The client rejected the entire concept, not just the execution — we're back to square one.",
+      "dialogue": "A: The regulatory review came back and invalidated our entire technical approach.\nB: So we're back to square one on the architecture?\nA: Essentially yes. Six weeks of work and we're starting over.\nB: Painful, but better to find it now than after launch. What's the earliest we can rescope?"
+    },
+    {
+      "id": "EN_316",
+      "expression": "In good hands",
+      "meaning": "믿을 수 있는 사람에게 맡겨져 있다, 잘 돌봐질 것이다.",
+      "level": "beginner",
+      "theme": "leadership",
+      "example": "I'm leaving the Tokyo office in good hands — Ji-ho has been preparing for this role for two years.",
+      "dialogue": "A: I'm nervous about handing this account over while I'm on leave.\nB: The client is in good hands. Min-jun has been shadowing you for months and the client already knows him.\nA: He handles the technical questions well?\nB: Better than I expected honestly. Trust him.",
+      "theme": "leadership"
+    },
+    {
+      "id": "EN_317",
+      "expression": "Paint the big picture.",
+      "meaning": "큰 그림을 그려주다, 전체적인 맥락을 설명하다.",
+      "level": "intermediate",
+      "theme": "communication",
+      "example": "Before diving into the specs, take five minutes to paint the big picture — the team needs to understand why before they understand how.",
+      "dialogue": "A: The engineers keep asking why this feature is being prioritized.\nB: That's a signal. Paint the big picture for them — connect the feature to the business outcome it drives.\nA: You think that will change how they build it?\nB: Absolutely. Context changes decisions. Without it, they optimize for the wrong things."
+    },
+    {
+      "id": "EN_318",
+      "expression": "Gut feeling",
+      "meaning": "직감, 본능적인 느낌",
+      "level": "beginner",
+      "theme": "strategy",
+      "example": "The data was inconclusive, but her gut feeling said the market wasn't ready — and she was right.",
+      "dialogue": "A: The numbers say go, but I have a gut feeling something is off with this partner.\nB: What specifically?\nA: Every question I ask, they deflect. The enthusiasm feels performed.\nB: That gut feeling is data. Ask for reference calls with their last three clients before you sign."
+    },
+    {
+      "id": "EN_319",
+      "expression": "Take it offline.",
+      "meaning": "이 논의는 이 자리 말고 따로 하다, 별도로 논의하다.",
+      "level": "intermediate",
+      "theme": "meeting",
+      "example": "That's an important issue but not directly relevant to today's agenda — let's take it offline.",
+      "dialogue": "A: While we're here, I also want to discuss the contractor billing dispute—\nB: Let's take that offline. It affects only three people in this room and we have twelve other topics to cover today.\nA: Fair. Can we sync at 4 PM?\nB: I'll send you a calendar invite right now."
+    },
+    {
+      "id": "EN_320",
+      "expression": "Soft skills",
+      "meaning": "소프트 스킬 (커뮤니케이션·공감·리더십 등 대인 관계 능력)",
+      "level": "beginner",
+      "theme": "career",
+      "example": "She had every technical qualification on the job description, but what set her apart were her soft skills — especially in high-pressure client situations.",
+      "dialogue": "A: I'm investing all my development time in technical certifications.\nB: Those matter, but after a certain level, soft skills determine career progression more than technical skills.\nA: Things like communication and leadership?\nB: Exactly. The ability to influence without authority, to lead through ambiguity — those are the things that get you to senior roles."
+    },
+    {
+      "id": "EN_321",
+      "expression": "Hit a wall",
+      "meaning": "벽에 부딪히다, 한계에 다다르다, 막히다.",
+      "level": "beginner",
+      "theme": "performance",
+      "example": "The development team hit a wall when the third-party API couldn't handle the volume they needed.",
+      "dialogue": "A: We've been stuck on this problem for three days. I think we've hit a wall.\nB: What approaches have you tried?\nA: We've tried five different architectures and all of them run into the same database bottleneck.\nB: That means the bottleneck IS the problem to solve. Let's bring in the DB specialist."
+    },
+    {
+      "id": "EN_322",
+      "expression": "Rise to the occasion.",
+      "meaning": "어려운 상황에서 기대 이상의 능력을 발휘하다.",
+      "level": "intermediate",
+      "theme": "performance",
+      "example": "When the lead presenter got sick 30 minutes before the pitch, her junior colleague rose to the occasion and delivered flawlessly.",
+      "dialogue": "A: This is the most important client we've ever pitched and two key people are out sick.\nB: Then the rest of us rise to the occasion. Who knows the material well enough to cover?\nA: Probably Seo-jin — she's been in every prep session.\nB: Brief her for 20 minutes. She's ready, she just doesn't know it yet."
+    },
+    {
+      "id": "EN_323",
+      "expression": "Gut check",
+      "meaning": "솔직한 자기 점검, 직감적으로 재확인하는 것",
+      "level": "intermediate",
+      "theme": "strategy",
+      "example": "Before we commit $2M to this campaign, let's do a gut check — does everyone truly believe in this strategy?",
+      "dialogue": "A: Gut check before we present tomorrow: are we genuinely confident in these projections?\nB: Honestly? The top-line number feels stretched. We're assuming 20% conversion when our historical best is 14%.\nA: Good — let's use 14% as the base and present the 20% as the upside scenario.\nB: That's much more defensible.",
+      "theme": "strategy"
+    },
+    {
+      "id": "EN_324",
+      "expression": "Glass half full / half empty",
+      "meaning": "낙관적 / 비관적 시각 (반 남은 물을 어떻게 보느냐)",
+      "level": "beginner",
+      "theme": "communication",
+      "example": "She's definitely a glass-half-full person — even after a rough quarter, she came back with three new opportunities.",
+      "dialogue": "A: The pilot only converted 8% of users. Is that good or bad?\nB: Depends if you're glass half full or glass half empty. Half empty: we expected 15%. Half full: we have 8% who love it enough to pay, and we haven't started optimizing yet.\nA: Which are you?\nB: Both. I take the bad news seriously and use the good news as fuel.",
+      "theme": "communication"
+    },
+    {
+      "id": "EN_325",
+      "expression": "There's no such thing as a stupid question.",
+      "meaning": "멍청한 질문은 없어요. 편하게 물어보세요.",
+      "level": "beginner",
+      "theme": "communication",
+      "example": "At the start of every workshop, she'd say 'there's no such thing as a stupid question' — and she meant it. The best insights came from the most basic ones.",
+      "dialogue": "A: This might be a stupid question, but why do we need two databases instead of one?\nB: There's no such thing as a stupid question — and that's actually a great one. The answer is latency: one serves Asia-Pacific, one serves Europe.\nA: Oh, that makes sense. I'd been wondering about the cost.\nB: Ask more questions like that. The basics are where the real constraints live."
+    }
+  ],
+  "chinese_expressions": [],
+  "idioms_and_quotes": [],
+  "history_facts": []
+}

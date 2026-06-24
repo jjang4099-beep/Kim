@@ -221,6 +221,8 @@ Object.assign(Mob, {
     if (subType === 'history') return this._cardHumHistory(item);
     if (subType === 'quote')   return this._cardHumQuote(item);
     if (subType === 'idiom')   return this._cardHumIdiom(item);
+    if (subType === 'liber')   return this._cardHumLiber(item);
+    if (subType === 'insight') return this._cardHumInsight(item);
     /* 알 수 없는 서브타입 폴백 */
     return `<div class="mob-card mob-hum-card"><div class="mob-hum-content"><div class="mob-hum-title">${item.title || '인문학 지식'}</div></div></div>`;
   },
@@ -328,6 +330,82 @@ Object.assign(Mob, {
         </div>
       </div>` : ''}
       ${behindBlock}
+    </div>`;
+  },
+
+  /** 오늘의 고전(LIBER) 카드 — 구절 + 책·저자 / Expanded: 직장인 관점 해설 */
+  _cardHumLiber(item) {
+    const subId = item.subId || '';
+    const date  = item.date  || '';
+    const isSaved = !!(item.saved || item.savedItemId);
+    const saveBtn = subId ? `<button class="mob-hum-save-btn${isSaved ? ' saved' : ''}"
+        data-sub="${subId}" data-date="${date}"
+        onclick="event.stopPropagation();Mob._saveFeedToArchive('${subId}','${date}',this)"
+        title="${isSaved ? '이미 저장됨' : '서재에 저장'}" ${isSaved ? 'disabled' : ''}>
+        <i class="ti ti-${isSaved ? 'bookmark-filled' : 'bookmark'}"></i>
+      </button>` : '';
+    const ctxBlock = item.context ? `
+      <button class="mob-hum-behind-btn" onclick="event.stopPropagation();Mob._toggleBehindStory(this)">
+        해설 보기 <i class="ti ti-chevron-down"></i>
+      </button>
+      <div class="mob-hum-behind-panel">
+        <div class="mob-hum-behind-txt">${item.context}</div>
+      </div>` : '';
+
+    return `
+    <div class="mob-card mob-hum-card mob-hum-quote-card">
+      <div class="mob-hum-badge-row">
+        <span class="mob-hum-badge">오늘의 고전</span>
+        <div class="mob-hum-badge-row-r">
+          <span class="mob-hum-author-badge">${item.book || ''}</span>
+          ${saveBtn}
+        </div>
+      </div>
+      <div class="mob-hum-quote-wrap">
+        <div class="mob-hum-quote-marks">"</div>
+        <div class="mob-hum-quote-txt">${item.quote || ''}</div>
+        <div class="mob-hum-author-info">${item.author || ''}${item.source ? ` · ${item.source}` : ''}</div>
+      </div>
+      ${item.theme ? `
+      <div class="mob-hum-content">
+        <div class="mob-hum-application"><span>주제 — ${item.theme}</span></div>
+      </div>` : ''}
+      ${ctxBlock}
+    </div>`;
+  },
+
+  /** 오늘의 인사이트 카드 — 헤드라인+본문 / Expanded: 실전 사례 + 오늘의 질문 */
+  _cardHumInsight(item) {
+    const subId = item.subId || '';
+    const date  = item.date  || '';
+    const isSaved = !!(item.saved || item.savedItemId);
+    const saveBtn = subId ? `<button class="mob-hum-save-btn${isSaved ? ' saved' : ''}"
+        data-sub="${subId}" data-date="${date}"
+        onclick="event.stopPropagation();Mob._saveFeedToArchive('${subId}','${date}',this)"
+        title="${isSaved ? '이미 저장됨' : '서재에 저장'}" ${isSaved ? 'disabled' : ''}>
+        <i class="ti ti-${isSaved ? 'bookmark-filled' : 'bookmark'}"></i>
+      </button>` : '';
+    const expand = (item.realLife || item.question) ? `
+      <button class="mob-hum-behind-btn" onclick="event.stopPropagation();Mob._toggleBehindStory(this)">
+        더 알아보기 <i class="ti ti-chevron-down"></i>
+      </button>
+      <div class="mob-hum-behind-panel">
+        ${item.realLife ? `<div class="mob-hum-acc-sect"><div class="mob-hum-acc-lbl">실전 사례</div><div class="mob-hum-acc-body">${item.realLife}</div></div>` : ''}
+        ${item.question ? `<div class="mob-hum-acc-sect mob-hum-acc-lesson"><div class="mob-hum-acc-lbl">오늘의 질문</div><div class="mob-hum-acc-body">${item.question}</div></div>` : ''}
+      </div>` : '';
+
+    return `
+    <div class="mob-card mob-hum-card">
+      <div class="mob-hum-badge-row">
+        <span class="mob-hum-badge">${item.icon || '💡'} ${item.label || '인사이트'}</span>
+        <div class="mob-hum-badge-row-r">${saveBtn}</div>
+      </div>
+      <div class="mob-hum-content">
+        <div class="mob-hum-title">${item.topic || ''}</div>
+        ${item.headline ? `<div class="mob-hum-lesson"><span>${item.headline}</span></div>` : ''}
+        ${item.body ? `<div class="mob-hum-behind-txt" style="padding:10px 0 0">${item.body}</div>` : ''}
+      </div>
+      ${expand}
     </div>`;
   },
 

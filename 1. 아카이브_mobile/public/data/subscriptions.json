@@ -72,8 +72,30 @@
     "label": "오늘의 고사성어",
     "category": "history",
     "topic": "한자 성어와 삶의 지혜",
-    "enabled": false,
+    "enabled": true,
     "desc": "한자 성어 뜻풀이 + 유래 설화 + 비하인드 이야기",
     "icon": "📜"
+  },
+  {
+    "id": "liber_classic",
+    "type": "humanities",
+    "subType": "liber",
+    "label": "오늘의 고전",
+    "category": "inbox",
+    "topic": "고전·철학 명구절 (LIBER)",
+    "enabled": true,
+    "desc": "세계 고전·철학에서 길어 올린 한 구절 + 직장인 관점 해석",
+    "icon": "📖"
+  },
+  {
+    "id": "insight_daily",
+    "type": "humanities",
+    "subType": "insight",
+    "label": "오늘의 인사이트",
+    "category": "inbox",
+    "topic": "심리·행동경제·철학·조직 인사이트",
+    "enabled": true,
+    "desc": "3분이면 써먹는 심리·행동경제·철학 개념 + 실전 사례",
+    "icon": "💡"
   }
 ]

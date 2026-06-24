@@ -110,6 +110,8 @@ const FEED_CHIP_MAP = {
   hist_daily : { icon: '🏛️',  label: '역사',      color: '#92400e' },
   quote_daily: { icon: '💡',  label: '명언',      color: '#7c3aed' },
   idiom_daily: { icon: '📜',  label: '고사성어',  color: '#c2410c' },
+  liber_classic: { icon: '📖', label: '고전',     color: '#92400e' },
+  insight_daily: { icon: '💡', label: '인사이트', color: '#7c3aed' },
 };
 
 /* Archive Row 모노그램 맵 (subId → 약어 코드 + 영문 전칭) */
@@ -121,6 +123,8 @@ const FEED_ARCHIVE_MAP = {
   hist_daily : { code: 'HIS', full: 'Historical Records'  },
   quote_daily: { code: 'QUO', full: 'Quotation'           },
   idiom_daily: { code: 'IDM', full: 'Classical Idiom'     },
+  liber_classic: { code: 'LIB', full: 'Liber · Classics' },
+  insight_daily: { code: 'INS', full: 'Daily Insight'    },
 };
 
 /* ──────────────────────────────────────────────

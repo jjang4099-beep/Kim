@@ -2364,13 +2364,13 @@ async function generateDailyDelivery(user, force = false) {
     }
   }
 
-  // 최근 7일 아카이브 (daily_delivery 제외, 최대 20개)
+  // 최근 7일 아카이브 (daily_delivery 제외, 직장인 모드만, 최대 20개)
   const weekAgo    = new Date();
   weekAgo.setDate(weekAgo.getDate() - 7);
   const weekAgoStr = toDateStr(weekAgo);
   const recentItems = _sqlQuery(
-    "SELECT data FROM items WHERE date >= ? AND json_extract(data,'$.type') != 'daily_delivery' ORDER BY created_at DESC LIMIT 20",
-    [weekAgoStr]
+    "SELECT data FROM items WHERE date >= ? AND mode = ? AND json_extract(data,'$.type') != 'daily_delivery' ORDER BY created_at DESC LIMIT 20",
+    [weekAgoStr, MODE_PRO]
   ).map(r => JSON.parse(r.data));
 
   if (!recentItems.length) {
@@ -2416,6 +2416,7 @@ JSON 배열로만 응답 (마크다운 코드블록 없이):
   const newCards = cards.slice(0, 5).map(card => ({
     id         : uuidv4(),
     type       : 'daily_delivery',
+    mode       : MODE_PRO,
     category   : card.category || 'inbox',
     title      : card.title    || '오늘의 지식',
     text       : card.summary3 || '',

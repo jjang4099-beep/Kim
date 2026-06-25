@@ -531,3 +531,25 @@ html[data-theme="dark"] {
 
 /* ── 애니메이션 ── */
 @keyframes examFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ══════════════════════════════════════════
+   v9 — 학자의 성소(Scholar's Sanctuary) 대들보 레이아웃
+══════════════════════════════════════════ */
+/* 헤더를 세로 구성으로: 대들보 타이틀(전폭) → D-day + 통계 행 */
+.exam-home-header { flex-direction: column; align-items: stretch; gap: 0; }
+.exam-home-header .scholar-epistyle {
+  margin: 2px 0 12px; padding: 10px 8px 12px;
+}
+.exam-home-row { display: flex; align-items: stretch; gap: 10px; }
+
+/* D-day 숫자 — 무광 사틴 골드 + 양옆 음각 점 (• D-154 •) */
+.scholar-dday-num .exam-dday-num {
+  color: #D8C18A;
+  text-shadow: 0 1px 0 rgba(0,0,0,.25);
+}
+.scholar-dday-num .exam-dday-num::before { content: '•\00a0'; opacity: .55; font-size: .7em; vertical-align: middle; }
+.scholar-dday-num .exam-dday-num::after  { content: '\00a0•'; opacity: .55; font-size: .7em; vertical-align: middle; }
+/* 임박 단계에서는 기존 점증 골드가 우선 (far 기본값만 사틴 골드) */
+.scholar-dday-num[data-dday-tier="near"]  .exam-dday-num,
+.scholar-dday-num[data-dday-tier="close"] .exam-dday-num,
+.scholar-dday-num[data-dday-tier="dday"]  .exam-dday-num { text-shadow: none; }

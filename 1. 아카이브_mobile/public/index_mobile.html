@@ -28,10 +28,11 @@
   <meta property="og:type" content="website"/>
   <title>아카이브</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
-  <link rel="stylesheet" href="css/style_mobile.css?v=81"/>
-  <link rel="stylesheet" href="css/exam.css?v=8"/>
+  <link rel="stylesheet" href="css/style_mobile.css?v=82"/>
+  <link rel="stylesheet" href="css/exam.css?v=9"/>
 </head>
 <body>
 
@@ -97,15 +98,15 @@
      카테고리 탭 벨트
 ══════════════════════════════════════════════════════ -->
 <nav class="mob-tabs" id="mobTabs">
-  <button class="mob-tab active" data-cat="all"        onclick="Mob.setTab('all',this)">전체</button>
-  <button class="mob-tab"        data-cat="business"   onclick="Mob.setTab('business',this)">비즈니스</button>
-  <button class="mob-tab"        data-cat="language"   onclick="Mob.setTab('language',this)">언어</button>
-  <button class="mob-tab"        data-cat="humanities" onclick="Mob.setTab('humanities',this)">역사</button>
-  <button class="mob-tab"        data-cat="psychology" onclick="Mob.setTab('psychology',this)">심리</button>
-  <button class="mob-tab"        data-cat="science"    onclick="Mob.setTab('science',this)">과학</button>
-  <button class="mob-tab"        data-cat="arts"       onclick="Mob.setTab('arts',this)">문화</button>
-  <button class="mob-tab"        data-cat="life"       onclick="Mob.setTab('life',this)">건강</button>
-  <button class="mob-tab"        data-cat="society"    onclick="Mob.setTab('society',this)">사회</button>
+  <button class="mob-tab active" data-cat="all"        onclick="Mob.setTab('all',this)">All</button>
+  <button class="mob-tab"        data-cat="business"   onclick="Mob.setTab('business',this)">Business</button>
+  <button class="mob-tab"        data-cat="language"   onclick="Mob.setTab('language',this)">Linguistics</button>
+  <button class="mob-tab"        data-cat="humanities" onclick="Mob.setTab('humanities',this)">Chronicles</button>
+  <button class="mob-tab"        data-cat="psychology" onclick="Mob.setTab('psychology',this)">Psyche</button>
+  <button class="mob-tab"        data-cat="science"    onclick="Mob.setTab('science',this)">Science</button>
+  <button class="mob-tab"        data-cat="arts"       onclick="Mob.setTab('arts',this)">Arts</button>
+  <button class="mob-tab"        data-cat="life"       onclick="Mob.setTab('life',this)">Vita</button>
+  <button class="mob-tab"        data-cat="society"    onclick="Mob.setTab('society',this)">Polis</button>
 </nav>
 
 <!-- ══════════════════════════════════════════════════════
@@ -116,20 +117,25 @@
   <!-- ── 뷰 1: 홈 ── -->
   <div class="mob-view active" id="viewHome">
 
-    <!-- 수험생 모드 D-day 헤더 (exam 모드에서만 표시) -->
+    <!-- 수험생 모드 — 학자의 성소 대들보(Epistyle) + D-day 헤더 (exam 모드에서만 표시) -->
     <div class="exam-home-header" id="examHomeHeader" hidden>
-      <div class="exam-dday-block" id="examDdayBlock" data-dday-tier="far" onclick="ExamMob.openExamSettings()">
-        <span class="exam-dday-label" id="examDdayLabel">시험까지</span>
-        <span class="exam-dday-num" id="examDdayNum">D-?</span>
+      <div class="scholar-epistyle">
+        <span class="scholar-epistyle-title">THE SCHOLAR&rsquo;S SANCTUARY</span>
       </div>
-      <div class="exam-today-stats">
-        <div class="exam-stat-chip" onclick="Mob.switchView('summary',el('bnSummary'))">
-          <i class="ti ti-refresh"></i>
-          <span id="examReviewDue">0</span>개 복습 대기
+      <div class="exam-home-row">
+        <div class="exam-dday-block scholar-dday-num" id="examDdayBlock" data-dday-tier="far" onclick="ExamMob.openExamSettings()">
+          <span class="exam-dday-label" id="examDdayLabel">시험까지</span>
+          <span class="exam-dday-num" id="examDdayNum">D-?</span>
         </div>
-        <div class="exam-stat-chip">
-          <i class="ti ti-flame"></i>
-          <span id="examStreak">0</span>일 연속
+        <div class="exam-today-stats">
+          <div class="exam-stat-chip" onclick="Mob.switchView('summary',el('bnSummary'))">
+            <i class="ti ti-refresh"></i>
+            <span id="examReviewDue">0</span>개 복습 대기
+          </div>
+          <div class="exam-stat-chip">
+            <i class="ti ti-flame"></i>
+            <span id="examStreak">0</span>일 연속
+          </div>
         </div>
       </div>
     </div>
@@ -202,6 +208,11 @@
 
       <!-- 지식 서재 패널 (기존) -->
       <div id="knowledgeLibraryPanel">
+
+      <!-- 전체공개 증명 — The Exhibition Vault (전체공개 상태일 때만 노출) -->
+      <div class="public-sanctuary-banner" id="publicSanctuaryBanner" hidden>
+        <i class="ti ti-building-bank"></i> PUBLIC SANCTUARY <i class="ti ti-building-bank"></i>
+      </div>
 
       <!-- 수험생 모드 — 오답/개념 탭 (exam 모드에서만 표시) -->
       <div class="mvw-lib-type-tabs" id="libTypeTabs" hidden>
@@ -826,13 +837,13 @@
 <!-- 토스트 -->
 <div class="mob-toast" id="mobToast" hidden></div>
 
-<script src="js/core.js?v=7"></script>
-<script src="js/home.js?v=16"></script>
-<script src="js/feed.js?v=6"></script>
-<script src="js/library.js?v=6"></script>
+<script src="js/core.js?v=8"></script>
+<script src="js/home.js?v=17"></script>
+<script src="js/feed.js?v=7"></script>
+<script src="js/library.js?v=7"></script>
 <script src="js/manage.js?v=5"></script>
 <script src="js/add.js?v=5"></script>
-<script src="js/app_exam.js?v=9"></script>
+<script src="js/app_exam.js?v=10"></script>
 <script src="js/pwa.js?v=1"></script>
 <script>
 (function() {

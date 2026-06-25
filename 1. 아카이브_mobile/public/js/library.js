@@ -59,6 +59,7 @@ Object.assign(Mob, {
       this._updateLibraryFilterState();
 
       this._renderLibraryTimeline(items);
+      this._applyPublicSanctuary();
       state.libraryLoaded = true;
     } catch (e) {
       if (timelineEl) {
@@ -68,6 +69,21 @@ Object.assign(Mob, {
         </div>`;
       }
     }
+  },
+
+  /* 전체공개 증명 배너 — localStorage.libraryPublic 플래그로 노출 제어 */
+  _applyPublicSanctuary() {
+    const banner = el('publicSanctuaryBanner');
+    if (!banner) return;
+    const isPublic = localStorage.getItem('libraryPublic') === 'true';
+    banner.hidden = !isPublic;
+  },
+
+  /* 서재 전체공개 상태 토글 (외부 호출용) */
+  setLibraryPublic(on) {
+    localStorage.setItem('libraryPublic', on ? 'true' : 'false');
+    this._applyPublicSanctuary();
+    toast(on ? '서재가 전체공개되었습니다' : '서재를 비공개로 전환했습니다', 'ok');
   },
 
   _renderLibraryTimeline(items, searchQ) {
@@ -150,7 +166,7 @@ Object.assign(Mob, {
               </div>
               <div class="kmc-content kmc-yt-body">
                 <div class="kmc-top">
-                  <span class="kmc-badge">${cc.label}</span>
+                  <span class="kmc-badge arch-badge arch-${cc.arch}" title="${cc.label}">${cc.code}</span>
                   <i class="ti ti-chevron-down kmc-chev"></i>
                 </div>
                 <h3 class="kmc-title">${title}</h3>
@@ -163,7 +179,7 @@ Object.assign(Mob, {
             <div class="swipe-layer-delete"><i class="ti ti-trash"></i><span>삭제</span></div>
             <div class="kmc-content">
               <div class="kmc-top">
-                <span class="kmc-badge">${cc.label}</span>
+                <span class="kmc-badge arch-badge arch-${cc.arch}" title="${cc.label}">${cc.code}</span>
                 <i class="ti ti-chevron-down kmc-chev"></i>
               </div>
               <h3 class="kmc-title">${title}</h3>
@@ -195,18 +211,25 @@ Object.assign(Mob, {
    */
   _libCardCat(item) {
     const st = (item.feedData && item.feedData.subType) || item.subType || '';
-    if (st === 'history') return { key: 'history', label: '역사',     icon: '🏛️' };
-    if (st === 'quote')   return { key: 'quote',   label: '명언',     icon: '💡' };
-    if (st === 'idiom')   return { key: 'idiom',   label: '고사성어', icon: '📜' };
+    /* code: Cinzel 음각 뱃지에 찍히는 영문 코드 / arch: 파스텔 색 모디파이어 */
+    if (st === 'history') return { key: 'history', label: '역사',     code: 'HIS',  arch: 'his', icon: '🏛️' };
+    if (st === 'quote')   return { key: 'quote',   label: '명언',     code: 'QUO',  arch: 'quo', icon: '💡' };
+    if (st === 'idiom')   return { key: 'idiom',   label: '고사성어', code: 'IDM',  arch: 'idm', icon: '📜' };
+    if (st === 'liber')   return { key: 'quote',   label: '고전',     code: 'LIB',  arch: 'quo', icon: '📖' };
+    if (st === 'insight') return { key: 'other',   label: '인사이트', code: 'INS',  arch: 'other', icon: '💡' };
+    if (st === 'market' || item.category === 'economy' || getItemDomain(item) === 'business' && (item.type||'').includes('market'))
+      return { key: 'market', label: '시황', code: 'MKT', arch: 'mkt', icon: '📈' };
     /* YouTube — 영상은 별도 카테고리 */
     if (item.type === 'youtube' || item.category === 'youtube')
-      return { key: 'youtube', label: 'YouTube', icon: '▶' };
+      return { key: 'youtube', label: 'YouTube', code: 'FILM', arch: 'yt', icon: '▶' };
     const dom = getItemDomain(item);
     if (item.category === 'en' || dom === 'language')
-      return { key: 'english', label: 'English', icon: '🌐' };
+      return { key: 'english', label: 'English', code: 'EN', arch: 'en', icon: '🌐' };
+    if (dom === 'humanities')
+      return { key: 'history', label: '역사', code: 'HIS', arch: 'his', icon: '🏛️' };
     /* 그 외 도메인은 'all'에만 노출 — 뱃지는 도메인 라벨 사용 */
     return { key: 'other', label: (DOMAINS[dom] && DOMAINS[dom].label) || '지식',
-             icon: (DOMAINS[dom] && DOMAINS[dom].icon) || '💡' };
+             code: 'ARC', arch: 'other', icon: (DOMAINS[dom] && DOMAINS[dom].icon) || '💡' };
   },
 
   /* ── 스와이프 제스처 — 좌측(삭제)만. 우측(즐겨찾기)은 버그 유발로 완전 제거 ── */

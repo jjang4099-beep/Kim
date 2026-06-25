@@ -20,6 +20,7 @@
   --text-1   : #111827;
   --text-2   : #475569;
   --text-3   : #94a3b8;
+  --title-ink: #030712;
   --border   : #e4e8f0;
   --radius   : 16px;
   --radius-sm: 10px;
@@ -4337,13 +4338,14 @@ html[data-theme="dark"] .mob-life-card {
 
 /* ─── 강제 라이트 모드 (Papyrus) ─── */
 html[data-theme="light"] {
-  --surface : #ffffff;
-  --bg      : #f8f5ef;
-  --bg-2    : #ffffff;
-  --text-1  : #1a1208;
+  --surface : #FBF8F2;
+  --bg      : #F4F0EA;            /* 파피루스 베이지 — 신전 상아탑 톤 */
+  --bg-2    : #FBF8F2;
+  --text-1  : #16110A;
   --text-2  : #5a4a32;
   --text-3  : #8a7a62;
-  --border     : #e0d4be;
+  --title-ink: #030712;          /* 미드나잇 블랙 — 타이틀이 화살처럼 꽂히는 극대비 */
+  --border     : #E3DBCB;
   --shadow     : 0 2px 12px rgba(0, 0, 0, .08);
   --mob-gold   : #9A6F1B;
   --mob-card   : #FDFBF7;
@@ -4371,6 +4373,7 @@ html[data-theme="dark"] {
   --text-1  : #e8ecf4;
   --text-2  : #a8b2c4;
   --text-3  : #6e7a90;
+  --title-ink: #F4F0EA;          /* 다크: 타이틀은 파피루스 화이트로 반전 */
   --border     : #2a3349;
   --shadow     : 0 2px 12px rgba(0, 0, 0, .40);
   --mob-gold   : #D4AF37;
@@ -5365,4 +5368,258 @@ html[data-theme="light"] .mvw-quiz-btn.wrong                 { background: #fff5
   .mvw-quiz-start-btn     { background: var(--accent); }
   .mvw-quiz-cat-chip      { background: var(--surface); border-color: var(--border); color: var(--text-2); }
   .mvw-quiz-cat-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   v82 — PARTHENON SANCTUARY 리디자인
+   파르테논 신전의 고결한 미학 · AI 자동화 큐레이션
+   파스텔 음각 뱃지 / 대리석 세리프 탭 / 격자 서고 / 학자의 성소
+══════════════════════════════════════════════════════════ */
+
+/* ── 미드나잇 잉크 타이틀 (극대비) — 라이트 테마 ── */
+html[data-theme="light"] .kmc-title,
+html[data-theme="light"] .mob-card-title,
+html[data-theme="light"] .mob-cardv-title,
+html[data-theme="light"] .mob-exam-title,
+html[data-theme="light"] .mvw-section-hd-title,
+html[data-theme="light"] .mob-detail-title,
+html[data-theme="light"] .mob-fpc-title {
+  color: var(--title-ink);
+  letter-spacing: -0.01em;
+}
+html[data-theme="light"] .mob-section-hd > span:first-child {
+  color: var(--title-ink);
+}
+
+/* ── ① 파스텔 음각 뱃지 시스템 (Cinzel 대리석 음각) ── */
+.arch-badge {
+  display       : inline-flex;
+  align-items   : center;
+  gap           : 4px;
+  padding       : 3px 10px;
+  border-radius : 6px;
+  font-family   : 'Cinzel', 'Noto Serif KR', serif;
+  font-weight   : 700;
+  font-size     : 10.5px;
+  letter-spacing: 0.06em;
+  line-height   : 1.3;
+  text-shadow   : 1px 1px 0 rgba(255,255,255,0.5);   /* 대리석 음각 */
+  white-space   : nowrap;
+}
+.arch-badge.arch-en  { background: #E2EAF4; color: #1E3A8A; }   /* English  — 소프트 블루 */
+.arch-badge.arch-his { background: #EAE4DB; color: #4A3E3D; }   /* History  — 스톤 세이지 */
+.arch-badge.arch-quo { background: #F3E8EE; color: #6B21A8; }   /* Quote    — 로즈더스트 */
+.arch-badge.arch-idm { background: #E4EFE7; color: #065F46; }   /* Idiom    — 티 그린 */
+.arch-badge.arch-mkt { background: #FDF2E2; color: #92400E; }   /* Market   — 토파즈 앰버 */
+.arch-badge.arch-yt  { background: #F6E2E1; color: #9B1C1C; }   /* YouTube  — 테라코타 */
+.arch-badge.arch-other { background: #EBE7DD; color: #4A4034; } /* 기타     — 파피루스 잉크 */
+
+/* 다크 테마 — 음각 그림자 제거 + 살짝 투명 파스텔 */
+html[data-theme="dark"] .arch-badge { text-shadow: none; }
+html[data-theme="dark"] .arch-badge.arch-en  { background: rgba(96,140,210,.18);  color: #A9C2EE; }
+html[data-theme="dark"] .arch-badge.arch-his { background: rgba(180,160,140,.16); color: #D8C7B2; }
+html[data-theme="dark"] .arch-badge.arch-quo { background: rgba(170,110,190,.18); color: #D9B3E6; }
+html[data-theme="dark"] .arch-badge.arch-idm { background: rgba(90,170,130,.18);  color: #A9DCC0; }
+html[data-theme="dark"] .arch-badge.arch-mkt { background: rgba(210,160,80,.18);  color: #E5C58C; }
+html[data-theme="dark"] .arch-badge.arch-yt  { background: rgba(220,90,80,.18);   color: #ECA9A4; }
+html[data-theme="dark"] .arch-badge.arch-other { background: rgba(200,190,170,.14); color: #CFC6B4; }
+
+/* 라이브러리 카드 뱃지를 음각 뱃지로 승격 */
+.kmc-badge.arch-badge { background-image: none; }
+
+/* ── ② 홈 탭바 — 대리석 라인 위 영문 세리프 + 만년필 언더라인 ── */
+html[data-theme="light"] .mob-tabs {
+  background    : var(--bg);
+  border-bottom : 1px solid var(--border);
+  gap           : 0;
+  padding       : 0 16px;
+}
+.mob-tabs { gap: 0; }
+.mob-tab {
+  flex-shrink   : 0;
+  position      : relative;
+  padding       : 0 14px;
+  height        : 100%;
+  display       : flex;
+  align-items   : center;
+  border-radius : 0;
+  background    : transparent !important;
+  font-family   : 'Cinzel', 'Noto Serif KR', serif;
+  font-weight   : 600;
+  font-size     : 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color         : var(--text-3);
+  transition    : color .18s ease;
+}
+.mob-tab.active {
+  color      : var(--title-ink);
+  font-weight: 700;
+}
+html[data-theme="dark"] .mob-tab.active { color: var(--mob-gold); }
+/* 만년필로 그은 1px 라인 — 활성탭 하단 중앙 */
+.mob-tab::after {
+  content      : '';
+  position     : absolute;
+  left         : 14px; right: 14px; bottom: 9px;
+  height       : 1px;
+  background   : currentColor;
+  transform    : scaleX(0);
+  transform-origin: center;
+  transition   : transform .25s cubic-bezier(.16,1,.3,1);
+}
+.mob-tab.active::after { transform: scaleX(1); }
+
+/* ── ③ 서재 대리석 격자 서고 (2열 Grid) ── */
+.mvw-lib-date-section .mvw-lib-cards {
+  display              : grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap                  : 10px;
+  padding              : 6px 14px 4px;
+}
+/* 격자 안 장서 표지 — 컴팩트 블록 */
+.mvw-lib-date-section .knowledge-magazine-card {
+  margin       : 0;
+  padding      : 12px 13px;
+  border-radius: 12px;
+  min-height   : 92px;
+  display      : flex;
+  flex-direction: column;
+}
+.mvw-lib-date-section .knowledge-magazine-card .kmc-top { margin-bottom: 8px; }
+.mvw-lib-date-section .knowledge-magazine-card .kmc-title {
+  font-size  : 13.5px;
+  font-weight: 800;
+  line-height: 1.35;
+  margin     : 0 0 4px;
+  display    : -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow   : hidden;
+}
+.mvw-lib-date-section .knowledge-magazine-card .kmc-sub {
+  font-size  : 11.5px;
+  line-height: 1.5;
+  -webkit-line-clamp: 2;
+  margin-top : auto;
+}
+.mvw-lib-date-section .knowledge-magazine-card .kmc-chev { display: none; }
+/* YouTube 표지 — 가로형이라 격자 전체 폭 차지 (내부 row 레이아웃 유지) */
+.mvw-lib-date-section .knowledge-magazine-card.kmc-yt { grid-column: 1 / -1; display: block; min-height: 0; }
+/* 격자 헤더 살짝 정렬 */
+.mvw-lib-date-section .mvw-lib-cards.km-list { padding-top: 6px; }
+
+/* ── ④ 학자의 성소 — Scholar's Sanctuary 대들보(Epistyle) ── */
+.scholar-epistyle {
+  position      : relative;
+  margin        : 2px 0 12px;
+  padding       : 12px 16px 14px;
+  text-align    : center;
+  border-top    : 1px solid var(--border);
+  border-bottom : 1px solid var(--border);
+  background    : linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,0));
+}
+html[data-theme="dark"] .scholar-epistyle {
+  background: linear-gradient(180deg, rgba(212,175,55,.05), rgba(0,0,0,0));
+}
+.scholar-epistyle-title {
+  display       : block;
+  font-family   : 'Cinzel', serif;
+  font-weight   : 700;
+  font-size     : 12.5px;
+  letter-spacing: 0.22em;
+  color         : var(--text-2);
+  text-shadow   : 1px 1px 0 rgba(255,255,255,0.4);
+}
+html[data-theme="dark"] .scholar-epistyle-title { text-shadow: none; color: var(--text-2); }
+/* 무광 사틴 골드 D-day 배너 */
+.scholar-dday-banner {
+  display       : inline-block;
+  margin-top    : 8px;
+  padding       : 4px 18px;
+  font-family   : 'Cinzel', serif;
+  font-weight   : 700;
+  font-size     : 15px;
+  letter-spacing: 0.14em;
+  color         : #8A6D2F;
+  background    : linear-gradient(180deg, #F0E4C4 0%, #DCC79A 48%, #C7AF7E 100%);
+  border        : 1px solid rgba(138,109,47,.35);
+  border-radius : 4px;
+  box-shadow    : inset 0 1px 0 rgba(255,255,255,.5), 0 1px 2px rgba(0,0,0,.08);
+  text-shadow   : 0 1px 0 rgba(255,255,255,.4);
+}
+html[data-theme="dark"] .scholar-dday-banner {
+  color     : #F0DBA0;
+  background : linear-gradient(180deg, #4A3D1E 0%, #6B5526 50%, #4A3D1E 100%);
+  border-color: rgba(212,175,55,.3);
+  text-shadow: none;
+}
+
+/* ── ⑤ 은밀한 음각 가리기 (Blind Inscription) ── */
+.blind-inscription {
+  display      : inline;
+  border-radius: 4px;
+  padding      : 0 5px;
+  cursor       : pointer;
+  color        : transparent;
+  background   : #E9E1D1;                 /* 파피루스와 흡사한 연베이지 — 평소 가림 */
+  box-shadow   : inset 0 0 0 1px rgba(154,111,27,.12);
+  transition   : color .22s ease, background .22s ease;
+  -webkit-user-select: none; user-select: none;
+}
+.blind-inscription::selection { background: transparent; }
+.blind-inscription.revealed {
+  color     : #0A1128;                    /* 딥 미드나잇 네이비 — 정답 선명 */
+  background: transparent;
+  box-shadow: none;
+  cursor    : text;
+  -webkit-user-select: text; user-select: text;
+}
+html[data-theme="dark"] .blind-inscription { background: #222C3F; box-shadow: inset 0 0 0 1px rgba(226,182,91,.1); }
+html[data-theme="dark"] .blind-inscription.revealed { color: #BBD2FF; background: transparent; box-shadow: none; }
+
+/* ── ⑥ 출제자의 눈 (Insight) — 만년필 세로획 영역 ── */
+.mob-insight-zone {
+  margin       : 12px 0 2px;
+  padding      : 8px 0 8px 13px;
+  border-left  : 2.5px solid var(--title-ink);
+}
+html[data-theme="dark"] .mob-insight-zone { border-left-color: var(--mob-gold); }
+.mob-insight-zone-label {
+  display       : block;
+  font-family   : 'Cinzel', 'Noto Serif KR', serif;
+  font-weight   : 700;
+  font-size     : 11.5px;
+  letter-spacing: 0.06em;
+  color         : var(--title-ink);
+  margin-bottom : 4px;
+}
+html[data-theme="dark"] .mob-insight-zone-label { color: var(--mob-gold); }
+.mob-insight-zone-text {
+  font-size  : 13px;
+  line-height: 1.6;
+  color      : var(--text-1);
+  word-break : keep-all;
+}
+
+/* ── ⑦ 전체공개 증명 — The Exhibition Vault 음각 배너 ── */
+.public-sanctuary-banner {
+  margin        : 6px 14px 10px;
+  padding       : 9px 16px;
+  text-align    : center;
+  font-family   : 'Cinzel', serif;
+  font-weight   : 700;
+  font-size     : 12px;
+  letter-spacing: 0.2em;
+  color         : #6B5526;
+  background    : linear-gradient(180deg, rgba(245,236,216,.9), rgba(228,211,184,.55));
+  border        : 1px solid var(--mob-border);
+  border-radius : 8px;
+  text-shadow   : 1px 1px 0 rgba(255,255,255,0.5);
+}
+.public-sanctuary-banner i { font-size: 13px; vertical-align: -1px; margin: 0 4px; }
+html[data-theme="dark"] .public-sanctuary-banner {
+  color: var(--mob-gold);
+  background: linear-gradient(180deg, rgba(212,175,55,.08), rgba(0,0,0,0));
+  text-shadow: none;
 }

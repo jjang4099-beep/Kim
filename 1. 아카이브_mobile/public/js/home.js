@@ -442,7 +442,7 @@ Object.assign(Mob, {
             <span class="mob-exv-term">${w.word}</span>
             ${w.pos ? `<span class="mob-exv-pos">${w.pos}</span>` : ''}
           </div>
-          <div class="mob-exv-mean">${w.meaning}</div>
+          <div class="mob-exv-mean"><span class="blind-inscription" onclick="Mob._revealBlind(this,event)">${w.meaning}</span></div>
           ${w.exampleEn ? `<div class="mob-exv-ex">${w.exampleEn}${w.exampleKo ? `<span class="mob-exv-ex-ko">${w.exampleKo}</span>` : ''}</div>` : ''}
           ${w.csatRef ? `<div class="mob-exv-ref"><i class="ti ti-bookmark"></i> ${w.csatRef}</div>` : ''}
         </div>
@@ -475,6 +475,12 @@ Object.assign(Mob, {
     </article>`;
   },
 
+  /* 은밀한 음각 가리기 — 터치하면 정답 노출(딥 미드나잇 네이비), 다시 누르면 가림 */
+  _revealBlind(elm, ev) {
+    if (ev) ev.stopPropagation();
+    elm.classList.toggle('revealed');
+  },
+
   /* 홈 영단어 카드 '더 보기/접기' 토글 */
   _toggleExamVocabMore(btn) {
     const ul = btn.closest('.mob-exam-vocab')?.querySelector('.mob-exv-list');
@@ -502,7 +508,10 @@ Object.assign(Mob, {
       <h3 class="mob-exam-title">${h.title}</h3>
       ${h.summary ? `<p class="mob-exam-summary">${h.summary}</p>` : ''}
       ${h.keyPoint ? `<div class="mob-exam-keypoint"><b>핵심</b> ${h.keyPoint}</div>` : ''}
-      ${h.examTip ? `<div class="mob-exam-tipbox"><b>시험팁</b> ${h.examTip}</div>` : ''}
+      ${h.examTip ? `<div class="mob-insight-zone">
+        <span class="mob-insight-zone-label">출제자의 눈 · INSIGHT</span>
+        <span class="mob-insight-zone-text">${h.examTip}</span>
+      </div>` : ''}
     </article>`;
   },
 

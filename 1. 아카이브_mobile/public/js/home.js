@@ -29,27 +29,76 @@ Object.assign(Mob, {
   setMode(mode) {
     const prevMode = localStorage.getItem('userMode');
     localStorage.setItem('userMode', mode);
-    /* 모드가 실제로 바뀌면 이전 모드 데이터를 전역 상태에서 완전 격리(초기화) */
-    if (prevMode && prevMode !== mode) this._resetModeState();
+    const switching = prevMode && prevMode !== mode;
+    /* 떠나는 모드의 표시 상태를 메모리 버킷에 보관(서버 데이터 아님, 순수 클라이언트 캐시) */
+    if (switching) this._snapshotMode(prevMode);
+
+    const enter = () => {
+      this._applyMode(mode);
+      /* 이번 세션에 이미 열었던 모드면 → 캐시 복원으로 깜빡임 없이 즉시 렌더 */
+      const restored = switching && this._restoreMode(mode);
+      if (restored) {
+        this.renderFeed(state.items);
+        this.checkFeedBadge();
+        this._loadHomeItems(state.currentCat, true);   /* 조용히 최신화(스피너·빈화면 없음) */
+        if (state.currentView === 'summary') this._loadLibraryView(true);
+        if (state.currentView === 'feed')    this._loadFeedView(true);
+        if (state.currentView === 'manage')  this._loadManageView();
+      } else {
+        /* 첫 진입(또는 첫 모드 선택) — 기존대로 격리 초기화 후 로드 */
+        if (switching) this._resetModeState();
+        this._loadHomeItems();
+        this.checkFeedBadge();
+        if (state.currentView === 'manage')  this._loadManageView();
+        if (state.currentView === 'summary') this._loadLibraryView(true);
+        if (state.currentView === 'feed')    this._loadFeedView(true);
+      }
+    };
+
     const entrance = el('appEntrance');
     const isVisible = entrance && entrance.style.display !== 'none';
     if (isVisible) {
       entrance.classList.add('app-entrance-out');
-      setTimeout(() => {
-        entrance.style.display = 'none';
-        this._applyMode(mode);
-        this._loadHomeItems();
-        this.checkFeedBadge();
-      }, 650);
+      setTimeout(() => { entrance.style.display = 'none'; enter(); }, 650);
     } else {
-      this._applyMode(mode);
-      this._loadHomeItems();
-      this.checkFeedBadge();
-      /* 현재 보고 있는 뷰가 홈이 아니면 그 뷰도 격리된 데이터로 즉시 갱신 */
-      if (state.currentView === 'manage')  this._loadManageView();
-      if (state.currentView === 'summary') this._loadLibraryView(true);
-      if (state.currentView === 'feed')    this._loadFeedView(true);
+      enter();
     }
+  },
+
+  /* 모드별 표시 상태 버킷 — 전환해도 다시 안 받게 메모리에 보관 */
+  _modeBuckets: { work: null, exam: null },
+
+  /** 현재 화면 상태를 해당 모드 버킷에 스냅샷 */
+  _snapshotMode(mode) {
+    this._modeBuckets[mode] = {
+      items:            state.items,
+      feedItems:        state.feedItems,
+      feedLoaded:       state.feedLoaded,
+      examDaily:        state.examDaily,
+      currentCat:       state.currentCat,
+      activeFeedFilter: state.activeFeedFilter,
+      examSavedIds:     this._examSavedIds,
+    };
+  },
+
+  /** 모드 버킷이 있으면 화면 상태를 복원하고 true. 없으면 false */
+  _restoreMode(mode) {
+    const b = this._modeBuckets[mode];
+    if (!b) return false;
+    state.items            = b.items     || [];
+    state.feedItems        = b.feedItems || [];
+    state.feedLoaded       = b.feedLoaded;
+    state.examDaily        = b.examDaily || null;
+    state.currentCat       = b.currentCat || 'all';
+    state.activeFeedFilter = b.activeFeedFilter || 'all';
+    this._examSavedIds     = b.examSavedIds;
+    /* 서재는 모드별 DOM 오염 방지 위해 방문 시 재조회하도록 무효화 */
+    state.libraryItems  = [];
+    state.libraryLoaded = false;
+    /* 홈 탭 active 표시도 복원 */
+    document.querySelectorAll('.mob-tab').forEach(t =>
+      t.classList.toggle('active', t.dataset.cat === state.currentCat));
+    return true;
   },
 
   /** 현재 세션 모드를 서버 격리 ENUM으로 변환 ('exam'→EXAM_PREP, 그 외→PROFESSIONAL) */
@@ -913,9 +962,9 @@ Object.assign(Mob, {
            <span class="mob-card-h-emoji">${emoji}</span>
          </div>`;
 
-    // 우측 출처 아이콘
-    const srcIcon = item.source
-      ? `<a class="mob-card-h-src" href="${item.source}" target="_blank"
+    // 우측 출처 아이콘 — 실제 http(s) URL일 때만 (내부 태그 'daily-feed' 등 제외)
+    const srcIcon = (item.source && /^https?:\/\//i.test(item.source))
+      ? `<a class="mob-card-h-src" href="${item.source}" target="_blank" rel="noopener"
             onclick="event.stopPropagation()"
             title="원문 보기">
            <i class="ti ti-external-link"></i>
@@ -1282,12 +1331,12 @@ Object.assign(Mob, {
       </div>`;
     }
 
-    /* 원문 링크 (있을 때만) */
-    if (item.source) {
+    /* 원문 링크 — 실제 http(s) URL일 때만. ('daily-feed'·'image-upload' 등 내부 태그는 링크화 금지) */
+    if (item.source && /^https?:\/\//i.test(item.source)) {
       let srcLabel = '원문 보기';
       try { srcLabel = new URL(item.source).hostname; } catch {}
       body += `<div class="mob-detail-section">
-        <a class="mob-inline-src-link" href="${item.source}" target="_blank" onclick="event.stopPropagation()">
+        <a class="mob-inline-src-link" href="${item.source}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
           <i class="ti ti-external-link"></i> ${srcLabel}
         </a>
       </div>`;

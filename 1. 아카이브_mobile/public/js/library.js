@@ -71,6 +71,43 @@ Object.assign(Mob, {
     }
   },
 
+  /* 서재 카드 클릭 → 상세 팝업 모달 (인라인 펼침 대체) */
+  openDetailModal(id) {
+    const item = this._findItem(id);
+    if (!item) return;
+    const cc = this._libCardCat(item);
+    const m  = item.analysis || {};
+
+    /* 뱃지 — 음각 파스텔 코드 */
+    const badge = el('libDetailBadge');
+    if (badge) {
+      badge.textContent = cc.code;
+      badge.className   = `mob-modal-badge arch-badge arch-${cc.arch}`;
+    }
+
+    /* 제목 */
+    let title = m.title || item.title || '';
+    if (!title) title = (item.text || item.summary || '')
+      .split('\n').map(l => l.trim()).filter(Boolean)[0]?.slice(0, 70) || '제목 없음';
+    const dateStr = item.createdAt ? fmtFull(item.createdAt) : (item.savedAt ? fmtFull(item.savedAt) : '');
+
+    const body = el('libDetailBody');
+    if (body) {
+      body.innerHTML = `
+        <h2 class="mob-detail-title">${title}</h2>
+        ${dateStr ? `<div class="mob-lib-modal-meta"><i class="ti ti-calendar-event"></i> ${dateStr}</div>` : ''}
+        ${this._buildExpandBody(item, id)}`;
+      body.scrollTop = 0;
+    }
+    const modal = el('libDetailModal');
+    if (modal) modal.hidden = false;
+  },
+
+  closeDetailModal() {
+    const modal = el('libDetailModal');
+    if (modal) modal.hidden = true;
+  },
+
   /* 전체공개 증명 배너 — localStorage.libraryPublic 플래그로 노출 제어 */
   _applyPublicSanctuary() {
     const banner = el('publicSanctuaryBanner');
@@ -157,7 +194,7 @@ Object.assign(Mob, {
         const isYt  = (item.type === 'youtube' || item.category === 'youtube');
         const thumb = item.thumbnail || m.thumbnail || '';
         if (isYt && thumb) {
-          html += `<article class="knowledge-magazine-card kmc-yt" data-id="${id}" onclick="Mob._toggleDetail(this,'${id}')">
+          html += `<article class="knowledge-magazine-card kmc-yt" data-id="${id}" onclick="Mob.openDetailModal('${id}')">
             <div class="swipe-layer-delete"><i class="ti ti-trash"></i><span>삭제</span></div>
             <div class="kmc-yt-row">
               <div class="kmc-yt-thumb">
@@ -175,7 +212,7 @@ Object.assign(Mob, {
             </div>
           </article>`;
         } else {
-          html += `<article class="knowledge-magazine-card" data-id="${id}" onclick="Mob._toggleDetail(this,'${id}')">
+          html += `<article class="knowledge-magazine-card" data-id="${id}" onclick="Mob.openDetailModal('${id}')">
             <div class="swipe-layer-delete"><i class="ti ti-trash"></i><span>삭제</span></div>
             <div class="kmc-content">
               <div class="kmc-top">

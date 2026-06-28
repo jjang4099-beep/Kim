@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "label": "고전 구절 5차 — 생텍쥐페리 (어린 왕자·인간의 대지·야간 비행)",
+    "mode": "work",
+    "updated": "2026-06-28",
+    "count": 10
+  },
+  "classic_quotes": [
+    {
+      "id": "CLQ_037",
+      "book": "인간의 대지",
+      "author": "앙투안 드 생텍쥐페리",
+      "era": "French Literature",
+      "quote": "완벽함이란 더 이상 더할 것이 없을 때가 아니라, 더 이상 뺄 것이 없을 때 이루어진다.",
+      "source": "La perfection est atteinte non pas lorsqu'il n'y a plus rien à ajouter, mais lorsqu'il n'y a plus rien à retirer. — 인간의 대지 (Terre des hommes, 1939)",
+      "theme": "단순함",
+      "context": "생텍쥐페리가 비행기를 통해 얻은 통찰이다 — 비행기는 필요 없는 부품을 하나씩 제거하며 완성된다. 이 원칙은 제품 설계, 보고서 작성, 전략 수립 어디에나 적용된다. '이것도 넣으면 좋겠다'는 유혹보다 '이게 정말 필요한가?'를 먼저 묻는 습관이 탁월한 결과물을 만든다. 스티브 잡스가 디자인 원칙으로 인용한 것으로도 유명하다.",
+      "tags": ["단순함", "완성도", "제품설계", "편집", "딥워크"],
+      "targetMode": "work",
+      "used": false
+    },
+    {
+      "id": "CLQ_038",
+      "book": "어린 왕자",
+      "author": "앙투안 드 생텍쥐페리",
+      "era": "French Literature",
+      "quote": "가장 중요한 것은 눈에 보이지 않아. 오직 마음으로만 볼 수 있어.",
+      "source": "On ne voit bien qu'avec le cœur. L'essentiel est invisible pour les yeux. — 어린 왕자 (Le Petit Prince, 1943) 21장, 여우의 말",
+      "theme": "본질",
+      "context": "어린 왕자에서 여우가 이별 직전에 전하는 비밀이다. 직장에서 가장 중요한 것들 — 신뢰·문화·동기·관계·사기 — 은 대부분 숫자나 보고서로 측정되지 않는다. KPI 달성률은 보여도 팀원의 소진 정도는 보이지 않고, 매출은 보여도 고객의 충성도가 어디서 오는지는 보이지 않는다. 지표 너머의 본질을 볼 줄 아는 사람이 진짜 리더다.",
+      "tags": ["본질", "리더십", "문화", "측정", "통찰"],
+      "targetMode": "work",
+      "used": false
+    },
+    {
+      "id": "CLQ_039",
+      "book": "성채 (귀속 추정)",
+      "author": "앙투안 드 생텍쥐페리",
+      "era": "French Literature",
+      "quote": "배를 만들고 싶다면, 사람들에게 나무를 모아오라고 명령하지 마라. 대신 그들에게 저 광대하고 끝없는 바다를 동경하게 하라.",
+      "source": "If you want to build a ship, don't drum up people to collect wood and don't assign them tasks and work, but rather teach them to long for the endless immensity of the sea. — 성채(Citadelle) 귀속, 정확한 출전 불분명",
+      "theme": "리더십",
+      "context": "리더십의 본질을 한 문장으로 담아낸 구절이다. 지시와 통제(Command & Control)가 아닌 목적과 동경으로 이끄는 리더십 — 사이먼 사이넥의 'Start with Why'와 같은 철학이다. 팀원에게 '이것을 해라'고 말하기 전에 '왜 이것이 의미 있는가'를 먼저 공유하는 리더가 자발적 몰입을 만든다. 방향(Why)이 없으면 아무리 좋은 방법(How)도 힘을 잃는다.",
+      "tags": ["리더십", "동기부여", "비전", "목적", "팀관리"],
+      "targetMode": "work",
+      "used": false
+    },
+    {
+      "id": "CLQ_040",
+      "book": "어린 왕자",
+      "author": "앙투안 드 생텍쥐페리",
+      "era": "French Literature",
+      "quote": "한번 길들인 것에 대해 너는 영원히 책임이 있어.",
+      "source": "Tu deviens responsable pour toujours de ce que tu as apprivoisé. — 어린 왕자 21장, 여우의 말",
+      "theme": "책임",
+      "context": "여우가 어린 왕자와 헤어지며 전한 말이다. '길들인다'는 것은 관계를 맺는다는 것이고, 그 순간부터 책임이 시작된다. 직장에서도 마찬가지다 — 팀원을 뽑은 순간, 고객과 계약한 순간, 파트너십을 시작한 순간부터 책임이 생긴다. 관계는 시작하기는 쉽지만 그 이후가 진짜다. '사람을 뽑는 것'이 아니라 '사람을 책임지는 것'이라는 관점이 좋은 리더를 만든다.",
+      "tags": ["책임", "리더십", "관계", "팀원육성", "신뢰"],
+      "targetMode": "work",
+      "used": false
+    },
+    {
+      "id": "CLQ_041",
+      "book": "인간의 대지",
+      "author": "앙투안 드 생텍쥐페리",
+      "era": "French Literature",
+      "quote": "사랑한다는 것은 서로를 바라보는 것이 아니라, 함께 같은 방향을 바라보는 것이다.",
+      "source": "Aimer ce n'est pas se regarder l'un l'autre, c'est regarder ensemble dans la même direction. — 인간의 대지 (Terre des hommes, 1939)",
+      "theme": "비전",
+      "context": "원래는 부부 관계에 대한 말이지만, 팀과 조직에 그대로 적용된다. 팀이 서로를 바라보며 갈등하고 눈치를 보는 상태와, 모두가 같은 목표를 향해 함께 나아가는 상태의 차이를 이보다 간결하게 표현한 말이 없다. 팀 빌딩의 목적은 구성원들이 서로 좋아하게 만드는 것이 아니라, 같은 방향을 보게 하는 것이다.",
+      "tags": ["비전", "팀빌딩", "목표정렬", "협업", "리더십"],
+      "targetMode": "work",
+      "used": false
+    },
+    {
+      "id": "CLQ_042",
+      "book": "어린 왕자",
+      "author": "앙투안 드 생텍쥐페리",
+      "era": "French Literature",
+      "quote": "사막이 아름다운 건 어딘가에 샘을 숨기고 있기 때문이야.",
+      "source": "Ce qui embellit le désert, c'est qu'il cache un puits quelque part. — 어린 왕자 (Le Petit Prince) 24장",
+      "theme": "가능성",
+      "context": "메마르고 황량해 보이는 상황도 그 안에 숨겨진 가능성이 있기에 의미가 있다. 어려운 시장, 힘든 프로젝트, 지지부진한 팀 — 이 모든 '사막' 속에도 어딘가 숨겨진 샘이 있다. 포기하지 않는 것은 그 샘을 믿기 때문이다. 막혀 보이는 상황에서도 다른 가능성을 탐색하고 실마리를 찾는 끈기의 근거가 되는 구절이다.",
+      "tags": ["가능성", "역경", "낙관", "인내", "문제해결"],
+      "targetMode": "work",
+      "used": false
+    },
+    {
+      "id": "CLQ_043",
+      "book": "어린 왕자",
+      "author": "앙투안 드 생텍쥐페리",
+      "era": "French Literature",
+      "quote": "어른들은 숫자를 좋아한다. 새 친구를 사귀면 그들은 절대 가장 중요한 것은 묻지 않는다. '목소리는 어때? 어떤 걸 좋아해?' 대신 '몇 살이야? 아버지 월급은?'을 묻는다. 그래야만 그 사람을 알게 됐다고 생각한다.",
+      "source": "Les grandes personnes aiment les chiffres... — 어린 왕자 1장",
+      "theme": "본질",
+      "context": "성과 평가·채용·파트너십 등에서 숫자와 스펙에 집착하다 정작 중요한 것을 놓치는 현상을 예리하게 꿰뚫는다. 이력서의 학점·경력 연수보다 사람 됨됨이와 사고방식이 중요하고, 매출 숫자보다 고객이 왜 다시 오는지가 중요하다. 측정 가능한 것만 관리하려는 습관이 측정 불가능한 것들을 죽인다.",
+      "tags": ["본질", "채용", "성과측정", "문화", "관점"],
+      "targetMode": "work",
+      "used": false
+    },
+    {
+      "id": "CLQ_044",
+      "book": "어린 왕자",
+      "author": "앙투안 드 생텍쥐페리",
+      "era": "French Literature",
+      "quote": "네 장미를 위해 쏟은 그 시간이 네 장미를 그토록 소중하게 만드는 거야.",
+      "source": "C'est le temps que tu as perdu pour ta rose qui fait ta rose si importante. — 어린 왕자 21장, 여우의 말",
+      "theme": "투자",
+      "context": "어린 왕자의 장미는 5000개의 장미들과 겉보기에 다를 것이 없다. 그러나 물을 주고, 유리 덮개를 씌워주고, 바람막이를 세워준 — 그 시간이 그 장미를 유일한 존재로 만들었다. 고객·관계·브랜드·팀원도 마찬가지다. 꾸준히 쏟은 시간과 관심이 평범한 것을 특별하게 만든다. 단기적으로 효율이 낮아 보이는 관계 투자가 장기적으로 가장 강력한 자산이 되는 이유다.",
+      "tags": ["투자", "관계", "고객관리", "브랜드", "신뢰"],
+      "targetMode": "work",
+      "used": false
+    },
+    {
+      "id": "CLQ_045",
+      "book": "야간 비행",
+      "author": "앙투안 드 생텍쥐페리",
+      "era": "French Literature",
+      "quote": "인간의 위대함은 그가 무엇을 위해 책임을 지는가에 있다.",
+      "source": "야간 비행 (Vol de nuit, 1931) — 리비에르(Rivière)의 사상을 담은 생텍쥐페리의 첫 성공작, 노벨상 수상자 앙드레 지드 서문",
+      "theme": "사명",
+      "context": "야간 비행의 주인공 리비에르는 야간 우편 비행의 성공을 위해 조종사들에게 냉혹한 기준을 요구한다. 그가 말하는 것은 결과가 아니라 태도다 — 무언가를 진심으로 책임진다는 것이 인간을 위대하게 만든다. 직장에서 '시켜서 했다'와 '내가 책임지겠다'의 차이가 평범한 사람과 탁월한 사람을 가른다. 주인의식(ownership)이 왜 중요한지를 이 구절이 설명한다.",
+      "tags": ["사명", "책임", "오너십", "리더십", "탁월함"],
+      "targetMode": "work",
+      "used": false
+    },
+    {
+      "id": "CLQ_046",
+      "book": "어린 왕자",
+      "author": "앙투안 드 생텍쥐페리",
+      "era": "French Literature",
+      "quote": "별들을 좋아하는 사람들에게 별은 모두 다르게 빛날 거야. 어떤 별에서 웃음소리가 들릴 것 같아... 넌 웃을 수 있는 별들을 갖게 되는 거야.",
+      "source": "Tu auras des étoiles comme personne n'en a... — 어린 왕자 26장, 어린 왕자가 조종사에게 작별 인사를 하며",
+      "theme": "관점",
+      "context": "같은 별을 바라봐도 누구에게는 그냥 빛나는 점이고, 누구에게는 웃음소리가 들릴 것 같은 특별한 존재다. 이것이 관점(perspective)의 힘이다. 직장에서도 같은 일을 해도 어떤 의미를 부여하느냐에 따라 그 일의 가치가 달라진다. 번거로운 업무도 누군가에게는 성장의 기회가 되고, 평범한 고객도 누군가에게는 세상에 하나뿐인 사람이 된다. 의미는 대상에 있는 것이 아니라 바라보는 사람 안에 있다.",
+      "tags": ["관점", "의미", "태도", "동기", "성장"],
+      "targetMode": "work",
+      "used": false
+    }
+  ]
+}

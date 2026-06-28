@@ -1,0 +1,363 @@
+{
+  "meta": {
+    "batch": 13,
+    "theme": "영어 이견·갈등 상황 테마팩 + 실전표현 + 중국어",
+    "id_range": {
+      "english_theme_packs": "PACK_EN_029",
+      "english": "EN_366 ~ EN_385",
+      "chinese": "ZH_118 ~ ZH_127"
+    },
+    "created": "2026-06-28"
+  },
+  "english_theme_packs": [
+    {
+      "id": "PACK_EN_029",
+      "theme_key": "navigating_disagreement",
+      "theme_title": "이견과 갈등을 프로처럼 다루는 영어",
+      "theme_title_en": "Navigating Disagreement Professionally",
+      "level": "advanced",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_029_01",
+          "order": 1,
+          "expression": "I see where you're coming from, but...",
+          "meaning": "말씀하시는 맥락은 이해하지만, 그래도 저는... (반론을 부드럽게 시작하는 표현)",
+          "nuance": "정면 반박('That's wrong.') 대신 상대의 관점을 먼저 인정하고 나서 자신의 의견을 제시합니다. 'Where you're coming from'은 '당신이 그런 말을 하게 된 배경·맥락'을 뜻하며, 상대방을 비판하지 않으면서도 다른 입장을 유지할 수 있게 해줍니다. 이 표현을 쓰면 갈등이 줄고 대화가 지속됩니다.",
+          "dialogue": "Colleague: I think we should delay the launch by three months to polish everything.\nYou: I see where you're coming from — quality matters and I share that concern. But three months in this market means three months of ground given to the competitor who's launching next week. Can we agree on a two-week intensive QA sprint and launch with a known issues list?\nColleague: A known issues list feels risky.\nYou: Every launch has one. The question is whether we're transparent about it.",
+          "example": "I see where you're coming from with the conservative budget forecast, but if we don't invest in acquisition now, we won't have the revenue base to be conservative about next year.",
+          "practice": "I see where you're coming from on the headcount freeze, but the team is already at capacity and one more quarter like this will cost us more in attrition than the hire would."
+        },
+        {
+          "id": "PACK_EN_029_02",
+          "order": 2,
+          "expression": "Let me push back on that.",
+          "meaning": "그 의견에 반론을 제기하겠습니다. 직접적이지만 공격적이지 않게 이의를 표현하는 법.",
+          "nuance": "'Push back'은 물리적으로 밀어낸다는 이미지로, 상대방의 주장에 맞서 자신의 입장을 밀어 올리는 것입니다. 이 표현은 고위 리더들이 자주 쓰는 표현으로, 직접적이지만 무례하지 않고 전문적인 인상을 줍니다. '틀렸다'고 말하는 대신 '다시 생각해볼 여지가 있다'고 제안하는 톤입니다.",
+          "dialogue": "Director: I think we should go with Option A. It's safer.\nYou: I'd like to push back on that. 'Safer' depends on the time horizon. Option A is safer in the next six months, but it leaves us structurally vulnerable in two years when the market shifts. Option B has more short-term risk but builds a capability we'll need regardless.\nDirector: Walk me through that vulnerability.\nYou: If we go Option A, we stay dependent on a single supplier in a market that's consolidating. That's the risk I'm worried about.",
+          "example": "Let me push back on the assumption that our churn problem is a product problem. Our data suggests it's actually an onboarding problem — users who complete onboarding stay at 80% one-year retention.",
+          "practice": "I want to push back on the idea that more features will solve the engagement problem. Every feature we've added in the last two quarters hasn't moved retention."
+        },
+        {
+          "id": "PACK_EN_029_03",
+          "order": 3,
+          "expression": "I'd like to offer a different perspective.",
+          "meaning": "다른 관점을 제시하고 싶습니다. 논쟁보다 새로운 시각을 더하는 방식으로 이견을 표현.",
+          "nuance": "'Different perspective'는 '당신이 틀렸다'는 대립 대신 '보는 각도를 하나 더 추가한다'는 협력적 프레이밍입니다. 특히 상대가 시니어이거나 회의에서 이미 공감대가 형성된 것처럼 보일 때, 분위기를 과도하게 해치지 않으면서 다른 의견을 낼 수 있는 방법입니다.",
+          "dialogue": "Manager: Everyone seems aligned on the premium pricing strategy.\nYou: Before we finalize — I'd like to offer a different perspective. I've been talking to a few customers this week, and the word I kept hearing was 'accessible.' They love the product but feel the pricing puts it out of reach. What if premium pricing is right for the long term, but we need a more accessible entry point first?\nManager: That's worth exploring. What would the entry product look like?\nYou: A lighter version with a clear upgrade path.",
+          "example": "I'd like to offer a different perspective on the failure rate — instead of seeing it as a quality problem, what if it's telling us something about how customers are using the product in ways we didn't design for?",
+          "practice": "I'd like to offer a different perspective on the timeline. We keep framing it as 'how fast can we go?' but the better question might be 'what's the minimum viable version we can test in four weeks?'"
+        },
+        {
+          "id": "PACK_EN_029_04",
+          "order": 4,
+          "expression": "We may have to agree to disagree.",
+          "meaning": "서로 의견 차이를 인정하고, 더 이상 설득하려 하지 않기로 하다.",
+          "nuance": "모든 의견 불일치가 하나의 결론으로 해소될 필요는 없습니다. 이 표현은 '당신을 설득하는 것을 포기한다'는 의미가 아니라, '이 시점에서 합의보다 각자의 관점을 존중하는 것이 더 생산적이다'는 성숙한 판단을 나타냅니다. 관계는 유지하면서 대화를 마무리하는 전문적인 방식입니다.",
+          "dialogue": "You: I genuinely believe the market is ready for this.\nPartner: And I genuinely believe it isn't. We've been going back and forth for an hour.\nYou: I think we may have to agree to disagree on the timing. But we do agree on the product direction. Can we run a small pilot in one market to get actual data instead of continuing to debate projections?\nPartner: A pilot I can get behind. Let's define the parameters.",
+          "example": "On the question of remote vs. hybrid, we may have to agree to disagree — but what we can agree on is that output matters more than location, so let's define clear output expectations and revisit the policy in six months.",
+          "practice": "We may have to agree to disagree on the root cause, but what we both agree on is that churn is too high. Can we focus our energy on the solution rather than relitigating the diagnosis?"
+        },
+        {
+          "id": "PACK_EN_029_05",
+          "order": 5,
+          "expression": "What would it take for you to be convinced?",
+          "meaning": "무엇이 있어야 납득하실 수 있으신가요? 상대방의 조건을 먼저 파악해 불필요한 논쟁을 줄이는 질문.",
+          "nuance": "이 질문은 대화의 게임을 바꿉니다. '내가 어떻게 설득할까'가 아니라 '상대가 무엇을 기준으로 판단하는가'를 먼저 알아내는 것입니다. 때로는 이 질문 하나로 설득의 핵심 조건이 드러납니다. 답이 '데이터'라면 데이터를 가져오고, '파일럿'이라면 파일럿을 제안하면 됩니다. 가장 효율적인 설득 전략입니다.",
+          "dialogue": "You: I'm convinced this is the right direction. What would it take for you to be convinced?\nSkeptic: Honestly? I'd need to see it work in a market similar to ours. Not just case studies — actual comparable data.\nYou: That's fair. I can find three comparable companies and pull their public numbers. If the pattern holds, would that be enough to move forward with a small pilot?\nSkeptic: If the data holds, yes. I'm not against the idea — I just need more than conviction.",
+          "example": "Instead of continuing to present more slides, I want to ask directly: what would it take for you to be convinced? That way I can make sure the next conversation has exactly what you need.",
+          "practice": "What would it take for you to be convinced that this hire is worth the budget? I want to make sure I'm addressing the right concern, not just adding more reasons."
+        }
+      ],
+      "master_paragraph": {
+        "text": "I see where you're coming from — the risk is real and I'm not dismissing it. But I'd like to push back on the idea that caution is always the right answer here. I'd like to offer a different perspective: the biggest risk might not be moving too fast, but moving too slow while others move. That said, if we can't fully align today, we may have to agree to disagree on the pace — but let's at least agree on what a minimal test would look like. And before we close — what would it take for you to be convinced? Tell me what you'd need to see, and I'll make sure our next meeting has it.",
+        "translation": "말씀하시는 맥락은 이해합니다 — 위험이 실제로 있고, 저도 그것을 무시하는 게 아닙니다. 하지만 신중함이 항상 정답이라는 생각에는 반론을 제기하고 싶습니다. 다른 관점을 하나 제시하자면: 여기서 가장 큰 위험은 너무 빨리 움직이는 것이 아니라, 다른 사람들이 움직이는 동안 너무 느리게 움직이는 것일 수 있습니다. 그렇긴 해도, 오늘 속도에 대해 완전히 합의하지 못한다면 이견을 인정하고 넘어가야 할 수도 있습니다 — 하지만 최소한 어떤 테스트를 해볼지는 합의할 수 있지 않을까요? 마무리하기 전에 — 무엇이 있어야 납득하실 수 있으신가요? 필요하신 것을 알려주시면, 다음 회의에서 그걸 준비해 오겠습니다.",
+        "highlights": ["I see where you're coming from", "push back on", "offer a different perspective", "agree to disagree", "what would it take for you to be convinced"]
+      }
+    }
+  ],
+  "english_expressions": [
+    {
+      "id": "EN_366",
+      "expression": "Low-hanging fruit",
+      "meaning": "손쉽게 달성 가능한 목표, 가장 쉽게 얻을 수 있는 성과.",
+      "level": "intermediate",
+      "theme": "strategy",
+      "example": "Before tackling the complex market segments, let's go after the low-hanging fruit — customers who already use similar products and just need a reason to switch.",
+      "dialogue": "A: Where do we start with the growth plan?\nB: Low-hanging fruit first. We have 200 trial users who never converted. A simple check-in call could unlock half of those. That's faster revenue than any new marketing campaign.\nA: And after that?\nB: Then we build the engine for the harder stuff."
+    },
+    {
+      "id": "EN_367",
+      "expression": "Elephant in the room",
+      "meaning": "모두가 알고 있지만 아무도 꺼내지 않는 불편한 문제.",
+      "level": "intermediate",
+      "theme": "communication",
+      "example": "Let me address the elephant in the room — our runway is six months, and we haven't talked about what happens if the fundraise doesn't close.",
+      "dialogue": "A: The meeting felt productive but something felt off.\nB: There's an elephant in the room nobody addressed — the team lead role has been empty for three months and nobody wants to say why it's hard to fill.\nA: You're right. People are dancing around it.\nB: Someone needs to name it. Then we can actually solve it."
+    },
+    {
+      "id": "EN_368",
+      "expression": "Silver lining",
+      "meaning": "나쁜 상황 속의 긍정적인 면, 힘든 일에서 찾는 작은 희망.",
+      "level": "beginner",
+      "theme": "communication",
+      "example": "We lost the bid, but the silver lining is that we got detailed feedback from the client — that's more valuable than most market research.",
+      "dialogue": "A: The product had to be pulled after launch. I'm devastated.\nB: I understand. But can I offer a silver lining? The bug you found — we found it with 200 users, not 200,000. The cost of this failure is a fraction of what it would have been.\nA: I hadn't thought of it that way.\nB: Fix it fast, be transparent, and this becomes a trust-building story."
+    },
+    {
+      "id": "EN_369",
+      "expression": "Wear multiple hats",
+      "meaning": "여러 역할을 동시에 수행하다, 다양한 책임을 갖다.",
+      "level": "beginner",
+      "theme": "workplace",
+      "example": "In a startup, everyone wears multiple hats — I'm technically the head of marketing, but I also run customer support and write product documentation.",
+      "dialogue": "A: What does your role actually involve day-to-day?\nB: I wear a lot of hats. Strategy in the morning, client calls midday, and usually end up in the product backlog by evening.\nA: That sounds exhausting.\nB: It is. But it also means I understand the full picture better than anyone with a narrow role."
+    },
+    {
+      "id": "EN_370",
+      "expression": "Pick up the slack",
+      "meaning": "다른 사람이 못 한 부분을 채우다, 빠진 부분을 대신 해내다.",
+      "level": "intermediate",
+      "theme": "workplace",
+      "example": "When the lead engineer went on emergency leave, the rest of the team picked up the slack without being asked — that's the culture we've built.",
+      "dialogue": "A: With two people out sick, we're behind on deliverables.\nB: Who can pick up the slack on the client report? That's the one with a hard deadline.\nA: I can take the data section. Can you handle the narrative?\nB: Done. Let's regroup at 4pm with what we have."
+    },
+    {
+      "id": "EN_371",
+      "expression": "Set the tone",
+      "meaning": "분위기나 기준을 설정하다, 방향을 처음부터 잡다.",
+      "level": "intermediate",
+      "theme": "leadership",
+      "example": "How leaders behave in the first week of a crisis sets the tone for how the entire organization responds.",
+      "dialogue": "A: Should I say anything at the start of the all-hands before the difficult restructuring news?\nB: Absolutely. You set the tone for how people receive it. If you're calm and direct, they'll be calm and direct. If you seem nervous and evasive, that's what they'll amplify.\nA: So lead with honesty, not spin.\nB: Lead with honesty and genuine care. Both."
+    },
+    {
+      "id": "EN_372",
+      "expression": "Iron out the details",
+      "meaning": "세부 사항을 조율하고 해결하다, 남은 문제들을 하나씩 정리하다.",
+      "level": "intermediate",
+      "theme": "workplace",
+      "example": "The big picture is agreed — now we just need to iron out the details on timeline, deliverables, and payment terms.",
+      "dialogue": "A: Are we ready to sign?\nB: Strategically, yes. We still need to iron out a few details — specifically the IP ownership clause and the exclusivity period.\nA: Legal is reviewing those now. Realistically, two days.\nB: Perfect. Let's schedule the signing for Thursday."
+    },
+    {
+      "id": "EN_373",
+      "expression": "Keep the momentum",
+      "meaning": "기세를 유지하다, 현재의 추진력을 이어가다.",
+      "level": "intermediate",
+      "theme": "workplace",
+      "example": "We've had three consecutive strong quarters — the challenge now is to keep the momentum without burning the team out.",
+      "dialogue": "A: The product launch was a hit. What's the play now?\nB: Keep the momentum. The first 90 days after a big launch are when you either build on success or watch it fade. What's the next milestone we can celebrate?\nA: The 10,000 user mark — we're at 7,400 now.\nB: Make that visible to the whole team and set a date. Momentum is partly psychology."
+    },
+    {
+      "id": "EN_374",
+      "expression": "Bite the bullet",
+      "meaning": "고통스럽지만 피하지 않고 감내하다, 어렵지만 피할 수 없는 일을 받아들이다.",
+      "level": "intermediate",
+      "theme": "workplace",
+      "example": "We've been avoiding the conversation about underperformers for too long. It's time to bite the bullet and have those individual reviews.",
+      "dialogue": "A: The platform migration is going to disrupt operations for at least two weeks. Customers will notice.\nB: Then we bite the bullet and communicate it proactively. Tell customers before they experience it, explain why it leads to a better product, and offer a compensation credit.\nA: That's going to cost us.\nB: Less than it costs to have them discover it themselves and feel misled."
+    },
+    {
+      "id": "EN_375",
+      "expression": "Double down",
+      "meaning": "두 배로 밀어붙이다, 확신을 갖고 더 강하게 집중하다.",
+      "level": "intermediate",
+      "theme": "strategy",
+      "example": "When the pilot showed early traction, we made the call to double down — tripling the budget and dedicating the full team to that single market.",
+      "dialogue": "A: The Asia expansion is slower than we expected. Do we pull back or push forward?\nB: I say we double down. Slow start in a new market is normal — the early adopters we have are exactly the profile we want. Pulling back now means starting over later at a higher cost.\nA: What would 'doubling down' look like specifically?\nB: One more dedicated hire in Singapore and a six-month runway before we evaluate again."
+    },
+    {
+      "id": "EN_376",
+      "expression": "On the same wavelength",
+      "meaning": "같은 생각을 공유하다, 서로 이해하고 공감대가 형성되어 있다.",
+      "level": "beginner",
+      "theme": "communication",
+      "example": "Before we go into the client meeting, let's make sure we're on the same wavelength about what we're trying to achieve in the next two hours.",
+      "dialogue": "A: I want to make sure we're on the same wavelength before the board presentation.\nB: I think we are. Our story is: strong Q3, clear Q4 risks, and a mitigation plan we believe in.\nA: And the tone — confident but not overconfident.\nB: Exactly. They've seen too many founders pitch invincibility and then miss numbers."
+    },
+    {
+      "id": "EN_377",
+      "expression": "Take ownership",
+      "meaning": "주인의식을 갖고 책임지다, 스스로 주도적으로 맡다.",
+      "level": "intermediate",
+      "theme": "leadership",
+      "example": "The best thing about her is that she takes ownership — she doesn't wait to be told what's wrong, she identifies it and fixes it.",
+      "dialogue": "A: The error in the report went out to 500 clients. Who's handling the response?\nB: I'll take ownership. I'll draft the correction email, get it approved in the next 30 minutes, and follow up personally with the top 20 accounts.\nA: Thank you. Keep me posted every hour.\nB: Will do."
+    },
+    {
+      "id": "EN_378",
+      "expression": "At the end of the day",
+      "meaning": "결국, 모든 것을 고려했을 때, 궁극적으로.",
+      "level": "beginner",
+      "theme": "communication",
+      "example": "We can debate tactics all week, but at the end of the day, the only metric that matters is whether customers are renewing.",
+      "dialogue": "A: There are so many competing priorities I don't know where to focus.\nB: At the end of the day, you have to ask: what's the one thing that, if it doesn't happen, everything else becomes irrelevant?\nA: Closing the enterprise pilot.\nB: Then everything else is noise until that's done."
+    },
+    {
+      "id": "EN_379",
+      "expression": "Scale up",
+      "meaning": "규모를 키우다, 확장하다.",
+      "level": "intermediate",
+      "theme": "strategy",
+      "example": "The model works in two cities — now comes the hard part: figuring out how to scale up to twenty without losing what made it work.",
+      "dialogue": "A: The pilot was a success by every metric. What's next?\nB: Now we scale up, but deliberately. We need to document exactly what we did, why it worked, and what assumptions we made — before we replicate it.\nA: Why document before scaling?\nB: Because when things go wrong at scale, you need to know what you were trying to replicate."
+    },
+    {
+      "id": "EN_380",
+      "expression": "Bandwidth",
+      "meaning": "(업무상) 시간과 집중력의 여유, 처리할 수 있는 역량.",
+      "level": "intermediate",
+      "theme": "workplace",
+      "example": "I want to take this on, but I don't have the bandwidth right now — I'm at capacity through the end of the month.",
+      "dialogue": "A: Can you lead the new partnership initiative?\nB: I genuinely want to, but I don't have the bandwidth this quarter. If I take it on now, I'll do it at 60%, and that's worse than waiting for someone with capacity.\nA: Fair. Who do you think does have bandwidth?\nB: Mia just wrapped her project. She'd be perfect for this."
+    },
+    {
+      "id": "EN_381",
+      "expression": "A win-win",
+      "meaning": "양쪽 모두에게 이득이 되는 결과, 상호이익.",
+      "level": "beginner",
+      "theme": "communication",
+      "example": "Partnering with them gives us distribution and gives them credibility in a new market — it's a genuine win-win.",
+      "dialogue": "A: What's your pitch to the potential partner?\nB: I frame it as a win-win from the start. We need their customer base. They need our technology. Neither of us can get what we need as fast alone. That's not a negotiation, that's a partnership.\nA: And if they ask who benefits more?\nB: Whoever executes better. That's the honest answer."
+    },
+    {
+      "id": "EN_382",
+      "expression": "Stay on track",
+      "meaning": "궤도를 유지하다, 계획대로 진행되다.",
+      "level": "beginner",
+      "theme": "workplace",
+      "example": "Weekly check-ins exist for one reason: to stay on track and catch slippage before it becomes a delay.",
+      "dialogue": "A: We've had two scope changes in the last week. Are we still on track for the deadline?\nB: Technically yes, but we're running on zero buffer. Any more changes and we slip.\nA: I'll hold the line on scope from now.\nB: That's the call. Once the scope is frozen, I can guarantee the date."
+    },
+    {
+      "id": "EN_383",
+      "expression": "Heads-up",
+      "meaning": "미리 알려주는 것, 사전 경고나 예고.",
+      "level": "beginner",
+      "theme": "workplace",
+      "example": "Just a heads-up — the client is flying in Thursday and will want a product demo. Make sure the environment is stable.",
+      "dialogue": "A: Heads-up: the board meeting got moved to next Friday instead of the week after.\nB: Good to know — that changes my prep timeline significantly.\nA: I figured you'd want as much notice as possible.\nB: Absolutely. Thanks for catching that."
+    },
+    {
+      "id": "EN_384",
+      "expression": "Align on",
+      "meaning": "~에 대해 의견을 맞추다, 합의하다.",
+      "level": "intermediate",
+      "theme": "workplace",
+      "example": "Before this meeting ends, I want to make sure we align on the top three priorities for Q4 — not just list them, but genuinely agree on the order.",
+      "dialogue": "A: We keep talking past each other on strategy.\nB: I think we need to align on the problem before we debate the solution. We haven't agreed on what we're actually trying to fix.\nA: You're right. Is the problem growth speed, or growth quality?\nB: Let's answer that first. Everything else follows."
+    },
+    {
+      "id": "EN_385",
+      "expression": "Move the goalposts",
+      "meaning": "목표 기준을 임의로 바꾸다, 합의 후 조건을 변경하다.",
+      "level": "advanced",
+      "theme": "communication",
+      "example": "We hit every target we agreed to, and now they're asking for more before approving budget — they keep moving the goalposts.",
+      "dialogue": "A: The client approved the brief, we delivered exactly what was agreed, and now they want revisions that weren't in scope.\nB: They're moving the goalposts. You need to address it directly — remind them of the agreed scope, show them the brief, and frame any additional work as a new engagement.\nA: What if they push back?\nB: Then you learn something important about how this client operates — before you go deeper into the relationship."
+    }
+  ],
+  "chinese_expressions": [
+    {
+      "id": "ZH_118",
+      "expression": "守株待兔",
+      "pinyin": "shǒu zhū dài tù",
+      "meaning": "나무 그루터기를 지키며 토끼를 기다리다. 과거의 요행이 다시 오길 기다리며 융통성 없이 현실에 안주하는 것.",
+      "level": "intermediate",
+      "theme": "전략·융통성",
+      "example": "靠着老产品守株待兔不是战略，市场在变，我们也必须跟着变。(낡은 제품에 기대며 요행을 바라는 것은 전략이 아니다. 시장이 변하고 있으니 우리도 반드시 따라 변해야 한다.)",
+      "dialogue": "A: 我们过去五年靠这个产品一直很稳，为什么要改变？\nB: 因为守株待兔的结果是什么，历史告诉我们了——诺基亚、柯达都曾经'很稳'。稳是幻觉，变是常态。\nA: 但风险太高了。\nB: 不变的风险更高。而且我们不是在赌博，是在用数据做决策。"
+    },
+    {
+      "id": "ZH_119",
+      "expression": "事半功倍",
+      "pinyin": "shì bàn gōng bèi",
+      "meaning": "일을 반만 해도 공이 두 배. 효율적인 방법을 찾아 적은 노력으로 큰 성과를 내는 것.",
+      "level": "intermediate",
+      "theme": "효율·전략",
+      "example": "找到用户真正的痛点再做产品，才能事半功倍；如果做的不是用户需要的，再努力也是事倍功半。(사용자의 진짜 고통점을 찾아 제품을 만들어야 절반의 노력으로 두 배의 성과를 낼 수 있다. 사용자가 필요하지 않은 것을 만들면 아무리 노력해도 두 배의 노력에 절반의 성과다.)",
+      "dialogue": "A: 我们团队很努力，但产出感觉不成比例。\nB: 可能是在用力的方向不对。事半功倍的关键不是更努力，是找到杠杆点。你们现在花最多时间的事，带来最大结果了吗？\nA: 其实没有。\nB: 那就找到那个杠杆点，把资源重新分配过去。"
+    },
+    {
+      "id": "ZH_120",
+      "expression": "磨刀不误砍柴工",
+      "pinyin": "mó dāo bù wù kǎn chái gōng",
+      "meaning": "칼을 가는 것이 나무 베는 일을 방해하지 않는다. 충분한 준비가 결국 실행 속도를 높인다.",
+      "level": "intermediate",
+      "theme": "준비·효율",
+      "example": "开始写代码前先把需求理清楚，磨刀不误砍柴工，省得后面反复返工。(코딩 시작 전에 요구사항을 먼저 명확히 해두는 것이 결국 시간을 아낀다. 나중에 반복 수정하는 것을 방지한다.)",
+      "dialogue": "A: 老板催我们赶快开始，根本没时间做调研。\nB: 磨刀不误砍柴工。花三天做对的调研，比三个月做错方向要快得多。这个道理你能跟老板讲清楚吗？\nA: 可以试试，但他不一定听。\nB: 那就用数据说话——拿上次仓促开工导致返工的例子。"
+    },
+    {
+      "id": "ZH_121",
+      "expression": "投石问路",
+      "pinyin": "tóu shí wèn lù",
+      "meaning": "돌을 던져 길을 물어본다. 작은 시험이나 파일럿으로 상황을 탐색하고 나서 본격적으로 나아가는 전략.",
+      "level": "advanced",
+      "theme": "전략·리스크관리",
+      "example": "进入新市场先投石问路，用小规模测试验证假设，确认可行再全力投入。(새 시장 진입 시 먼저 작은 테스트로 상황을 탐색하고 가정을 검증한 뒤, 확인되면 전력을 투입한다.)",
+      "dialogue": "A: 我们要不要直接大规模进军东南亚市场？\nB: 先投石问路。选一个城市，用三个月的小预算测试，看用户行为是不是跟我们假设的一致。\nA: 会不会太慢了？\nB: 全军进入然后发现水土不服，才是真的慢。三个月的测试省的是三年的错误。"
+    },
+    {
+      "id": "ZH_122",
+      "expression": "好事多磨",
+      "pinyin": "hǎo shì duō mó",
+      "meaning": "좋은 일은 많이 갈고 닦아야 이루어진다. 좋은 결과는 많은 난관과 인내를 거쳐야 온다.",
+      "level": "intermediate",
+      "theme": "인내·과정",
+      "example": "谈判拖了半年，但好事多磨，最终条款对我们非常有利。(협상이 반 년을 끌었지만, 좋은 일은 많이 갈고닦아야 하는 법이다. 결국 조건이 우리에게 매우 유리하게 나왔다.)",
+      "dialogue": "A: 这个合作已经谈了三个月了，感觉遥遥无期。\nB: 好事多磨。他们是大公司，决策流程就是慢。你在这三个月里有没有持续在提供价值、维护关系？\nA: 有，每两周发一次进展更新。\nB: 那就继续。关系在积累，只是还没到决策点。"
+    },
+    {
+      "id": "ZH_123",
+      "expression": "后来居上",
+      "pinyin": "hòu lái jū shàng",
+      "meaning": "나중에 온 것이 앞에 앉는다. 후발 주자가 선발 주자를 오히려 능가하는 것.",
+      "level": "intermediate",
+      "theme": "경쟁·역전",
+      "example": "这家公司比竞争对手晚进市场三年，但后来居上，现在市占率是第一。(이 회사는 경쟁사보다 3년 늦게 시장에 진입했지만, 후발 주자로 역전하여 현재 시장점유율 1위가 됐다.)",
+      "dialogue": "A: 我们已经比竞争对手落后两年了，还有机会吗？\nB: 后来居上的案例多了去了。关键不是先来还是后来，是你的产品有没有实质性的差异，用户有没有真正更好的理由选择你。\nA: 我们在用户体验上确实更好。\nB: 那就是你的刀。把它磨快，然后用在正确的地方。"
+    },
+    {
+      "id": "ZH_124",
+      "expression": "虚怀若谷",
+      "pinyin": "xū huái ruò gǔ",
+      "meaning": "마음이 골짜기처럼 텅 비어 있다. 진정한 겸허함으로 어떤 의견이나 지식도 받아들일 준비가 된 자세.",
+      "level": "advanced",
+      "theme": "겸손·학습",
+      "example": "真正的高手虚怀若谷，不会因为自己已经很厉害就停止向所有人学习。(진정한 고수는 마음이 골짜기처럼 비어 있다. 자신이 이미 뛰어나다고 해서 모든 사람에게서 배우는 것을 멈추지 않는다.)",
+      "dialogue": "A: 他已经是这个领域最权威的专家了，还需要听别人意见吗？\nB: 正因为如此，他才厉害。虚怀若谷——最危险的时刻不是你最弱的时候，是你开始觉得自己什么都知道的时候。\nA: 这种心态怎么保持？\nB: 每次听完别人说话，先问：他说的里面有没有我不知道的？至少想五秒钟。"
+    },
+    {
+      "id": "ZH_125",
+      "expression": "言行一致",
+      "pinyin": "yán xíng yī zhì",
+      "meaning": "말과 행동이 일치하다. 말한 것을 실제로 행동으로 옮기는 것. 신뢰의 가장 기본적인 조건.",
+      "level": "beginner",
+      "theme": "신뢰·인격",
+      "example": "管理者要言行一致，你强调准时，自己却经常迟到，那什么都说不过去。(관리자는 말과 행동이 일치해야 한다. 당신이 시간 엄수를 강조하면서 스스로 자주 지각한다면, 아무 말도 통하지 않는다.)",
+      "dialogue": "A: 为什么团队对我说的话反应越来越冷淡？\nB: 你上次说要给大家更多自主权，后来呢？\nA: 后来……项目忙就没推进了。\nB: 这就是问题。言行一致是信任的基础。说到没做到比不说还伤。下次只承诺你真的会做的事。"
+    },
+    {
+      "id": "ZH_126",
+      "expression": "事在人为",
+      "pinyin": "shì zài rén wéi",
+      "meaning": "일은 사람이 하기에 달려 있다. 조건이 아무리 어려워도 사람의 의지와 노력으로 이룰 수 있다.",
+      "level": "intermediate",
+      "theme": "의지·실행",
+      "example": "别说环境不好，事在人为——同样的市场里，有人倒闭，有人却开拓出新的赛道。(환경이 나쁘다고 말하지 마라. 일은 사람이 하기에 달려 있다. 같은 시장에서 누군가는 망하고, 누군가는 새로운 트랙을 개척한다.)",
+      "dialogue": "A: 现在这个大环境，真的很难做。\nB: 难是真的，但事在人为。限制条件下创造出来的产品，往往反而更有竞争力，因为你被迫找到了别人没找到的路。\nA: 你怎么保持这种心态？\nB: 把精力放在能控制的事上，不浪费在不能控制的事上。"
+    },
+    {
+      "id": "ZH_127",
+      "expression": "循序渐进",
+      "pinyin": "xún xù jiàn jìn",
+      "meaning": "순서에 따라 점차 나아가다. 단계를 건너뛰지 않고 체계적으로 발전하는 것.",
+      "level": "intermediate",
+      "theme": "성장·학습",
+      "example": "学任何技能都要循序渐进，跳过基础直接学高阶技巧，等于在沙子上盖楼。(어떤 기술이든 순서에 따라 점차 배워야 한다. 기초를 건너뛰고 고급 기술을 바로 배우는 것은 모래 위에 집을 짓는 것과 같다.)",
+      "dialogue": "A: 新员工想直接参与核心项目，但基础还不够扎实。\nB: 循序渐进。给他一个稍微有挑战但能完成的小项目，让他建立信心和能力，再逐步加难度。\nA: 但他很有上进心，会不会觉得我在限制他？\nB: 解释清楚原因。'我相信你能走到核心项目，这是我们一起设计的路径。'有方向感的人不会把结构当限制。"
+    }
+  ]
+}

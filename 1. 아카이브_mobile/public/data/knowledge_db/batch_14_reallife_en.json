@@ -1,0 +1,350 @@
+{
+  "meta": {
+    "batch": 14,
+    "theme": "실생활 영어 표현 집중 배치 + 일상회화 테마팩",
+    "id_range": {
+      "english_theme_packs": "PACK_EN_030",
+      "english": "EN_386 ~ EN_415"
+    },
+    "created": "2026-06-28"
+  },
+  "english_theme_packs": [
+    {
+      "id": "PACK_EN_030",
+      "theme_key": "everyday_real_talk",
+      "theme_title": "일상과 직장 사이에서 쓰는 진짜 영어",
+      "theme_title_en": "Everyday Real-Talk English",
+      "level": "beginner",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_030_01",
+          "order": 1,
+          "expression": "I'm swamped right now — can we catch up later?",
+          "meaning": "지금 정말 바빠서요 — 나중에 얘기할 수 있을까요?",
+          "nuance": "'Swamped'는 늪(swamp)에 빠진 것처럼 일에 파묻혀 있다는 뜻입니다. 'Busy'보다 훨씬 생생하고 자연스러운 표현으로, 원어민이 일상에서 가장 자주 쓰는 단어 중 하나입니다. 'Catch up'은 오랜만에 또는 잠깐 만나서 이야기 나누는 것을 뜻합니다. '지금 당장은 어렵지만 대화를 피하는 게 아니라 나중에 꼭 하겠다'는 뜻을 자연스럽게 전달합니다.",
+          "dialogue": "A: Hey, do you have a minute? I wanted to run something by you.\nB: I'm swamped right now — we have a client call in ten minutes and I'm still prepping. Can we catch up after lunch?\nA: Of course, no rush. I'll ping you around 1:30?\nB: Perfect. See you then.",
+          "example": "I'm completely swamped this week with the product launch — can we push the review meeting to Monday?",
+          "practice": "I'm a bit swamped at the moment. Can I get back to you by end of day?"
+        },
+        {
+          "id": "PACK_EN_030_02",
+          "order": 2,
+          "expression": "No worries at all — these things happen.",
+          "meaning": "전혀 괜찮아요 — 그럴 수 있죠. (사과를 받아줄 때 쓰는 가장 자연스러운 표현)",
+          "nuance": "'It's okay'나 'Don't worry'보다 훨씬 자연스럽고 따뜻한 표현입니다. 'No worries'는 호주에서 왔지만 지금은 미국·영국에서도 일상적으로 씁니다. 'These things happen'을 덧붙이면 '이런 일은 누구에게나 생긴다'는 공감의 뉘앙스가 추가됩니다. 상대방의 사과를 받아줄 때 진심 어린 관대함을 보여줍니다.",
+          "dialogue": "A: I'm so sorry I forgot to send you the file before the meeting. That must have been really inconvenient.\nB: No worries at all — these things happen. I had a copy saved from last week, so we were fine.\nA: Still, I should have been more careful.\nB: Honestly, don't stress about it. Just send it over when you have a chance.",
+          "example": "No worries at all — these things happen. Let's just focus on moving forward from here.",
+          "practice": "No worries! These things happen. Just send it over when you get a chance."
+        },
+        {
+          "id": "PACK_EN_030_03",
+          "order": 3,
+          "expression": "That totally slipped my mind. My bad!",
+          "meaning": "완전히 깜빡했어요. 제 실수예요! (잊었을 때 자연스럽게 사과하는 표현)",
+          "nuance": "'Slipped my mind'는 기억에서 빠져나가 버렸다는 생생한 표현입니다. 'I forgot'보다 훨씬 구어적이고 자연스럽습니다. 'My bad'는 'My mistake' 또는 'Sorry about that'의 캐주얼한 버전으로, 젊은 직장인들이 가장 많이 쓰는 사과 표현 중 하나입니다. 지나치게 격식 없이 쓰면 진지함이 부족하게 들릴 수 있으니 상황을 파악해서 쓰세요.",
+          "dialogue": "A: Did you end up booking the conference room for tomorrow?\nB: Oh no — that completely slipped my mind. My bad! I'll do it right now. Is 2pm still okay?\nA: Actually, we need it at 3pm now. Can you check if that's available?\nB: On it. I'll confirm within five minutes.",
+          "example": "The meeting reminder — that totally slipped my mind. My bad! I should have set a calendar alert.",
+          "practice": "Oh, sending you the summary — that slipped my mind completely. My bad, I'll have it to you within the hour."
+        },
+        {
+          "id": "PACK_EN_030_04",
+          "order": 4,
+          "expression": "Let me sleep on it and get back to you tomorrow.",
+          "meaning": "좀 더 생각해보고 내일 답드릴게요. (즉답을 피하고 시간을 요청할 때)",
+          "nuance": "'Sleep on it'은 밤새 생각한다는 의미로, 중요한 결정을 급하게 하지 않겠다는 신중함을 표현합니다. 즉답을 강요받는 상황에서 '거절하는 것도 아니고 수락하는 것도 아닌' 상태를 유지하며 시간을 벌 때 매우 유용합니다. 거절처럼 들리지 않으면서도 'get back to you tomorrow'로 책임감 있는 후속 조치를 약속합니다.",
+          "dialogue": "A: So, are you interested in taking on the regional manager role? We'd love your answer by this week.\nB: I'm genuinely honored, and I'm very interested. But I want to make sure I'm making the right decision for everyone involved. Can I sleep on it and get back to you tomorrow morning?\nA: Of course. Take the time you need.\nB: I appreciate that. I'll have a clear answer for you by 9am.",
+          "example": "That's a significant proposal — let me sleep on it and get back to you with a proper response tomorrow.",
+          "practice": "I don't want to give you a half-considered answer. Let me sleep on it and get back to you tomorrow."
+        },
+        {
+          "id": "PACK_EN_030_05",
+          "order": 5,
+          "expression": "I'm all ears — what's on your mind?",
+          "meaning": "잘 듣고 있어요 — 무슨 생각이세요? (적극적으로 상대방의 말을 듣겠다는 표현)",
+          "nuance": "'All ears'는 귀가 전부라는 재미있는 표현으로, 온전히 당신의 말에 집중하겠다는 뜻입니다. 'What's on your mind?'는 '무슨 생각을 하고 있어요?' 또는 '무슨 말이 하고 싶어요?'라는 뜻으로, 상대가 망설이거나 뭔가 말하고 싶어하는 것 같을 때 열어주는 표현입니다. 리더십, 팀원 관계, 1대1 미팅에서 심리적 안전감을 만들어주는 표현입니다.",
+          "dialogue": "Team member: Do you have a second? I've been meaning to talk to you about something.\nManager: Of course — I'm all ears. What's on your mind?\nTeam member: It's about the new process. I have a few concerns I wasn't sure how to raise.\nManager: I'm glad you came to me. Tell me everything.",
+          "example": "I've set aside the next 30 minutes — I'm all ears. What's on your mind about the project?",
+          "practice": "I'm all ears. You've seemed a bit distracted lately — what's on your mind?"
+        }
+      ],
+      "master_paragraph": {
+        "text": "I know you're swamped right now, so no worries at all if the timing's bad — these things happen. Just a heads up: I realized something totally slipped my mind from our last conversation, and my bad for not flagging it sooner. I don't want to give you a rushed answer on the bigger question, so let me sleep on it and get back to you tomorrow with something concrete. But if you have a minute at some point today, I'm all ears — what's on your mind about how things are going?",
+        "translation": "지금 엄청 바쁘신 거 알아요, 그러니 타이밍이 안 좋으면 전혀 괜찮아요 — 그럴 수 있죠. 미리 말씀드리자면: 지난 대화에서 뭔가 완전히 깜빡했다는 걸 깨달았어요, 더 일찍 말씀드리지 못해서 제 실수예요. 더 큰 질문에 대해 급하게 답하고 싶지 않아서요, 좀 더 생각해보고 내일 구체적으로 답드릴게요. 하지만 오늘 중에 잠깐 시간이 되시면, 잘 듣고 있을게요 — 요즘 어떻게 돌아가고 있는지 무슨 생각이세요?",
+        "highlights": ["swamped", "no worries at all", "slipped my mind", "my bad", "sleep on it", "get back to you", "all ears", "what's on your mind"]
+      }
+    }
+  ],
+  "english_expressions": [
+    {
+      "id": "EN_386",
+      "expression": "I'm swamped",
+      "meaning": "엄청 바쁘다, 일에 파묻혀 있다.",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "I'm swamped with reports this week — can we reschedule for next Monday?",
+      "dialogue": "A: Are you free for a quick chat?\nB: I'm completely swamped right now — back-to-back meetings until 5. Can I ping you after?\nA: Sure, no rush.\nB: Thanks, I'll reach out around 5:30."
+    },
+    {
+      "id": "EN_387",
+      "expression": "Can you do me a favor?",
+      "meaning": "부탁 하나 들어줄 수 있어요? (부탁을 꺼내기 전에 먼저 허락을 구하는 표현)",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "Can you do me a favor and forward that email thread to the team? I don't have everyone's addresses.",
+      "dialogue": "A: Can you do me a favor?\nB: Depends on what it is — just kidding. Sure, what's up?\nA: Can you cover the 10am standup for me tomorrow? I have a dentist appointment.\nB: No problem, I'll be there."
+    },
+    {
+      "id": "EN_388",
+      "expression": "Let's grab coffee / Let's grab lunch",
+      "meaning": "커피 한잔 해요 / 점심 같이 해요. 가볍게 만남을 제안하는 표현.",
+      "level": "beginner",
+      "theme": "social",
+      "example": "It's been a while — let's grab coffee sometime this week and catch up properly.",
+      "dialogue": "A: Hey, I've been wanting to pick your brain about the new marketing direction.\nB: I'd love that. Let's grab lunch Friday — my treat.\nA: That works perfectly. Thai place on 3rd?\nB: You read my mind."
+    },
+    {
+      "id": "EN_389",
+      "expression": "I'll get back to you on that",
+      "meaning": "그 부분은 확인 후 다시 연락드리겠습니다. 즉답 대신 후속 조치를 약속할 때.",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "I don't have the exact numbers with me right now — let me pull the data and I'll get back to you on that by end of day.",
+      "dialogue": "A: Do you know what the Q2 retention rate was for the enterprise segment specifically?\nB: Hmm, I know the overall number but not the segment breakdown off the top of my head. I'll get back to you on that — can I send you an email after lunch?\nA: Perfect, that works.\nB: Give me until 2pm."
+    },
+    {
+      "id": "EN_390",
+      "expression": "That's news to me",
+      "meaning": "처음 듣는 얘기네요, 저는 몰랐어요. (놀람과 함께 처음 알았다는 것을 표현)",
+      "level": "intermediate",
+      "theme": "workplace_daily",
+      "example": "The policy changed last week? That's news to me — I must have missed the announcement.",
+      "dialogue": "A: Did you hear? They're moving the whole team to the new office next month.\nB: What? That's completely news to me. When was that decided?\nA: Apparently the email went out Tuesday.\nB: I never got it. Let me check my spam folder."
+    },
+    {
+      "id": "EN_391",
+      "expression": "I'm on it",
+      "meaning": "제가 처리하고 있습니다, 바로 할게요. (즉각 행동에 나섰다는 것을 짧게 확인시켜주는 표현)",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "A: The server's throwing errors on the checkout page.\nB: I'm on it.",
+      "dialogue": "Manager: The client just called — they need the revised proposal before 4pm.\nYou: I'm on it. I just need to update two sections and do a final proofread.\nManager: How long?\nYou: An hour max. You'll have it by 3."
+    },
+    {
+      "id": "EN_392",
+      "expression": "Sorry, I missed that — could you repeat?",
+      "meaning": "죄송한데 못 들었어요 — 다시 말씀해주실 수 있어요? 화상회의·전화에서 필수 표현.",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "Sorry, I missed that last part — there was a bit of background noise on my end. Could you repeat what you said about the timeline?",
+      "dialogue": "A: ...and so I think the best approach is to—\nB: Sorry, I missed that — you broke up for a second. Could you say that last part again?\nA: Of course. I was saying the best approach is to launch in phases rather than all at once.\nB: Got it, that makes sense."
+    },
+    {
+      "id": "EN_393",
+      "expression": "No worries",
+      "meaning": "괜찮아요, 걱정 마세요. 사과를 받아줄 때 가장 자연스럽고 따뜻한 표현.",
+      "level": "beginner",
+      "theme": "social",
+      "example": "A: I'm so sorry I'm five minutes late!\nB: No worries at all — we literally just sat down.",
+      "dialogue": "A: I accidentally deleted the wrong version of the file. I'm really sorry.\nB: No worries — I have it backed up in the shared drive. Want me to send the link?\nA: Yes please, that would be amazing.\nB: On it."
+    },
+    {
+      "id": "EN_394",
+      "expression": "It slipped my mind",
+      "meaning": "깜빡했어요, 기억에서 빠져나가 버렸어요.",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "I meant to bring those documents — it completely slipped my mind this morning. Can I email them instead?",
+      "dialogue": "A: Did you end up calling the vendor about the delivery date?\nB: Oh no — that completely slipped my mind. I'll call them right now.\nA: Please do — we need confirmation before tomorrow.\nB: I'm dialing as we speak. I'll have an answer in ten minutes."
+    },
+    {
+      "id": "EN_395",
+      "expression": "I feel you",
+      "meaning": "이해해요, 공감해요. 상대방의 감정이나 상황에 진심으로 공감할 때.",
+      "level": "beginner",
+      "theme": "social",
+      "example": "A: This project has been exhausting — I haven't left before 9pm all week.\nB: I feel you. Last quarter I was in the same situation.",
+      "dialogue": "A: I keep trying to push back on the unrealistic deadline but nobody listens.\nB: I feel you. I went through the exact same thing with the Q1 launch. Did you try putting the trade-offs in writing?\nA: Not yet.\nB: Do that. When the risks are documented, people pay more attention."
+    },
+    {
+      "id": "EN_396",
+      "expression": "Long story short",
+      "meaning": "간단히 말하자면, 요약하자면. 긴 배경 설명을 생략하고 핵심만 말할 때.",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "Long story short — the merger fell through, we're pivoting back to the original plan, and the timeline shifts by six weeks.",
+      "dialogue": "A: What happened with the client situation? I heard it got complicated.\nB: Oh, it was a whole thing. Long story short — there was a miscommunication about deliverables, the client thought they were getting a custom build, we thought it was off the shelf. We got it sorted, but it took three extra calls.\nA: Oof. How'd they take it?\nB: Better than expected, honestly."
+    },
+    {
+      "id": "EN_397",
+      "expression": "I'm not sure I follow",
+      "meaning": "잘 이해가 안 되는데요. 이해하지 못했을 때 정중하게 설명을 요청하는 표현.",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "I'm not sure I follow — can you walk me through the logic one more time?",
+      "dialogue": "Presenter: So if we apply the regression model to the cohort data, and factor in the seasonality adjustment, we should see a natural normalization by Q3.\nYou: I'm not sure I follow the last part — what does 'natural normalization' look like in practice? Can you show that on the chart?\nPresenter: Great question. So on this slide..."
+    },
+    {
+      "id": "EN_398",
+      "expression": "That makes total sense",
+      "meaning": "완전히 이해돼요, 맞는 말이에요. 상대방의 설명이나 제안에 진심으로 동의할 때.",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "Oh, you're launching in the US before Korea because of the time zone overlap with your team — that makes total sense.",
+      "dialogue": "A: The reason we're not discounting anymore is that our price anchors customer perception of quality. Once we discount, it's almost impossible to reset.\nB: That makes total sense. It's like how luxury brands never go on sale.\nA: Exactly. Once you're in the discounting loop, you're competing on price, and that's not a game we can win."
+    },
+    {
+      "id": "EN_399",
+      "expression": "You nailed it",
+      "meaning": "완벽하게 해냈어요, 딱 맞혀요. 잘 해냈거나 정확히 맞췄을 때 쓰는 칭찬.",
+      "level": "beginner",
+      "theme": "social",
+      "example": "That presentation was exactly what the client needed — you really nailed it today.",
+      "dialogue": "A: How did the pitch go? I was nervous the whole time.\nB: You nailed it. The part where you connected their specific pain point to our solution — I could see their body language change completely.\nA: Really? I thought I stumbled on the pricing slide.\nB: Nobody noticed. All they could talk about afterward was the ROI projection."
+    },
+    {
+      "id": "EN_400",
+      "expression": "Bear with me",
+      "meaning": "잠깐만 기다려 주세요, 조금만 참아주세요. 뭔가 찾거나 준비하는 동안 양해를 구할 때.",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "Bear with me for a second — I need to pull up the right slide.",
+      "dialogue": "A: Bear with me while I find the right document — I have too many tabs open.\nB: Take your time.\nA: Sorry about this... Okay, here it is. So this is the data I was talking about.\nB: No rush. Thanks for digging that up."
+    },
+    {
+      "id": "EN_401",
+      "expression": "That works for me",
+      "meaning": "저는 괜찮아요, 그렇게 합시다. 제안이나 시간/방법에 동의할 때.",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "A: How about we meet Thursday at 3pm?\nB: That works for me.",
+      "dialogue": "A: So the plan is to do a soft launch in two markets, gather data for six weeks, then decide on full rollout. Does that work for everyone?\nB: That works for me — six weeks feels like enough to see real trends.\nC: Same here.\nA: Great, let's lock that in."
+    },
+    {
+      "id": "EN_402",
+      "expression": "What's the catch?",
+      "meaning": "뭔가 숨겨진 조건이 있는 거 아니에요? 너무 좋아 보이는 제안에 의심할 때.",
+      "level": "intermediate",
+      "theme": "social",
+      "example": "A new client offering triple our usual rate with a fast turnaround? What's the catch?",
+      "dialogue": "A: They're offering us exclusive access to their platform, unlimited API calls, and a dedicated support team — for free.\nB: That sounds amazing, but what's the catch?\nA: They want our user data to train their model.\nB: There it is. That changes things significantly."
+    },
+    {
+      "id": "EN_403",
+      "expression": "Off the top of my head",
+      "meaning": "즉석에서 생각해보면, 바로 떠오르는 건. 정확하지 않을 수 있음을 인정하면서 바로 답할 때.",
+      "level": "intermediate",
+      "theme": "workplace_daily",
+      "example": "Off the top of my head, I'd say the project is about 70% done — but let me check the actual tracker before we put that in the report.",
+      "dialogue": "A: Do you know how many active users we had last month?\nB: Off the top of my head, somewhere around 48,000 — but don't quote me on that. Let me pull the exact number from the dashboard.\nA: Ballpark is fine for now, I just need a rough sense.\nB: Then roughly 50k, give or take."
+    },
+    {
+      "id": "EN_404",
+      "expression": "Give it a shot",
+      "meaning": "한번 해봐요, 시도해봐요. 무언가를 시도해볼 것을 권유할 때.",
+      "level": "beginner",
+      "theme": "social",
+      "example": "You've never done public speaking before? Give it a shot — the first one is always scary, but you learn fast.",
+      "dialogue": "A: I've never written a cold outreach email before. I'm not sure I'll be any good at it.\nB: Just give it a shot. Write three versions, send them to a small test group, see what gets replies. You'll learn more from 10 real responses than from studying the theory.\nA: That's actually a good point.\nB: Start today. Even a rough draft is better than none."
+    },
+    {
+      "id": "EN_405",
+      "expression": "I'm up for it",
+      "meaning": "저 할게요, 찬성이에요, 할 의향이 있어요.",
+      "level": "beginner",
+      "theme": "social",
+      "example": "Happy hour after the Friday standup? I'm up for it — I could use a break.",
+      "dialogue": "A: We're thinking of doing a team offsite in Busan next quarter. Would you be up for it?\nB: Absolutely — I'm up for it. I think it would do the team a lot of good to spend some time outside the office.\nA: Great. Any preferences on format?\nB: Maybe a half-day workshop and then some downtime? I find the bonding happens more naturally when it's not all structured activities."
+    },
+    {
+      "id": "EN_406",
+      "expression": "That's a good point",
+      "meaning": "좋은 지적이에요, 그거 중요한 포인트네요. 상대방의 의견이나 지적에 진심으로 동의할 때.",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "That's a good point about the security implications — I hadn't thought about it from that angle.",
+      "dialogue": "A: I think we should be careful about how we frame the data. If we cherry-pick these three months, it looks great, but the full-year picture tells a different story.\nB: That's a genuinely good point. We need to present the full picture — especially to stakeholders who might ask follow-up questions.\nA: Exactly. Partial data now creates credibility problems later.\nB: Agreed. Let's use the full year and add context for the dip."
+    },
+    {
+      "id": "EN_407",
+      "expression": "I see what you mean",
+      "meaning": "무슨 말씀인지 이해해요, 그 뜻을 알겠어요.",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "I see what you mean about the user flow — the third step does feel like an unnecessary extra click.",
+      "dialogue": "A: The problem isn't the features themselves, it's that we keep adding things without removing anything. Users feel overwhelmed.\nB: I see what you mean. It's a classic addition bias — it's always easier to add than to take away.\nA: Exactly. And every PM thinks their feature is essential.\nB: So we need a framework for deciding what comes out before we even discuss what goes in."
+    },
+    {
+      "id": "EN_408",
+      "expression": "How does that sound?",
+      "meaning": "어떻게 생각하세요? 제안이나 아이디어에 대한 상대방의 의견을 구할 때.",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "I'll handle the client relationship side, you focus on the technical specs, and we present together on Thursday. How does that sound?",
+      "dialogue": "A: Here's what I'm thinking — I'll draft the proposal by Wednesday, you review and add the financial projections, and we send it Thursday morning. How does that sound?\nB: That works. Wednesday is fine for me. Are you okay with me restructuring the executive summary if I feel it needs it?\nA: Absolutely — that section needs your touch.\nB: Great. Let's do it."
+    },
+    {
+      "id": "EN_409",
+      "expression": "That's on me",
+      "meaning": "그건 제 실수예요, 제 책임이에요. 책임을 회피하지 않고 직접적으로 인정할 때.",
+      "level": "intermediate",
+      "theme": "workplace_daily",
+      "example": "The miscommunication with the client — that's on me. I should have confirmed in writing after the call.",
+      "dialogue": "Manager: The deliverable was late and the client had to follow up twice.\nYou: That's completely on me. I underestimated how long the data cleaning would take and I didn't flag the delay early enough. It won't happen again.\nManager: I appreciate you owning it. What's the plan going forward?\nYou: I've already added buffer time to all my estimates this quarter, and I'll escalate the moment I see a timeline at risk."
+    },
+    {
+      "id": "EN_410",
+      "expression": "We're good",
+      "meaning": "우리 괜찮아요, 문제없어요. 오해나 갈등이 해소됐거나 상황이 괜찮다는 것을 확인할 때.",
+      "level": "beginner",
+      "theme": "social",
+      "example": "A: I just wanted to check — are we good after yesterday's disagreement?\nB: We're good. I actually appreciated the direct feedback.",
+      "dialogue": "A: I was a bit blunt in the meeting earlier. I hope that didn't come across the wrong way.\nB: We're good — I actually think the meeting needed that kind of directness. It got us to a decision faster.\nA: I'm glad it landed okay. I was second-guessing myself afterward.\nB: Don't. It was the right call."
+    },
+    {
+      "id": "EN_411",
+      "expression": "Let me sleep on it",
+      "meaning": "좀 더 생각해볼게요. 중요한 결정을 즉각 내리지 않고 시간을 갖고 싶을 때.",
+      "level": "intermediate",
+      "theme": "workplace_daily",
+      "example": "It's a solid offer — let me sleep on it and give you a final answer tomorrow morning.",
+      "dialogue": "A: So we want to know: are you in or out for the new venture?\nB: I'm genuinely intrigued. But it's a big commitment and I want to give you a real answer, not a rushed one. Can I sleep on it and call you tomorrow?\nA: Of course. We're not closing the round until end of month.\nB: I'll have a clear yes or no by 9am tomorrow."
+    },
+    {
+      "id": "EN_412",
+      "expression": "To be honest",
+      "meaning": "솔직히 말하면, 사실대로 말하자면. 직접적인 의견을 말하기 전에 쓰는 표현.",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "To be honest, I think the timeline is too aggressive — I'd feel more comfortable with two extra weeks.",
+      "dialogue": "A: What did you think of the new branding direction?\nB: To be honest? I think it's safe. It's polished, but it doesn't feel distinct enough to stand out in our category.\nA: That's pretty much what I've been thinking too but wasn't sure how to say.\nB: I figured someone had to say it. Let's bring it up in the next review."
+    },
+    {
+      "id": "EN_413",
+      "expression": "I can't complain",
+      "meaning": "나쁘지 않아요, 그럭저럭 잘 지내고 있어요. 근황을 물어볼 때 적당히 좋다고 답하는 표현.",
+      "level": "beginner",
+      "theme": "social",
+      "example": "A: How's the new role going so far?\nB: Honestly, I can't complain — the team is great and the work is interesting.",
+      "dialogue": "A: How's everything going with the new team?\nB: I can't complain, honestly. The onboarding was a bit intense but everyone's been really welcoming, and I'm already getting to work on interesting problems.\nA: That's great to hear.\nB: I think I made the right call switching over."
+    },
+    {
+      "id": "EN_414",
+      "expression": "Not gonna lie",
+      "meaning": "솔직히 말할게요, 사실을 말하자면. 다소 솔직한 말을 꺼낼 때 앞에 붙이는 표현.",
+      "level": "beginner",
+      "theme": "social",
+      "example": "Not gonna lie — that product demo was one of the best I've seen this year.",
+      "dialogue": "A: How was the conference overall?\nB: Not gonna lie, the morning keynote was a bit of a letdown — a lot of hype, not much substance. But the afternoon breakout sessions were genuinely useful.\nA: Yeah, I heard the same thing from a few people.\nB: The networking was worth it alone though."
+    },
+    {
+      "id": "EN_415",
+      "expression": "You're telling me",
+      "meaning": "그러게 말이에요, 저도 그렇게 생각해요. 상대방의 말에 강하게 공감하고 동의할 때.",
+      "level": "intermediate",
+      "theme": "social",
+      "example": "A: This commute is absolutely brutal in the rain.\nB: You're telling me — I was stuck for 40 minutes.",
+      "dialogue": "A: The approval process for simple decisions here takes forever. Three layers of sign-off for a 200-dollar purchase?\nB: You're telling me. I submitted a request two weeks ago and it's still sitting with someone.\nA: Something's got to change.\nB: I've been thinking about writing up a proposal for a streamlined system. Want to co-sign it?"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "label": "명언·인사이트 어록 2차",
+    "mode": "work",
+    "updated": "2026-06-27",
+    "count": 10
+  },
+  "classic_quotes": [
+    {
+      "id": "CLQ_007",
+      "book": "마크 트웨인 어록",
+      "author": "마크 트웨인",
+      "era": "American Literature",
+      "quote": "앞서나가는 비결은 시작하는 것이다.",
+      "source": "The secret of getting ahead is getting started. — Mark Twain",
+      "theme": "실행",
+      "context": "분석 마비(analysis paralysis)의 함정을 꿰뚫는 한 문장이다. '완벽한 준비가 되면 시작하겠다'는 생각은 종종 영원히 시작하지 않겠다는 말과 같다. 스타트업 문화의 MVP(최소 기능 제품) 철학처럼, 실행이 곧 배움의 시작이며 첫 걸음이 없으면 방향도 없다.",
+      "tags": ["실행", "시작", "MVP", "행동편향", "커리어"],
+      "targetMode": "work",
+      "used": false
+    },
+    {
+      "id": "CLQ_008",
+      "book": "아인슈타인 어록",
+      "author": "알베르트 아인슈타인",
+      "era": "Modern Science",
+      "quote": "창의성은 즐기는 지성이다.",
+      "source": "Creativity is intelligence having fun. — Albert Einstein",
+      "theme": "창의성",
+      "context": "창의성과 지성을 대립이 아닌 결합으로 본다. 최고의 창의적 결과물은 대부분 깊은 지식과 호기심이 합쳐진 곳에서 나온다. 직장에서 '그냥 재미있어서 해봤다'는 말 뒤에는 수천 시간의 깊은 이해가 숨어 있다 — 창의적인 사람은 대부분 가장 깊이 아는 사람이기도 하다.",
+      "tags": ["창의성", "혁신", "학습", "몰입", "지적호기심"],
+      "targetMode": "work",
+      "used": false
+    },
+    {
+      "id": "CLQ_009",
+      "book": "벤저민 프랭클린 어록",
+      "author": "벤저민 프랭클린",
+      "era": "American Enlightenment",
+      "quote": "지식에 대한 투자가 가장 높은 이자를 돌려준다.",
+      "source": "An investment in knowledge pays the best interest. — Benjamin Franklin",
+      "theme": "학습",
+      "context": "정규 교육 2년밖에 못 받은 프랭클린이 평생 독서로 출판인·과학자·외교관이 됐다는 사실이 이 말의 무게를 더한다. 지식은 복리로 쌓이며, 그 복리는 어떤 금융 자산보다 오래 지속된다. 워런 버핏의 매일 500페이지 독서, 빌 게이츠의 '씽크 위크(Think Week)'도 같은 원칙의 실천이다.",
+      "tags": ["자기계발", "독서", "복리성장", "학습", "커리어투자"],
+      "targetMode": "work",
+      "used": false
+    },
+    {
+      "id": "CLQ_010",
+      "book": "웨인 그레츠키 어록",
+      "author": "웨인 그레츠키",
+      "era": "Modern Sports",
+      "quote": "시도하지 않은 슛은 100% 빗나간다.",
+      "source": "You miss 100% of the shots you don't take. — Wayne Gretzky",
+      "theme": "도전",
+      "context": "이 말은 단순한 격려가 아니라 확률의 언어다 — 시도하면 성공 확률이 생기고, 시도하지 않으면 그 확률은 0이다. 실패는 데이터이지만, 시도하지 않음은 데이터조차 없다. 창업·투자·커리어 전환에서 '실패가 두려워서 시도하지 않는 것'이 실제로 가장 위험한 선택인 이유를 한 문장으로 설명한다.",
+      "tags": ["도전", "리스크", "실행", "실패", "커리어"],
+      "targetMode": "work",
+      "used": false
+    },
+    {
+      "id": "CLQ_011",
+      "book": "링크드인 공동창업자 어록",
+      "author": "리드 호프만",
+      "era": "Silicon Valley",
+      "quote": "첫 버전이 부끄럽지 않다면, 너무 늦게 출시한 것이다.",
+      "source": "If you're not embarrassed by the first version of your product, you've launched too late. — Reid Hoffman",
+      "theme": "출시",
+      "context": "완벽한 제품을 만들려다 출시 타이밍을 놓치는 실수를 역설로 경계한다. 첫 버전은 항상 불완전하며, 그 불완전함이 사용자에게서 가장 빠르게 배우는 도구가 된다. 에어비앤비의 조잡한 초기 사이트, 구글의 학교 서버 검색 엔진 — 시장은 기다려주지 않는다.",
+      "tags": ["MVP", "출시", "스타트업", "실행", "완벽주의극복"],
+      "targetMode": "work",
+      "used": false
+    },
+    {
+      "id": "CLQ_012",
+      "book": "레오나르도 다 빈치 노트",
+      "author": "레오나르도 다 빈치",
+      "era": "Renaissance",
+      "quote": "단순함은 최고의 정교함이다.",
+      "source": "Simplicity is the ultimate sophistication. — Leonardo da Vinci",
+      "theme": "단순함",
+      "context": "복잡한 것을 복잡하게 만드는 건 쉽다. 복잡한 것을 단순하게 만드는 것이 진짜 실력이다. 아이폰의 버튼 하나, 구글 첫 화면의 여백, 트위터의 140자 제한 — 모두 단순함이 기능이 아닌 철학임을 보여준다. 보고서·발표·제품 설계에서 '더 빼도 될 것이 없는가?'를 묻는 습관이 궁극적 정교함을 만든다.",
+      "tags": ["단순함", "디자인", "커뮤니케이션", "혁신", "제품설계"],
+      "targetMode": "work",
+      "used": false
+    },
+    {
+      "id": "CLQ_013",
+      "book": "마하트마 간디 어록",
+      "author": "마하트마 간디",
+      "era": "Indian Independence Movement",
+      "quote": "처음엔 무시하고, 그 다음엔 비웃고, 그 다음엔 싸우다가, 결국 당신이 이긴다.",
+      "source": "First they ignore you, then they laugh at you, then they fight you, then you win. — Gandhi",
+      "theme": "변화",
+      "context": "혁신가와 변화를 이끄는 사람이 반드시 거치는 네 단계를 담았다. 스티브 잡스의 스마트폰을 비웃은 블랙베리, 넷플릭스를 무시한 블록버스터, 테슬라를 불가능하다 한 디트로이트 — 결과는 모두가 안다. '비웃음을 받는 것'이 오히려 올바른 방향에 있다는 신호일 수 있다.",
+      "tags": ["혁신", "변화", "리더십", "인내", "파괴적혁신"],
+      "targetMode": "work",
+      "used": false
+    },
+    {
+      "id": "CLQ_014",
+      "book": "산업공학 원칙",
+      "author": "앨런 F. 모겐슨",
+      "era": "Industrial Engineering",
+      "quote": "더 열심히 일하지 말고, 더 똑똑하게 일하라.",
+      "source": "Work smarter, not harder. — Allan F. Mogensen (1930s)",
+      "theme": "효율성",
+      "context": "'열심히 하는 것'과 '잘 하는 것'은 다르다 — 잘못된 방향으로 열심히 달리는 것이 가장 비효율적이다. 이 원칙의 핵심은 레버리지(leverage)다: 같은 시간에 더 많은 결과를 내는 방법, 도구, 시스템을 찾는 것. 자동화·위임·우선순위화가 모두 '더 똑똑하게'의 실천이며, 80%의 결과가 20%의 원인에서 나온다는 파레토 법칙이 그 이론적 기반이다.",
+      "tags": ["효율성", "레버리지", "우선순위", "생산성", "자동화"],
+      "targetMode": "work",
+      "used": false
+    },
+    {
+      "id": "CLQ_015",
+      "book": "아인슈타인 어록",
+      "author": "알베르트 아인슈타인",
+      "era": "Modern Science",
+      "quote": "지성의 척도는 변화하는 능력이다.",
+      "source": "The measure of intelligence is the ability to change. — Albert Einstein",
+      "theme": "유연성",
+      "context": "많이 아는 것보다 새로운 정보에 따라 생각을 바꿀 수 있는 것이 더 높은 지성의 표시라는 역설적 통찰이다. 조직에서 가장 위험한 문장은 '우리는 항상 이렇게 해왔다'이다. 기존의 가정을 의심하고, 새로운 증거가 나오면 기꺼이 이전 결론을 버리는 능력 — 이것이 지성적인 조직과 개인의 차별점이다.",
+      "tags": ["유연성", "학습민첩성", "변화", "의사결정", "조직문화"],
+      "targetMode": "work",
+      "used": false
+    },
+    {
+      "id": "CLQ_016",
+      "book": "공자 어록",
+      "author": "공자",
+      "era": "Confucianism",
+      "quote": "멈추지 않는 한, 얼마나 느리게 가느냐는 중요하지 않다.",
+      "source": "It does not matter how slowly you go as long as you do not stop. — Confucius",
+      "theme": "지속성",
+      "context": "속도의 집착이 아닌 지속성의 가치를 강조한다. 복리(Compound Interest)처럼, 느리더라도 멈추지 않고 계속하는 것이 기하급수적 결과를 만든다 — 1% 개선을 365일 지속하면 1년 후 37배가 된다(1.01^365≈37). 번아웃해서 멈추는 것보다, 속도를 줄이더라도 꾸준히 가는 것이 장기적으로 더 멀리 간다는 수학적 진실이다.",
+      "tags": ["지속성", "복리", "성장", "번아웃예방", "꾸준함"],
+      "targetMode": "work",
+      "used": false
+    }
+  ]
+}

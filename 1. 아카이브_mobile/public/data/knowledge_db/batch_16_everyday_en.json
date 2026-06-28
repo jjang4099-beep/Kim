@@ -1,0 +1,352 @@
+{
+  "meta": {
+    "batch": 16,
+    "theme": "직장인의 솔직한 일상 영어 — 회사·대화·상황별 실전 표현",
+    "id_range": {
+      "english_theme_packs": "PACK_EN_032",
+      "english": "EN_446 ~ EN_475"
+    },
+    "created": "2026-06-28"
+  },
+  "english_theme_packs": [
+    {
+      "id": "PACK_EN_032",
+      "theme_key": "honest_workplace_daily",
+      "theme_title": "아무도 안 가르쳐주는 직장 영어 — 솔직한 일상 표현",
+      "theme_title_en": "Honest Everyday Workplace English",
+      "level": "intermediate",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_032_01",
+          "order": 1,
+          "expression": "Between you and me...",
+          "meaning": "우리끼리 얘기인데요, 이건 비밀인데요. 공개적으로 할 수 없는 말을 꺼낼 때.",
+          "nuance": "이 말을 들으면 바로 귀를 기울이게 됩니다. '이 정보는 공식적이지 않고, 당신만 아는 것'이라는 신뢰의 제스처입니다. 비공식적 정보, 솔직한 의견, 내부 분위기를 전달할 때 씁니다. 단, 받는 사람이 실제로 비밀을 지킬 사람인지 확인한 후 쓰세요 — '우리끼리'가 세 명이 되는 경우가 많습니다.",
+          "dialogue": "A: Between you and me, the restructuring announcement isn't just about efficiency — there are some numbers that aren't looking great in Q3.\nB: I had a feeling. What should I be doing differently right now?\nA: Keep your project wins documented and visible. That's all I can say.\nB: Understood. Thank you for telling me.",
+          "example": "Between you and me, I think the real reason the launch was delayed has nothing to do with the product — it's internal politics.",
+          "practice": "Between you and me, the new director and the product team lead are not seeing eye to eye, and it's starting to affect decisions."
+        },
+        {
+          "id": "PACK_EN_032_02",
+          "order": 2,
+          "expression": "Let's call it a day",
+          "meaning": "오늘은 여기까지 해요, 이쯤에서 끝냅시다.",
+          "nuance": "하루 일과나 회의, 작업을 마무리하자는 제안입니다. 'Let's wrap up'보다 조금 더 캐주얼하고 인간적인 느낌입니다. '우리 충분히 했다, 이제 쉬자'는 뉘앙스가 담겨 있어, 팀원들에게 좋은 에너지로 하루를 마무리하게 해줍니다. 영어권 직장에서 오후 회의 마무리에 자연스럽게 씁니다.",
+          "dialogue": "A: It's almost 7pm and we've been in this room since 9. We're going in circles.\nB: Agreed. Let's call it a day. We've made good progress — let's sleep on the remaining questions and come back fresh tomorrow.\nA: That's probably the best call.\nB: Fresh eyes in the morning. See you all at 10.",
+          "example": "We've hit all our targets for today and then some. Let's call it a day — you've all earned it.",
+          "practice": "We've been at this for five hours and the energy is dropping. Let's call it a day and come back tomorrow with fresh perspectives."
+        },
+        {
+          "id": "PACK_EN_032_03",
+          "order": 3,
+          "expression": "Don't quote me on that",
+          "meaning": "제 말을 공식 발언으로 인용하지는 마세요. 확실하지 않은 정보를 줄 때 앞에 붙이는 표현.",
+          "nuance": "정확하지 않을 수 있는 정보를 공유할 때 '나를 source로 쓰지 마세요'라는 의미입니다. 숫자·날짜·계획처럼 변경될 수 있는 정보를 전달할 때 씁니다. 비공식 정보라는 것을 표시하는 동시에 상대방이 직접 확인해야 한다는 책임도 전달합니다. 회사 내 소문이나 아직 확정되지 않은 내용에 자주 씁니다.",
+          "dialogue": "A: Do you know when the new hires are starting?\nB: Don't quote me on this, but I heard it's mid-July. The formal announcement should be next week.\nA: That's helpful to know for planning. I'll wait for the official date.\nB: Yeah, plans could still change.",
+          "example": "Don't quote me on this, but I think the budget got approved — I overheard something in the hallway.",
+          "practice": "The new policy might take effect next month — don't quote me on that, though. I'd check with HR directly."
+        },
+        {
+          "id": "PACK_EN_032_04",
+          "order": 4,
+          "expression": "Out of the loop",
+          "meaning": "상황을 모르는, 정보 공유를 못 받은. (반대: in the loop - 정보를 알고 있는)",
+          "nuance": "'Loop'는 정보가 순환하는 고리입니다. 그 고리 '밖'에 있으면 최신 상황을 모르는 것이고, '안'에 있으면 알고 있는 것입니다. 'I've been out of the loop'처럼 자신이 모르고 있었음을 인정할 때, 또는 'Keep me in the loop'처럼 앞으로 정보를 공유해달라고 요청할 때 씁니다.",
+          "dialogue": "A: What's your take on the new partnership announcement?\nB: I'll be honest — I've been completely out of the loop on this. I've been heads-down on the product side. Can you catch me up?\nA: Sure. Quick version: we're co-launching with a fintech partner in Q4.\nB: That's significant. Who else knows? I want to understand the full picture.",
+          "example": "I've been traveling for two weeks — I'm a bit out of the loop. Can someone give me a quick summary of where things stand?",
+          "practice": "Loop me in on the vendor negotiation — I don't want to be out of the loop when the client asks me about timelines."
+        },
+        {
+          "id": "PACK_EN_032_05",
+          "order": 5,
+          "expression": "How are you holding up?",
+          "meaning": "어떻게 버티고 있어요? 요즘 어때요? 힘든 상황에 있는 사람에게 진심으로 안부를 물을 때.",
+          "nuance": "'How are you?'는 그냥 인사지만, 'How are you holding up?'은 '나는 당신이 힘든 상황에 있다는 걸 알고 있고, 실제로 어떻게 지내는지 궁금하다'는 뜻입니다. 누군가 큰 프로젝트를 끝냈거나, 힘든 일을 겪고 있거나, 스트레스가 많은 시기를 보내고 있을 때 씁니다. 상대방이 속마음을 더 쉽게 열게 만드는 표현입니다.",
+          "dialogue": "A: Hey — you've been in the middle of this product crisis for three weeks now. How are you holding up?\nB: Honestly? Running on fumes. But we're close to a resolution.\nA: Is there anything I can take off your plate right now?\nB: If you could handle the stakeholder update email this afternoon, that would genuinely help.\nA: Consider it done.",
+          "example": "With everything that's happened this month — the launch, the team changes, the budget cuts — how are you honestly holding up?",
+          "practice": "How are you holding up with the new manager? I know the transition has been bumpy."
+        }
+      ],
+      "master_paragraph": {
+        "text": "Between you and me, I've been a bit out of the loop this week — don't quote me on this, but I think there may be some restructuring conversations happening. How are you holding up with all the uncertainty? Honestly, I think we all just need to do our best work and keep the right people informed. At some point today let's call it a day early and reset — we'll think more clearly tomorrow.",
+        "translation": "우리끼리 얘기인데요, 이번 주에 제가 상황을 좀 모르고 있었어요 — 공식 발언으로는 인용하지 마세요, 구조 조정 관련 이야기가 오가고 있는 것 같아요. 이 모든 불확실성 속에서 어떻게 버티고 있어요? 솔직히, 우리 모두 그냥 최선을 다하고 적절한 사람들한테 계속 보고하면 될 것 같아요. 오늘 어느 시점에 일찍 마무리하고 리셋합시다 — 내일 더 맑은 정신으로 생각할 수 있을 거예요.",
+        "highlights": ["between you and me", "out of the loop", "don't quote me on this", "how are you holding up", "let's call it a day"]
+      }
+    }
+  ],
+  "english_expressions": [
+    {
+      "id": "EN_446",
+      "expression": "Whatever works",
+      "meaning": "뭐든 좋아요, 되는 대로 해요. 특별한 선호 없이 상대방에게 선택권을 줄 때.",
+      "level": "beginner",
+      "theme": "everyday_life",
+      "example": "A: Should we meet at the office or the café?\nB: Whatever works for you — I'm flexible.",
+      "dialogue": "A: For the handoff, would you prefer a written doc or a live walkthrough?\nB: Whatever works best for you. I've got time for either this week.\nA: Then let's do a live walkthrough — easier to catch things I might forget to write down.\nB: Perfect. When?"
+    },
+    {
+      "id": "EN_447",
+      "expression": "Play it by ear",
+      "meaning": "상황 봐서 하죠, 즉흥적으로 결정해요. 미리 계획하지 않고 상황에 따라 결정하겠다는 표현.",
+      "level": "intermediate",
+      "theme": "everyday_life",
+      "example": "We haven't confirmed the after-party venue yet — let's just play it by ear and see how the event goes.",
+      "dialogue": "A: Do you have a plan for the client dinner?\nB: Honestly, let's play it by ear. I know roughly what they care about, but I want to listen to where the conversation goes and adapt. Over-scripting these things usually backfires.\nA: Fair point. Just have a few good questions ready.\nB: Already on it."
+    },
+    {
+      "id": "EN_448",
+      "expression": "That's a stretch",
+      "meaning": "그건 좀 무리 아닌가요, 과도한 비약이에요. 논리나 요청이 지나치게 무리하다고 느껴질 때.",
+      "level": "intermediate",
+      "theme": "workplace_daily",
+      "example": "Saying one good quarter means the whole strategy is working — that's a bit of a stretch.",
+      "dialogue": "A: If we launch in five new markets simultaneously, we can triple revenue by end of year.\nB: That's a stretch. Five new markets at once would stretch our ops team to breaking point. What's the realistic version of this?\nA: Maybe two markets, sequentially?\nB: Two, staggered — now that's a plan I can get behind."
+    },
+    {
+      "id": "EN_449",
+      "expression": "I'll take your word for it",
+      "meaning": "말씀 믿을게요. 직접 확인하기 어렵지만 상대방을 신뢰하고 받아들일 때.",
+      "level": "intermediate",
+      "theme": "everyday_life",
+      "example": "I've never been to that restaurant, but you say it's great — I'll take your word for it.",
+      "dialogue": "A: The new framework really does cut development time in half. I tested it myself.\nB: I'll take your word for it — I don't have time to evaluate it myself this sprint. Can you document what you found so the team can reference it?\nA: Already writing it up.\nB: Perfect."
+    },
+    {
+      "id": "EN_450",
+      "expression": "Beats me",
+      "meaning": "저도 몰라요, 모르겠어요. 정말 모를 때 솔직하게 하는 말.",
+      "level": "beginner",
+      "theme": "everyday_life",
+      "example": "A: Why did they change the process without telling anyone?\nB: Beats me. Nobody briefed the team.",
+      "dialogue": "A: Do you know why the server's been slow all morning?\nB: Beats me. I've checked everything on my end and it all looks fine. Have you submitted a ticket to infra?\nA: Not yet.\nB: Worth doing. I'm curious what they'll find."
+    },
+    {
+      "id": "EN_451",
+      "expression": "Any luck?",
+      "meaning": "잘 됐어요? 어떻게 됐어요? 뭔가를 시도하고 있던 상대방의 결과를 물어볼 때.",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "A: Any luck getting the client to extend the deadline?\nB: Not yet — I'm still waiting to hear back.",
+      "dialogue": "A: Any luck with the API integration?\nB: Not yet. I've been at it for three hours and I keep hitting the same authentication error.\nA: Can I take a look? Sometimes a fresh pair of eyes helps.\nB: Please. I've been staring at this so long I can't see straight."
+    },
+    {
+      "id": "EN_452",
+      "expression": "Hit me up",
+      "meaning": "연락해요, 연락 줘요. 나중에 연락하라고 가볍게 말할 때.",
+      "level": "beginner",
+      "theme": "social",
+      "example": "If you ever need a second opinion on the creative direction, hit me up — I'm happy to take a look.",
+      "dialogue": "A: I might need some help with the data model next week.\nB: Hit me up whenever. Seriously — I'd rather you ask early than struggle alone for three days.\nA: Appreciate that.\nB: That's what I'm here for."
+    },
+    {
+      "id": "EN_453",
+      "expression": "I'm game",
+      "meaning": "저 할게요, 저 찬성이에요. 제안에 흔쾌히 응하겠다는 표현.",
+      "level": "beginner",
+      "theme": "social",
+      "example": "A: We're doing a team hackathon this weekend — anyone want in?\nB: I'm game. Count me in.",
+      "dialogue": "A: We're considering switching to a four-day work week trial for Q3. Would you be up for it?\nB: I'm totally game. If anything, I think it'll make us more focused during the days we do work.\nA: That's the hypothesis we're testing.\nB: I'll be your strongest evidence."
+    },
+    {
+      "id": "EN_454",
+      "expression": "Running late",
+      "meaning": "늦을 것 같아요, 조금 지각할 것 같아요. 늦을 것 같을 때 미리 알릴 때.",
+      "level": "beginner",
+      "theme": "everyday_life",
+      "example": "Hey — running about ten minutes late. Please start without me.",
+      "dialogue": "A: Just wanted to let you know — I'm running late. Train delays. Probably fifteen minutes.\nB: No worries, I'll grab us a table and order some water.\nA: Thank you. Heading down now.\nB: See you soon."
+    },
+    {
+      "id": "EN_455",
+      "expression": "Wrap it up",
+      "meaning": "마무리해요, 끝내요. 발표, 회의, 작업 등을 마무리하자고 신호를 줄 때.",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "We're running five minutes over — let's wrap it up with the key action items.",
+      "dialogue": "A: We're at the thirty-minute mark and there are two more agenda items.\nB: Let's wrap up the current topic with a decision and move fast. What's the call on vendor A vs B?\nA: Vendor A, final answer. Agreed?\nAll: Agreed.\nB: Great. Next."
+    },
+    {
+      "id": "EN_456",
+      "expression": "Take it or leave it",
+      "meaning": "싫으면 말고, 이게 제 최선이에요. 더 이상 협상하지 않겠다는 최종 제안.",
+      "level": "intermediate",
+      "theme": "workplace_daily",
+      "example": "This is the final offer — take it or leave it. We've already gone below our floor on price.",
+      "dialogue": "A: We can do the full scope at the quoted price if you extend the delivery date by three weeks. Take it or leave it — that's the only version that works for us.\nB: I appreciate the directness. Give me an hour to check internally.\nA: Of course. The offer is open until end of day.\nB: I'll have an answer by 4."
+    },
+    {
+      "id": "EN_457",
+      "expression": "Pushing it",
+      "meaning": "무리하는 거 아닌가요, 한계를 넘는 것 같아요. 너무 무리한 요청이나 일정일 때.",
+      "level": "intermediate",
+      "theme": "workplace_daily",
+      "example": "A: Can you have the full analysis ready by 9am tomorrow?\nB: That's pushing it — I can have 80% done by then.",
+      "dialogue": "A: They want the entire product redesign delivered in two weeks.\nB: Two weeks for a full redesign? That's pushing it even for a small product. What happens if we ask for four?\nA: They said the market window is tight.\nB: Then we need to agree on what 'redesign' actually means. V1 essentials or everything?"
+    },
+    {
+      "id": "EN_458",
+      "expression": "What's the verdict?",
+      "meaning": "결론이 뭐예요? 최종 결정이 뭐예요? 논의나 검토 끝에 결론을 물을 때.",
+      "level": "intermediate",
+      "theme": "workplace_daily",
+      "example": "After the product review — what's the verdict? Are we shipping this quarter or not?",
+      "dialogue": "A: You tried both tools for two weeks. What's the verdict?\nB: Honestly, the second one wins on usability, but the first has better integration with our existing stack.\nA: So it comes down to short-term convenience vs. long-term fit.\nB: Exactly. My verdict: the second tool for now, with a plan to switch in a year when they've improved their API."
+    },
+    {
+      "id": "EN_459",
+      "expression": "Let's make it happen",
+      "meaning": "한번 해봅시다, 되게 만들어봐요. 결단과 실행 의지를 표현하는 표현.",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "It's ambitious, but the team has done harder things. Let's make it happen.",
+      "dialogue": "A: If we pull this off, it'll be the biggest launch in the company's history.\nB: Then let's make it happen. What's the single most important thing we need to nail in the first two weeks?\nA: Distribution. If we get distribution right, everything else follows.\nB: Then that's where we start. Tomorrow morning, distribution strategy — everyone in the room."
+    },
+    {
+      "id": "EN_460",
+      "expression": "You're overthinking it",
+      "meaning": "너무 깊이 생각하는 거 아닌가요, 너무 복잡하게 생각해요. 과도한 분석이나 걱정에 빠진 사람에게.",
+      "level": "beginner",
+      "theme": "social",
+      "example": "You're overthinking the email — just say what you want to say clearly and send it.",
+      "dialogue": "A: I've rewritten this proposal six times and I'm still not sure it's right.\nB: You're overthinking it. I read the third version — it was already strong. At some point you have to trust the work.\nA: But what if they hate the pricing structure?\nB: Then they'll tell you and you'll adjust. Sending a good proposal late is worse than sending a great proposal now."
+    },
+    {
+      "id": "EN_461",
+      "expression": "Bottom line",
+      "meaning": "결론은요, 핵심은요. 긴 설명 끝에 핵심 요점을 정리할 때.",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "I know there are a lot of moving parts here, but bottom line: we need a decision by Friday.",
+      "dialogue": "A: There are a lot of factors to consider — the market timing, the competitor landscape, the budget cycle—\nB: Okay, bottom line: are we recommending we move forward or not?\nA: Bottom line — yes, but only if we can lock down the partnership in the next thirty days.\nB: That's the recommendation. Let's get it in writing."
+    },
+    {
+      "id": "EN_462",
+      "expression": "Out of the blue",
+      "meaning": "갑자기, 뜬금없이, 예상치 못하게. 아무런 예고 없이 갑자기 일어난 일을 설명할 때.",
+      "level": "intermediate",
+      "theme": "everyday_life",
+      "example": "Out of the blue, our biggest competitor announced they're entering our market next month.",
+      "dialogue": "A: You seem shaken — what happened?\nB: My old manager reached out completely out of the blue and offered me a senior role at his new company.\nA: That's not a bad thing to be shaken about.\nB: I know. I just wasn't expecting it at all. I was happy here.\nA: What are you going to do?\nB: Have the conversation and see."
+    },
+    {
+      "id": "EN_463",
+      "expression": "On second thought",
+      "meaning": "다시 생각해보니, 생각을 바꿔보니. 처음 생각에서 다른 결론으로 바꿀 때.",
+      "level": "intermediate",
+      "theme": "everyday_life",
+      "example": "On second thought, let's not send that email today — let's sleep on it and see if it still makes sense tomorrow.",
+      "dialogue": "A: I was going to approve the campaign as is, but on second thought, I think we should A/B test the headline first.\nB: What changed your mind?\nA: I looked at our last three campaigns and the headline was the variable that mattered most every time.\nB: Good catch. I'll set up the test."
+    },
+    {
+      "id": "EN_464",
+      "expression": "I take it that...",
+      "meaning": "~라는 거죠? ~라고 이해하면 되는 건가요? 상대방의 말을 자신의 언어로 확인할 때.",
+      "level": "intermediate",
+      "theme": "workplace_daily",
+      "example": "I take it that the meeting was moved because of the CEO's schedule, not because of any issue with our proposal?",
+      "dialogue": "A: We're going to need more time before we can commit.\nB: I take it that the internal approval process is the bottleneck, not the actual decision?\nA: That's right. The decision-maker is on board — it's paperwork.\nB: That's helpful context. How can we help from our end to speed things along?"
+    },
+    {
+      "id": "EN_465",
+      "expression": "Been better",
+      "meaning": "좋지는 않아요, 더 좋을 수도 있었는데. 솔직하게 '요즘 좀 힘들다'고 말할 때.",
+      "level": "beginner",
+      "theme": "social",
+      "example": "A: How are you doing?\nB: Been better, honestly — it's been a rough couple of weeks.",
+      "dialogue": "A: How's everything going with you?\nB: I'll be real with you — been better. The project is behind, the team is tired, and I'm not sure my manager understands the situation.\nA: That sounds exhausting. Do you want to talk through any of it?\nB: Actually, yes. I'd appreciate a sounding board if you have twenty minutes."
+    },
+    {
+      "id": "EN_466",
+      "expression": "We'll cross that bridge when we come to it",
+      "meaning": "그건 그때 가서 생각해요. 아직 오지 않은 문제를 미리 걱정하지 말자는 표현.",
+      "level": "intermediate",
+      "theme": "everyday_life",
+      "example": "A: What if the partnership falls through?\nB: We'll cross that bridge when we come to it. Right now, let's focus on making it work.",
+      "dialogue": "A: What's the contingency plan if we don't hit the growth target?\nB: We'll cross that bridge when we come to it — but it's not a bridge we're heading toward. The indicators for this quarter are all pointing positive.\nA: Fair. But should we at least have a plan B outlined?\nB: A light version — yes. I'll put a 'what if' slide in the deck just to cover it."
+    },
+    {
+      "id": "EN_467",
+      "expression": "It comes with the territory",
+      "meaning": "그건 당연히 따라오는 거예요, 어쩔 수 없이 함께 오는 것이에요.",
+      "level": "advanced",
+      "theme": "workplace_daily",
+      "example": "Dealing with ambiguity and constant change — that comes with the territory when you're in a startup.",
+      "dialogue": "A: I'm frustrated that I have to manage up so much. It takes so much energy.\nB: I hear you, but in this organization, managing up comes with the territory for anyone doing cross-functional work. The alternative is getting blindsided.\nA: I know. It's still exhausting.\nB: It gets easier when you build the relationships first, before you need them."
+    },
+    {
+      "id": "EN_468",
+      "expression": "I'm in the same boat",
+      "meaning": "저도 같은 처지예요, 저도 같은 상황이에요.",
+      "level": "beginner",
+      "theme": "social",
+      "example": "Don't feel alone on this — I'm in the same boat. We're all trying to figure out the new system.",
+      "dialogue": "A: I feel like I'm drowning in tasks and can't get ahead of anything.\nB: I'm in the same boat. My task list has been growing faster than I can complete it for three weeks.\nA: What are you doing about it?\nB: I had to accept that not everything is equally urgent. I picked my top three for the week and decided the rest could wait."
+    },
+    {
+      "id": "EN_469",
+      "expression": "On the same page",
+      "meaning": "같은 이해를 공유하고 있는, 서로 같은 내용을 알고 있는.",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "Before we go into the meeting, let's make sure we're on the same page about what we're asking for.",
+      "dialogue": "A: I just want to confirm we're on the same page before we start — we're presenting options today, not making a final recommendation. Agreed?\nB: Agreed. We gather their input today, synthesize it, and come back with a recommendation next week.\nA: Perfect. We're aligned.",
+      "dialogue_note": "on the same wavelength와 비슷하지만 'on the same page'는 특히 정보·이해·기대에 대한 일치를 강조함."
+    },
+    {
+      "id": "EN_470",
+      "expression": "Think outside the box",
+      "meaning": "틀에서 벗어나 생각하다, 창의적으로 접근하다.",
+      "level": "beginner",
+      "theme": "workplace_daily",
+      "example": "We've tried all the conventional approaches — it's time to really think outside the box.",
+      "dialogue": "A: We keep trying the same three solutions and none of them are working.\nB: We need to think outside the box. What would we do if budget, time, and technology were not constraints? Start there, then reverse-engineer to what's possible.\nA: That's actually a useful reframe.\nB: The best ideas usually come from removing the constraints first and adding them back selectively."
+    },
+    {
+      "id": "EN_471",
+      "expression": "Kick the can down the road",
+      "meaning": "문제를 미루다, 결정을 뒤로 미루다. 지금 해결해야 할 것을 나중으로 떠넘기는 것.",
+      "level": "advanced",
+      "theme": "workplace_daily",
+      "example": "We keep kicking this decision down the road, but the longer we wait, the more expensive it becomes.",
+      "dialogue": "A: The committee decided not to decide on the architecture question yet. They want more data.\nB: That's just kicking the can down the road. Every month we wait, the refactoring cost goes up. At some point we need to make a call with imperfect information.\nA: I agree. How do we push for a decision?\nB: We put a deadline with a cost estimate on inaction. That usually motivates people."
+    },
+    {
+      "id": "EN_472",
+      "expression": "Let's table that",
+      "meaning": "그 주제는 나중으로 미뤄요. (미국식 영어에서 'table'은 보류하다·나중으로 미루다는 의미)",
+      "level": "intermediate",
+      "theme": "workplace_daily",
+      "example": "That's an important point but it's not on today's agenda — let's table that for next week.",
+      "dialogue": "A: While we're on this topic, can we also address the pricing strategy?\nB: Let's table that for now — we only have fifteen minutes and I want to close the current discussion properly. Can we put it as item one for next week's agenda?\nA: Agreed.\nB: Good. Back to today's decision.",
+      "dialogue_note": "영국식 영어에서는 'table'이 반대로 '안건으로 올리다'는 의미이므로, 미국인과 영국인이 함께하는 회의에서는 혼란이 생길 수 있음."
+    },
+    {
+      "id": "EN_473",
+      "expression": "Give it the benefit of the doubt",
+      "meaning": "일단 믿어줘요, 긍정적으로 봐줘요. 확실하지 않을 때 상대방에게 호의적인 해석을 주는 것.",
+      "level": "intermediate",
+      "theme": "social",
+      "example": "He was abrupt in the email, but give him the benefit of the doubt — he was probably just under pressure.",
+      "dialogue": "A: The new vendor's first delivery was late and the quality was mediocre.\nB: I'd give them the benefit of the doubt for one more delivery — onboarding a new client always has friction. If it happens again, then we have a pattern.\nA: Fair. But I'm documenting everything.\nB: Smart. Evidence before escalation."
+    },
+    {
+      "id": "EN_474",
+      "expression": "Take it with a grain of salt",
+      "meaning": "액면 그대로 받아들이지 마세요, 반쯤만 믿어요. 정보의 신뢰성을 확인하라는 경고.",
+      "level": "intermediate",
+      "theme": "workplace_daily",
+      "example": "That report was written with a clear agenda — take the conclusions with a grain of salt.",
+      "dialogue": "A: The consultant's analysis says we need to triple headcount immediately.\nB: Take that with a grain of salt. Consultants have an incentive to make problems sound bigger than they are — it means more work for them.\nA: So you don't think the analysis is accurate?\nB: I think it's directionally correct but intentionally alarmist. Let's validate the numbers ourselves before we react."
+    },
+    {
+      "id": "EN_475",
+      "expression": "The ball is in your court",
+      "meaning": "이제 당신 차례예요, 결정은 당신에게 달려 있어요.",
+      "level": "intermediate",
+      "theme": "workplace_daily",
+      "example": "I've sent over the proposal with all the terms — the ball is in your court now.",
+      "dialogue": "A: We've done everything we can on our end. We've addressed every concern they raised.\nB: Then the ball is in their court. Give them until end of week and follow up once — not more.\nA: What if they go cold?\nB: Then you have your answer. Better to know sooner than to chase indefinitely."
+    }
+  ]
+}

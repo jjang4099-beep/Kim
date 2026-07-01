@@ -1,0 +1,363 @@
+{
+  "meta": {
+    "batch": 17,
+    "theme": "직장인 영어 비즈니스 용어 테마팩 + 핵심 표현 + 중국어",
+    "id_range": {
+      "english_theme_packs": "PACK_EN_033",
+      "english": "EN_476 ~ EN_495",
+      "chinese": "ZH_128 ~ ZH_137"
+    },
+    "created": "2026-07-01"
+  },
+  "english_theme_packs": [
+    {
+      "id": "PACK_EN_033",
+      "theme_key": "professional_email_english",
+      "theme_title": "영어 이메일을 품격 있게 만드는 표현 5가지",
+      "theme_title_en": "Elevate Your Professional Email English",
+      "level": "intermediate",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_033_01",
+          "order": 1,
+          "expression": "I wanted to follow up on...",
+          "meaning": "~에 대해 후속 연락을 드립니다. 답변이 없을 때 자연스럽게 다시 연락하는 표현.",
+          "nuance": "직접적인 '아직 답장 안 오셨네요'가 아니라, '내가 먼저 챙기는 것'처럼 들리게 하는 세련된 표현입니다. 'I wanted to'는 약간 망설이는 뉘앙스를 주어 상대방에게 압박감을 덜어줍니다. 'follow up on our last conversation / the proposal / my previous email'처럼 뒤에 구체적인 대상을 붙이세요.",
+          "dialogue": "Subject: Following up on the proposal\n\nHi Sarah,\n\nI wanted to follow up on the proposal I sent over last Thursday. I know you're likely busy, so no rush — I just wanted to make sure it didn't get buried in your inbox.\n\nPlease let me know if you have any questions or if there's anything I can clarify.\n\nBest,\nMinsu",
+          "example": "I wanted to follow up on our conversation from Tuesday — did you get a chance to review the contract terms with your legal team?",
+          "practice": "I wanted to follow up on the budget approval request submitted two weeks ago. Could you let me know the current status?"
+        },
+        {
+          "id": "PACK_EN_033_02",
+          "order": 2,
+          "expression": "Please find attached...",
+          "meaning": "첨부 파일을 확인해 주세요. 이메일에 파일을 첨부했을 때 알려주는 표준 표현.",
+          "nuance": "영어 비즈니스 이메일에서 거의 공식처럼 쓰이는 표현입니다. 'I've attached...' 또는 'Attached, please find...'로 바꿔 쓸 수도 있습니다. 중요한 것은 파일명이나 내용을 함께 명시해서 상대방이 무엇을 확인해야 하는지 명확히 하는 것입니다. 'Please find attached the revised proposal for your review.'처럼 목적을 함께 쓰면 더 세련된 인상을 줍니다.",
+          "dialogue": "Hi James,\n\nThank you for the meeting today. As discussed, please find attached:\n- The revised project timeline (v3)\n- The updated budget breakdown\n- Meeting notes from today's call\n\nPlease review and let me know if you'd like to schedule a follow-up call to go through any of the details.\n\nBest regards,\nJiyeon",
+          "example": "Please find attached the Q2 performance report. Let me know if you need any additional data or context.",
+          "practice": "Please find attached the signed NDA. Could you confirm receipt and countersign at your earliest convenience?"
+        },
+        {
+          "id": "PACK_EN_033_03",
+          "order": 3,
+          "expression": "Please don't hesitate to reach out",
+          "meaning": "언제든지 편하게 연락 주세요. 이메일 마무리에 상대방이 부담 없이 연락할 수 있다는 것을 전달.",
+          "nuance": "'Let me know if you have questions'보다 훨씬 따뜻하고 개방적인 표현입니다. 'hesitate'(망설이다)를 'don't'로 부정함으로써 '부담 갖지 말고 연락하라'는 진심 어린 초대가 됩니다. 이메일 마무리, 제안서 끝, 온보딩 안내 등 상대방이 질문을 가질 수 있는 모든 상황에서 씁니다.",
+          "dialogue": "Hi Team,\n\nThe new onboarding guide is now live on the internal portal. Please take a few minutes to read through it before your first week.\n\nIf anything is unclear or you have questions about the process, please don't hesitate to reach out — I'm here to help make your transition as smooth as possible.\n\nWelcome aboard,\nHR Team",
+          "example": "If you need any clarification on the scope of work, please don't hesitate to reach out — we want to make sure we're aligned before we start.",
+          "practice": "Please don't hesitate to reach out if the revised terms don't work for you. We have some flexibility and want to find a structure that works for both sides."
+        },
+        {
+          "id": "PACK_EN_033_04",
+          "order": 4,
+          "expression": "I look forward to hearing from you",
+          "meaning": "답변을 기다리겠습니다. 이메일 마무리에 상대방의 응답을 기대한다는 것을 격식 있게 전달.",
+          "nuance": "영어 비즈니스 이메일의 가장 클래식한 마무리 표현입니다. 'I look forward to your response'도 같은 의미입니다. 더 구체적으로 'I look forward to hearing from you by Friday'처럼 기한을 붙이거나, 'I look forward to our conversation on Thursday'처럼 다음 만남을 기대하는 표현으로도 씁니다. 'Waiting for your reply'처럼 들리지 않으면서 답을 기대한다는 것을 자연스럽게 전합니다.",
+          "dialogue": "Dear Mr. Chen,\n\nThank you for considering us for this project. I've sent over the full proposal and pricing structure as discussed.\n\nI look forward to hearing from you and hope we can move forward together.\n\nWarm regards,\nDoyoon",
+          "example": "Thank you for your time today — I look forward to hearing from you once you've had a chance to review the materials.",
+          "practice": "I look forward to hearing from you regarding the final decision. Please feel free to call me directly if you'd like to discuss any aspect of the offer."
+        },
+        {
+          "id": "PACK_EN_033_05",
+          "order": 5,
+          "expression": "As per our conversation / As discussed",
+          "meaning": "저희가 나눈 대화에서처럼 / 논의한 대로. 이전 대화나 회의 내용을 이메일에서 확인할 때.",
+          "nuance": "'As per our conversation'은 전화나 미팅에서 나눈 내용을 이메일로 공식화할 때 쓰는 표현입니다. 구두 합의를 서면으로 남기는 중요한 역할을 합니다. 법적·계약적 맥락에서는 특히 중요하며, '우리가 이렇게 이야기했고 나는 그것을 이행하고 있다'는 것을 기록으로 남길 수 있습니다. 다만 너무 방어적으로 들릴 수 있으니 'As discussed'처럼 가볍게 쓰는 것도 좋습니다.",
+          "dialogue": "Hi David,\n\nAs discussed in this morning's call, I'm sending over the updated scope of work with the changes we agreed on:\n- Timeline extended by two weeks\n- Phase 3 deliverables moved to Q4\n- Budget cap set at $45,000\n\nPlease review and confirm your approval so we can update the contract accordingly.\n\nThanks,\nEunbi",
+          "example": "As per our conversation last week, I've drafted the amended terms and highlighted the key changes in yellow.",
+          "practice": "As discussed in Tuesday's meeting, I'm attaching the revised roadmap. Please sign off when you get a chance so we can share it with the wider team."
+        }
+      ],
+      "master_paragraph": {
+        "text": "Hi Sarah,\n\nI wanted to follow up on the proposal from last week. Please find attached the updated version incorporating your feedback from our call. As discussed, we've extended the timeline by two weeks and adjusted the pricing structure accordingly.\n\nIf there's anything unclear or you'd like to walk through the changes together, please don't hesitate to reach out — happy to jump on a call whenever works for you.\n\nI look forward to hearing from you.\n\nBest regards,\nMinsu",
+        "translation": "안녕하세요 Sarah,\n\n지난 주 제안서에 대한 후속 연락드립니다. 저희 통화에서 주신 피드백을 반영한 업데이트 버전을 첨부해 드립니다. 논의한 대로 일정을 2주 연장하고 그에 맞게 가격 구조도 조정했습니다.\n\n불명확한 부분이 있거나 변경 사항을 함께 살펴보고 싶으시면 언제든 편하게 연락 주세요 — 편한 시간에 통화할 수 있습니다.\n\n답변 기다리겠습니다.\n\n감사합니다,\n민수",
+        "highlights": ["I wanted to follow up on", "Please find attached", "As discussed", "please don't hesitate to reach out", "I look forward to hearing from you"]
+      }
+    }
+  ],
+  "english_expressions": [
+    {
+      "id": "EN_476",
+      "expression": "Loop [someone] in",
+      "meaning": "누군가를 정보 공유 고리에 포함시키다, CC에 넣다, 상황을 공유하다.",
+      "level": "intermediate",
+      "theme": "workplace_jargon",
+      "example": "Can you loop in the design team on this thread? They'll need to see the feedback before they start revisions.",
+      "dialogue": "A: The client just approved the new direction.\nB: Great — let's loop in the dev team now. They've been waiting on this decision before they can start sprint planning.\nA: Done. I've added them to the email chain.\nB: Perfect. Let's get a kickoff call scheduled."
+    },
+    {
+      "id": "EN_477",
+      "expression": "Flag (something)",
+      "meaning": "주의를 환기시키다, 중요한 것을 짚어두다. 문제나 중요한 사항을 표시해서 알려주는 것.",
+      "level": "intermediate",
+      "theme": "workplace_jargon",
+      "example": "I just wanted to flag that the deadline on the contract is actually next Friday, not the 30th.",
+      "dialogue": "A: Before we wrap up — I want to flag something we haven't addressed.\nB: Go ahead.\nA: The vendor contract renews automatically in 30 days. If we want to renegotiate, we need to send notice this week.\nB: Good catch. Let's get legal on that today."
+    },
+    {
+      "id": "EN_478",
+      "expression": "Ping me",
+      "meaning": "메시지 주세요, 연락해요. 메신저나 메시지로 가볍게 연락하라는 표현.",
+      "level": "beginner",
+      "theme": "workplace_jargon",
+      "example": "When you're ready to go over the numbers, just ping me and I'll come to your desk.",
+      "dialogue": "A: I don't want to interrupt your flow — when's a good time to review this together?\nB: I'm heads-down until around 3. Ping me on Slack after that and we can walk through it.\nA: Will do.\nB: And if it's urgent before then, just ping me — I check messages between tasks."
+    },
+    {
+      "id": "EN_479",
+      "expression": "Action items",
+      "meaning": "실행 항목들, 회의 후 각자 해야 할 일 목록. 회의 마무리에 항상 등장하는 표현.",
+      "level": "beginner",
+      "theme": "workplace_jargon",
+      "example": "Let's close with action items — who's doing what by when?",
+      "dialogue": "A: Okay, let's wrap up. What are the action items coming out of this?\nB: I'll send the revised brief by Wednesday. You're reviewing the budget by Thursday. And we both need to be ready to present Friday.\nA: I'll add these to the project tracker.\nB: Good. Send me the link so I can update my progress."
+    },
+    {
+      "id": "EN_480",
+      "expression": "Sign off on (something)",
+      "meaning": "최종 승인하다, 공식적으로 확인하다.",
+      "level": "intermediate",
+      "theme": "workplace_jargon",
+      "example": "Can you sign off on the budget before I submit it? It just needs your approval.",
+      "dialogue": "A: The campaign brief is ready. We just need the director to sign off on it before we brief the creative team.\nB: I'll send it to her now. How long do you think she'll need?\nA: She's usually quick on these — probably by end of day.\nB: Good. I'll brief creative first thing tomorrow then."
+    },
+    {
+      "id": "EN_481",
+      "expression": "Check in (with someone)",
+      "meaning": "잠깐 확인하다, 안부 또는 진행상황을 물어보다.",
+      "level": "beginner",
+      "theme": "workplace_jargon",
+      "example": "I'll check in with the client on Friday to make sure they're happy with the progress.",
+      "dialogue": "A: Have you heard anything from the data team this week?\nB: Not yet — let me check in with them now. They were waiting on access permissions.\nA: Right. If the permissions aren't sorted, that's going to block the whole analysis.\nB: On it. I'll report back in twenty minutes."
+    },
+    {
+      "id": "EN_482",
+      "expression": "Deliverable",
+      "meaning": "산출물, 납품물. 프로젝트나 계약에서 완성해서 전달해야 하는 것.",
+      "level": "intermediate",
+      "theme": "workplace_jargon",
+      "example": "The key deliverables for this sprint are: the login flow, the dashboard, and the API documentation.",
+      "dialogue": "A: What are the deliverables for Phase 1?\nB: Three things: a competitive analysis, the user research summary, and a set of wireframes. All due by the 15th.\nA: And Phase 2?\nB: That's where the actual build starts. We can define those deliverables after Phase 1 is reviewed."
+    },
+    {
+      "id": "EN_483",
+      "expression": "Stakeholder",
+      "meaning": "이해관계자. 프로젝트나 결정에 영향을 받거나 영향을 주는 모든 사람.",
+      "level": "intermediate",
+      "theme": "workplace_jargon",
+      "example": "Before we finalize the roadmap, we need stakeholder alignment — especially from sales and legal.",
+      "dialogue": "A: Why is this decision taking so long?\nB: There are too many stakeholders involved and they all have slightly different priorities. Legal wants one thing, product wants another, and the CEO has a third view.\nA: Sounds like someone needs to make the call and move forward.\nB: That's exactly the conversation I'm trying to have."
+    },
+    {
+      "id": "EN_484",
+      "expression": "Sync up",
+      "meaning": "서로 상황을 맞추다, 짧게 만나거나 연락해서 같은 정보를 공유하다.",
+      "level": "beginner",
+      "theme": "workplace_jargon",
+      "example": "Let's sync up before the client call so we're aligned on the message.",
+      "dialogue": "A: Can we sync up before end of day? I want to make sure we're telling the same story to the board.\nB: Yes — 4pm work for you?\nA: Perfect. Fifteen minutes should be enough.\nB: Agreed. I'll send a quick agenda so we stay focused."
+    },
+    {
+      "id": "EN_485",
+      "expression": "Deep dive",
+      "meaning": "깊이 파고들다, 철저히 분석하다. 표면적 검토가 아닌 심층 분석.",
+      "level": "intermediate",
+      "theme": "workplace_jargon",
+      "example": "We did a deep dive into the churn data and found that 60% of cancellations happen in the first 14 days.",
+      "dialogue": "A: Do you have time this week to do a deep dive on the conversion funnel?\nB: I can block Thursday afternoon for it. What are we specifically trying to answer?\nA: Why drop-off at checkout went from 18% to 34% last month.\nB: That's a big jump. I'll pull the session recordings and heatmaps before we meet."
+    },
+    {
+      "id": "EN_486",
+      "expression": "Buy-in",
+      "meaning": "동의, 지지, 승인. 특히 변화나 새 아이디어에 대해 관련자들의 동의를 얻는 것.",
+      "level": "intermediate",
+      "theme": "workplace_jargon",
+      "example": "We have a strong proposal but we haven't gotten buy-in from the ops team yet — and they'll be the ones implementing it.",
+      "dialogue": "A: The strategy is solid, but why is it stalling?\nB: We didn't get buy-in early enough. We built the plan in isolation and now everyone affected has objections they feel weren't considered.\nA: Classic. So what now?\nB: We go back, involve the key people in the revision, and let them feel ownership over the final version. It takes longer but it actually gets implemented."
+    },
+    {
+      "id": "EN_487",
+      "expression": "Bottleneck",
+      "meaning": "병목 현상, 프로세스에서 흐름을 막는 지점.",
+      "level": "intermediate",
+      "theme": "workplace_jargon",
+      "example": "The approval process is the main bottleneck — everything waits for one person to sign off.",
+      "dialogue": "A: Why is the pipeline moving so slowly?\nB: The bottleneck is the QA step. We have five engineers shipping but only two QA reviewers, and they can't keep up.\nA: So the solution isn't to ship faster — it's to add QA capacity.\nB: Exactly. Or we automate the lower-risk checks and free up human QA for the complex stuff."
+    },
+    {
+      "id": "EN_488",
+      "expression": "Leverage (verb)",
+      "meaning": "활용하다, 이점을 극대화하다. 가진 자원이나 강점을 전략적으로 사용하다.",
+      "level": "intermediate",
+      "theme": "workplace_jargon",
+      "example": "We can leverage our existing customer base as early adopters for the new feature.",
+      "dialogue": "A: How do we compete with a company ten times our size?\nB: We leverage what they can't: speed and relationships. We can make a decision in a day that takes them a month. And we know our customers personally in a way they never will.\nA: So our size is actually an advantage in some ways.\nB: In the right markets, absolutely."
+    },
+    {
+      "id": "EN_489",
+      "expression": "Pivot",
+      "meaning": "방향 전환하다. 전략이나 제품 방향을 핵심을 유지하면서도 의미 있게 바꾸는 것.",
+      "level": "intermediate",
+      "theme": "workplace_jargon",
+      "example": "After six months of poor traction, we pivoted from B2C to B2B and saw immediate results.",
+      "dialogue": "A: The original plan isn't working. Customer acquisition cost is too high and retention is weak.\nB: So it's time to pivot. The question is whether we pivot the product, the market, or the business model.\nA: I think the product is right — it's the target customer that's wrong.\nB: Then let's test a different segment. Two weeks, a small experiment, see if the unit economics look different."
+    },
+    {
+      "id": "EN_490",
+      "expression": "Cadence",
+      "meaning": "주기, 리듬. 업무나 커뮤니케이션이 이루어지는 정기적인 패턴이나 주기.",
+      "level": "advanced",
+      "theme": "workplace_jargon",
+      "example": "We run a weekly cadence with the client — every Monday morning, 30-minute status call.",
+      "dialogue": "A: The team feels out of sync. Everyone's working hard but nobody knows what anyone else is doing.\nB: You need a better cadence. A short daily standup and a weekly retrospective — just those two meetings creates enough shared context.\nA: Won't that be more meetings?\nB: Less, actually. Right now you're having five ad hoc catch-up calls a day because there's no structured rhythm."
+    },
+    {
+      "id": "EN_491",
+      "expression": "Runway",
+      "meaning": "자금 소진까지의 남은 기간. 현재 번 돈 없이 얼마나 더 버틸 수 있는지를 나타내는 개념.",
+      "level": "advanced",
+      "theme": "workplace_jargon",
+      "example": "With our current burn rate, we have about eight months of runway — enough to hit the metrics we need for the next round.",
+      "dialogue": "A: How does the fundraising look?\nB: Slower than we hoped. We have six months of runway left which means we need a term sheet in the next two months to close comfortably.\nA: What's the contingency if it doesn't close in time?\nB: Cut burn rate by 40%. We've modeled it out — painful but survivable for another four months."
+    },
+    {
+      "id": "EN_492",
+      "expression": "Onboard / Offboard",
+      "meaning": "온보딩: 새 직원이나 사용자를 적응시키다. 오프보딩: 퇴사 또는 해지 처리를 하다.",
+      "level": "intermediate",
+      "theme": "workplace_jargon",
+      "example": "We need a better onboarding flow — new users are churning before they experience the core value of the product.",
+      "dialogue": "A: The new hire starts Monday. Is everything ready?\nB: Almost. IT needs to finish setting up her accounts, and someone from the product team needs to walk her through our internal tools. The first week onboarding schedule is done though.\nA: Good. The faster we onboard her properly, the faster she's contributing.\nB: That's the whole point of investing in onboarding."
+    },
+    {
+      "id": "EN_493",
+      "expression": "Pain point",
+      "meaning": "고통 포인트, 사용자나 고객이 겪는 불편함이나 문제.",
+      "level": "intermediate",
+      "theme": "workplace_jargon",
+      "example": "The biggest pain point for our users is the time it takes to get data out of the system — sometimes over 20 minutes.",
+      "dialogue": "A: What's the first thing we should build?\nB: Whatever addresses the biggest pain point. Not the most interesting feature — the most painful problem that nobody else is solving well.\nA: How do we figure out what that is?\nB: Talk to 20 customers this week. Don't ask what they want. Ask what costs them the most time or money. The answer is almost always there."
+    },
+    {
+      "id": "EN_494",
+      "expression": "North Star (metric)",
+      "meaning": "북극성 지표. 회사나 팀이 가장 중요하게 추적하는 단 하나의 핵심 성과 지표.",
+      "level": "advanced",
+      "theme": "workplace_jargon",
+      "example": "Our North Star metric is weekly active users who've completed at least three learning sessions — that's what predicts long-term retention.",
+      "dialogue": "A: We track 40 different metrics. Nobody agrees on what matters.\nB: You need a North Star — one number that, if it goes up, means the business is genuinely getting healthier. Everything else feeds into it or is a warning signal.\nA: How do you choose the right one?\nB: It should reflect real value delivered to the customer, not just business activity. Revenue can be gamed. Real engagement usually can't."
+    },
+    {
+      "id": "EN_495",
+      "expression": "Scope creep",
+      "meaning": "범위 확장, 처음 합의된 범위를 넘어 요구사항이 조금씩 늘어나는 현상.",
+      "level": "advanced",
+      "theme": "workplace_jargon",
+      "example": "We're three weeks in and the project is already twice the original scope — classic scope creep.",
+      "dialogue": "A: The client keeps adding small requests. Each one seems reasonable on its own, but collectively they've added 40% more work.\nB: That's scope creep in action. The solution is to document every addition separately, price it, and make the client consciously decide to add it — rather than treating it as 'just a small change.'\nA: How do I bring this up without damaging the relationship?\nB: You're not protecting yourself — you're protecting the timeline they care about. Frame it that way."
+    }
+  ],
+  "chinese_expressions": [
+    {
+      "id": "ZH_128",
+      "expression": "千里之行，始于足下",
+      "pinyin": "qiān lǐ zhī xíng, shǐ yú zú xià",
+      "meaning": "천 리 길도 한 걸음부터 시작된다. 크고 먼 목표도 지금 눈앞의 한 걸음에서 시작된다.",
+      "level": "beginner",
+      "theme": "시작·실행",
+      "example": "千里之行，始于足下。与其等待完美的时机，不如今天就迈出第一步。(천 리 길도 한 걸음부터다. 완벽한 타이밍을 기다리기보다 오늘 첫 발을 내딛는 것이 낫다.)",
+      "dialogue": "A: 这个目标太大了，我不知道从哪里开始。\nB: 千里之行，始于足下。你今天能做的最小一步是什么？\nA: 可能是列一个清单。\nB: 那就从清单开始。大事情都是从小动作积累起来的。"
+    },
+    {
+      "id": "ZH_129",
+      "expression": "不耻下问",
+      "pinyin": "bù chǐ xià wèn",
+      "meaning": "아랫사람에게 묻는 것을 부끄러워하지 않는다. 지위나 나이에 상관없이 배우려는 자세를 유지하는 것.",
+      "level": "intermediate",
+      "theme": "학습·겸손",
+      "example": "真正优秀的领导者不耻下问，愿意向任何能给他启发的人学习，不管对方职级高低。(진정 뛰어난 리더는 아랫사람에게 묻는 것을 부끄러워하지 않으며, 직급에 상관없이 자신에게 영감을 줄 수 있는 사람에게서 배우려 한다.)",
+      "dialogue": "A: 新来的实习生对这个工具比我熟悉得多，但我不好意思问他。\nB: 不耻下问才是真正的成长。你不去问，只会一直落后。他会因为你问他而更受鼓励，不是更小看你。\nA: 你说得有道理。\nB: 最聪明的人通常都是问问题最多的人。"
+    },
+    {
+      "id": "ZH_130",
+      "expression": "防微杜渐",
+      "pinyin": "fáng wēi dù jiàn",
+      "meaning": "작은 싹을 막아 점점 커지지 않게 한다. 문제는 작을 때 잡아야 한다는 예방의 지혜.",
+      "level": "advanced",
+      "theme": "위기관리·예방",
+      "example": "代码里的小问题要防微杜渐，今天一个小漏洞，明天可能变成系统崩溃。(코드의 작은 문제는 싹을 자르는 것이 중요하다. 오늘의 작은 버그가 내일 시스템 장애가 될 수 있다.)",
+      "dialogue": "A: 这个问题不大，先忽略吧，等以后有时间再修。\nB: 防微杜渐。现在修一个小时，以后可能要修一个月。技术债就是这么积累的。\nA: 好，我现在就处理掉。\nB: 对。小问题当大问题处理，大问题才不会来。"
+    },
+    {
+      "id": "ZH_131",
+      "expression": "知足常乐",
+      "pinyin": "zhī zú cháng lè",
+      "meaning": "족한 줄을 알면 항상 즐겁다. 현재에 만족할 줄 아는 것이 지속적인 행복의 비결이다.",
+      "level": "beginner",
+      "theme": "평정심·만족",
+      "example": "在不断追求更多的同时，也要知足常乐——能享受现在的成果，才不会让成功变成负担。(더 많은 것을 추구하면서도 현재에 만족할 줄 알아야 한다. 지금의 성과를 즐길 수 있어야 성공이 짐이 되지 않는다.)",
+      "dialogue": "A: 我总觉得不够好，不够成功，一直很焦虑。\nB: 知足常乐。你停下来想过自己三年前在哪里，现在到了哪里吗？\nA: 其实进步了很多。\nB: 对。追求更好是好的，但不能忘了感谢已经拥有的。两件事可以同时存在。"
+    },
+    {
+      "id": "ZH_132",
+      "expression": "人无远虑，必有近忧",
+      "pinyin": "rén wú yuǎn lǜ, bì yǒu jìn yōu",
+      "meaning": "먼 것에 대한 생각이 없으면 반드시 가까운 근심이 생긴다. 장기적 사고 없이는 단기적 문제가 끊이지 않는다.",
+      "level": "intermediate",
+      "theme": "전략·장기사고",
+      "example": "人无远虑，必有近忧。一家公司如果只看这个季度的数字，迟早会面临长期竞争力不足的问题。(장기적 생각 없이는 반드시 가까운 근심이 생긴다. 이번 분기 숫자만 보는 회사는 결국 장기 경쟁력 부족 문제에 직면하게 된다.)",
+      "dialogue": "A: 我们现在业绩很好，暂时不需要考虑那么远。\nB: 人无远虑，必有近忧。现在好的时候，正是投资未来的最好时机。等出问题了再想，就晚了。\nA: 你是说现在要开始做什么准备？\nB: 至少要开始想：三年后这个市场会是什么样子，我们今天做的事情还有价值吗？"
+    },
+    {
+      "id": "ZH_133",
+      "expression": "众志成城",
+      "pinyin": "zhòng zhì chéng chéng",
+      "meaning": "여러 사람의 의지가 모이면 성을 이룬다. 모두가 하나로 뭉치면 어떤 어려움도 극복할 수 있다.",
+      "level": "intermediate",
+      "theme": "팀워크·단결",
+      "example": "这个项目能在三天内完成，是因为团队众志成城，每个人都贡献了自己最大的力量。(이 프로젝트가 3일 안에 완성된 것은 팀이 한마음이 되어, 모두가 최대한 기여했기 때문이다.)",
+      "dialogue": "A: 这个期限对我们来说太紧了，一个人根本完不成。\nB: 所以不能一个人做。众志成城——把任务拆分，每人负责一块，保持沟通，三天是可以的。\nA: 如果大家都愿意的话。\nB: 这就是你的工作了——让大家都觉得这件事值得全力以赴。"
+    },
+    {
+      "id": "ZH_134",
+      "expression": "闻过则喜",
+      "pinyin": "wén guò zé xǐ",
+      "meaning": "잘못을 들으면 기뻐한다. 자신의 실수나 약점을 지적받으면 오히려 기뻐하며 고칠 기회로 삼는 자세.",
+      "level": "advanced",
+      "theme": "성장·피드백",
+      "example": "真正想进步的人闻过则喜——批评是免费的成长机会，比任何培训都直接。(진정으로 성장하고 싶은 사람은 잘못을 들으면 기뻐한다. 비판은 무료 성장 기회로, 어떤 교육보다 직접적이다.)",
+      "dialogue": "A: 他听到批评就防御性很强，很难给他反馈。\nB: 那是因为他把批评当成对自我的否定，而不是对行为的分析。闻过则喜的人把批评当礼物——他知道盲点就是成长空间。\nA: 怎么帮他改变这种心态？\nB: 先从小的低风险反馈开始，让他体验到反馈带来的改善，慢慢建立信任。"
+    },
+    {
+      "id": "ZH_135",
+      "expression": "不破不立",
+      "pinyin": "bù pò bù lì",
+      "meaning": "파괴하지 않으면 세울 수 없다. 기존의 것을 깨야만 새로운 것을 세울 수 있다.",
+      "level": "intermediate",
+      "theme": "혁신·변화",
+      "example": "真正的创新往往意味着不破不立——你必须愿意放弃已有的成功，才能抓住下一个机会。(진정한 혁신은 종종 기존을 깨야 한다는 것을 의미한다. 이미 가진 성공을 기꺼이 포기해야 다음 기회를 잡을 수 있다.)",
+      "dialogue": "A: 旧系统还能用，为什么要重新做？\nB: 不破不立。旧系统能用，但它的架构限制了我们能做的每一件新事。继续在上面修修补补，只是把问题推迟，不是解决问题。\nA: 重做的成本很高。\nB: 不重做的成本更高——只是分散在未来三年里，看不出来而已。"
+    },
+    {
+      "id": "ZH_136",
+      "expression": "水到渠成",
+      "pinyin": "shuǐ dào qú chéng",
+      "meaning": "물이 흐르면 도랑이 저절로 생긴다. 조건이 무르익으면 일은 자연히 이루어진다.",
+      "level": "intermediate",
+      "theme": "과정·인내",
+      "example": "只要基本功扎实，机会来临时就能水到渠成，不需要强求。(기본기가 탄탄하면 기회가 왔을 때 자연스럽게 이루어진다. 억지로 서두를 필요가 없다.)",
+      "dialogue": "A: 我很担心什么时候才能升职，是不是应该主动争取？\nB: 把精力放在做好工作上，水到渠成。当然，适时让人知道你的贡献也很重要，但最根本的还是实力。\nA: 就是说先把根基打好？\nB: 对。根基稳，机会来了自然接得住。"
+    },
+    {
+      "id": "ZH_137",
+      "expression": "一鸣惊人",
+      "pinyin": "yī míng jīng rén",
+      "meaning": "한 번 울어 사람을 놀라게 한다. 오랫동안 숨어 있다가 갑자기 두각을 나타내는 것.",
+      "level": "intermediate",
+      "theme": "잠재력·역전",
+      "example": "他在公司默默工作了两年，直到那个关键项目，才一鸣惊人，所有人都刮目相看。(그는 회사에서 2년간 묵묵히 일하다가, 그 핵심 프로젝트에서 한 번에 모두를 놀라게 했다.)",
+      "dialogue": "A: 他平时很安静，不太起眼，我有点担心他的表现。\nB: 有时候一鸣惊人的人，正是平时在积累的人。安静不一定是没有东西，可能是在等一个合适的舞台。\nA: 那我应该给他更多展示的机会。\nB: 对。给他一个项目，让他主导，你可能会很惊喜。"
+    }
+  ]
+}

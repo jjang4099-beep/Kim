@@ -1,0 +1,363 @@
+{
+  "meta": {
+    "batch": 18,
+    "theme": "협상·설득 영어 테마팩 + 실전 협업 표현 + 중국어",
+    "id_range": {
+      "english_theme_packs": "PACK_EN_034",
+      "english": "EN_496 ~ EN_515",
+      "chinese": "ZH_138 ~ ZH_147"
+    },
+    "created": "2026-07-01"
+  },
+  "english_theme_packs": [
+    {
+      "id": "PACK_EN_034",
+      "theme_key": "negotiation_persuasion",
+      "theme_title": "협상과 설득에서 쓰는 영어 — 밀고 당기는 표현 5가지",
+      "theme_title_en": "The Art of Negotiation: 5 Expressions for Pushing and Pulling",
+      "level": "intermediate",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_034_01",
+          "order": 1,
+          "expression": "I can work with that.",
+          "meaning": "그렇게 하면 저는 가능합니다. 상대의 제안을 수용할 의향이 있다는 것을 표현.",
+          "nuance": "'I agree'보다 훨씬 협상적이고 유연한 표현입니다. '완전히 마음에 든다'가 아니라 '일단 그걸로 진행할 수 있다'는 뉘앙스입니다. 협상에서 상대가 제안을 수정했을 때 수용 신호를 보내면서도 자신이 양보했다는 것을 자연스럽게 전달합니다. 반대로 'That's going to be tough to work with'라고 하면 수용하기 어렵다는 의사를 부드럽게 표현할 수 있습니다.",
+          "dialogue": "A: What if we extend the deadline by a week and reduce the deliverables in Phase 1?\nB: I can work with that. The week extension is what we really needed — let me confirm the scope change with my team and we'll finalize by Thursday.\nA: Perfect. That gives us time to get everyone aligned.\nB: Agreed. I'll send a summary of what we discussed so there's no confusion later.",
+          "example": "A: We can offer 15% instead of 20%.\nB: I can work with that, as long as the payment terms stay at Net 30.",
+          "practice": "I can work with the revised timeline, but I'll need the additional resources we discussed to make it happen."
+        },
+        {
+          "id": "PACK_EN_034_02",
+          "order": 2,
+          "expression": "Let's find a middle ground.",
+          "meaning": "중간 지점을 찾읍시다. 양쪽 모두에게 수용 가능한 타협점을 찾자는 제안.",
+          "nuance": "협상이 교착 상태에 빠졌을 때 대화를 재개하는 가장 세련된 표현입니다. '내가 양보할 테니 너도 양보해'를 직접적으로 말하지 않고, '우리 둘 다 받아들일 수 있는 지점을 함께 찾아보자'는 협력적 프레임을 만듭니다. 'Could we find a middle ground on this?'처럼 질문 형태로 쓰면 더 부드럽습니다.",
+          "dialogue": "A: We're stuck. You need 6 months and we can only commit to 3.\nB: Let's find a middle ground — what if we do a 4-month pilot with an option to extend? You get a genuine test period, and we're not locked into 6 months without seeing results.\nA: A pilot with clear success metrics?\nB: Exactly. If the numbers look good at 4 months, extending is an easy decision for both sides.",
+          "example": "There's a gap between what you're asking for and what we can offer. Let's find a middle ground that respects both constraints.",
+          "practice": "I don't think either of us is willing to move fully to the other side. Let's find a middle ground — what's the one thing each of us absolutely can't give up?"
+        },
+        {
+          "id": "PACK_EN_034_03",
+          "order": 3,
+          "expression": "That's a deal-breaker for me.",
+          "meaning": "그건 저로서는 받아들일 수 없습니다. 협상을 깰 수 있는 조건이라는 것을 명확히 전달.",
+          "nuance": "Deal-breaker는 협상 자체를 중단시킬 수 있는 핵심 조건이나 요구사항입니다. 강한 표현이지만, 협상에서 자신의 한계를 명확히 하는 것은 필수입니다. 불명확하게 '좀 어려울 것 같아요'라고 하면 협상이 계속 끌리지만, 'That's a deal-breaker'는 이 조건이 없으면 거래가 없다는 것을 상대방이 알게 합니다. 반드시 그것을 대체할 수 있는 대안도 함께 제시하면 대화가 끊기지 않습니다.",
+          "dialogue": "A: We'd need full IP ownership transferred upon delivery.\nB: That's a deal-breaker for me. We retain IP ownership on all custom work — it's non-negotiable across all our contracts.\nA: Even with a higher fee?\nB: Even then. But we can offer an exclusive license for your market, which gives you effective ownership rights without the IP transfer. Would that address what you're actually trying to protect?",
+          "example": "Reducing the support period from 12 months to 3 is a deal-breaker for me — our clients need that assurance.",
+          "practice": "I want to make this work, but removing the warranty clause entirely is a deal-breaker for me. Can we find a version of this that addresses your concerns without eliminating it completely?"
+        },
+        {
+          "id": "PACK_EN_034_04",
+          "order": 4,
+          "expression": "What if we...?",
+          "meaning": "~하면 어떨까요? 대안을 제시하거나 새로운 가능성을 탐색할 때 쓰는 열린 제안.",
+          "nuance": "'What if we...?'는 협상에서 가장 강력한 문장 구조 중 하나입니다. 직접적인 요구가 아니라 가능성을 탐색하는 프레임이기 때문에 상대방이 방어적으로 반응하지 않습니다. 'We should do X'라고 하면 상대방은 동의/거부 중에 선택해야 하지만, 'What if we tried X?'라고 하면 함께 아이디어를 검토하는 모드가 됩니다. 창의적 해결책을 제시하거나 교착 상태를 깨는 데 매우 효과적입니다.",
+          "dialogue": "A: We can't do the full project by Q3.\nB: What if we broke it into two phases? Phase 1 covers the core functionality by Q3, and Phase 2 handles the advanced features in Q4. You'd have something to show stakeholders earlier, and we'd have more realistic timelines.\nA: That could work. What would Phase 1 look like exactly?\nB: Let me sketch that out this week — I think we can get 70% of the value in the first phase.",
+          "example": "What if we started with a smaller pilot program? That way both sides can test the partnership before committing to the full scope.",
+          "practice": "What if we structured the payment as milestone-based rather than upfront? That would ease our cash flow concern while keeping you protected."
+        },
+        {
+          "id": "PACK_EN_034_05",
+          "order": 5,
+          "expression": "Help me understand...",
+          "meaning": "이해할 수 있도록 도와주세요. 상대방의 입장이나 요구를 더 깊이 파악하고 싶을 때.",
+          "nuance": "'Why do you want that?'는 공격적으로 들릴 수 있지만, 'Help me understand...'는 진심으로 이해하려는 자세를 보여줍니다. 협상에서 상대방이 무엇을 요구하는지(position)보다 왜 그것을 원하는지(interest)를 파악하는 것이 핵심입니다. 'Help me understand the concern behind this requirement'처럼 쓰면 진짜 문제를 찾아내 창의적 해결책을 낼 수 있습니다.",
+          "dialogue": "A: We need to include a penalty clause for any delays.\nB: Help me understand the concern behind that — is this about past experiences with vendors, or is there a downstream commitment on your end that makes timing critical?\nA: We have a product launch in November that depends on this deliverable.\nB: That context helps enormously. If we build a milestone tracker with early warning alerts, would that address the underlying concern? The penalty clause is a last resort — what you actually need is visibility.",
+          "example": "Before I respond to that, help me understand — is the main driver here cost, or is it something else?",
+          "practice": "Help me understand what's most important to you in this contract — if I know your priorities, I can find a way to meet them while staying within our constraints."
+        }
+      ],
+      "master_paragraph": {
+        "text": "A: We've been going back and forth on this for a while. Help me understand — what's the absolute non-negotiable for you?\nB: Honestly? The timeline. Everything else I can work with.\nA: That's a deal-breaker on our end too — we can't rush the security review. What if we found a middle ground? We hit the core launch date but defer the advanced features to Phase 2.\nB: I can work with that. Let's define what goes into Phase 2 and make sure we're on the same page before we finalize.",
+        "translation": "A: 우리가 한동안 왔다 갔다 했네요. 이해할 수 있도록 도와주세요 — 당신에게 절대 양보할 수 없는 게 뭔가요?\nB: 솔직히? 일정이요. 나머지는 조율 가능해요.\nA: 저희 쪽에서도 마찬가지예요 — 보안 검토를 서두를 수는 없거든요. 중간 지점을 찾아보는 게 어떨까요? 핵심 출시일은 맞추되 고급 기능은 Phase 2로 미루는 거요.\nB: 그렇게 하면 가능해요. Phase 2에 뭐가 들어가는지 정의하고 마무리 전에 같은 이해를 가지도록 해봅시다.",
+        "highlights": ["Help me understand", "I can work with", "That's a deal-breaker", "What if we", "middle ground", "on the same page"]
+      }
+    }
+  ],
+  "english_expressions": [
+    {
+      "id": "EN_496",
+      "expression": "I can work with that",
+      "meaning": "그렇게 하면 가능합니다. 상대의 제안을 받아들일 수 있다는 유연한 수용 신호.",
+      "level": "intermediate",
+      "theme": "negotiation",
+      "example": "A: We can do 15% off instead of 20%. B: I can work with that — let's finalize the contract.",
+      "dialogue": "A: What if we moved the deadline to the 25th?\nB: I can work with that. I'll adjust the sprint plan this afternoon.\nA: Great. Thanks for being flexible.\nB: It's the right call — rushing it wasn't going to help either of us."
+    },
+    {
+      "id": "EN_497",
+      "expression": "That's a deal-breaker",
+      "meaning": "그건 수용 불가입니다. 협상을 중단시킬 수 있는 절대 조건.",
+      "level": "intermediate",
+      "theme": "negotiation",
+      "example": "Removing the warranty entirely is a deal-breaker for me. Let's find another way.",
+      "dialogue": "A: We'd need you to sign a non-compete for 5 years.\nB: That's a deal-breaker. Three years is the furthest I can go, and only within this specific industry.\nA: Let me check with legal and come back to you.\nB: Happy to wait — but that's a firm line for me."
+    },
+    {
+      "id": "EN_498",
+      "expression": "Let's find a middle ground",
+      "meaning": "중간 지점을 찾읍시다. 양쪽 모두 받아들일 수 있는 타협안을 함께 찾자는 제안.",
+      "level": "beginner",
+      "theme": "negotiation",
+      "example": "We're far apart on price. Let's find a middle ground before we walk away from the table.",
+      "dialogue": "A: I need 8 weeks. You're offering 4.\nB: Let's find a middle ground — what if we split the project in two and deliver the critical path in 5 weeks?\nA: I could live with that if the quality doesn't suffer.\nB: It won't. The 4-week pressure was the problem — 5 is achievable."
+    },
+    {
+      "id": "EN_499",
+      "expression": "I'm flexible on that",
+      "meaning": "그 부분은 유연하게 할 수 있어요. 특정 조건에 대해 협상 여지가 있다는 신호.",
+      "level": "beginner",
+      "theme": "negotiation",
+      "example": "The start date I'm flexible on — it's the scope that can't change.",
+      "dialogue": "A: We'd ideally like a 60-day payment term.\nB: I'm flexible on the exact number of days, though 30 is our standard. What does 45 look like for your side?\nA: 45 works. We just needed some breathing room.\nB: Done. Let's write that in."
+    },
+    {
+      "id": "EN_500",
+      "expression": "What's your bottom line?",
+      "meaning": "최종 조건이 뭔가요? 협상에서 상대방이 절대 양보할 수 없는 최저 조건을 물어보는 표현.",
+      "level": "intermediate",
+      "theme": "negotiation",
+      "example": "We've been going back and forth. What's your bottom line on price?",
+      "dialogue": "A: We keep dancing around this. What's your bottom line?\nB: Honestly? $80,000 and 90 days. Below that we can't make the numbers work.\nA: Okay. That's close enough. Let's move forward at $82,000 and 90 days.\nB: We have a deal."
+    },
+    {
+      "id": "EN_501",
+      "expression": "I'll need to run this by my team",
+      "meaning": "팀에 먼저 확인해봐야 해요. 즉시 결정하기 어려울 때 시간을 버는 표현.",
+      "level": "beginner",
+      "theme": "negotiation",
+      "example": "That's an interesting proposal — I'll need to run this by my team before I can commit.",
+      "dialogue": "A: Can you give us an answer by end of day?\nB: I'll need to run this by my team first. The scope change is significant enough that I can't sign off alone.\nA: Understood. Tomorrow morning work?\nB: Absolutely. I'll have something for you by 9am."
+    },
+    {
+      "id": "EN_502",
+      "expression": "We're not that far apart",
+      "meaning": "우리가 그렇게 큰 차이는 아니에요. 협상이 교착 상태처럼 보여도 실제론 합의가 가능하다는 낙관적 신호.",
+      "level": "intermediate",
+      "theme": "negotiation",
+      "example": "Look — we're not that far apart. Ten thousand dollars isn't worth losing the deal over.",
+      "dialogue": "A: I don't think we can bridge this gap.\nB: Actually, we're not that far apart. You need security reviews, I need speed — both of those are solvable with parallel workstreams. The gap is smaller than it looks.\nA: You might be right. Walk me through what that would look like.\nB: Gladly."
+    },
+    {
+      "id": "EN_503",
+      "expression": "I hear you, but...",
+      "meaning": "이해는 합니다만... 상대방의 말을 인정하면서도 다른 관점을 제시할 때.",
+      "level": "beginner",
+      "theme": "negotiation",
+      "example": "I hear you, but the timeline you're proposing puts the whole project at risk.",
+      "dialogue": "A: We've invested too much to change direction now.\nB: I hear you, but sunk cost isn't a reason to continue on a path that isn't working. The question is: what's the best use of resources from here?\nA: That's a fair point. What do you recommend?\nB: Let's look at the data together before deciding."
+    },
+    {
+      "id": "EN_504",
+      "expression": "You drive a hard bargain",
+      "meaning": "협상을 정말 빡세게 하시네요. 상대방이 유리한 조건을 얻어냈을 때 인정하면서도 가볍게 표현.",
+      "level": "intermediate",
+      "theme": "negotiation",
+      "example": "Fine — I'll include the extra month of support. You drive a hard bargain.",
+      "dialogue": "A: And we'd need the on-site training included at no extra cost.\nB: You drive a hard bargain. Alright — I'll include two days of on-site training if we can lock in the contract by Friday.\nA: Deal. I'll have legal review it tonight.\nB: Perfect. Looking forward to working together."
+    },
+    {
+      "id": "EN_505",
+      "expression": "Let me get back to you on that",
+      "meaning": "확인 후 연락드리겠습니다. 즉답 대신 시간을 갖겠다는 표현.",
+      "level": "beginner",
+      "theme": "negotiation",
+      "example": "That's a new condition — let me get back to you on that by Wednesday.",
+      "dialogue": "A: Can you guarantee delivery by the 15th?\nB: Let me get back to you on that. I want to check with the production team before making a commitment I can't keep.\nA: Appreciate the honesty.\nB: I'd rather confirm than promise and disappoint. I'll message you by noon tomorrow."
+    },
+    {
+      "id": "EN_506",
+      "expression": "Kudos to [someone]",
+      "meaning": "~에게 칭찬을, 수고했어요. 공로를 인정하고 칭찬을 전하는 표현.",
+      "level": "beginner",
+      "theme": "appreciation",
+      "example": "Kudos to the design team — that presentation was stunning.",
+      "dialogue": "A: The client loved the pitch.\nB: Kudos to Jiyeon — she rewrote the entire deck the night before and it made all the difference.\nA: I noticed. I'm going to mention her specifically in the debrief.\nB: She'll appreciate that. It was a huge effort."
+    },
+    {
+      "id": "EN_507",
+      "expression": "You really came through",
+      "meaning": "정말 잘 해내줬어요. 어려운 상황에서 기대 이상으로 해결해준 사람에게.",
+      "level": "intermediate",
+      "theme": "appreciation",
+      "example": "The server was down at 2am and you fixed it in an hour. You really came through.",
+      "dialogue": "A: I honestly wasn't sure we'd make the deadline.\nB: You really came through when it counted. Staying until midnight to finish the integration — that's not nothing.\nA: The team pulled together. It wasn't just me.\nB: Take the credit. You organized it."
+    },
+    {
+      "id": "EN_508",
+      "expression": "That means a lot to me",
+      "meaning": "그 말이 정말 의미 있어요. 칭찬이나 인정을 받았을 때 진심으로 감사를 전하는 표현.",
+      "level": "beginner",
+      "theme": "appreciation",
+      "example": "Hearing that from you — honestly, that means a lot to me.",
+      "dialogue": "A: I want you to know — the way you handled that client situation was genuinely impressive.\nB: That means a lot to me, especially coming from you. I wasn't sure I'd handled it right.\nA: You did. The client asked me specifically to thank you.\nB: I'm glad it worked out."
+    },
+    {
+      "id": "EN_509",
+      "expression": "I couldn't have done it without you",
+      "meaning": "당신 없었으면 못 했을 거예요. 팀원이나 동료의 기여를 진심으로 인정하는 표현.",
+      "level": "beginner",
+      "theme": "appreciation",
+      "example": "This launch wouldn't have happened. I couldn't have done it without you.",
+      "dialogue": "A: Congrats on the successful launch.\nB: Thank you — but honestly, I couldn't have done it without you. You caught the security issue in the last review. That would've been a disaster.\nA: That's what the review process is for.\nB: Still. It mattered."
+    },
+    {
+      "id": "EN_510",
+      "expression": "I want to give credit where it's due",
+      "meaning": "공은 공을 세운 사람에게 돌려야죠. 다른 사람의 기여를 명시적으로 인정하는 표현.",
+      "level": "intermediate",
+      "theme": "appreciation",
+      "example": "Before we wrap up — I want to give credit where it's due. This strategy was Hyunwoo's idea.",
+      "dialogue": "A: Great work on the proposal — the client was very impressed.\nB: I want to give credit where it's due — the key insight came from a conversation with Sujin. She noticed the pattern in the data first.\nA: I'll make sure that's reflected in the team update.\nB: She'll appreciate that."
+    },
+    {
+      "id": "EN_511",
+      "expression": "Count me in",
+      "meaning": "저도 끼워주세요, 저도 하겠습니다. 참여 의사를 밝히는 표현.",
+      "level": "beginner",
+      "theme": "collaboration",
+      "example": "You're doing a team lunch on Friday? Count me in.",
+      "dialogue": "A: We're putting together a small task force to fix the onboarding flow. Interested?\nB: Count me in. I've had three conversations this month where new users were confused about the same step.\nA: Perfect — you'll have the context we need.\nB: When do we kick off?"
+    },
+    {
+      "id": "EN_512",
+      "expression": "I'll take it from here",
+      "meaning": "여기서부터는 제가 할게요. 다음 단계를 내가 맡겠다는 표현.",
+      "level": "beginner",
+      "theme": "collaboration",
+      "example": "You've set it all up. I'll take it from here.",
+      "dialogue": "A: I've drafted the initial contract and flagged the three clauses I'm not sure about.\nB: Great work — I'll take it from here. I'll run it by legal and get you the final version by Thursday.\nA: That works. Let me know if you need any context on the flagged items.\nB: Will do."
+    },
+    {
+      "id": "EN_513",
+      "expression": "I'm rooting for you",
+      "meaning": "응원해요. 상대방이 잘 되길 바란다는 따뜻한 지지 표현.",
+      "level": "beginner",
+      "theme": "appreciation",
+      "example": "The interview is tomorrow? I'm rooting for you.",
+      "dialogue": "A: Final round interview is next week. I'm pretty nervous.\nB: I'm rooting for you — you've prepared more than anyone I know for this.\nA: That means a lot. Thank you.\nB: Let me know how it goes. Whatever happens, you should be proud of getting this far."
+    },
+    {
+      "id": "EN_514",
+      "expression": "You've got my full support",
+      "meaning": "전적으로 지지합니다. 상대방의 결정이나 방향에 완전히 동의하고 지원한다는 표현.",
+      "level": "intermediate",
+      "theme": "collaboration",
+      "example": "This is the right call. You've got my full support — whatever you need.",
+      "dialogue": "A: I've decided to push back on the client and tell them the original scope isn't realistic.\nB: You've got my full support on that. I'll back you up in the call if it gets difficult.\nA: That helps. I wasn't sure how leadership would react.\nB: The right decision is the right decision. We'll present it as a team."
+    },
+    {
+      "id": "EN_515",
+      "expression": "You've got yourself a deal",
+      "meaning": "거래 성사입니다. 협상이 완료됐을 때 합의를 공식화하는 표현.",
+      "level": "beginner",
+      "theme": "negotiation",
+      "example": "A: $95,000, Net 45, and two months of support. B: You've got yourself a deal.",
+      "dialogue": "A: One last thing — include the quarterly review call at no extra charge and we're done.\nB: Done. You've got yourself a deal.\nA: Perfect. I'll have the contract drawn up by Monday.\nB: We'll sign by Wednesday. Looking forward to working together."
+    }
+  ],
+  "chinese_expressions": [
+    {
+      "id": "ZH_138",
+      "expression": "精益求精",
+      "pinyin": "jīng yì qiú jīng",
+      "meaning": "이미 완성된 것을 더욱 완벽하게 만들려고 노력하다. 좋은 것에 만족하지 않고 더 나은 것을 추구하다.",
+      "level": "intermediate",
+      "theme": "완벽·성장",
+      "example": "好的产品不能停止在'足够好'，要精益求精，持续迭代。(좋은 제품은 '충분히 좋다'에서 멈추면 안 된다. 더 좋게, 계속 반복하라.)",
+      "dialogue": "A: 这个版本已经比之前好多了，可以发布了吧？\nB: 精益求精。我们再花一天改进这个加载速度——用户第一次打开的体验决定他们会不会留下来。\nA: 你说得对。明天发布更好。\nB: 对。速度够快了，再确认一次用户流程，就好了。"
+    },
+    {
+      "id": "ZH_139",
+      "expression": "厚积薄发",
+      "pinyin": "hòu jī bó fā",
+      "meaning": "두텁게 쌓고 얇게 발산하다. 오랜 시간 충분히 실력을 쌓은 후 적절한 때에 한꺼번에 폭발적으로 성과를 낸다.",
+      "level": "intermediate",
+      "theme": "준비·때",
+      "example": "他在幕后研究了三年，一出手就引发了行业轰动——这就是厚积薄发的力量。(그는 3년간 뒤에서 연구하다가 나타나자마자 업계를 뒤흔들었다. 이것이 두텁게 쌓고 발산하는 힘이다.)",
+      "dialogue": "A: 他进公司才一年，怎么就做出这么大的成果？\nB: 厚积薄发。他之前在别的公司做了八年，都是相关领域。来这里是他厚积之后的薄发。\nA: 所以我们招到了一个已经准备好了的人。\nB: 对。有时候最大的成长发生在你看不见的地方。"
+    },
+    {
+      "id": "ZH_140",
+      "expression": "以柔克刚",
+      "pinyin": "yǐ róu kè gāng",
+      "meaning": "부드러움으로 강함을 이긴다. 강한 것이 항상 이기는 것이 아니라 유연함이 때로 더 효과적이다.",
+      "level": "advanced",
+      "theme": "전략·유연성",
+      "example": "在那次激烈的谈判中，他没有硬碰硬，而是以柔克刚，用理解和让步赢得了对方的信任。(그 격렬한 협상에서 그는 정면 충돌 대신 부드러움으로 강함을 이겼고, 이해와 양보로 상대방의 신뢰를 얻었다.)",
+      "dialogue": "A: 对方一直强硬，我们是不是也要强硬回去？\nB: 未必。以柔克刚——他越强硬，你越温和，他反而会不知道怎么应对。试着先认可他的出发点，再提出你的条件。\nA: 这样真的有用吗？\nB: 在谈判里，让对方感到被理解，往往比让他感到被击败更管用。"
+    },
+    {
+      "id": "ZH_141",
+      "expression": "欲速则不达",
+      "pinyin": "yù sù zé bù dá",
+      "meaning": "너무 서두르면 오히려 목표에 이르지 못한다. 조급함이 일을 그르친다는 뜻.",
+      "level": "beginner",
+      "theme": "인내·과정",
+      "example": "欲速则不达。快速推出一个有严重缺陷的产品，比慢一个月发布更糟糕。(서두르면 달성하지 못한다. 심각한 결함이 있는 제품을 빨리 출시하는 것은 한 달 늦게 출시하는 것보다 더 나쁘다.)",
+      "dialogue": "A: 领导想要我们这周就把功能上线，不然来不及了。\nB: 欲速则不达。如果带着bug上线，修复的时间和代价是现在的三倍。我们跟领导解释清楚这个权衡。\nA: 怎么说？\nB: 不是'我们做不到'，而是'快上线的风险是这些，我们建议这样做更稳妥'。让他做决定，但要确保他知道代价。"
+    },
+    {
+      "id": "ZH_142",
+      "expression": "勤能补拙",
+      "pinyin": "qín néng bǔ zhuō",
+      "meaning": "부지런함이 재능의 부족함을 보완한다. 타고난 재주가 없어도 꾸준한 노력으로 극복할 수 있다.",
+      "level": "beginner",
+      "theme": "노력·성장",
+      "example": "勤能补拙。天赋是起点，但勤奋才是决定你能走多远的因素。(부지런함이 부족함을 보완한다. 재능은 출발점일 뿐, 부지런함이 얼마나 멀리 갈 수 있는지를 결정한다.)",
+      "dialogue": "A: 我觉得自己没有那种天赋，跟他们比差太远了。\nB: 勤能补拙。我认识很多所谓有天赋的人，但他们懒，结果什么都没做成。而那些你觉得'一般'的人，靠着每天比别人多工作两个小时，几年后完全不一样了。\nA: 你是说努力比天赋更重要？\nB: 我是说在大多数工作里，努力是你能控制的，天赋不是。所以专注在你能控制的事情上。"
+    },
+    {
+      "id": "ZH_143",
+      "expression": "凡事预则立，不预则废",
+      "pinyin": "fán shì yù zé lì, bù yù zé fèi",
+      "meaning": "무슨 일이든 미리 준비하면 이루어지고, 준비하지 않으면 망한다. 철저한 사전 준비의 중요성.",
+      "level": "advanced",
+      "theme": "준비·계획",
+      "example": "凡事预则立，不预则废。每次重要会议前，花30分钟准备比即兴发挥两小时更有效。(무슨 일이든 준비하면 성공하고 그렇지 않으면 망한다. 중요한 회의 전 30분 준비가 즉흥적인 2시간보다 낫다.)",
+      "dialogue": "A: 这次汇报我就直接讲吧，反正也熟悉了。\nB: 凡事预则立，不预则废。'熟悉'不代表'准备好了'。把你要说的每一点写下来，预设可能的问题，你才是真正准备好了。\nA: 好，我花一个小时整理一下。\nB: 值得的。汇报的那10分钟是你展示几个月工作的机会，别浪费它。"
+    },
+    {
+      "id": "ZH_144",
+      "expression": "三人行，必有我师",
+      "pinyin": "sān rén xíng, bì yǒu wǒ shī",
+      "meaning": "세 사람이 함께 가면 반드시 그중에 내 스승이 있다. 누구에게서든 배울 것이 있다.",
+      "level": "beginner",
+      "theme": "학습·겸손",
+      "example": "三人行，必有我师。即使是新来的实习生，也能看到你已经看不见的东西，因为他们还没有你的盲点。(세 사람이 가면 반드시 내 스승이 있다. 새로 온 인턴도 당신이 이미 볼 수 없는 것을 볼 수 있다. 아직 당신의 편견이 없기 때문이다.)",
+      "dialogue": "A: 这个新来的建议我们改变整个流程，他才来几天，哪里懂这些？\nB: 三人行，必有我师。正因为他刚来，他看到的才是我们已经习惯了的问题。听听他怎么说，你可以不采纳，但至少听一听。\nA: 说得有道理。\nB: 最好的想法经常来自最意想不到的地方。"
+    },
+    {
+      "id": "ZH_145",
+      "expression": "物以类聚，人以群分",
+      "pinyin": "wù yǐ lèi jù, rén yǐ qún fēn",
+      "meaning": "사물은 같은 종류끼리 모이고, 사람은 무리로 나뉜다. 끼리끼리 모인다 (유유상종).",
+      "level": "intermediate",
+      "theme": "관계·네트워크",
+      "example": "物以类聚，人以群分。你周围的人决定了你的思维边界——选择你的圈子时要有意识。(유유상종. 주변 사람들이 당신의 사고 경계를 결정한다. 어울리는 사람을 의식적으로 선택하라.)",
+      "dialogue": "A: 为什么那个团队总是有创新的想法，我们却总是在原地踏步？\nB: 物以类聚，人以群分。看看他们团队里都有什么背景的人——他们刻意招募了有不同思维方式的人。我们的团队太同质化了。\nA: 那我们是不是要引入一些不一样的声音？\nB: 是的。多样化不只是政策要求，它直接影响我们能想到什么。"
+    },
+    {
+      "id": "ZH_146",
+      "expression": "天下无难事，只怕有心人",
+      "pinyin": "tiān xià wú nán shì, zhǐ pà yǒu xīn rén",
+      "meaning": "세상에 어려운 일은 없다, 뜻있는 사람만 있으면 된다. 진심으로 의지가 있는 사람 앞에는 불가능한 일이 없다.",
+      "level": "intermediate",
+      "theme": "의지·실행",
+      "example": "天下无难事，只怕有心人。三个月前大家都说这个功能不可能，今天我们上线了。(세상에 어려운 일은 없다, 뜻이 있으면 된다. 3개월 전 모두가 불가능하다고 했던 기능을 오늘 우리가 출시했다.)",
+      "dialogue": "A: 这个市场太难进了，前辈都说没成功过的。\nB: 天下无难事，只怕有心人。'没成功过'说明的是过去的方法不对，不是这件事做不成。你有没有真正分析过为什么他们失败了？\nA: 没有深入分析过。\nB: 那从这里开始。失败的原因里藏着成功的路。"
+    },
+    {
+      "id": "ZH_147",
+      "expression": "知行合一",
+      "pinyin": "zhī xíng hé yī",
+      "meaning": "앎과 행동은 하나여야 한다. 아는 것은 반드시 실행을 수반해야 하며, 실행 없는 앎은 진정한 앎이 아니다.",
+      "level": "advanced",
+      "theme": "실행·지행일치",
+      "example": "知行合一——知道健康的重要性，但不运动、不睡觉，等于什么都不知道。(지행합일 — 건강의 중요성을 알지만 운동도 수면도 안 한다면 아무것도 모르는 것과 같다.)",
+      "dialogue": "A: 我看了很多关于时间管理的书，知道应该怎么做，但就是做不到。\nB: 这就是知行不合一。知道是起点，不是终点。你需要的不是更多知识，而是让知识落地的系统——从最小的一个行动开始，今天就做。\nA: 比如呢？\nB: 你说你该早起。那今晚几点睡？定好它。就这一件事，其他的明天再说。"
+    }
+  ]
+}

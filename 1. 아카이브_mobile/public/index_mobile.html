@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
-  <link rel="stylesheet" href="css/style_mobile.css?v=83"/>
+  <link rel="stylesheet" href="css/style_mobile.css?v=86"/>
   <link rel="stylesheet" href="css/exam.css?v=9"/>
 </head>
 <body>
@@ -151,14 +151,13 @@
   <div class="mob-view" id="viewFeed">
     <div class="mvw-section-hd" id="feedViewHd">
       <div class="mvw-section-hd-left">
-        <i class="ti ti-gift" style="font-size:20px;color:var(--accent)"></i>
         <div>
           <div class="mvw-section-hd-title">오늘의 지식 배달</div>
           <div class="mvw-section-hd-sub" id="feedViewDate">날짜 로딩 중…</div>
         </div>
       </div>
-      <button class="mvw-icon-btn" onclick="Mob._loadFeedView(true)" title="새로고침">
-        <i class="ti ti-refresh"></i>
+      <button class="mvw-text-btn" onclick="Mob._loadFeedView(true)" title="새로고침">
+        새로고침
       </button>
     </div>
     <!-- ★ 카테고리 필터 칩 배너 — JS가 동적으로 생성 -->
@@ -201,6 +200,8 @@
           <button class="mvw-mood-chip" data-mood="💪"
                   onclick="Mob.filterLifeMood('💪',this)">💪</button>
         </div>
+        <!-- 연도 필터 바 — 라이프 기록이 쌓이면 노출(JS가 items에서 연도 추출해 렌더) -->
+        <div class="mvw-life-year-bar" id="lifeYearBar"></div>
         <div id="lifeTimeline">
           <div class="mob-loading"><span class="mob-spin"></span> 라이프 기록 불러오는 중…</div>
         </div>
@@ -853,14 +854,14 @@
 <!-- 토스트 -->
 <div class="mob-toast" id="mobToast" hidden></div>
 
-<script src="js/core.js?v=8"></script>
-<script src="js/home.js?v=18"></script>
+<script src="js/core.js?v=10"></script>
+<script src="js/home.js?v=22"></script>
 <script src="js/feed.js?v=7"></script>
-<script src="js/library.js?v=8"></script>
-<script src="js/manage.js?v=5"></script>
+<script src="js/library.js?v=9"></script>
+<script src="js/manage.js?v=6"></script>
 <script src="js/add.js?v=5"></script>
 <script src="js/app_exam.js?v=10"></script>
-<script src="js/pwa.js?v=1"></script>
+<script src="js/pwa.js?v=2"></script>
 <script>
 (function() {
   var entrance = document.getElementById('appEntrance');

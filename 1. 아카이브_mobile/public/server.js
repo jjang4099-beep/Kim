@@ -3200,6 +3200,47 @@ app.get('/api/daily-feed/status', (req, res) => {
 });
 
 /**
+ * GET /api/user/status?mode=…
+ * 콜드스타트 감지 — 해당 모드에 저장된 아이템이 거의 없으면 신규 유저로 판단.
+ * (모드 격리: readDBByMode만 사용 — 반대 모드 데이터는 절대 카운트하지 않음)
+ */
+app.get('/api/user/status', (req, res) => {
+  const mode  = normalizeMode(req.query.mode);
+  const count = readDBByMode(mode).length;
+  res.json({ success: true, isNewUser: count < 3, itemCount: count });
+});
+
+/**
+ * GET /api/daily-feed/welcome?mode=…
+ * 신규 유저 전용 웰컴 피드 — "최근 내 아이템"에 의존하지 않는 DB-first 구독만 즉시 생성(AI 호출 없음, 비용 0).
+ * en_expr(SQLite 테마팩 JOIN) · liber_classic/insight_daily/idiom_daily(work_db) 4종 고정.
+ * 수험생(EXAM_PREP)은 이미 /api/exam/daily-knowledge가 매 홈 로드마다 오늘 것을 항상 서빙하므로
+ * 콜드스타트 공백이 없음 — 이 엔드포인트는 직장인(PROFESSIONAL) 전용.
+ */
+app.get('/api/daily-feed/welcome', async (req, res) => {
+  const mode = normalizeMode(req.query.mode);
+  if (mode !== MODE_PRO) return res.json({ success: true, feeds: [] });
+
+  try {
+    const user = getDefaultUser();
+    const subs = readJSON(SUBSCRIPTIONS_PATH, []);
+    const welcomeIds = ['en_expr', 'liber_classic', 'insight_daily', 'idiom_daily'];
+    const picked = welcomeIds.map(id => subs.find(s => s.id === id)).filter(Boolean);
+
+    const feeds = [];
+    for (const sub of picked) {
+      try {
+        const feed = await generateFeedForSubscription(sub, user);
+        if (feed) feeds.push(feed);
+      } catch (e) { console.warn(`[웰컴피드] ${sub.id} 실패:`, e.message); }
+    }
+    res.json({ success: true, feeds });
+  } catch (e) {
+    res.status(500).json({ success: false, error: '웰컴 피드 생성 실패' });
+  }
+});
+
+/**
  * GET /api/en-theme/today
  * 오늘 배달할 영어 테마팩 1개를 SQLite JOIN 단일 쿼리로 반환.
  * 런타임 AI 호출 없음 — 어드민 선행 생성 콘텐츠만 서빙.
@@ -3493,9 +3534,15 @@ app.get('/api/items', (req, res) => {
 /* ── 라이프 서재 — /:id 보다 먼저 등록해야 'life'가 id로 잡히지 않음 ── */
 app.get('/api/items/life', (req, res) => {
   try {
-    const { mood } = req.query;
+    const { mood, year } = req.query;
     let items = readDB().filter(i => i.contentType === 'life');
     if (mood) items = items.filter(i => i.life?.mood === mood);
+    if (year && year !== 'all') {
+      items = items.filter(i => {
+        const d = new Date(i.life?.date || i.createdAt);
+        return String(d.getFullYear()) === String(year);
+      });
+    }
     items.sort((a, b) => {
       const da  = new Date(a.life?.date || a.createdAt);
       const db2 = new Date(b.life?.date || b.createdAt);
@@ -5109,7 +5156,9 @@ app.delete('/api/categories/:id', (req, res) => {
 
 app.get('/api/summary/:type/:period', async (req, res) => {
   const { type, period } = req.params;
-  const cacheKey = `${type}:${period}`;
+  /* 모드 격리 — 캐시 키에 mode 포함해야 직장인/수험생 결산이 서로 안 섞임 */
+  const mode     = normalizeMode(req.query.mode);
+  const cacheKey = `${mode}:${type}:${period}`;
 
   /* 캐시 반환 */
   const cache = readSummaries();
@@ -5133,7 +5182,7 @@ app.get('/api/summary/:type/:period', async (req, res) => {
       to   = new Date(y, 11, 31, 23, 59, 59, 999);
     }
 
-    const allItems  = readDB().filter(i => {
+    const allItems  = readDBByMode(mode).filter(i => {
       const d = new Date(i.createdAt || i.date);
       return d >= from && d <= to;
     });
@@ -5197,12 +5246,32 @@ app.get('/api/summary/:type/:period', async (req, res) => {
 });
 
 app.post('/api/summary/generate', (req, res) => {
-  const { type, period } = req.body;
+  const { type, period, mode } = req.body;
   if (!type || !period) return res.status(400).json({ error: 'type, period 필요' });
   const cache = readSummaries();
-  delete cache[`${type}:${period}`];
+  delete cache[`${normalizeMode(mode)}:${type}:${period}`];
   writeSummaries(cache);
-  res.redirect(`/api/summary/${type}/${period}`);
+  res.redirect(`/api/summary/${type}/${period}?mode=${normalizeMode(mode)}`);
+});
+
+/**
+ * GET /api/country/:code
+ * 여행 아카이브(Feature 5) — data/country_db/<코드>.json을 그대로 서빙.
+ * 사전 생성(scripts/buildCountryDB.js) 콘텐츠만 서빙 — 런타임 AI 호출 없음.
+ * 모드 격리 무관(직장인/수험생 공용 기능 — items 테이블과 무관한 정적 참고자료).
+ */
+app.get('/api/country/:code', (req, res) => {
+  const code = String(req.params.code || '').toUpperCase().replace(/[^A-Z]/g, '');
+  if (!code) return res.status(400).json({ success: false, error: '국가 코드가 필요합니다.' });
+  const filePath = path.join(__dirname, 'data', 'country_db', `${code}.json`);
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).json({ success: false, error: '아직 준비되지 않은 국가예요.' });
+  }
+  try {
+    res.json({ success: true, ...JSON.parse(fs.readFileSync(filePath, 'utf8')) });
+  } catch {
+    res.status(500).json({ success: false, error: '국가 데이터를 불러오지 못했습니다.' });
+  }
 });
 
 // ══════════════════════════════════════════════════

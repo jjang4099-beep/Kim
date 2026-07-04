@@ -462,7 +462,7 @@ Object.assign(Mob, {
     const wrap = el('summaryContent');
     wrap.innerHTML = '<div class="mob-loading" style="padding:24px 0"><span class="mob-spin"></span></div>';
     try {
-      const data = await fetchJSON(`/api/summary/${type}/${period}`, {}, 60000);
+      const data = await fetchJSON(`/api/summary/${type}/${period}?mode=${this._modeEnum()}`, {}, 60000);
       this._renderSummary(data, type);
     } catch { wrap.innerHTML = '<div style="padding:16px;color:var(--text-2);font-size:13px">결산 불러오기 실패</div>'; }
   },
@@ -547,7 +547,7 @@ Object.assign(Mob, {
                  : type === 'half-year' ? `${y}-${half}`
                  :                        `${y}`;
     try {
-      await fetchJSON(`/api/summary/${type}/${period}?force=1`, {}, 60000);
+      await fetchJSON(`/api/summary/${type}/${period}?force=1&mode=${this._modeEnum()}`, {}, 60000);
       toast('결산 새로 생성됐어요', 'ok');
       this.loadSummary(type, null);
     } catch { toast('결산 생성 실패', 'err'); }

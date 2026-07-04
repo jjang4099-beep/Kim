@@ -24,6 +24,182 @@ Object.assign(Mob, {
     this._loadHomeItems();
     this.checkFeedBadge();
     this._initTheme();
+    this._checkNewUserOnboarding();
+  },
+
+  /**
+   * 콜드스타트 온보딩(Feature 3) — 직장인 모드 신규 유저 감지.
+   * 수험생 모드는 /api/exam/daily-knowledge가 매 홈 로드마다 오늘 것을 항상 서빙하므로
+   * 콜드스타트 공백이 없어 대상 아님.
+   */
+  async _checkNewUserOnboarding() {
+    if (this._modeEnum() !== 'PROFESSIONAL') return;
+    if (localStorage.getItem('onboarding-shown')) return;
+    try {
+      const status = await fetchJSON(`/api/user/status?mode=${this._modeEnum()}`, {}, 8000);
+      if (status?.isNewUser) {
+        localStorage.setItem('onboarding-shown', '1');
+        this._showOnboardingModal();
+      }
+    } catch {}
+  },
+
+  _showOnboardingModal() {
+    const modal = document.createElement('div');
+    modal.className = 'mob-onboarding-overlay';
+    modal.innerHTML = `
+      <div class="mob-onboarding-card">
+        <div class="mob-onboarding-icon">🏛️</div>
+        <h2 class="mob-onboarding-title">환영해요!</h2>
+        <p class="mob-onboarding-desc">
+          서재가 아직 비어있어요.<br>
+          먼저 오늘의 엄선된 지식을 보여드릴게요.
+        </p>
+        <button class="mob-onboarding-btn" onclick="Mob._startWelcomeFeed()">시작하기</button>
+      </div>`;
+    document.body.appendChild(modal);
+  },
+
+  /**
+   * 여행 아카이브(Feature 5) — IP 기반 국가 감지(권한 요청 없음).
+   * pwa.js 초기화 진입점에서 지연 호출됨. 하루 1회만, 한국(KR)이면 아무것도 안 함.
+   */
+  async _checkTravelCountry() {
+    try {
+      const geo = await fetchJSON('https://ipapi.co/json/', {}, 6000);
+      const code = geo?.country_code;
+      if (!code || code === 'KR') return;
+
+      const today = toLocalDateStr(new Date());
+      const lastShown = localStorage.getItem('travel-country-shown');
+      if (lastShown === `${code}-${today}`) return;   /* 하루 1회만 */
+      localStorage.setItem('travel-country-shown', `${code}-${today}`);
+
+      await this._showTravelBanner(code);
+    } catch (e) {
+      console.warn('[Travel] 국가 감지 실패:', e.message);
+    }
+  },
+
+  /* 국가 데이터가 준비돼 있으면(사전 생성 콘텐츠만) 홈 상단에 배너 표시 */
+  async _showTravelBanner(countryCode) {
+    try {
+      const data = await fetchJSON(`/api/country/${countryCode}`, {}, 8000);
+      state.currentTravelCountry = data;
+
+      document.getElementById('travelBanner')?.remove();
+      const banner = document.createElement('div');
+      banner.className = 'mob-travel-banner';
+      banner.id = 'travelBanner';
+      banner.innerHTML = `
+        <span class="mob-travel-banner-icon">✈️</span>
+        <span class="mob-travel-banner-text">${data.name} 도착을 환영해요</span>
+        <button onclick="Mob._openTravelArchive()">더 알아보기</button>
+        <button class="mob-travel-banner-close" onclick="this.parentElement.remove()">
+          <i class="ti ti-x"></i>
+        </button>`;
+      el('viewHome')?.prepend(banner);
+      toast(`✈️ ${data.name} 도착! 여행 정보를 확인해보세요`, 'ok', 5000);
+    } catch {
+      /* 아직 생성 안 된 국가는 조용히 스킵 — 에러 노출 안 함 */
+    }
+  },
+
+  _openTravelArchive() {
+    const data = state.currentTravelCountry;
+    if (!data) return;
+
+    document.getElementById('travelFullscreen')?.remove();
+    const overlay = document.createElement('div');
+    overlay.className = 'mob-travel-fullscreen';
+    overlay.id = 'travelFullscreen';
+    overlay.innerHTML = `
+      <div class="mob-travel-header">
+        <button onclick="document.getElementById('travelFullscreen').remove()"><i class="ti ti-x"></i></button>
+        <span>${data.name} 아카이브</span>
+      </div>
+      <div class="mob-travel-tabs">
+        <button class="active" onclick="Mob._travelTab('overview',this)">개요</button>
+        <button onclick="Mob._travelTab('history',this)">역사</button>
+        <button onclick="Mob._travelTab('culture',this)">문화</button>
+        <button onclick="Mob._travelTab('language',this)">언어</button>
+        <button onclick="Mob._travelTab('practical',this)">실용정보</button>
+      </div>
+      <div class="mob-travel-content" id="travelContent"></div>`;
+    document.body.appendChild(overlay);
+    this._travelTab('overview', overlay.querySelector('.mob-travel-tabs button'));
+  },
+
+  _travelTab(tab, btn) {
+    document.querySelectorAll('.mob-travel-tabs button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const data    = state.currentTravelCountry;
+    const content = el('travelContent');
+    if (!content || !data) return;
+
+    const langLabel = { shopping: '쇼핑', restaurant: '식당', transport: '이동', emergency: '긴급' };
+
+    const renderers = {
+      overview: () => `
+        <p class="mob-travel-summary">${data.overview.summary}</p>
+        <div class="mob-travel-info-grid">
+          <div>수도<b>${data.overview.capital}</b></div>
+          <div>언어<b>${data.overview.language}</b></div>
+          <div>통화<b>${data.overview.currency}</b></div>
+          <div>시차<b>${data.overview.timezoneDiff}</b></div>
+          <div>전압<b>${data.overview.voltage}</b></div>
+        </div>`,
+      history: () => data.history.map(h => `
+        <div class="mob-travel-history-item">
+          <span class="mob-travel-history-era">${h.era} · ${h.year}</span>
+          <p>${h.event}</p>
+        </div>`).join(''),
+      culture: () => `
+        <div class="mob-travel-culture-section">
+          <h4>에티켓</h4>
+          <ul>${data.culture.etiquette.map(e => `<li>${e}</li>`).join('')}</ul>
+          <h4>음식</h4>
+          <ul>${data.culture.food.map(f => `<li>${f}</li>`).join('')}</ul>
+          <h4>알아두면 좋은 것</h4>
+          <ul>${data.culture.funFacts.map(f => `<li>${f}</li>`).join('')}</ul>
+        </div>`,
+      language: () => Object.entries(data.language).map(([cat, phrases]) => `
+        <div class="mob-travel-lang-section">
+          <h4>${langLabel[cat] || cat}</h4>
+          ${phrases.map(p => `
+            <div class="mob-travel-phrase">
+              <span>${p.ko}</span>
+              <span class="mob-travel-phrase-local">${p.local} <i>(${p.pron})</i></span>
+            </div>`).join('')}
+        </div>`).join(''),
+      practical: () => `
+        <div class="mob-travel-practical">
+          <div class="mob-travel-practical-item"><b>긴급전화</b> ${data.practical.emergencyPhone}</div>
+          <div class="mob-travel-practical-item"><b>비자</b> ${data.practical.visa}</div>
+          <h4>실용 팁</h4>
+          <ul>${data.practical.tips.map(t => `<li>${t}</li>`).join('')}</ul>
+        </div>`,
+    };
+
+    content.innerHTML = renderers[tab] ? renderers[tab]() : '';
+  },
+
+  /* 웰컴 피드 — AI 호출 없는 DB-first 구독 4종만 즉시 렌더(cardHTML 재사용) */
+  async _startWelcomeFeed() {
+    document.querySelector('.mob-onboarding-overlay')?.remove();
+    this._welcomeFeedActive = true;
+    try {
+      const data  = await fetchJSON(`/api/daily-feed/welcome?mode=${this._modeEnum()}`, {}, 20000);
+      const feeds = data?.feeds || [];
+      if (!feeds.length) { toast('엄선 콘텐츠를 불러오지 못했어요', 'err'); return; }
+      state.feedItems = feeds;
+      this.switchView('feed', el('bnFeed'));
+      const content = el('mobFeedViewContent');
+      if (content) content.innerHTML = feeds.map(f => this.cardHTML(f)).join('');
+      toast('엄선된 지식으로 시작해보세요', 'ok');
+    } catch {
+      toast('불러오기 실패', 'err');
+    }
   },
 
   setMode(mode) {
@@ -252,7 +428,10 @@ Object.assign(Mob, {
     try {
       const status = await fetchJSON('/api/daily-feed/status', {}, 5000);
       if (!status?.allReady) return;   /* 미생성 상태면 스킵 — 배달탭에서 생성 */
+      if (this._welcomeFeedActive) return;
       const data = await fetchJSON(`/api/daily-feed?${modeParam}`, {}, 20000);
+      /* await 사이 온보딩 웰컴 피드가 먼저 표시됐을 수 있음 — 할당 직전 재확인(Feature 3 — 레이스 방지) */
+      if (this._welcomeFeedActive) return;
       state.feedItems = parseFeedsArray(data?.feeds ?? data?.items ?? data);
       this.renderFeed(state.items);
     } catch {}

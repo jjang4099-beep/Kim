@@ -463,18 +463,19 @@ Object.assign(Mob, {
     if (type === 'life') this._loadLifeLibrary();
   },
 
-  /* ── 라이프 서재 로드 ── */
-  async _loadLifeLibrary(mood) {
+  /* ── 라이프 서재 로드 (연도 필터 반영을 위해 항상 state.lifeFilter/lifeYear 기준) ── */
+  async _loadLifeLibrary() {
     const tl = el('lifeTimeline');
     if (!tl) return;
     tl.innerHTML = '<div class="mob-loading"><span class="mob-spin"></span></div>';
     try {
-      const filter = mood && mood !== 'all' ? mood : null;
-      const url    = filter
-        ? `/api/items/life?mood=${encodeURIComponent(filter)}`
-        : '/api/items/life';
-      const data   = await fetchJSON(url, {}, 20000);
+      const params = new URLSearchParams();
+      if (state.lifeFilter && state.lifeFilter !== 'all') params.set('mood', state.lifeFilter);
+      if (state.lifeYear   && state.lifeYear   !== 'all') params.set('year', state.lifeYear);
+      const qs   = params.toString();
+      const data = await fetchJSON(`/api/items/life${qs ? '?' + qs : ''}`, {}, 20000);
       state.lifeItems = data.items || [];
+      this._renderLifeYearBar(state.lifeItems);
       this._renderLifeTimeline(state.lifeItems);
     } catch {
       tl.innerHTML = '<div style="padding:16px;color:var(--text-2);font-size:13px">불러오기 실패</div>';
@@ -485,7 +486,39 @@ Object.assign(Mob, {
     state.lifeFilter = mood;
     document.querySelectorAll('.mvw-mood-chip').forEach(c => c.classList.remove('active'));
     if (btn) btn.classList.add('active');
-    this._loadLifeLibrary(mood === 'all' ? null : mood);
+    this._loadLifeLibrary();
+  },
+
+  /* 연도 필터 바 — 현재 로드된 아이템에서 존재하는 연도만 추출해 칩으로 렌더 */
+  _renderLifeYearBar(items) {
+    const bar = el('lifeYearBar');
+    if (!bar) return;
+    if (!state.lifeYear) state.lifeYear = 'all';
+
+    const years = [...new Set((items || []).map(i => {
+      const d = new Date(i.life?.date || i.createdAt);
+      return d.getFullYear();
+    }).filter(y => !isNaN(y)))].sort((a, b) => b - a);
+
+    /* 연도가 1개 이하면 필터 무의미 — 바 자체를 숨김 */
+    if (years.length <= 1 && state.lifeYear === 'all') {
+      bar.innerHTML = '';
+      bar.hidden = true;
+      return;
+    }
+    bar.hidden = false;
+    bar.innerHTML = ['all', ...years].map(y => `
+      <button class="mvw-life-year-chip${String(state.lifeYear) === String(y) ? ' active' : ''}"
+              onclick="Mob._filterLifeYear('${y}',this)">
+        ${y === 'all' ? '전체' : y + '년'}
+      </button>`).join('');
+  },
+
+  _filterLifeYear(year, btn) {
+    state.lifeYear = String(year);
+    document.querySelectorAll('.mvw-life-year-chip').forEach(c => c.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    this._loadLifeLibrary();
   },
 
   _renderLifeTimeline(items) {
@@ -553,13 +586,106 @@ Object.assign(Mob, {
     tl.innerHTML = html;
   },
 
-  /* 라이프 상세 — 현재는 토스트로 대체 (추후 모달) */
+  /* 라이프 상세 팝업 — 기존 libDetailModal(지식 상세와 공유) 재활용 */
   openLifeDetail(id) {
     const item = state.lifeItems.find(i => i.id === id);
     if (!item) return;
     const life = item.life || {};
-    toast(`${life.mood || ''} ${item.text?.slice(0, 30) || '라이프 기록'}`, '', 3000);
+
+    const badge = el('libDetailBadge');
+    if (badge) {
+      badge.textContent = 'LIFE';
+      badge.className   = 'mob-modal-badge arch-badge arch-life';
+    }
+
+    const body = el('libDetailBody');
+    if (body) {
+      body.innerHTML = this._buildLifeDetailBody(item, life);
+      body.scrollTop = 0;
+    }
+    const modal = el('libDetailModal');
+    if (modal) modal.hidden = false;
+
+    if ((life.photos || []).length > 1) this._initLifeSliderSwipe();
   },
 
+  _buildLifeDetailBody(item, life) {
+    const photos    = life.photos || [];
+    const hasPhotos = photos.length > 0;
+    const dateStr   = fmtFull(life.date || item.createdAt);
+    const privacyMap = { private: '나만 보기', friends: '친구 공개', group: '지식방 공개' };
+
+    return `
+      ${hasPhotos ? `
+      <div class="mob-life-detail-photos">
+        <div class="mob-life-photo-slider" id="lifePhotoSlider">
+          ${photos.map((url, i) => `
+            <div class="mob-life-slide${i === 0 ? ' active' : ''}">
+              <img src="${url}" alt="" loading="lazy"/>
+            </div>`).join('')}
+        </div>
+        ${photos.length > 1 ? `
+        <div class="mob-life-photo-dots">
+          ${photos.map((_, i) =>
+            `<span class="mob-life-dot${i === 0 ? ' active' : ''}" onclick="Mob._goLifeSlide(${i})"></span>`
+          ).join('')}
+        </div>` : ''}
+      </div>` : ''}
+
+      <div class="mob-life-detail-meta">
+        ${life.mood ? `<span class="mob-life-detail-mood">${life.mood}</span>` : ''}
+        <div class="mob-life-detail-date"><i class="ti ti-calendar-event"></i> ${dateStr}</div>
+        ${life.location ? `<div class="mob-life-detail-location"><i class="ti ti-map-pin"></i> ${life.location}</div>` : ''}
+        ${life.weather ? `<div class="mob-life-detail-location">${life.weather}</div>` : ''}
+      </div>
+
+      ${item.text ? `<div class="mob-life-detail-text">${item.text}</div>` : ''}
+
+      <div class="mob-life-detail-privacy">
+        <i class="ti ti-lock"></i> ${privacyMap[life.privacy || 'private']}
+      </div>
+
+      <div class="mob-life-detail-actions">
+        <button class="mob-life-action-btn delete" onclick="Mob._deleteLifeItem('${item.id}')">
+          <i class="ti ti-trash"></i> 삭제
+        </button>
+      </div>`;
+  },
+
+  _goLifeSlide(idx) {
+    document.querySelectorAll('#lifePhotoSlider .mob-life-slide').forEach((s, i) => s.classList.toggle('active', i === idx));
+    document.querySelectorAll('.mob-life-photo-dots .mob-life-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+    this._lifeCurrentSlide = idx;
+  },
+
+  _initLifeSliderSwipe() {
+    const slider = el('lifePhotoSlider');
+    if (!slider) return;
+    const total = slider.querySelectorAll('.mob-life-slide').length;
+    let startX = 0;
+    this._lifeCurrentSlide = 0;
+
+    slider.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    slider.addEventListener('touchend', e => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) < 50) return;
+      let cur = this._lifeCurrentSlide || 0;
+      if (diff > 0 && cur < total - 1) cur++;
+      if (diff < 0 && cur > 0) cur--;
+      this._goLifeSlide(cur);
+    }, { passive: true });
+  },
+
+  /* 라이프 기록 삭제 — 범용 DELETE /api/items/:id 재사용(전용 API 불필요) */
+  async _deleteLifeItem(id) {
+    if (!confirm('이 기록을 삭제할까요?')) return;
+    try {
+      await fetchJSON(`/api/items/${id}`, { method: 'DELETE' });
+      this.closeDetailModal();
+      state.lifeItems = state.lifeItems.filter(i => i.id !== id);
+      this._renderLifeTimeline(state.lifeItems);
+      toast('삭제됐어요', 'ok');
+    } catch { toast('삭제 실패', 'err'); }
+  },
 
 });

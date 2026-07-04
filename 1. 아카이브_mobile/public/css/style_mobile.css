@@ -700,6 +700,14 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   color: var(--text-2); font-size: 18px; transition: background .15s;
 }
 .mvw-icon-btn:active { background: var(--bg); }
+/* 헤더 액션 — 아이콘 대신 텍스트(장식용 아이콘 제거 기조 유지) */
+.mvw-text-btn {
+  padding: 7px 12px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--surface);
+  font-size: 12.5px; font-weight: 600; color: var(--text-2);
+  white-space: nowrap; transition: background .15s;
+}
+.mvw-text-btn:active { background: var(--bg); }
 .mvw-content { padding: 10px 12px calc(env(safe-area-inset-bottom) + 8px); }
 
 /* ══════════════════════════════════════════════════════════
@@ -5413,6 +5421,7 @@ html[data-theme="light"] .mob-section-hd > span:first-child {
 .arch-badge.arch-mkt { background: #FDF2E2; color: #92400E; }   /* Market   — 토파즈 앰버 */
 .arch-badge.arch-yt  { background: #F6E2E1; color: #9B1C1C; }   /* YouTube  — 테라코타 */
 .arch-badge.arch-other { background: #EBE7DD; color: #4A4034; } /* 기타     — 파피루스 잉크 */
+.arch-badge.arch-life  { background: #FDE8E4; color: #B54A34; } /* Life     — 코랄더스트 */
 
 /* 다크 테마 — 음각 그림자 제거 + 살짝 투명 파스텔 */
 html[data-theme="dark"] .arch-badge { text-shadow: none; }
@@ -5423,6 +5432,7 @@ html[data-theme="dark"] .arch-badge.arch-idm { background: rgba(90,170,130,.18);
 html[data-theme="dark"] .arch-badge.arch-mkt { background: rgba(210,160,80,.18);  color: #E5C58C; }
 html[data-theme="dark"] .arch-badge.arch-yt  { background: rgba(220,90,80,.18);   color: #ECA9A4; }
 html[data-theme="dark"] .arch-badge.arch-other { background: rgba(200,190,170,.14); color: #CFC6B4; }
+html[data-theme="dark"] .arch-badge.arch-life  { background: rgba(220,110,80,.18);  color: #ECB09F; }
 
 /* 라이브러리 카드 뱃지를 음각 뱃지로 승격 */
 .kmc-badge.arch-badge { background-image: none; }
@@ -5601,6 +5611,135 @@ html[data-theme="dark"] .mob-insight-zone-label { color: var(--mob-gold); }
   color      : var(--text-1);
   word-break : keep-all;
 }
+
+/* ── 여행 아카이브 (Feature 5) ── */
+.mob-travel-banner {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--mob-border, var(--border));
+  border-left: 3px solid var(--mob-gold);
+  color: var(--text-1);
+  padding: 12px 14px; border-radius: 12px;
+  margin: 10px 14px 4px; font-size: 13px;
+}
+.mob-travel-banner-icon { font-size: 18px; flex-shrink: 0; }
+.mob-travel-banner-text { flex: 1; font-weight: 700; color: var(--title-ink); }
+.mob-travel-banner button {
+  background: none; border: 1px solid var(--mob-gold); color: var(--mob-gold);
+  border-radius: 8px; padding: 6px 10px; font-size: 12px; font-weight: 600; cursor: pointer;
+}
+.mob-travel-banner-close { border: none !important; padding: 4px 6px !important; color: var(--text-3) !important; }
+
+.mob-travel-fullscreen {
+  position: fixed; inset: 0; z-index: 400;
+  background: var(--bg); overflow-y: auto;
+}
+.mob-travel-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 16px; border-bottom: 1px solid var(--border);
+  font-size: 16px; font-weight: 700; color: var(--title-ink);
+  position: sticky; top: 0; background: var(--bg); z-index: 1;
+}
+.mob-travel-header button { background: none; border: none; font-size: 20px; color: var(--text-2); }
+.mob-travel-tabs {
+  display: flex; gap: 4px; padding: 10px 14px; overflow-x: auto;
+  scrollbar-width: none;
+}
+.mob-travel-tabs::-webkit-scrollbar { display: none; }
+.mob-travel-tabs button {
+  flex-shrink: 0; padding: 8px 14px; border-radius: 20px;
+  border: 1px solid var(--border); background: var(--surface);
+  font-size: 13px; font-weight: 600; color: var(--text-2); cursor: pointer;
+}
+.mob-travel-tabs button.active { background: var(--title-ink); color: var(--bg); border-color: var(--title-ink); }
+.mob-travel-content { padding: 16px; }
+.mob-travel-summary { font-size: 14px; line-height: 1.7; color: var(--text-1); margin-bottom: 16px; }
+.mob-travel-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mob-travel-info-grid div { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; font-size: 12px; color: var(--text-2); }
+.mob-travel-info-grid b { display: block; font-size: 14px; color: var(--title-ink); margin-top: 2px; }
+.mob-travel-history-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
+.mob-travel-history-era { font-size: 12px; font-weight: 700; color: var(--accent); }
+.mob-travel-culture-section h4, .mob-travel-lang-section h4 { font-size: 13px; margin: 16px 0 8px; color: var(--title-ink); }
+.mob-travel-culture-section ul { padding-left: 18px; font-size: 13px; line-height: 1.8; color: var(--text-1); }
+.mob-travel-phrase { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.mob-travel-phrase-local i { color: var(--text-3); font-size: 11px; }
+.mob-travel-practical-item { padding: 8px 0; font-size: 13px; color: var(--text-1); }
+
+/* ── 콜드스타트 온보딩 (Feature 3) ── */
+.mob-onboarding-overlay {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(3,7,18,.72);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.mob-onboarding-card {
+  background: var(--surface); border-radius: 20px;
+  padding: 32px 24px; max-width: 320px; text-align: center;
+  border: 1px solid var(--border);
+}
+.mob-onboarding-icon { font-size: 48px; margin-bottom: 16px; }
+.mob-onboarding-title { font-size: 20px; font-weight: 800; color: var(--title-ink); margin-bottom: 10px; }
+.mob-onboarding-desc { font-size: 14px; line-height: 1.7; color: var(--text-2); margin-bottom: 24px; }
+.mob-onboarding-btn {
+  width: 100%; padding: 14px; border-radius: 12px;
+  background: var(--title-ink); color: var(--bg);
+  font-size: 15px; font-weight: 700; border: none; cursor: pointer;
+}
+
+/* ── 라이프 상세 팝업 (Feature 1) ── */
+.mob-life-detail-photos {
+  position: relative; width: calc(100% + 40px);
+  margin: -20px -20px 20px;
+  aspect-ratio: 1/1; overflow: hidden;
+  background: var(--bg);
+}
+.mob-life-photo-slider { display: flex; width: 100%; height: 100%; }
+.mob-life-slide { min-width: 100%; height: 100%; display: none; }
+.mob-life-slide.active { display: block; }
+.mob-life-slide img { width: 100%; height: 100%; object-fit: cover; }
+.mob-life-photo-dots {
+  position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 6px;
+}
+.mob-life-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.5); cursor: pointer; }
+.mob-life-dot.active { background: #fff; }
+.mob-life-detail-meta {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 4px 0 16px; border-bottom: 1px solid var(--border);
+}
+.mob-life-detail-mood { font-size: 32px; line-height: 1.2; }
+.mob-life-detail-date { font-size: 13px; font-weight: 600; color: var(--title-ink); display: flex; align-items: center; gap: 5px; }
+.mob-life-detail-location { font-size: 12.5px; color: var(--text-2); display: flex; align-items: center; gap: 5px; }
+.mob-life-detail-text {
+  font-size: 15px; line-height: 1.75; color: var(--text-1);
+  padding: 16px 0; white-space: pre-wrap; border-bottom: 1px solid var(--border);
+}
+.mob-life-detail-privacy {
+  font-size: 12px; color: var(--text-3); padding: 12px 0;
+  display: flex; align-items: center; gap: 6px;
+}
+.mob-life-detail-actions { display: flex; gap: 10px; padding-top: 8px; }
+.mob-life-action-btn {
+  flex: 1; padding: 12px; border-radius: 10px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.mob-life-action-btn.delete { background: #FEE2E2; color: #DC2626; }
+html[data-theme="dark"] .mob-life-action-btn.delete { background: rgba(220,38,38,.16); color: #F87171; }
+
+/* ── 라이프 연도 필터 바 (Feature 2) ── */
+.mvw-life-year-bar {
+  display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none;
+  padding: 0 14px 10px;
+}
+.mvw-life-year-bar::-webkit-scrollbar { display: none; }
+.mvw-life-year-bar[hidden] { display: none; }
+.mvw-life-year-chip {
+  flex-shrink: 0; padding: 4px 12px; border-radius: 16px;
+  border: 1px solid var(--border); background: none;
+  font-size: 12px; font-weight: 500; color: var(--text-2);
+  cursor: pointer; transition: all .15s;
+}
+.mvw-life-year-chip.active { color: var(--accent); border-color: var(--accent); font-weight: 700; }
 
 /* ── 서재 상세 팝업 — 날짜 메타 라인 ── */
 .mob-lib-modal-meta {

@@ -373,5 +373,10 @@ async function flushOfflineQueue() {
     }
   }
 
+  // 4. 여행 아카이브(Feature 5) — IP 기반 국가 감지, 앱 로드 후 여유있게 지연 호출
+  if (window.Mob?._checkTravelCountry) {
+    setTimeout(() => Mob._checkTravelCountry(), 3000);
+  }
+
   console.log('[PWA] 초기화 완료');
 })();

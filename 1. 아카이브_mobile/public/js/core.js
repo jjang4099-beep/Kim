@@ -158,6 +158,7 @@ const state = {
   /* 라이프 서재 */
   lifeItems      : [],
   lifeFilter     : 'all',
+  lifeYear       : 'all',
   selectedMood   : '',
   addType        : 'knowledge',   /* 추가 모달 탭: 'knowledge' | 'image' | 'life' */
   lifePhotos     : [],
@@ -165,6 +166,8 @@ const state = {
   userCategories : [],
   /* 결산 */
   summaryType    : 'monthly',
+  /* 여행 아카이브(Feature 5) */
+  currentTravelCountry: null,
 };
 
 /* ──────────────────────────────────────────────

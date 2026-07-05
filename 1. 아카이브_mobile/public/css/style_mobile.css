@@ -5774,3 +5774,159 @@ html[data-theme="dark"] .public-sanctuary-banner {
   background: linear-gradient(180deg, rgba(212,175,55,.08), rgba(0,0,0,0));
   text-shadow: none;
 }
+
+/* ══════════════════════════════════════════════════════════
+   v87 — 지식 순환 시스템 (서재)
+   ① 오늘의 복습 배달 ② 카드/리스트/캘린더 3뷰 ③ 스마트 태그
+══════════════════════════════════════════════════════════ */
+
+/* ── ① 오늘의 복습 배달 — 대리석 선반 위 카루셀 ── */
+.km-review-sec { margin: 10px 14px 2px; }
+.km-review-hd {
+  display: flex; align-items: baseline; gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--mob-gold);
+}
+.km-review-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 14px; font-weight: 700; color: var(--title-ink);
+  letter-spacing: -0.01em;
+}
+.km-review-sub { font-size: 11px; color: var(--text-3); }
+.km-review-rail {
+  display: flex; gap: 10px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory; scrollbar-width: none;
+  padding: 12px 2px 6px;
+}
+.km-review-rail::-webkit-scrollbar { display: none; }
+.km-review-card {
+  flex: 0 0 76%; scroll-snap-align: start;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 7px;
+  background: var(--surface);
+  border: 1px solid var(--mob-border, var(--border));
+  border-left: 3px solid var(--mob-gold);
+  border-radius: 12px; padding: 13px 15px;
+  text-align: left; cursor: pointer;
+  transition: transform .15s ease;
+}
+.km-review-card:active { transform: scale(.98); }
+.km-review-card-title {
+  font-size: 13.5px; font-weight: 700; color: var(--title-ink);
+  line-height: 1.45; word-break: keep-all;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.km-review-ago { font-size: 11px; color: var(--text-3); }
+
+/* ── ②③ 툴바 — 스마트 태그(좌, 스크롤) + 뷰 토글(우, 고정) ── */
+.km-lib-toolbar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px 0;
+}
+.km-tag-bar {
+  flex: 1; display: flex; gap: 6px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  min-width: 0;
+}
+.km-tag-bar::-webkit-scrollbar { display: none; }
+.km-tag-chip {
+  flex-shrink: 0; display: inline-flex; align-items: center; gap: 4px;
+  padding: 5px 11px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--surface);
+  font-size: 12px; font-weight: 600; color: var(--text-2);
+  white-space: nowrap; cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.km-tag-chip .km-tag-cnt { font-size: 10px; color: var(--text-3); }
+.km-tag-chip.active {
+  background: var(--title-ink); color: var(--bg); border-color: var(--title-ink);
+}
+.km-tag-chip.active .km-tag-cnt { color: var(--mob-gold); }
+.km-view-toggle {
+  flex-shrink: 0; display: flex;
+  border: 1px solid var(--border); border-radius: 9px;
+  overflow: hidden; background: var(--surface);
+}
+.km-view-btn {
+  width: 36px; height: 31px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-3); font-size: 15px;
+  transition: background .15s, color .15s;
+}
+.km-view-btn + .km-view-btn { border-left: 1px solid var(--border); }
+.km-view-btn.active { background: var(--title-ink); color: var(--bg); }
+
+/* ── ② 리스트 뷰 — 한 줄 압축 행 ── */
+.km-flat-list {
+  margin: 8px 14px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border); border-radius: 12px;
+  overflow: hidden;
+}
+.km-flat-row {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; padding: 12px;
+  border-bottom: 1px solid var(--border);
+  background: none; text-align: left; cursor: pointer;
+}
+.km-flat-row:last-child { border-bottom: none; }
+.km-flat-row:active { background: var(--bg); }
+.km-flat-title {
+  flex: 1; min-width: 0;
+  font-size: 13px; font-weight: 600; color: var(--text-1);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.km-flat-date { flex-shrink: 0; font-size: 11px; color: var(--text-3); }
+
+/* ── ② 캘린더 뷰 — 대리석 판 위 골드 점 ── */
+.km-cal {
+  margin: 8px 14px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border); border-radius: 12px;
+  padding: 14px;
+}
+.km-cal-hd { display: flex; align-items: center; justify-content: space-between; }
+.km-cal-ym {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 14.5px; font-weight: 700; color: var(--title-ink);
+}
+.km-cal-nav {
+  width: 34px; height: 34px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-2); font-size: 16px;
+}
+.km-cal-nav:active { background: var(--bg); }
+.km-cal-week {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  margin: 10px 0 4px;
+  font-size: 10.5px; color: var(--text-3); text-align: center;
+  letter-spacing: .04em;
+}
+.km-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.km-cal-cell {
+  aspect-ratio: 1; min-height: 40px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+  border-radius: 8px; background: none;
+  font-size: 12.5px;
+}
+.km-cal-cell.mute .km-cal-num { color: var(--text-3); opacity: .55; }
+.km-cal-cell.has {
+  background: var(--bg); cursor: pointer;
+  transition: background .15s;
+}
+.km-cal-cell.has .km-cal-num { font-weight: 700; color: var(--title-ink); }
+.km-cal-cnt { font-size: 9px; font-weight: 700; color: var(--mob-gold); line-height: 1; }
+.km-cal-cell.sel { background: var(--title-ink); }
+.km-cal-cell.sel .km-cal-num { color: var(--bg); }
+.km-cal-cell.sel .km-cal-cnt { color: var(--mob-gold); }
+.km-cal-daylist { margin-top: 12px; border-top: 1px solid var(--border); padding-top: 4px; }
+.km-cal-daylist-hd {
+  font-size: 12px; font-weight: 700; color: var(--text-2);
+  padding: 8px 0 6px;
+}
+.km-cal-daylist .km-flat-row { padding: 11px 2px; }
+.km-cal-daylist-empty {
+  margin-top: 12px; border-top: 1px solid var(--border);
+  padding: 18px 0 6px;
+  font-size: 12.5px; color: var(--text-3); text-align: center;
+}

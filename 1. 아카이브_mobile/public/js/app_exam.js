@@ -124,6 +124,8 @@ const ExamMob = {
       el('libFilterBar')?.setAttribute('hidden', '');   /* 매거진 카테고리 필터는 오답뷰에서 숨김 */
       el('libAiToggle')?.setAttribute('hidden', '');
       el('libSearchWrap')?.setAttribute('hidden', '');
+      el('libReviewSection')?.setAttribute('hidden', '');   /* 지식 순환 UI도 오답뷰에선 숨김 */
+      el('libViewToolbar')?.setAttribute('hidden', '');
       this._loadWrongAnswerLibrary();
     } else {
       el('wrongAnswerTimeline')?.setAttribute('hidden', '');
@@ -131,6 +133,8 @@ const ExamMob = {
       el('libFilterBar')?.removeAttribute('hidden');
       el('libAiToggle')?.removeAttribute('hidden');
       el('libSearchWrap')?.removeAttribute('hidden');
+      el('libViewToolbar')?.removeAttribute('hidden');
+      Mob._renderReviewCarousel?.();   /* 복습 섹션은 데이터 있으면 스스로 재노출 */
     }
   },
 

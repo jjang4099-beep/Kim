@@ -45,6 +45,13 @@ Object.assign(Mob, {
 
       state.libraryItems  = items;   // 검색/필터용 전체 보관
       state.libraryFilter = 'all';
+      state.libraryTag    = null;
+      state.librarySelectedDate = null;
+
+      /* 뷰 모드 복원 (localStorage 선호값) + 토글 버튼 동기화 */
+      state.libraryViewMode = localStorage.getItem('lib-view-mode') || 'card';
+      document.querySelectorAll('#libViewToggle .km-view-btn').forEach(b =>
+        b.classList.toggle('active', b.dataset.vm === state.libraryViewMode));
 
       /* 검색창 초기화 */
       const si = el('libSearchInput');
@@ -58,7 +65,9 @@ Object.assign(Mob, {
       });
       this._updateLibraryFilterState();
 
-      this._renderLibraryTimeline(items);
+      this._renderReviewCarousel();
+      this._renderTagBar();
+      this._renderLibraryView(items);
       this._applyPublicSanctuary();
       state.libraryLoaded = true;
     } catch (e) {
@@ -410,13 +419,21 @@ Object.assign(Mob, {
     });
   },
 
-  /* 카테고리 필터 + 검색어 동시 적용 */
+  /* 카테고리 필터 + 스마트 태그 + 검색어 동시 적용 → 현재 뷰 모드로 렌더 */
   _applyLibraryFilters(searchQ) {
     let items = state.libraryItems || [];
     const f   = state.libraryFilter;
 
     if (f && f !== 'all') {
       items = items.filter(item => this._libCardCat(item).key === f);
+    }
+    if (state.libraryTag) {
+      const t = state.libraryTag.toLowerCase();
+      items = items.filter(item => {
+        const m = item.analysis || {};
+        return [...(m.keywords || []), ...(item.keywords || []), ...(item.tags || [])]
+          .some(k => String(k).toLowerCase() === t);
+      });
     }
     if (searchQ) {
       const qLow = searchQ.toLowerCase();
@@ -430,7 +447,7 @@ Object.assign(Mob, {
         ].some(field => field.toLowerCase().includes(qLow));
       });
     }
-    this._renderLibraryTimeline(items, searchQ);
+    this._renderLibraryView(items, searchQ);
   },
 
   /* ── 서재 인라인 실시간 검색 ── */
@@ -448,6 +465,214 @@ Object.assign(Mob, {
     const sc = el('libSearchClear');
     if (sc) sc.hidden = true;
     this._applyLibraryFilters();
+  },
+
+  /* ══════════════════════════════════════════
+     지식 순환 시스템 (v87)
+     ① 오늘의 복습 배달(에빙하우스) ② 3뷰 토글 ③ 스마트 태그
+  ══════════════════════════════════════════ */
+
+  /** 현재 검색창 값 (필터 재적용 시 검색어 유지용) */
+  _currentLibSearch() {
+    const si = el('libSearchInput');
+    const v  = si && si.value.trim();
+    return v || undefined;
+  },
+
+  /** 뷰 모드 디스패처 — 카드(기존 격자)/리스트/캘린더 */
+  _renderLibraryView(items, searchQ) {
+    const vm = state.libraryViewMode || 'card';
+    if (vm === 'list')     return this._renderLibraryList(items, searchQ);
+    if (vm === 'calendar') return this._renderLibraryCalendar(items);
+    this._renderLibraryTimeline(items, searchQ);
+  },
+
+  setLibraryViewMode(mode, btn) {
+    state.libraryViewMode = mode;
+    try { localStorage.setItem('lib-view-mode', mode); } catch {}
+    document.querySelectorAll('#libViewToggle .km-view-btn').forEach(b =>
+      b.classList.toggle('active', b.dataset.vm === mode));
+    this._applyLibraryFilters(this._currentLibSearch());
+  },
+
+  /* ── ① 오늘의 복습 배달 — 1·7·30일 전 + 날짜시드 랜덤으로 3~5개 큐레이션 ── */
+  _renderReviewCarousel() {
+    const sec  = el('libReviewSection');
+    const rail = el('libReviewRail');
+    if (!sec || !rail) return;
+
+    const knowledge = (state.libraryItems || []).filter(i => i.type !== 'life' && i.category !== 'life');
+    const now = Date.now();
+    const age = i => Math.floor((now - new Date(i.createdAt || i.date)) / 86400000);
+    const pool = knowledge.filter(i => age(i) >= 1);   /* 오늘 저장분은 복습 대상 아님 */
+    if (pool.length < 2) { sec.hidden = true; return; }
+
+    const picked = [], used = new Set();
+    const take = it => { const id = it && (it._id || it.id); if (id && !used.has(id)) { used.add(id); picked.push(it); } };
+
+    /* 에빙하우스 목표 간격 1·7·30일 — 각 목표에 가장 가까운 지식 1개씩 */
+    [1, 7, 30].forEach(target => {
+      const cand = pool
+        .filter(i => !used.has(i._id || i.id))
+        .sort((a, b) => Math.abs(age(a) - target) - Math.abs(age(b) - target))[0];
+      /* 목표에서 너무 먼 후보(허용오차 초과)는 스킵 — 랜덤 채움에 맡김 */
+      if (cand && Math.abs(age(cand) - target) <= Math.max(2, target)) take(cand);
+    });
+
+    /* 날짜 시드 셔플로 5개까지 채움 — 같은 날엔 같은 구성 유지(리렌더마다 안 바뀜) */
+    let seed = 0;
+    for (const ch of toLocalDateStr(new Date())) seed = (seed * 31 + ch.charCodeAt(0)) >>> 0;
+    const rest = pool.filter(i => !used.has(i._id || i.id));
+    for (let n = 0; picked.length < 5 && rest.length > 0; n++) {
+      const idx = (seed + n * 2654435761 % 4294967296) % rest.length;
+      take(rest.splice(idx, 1)[0]);
+    }
+    if (!picked.length) { sec.hidden = true; return; }
+
+    rail.innerHTML = picked.map(item => {
+      const cc = this._libCardCat(item);
+      const m  = item.analysis || {};
+      const title = (m.title || item.title ||
+        (item.text || '').split('\n').map(l => l.trim()).filter(Boolean)[0] || '지식').slice(0, 48);
+      const d = age(item);
+      const agoLabel = d >= 30 ? `${Math.floor(d / 30)}달 전` : d >= 7 ? `${Math.floor(d / 7)}주 전` : `${d}일 전`;
+      return `
+      <button class="km-review-card" onclick="Mob.openDetailModal('${item._id || item.id}')">
+        <span class="kmc-badge arch-badge arch-${cc.arch}">${cc.code}</span>
+        <span class="km-review-card-title">${title}</span>
+        <span class="km-review-ago">${agoLabel}에 저장</span>
+      </button>`;
+    }).join('');
+    sec.hidden = false;
+  },
+
+  /* ── ③ 스마트 태그 바 — 가장 많이 쓴 키워드 상위 8개 칩 ── */
+  _renderTagBar() {
+    const bar = el('libTagBar');
+    if (!bar) return;
+    const cnt = {};
+    (state.libraryItems || []).forEach(i => {
+      const m = i.analysis || {};
+      [...(m.keywords || []), ...(i.keywords || []), ...(i.tags || [])].forEach(k => {
+        k = String(k || '').trim();
+        if (k.length > 1 && k.length <= 14) cnt[k] = (cnt[k] || 0) + 1;
+      });
+    });
+    const top = Object.entries(cnt)
+      .filter(([, c]) => c >= 2)
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 8);
+    if (!top.length) { bar.innerHTML = ''; return; }
+    bar.innerHTML = top.map(([tag, c]) => `
+      <button class="km-tag-chip${state.libraryTag === tag ? ' active' : ''}"
+              onclick="Mob.setLibraryTag('${tag.replace(/'/g, '&#39;')}')">
+        #${tag}<span class="km-tag-cnt">${c}</span>
+      </button>`).join('');
+  },
+
+  setLibraryTag(tag) {
+    state.libraryTag = (state.libraryTag === tag) ? null : tag;   /* 재탭 = 해제 */
+    this._renderTagBar();
+    this._applyLibraryFilters(this._currentLibSearch());
+  },
+
+  /* ── ② 리스트(타임라인) 뷰 — 한 줄 압축 행, 스크롤 한 번에 수십 개 스캔 ── */
+  _libListRow(item) {
+    const cc = this._libCardCat(item);
+    const m  = item.analysis || {};
+    const title = m.title || item.title ||
+      (item.text || item.summary || '').split('\n').map(l => l.trim()).filter(Boolean)[0]?.slice(0, 60) || '제목 없음';
+    return `
+    <button class="km-flat-row" onclick="Mob.openDetailModal('${item._id || item.id}')">
+      <span class="kmc-badge arch-badge arch-${cc.arch}">${cc.code}</span>
+      <span class="km-flat-title">${title}</span>
+      <span class="km-flat-date">${fmt(item.createdAt || item.date)}</span>
+    </button>`;
+  },
+
+  _renderLibraryList(items, searchQ) {
+    const timelineEl = el('libTimeline');
+    if (!timelineEl) return;
+    const rows = (items || []).filter(i => i.type !== 'life' && i.category !== 'life');
+    if (!rows.length) {
+      timelineEl.innerHTML = `<div class="mvw-lib-empty"><i class="ti ti-books"></i><br>
+        ${searchQ ? `"${searchQ}" 검색 결과 없음` : '표시할 지식이 없어요'}</div>`;
+      return;
+    }
+    const sorted = [...rows].sort((a, b) =>
+      new Date(b.createdAt || b.date) - new Date(a.createdAt || a.date));
+    timelineEl.innerHTML =
+      `<div class="km-flat-list">${sorted.map(i => this._libListRow(i)).join('')}</div>`;
+  },
+
+  /* ── ② 캘린더 뷰 — 날짜 터치 → 그날 저장한 지식으로 즉시 점프 ── */
+  _renderLibraryCalendar(items) {
+    const timelineEl = el('libTimeline');
+    if (!timelineEl) return;
+    const knowledge = (items || []).filter(i => i.type !== 'life' && i.category !== 'life');
+
+    /* 날짜별 그룹핑 (로컬 타임존 키) */
+    const byDate = {};
+    knowledge.forEach(i => {
+      const d = new Date(i.createdAt || i.date);
+      if (isNaN(d)) return;
+      const key = toLocalDateStr(d);
+      (byDate[key] ||= []).push(i);
+    });
+
+    const ym = state.libraryCalMonth || toLocalDateStr(new Date()).slice(0, 7);
+    const [y, mo] = ym.split('-').map(Number);
+    const lead        = new Date(y, mo - 1, 1).getDay();   /* 0=일 */
+    const daysInMonth = new Date(y, mo, 0).getDate();
+
+    let cells = '';
+    for (let i = 0; i < lead; i++) cells += `<span class="km-cal-cell empty"></span>`;
+    for (let d = 1; d <= daysInMonth; d++) {
+      const key = `${ym}-${String(d).padStart(2, '0')}`;
+      const n   = (byDate[key] || []).length;
+      const sel = state.librarySelectedDate === key;
+      cells += n
+        ? `<button class="km-cal-cell has${sel ? ' sel' : ''}" onclick="Mob._selectLibraryDate('${key}')">
+             <span class="km-cal-num">${d}</span><span class="km-cal-cnt">${n}</span>
+           </button>`
+        : `<span class="km-cal-cell mute"><span class="km-cal-num">${d}</span></span>`;
+    }
+
+    /* 선택 날짜의 지식 목록 */
+    const selKey   = state.librarySelectedDate;
+    const selItems = selKey ? (byDate[selKey] || []) : [];
+    const dayList = selKey
+      ? `<div class="km-cal-daylist">
+           <div class="km-cal-daylist-hd">${fmtFull(selKey)} · ${selItems.length}개</div>
+           ${selItems.map(i => this._libListRow(i)).join('')}
+         </div>`
+      : `<div class="km-cal-daylist-empty">골드 점이 있는 날짜를 누르면 그날의 지식이 열려요</div>`;
+
+    timelineEl.innerHTML = `
+      <div class="km-cal">
+        <div class="km-cal-hd">
+          <button class="km-cal-nav" onclick="Mob._moveLibraryCalMonth(-1)" aria-label="이전 달"><i class="ti ti-chevron-left"></i></button>
+          <span class="km-cal-ym">${y}년 ${mo}월</span>
+          <button class="km-cal-nav" onclick="Mob._moveLibraryCalMonth(1)" aria-label="다음 달"><i class="ti ti-chevron-right"></i></button>
+        </div>
+        <div class="km-cal-week">${['일','월','화','수','목','금','토'].map(w => `<span>${w}</span>`).join('')}</div>
+        <div class="km-cal-grid">${cells}</div>
+        ${dayList}
+      </div>`;
+  },
+
+  _moveLibraryCalMonth(delta) {
+    const ym = state.libraryCalMonth || toLocalDateStr(new Date()).slice(0, 7);
+    const [y, mo] = ym.split('-').map(Number);
+    const d = new Date(y, mo - 1 + delta, 1);
+    state.libraryCalMonth = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+    state.librarySelectedDate = null;
+    this._applyLibraryFilters(this._currentLibSearch());
+  },
+
+  _selectLibraryDate(key) {
+    state.librarySelectedDate = (state.librarySelectedDate === key) ? null : key;   /* 재탭 = 해제 */
+    this._applyLibraryFilters(this._currentLibSearch());
   },
 
   /* ══════════════════════════════════════════

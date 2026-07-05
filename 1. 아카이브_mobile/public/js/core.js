@@ -148,6 +148,11 @@ const state = {
   libraryAIOpen    : false,
   libraryItems     : [],
   libraryFilter    : 'all',
+  /* 지식 순환 시스템(v87) — 서재 뷰 모드·스마트 태그·캘린더 */
+  libraryViewMode  : 'card',   /* 'card' | 'list' | 'calendar' */
+  libraryTag       : null,     /* 선택된 스마트 태그(#키워드) */
+  libraryCalMonth  : null,     /* 캘린더 뷰가 보는 달 'YYYY-MM' */
+  librarySelectedDate: null,   /* 캘린더에서 선택한 날짜 'YYYY-MM-DD' */
   quiz: {
     items   : [],
     current : 0,

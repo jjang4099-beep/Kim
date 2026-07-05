@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
-  <link rel="stylesheet" href="css/style_mobile.css?v=86"/>
+  <link rel="stylesheet" href="css/style_mobile.css?v=87"/>
   <link rel="stylesheet" href="css/exam.css?v=9"/>
 </head>
 <body>
@@ -229,6 +229,34 @@
 
       <!-- 오답 노트 타임라인 (exam 모드) -->
       <div id="wrongAnswerTimeline" hidden></div>
+
+      <!-- ═══ 지식 순환 ① — 오늘의 복습 배달 (에빙하우스: 1·7·30일 전 지식 큐레이션) ═══ -->
+      <section class="km-review-sec" id="libReviewSection" hidden>
+        <div class="km-review-hd">
+          <span class="km-review-title">오늘의 복습 배달</span>
+          <span class="km-review-sub">잊기 전에 다시 꺼내는 지식</span>
+        </div>
+        <div class="km-review-rail" id="libReviewRail"></div>
+      </section>
+
+      <!-- ═══ 지식 순환 ② — 스마트 태그 + 뷰 토글(카드/리스트/캘린더) ═══ -->
+      <div class="km-lib-toolbar" id="libViewToolbar">
+        <div class="km-tag-bar" id="libTagBar"></div>
+        <div class="km-view-toggle" id="libViewToggle" role="tablist" aria-label="서재 보기 방식">
+          <button class="km-view-btn active" data-vm="card"
+                  onclick="Mob.setLibraryViewMode('card',this)" aria-label="카드 뷰" title="카드">
+            <i class="ti ti-layout-grid"></i>
+          </button>
+          <button class="km-view-btn" data-vm="list"
+                  onclick="Mob.setLibraryViewMode('list',this)" aria-label="리스트 뷰" title="리스트">
+            <i class="ti ti-list"></i>
+          </button>
+          <button class="km-view-btn" data-vm="calendar"
+                  onclick="Mob.setLibraryViewMode('calendar',this)" aria-label="달력 뷰" title="달력">
+            <i class="ti ti-calendar"></i>
+          </button>
+        </div>
+      </div>
 
       <!-- 매거진 카테고리 필터 — 가로 스크롤 (전체/English/역사/명언/고사성어) -->
       <nav class="km-filter-bar" id="libFilterBar">
@@ -854,13 +882,13 @@
 <!-- 토스트 -->
 <div class="mob-toast" id="mobToast" hidden></div>
 
-<script src="js/core.js?v=10"></script>
-<script src="js/home.js?v=22"></script>
+<script src="js/core.js?v=11"></script>
+<script src="js/home.js?v=23"></script>
 <script src="js/feed.js?v=7"></script>
-<script src="js/library.js?v=9"></script>
+<script src="js/library.js?v=10"></script>
 <script src="js/manage.js?v=6"></script>
 <script src="js/add.js?v=5"></script>
-<script src="js/app_exam.js?v=10"></script>
+<script src="js/app_exam.js?v=11"></script>
 <script src="js/pwa.js?v=2"></script>
 <script>
 (function() {

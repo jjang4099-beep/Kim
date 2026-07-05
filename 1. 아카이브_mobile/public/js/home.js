@@ -291,6 +291,10 @@ Object.assign(Mob, {
     state.libraryLoaded = false;
     state.currentCat    = 'all';
     state.activeFeedFilter = 'all';
+    /* 지식 순환 상태 — 이전 모드 태그/날짜 선택이 넘어오지 않도록 초기화 */
+    state.libraryTag          = null;
+    state.librarySelectedDate = null;
+    state.libraryCalMonth     = null;
     const feed = el('mobFeed');
     if (feed) feed.innerHTML = '';
   },

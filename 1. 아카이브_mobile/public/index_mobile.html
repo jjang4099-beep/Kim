@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
-  <link rel="stylesheet" href="css/style_mobile.css?v=87"/>
+  <link rel="stylesheet" href="css/style_mobile.css?v=88"/>
   <link rel="stylesheet" href="css/exam.css?v=9"/>
 </head>
 <body>
@@ -413,6 +413,16 @@
               <i class="ti ti-clock"></i> 배달 시간
             </label>
             <input type="time" id="dpDeliveryTime" class="mvw-dp-time-input" value="07:30"/>
+          </div>
+
+          <!-- 배달 시간에 폰 알림 받기 — 반드시 유저 탭(gesture) 안에서 권한 요청해야 팝업이 뜸 -->
+          <div class="mvw-dp-time-row" id="dpPushRow">
+            <label class="mvw-dp-label">
+              <i class="ti ti-bell"></i> 배달 알림
+            </label>
+            <button class="mvw-dp-push-btn" id="dpPushBtn" onclick="Mob._enablePushNotification(this)">
+              알림 켜기
+            </button>
           </div>
 
           <div class="mvw-dp-subs-label">받을 지식 선택</div>
@@ -884,7 +894,7 @@
 
 <script src="js/core.js?v=11"></script>
 <script src="js/home.js?v=23"></script>
-<script src="js/feed.js?v=7"></script>
+<script src="js/feed.js?v=8"></script>
 <script src="js/library.js?v=10"></script>
 <script src="js/manage.js?v=6"></script>
 <script src="js/add.js?v=5"></script>

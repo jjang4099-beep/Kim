@@ -2327,14 +2327,9 @@ async function buildDailyFeeds(user, force = false) {
     console.error('[스케줄러] 지식 배달 카드 생성 실패:', e.message);
   }
 
-  // ── 생성 완료 즉시 Web Push 발송 ──
-  if (Object.keys(results).length > 0) {
-    const payload = buildPushPayload(results);
-    console.log(`[Push] 발송 준비: "${payload.title}"`);
-    sendPushToAll(payload)
-      .then(r => console.log(`[Push] 발송 결과: 성공 ${r.sent}개 / 실패 ${r.failed}개`))
-      .catch(e => console.error('[Push] 발송 오류:', e.message));
-  }
+  /* Web Push는 여기서 보내지 않음 — 생성은 배달시간보다 미리(사전생성) 끝날 수 있어
+     "생성 완료 즉시 발송"이면 유저가 설정한 배달시간보다 일찍 알림이 온다.
+     실제 발송은 runScheduler()가 배달시간 도달 시점에 별도로 트리거한다. */
 
   return results;
 }
@@ -2451,10 +2446,10 @@ JSON 배열로만 응답 (마크다운 코드블록 없이):
 // ══════════════════════════════════════════════════
 
 /**
- * 스케줄러 메인 로직
- * - 30분마다 실행
- * - 배달 시간 60분 전 구간에 해당하는 유저의 피드를 사전 생성
- * - 이미 오늘 생성된 피드가 있으면 건너뜀
+ * 스케줄러 메인 로직 — 두 가지 관심사를 분리해서 처리한다.
+ * ① 콘텐츠 사전 생성: 배달 시간 60~30분 전 구간에 미리 만들어 둠(AI 실패 대비 여유시간).
+ * ② 알림 발송: 배달 시간이 실제로 된 시점(그 시간이 속한 30분 슬롯)에 유저당 하루 1회만.
+ *    ①의 완료 시점과 무관하게 ②가 트리거하므로, 유저가 설정한 시간과 알림이 항상 일치한다.
  */
 async function runScheduler() {
   const now   = toTimeStr();
@@ -2462,33 +2457,50 @@ async function runScheduler() {
   console.log(`\n[스케줄러] ⏰ 실행 — ${today} ${now}`);
 
   const users = readUsers();
+  let usersChanged = false;
 
   for (const user of users) {
     const delivTime = user.delivery_time || '07:30';
 
-    // 배달 시간 1시간 전 ~ 30분 전 구간인지 확인
-    if (!isPreGenerationWindow(delivTime, 60)) {
-      console.log(`[스케줄러] "${user.name}" 대기 중 (배달: ${delivTime}, 현재: ${now})`);
-      continue;
+    // ① 사전 생성 — 배달 시간 1시간 전 ~ 30분 전 구간
+    if (isPreGenerationWindow(delivTime, 60)) {
+      const existingFeeds = getTodayFeeds(today);
+      const subs          = getEnabledSubscriptions(user);
+      const allDone       = subs.every(s => existingFeeds?.[s.id]);
+
+      if (!allDone) {
+        console.log(`[스케줄러] "${user.name}" 사전 생성 시작 (배달: ${delivTime}, 현재: ${now})`);
+        try {
+          await buildDailyFeeds(user, false);
+        } catch (e) {
+          console.error(`[스케줄러] "${user.name}" 생성 실패:`, e.message);
+        }
+      } else {
+        console.log(`[스케줄러] "${user.name}" 오늘 피드 이미 완료 — 생성 스킵`);
+      }
     }
 
-    // 이미 오늘 피드가 완전히 생성됐는지 확인
-    const existingFeeds = getTodayFeeds(today);
-    const subs          = getEnabledSubscriptions(user);
-    const allDone       = subs.every(s => existingFeeds?.[s.id]);
-
-    if (allDone) {
-      console.log(`[스케줄러] "${user.name}" 오늘 피드 이미 완료 — 스킵`);
-      continue;
-    }
-
-    console.log(`[스케줄러] "${user.name}" 사전 생성 시작 (배달: ${delivTime}, 현재: ${now})`);
-    try {
-      await buildDailyFeeds(user, false);
-    } catch (e) {
-      console.error(`[스케줄러] "${user.name}" 생성 실패:`, e.message);
+    // ② 알림 발송 — 배달 시간이 포함된 30분 슬롯, 유저당 하루 1회
+    if (isPreGenerationWindow(delivTime, 0) && user._lastPushDate !== today) {
+      const feedsForPush = getTodayFeeds(today);
+      if (feedsForPush && Object.keys(feedsForPush).length > 0) {
+        const payload = buildPushPayload(feedsForPush);
+        console.log(`[Push] "${user.name}" 배달시간(${delivTime}) 도달 — 발송: "${payload.title}"`);
+        try {
+          const r = await sendPushToAll(payload);
+          console.log(`[Push] 발송 결과: 성공 ${r.sent}개 / 실패 ${r.failed}개`);
+        } catch (e) {
+          console.error('[Push] 발송 오류:', e.message);
+        }
+        user._lastPushDate = today;   // 같은 날 재발송 방지
+        usersChanged = true;
+      } else {
+        console.log(`[Push] "${user.name}" 배달시간 도달했지만 생성된 피드 없음 — 발송 스킵`);
+      }
     }
   }
+
+  if (usersChanged) writeUsers(users);
 }
 
 // 30분마다 실행 (매시 0분, 30분)

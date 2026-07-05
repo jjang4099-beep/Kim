@@ -1019,6 +1019,9 @@ Object.assign(Mob, {
     const timeInput = el('dpDeliveryTime');
     if (timeInput) timeInput.value = user.delivery_time || '07:30';
 
+    /* 배달 알림 버튼 상태 동기화 */
+    this._refreshPushStatus();
+
     /* 허용 피드: 7종 (언어 2 + 시황 2 + 인문학 3) */
     const ALLOWED_IDS = ['en_expr', 'zh_expr', 'us_market', 'kr_market', 'hist_daily', 'quote_daily', 'idiom_daily'];
     const filtered         = feeds.filter(f => ALLOWED_IDS.includes(f.id));
@@ -1291,6 +1294,47 @@ Object.assign(Mob, {
       toast('설정 저장 실패', 'err');
     } finally {
       if (btn) { btn.disabled = false; btn.innerHTML = '<i class="ti ti-device-floppy"></i> 상세 옵션 저장'; }
+    }
+  },
+
+  /**
+   * 배달 알림 켜기 — 반드시 이 함수처럼 버튼 클릭(유저 제스처) 안에서
+   * Notification 권한을 요청해야 브라우저가 팝업을 실제로 띄운다.
+   * (기존에는 앱 첫 로드 후 setTimeout으로 자동 요청했는데, 제스처가 아니라서
+   *  모바일 브라우저가 조용히 무시 — 팝업 자체가 안 뜨는 원인이었음)
+   */
+  async _enablePushNotification(btn) {
+    if (!('serviceWorker' in navigator) || !('PushManager' in window) || typeof Notification === 'undefined') {
+      toast('이 브라우저는 알림을 지원하지 않아요', 'err');
+      return;
+    }
+    if (btn) { btn.disabled = true; btn.textContent = '설정 중…'; }
+    try {
+      const reg = await navigator.serviceWorker.ready;
+      await subscribePush(reg);   // pwa.js 전역 함수 재사용(권한요청→VAPID구독→서버동기화)
+    } catch (e) {
+      toast('알림 설정 실패 — 다시 시도해주세요', 'err');
+    }
+    this._refreshPushStatus();
+  },
+
+  /* 배달 알림 버튼 상태를 현재 Notification.permission에 맞춰 동기화 */
+  _refreshPushStatus() {
+    const btn = el('dpPushBtn');
+    if (!btn) return;
+    const perm = (typeof Notification !== 'undefined') ? Notification.permission : 'unsupported';
+    if (perm === 'granted') {
+      btn.textContent = '알림 켜짐';
+      btn.disabled = true;
+      btn.classList.add('on');
+    } else if (perm === 'denied') {
+      btn.textContent = '차단됨 — 폰 설정에서 허용';
+      btn.disabled = true;
+      btn.classList.remove('on');
+    } else {
+      btn.textContent = '알림 켜기';
+      btn.disabled = false;
+      btn.classList.remove('on');
     }
   },
 

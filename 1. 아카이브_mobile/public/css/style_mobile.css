@@ -1280,6 +1280,16 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   padding: 5px 10px; background: var(--surface); outline: none; cursor: pointer;
 }
 .mvw-dp-time-input:focus { border-color: var(--accent); }
+.mvw-dp-push-btn {
+  font-size: 12.5px; font-weight: 700; color: var(--accent);
+  border: 1.5px solid var(--accent); border-radius: 8px;
+  padding: 6px 12px; background: var(--surface); cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s, opacity .15s;
+}
+.mvw-dp-push-btn.on {
+  color: var(--mob-gold); border-color: var(--mob-gold); background: var(--bg);
+}
+.mvw-dp-push-btn:disabled { opacity: .65; cursor: default; }
 .mvw-dp-subs-label {
   font-size: 11px; font-weight: 700; color: var(--text-3);
   text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px;

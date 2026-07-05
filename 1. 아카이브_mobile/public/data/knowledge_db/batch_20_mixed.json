@@ -1,0 +1,504 @@
+{
+  "meta": {
+    "label": "직장인 영어·중국어 20차",
+    "mode": "work",
+    "updated": "2026-07-05",
+    "count": {
+      "english_theme_packs": 1,
+      "english_expressions": 20,
+      "chinese_expressions": 10
+    }
+  },
+  "english_theme_packs": [
+    {
+      "id": "PACK_EN_036",
+      "theme_key": "saying_no_boundaries_en",
+      "theme_title": "거절과 경계 설정 영어",
+      "theme_title_en": "Saying No Gracefully",
+      "level": "intermediate",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "EN_036_01",
+          "order": 1,
+          "expression": "I'm afraid I won't be able to...",
+          "meaning": "유감스럽게도 ~를 할 수 없을 것 같습니다",
+          "nuance": "직접적인 'No'보다 훨씬 부드럽고 정중한 거절 표현. 'I'm afraid'가 감정적 완충재 역할을 해 상대방이 덜 상처를 받는다.",
+          "dialogue": {
+            "A": "Can you take on this extra project?",
+            "B": "I'm afraid I won't be able to — my plate is full through next month."
+          },
+          "example": "I'm afraid I won't be able to make it to the Friday meeting.",
+          "practice": "추가 업무나 요청을 정중하게 거절할 때"
+        },
+        {
+          "id": "EN_036_02",
+          "order": 2,
+          "expression": "That's not going to work for me.",
+          "meaning": "저에게는 맞지 않습니다 / 그건 어렵겠습니다",
+          "nuance": "비교적 직접적이지만 이유를 설명하지 않아도 되는 자신감 있는 거절. 'I can't'보다 주도적이고 명확하다.",
+          "dialogue": {
+            "A": "We need this by 8 AM tomorrow.",
+            "B": "That's not going to work for me — can we discuss a more realistic deadline?"
+          },
+          "example": "A 10% discount is the best I can do — anything lower is not going to work for me.",
+          "practice": "협상에서 조건이 맞지 않을 때 명확히 선을 그을 때"
+        },
+        {
+          "id": "EN_036_03",
+          "order": 3,
+          "expression": "Let me get back to you on that.",
+          "meaning": "그 건으로 나중에 다시 연락드리겠습니다",
+          "nuance": "즉각적인 답을 피하고 시간을 버는 표현. 충분히 생각하거나 일정을 확인한 후에 답하고 싶을 때 쓴다. 무조건 OK하는 것보다 훨씬 전문적이다.",
+          "dialogue": {
+            "A": "Can you present at our conference next month?",
+            "B": "Let me get back to you on that — I need to check my schedule first."
+          },
+          "example": "That's an interesting proposal. Let me get back to you on that by end of week.",
+          "practice": "즉답을 피하고 숙고 시간을 확보할 때"
+        },
+        {
+          "id": "EN_036_04",
+          "order": 4,
+          "expression": "I have to pass on this one.",
+          "meaning": "이번 건은 패스해야 할 것 같습니다",
+          "nuance": "기회나 제안을 거절할 때 자연스럽고 캐주얼하게 쓰는 표현. 부정적이지 않으며 '이번만'이라는 뉘앙스가 있어 관계를 유지하면서 거절할 수 있다.",
+          "dialogue": {
+            "A": "We're having a team dinner tonight. Want to join?",
+            "B": "I'd love to, but I have to pass on this one — I have a prior commitment."
+          },
+          "example": "Thanks for thinking of me, but I have to pass on this one.",
+          "practice": "초대나 제안을 부드럽게 거절할 때"
+        },
+        {
+          "id": "EN_036_05",
+          "order": 5,
+          "expression": "I appreciate the offer, but...",
+          "meaning": "제안해주셔서 감사하지만...",
+          "nuance": "감사함을 먼저 표현한 후 거절하는 구조. 상대방의 호의를 인정하면서 거절하기 때문에 관계가 손상되지 않는다. 뒤에 이유나 대안을 붙여 쓴다.",
+          "dialogue": {
+            "A": "We'd love to have you as a co-founder.",
+            "B": "I appreciate the offer, but I need to stay focused on my current role right now."
+          },
+          "example": "I appreciate the offer, but the timing doesn't work for me at the moment.",
+          "practice": "중요한 제안을 정중하게 거절하며 관계를 유지할 때"
+        }
+      ],
+      "master_paragraph": {
+        "text": "I appreciate the offer, but I have to pass on this one. I'm afraid I won't be able to take on more projects right now — that's not going to work for me given my current workload. Let me get back to you on any future opportunities, though.",
+        "translation": "제안해주셔서 감사하지만, 이번 건은 패스해야 할 것 같습니다. 유감스럽게도 지금은 추가 프로젝트를 맡을 수 없습니다 — 현재 업무량을 감안하면 맞지 않습니다. 향후 기회가 생기면 다시 연락드리겠습니다.",
+        "highlights": [
+          "I appreciate the offer, but",
+          "I have to pass on this one",
+          "I'm afraid I won't be able to",
+          "That's not going to work for me",
+          "Let me get back to you on that"
+        ]
+      }
+    }
+  ],
+  "english_expressions": [
+    {
+      "id": "EN_536",
+      "expression": "Bite the bullet",
+      "meaning": "어쩔 수 없이 감수하다, 이를 악물고 해내다",
+      "level": "intermediate",
+      "theme": "Resilience & Decision",
+      "example": "It's going to be painful, but we need to bite the bullet and cut the budget.",
+      "dialogue": {
+        "A": "Nobody wants to have this difficult conversation.",
+        "B": "We have to bite the bullet — avoiding it is only making things worse."
+      }
+    },
+    {
+      "id": "EN_537",
+      "expression": "The elephant in the room",
+      "meaning": "모두가 알지만 아무도 언급하지 않는 문제",
+      "level": "intermediate",
+      "theme": "Communication & Conflict",
+      "example": "Let's address the elephant in the room — we're behind schedule and need a plan.",
+      "dialogue": {
+        "A": "I think we're all avoiding the elephant in the room.",
+        "B": "You mean the fact that the project is two months behind?"
+      }
+    },
+    {
+      "id": "EN_538",
+      "expression": "Cut corners",
+      "meaning": "지름길을 택하다, 대충 처리하다",
+      "level": "beginner",
+      "theme": "Quality & Standards",
+      "example": "We can't afford to cut corners on the safety testing.",
+      "dialogue": {
+        "A": "Can we speed up the process somehow?",
+        "B": "We can streamline, but we shouldn't cut corners on quality."
+      }
+    },
+    {
+      "id": "EN_539",
+      "expression": "On the same wavelength",
+      "meaning": "같은 생각을 하고 있다, 잘 통하다",
+      "level": "beginner",
+      "theme": "Alignment & Communication",
+      "example": "We're on the same wavelength — let's move forward.",
+      "dialogue": {
+        "A": "I think we should prioritize user experience over speed to market.",
+        "B": "We're on the same wavelength — that's exactly my thinking too."
+      }
+    },
+    {
+      "id": "EN_540",
+      "expression": "At the end of the day",
+      "meaning": "결국, 궁극적으로 (상황을 정리할 때)",
+      "level": "beginner",
+      "theme": "Conclusion & Priority",
+      "example": "At the end of the day, what matters most is whether the customer is happy.",
+      "dialogue": {
+        "A": "We've been debating this for an hour.",
+        "B": "At the end of the day, we need to make a decision and move on."
+      }
+    },
+    {
+      "id": "EN_541",
+      "expression": "Connect the dots",
+      "meaning": "점들을 연결하다, 큰 그림을 보다 / 관련성을 파악하다",
+      "level": "intermediate",
+      "theme": "Analysis & Insight",
+      "example": "The data is there — we just need to connect the dots to see the pattern.",
+      "dialogue": {
+        "A": "I'm not seeing the connection between these trends.",
+        "B": "Let me connect the dots — these all point to the same root cause."
+      }
+    },
+    {
+      "id": "EN_542",
+      "expression": "In the pipeline",
+      "meaning": "준비 중인, 진행 중인, 곧 나올",
+      "level": "intermediate",
+      "theme": "Planning & Progress",
+      "example": "We have three new features in the pipeline for next quarter.",
+      "dialogue": {
+        "A": "What's coming up after this launch?",
+        "B": "We have two major updates in the pipeline — expect announcements in Q3."
+      }
+    },
+    {
+      "id": "EN_543",
+      "expression": "Rock the boat",
+      "meaning": "분란을 일으키다, 현상을 흔들다",
+      "level": "intermediate",
+      "theme": "Change & Conflict",
+      "example": "Nobody wanted to rock the boat, so the problem went unaddressed.",
+      "dialogue": {
+        "A": "Should I raise this issue in the all-hands?",
+        "B": "It might rock the boat, but someone needs to address it."
+      }
+    },
+    {
+      "id": "EN_544",
+      "expression": "No-brainer",
+      "meaning": "생각할 필요도 없는 선택, 너무 명확한 결정",
+      "level": "beginner",
+      "theme": "Decision-Making",
+      "example": "Given the cost savings, switching vendors is a no-brainer.",
+      "dialogue": {
+        "A": "Should we upgrade to the premium plan?",
+        "B": "It's a no-brainer — the ROI pays for itself within a month."
+      }
+    },
+    {
+      "id": "EN_545",
+      "expression": "Put it on the back burner",
+      "meaning": "잠시 미뤄두다, 우선순위를 낮추다",
+      "level": "intermediate",
+      "theme": "Priority & Focus",
+      "example": "Let's put that feature on the back burner and focus on the core product.",
+      "dialogue": {
+        "A": "What about the redesign proposal?",
+        "B": "We'll put it on the back burner for now — it's not urgent."
+      }
+    },
+    {
+      "id": "EN_546",
+      "expression": "On the fence",
+      "meaning": "결정을 못 내리고 있다, 중립적인 입장이다",
+      "level": "intermediate",
+      "theme": "Decision & Stance",
+      "example": "I'm still on the fence about the new hire — I need one more interview.",
+      "dialogue": {
+        "A": "Have you decided on the vendor?",
+        "B": "I'm still on the fence — both options have strong trade-offs."
+      }
+    },
+    {
+      "id": "EN_547",
+      "expression": "Jump the gun",
+      "meaning": "성급하게 행동하다, 시기상조로 결정하다",
+      "level": "intermediate",
+      "theme": "Timing & Caution",
+      "example": "We jumped the gun announcing the product before it was ready.",
+      "dialogue": {
+        "A": "Let's send the proposal today.",
+        "B": "Let's not jump the gun — we should finalize the numbers first."
+      }
+    },
+    {
+      "id": "EN_548",
+      "expression": "Add fuel to the fire",
+      "meaning": "불에 기름을 붓다, 상황을 악화시키다",
+      "level": "intermediate",
+      "theme": "Conflict & Escalation",
+      "example": "Criticizing him publicly only added fuel to the fire.",
+      "dialogue": {
+        "A": "The client is already frustrated. Should we push back on the deadline?",
+        "B": "That would just add fuel to the fire — let's focus on solutions."
+      }
+    },
+    {
+      "id": "EN_549",
+      "expression": "Throw someone under the bus",
+      "meaning": "책임을 남에게 전가하다, 희생양으로 삼다",
+      "level": "advanced",
+      "theme": "Accountability & Trust",
+      "example": "Don't throw your team under the bus in front of the client.",
+      "dialogue": {
+        "A": "The client asked who made the mistake.",
+        "B": "Don't throw anyone under the bus — we own this as a team."
+      }
+    },
+    {
+      "id": "EN_550",
+      "expression": "Hit a wall",
+      "meaning": "막히다, 더 이상 진전이 없다",
+      "level": "intermediate",
+      "theme": "Problem-Solving",
+      "example": "We've hit a wall with the current approach — time to try something new.",
+      "dialogue": {
+        "A": "How's the research going?",
+        "B": "We've hit a wall. Nothing is working — we need a fresh perspective."
+      }
+    },
+    {
+      "id": "EN_551",
+      "expression": "Back to the drawing board",
+      "meaning": "처음부터 다시 시작하다",
+      "level": "beginner",
+      "theme": "Problem-Solving",
+      "example": "The prototype failed testing — it's back to the drawing board.",
+      "dialogue": {
+        "A": "The client rejected the entire concept.",
+        "B": "Back to the drawing board then. Let's regroup Monday morning."
+      }
+    },
+    {
+      "id": "EN_552",
+      "expression": "Run it up the flagpole",
+      "meaning": "의견을 물어보다, 반응을 살피다 (먼저 떠보다)",
+      "level": "advanced",
+      "theme": "Strategy & Testing",
+      "example": "Let's run the idea up the flagpole before committing to it.",
+      "dialogue": {
+        "A": "I have a bold idea for restructuring the team.",
+        "B": "Run it up the flagpole with a few stakeholders first and see the reaction."
+      }
+    },
+    {
+      "id": "EN_553",
+      "expression": "Square peg in a round hole",
+      "meaning": "어울리지 않는 사람 (또는 것), 맞지 않는 상황",
+      "level": "intermediate",
+      "theme": "Fit & Culture",
+      "example": "He's a creative type in a highly structured role — a square peg in a round hole.",
+      "dialogue": {
+        "A": "Why do you think he keeps struggling?",
+        "B": "Honestly? He's a square peg in a round hole — this role isn't the right fit."
+      }
+    },
+    {
+      "id": "EN_554",
+      "expression": "Under the radar",
+      "meaning": "눈에 띄지 않게, 조용히",
+      "level": "intermediate",
+      "theme": "Stealth & Strategy",
+      "example": "They've been growing under the radar — now they're a serious competitor.",
+      "dialogue": {
+        "A": "Have you heard of that startup?",
+        "B": "They've been operating under the radar for two years — but they're raising a Series B."
+      }
+    },
+    {
+      "id": "EN_555",
+      "expression": "Level playing field",
+      "meaning": "공평한 경쟁 환경, 동등한 조건",
+      "level": "intermediate",
+      "theme": "Fairness & Competition",
+      "example": "New regulations aim to create a level playing field for smaller companies.",
+      "dialogue": {
+        "A": "How do smaller startups compete against tech giants?",
+        "B": "The cloud has leveled the playing field — anyone can access the same infrastructure."
+      }
+    }
+  ],
+  "chinese_expressions": [
+    {
+      "id": "ZH_158",
+      "expression": "马到成功",
+      "pinyin": "mǎ dào chéng gōng",
+      "meaning": "말이 도착하자마자 성공한다 → 즉각적이고 완전한 성공을 기원하는 말",
+      "level": "beginner",
+      "theme": "성공·격려",
+      "example": {
+        "zh": "祝你新项目马到成功！",
+        "ko": "새 프로젝트에서 반드시 성공하길 바랍니다!"
+      },
+      "dialogue": {
+        "A": "明天就要开始新项目了，有点紧张。(내일부터 새 프로젝트인데, 좀 긴장돼.)",
+        "B": "放松，马到成功！(긴장 풀어, 반드시 잘 될 거야!)"
+      }
+    },
+    {
+      "id": "ZH_159",
+      "expression": "一步一个脚印",
+      "pinyin": "yī bù yī gè jiǎoyìn",
+      "meaning": "한 걸음마다 발자국을 남긴다 → 착실하고 꾸준히 나아가다",
+      "level": "beginner",
+      "theme": "성실·실행",
+      "example": {
+        "zh": "做事要一步一个脚印，不要好高骛远。",
+        "ko": "일을 할 때는 착실하게 한 걸음씩 나아가야 해, 허황된 목표만 쫓으면 안 돼."
+      },
+      "dialogue": {
+        "A": "我想快点升职。(빨리 승진하고 싶어.)",
+        "B": "一步一个脚印，先把眼前的工作做好。(한 걸음씩 착실하게, 먼저 지금 하는 일을 잘 해.)"
+      }
+    },
+    {
+      "id": "ZH_160",
+      "expression": "吃一堑长一智",
+      "pinyin": "chī yī qiàn cháng yī zhì",
+      "meaning": "한 번 함정에 빠지면 한 가지 지혜가 생긴다 → 실패에서 배운다",
+      "level": "intermediate",
+      "theme": "학습·경험",
+      "example": {
+        "zh": "这次失败了没关系，吃一堑长一智。",
+        "ko": "이번엔 실패했지만 괜찮아, 실패에서 배우는 거야."
+      },
+      "dialogue": {
+        "A": "上次提案没通过，真失落。(지난번 제안이 통과되지 않아서 정말 실망이야.)",
+        "B": "吃一堑长一智，下次会更好的。(실패에서 배우는 거야, 다음엔 더 잘할 거야.)"
+      }
+    },
+    {
+      "id": "ZH_161",
+      "expression": "取长补短",
+      "pinyin": "qǔ cháng bǔ duǎn",
+      "meaning": "장점을 취하고 단점을 보완하다 → 상호 보완하다",
+      "level": "intermediate",
+      "theme": "협업·보완",
+      "example": {
+        "zh": "团队合作就是取长补短，发挥各自的优势。",
+        "ko": "팀 협업이란 서로의 장점을 살리고 단점을 보완해 각자의 강점을 발휘하는 거야."
+      },
+      "dialogue": {
+        "A": "我们两个擅长的方向不同怎么办？(우리 둘이 잘하는 방향이 달라서 어떻게 해?)",
+        "B": "正好，取长补短，一起合作效果会更好。(딱 좋아, 서로 보완하면 같이 하면 더 잘 될 거야.)"
+      }
+    },
+    {
+      "id": "ZH_162",
+      "expression": "博采众长",
+      "pinyin": "bó cǎi zhòng cháng",
+      "meaning": "여러 사람의 장점을 널리 받아들이다",
+      "level": "advanced",
+      "theme": "학습·다양성",
+      "example": {
+        "zh": "好的产品经理能博采众长，整合各方意见。",
+        "ko": "좋은 PM은 여러 사람의 장점을 두루 취해 다양한 의견을 통합할 수 있어."
+      },
+      "dialogue": {
+        "A": "怎样才能做出好的决策？(어떻게 하면 좋은 의사결정을 할 수 있어?)",
+        "B": "博采众长，多听不同的声音，再综合判断。(여러 사람의 장점을 널리 취하고, 다양한 의견을 많이 듣고 나서 종합적으로 판단해.)"
+      }
+    },
+    {
+      "id": "ZH_163",
+      "expression": "一分耕耘一分收获",
+      "pinyin": "yī fēn gēngyún yī fēn shōuhuò",
+      "meaning": "노력한 만큼 거둔다, 심은 대로 거둔다",
+      "level": "beginner",
+      "theme": "노력·성과",
+      "example": {
+        "zh": "没有捷径，一分耕耘一分收获。",
+        "ko": "지름길은 없어, 노력한 만큼 얻는 거야."
+      },
+      "dialogue": {
+        "A": "为什么他比我升职快？(왜 그는 나보다 승진이 빠르지?)",
+        "B": "你看他平时下的功夫，一分耕耘一分收获。(그가 평소에 얼마나 노력하는지 봐, 노력한 만큼 얻는 거야.)"
+      }
+    },
+    {
+      "id": "ZH_164",
+      "expression": "见贤思齐",
+      "pinyin": "jiàn xián sī qí",
+      "meaning": "현인을 보면 나도 그렇게 되기를 생각하다 → 롤모델을 본받다",
+      "level": "intermediate",
+      "theme": "성장·본받기",
+      "example": {
+        "zh": "见贤思齐，多向优秀的人学习。",
+        "ko": "뛰어난 사람을 보면 본받으려 하고, 훌륭한 사람에게 많이 배워."
+      },
+      "dialogue": {
+        "A": "你怎么进步这么快？(어떻게 이렇게 빨리 성장했어?)",
+        "B": "见贤思齐，我一直在观察和学习优秀的前辈。(뛰어난 사람을 본받으려고 항상 훌륭한 선배를 관찰하고 배웠어.)"
+      }
+    },
+    {
+      "id": "ZH_165",
+      "expression": "防患于未然",
+      "pinyin": "fáng huàn yú wèirán",
+      "meaning": "아직 일어나지 않은 재앙을 미리 막다 → 사전 예방이 최선",
+      "level": "advanced",
+      "theme": "리스크관리·예방",
+      "example": {
+        "zh": "做好风险管理，防患于未然。",
+        "ko": "리스크 관리를 잘 해서 미리 문제를 예방해야 해."
+      },
+      "dialogue": {
+        "A": "要等出了问题再处理吗？(문제가 터지면 그때 처리하면 되지 않아?)",
+        "B": "不行，要防患于未然，提前做好预案。(안 돼, 미리 예방해야 해, 사전에 대비책을 준비해야 해.)"
+      }
+    },
+    {
+      "id": "ZH_166",
+      "expression": "宁缺毋滥",
+      "pinyin": "nìng quē wú làn",
+      "meaning": "차라리 부족할지언정 함부로 채우지 않는다 → 기준을 낮추느니 없는 게 낫다",
+      "level": "advanced",
+      "theme": "기준·품질",
+      "example": {
+        "zh": "招聘要宁缺毋滥，不能为了凑人数降低标准。",
+        "ko": "채용은 기준을 낮추느니 없는 게 낫다, 인원을 채우기 위해 기준을 낮추면 안 돼."
+      },
+      "dialogue": {
+        "A": "没合适的人，要不要先将就一下？(적합한 사람이 없는데, 일단 타협할까?)",
+        "B": "宁缺毋滥，等到合适的人再说。(기준을 낮추느니 없는 게 낫다, 적합한 사람이 올 때까지 기다려.)"
+      }
+    },
+    {
+      "id": "ZH_167",
+      "expression": "知足者常乐",
+      "pinyin": "zhī zú zhě cháng lè",
+      "meaning": "만족할 줄 아는 사람이 항상 즐겁다 → 지족(知足)이 행복의 근원",
+      "level": "intermediate",
+      "theme": "행복·균형",
+      "example": {
+        "zh": "知足者常乐，不要总和别人比较。",
+        "ko": "만족할 줄 아는 사람이 항상 즐겁다, 항상 남과 비교하지 마."
+      },
+      "dialogue": {
+        "A": "我总觉得自己不够好。(난 항상 내가 충분하지 않다는 느낌이야.)",
+        "B": "知足者常乐，你已经做得很好了。(만족할 줄 알아야 행복해, 너는 이미 충분히 잘 하고 있어.)"
+      }
+    }
+  ]
+}

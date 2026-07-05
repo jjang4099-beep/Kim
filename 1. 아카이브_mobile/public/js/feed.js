@@ -186,6 +186,8 @@ Object.assign(Mob, {
     btn.innerHTML = '<span class="mob-spin"></span>';
 
     try {
+      /* 검색·미리보기용 평탄 텍스트 — 렌더는 vocabEntries(구조화 데이터)로 하되
+         text도 채워야 서버가 빈 텍스트로 거부하지 않고, 검색에도 걸림 */
       const text = [
         `[${topic}] ${entry.expression}`,
         `뜻: ${entry.meaning}`,
@@ -197,7 +199,11 @@ Object.assign(Mob, {
       await fetchJSON('/api/items', {
         method : 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body   : JSON.stringify({ text, category: cat, source: 'daily-feed-entry', mode: this._modeEnum() })
+        body   : JSON.stringify({
+          text, category: cat, source: 'daily-feed-entry', mode: this._modeEnum(),
+          /* 대화문 등 배달 카드의 전체 구조를 그대로 넘겨 서재 상세도 동일하게 풍부히 렌더 */
+          type: 'language', subCategory: topic, vocabEntries: [entry]
+        })
       });
 
       btn.innerHTML = '<i class="ti ti-check"></i>';

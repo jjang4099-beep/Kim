@@ -3770,6 +3770,38 @@ app.post('/api/items', async (req, res) => {
     return res.status(201).json({ success: true, item: newItem });
   }
 
+  // ── 배달 카드 낱개 영어 표현 저장 — vocabEntries 구조 그대로 보존 ──
+  // (일반 텍스트로 평탄화하면 dialogue 등이 사라져 서재 상세가 배달보다 빈약해짐 →
+  //  /api/daily-feed/:date/:subId/save와 동일한 shape로 저장해 서재도 동일한 풍부한 렌더 사용)
+  if (body.type === 'language' && Array.isArray(body.vocabEntries) && body.vocabEntries.length) {
+    const entry     = body.vocabEntries[0];
+    const now2      = new Date();
+    const clientTs2 = body.createdAt && !isNaN(Date.parse(body.createdAt)) ? body.createdAt : now2.toISOString();
+    const newItem   = {
+      id:          uuidv4(),
+      text:        rawText,
+      title:       entry.expression || '오늘의 표현',
+      category:    manualCategory || 'en',
+      domain:      'language',
+      mode:        sessionMode,
+      keywords:    [entry.expression, body.subCategory].filter(Boolean).slice(0, 3),
+      summary:     entry.meaning || '',
+      classifier:  'daily-feed-entry',
+      source,
+      type:        'language',
+      vocabEntries: body.vocabEntries,
+      subCategory: body.subCategory || '',
+      date:        toDateStr(now2),
+      time:        toTimeStr(now2),
+      createdAt:   clientTs2,
+      updatedAt:   now2.toISOString(),
+      insights:    []
+    };
+    dbInsert(newItem);
+    console.log(`[저장] [language] "${entry.expression}" (${sessionMode})`);
+    return res.status(201).json({ success: true, item: newItem });
+  }
+
   // ── 일반 텍스트 처리 ──
   const now      = new Date();
   const clientTs = body.createdAt && !isNaN(Date.parse(body.createdAt)) ? body.createdAt : now.toISOString();

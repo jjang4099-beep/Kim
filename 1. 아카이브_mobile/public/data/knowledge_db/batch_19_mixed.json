@@ -1,0 +1,504 @@
+{
+  "meta": {
+    "label": "직장인 영어·중국어 19차",
+    "mode": "work",
+    "updated": "2026-07-05",
+    "count": {
+      "english_theme_packs": 1,
+      "english_expressions": 20,
+      "chinese_expressions": 10
+    }
+  },
+  "english_theme_packs": [
+    {
+      "id": "PACK_EN_035",
+      "theme_key": "meeting_presentation_en",
+      "theme_title": "회의와 발표를 이끄는 영어",
+      "theme_title_en": "Meeting & Presentation English",
+      "level": "intermediate",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "EN_035_01",
+          "order": 1,
+          "expression": "I'd like to draw your attention to...",
+          "meaning": "~에 주목해 주세요",
+          "nuance": "발표 중 청중의 시선을 특정 포인트로 유도할 때 쓴다. 단순한 'Look at this'보다 훨씬 격식 있고 자신감 있게 들린다.",
+          "dialogue": {
+            "A": "I'd like to draw your attention to the conversion rates in the third column.",
+            "B": "Ah, I see — those numbers are significantly higher than last year."
+          },
+          "example": "I'd like to draw your attention to this key data point before we move on.",
+          "practice": "슬라이드 전환 시 중요한 데이터나 차트로 청중 시선을 유도할 때"
+        },
+        {
+          "id": "EN_035_02",
+          "order": 2,
+          "expression": "To summarize what we've discussed...",
+          "meaning": "지금까지 논의를 정리하면",
+          "nuance": "회의가 길어질 때 방향을 잡아주는 표현. 결론으로 넘어가거나 다음 아젠다로 전환할 때 자연스럽게 연결해준다.",
+          "dialogue": {
+            "A": "To summarize what we've discussed, we're aligned on the strategy but need to finalize the budget.",
+            "B": "Exactly. Can we take a vote and move on?"
+          },
+          "example": "To summarize what we've discussed so far, we have two viable paths forward.",
+          "practice": "길어진 논의를 정리하며 결론으로 이끌 때"
+        },
+        {
+          "id": "EN_035_03",
+          "order": 3,
+          "expression": "I'd like to open the floor to questions.",
+          "meaning": "질문 받겠습니다 / 발언권을 열겠습니다",
+          "nuance": "발표나 프레젠테이션 후 Q&A를 시작할 때. 'Any questions?'보다 훨씬 격식 있고 전문적인 인상을 준다.",
+          "dialogue": {
+            "A": "That concludes the overview. I'd like to open the floor to questions.",
+            "B": "Thank you. I have a question about the rollout timeline."
+          },
+          "example": "We've covered the key points. I'd now like to open the floor to questions.",
+          "practice": "발표 마무리 후 질의응답 세션을 시작할 때"
+        },
+        {
+          "id": "EN_035_04",
+          "order": 4,
+          "expression": "That's a valid point; however, ...",
+          "meaning": "좋은 지적입니다, 다만 / 맞는 말씀이지만",
+          "nuance": "반론을 제시하면서도 상대 의견을 존중하는 외교적 표현. 'But'보다 훨씬 협력적이고 프로페셔널하게 들린다.",
+          "dialogue": {
+            "A": "That's a valid point; however, the data from last quarter tells a different story.",
+            "B": "Fair enough. Can you share that data with the team?"
+          },
+          "example": "That's a valid point; however, I think we need to consider the long-term implications.",
+          "practice": "회의에서 상대 의견에 반론을 부드럽게 제시할 때"
+        },
+        {
+          "id": "EN_035_05",
+          "order": 5,
+          "expression": "Let me circle back to...",
+          "meaning": "~로 다시 돌아가겠습니다 / ~를 다시 짚어보겠습니다",
+          "nuance": "앞서 언급됐거나 미해결된 사안으로 돌아갈 때. 회의 흐름을 잃지 않으면서 중요한 포인트를 재강조하는 효과.",
+          "dialogue": {
+            "A": "Let me circle back to the budget issue we raised at the beginning.",
+            "B": "Good idea — we still haven't resolved that one."
+          },
+          "example": "Before we wrap up, let me circle back to the question about the launch date.",
+          "practice": "회의 중 미처 해결하지 못한 주제로 다시 돌아갈 때"
+        }
+      ],
+      "master_paragraph": {
+        "text": "I'd like to draw your attention to our Q4 roadmap. To summarize what we've discussed, we have budget constraints but strong market demand. That's a valid point; however, we can work within these limitations by prioritizing the top three initiatives. Let me circle back to the timeline — we have eight weeks. I'd now like to open the floor to questions.",
+        "translation": "4분기 로드맵에 주목해 주세요. 지금까지 논의를 정리하면, 예산 제약은 있지만 시장 수요는 강합니다. 맞는 말씀이지만, 상위 3개 과제에 집중하면 이 제약 안에서 충분히 가능합니다. 타임라인으로 다시 돌아가면 — 8주가 있습니다. 이제 질문 받겠습니다.",
+        "highlights": [
+          "I'd like to draw your attention to",
+          "To summarize what we've discussed",
+          "That's a valid point; however",
+          "Let me circle back to",
+          "I'd like to open the floor to questions"
+        ]
+      }
+    }
+  ],
+  "english_expressions": [
+    {
+      "id": "EN_516",
+      "expression": "Get the ball rolling",
+      "meaning": "시작하다, 첫 발을 내딛다",
+      "level": "intermediate",
+      "theme": "Action & Progress",
+      "example": "Let's get the ball rolling on the new project this Monday.",
+      "dialogue": {
+        "A": "We've been planning this for months. Should we get the ball rolling?",
+        "B": "Yes, let's kick off the first sprint next week."
+      }
+    },
+    {
+      "id": "EN_517",
+      "expression": "Move the needle",
+      "meaning": "의미 있는 변화를 만들다, 성과를 내다",
+      "level": "advanced",
+      "theme": "Results & Impact",
+      "example": "We need a strategy that actually moves the needle on user retention.",
+      "dialogue": {
+        "A": "We've tried three campaigns, but nothing seems to move the needle.",
+        "B": "Maybe we need to rethink our target audience entirely."
+      }
+    },
+    {
+      "id": "EN_518",
+      "expression": "Take it offline",
+      "meaning": "따로 이야기하다 (회의 밖에서 처리하다)",
+      "level": "intermediate",
+      "theme": "Meeting Efficiency",
+      "example": "This is getting complex — let's take it offline and set up a separate call.",
+      "dialogue": {
+        "A": "This debate is taking too long. Can we take it offline?",
+        "B": "Agreed. Let's discuss after the meeting."
+      }
+    },
+    {
+      "id": "EN_519",
+      "expression": "Low-hanging fruit",
+      "meaning": "쉽게 달성할 수 있는 성과, 손쉬운 목표",
+      "level": "intermediate",
+      "theme": "Strategy & Prioritization",
+      "example": "Before tackling complex issues, let's pick the low-hanging fruit first.",
+      "dialogue": {
+        "A": "What should we tackle first this quarter?",
+        "B": "Let's start with the low-hanging fruit — fixing the onboarding flow should boost retention quickly."
+      }
+    },
+    {
+      "id": "EN_520",
+      "expression": "Bandwidth",
+      "meaning": "처리 역량, 여유 (시간·에너지·인력)",
+      "level": "intermediate",
+      "theme": "Workload & Capacity",
+      "example": "I don't have the bandwidth to take on another project right now.",
+      "dialogue": {
+        "A": "Can you review this proposal by tomorrow?",
+        "B": "I'm stretched thin — I don't have the bandwidth until Thursday."
+      }
+    },
+    {
+      "id": "EN_521",
+      "expression": "Pushback",
+      "meaning": "반발, 저항, 이의 제기",
+      "level": "intermediate",
+      "theme": "Conflict & Negotiation",
+      "example": "We got a lot of pushback from the engineering team on the new deadline.",
+      "dialogue": {
+        "A": "How did the team react to the policy change?",
+        "B": "There was quite a bit of pushback — especially from the senior staff."
+      }
+    },
+    {
+      "id": "EN_522",
+      "expression": "Drill down (into)",
+      "meaning": "깊이 파고들다, 세부 사항을 분석하다",
+      "level": "intermediate",
+      "theme": "Analysis & Detail",
+      "example": "Let's drill down into the customer churn data to find the root cause.",
+      "dialogue": {
+        "A": "The overall numbers look fine, but something feels off.",
+        "B": "Let's drill down into the regional data — there might be a hidden trend."
+      }
+    },
+    {
+      "id": "EN_523",
+      "expression": "Loop someone in",
+      "meaning": "누군가를 대화·정보에 포함시키다",
+      "level": "intermediate",
+      "theme": "Communication & Inclusion",
+      "example": "Make sure to loop in the legal team before we finalize the contract.",
+      "dialogue": {
+        "A": "Does Sarah know about the timeline change?",
+        "B": "Not yet — I'll loop her in on the next update."
+      }
+    },
+    {
+      "id": "EN_524",
+      "expression": "Boil the ocean",
+      "meaning": "너무 방대하게 접근하다 (비효율적·비현실적인 시도)",
+      "level": "advanced",
+      "theme": "Focus & Efficiency",
+      "example": "We don't need to boil the ocean — just fix the three biggest pain points.",
+      "dialogue": {
+        "A": "I want to redesign the entire platform from scratch.",
+        "B": "Let's not boil the ocean. What are the top three user complaints?"
+      }
+    },
+    {
+      "id": "EN_525",
+      "expression": "Get on the same page",
+      "meaning": "같은 이해와 목표를 공유하다",
+      "level": "beginner",
+      "theme": "Alignment & Communication",
+      "example": "Before we start, let's get on the same page about the project goals.",
+      "dialogue": {
+        "A": "It seems like we have different ideas about what success means here.",
+        "B": "You're right. Let's get on the same page before we go any further."
+      }
+    },
+    {
+      "id": "EN_526",
+      "expression": "Hit the ground running",
+      "meaning": "빠르게 시작하여 즉시 성과를 내다",
+      "level": "intermediate",
+      "theme": "Action & Progress",
+      "example": "The new hire hit the ground running — she closed three deals in her first week.",
+      "dialogue": {
+        "A": "How's the new team member settling in?",
+        "B": "She really hit the ground running — already contributing in meetings."
+      }
+    },
+    {
+      "id": "EN_527",
+      "expression": "Think outside the box",
+      "meaning": "고정관념에서 벗어나 창의적으로 생각하다",
+      "level": "beginner",
+      "theme": "Creativity & Innovation",
+      "example": "We need to think outside the box to differentiate ourselves from competitors.",
+      "dialogue": {
+        "A": "None of the standard approaches are working.",
+        "B": "We really need to think outside the box on this one."
+      }
+    },
+    {
+      "id": "EN_528",
+      "expression": "Go back to basics",
+      "meaning": "기본으로 돌아가다",
+      "level": "beginner",
+      "theme": "Problem-Solving",
+      "example": "When things get complicated, it helps to go back to basics.",
+      "dialogue": {
+        "A": "We've tried everything and nothing is working.",
+        "B": "Maybe we need to go back to basics and revisit our core value proposition."
+      }
+    },
+    {
+      "id": "EN_529",
+      "expression": "Pick up the slack",
+      "meaning": "부족한 부분을 채우다, 빈자리를 메우다",
+      "level": "intermediate",
+      "theme": "Teamwork & Responsibility",
+      "example": "While Jake was on leave, the team picked up the slack without complaint.",
+      "dialogue": {
+        "A": "How did the project survive without the lead engineer?",
+        "B": "The rest of the team picked up the slack — they were incredible."
+      }
+    },
+    {
+      "id": "EN_530",
+      "expression": "Drop the ball",
+      "meaning": "실수하다, 책임을 다하지 못하다",
+      "level": "intermediate",
+      "theme": "Accountability",
+      "example": "Someone dropped the ball on the client follow-up and we lost the deal.",
+      "dialogue": {
+        "A": "Why didn't we hear back from the client?",
+        "B": "I'm afraid we dropped the ball — no one sent the follow-up email."
+      }
+    },
+    {
+      "id": "EN_531",
+      "expression": "Raise the bar",
+      "meaning": "기준을 높이다, 더 높은 수준을 요구하다",
+      "level": "intermediate",
+      "theme": "Excellence & Standards",
+      "example": "This campaign raises the bar for everything we do going forward.",
+      "dialogue": {
+        "A": "The client loved the presentation.",
+        "B": "Great — now we've raised the bar for ourselves. Let's keep that standard."
+      }
+    },
+    {
+      "id": "EN_532",
+      "expression": "Pull your weight",
+      "meaning": "자기 몫을 다하다, 책임을 다하다",
+      "level": "intermediate",
+      "theme": "Teamwork & Responsibility",
+      "example": "Every team member needs to pull their weight to meet the deadline.",
+      "dialogue": {
+        "A": "Some people aren't contributing equally.",
+        "B": "I know. I'll have a conversation — everyone needs to pull their weight."
+      }
+    },
+    {
+      "id": "EN_533",
+      "expression": "Touch base",
+      "meaning": "연락하다, 짧게 확인하다",
+      "level": "beginner",
+      "theme": "Communication & Follow-up",
+      "example": "Let's touch base next week to see how the implementation is going.",
+      "dialogue": {
+        "A": "Should I send a full report or just touch base?",
+        "B": "A quick touch base is fine — just let me know where things stand."
+      }
+    },
+    {
+      "id": "EN_534",
+      "expression": "Read between the lines",
+      "meaning": "행간을 읽다, 숨은 의미를 파악하다",
+      "level": "intermediate",
+      "theme": "Communication & Insight",
+      "example": "If you read between the lines, the client is saying they're not happy with the price.",
+      "dialogue": {
+        "A": "The client said 'interesting proposal' but seemed hesitant.",
+        "B": "Read between the lines — that usually means they have concerns."
+      }
+    },
+    {
+      "id": "EN_535",
+      "expression": "Burn bridges",
+      "meaning": "관계를 돌이킬 수 없게 끊다 (다리를 불태우다)",
+      "level": "intermediate",
+      "theme": "Relationships & Professionalism",
+      "example": "Don't burn bridges with your old company — the industry is smaller than you think.",
+      "dialogue": {
+        "A": "I'm thinking of sending a harsh email to my manager on my last day.",
+        "B": "Don't burn bridges — you may cross paths again someday."
+      }
+    }
+  ],
+  "chinese_expressions": [
+    {
+      "id": "ZH_148",
+      "expression": "脚踏实地",
+      "pinyin": "jiǎo tà shí dì",
+      "meaning": "발로 실제 땅을 밟다 → 착실하고 성실하게 일하다",
+      "level": "intermediate",
+      "theme": "성실·실행",
+      "example": {
+        "zh": "做事要脚踏实地，不要总想着走捷径。",
+        "ko": "일할 때는 착실하게 해야 해, 항상 지름길만 생각하면 안 돼."
+      },
+      "dialogue": {
+        "A": "那个人做事很脚踏实地。(그 사람은 일을 매우 착실하게 해.)",
+        "B": "是的，所以大家都信任他。(맞아, 그래서 모두가 그를 신뢰하지.)"
+      }
+    },
+    {
+      "id": "ZH_149",
+      "expression": "半途而废",
+      "pinyin": "bàn tú ér fèi",
+      "meaning": "중간에 포기하다, 용두사미",
+      "level": "intermediate",
+      "theme": "지속·완수",
+      "example": {
+        "zh": "学习任何技能都不能半途而废。",
+        "ko": "어떤 기술을 배우든 중간에 포기하면 안 돼."
+      },
+      "dialogue": {
+        "A": "你的项目进展怎么样？(프로젝트 진행은 어때?)",
+        "B": "有点难，但我不会半途而废的。(좀 어렵지만, 중간에 포기하지 않을 거야.)"
+      }
+    },
+    {
+      "id": "ZH_150",
+      "expression": "坚持不懈",
+      "pinyin": "jiān chí bù xiè",
+      "meaning": "끈기 있게 지속하다, 포기하지 않다",
+      "level": "intermediate",
+      "theme": "지속·회복력",
+      "example": {
+        "zh": "成功需要坚持不懈的努力。",
+        "ko": "성공에는 끈기 있는 노력이 필요해."
+      },
+      "dialogue": {
+        "A": "他是怎么做到的？(그는 어떻게 해낸 거야?)",
+        "B": "坚持不懈，从不放弃。(끝까지 포기하지 않았어.)"
+      }
+    },
+    {
+      "id": "ZH_151",
+      "expression": "因地制宜",
+      "pinyin": "yīn dì zhì yí",
+      "meaning": "현지 상황에 맞게 적절히 대응하다",
+      "level": "advanced",
+      "theme": "적응·유연성",
+      "example": {
+        "zh": "进入新市场，要因地制宜，不能照搬旧经验。",
+        "ko": "새 시장에 진입할 때는 현지에 맞게 대응해야 해, 예전 경험을 그대로 적용하면 안 돼."
+      },
+      "dialogue": {
+        "A": "我们该如何开拓海外市场？(해외 시장을 어떻게 개척해야 할까?)",
+        "B": "要因地制宜，了解当地文化和需求。(현지 문화와 니즈를 파악해 상황에 맞게 접근해야 해.)"
+      }
+    },
+    {
+      "id": "ZH_152",
+      "expression": "以身作则",
+      "pinyin": "yǐ shēn zuò zé",
+      "meaning": "솔선수범하다, 몸소 모범을 보이다",
+      "level": "intermediate",
+      "theme": "리더십·모범",
+      "example": {
+        "zh": "好的领导者要以身作则，才能让团队信服。",
+        "ko": "좋은 리더는 솔선수범해야 팀이 신뢰하게 돼."
+      },
+      "dialogue": {
+        "A": "怎么才能让团队认真工作？(팀원들이 열심히 일하게 하려면 어떻게 해야 해?)",
+        "B": "先以身作则，你自己做到了，大家自然会跟上。(먼저 솔선수범해, 네가 먼저 하면 다들 따라올 거야.)"
+      }
+    },
+    {
+      "id": "ZH_153",
+      "expression": "实事求是",
+      "pinyin": "shí shì qiú shì",
+      "meaning": "사실에 기반하여 진실을 추구하다, 현실적으로 접근하다",
+      "level": "advanced",
+      "theme": "사실·분석",
+      "example": {
+        "zh": "分析问题要实事求是，不能凭感觉下结论。",
+        "ko": "문제를 분석할 때는 사실에 기반해야 해, 감으로 결론 내리면 안 돼."
+      },
+      "dialogue": {
+        "A": "我们这次的数据表现不太好。(이번 데이터 성과가 별로야.)",
+        "B": "实事求是地说，我们的策略需要调整。(솔직히 말해서, 우리 전략을 조정해야 해.)"
+      }
+    },
+    {
+      "id": "ZH_154",
+      "expression": "独当一面",
+      "pinyin": "dú dāng yī miàn",
+      "meaning": "혼자서 한 분야를 책임지다, 독립적으로 업무를 담당하다",
+      "level": "advanced",
+      "theme": "자립·성장",
+      "example": {
+        "zh": "经过两年的锻炼，他已经能独当一面了。",
+        "ko": "2년간의 경험을 거쳐 그는 이제 혼자서도 한 분야를 책임질 수 있게 됐어."
+      },
+      "dialogue": {
+        "A": "你觉得他可以带团队了吗？(그가 팀을 이끌 수 있을 것 같아?)",
+        "B": "完全可以，他已经能独当一面了。(충분히, 이미 혼자서 처리할 수 있는 수준이야.)"
+      }
+    },
+    {
+      "id": "ZH_155",
+      "expression": "举一反三",
+      "pinyin": "jǔ yī fǎn sān",
+      "meaning": "하나를 들으면 셋을 안다, 응용력이 뛰어나다",
+      "level": "intermediate",
+      "theme": "학습·응용력",
+      "example": {
+        "zh": "他学东西很快，真的能举一反三。",
+        "ko": "그는 배우는 속도가 빠르고, 응용력이 정말 뛰어나."
+      },
+      "dialogue": {
+        "A": "我只教了他一次，他就全明白了。(한 번만 가르쳤는데 다 이해했어.)",
+        "B": "他就是那种举一反三的人。(그런 응용력이 뛰어난 사람이야.)"
+      }
+    },
+    {
+      "id": "ZH_156",
+      "expression": "循序渐进",
+      "pinyin": "xún xù jiàn jìn",
+      "meaning": "순서에 따라 점진적으로 나아가다",
+      "level": "intermediate",
+      "theme": "성장·학습",
+      "example": {
+        "zh": "学习新技能要循序渐进，不要急于求成。",
+        "ko": "새 기술을 배울 때는 단계적으로 해야 해, 조급하게 서두르면 안 돼."
+      },
+      "dialogue": {
+        "A": "我想一个月内学会Python。(한 달 안에 파이썬을 배우고 싶어.)",
+        "B": "好，但要循序渐进，打好基础再深入。(좋아, 단계적으로 기초를 잘 쌓고 나서 심화해.)"
+      }
+    },
+    {
+      "id": "ZH_157",
+      "expression": "不进则退",
+      "pinyin": "bù jìn zé tuì",
+      "meaning": "전진하지 않으면 퇴보한다",
+      "level": "intermediate",
+      "theme": "성장·동기",
+      "example": {
+        "zh": "在竞争激烈的行业里，不进则退。",
+        "ko": "치열한 경쟁 업계에서는 전진하지 않으면 퇴보해."
+      },
+      "dialogue": {
+        "A": "我最近工作有点停滞。(최근에 일이 좀 정체된 것 같아.)",
+        "B": "不进则退，现在是时候主动寻求新挑战了。(전진하지 않으면 퇴보해, 지금이 새 도전을 찾을 때야.)"
+      }
+    }
+  ]
+}

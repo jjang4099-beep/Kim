@@ -1374,121 +1374,111 @@ function getRecentDeliveredIDs(subId, days = 60) {
   return [...new Set(ids)];
 }
 
-async function generateLanguageFeed(sub, user) {
-  const lang    = sub.lang || '영어';
-  const langKey = lang.includes('중국') ? 'zh' : 'en';
-
-  /* ── 사용자 상세 설정 우선 적용 (영어/중국어 공통) ── */
-  const feedSettingKey = langKey === 'en' ? 'en_expr' : 'zh_expr';
-  const feedCfg        = user?.feed_settings?.[feedSettingKey] || {};
-  const defCount       = langKey === 'zh' ? 5 : 3;
-  const count          = feedCfg.count || sub.options?.count || defCount;
-  const level          = feedCfg.level || '';
-
-  /* ══════════════════════════════════════════════════════
-     SQLite Theme Pack First (영어 전용) — AI 호출 없음
-     english_themes JOIN english_expressions 단일 쿼리
-  ══════════════════════════════════════════════════════ */
-  if (langKey === 'en') {
-    const pack = _queryEnThemePack(sub.id);
-    if (pack) {
-      const { theme, expressions } = pack;
-      const dow      = new Date().getDay();
-      const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
-      const dayKr    = dayNames[dow];
-      const highlights  = JSON.parse(theme.highlights_json || '[]');
-      const vocabEntries = expressions.map(e => ({
-        item_id:          e.expr_id || String(e.id),
-        expression:       e.expression,
-        meaning:          e.meaning,
-        nuance:           e.nuance_story   || '',
-        dialogue:         e.dialogue_en    || '',
-        dialogueKo:       e.dialogue_ko    || '',
-        sourceSentence:   e.example_en     || '',
-        practiceSentence: e.practice_en    || ''
-      }));
-      console.log(`[SQLite EnTheme] 서빙: ${theme.pack_id} (${theme.theme_title})`);
-      return {
-        type:          'language',
-        category:      'en',
-        subCategory:   theme.theme_key   || '',
-        label:         sub.label,
-        title:         `[${dayKr}] ${theme.theme_title}: ${vocabEntries[0]?.expression} 외 ${vocabEntries.length - 1}개`,
-        summary:       `${dayKr}요일 — ${theme.theme_title}`,
-        theme:         theme.theme_key   || '',
-        themeTitle:    theme.theme_title,
-        themeTitleEn:  theme.theme_title_en || '',
-        dayOfWeek:     dayKr,
-        vocabEntries,
-        masterParagraph: {
-          text:        theme.master_paragraph_en,
-          translation: theme.master_paragraph_ko,
-          highlights
-        },
-        pack_id:       theme.pack_id,
-        aiGenerated:   false
-      };
-    }
-  }
-
-  /* ── DB-First: knowledge_db에서 먼저 시도 (비용 0원) ── */
-  {
-    const kdb  = loadKnowledgeDB();
-    const pool = langKey === 'en' ? kdb.english_expressions : kdb.chinese_expressions;
-    const lvlPool = level ? pool.filter(i => i.level === level) : pool;
-    const srcPool = lvlPool.length >= count ? lvlPool : pool;
-    if (srcPool.length >= count) {
-      const recentIds = getRecentDeliveredIDs(sub.id, 14);
-      const unseen = srcPool.filter(item => !recentIds.includes(item.id));
-      if (unseen.length >= count) {
-        const items = unseen.sort(() => Math.random() - 0.5).slice(0, count);
-        const dow      = new Date().getDay();
-        const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
-        const dayKr    = dayNames[dow];
-        const theme    = items[0]?.theme || (langKey === 'en' ? '비즈니스 영어' : '비즈니스 중국어');
-        /* DB 항목 theme(영문) → 사용자 노출용 한글 라벨 */
-        const THEME_KR = {
-          'meeting':'회의·미팅','communication':'커뮤니케이션','workload':'업무·일정','performance':'성과','kickoff':'프로젝트 시작',
-          'strategy':'전략','planning':'기획','negotiation':'협상','reporting':'보고','standards':'기준·품질','creativity':'창의력',
-          'decision-making':'의사결정','daily-life':'일상 회화','social':'사교·관계','formal':'격식 표현','life-advice':'삶의 지혜',
-          'efficiency':'효율','project-management':'프로젝트 관리','critical-thinking':'비판적 사고','analysis':'분석','teamwork':'팀워크',
-          'emotion':'감정 표현','praise':'칭찬','relationships':'인간관계','exploration':'탐구','gratitude':'감사','productivity':'생산성',
-          'self-reflection':'자기성찰','leadership':'리더십','motivation':'동기부여','self-improvement':'자기계발','progress':'진척'
-        };
-        const themeKr  = THEME_KR[theme] || (langKey === 'en' ? '실전 영어 표현' : '실전 중국어 표현');
-        const vocabEntries = items.map(item => ({
-          item_id:          item.id,
-          expression:       item.expression,
-          meaning:          item.meaning,
-          nuance:           item.nuance            || '',
-          sourceSentence:   item.source_sentence   || item.sourceSentence   || '',
-          practiceSentence: item.practice_sentence || item.practiceSentence || '',
-          dialogue:         item.dialogue           || ''
-        }));
-        console.log(`[KnowledgeDB] 언어피드 DB 서빙 (${sub.id}) ${items.length}개`);
-        return {
-          type:        'language',
-          category:    sub.category || langKey,
-          subCategory: theme,
-          label:       sub.label,
-          title:       `[${dayKr}] ${themeKr}: ${vocabEntries[0]?.expression || '핵심 표현'} 외 ${vocabEntries.length - 1}개`,
-          summary:     `${dayKr}요일 — ${themeKr} 핵심 ${lang} 표현 ${vocabEntries.length}선`,
-          report:      '',
-          theme,
-          dayOfWeek:   dayKr,
-          vocabEntries,
-          aiGenerated: false
-        };
-      }
-      // 미배달 표현 부족 → AI 생성으로 fallback (반복 방지)
-      console.log(`[KnowledgeDB] 미배달 EN 부족(${unseen.length}/${count}) → AI 생성 fallback`);
-    }
-  }
-
-  /* 요일별 테마 자동 결정 (0=일요일) */
-  const dow      = new Date().getDay();
+/** 오늘 요일 한글 표기 — generateLanguageFeed의 3단계 모두에서 동일하게 사용 */
+function _todayDayKr() {
   const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
-  const dayKr    = dayNames[dow];
+  return dayNames[new Date().getDay()];
+}
+
+/** 언어 피드 Tier 1 — SQLite 영어 테마팩(DB-first, AI 호출 없음, 영어 전용). 없으면 null */
+function _tryEnThemePackFeed(sub) {
+  const pack = _queryEnThemePack(sub.id);
+  if (!pack) return null;
+  const { theme, expressions } = pack;
+  const dayKr = _todayDayKr();
+  const highlights   = JSON.parse(theme.highlights_json || '[]');
+  const vocabEntries = expressions.map(e => ({
+    item_id:          e.expr_id || String(e.id),
+    expression:       e.expression,
+    meaning:          e.meaning,
+    nuance:           e.nuance_story   || '',
+    dialogue:         e.dialogue_en    || '',
+    dialogueKo:       e.dialogue_ko    || '',
+    sourceSentence:   e.example_en     || '',
+    practiceSentence: e.practice_en    || ''
+  }));
+  console.log(`[SQLite EnTheme] 서빙: ${theme.pack_id} (${theme.theme_title})`);
+  return {
+    type:          'language',
+    category:      'en',
+    subCategory:   theme.theme_key   || '',
+    label:         sub.label,
+    title:         `[${dayKr}] ${theme.theme_title}: ${vocabEntries[0]?.expression} 외 ${vocabEntries.length - 1}개`,
+    summary:       `${dayKr}요일 — ${theme.theme_title}`,
+    theme:         theme.theme_key   || '',
+    themeTitle:    theme.theme_title,
+    themeTitleEn:  theme.theme_title_en || '',
+    dayOfWeek:     dayKr,
+    vocabEntries,
+    masterParagraph: {
+      text:        theme.master_paragraph_en,
+      translation: theme.master_paragraph_ko,
+      highlights
+    },
+    pack_id:       theme.pack_id,
+    aiGenerated:   false
+  };
+}
+
+/* DB 항목 theme(영문) → 사용자 노출용 한글 라벨 (Tier 2 전용) */
+const _KNOWLEDGE_DB_THEME_KR = {
+  'meeting':'회의·미팅','communication':'커뮤니케이션','workload':'업무·일정','performance':'성과','kickoff':'프로젝트 시작',
+  'strategy':'전략','planning':'기획','negotiation':'협상','reporting':'보고','standards':'기준·품질','creativity':'창의력',
+  'decision-making':'의사결정','daily-life':'일상 회화','social':'사교·관계','formal':'격식 표현','life-advice':'삶의 지혜',
+  'efficiency':'효율','project-management':'프로젝트 관리','critical-thinking':'비판적 사고','analysis':'분석','teamwork':'팀워크',
+  'emotion':'감정 표현','praise':'칭찬','relationships':'인간관계','exploration':'탐구','gratitude':'감사','productivity':'생산성',
+  'self-reflection':'자기성찰','leadership':'리더십','motivation':'동기부여','self-improvement':'자기계발','progress':'진척'
+};
+
+/** 언어 피드 Tier 2 — knowledge_db 시드 풀(DB-first, AI 호출 없음). 미배달분 부족하면 null */
+function _tryKnowledgeDbLanguageFeed(sub, langKey, lang, count, level) {
+  const kdb  = loadKnowledgeDB();
+  const pool = langKey === 'en' ? kdb.english_expressions : kdb.chinese_expressions;
+  const lvlPool = level ? pool.filter(i => i.level === level) : pool;
+  const srcPool = lvlPool.length >= count ? lvlPool : pool;
+  if (srcPool.length < count) return null;
+
+  const recentIds = getRecentDeliveredIDs(sub.id, 14);
+  const unseen = srcPool.filter(item => !recentIds.includes(item.id));
+  if (unseen.length < count) {
+    // 미배달 표현 부족 → AI 생성으로 fallback (반복 방지)
+    console.log(`[KnowledgeDB] 미배달 EN 부족(${unseen.length}/${count}) → AI 생성 fallback`);
+    return null;
+  }
+
+  const items = unseen.sort(() => Math.random() - 0.5).slice(0, count);
+  const dayKr = _todayDayKr();
+  const theme = items[0]?.theme || (langKey === 'en' ? '비즈니스 영어' : '비즈니스 중국어');
+  const themeKr = _KNOWLEDGE_DB_THEME_KR[theme] || (langKey === 'en' ? '실전 영어 표현' : '실전 중국어 표현');
+  const vocabEntries = items.map(item => ({
+    item_id:          item.id,
+    expression:       item.expression,
+    meaning:          item.meaning,
+    nuance:           item.nuance            || '',
+    sourceSentence:   item.source_sentence   || item.sourceSentence   || '',
+    practiceSentence: item.practice_sentence || item.practiceSentence || '',
+    dialogue:         item.dialogue           || ''
+  }));
+  console.log(`[KnowledgeDB] 언어피드 DB 서빙 (${sub.id}) ${items.length}개`);
+  return {
+    type:        'language',
+    category:    sub.category || langKey,
+    subCategory: theme,
+    label:       sub.label,
+    title:       `[${dayKr}] ${themeKr}: ${vocabEntries[0]?.expression || '핵심 표현'} 외 ${vocabEntries.length - 1}개`,
+    summary:     `${dayKr}요일 — ${themeKr} 핵심 ${lang} 표현 ${vocabEntries.length}선`,
+    report:      '',
+    theme,
+    dayOfWeek:   dayKr,
+    vocabEntries,
+    aiGenerated: false
+  };
+}
+
+/** 언어 피드 Tier 3 — AI 생성(Gemini/Claude, 실패 시 mock 폴백). 항상 결과 반환 */
+async function _generateAiLanguageFeed(sub, langKey, lang, count, level, feedCfg) {
+  const dayKr = _todayDayKr();
+  const dow   = new Date().getDay();
 
   /* 사용자 집중 테마 → 요일 순환, 없으면 기본 요일 테마 */
   const themeLabels = langKey === 'en' ? EN_THEME_LABELS : ZH_THEME_LABELS;
@@ -1563,6 +1553,33 @@ async function generateLanguageFeed(sub, user) {
     vocabEntries: entries,
     aiGenerated: !!(process.env.GEMINI_API_KEY || process.env.ANTHROPIC_API_KEY)
   };
+}
+
+/**
+ * 언어(영어/중국어) 배달 피드 생성 — 3단계 폴백:
+ * ① SQLite 테마팩(영어 전용) → ② knowledge_db 시드 풀 → ③ AI 생성(mock 폴백 포함)
+ * 앞 단계에서 결과가 나오면 뒤 단계는 실행하지 않음(비용 절감).
+ */
+async function generateLanguageFeed(sub, user) {
+  const lang    = sub.lang || '영어';
+  const langKey = lang.includes('중국') ? 'zh' : 'en';
+
+  /* ── 사용자 상세 설정 우선 적용 (영어/중국어 공통) ── */
+  const feedSettingKey = langKey === 'en' ? 'en_expr' : 'zh_expr';
+  const feedCfg        = user?.feed_settings?.[feedSettingKey] || {};
+  const defCount       = langKey === 'zh' ? 5 : 3;
+  const count          = feedCfg.count || sub.options?.count || defCount;
+  const level          = feedCfg.level || '';
+
+  if (langKey === 'en') {
+    const packFeed = _tryEnThemePackFeed(sub);
+    if (packFeed) return packFeed;
+  }
+
+  const dbFeed = _tryKnowledgeDbLanguageFeed(sub, langKey, lang, count, level);
+  if (dbFeed) return dbFeed;
+
+  return _generateAiLanguageFeed(sub, langKey, lang, count, level, feedCfg);
 }
 
 // ══════════════════════════════════════════════════
@@ -2849,38 +2866,6 @@ async function reshelfOldInboxItems() {
 }
 setInterval(reshelfOldInboxItems, 60 * 60 * 1000);
 
-// ══════════════════════════════════════════════════
-//  통찰 감지 (기존 유지)
-// ══════════════════════════════════════════════════
-
-async function detectCrossInsight(newItem, recentItems) {
-  if (!process.env.ANTHROPIC_API_KEY) return null;
-  const itemDomain = getDomain(newItem);
-  if (!['language','humanities'].includes(itemDomain)) return null;
-  const opposite = itemDomain === 'language' ? 'humanities' : 'language';
-  const peers = recentItems.filter(i => getDomain(i) === opposite).slice(0, 5)
-    .map(i => `- ${i.text.slice(0,120)}`).join('\n');
-  if (!peers) return null;
-
-  const raw = await callClaude({
-    maxTokens: 300,
-    system: '당신은 지식 간 깊은 연결고리를 발견하는 인문학자입니다.',
-    messages: [{
-      role: 'user',
-      content: `아래 두 지식 그룹 사이에 의미 있는 인과관계 또는 새로운 연결이 있으면 발견해 주세요.
-없으면 반드시 {"found":false} 만 출력하세요.
-있으면: {"found":true,"insight":"발견한 연결 2~3문장","title":"연결 제목 10자 이내"}
-
-[새로 추가된 ${newItem.category === 'en' ? '영어' : '역사'} 지식]
-${newItem.text.slice(0, 200)}
-
-[기존 ${opposite === 'en' ? '영어' : '역사'} 지식]
-${peers}`
-    }]
-  });
-  const parsed = safeParseJSON(raw);
-  return parsed?.found ? parsed : null;
-}
 
 // ══════════════════════════════════════════════════
 //  Web Push 라우팅
@@ -2935,20 +2920,6 @@ app.delete('/api/push/subscribe', (req, res) => {
   res.json({ success: true });
 });
 
-/**
- * POST /api/push/test
- * 테스트 푸시 발송 (개발용)
- */
-app.post('/api/push/test', async (req, res) => {
-  const payload = {
-    title: '📚 SJ 서재 — 테스트 알림',
-    body:  '웹 푸시가 정상적으로 작동합니다! 🎉',
-    url:   '/?view=mobile&action=feed',
-    tag:   'sj-test'
-  };
-  const result = await sendPushToAll(payload);
-  res.json({ success: true, ...result });
-});
 
 // ══════════════════════════════════════════════════
 //  Share Target & Inbox API
@@ -3078,26 +3049,6 @@ app.patch('/api/user/settings', (req, res) => {
 
   console.log(`[유저설정] 업데이트 — 배달시간: ${user.delivery_time}, 피드: ${(user.enabled_feeds||[]).join(',')}`);
   res.json({ success: true, user });
-});
-
-/**
- * PATCH /api/delivery-settings/english  (하위 호환 유지)
- * Body: { count, themes, level }
- */
-app.patch('/api/delivery-settings/english', (req, res) => {
-  const users = readUsers();
-  if (!users.length) return res.status(404).json({ success: false, error: '유저 없음' });
-  const user = users[0];
-  if (!user.feed_settings) user.feed_settings = {};
-  const { count, themes, level } = req.body;
-  user.feed_settings.en_expr = {
-    count : [5,7,10].includes(Number(count)) ? Number(count) : 7,
-    themes: Array.isArray(themes) ? themes : [],
-    level : ['intermediate','advanced'].includes(level) ? level : 'intermediate'
-  };
-  user.updated_at = new Date().toISOString();
-  writeUsers(users);
-  res.json({ success: true, settings: user.feed_settings.en_expr });
 });
 
 /**
@@ -3502,114 +3453,6 @@ app.post('/api/daily-feed/:date/:subId/save', async (req, res) => {
   res.status(201).json({ success: true, alreadySaved: false, itemId: newItem.id, item: newItem });
 });
 
-/**
- * POST /api/archive/single
- * 피드의 낱개 항목(단어/개념) 하나를 서재에 저장
- * Body: { date, subId, index, field? }
- */
-app.post('/api/archive/single', async (req, res) => {
-  const { date, subId, index, field } = req.body;
-  const all  = readDailyFeeds();
-  const feed = all?.[date]?.[subId];
-
-  if (!feed) return res.status(404).json({ success: false, error: '피드를 찾을 수 없습니다.' });
-
-  const entries = field ? (feed[field] || []) : (feed.vocabEntries || feed.aiEconomicKnowledge || []);
-  const entry   = entries[index];
-  if (!entry) return res.status(404).json({ success: false, error: '항목을 찾을 수 없습니다.' });
-
-  // 중복 저장 체크
-  const savedKey = `saved_${field || 'default'}_${index}`;
-  if (feed.savedEntries?.[savedKey]) {
-    return res.json({ success: true, alreadySaved: true });
-  }
-
-  // 텍스트 구성
-  let text = '';
-  if (feed.type === 'language' || entry.expression) {
-    text = `${entry.expression || entry.term}\n뜻: ${entry.meaning || entry.importance}\n뉘앙스: ${entry.nuance || entry.connection || ''}\n예문: ${entry.sourceSentence || ''}`.trim();
-  } else {
-    text = `${entry.term || ''}: ${entry.importance || ''}\n${entry.connection || ''}`.trim();
-  }
-
-  const now     = new Date();
-  const newItem = {
-    id:         uuidv4(),
-    text,
-    category:   feed.category || 'en',
-    mode:       normalizeMode(req.body?.mode),   // 저장 당시 세션 모드 적재
-    keywords:   [entry.expression || entry.term, feed.subCategory].filter(Boolean).slice(0, 3),
-    summary:    entry.meaning || entry.importance || '',
-    classifier: 'daily-feed-single',
-    source:     'daily-feed',
-    type:       'text',
-    date:       toDateStr(now),
-    time:       toTimeStr(now),
-    createdAt:  now.toISOString(),
-    updatedAt:  now.toISOString(),
-    insights:   []
-  };
-
-  dbInsert(newItem);
-
-  // savedEntries 기록
-  if (!all[date][subId].savedEntries) all[date][subId].savedEntries = {};
-  all[date][subId].savedEntries[savedKey] = newItem.id;
-  writeDailyFeeds(all);
-
-  console.log(`[낱개저장] "${entry.expression || entry.term}" → ${newItem.id}`);
-  res.status(201).json({ success: true, alreadySaved: false, itemId: newItem.id });
-});
-
-// ══════════════════════════════════════════════════
-//  API — 오늘의 지식 배달 카드
-// ══════════════════════════════════════════════════
-
-/**
- * GET /api/daily-delivery
- * 오늘 생성된 type:'daily_delivery' 카드 반환
- * ?force=true → 강제 재생성
- */
-app.get('/api/daily-delivery', async (req, res) => {
-  const today = toDateStr();
-  const force = req.query.force === 'true';
-  const user  = getDefaultUser();
-
-  if (!user) return res.status(500).json({ success: false, error: '유저 설정 없음' });
-
-  // 오늘 배달 카드 조회
-  const existing = readDB().filter(i => i.type === 'daily_delivery' && i.date === today);
-
-  if (existing.length > 0 && !force) {
-    return res.json({ success: true, date: today, cached: true, items: existing });
-  }
-
-  // 없으면 생성
-  try {
-    const cards = await generateDailyDelivery(user, force);
-    res.json({ success: true, date: today, cached: false, items: cards });
-  } catch (e) {
-    res.status(500).json({ success: false, error: e.message });
-  }
-});
-
-/**
- * POST /api/daily-delivery/generate
- * 수동으로 오늘의 지식 배달 카드 재생성
- */
-app.post('/api/daily-delivery/generate', async (req, res) => {
-  const user  = getDefaultUser();
-  const force = req.body?.force !== false;
-  if (!user) return res.status(500).json({ success: false, error: '유저 없음' });
-
-  try {
-    const cards = await generateDailyDelivery(user, force);
-    res.json({ success: true, date: toDateStr(), count: cards.length, items: cards });
-  } catch (e) {
-    res.status(500).json({ success: false, error: e.message });
-  }
-});
-
 // ══════════════════════════════════════════════════
 //  API — CRUD (기존 유지)
 // ══════════════════════════════════════════════════
@@ -3829,71 +3672,7 @@ app.post('/api/items', async (req, res) => {
   dbInsert(newItem);
   console.log(`[저장] [${newItem.category}] "${rawText.slice(0,60)}" (${sessionMode})`);
 
-  // detectCrossInsight는 저장마다 호출하지 않음
-  // → 유저가 서재 탭에서 [AI 기간별 요약]을 명시적으로 요청할 때 POST /api/insights/detect 사용
-
   res.status(201).json({ success: true, item: newItem });
-});
-
-/**
- * POST /api/insights/detect
- * 서재 탭 [AI 기간별 요약] 버튼에서 명시적으로 호출할 때만 실행
- * Body: { startDate?, endDate? }  — 생략 시 최근 30일
- *
- * en ↔ history 카테고리 간 교차 통찰을 배치로 감지해 각 아이템의 insights 배열에 누적
- */
-app.post('/api/insights/detect', async (req, res) => {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    return res.status(503).json({ success: false, error: 'ANTHROPIC_API_KEY 미설정 — 통찰 감지 불가' });
-  }
-
-  const { startDate, endDate } = req.body || {};
-  const now    = new Date();
-  const toDate = endDate   || toDateStr(now);
-  const fromDate = startDate || toDateStr(new Date(now.getTime() - 30 * 86400000));
-
-  const allItems = _sqlQuery(
-    "SELECT data FROM items WHERE date >= ? AND date <= ? ORDER BY created_at DESC LIMIT 100",
-    [fromDate, toDate]
-  ).map(r => { const i = JSON.parse(r.data); i.domain = getDomain(i); return i; });
-
-  if (allItems.length < 2) {
-    return res.json({ success: true, detected: 0, message: '통찰 감지에 필요한 아이템이 부족합니다.' });
-  }
-
-  const langItems = allItems.filter(i => i.domain === 'language');
-  const humItems  = allItems.filter(i => i.domain === 'humanities');
-  const items     = [...langItems, ...humItems];
-  if (!langItems.length || !humItems.length) {
-    return res.json({ success: true, detected: 0, message: 'language 또는 humanities 도메인 아이템이 없어 교차 통찰을 생성할 수 없습니다.' });
-  }
-
-  // 최신 language 아이템 3개에 대해서만 교차 통찰 감지 (비용 절감)
-  let detected = 0;
-  const targets = langItems.slice(0, 3);
-
-  for (const target of targets) {
-    try {
-      const insight = await detectCrossInsight(target, histItems);
-      if (insight) {
-        target.insights = target.insights || [];
-        target.insights.push({
-          id        : uuidv4(),
-          title     : insight.title,
-          body      : insight.insight,
-          createdAt : new Date().toISOString()
-        });
-        target.updatedAt = new Date().toISOString();
-        dbUpdate(target);
-        detected++;
-      }
-    } catch (e) {
-      console.warn('[통찰감지] 항목 처리 실패 (계속):', e.message);
-    }
-  }
-
-  console.log(`[통찰감지] 배치 완료 — ${detected}/${targets.length}개 통찰 생성`);
-  res.json({ success: true, detected, scanned: targets.length, period: { from: fromDate, to: toDate } });
 });
 
 app.patch('/api/items/:id', (req, res) => {
@@ -3922,15 +3701,6 @@ function calcNextReview(ease, count, quality) {
   const interval = count === 0 ? 1 : count === 1 ? 6 : Math.round(count * newEase);
   return { interval, ease: newEase };
 }
-
-app.get('/api/review-queue', (req, res) => {
-  const today = new Date(); today.setHours(23, 59, 59, 999);
-  const items = readDB()
-    .filter(i => i.reviewAt && new Date(i.reviewAt) <= today)
-    .sort((a, b) => new Date(a.reviewAt) - new Date(b.reviewAt))
-    .slice(0, 20);
-  res.json({ success: true, items, total: items.length });
-});
 
 app.patch('/api/items/:id/review', (req, res) => {
   const items = readDB();
@@ -4729,128 +4499,6 @@ app.post('/api/exam/wrong/:id/analyze', async (req, res) => {
 });
 
 // ══════════════════════════════════════════════════
-//  API — 통계, 타임머신, 주간 브리핑, 연말 결산, 통찰 (기존 유지)
-// ══════════════════════════════════════════════════
-
-app.get('/api/stats', (req, res) => {
-  const items  = readDB();
-  const counts = {};
-  const daily  = {};
-  items.forEach(i => {
-    counts[i.category] = (counts[i.category] || 0) + 1;
-    daily[i.date]      = (daily[i.date] || 0) + 1;
-  });
-  const today      = toDateStr();
-  const todayCount = daily[today] || 0;
-  const now        = new Date();
-  const dow        = now.getDay() || 7;
-  const wStart     = new Date(now); wStart.setDate(now.getDate() - dow + 1);
-  const weekCount  = items.filter(i => i.date >= toDateStr(wStart)).length;
-  let streak = 0, chk = new Date();
-  while (daily[toDateStr(chk)]) { streak++; chk.setDate(chk.getDate() - 1); }
-  const grassData = Array.from({ length: 84 }, (_, k) => {
-    const d = new Date(); d.setDate(d.getDate() - (83 - k));
-    const ds = toDateStr(d);
-    return { date: ds, count: daily[ds] || 0 };
-  });
-  const shelfCounts = { ...counts };  // shelf === category (단일 필드 정책)
-  res.json({ success: true, stats: { total: items.length, byCategory: counts, shelfCounts, todayCount, weekCount, streak, grassData } });
-});
-
-app.get('/api/timemachine', (req, res) => {
-  const count  = Math.min(Number(req.query.count) || 3, 10);
-  const items  = readDB();
-  const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - 7);
-  const old    = items.filter(i => new Date(i.createdAt) < cutoff);
-  if (!old.length) return res.json({ success: true, items: [] });
-  for (let i = old.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [old[i], old[j]] = [old[j], old[i]];
-  }
-  res.json({ success: true, items: old.slice(0, count) });
-});
-
-app.get('/api/report/weekly', async (req, res) => {
-  const items   = readDB();
-  const cutoff  = new Date(); cutoff.setDate(cutoff.getDate() - 7);
-  const weekly  = items.filter(i => new Date(i.createdAt) >= cutoff);
-  const grouped = {};
-  weekly.forEach(i => { (grouped[i.date] = grouped[i.date] || []).push(i); });
-  const domainCounts = {};
-  weekly.forEach(i => { const d = getDomain(i); domainCounts[d] = (domainCounts[d] || 0) + 1; });
-
-  let storyReport = null;
-  if (process.env.ANTHROPIC_API_KEY && weekly.length >= 3) {
-    const langItems = weekly.filter(i => getDomain(i) === 'language').slice(0, 8).map(i => `• ${i.text.slice(0,150)}`).join('\n');
-    const humItems  = weekly.filter(i => getDomain(i) === 'humanities').slice(0, 8).map(i => `• ${i.text.slice(0,150)}`).join('\n');
-    const bizItems  = weekly.filter(i => getDomain(i) === 'business').slice(0, 5).map(i => `• ${i.text.slice(0,150)}`).join('\n');
-    const raw = await callClaude({
-      maxTokens: 800,
-      system: '당신은 개인 지식 사서이자 인문학 큐레이터입니다.',
-      messages: [{ role: 'user', content: `이번 주 수집된 지식들입니다.\n\n[언어·표현]\n${langItems||'(없음)'}\n\n[역사·문명]\n${humItems||'(없음)'}\n\n[비즈니스·경제]\n${bizItems||'(없음)'}\n\n아래 JSON만 출력하세요:\n{"headline":"제목(15자)","story":"스토리(200~300자)","crossInsight":"도메인 간 연결(100자)","weeklyPhrase":"핵심 문장"}` }]
-    });
-    storyReport = safeParseJSON(raw);
-  }
-
-  res.json({
-    success: true,
-    period: { from: toDateStr(cutoff), to: toDateStr() },
-    totalItems: weekly.length, byDate: grouped, byCategory: domainCounts,
-    storyReport: storyReport || { headline: '이번 주 지식 브리핑', story: 'ANTHROPIC_API_KEY를 설정하면 AI 스토리텔링을 받을 수 있습니다.', crossInsight: 'API 키 설정 후 활성화됩니다.', weeklyPhrase: '知識は力なり' }
-  });
-});
-
-app.get('/api/report/year-end', async (req, res) => {
-  const year      = parseInt(req.query.year) || new Date().getFullYear();
-  const allItems  = readDB();
-  const yearItems = allItems.filter(i => (i.date||'').startsWith(String(year)));
-  const byCategory = {};
-  yearItems.forEach(i => { byCategory[i.category] = (byCategory[i.category]||0)+1; });
-  const kwMap = {};
-  yearItems.forEach(i => (i.keywords||[]).forEach(k => { kwMap[k]=(kwMap[k]||0)+1; }));
-  const topKeywords = Object.entries(kwMap).sort((a,b)=>b[1]-a[1]).slice(0,10).map(([word,count])=>({word,count}));
-  const bestSentences = [...yearItems].filter(i=>i.text&&i.text.length>20).sort((a,b)=>b.text.length-a.text.length).slice(0,5).map(i=>({id:i.id,text:i.text,category:i.category,date:i.date,source:i.source||''}));
-
-  let aiAnalysis = null;
-  if (process.env.ANTHROPIC_API_KEY && yearItems.length >= 3) {
-    const sample  = yearItems.slice(0,50).map(i=>`[${i.category}] ${i.text.slice(0,100)}`).join('\n');
-    const catSum  = Object.entries(byCategory).map(([k,v])=>`${k}:${v}개`).join(', ');
-    const raw = await callClaude({ maxTokens: 1000, system: '당신은 개인 지식 아카이브의 연간 큐레이터입니다.', messages: [{ role:'user', content: `${year}년 아카이브: ${catSum}\n\n${sample}\n\nJSON만 출력:\n{"top3Keywords":[{"word":"","description":""}],"yearSummary":"","crossCategoryInsight":"","letterToNextYear":""}` }] });
-    aiAnalysis = safeParseJSON(raw);
-  }
-
-  if (!aiAnalysis) {
-    const topCat = Object.entries(byCategory).sort((a,b)=>b[1]-a[1])[0]?.[0]||'general';
-    const catKr  = {en:'영어',history:'역사',economy:'경제',youtube:'유튜브',inbox:'임시서랍',general:'일반'};
-    aiAnalysis = { _mock:true, top3Keywords:[{word:topKeywords[0]?.word||'학습',description:`${year}년 가장 자주 등장한 키워드.`},{word:topKeywords[1]?.word||'통찰',description:'지식 간 연결을 찾아낸 순간들.'},{word:topKeywords[2]?.word||'서재',description:'지식 건축을 상징합니다.'}], yearSummary:`${year}년, 총 ${yearItems.length}개의 지식을 서재에 쌓았습니다.`, crossCategoryInsight:'API 키 설정 후 깊이 있는 분석을 받으세요.', letterToNextYear:'하루 한 권의 지식을 서재에 꽂아 나가십시오.' };
-  }
-
-  res.json({ success:true, year, period:{from:`${year}-01-01`,to:`${year}-12-31`}, totalItems:yearItems.length, byCategory, topKeywords, bestSentences, aiAnalysis });
-});
-
-app.get('/api/insights', (req, res) => {
-  const limit = Math.min(Number(req.query.limit)||5, 20);
-  const items = readDB();
-  const insightCards = [];
-  items.forEach(item => {
-    (item.insights||[]).forEach(ins => {
-      insightCards.push({...ins, sourceItem:{id:item.id,category:item.category,text:item.text.slice(0,80)}});
-    });
-  });
-  insightCards.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
-  res.json({ success:true, total:insightCards.length, insights:insightCards.slice(0,limit) });
-});
-
-// ══════════════════════════════════════════════════
-//  API — 구독 설정 조회·변경
-// ══════════════════════════════════════════════════
-
-app.get('/api/subscriptions', (req, res) => {
-  const subs = readJSON(SUBSCRIPTIONS_PATH, []);
-  res.json({ success: true, subscriptions: subs });
-});
-
-// ══════════════════════════════════════════════════
 //  수험생 모드 API (Exam Mode)
 // ══════════════════════════════════════════════════
 
@@ -5395,15 +5043,6 @@ app.get('/api/summary/:type/:period', async (req, res) => {
   } catch (e) {
     res.status(500).json({ error: '결산 생성 실패: ' + e.message });
   }
-});
-
-app.post('/api/summary/generate', (req, res) => {
-  const { type, period, mode } = req.body;
-  if (!type || !period) return res.status(400).json({ error: 'type, period 필요' });
-  const cache = readSummaries();
-  delete cache[`${normalizeMode(mode)}:${type}:${period}`];
-  writeSummaries(cache);
-  res.redirect(`/api/summary/${type}/${period}?mode=${normalizeMode(mode)}`);
 });
 
 /**

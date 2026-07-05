@@ -2176,6 +2176,18 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   gap        : 6px;
 }
 
+/* 시황 카드 — 실시간 지표 상태 배지(장중/마감). 추정치가 아니라 실제 조회값임을 알림 */
+.mob-mkt-live-badge {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-size: 10px; font-weight: 700;
+  padding: 2px 7px; border-radius: 20px;
+  white-space: nowrap;
+}
+.mob-mkt-live-badge i { font-size: 10px; }
+.mob-mkt-live-badge.live   { background: rgba(5,150,105,.12); color: #059669; }
+.mob-mkt-live-badge.closed { background: var(--bg); color: var(--text-3); border: 1px solid var(--border); }
+html[data-theme="dark"] .mob-mkt-live-badge.live { background: rgba(52,211,153,.15); color: #34d399; }
+
 /* 피드 카드 헤더 저장 아이콘 버튼 (시황·영어 카드 공용) */
 .mob-feed-card-save-btn {
   display        : flex;

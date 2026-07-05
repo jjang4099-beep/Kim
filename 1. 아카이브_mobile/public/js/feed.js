@@ -639,12 +639,25 @@ Object.assign(Mob, {
 
     const hasDetail = !!(indFullHTML || summary3HTML || checkHTML || termsHTML);
 
+    /* 실시간 지표 여부 배지 — 장중(현재가) / 마감(종가) / 미조회(추정치) 구분 */
+    let liveBadgeHTML = '';
+    if (item.isLive) {
+      const asOfLabel = item.dataAsOf
+        ? new Date(item.dataAsOf).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', hour12: false })
+        : '';
+      const state = item.marketClosed === true ? '마감' : item.marketClosed === false ? '장중' : '실시간';
+      liveBadgeHTML = `<span class="mob-mkt-live-badge ${item.marketClosed ? 'closed' : 'live'}">
+        <i class="ti ti-broadcast"></i> ${state}${asOfLabel ? ` · ${asOfLabel} 기준` : ''}
+      </span>`;
+    }
+
     const isSavedMkt = !!(item.saved || item.savedItemId);
     return `
     <div class="mob-card mob-card-feed mob-card-feed-market" data-id="">
       <div class="mob-feed-card-hd">
         <span class="mob-feed-badge mob-feed-badge-market">${item.label || '시황'}</span>
         <div class="mob-feed-card-hd-r">
+          ${liveBadgeHTML}
           <span class="mob-feed-card-date">${date}</span>
           ${subId ? `<button class="mob-feed-card-save-btn${isSavedMkt ? ' saved' : ''}"
               data-sub="${subId}" data-date="${date}"

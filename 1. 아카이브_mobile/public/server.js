@@ -1565,6 +1565,89 @@ async function generateLanguageFeed(sub, user) {
   };
 }
 
+// ══════════════════════════════════════════════════
+//  실시간 시장 지표 — Yahoo Finance 비공식 chart API (키 불필요, 무료)
+//  마감 전이면 현재가(장중 실시간), 마감 후면 종가를 그대로 반환.
+//  regularMarketTime(마지막 갱신 시각)이 정규장 종료(regular.end) 이후면 "마감"으로 판정.
+// ══════════════════════════════════════════════════
+const YAHOO_SYMBOLS = {
+  us: [
+    { sym: '^GSPC', name: 'S&P 500' },
+    { sym: '^IXIC', name: '나스닥' },
+    { sym: '^DJI',  name: '다우 지수' },
+    { sym: '^TNX',  name: '미 국채 10년물', isYield: true },
+    { sym: '^VIX',  name: 'VIX 공포지수' },
+  ],
+  kr: [
+    { sym: '^KS11', name: '코스피' },
+    { sym: '^KQ11', name: '코스닥' },
+    { sym: 'KRW=X', name: '원/달러', isKrw: true },
+  ],
+};
+
+async function fetchYahooQuote(symbol, timeoutMs = 8000) {
+  /* range=1d일 때 meta.chartPreviousClose가 당일가와 거의 같은 값으로 나오는
+     경우가 있어(관찰됨) range=5d로 받아 종가 배열에서 직접 전일 종가를 계산 */
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=5d`;
+  const ctrl  = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' }, signal: ctrl.signal });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data   = await res.json();
+    const result = data?.chart?.result?.[0];
+    const meta   = result?.meta;
+    if (!meta || meta.regularMarketPrice == null) throw new Error('데이터 없음');
+
+    const price = meta.regularMarketPrice;
+    /* 전일 종가 — 종가 배열의 마지막(오늘/최근 세션) 바로 이전 유효값을 직접 사용
+       (meta.chartPreviousClose는 range 값에 따라 신뢰도가 떨어지는 경우가 있어 배제) */
+    const closes    = (result?.indicators?.quote?.[0]?.close || []).filter(c => c != null);
+    const prev      = closes.length >= 2 ? closes[closes.length - 2] : (meta.chartPreviousClose ?? null);
+    const asOf      = meta.regularMarketTime || null;
+    const closeAt   = meta.currentTradingPeriod?.regular?.end || null;
+    const isClosed  = (asOf && closeAt) ? asOf >= closeAt : null;
+    const changeAbs = prev != null ? price - prev : null;
+    const changePct = prev ? (changeAbs / prev) * 100 : null;
+    return { symbol, price, prev, asOf, isClosed, changeAbs, changePct };
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+/** isUS 시장의 실시간 지표 스냅샷. 전부 실패하면 null(호출부가 LLM 추정치로 폴백). */
+async function fetchMarketSnapshot(isUS) {
+  const list    = isUS ? YAHOO_SYMBOLS.us : YAHOO_SYMBOLS.kr;
+  const results = await Promise.allSettled(list.map(s => fetchYahooQuote(s.sym)));
+
+  const indicators = [];
+  let asOfTime = null, isClosed = null, failCount = 0;
+
+  results.forEach((r, i) => {
+    const meta = list[i];
+    if (r.status !== 'fulfilled') { failCount++; console.warn(`[시황] ${meta.sym} 조회 실패:`, r.reason?.message); return; }
+    const q   = r.value;
+    const dir = (q.changeAbs ?? 0) >= 0 ? 'up' : 'down';
+    let value, change;
+    if (meta.isYield) {
+      value  = `${q.price.toFixed(2)}%`;
+      change = `${q.changeAbs >= 0 ? '+' : ''}${Math.round((q.changeAbs || 0) * 100)}bp`;
+    } else if (meta.isKrw) {
+      value  = `${Math.round(q.price)}`;
+      change = `${q.changeAbs >= 0 ? '+' : ''}${Math.round(q.changeAbs || 0)}원`;
+    } else {
+      value  = q.price.toLocaleString('en-US', { maximumFractionDigits: 2 });
+      change = `${q.changePct >= 0 ? '+' : ''}${(q.changePct || 0).toFixed(2)}%`;
+    }
+    indicators.push({ name: meta.name, value, change, dir });
+    if (q.asOf && (!asOfTime || q.asOf > asOfTime)) asOfTime = q.asOf;
+    if (isClosed === null) isClosed = q.isClosed;
+  });
+
+  if (!indicators.length) return null;
+  return { indicators, asOfTime, isClosed, partial: failCount > 0 };
+}
+
 /**
  * 시황/경제 리포트 피드 생성 — 증시 지표 배너 + 3줄 요약 + 체크포인트 포함
  */
@@ -1572,7 +1655,15 @@ async function generateMarketFeed(sub, user) {
   const topic = sub.topic || '증시 전반';
   const isUS  = sub.id === 'us_market';
 
-  const indicatorSpec = isUS
+  /* 실시간 지표 스냅샷 우선 조회(Yahoo Finance, 키 불필요) — 실패 시 아래에서 LLM 추정치로 폴백 */
+  let snapshot = null;
+  try { snapshot = await fetchMarketSnapshot(isUS); }
+  catch (e) { console.warn('[시황] 실시간 지표 조회 예외:', e.message); }
+
+  /* 실시간 데이터가 있으면 프롬프트에 "이 숫자 그대로 써라"로 주입, 없으면 기존 placeholder 폴백 */
+  const indicatorSpec = snapshot
+    ? `"indicators": ${JSON.stringify(snapshot.indicators)}`
+    : isUS
     ? `"indicators": [
         {"name":"S&P 500","value":"XXXX.XX","change":"+X.XX%","dir":"up|down"},
         {"name":"나스닥","value":"XXXXX.XX","change":"+X.XX%","dir":"up|down"},
@@ -1585,6 +1676,14 @@ async function generateMarketFeed(sub, user) {
         {"name":"코스닥","value":"XXX.XX","change":"+X.XX%","dir":"up|down"},
         {"name":"원/달러","value":"XXXX","change":"+XX원","dir":"up|down"}
       ]`;
+
+  const realDataNote = snapshot
+    ? `\n[실제 시장 데이터 — 아래 수치는 방금 조회한 실제 값입니다. indicators 항목은 절대 다른 숫자로 바꾸지 말고 그대로 사용하세요]\n` +
+      snapshot.indicators.map(i => `- ${i.name}: ${i.value} (${i.dir === 'up' ? '+' : ''}${i.change})`).join('\n') +
+      (snapshot.isClosed === true ? '\n(정규장 마감 기준 종가입니다)'
+        : snapshot.isClosed === false ? '\n(정규장 진행 중 — 마감 전 실시간 값입니다. "마감가"라고 표현하지 말고 "현재까지"로 서술하세요)'
+        : '')
+    : '';
 
   /* ── 사용자 시황 분석 집중도 설정 ── */
   const marketCfg       = user?.feed_settings?.[sub.id] || {};
@@ -1617,6 +1716,7 @@ async function generateMarketFeed(sub, user) {
 
 [맥락] 분석 주제: ${topic} / 교육용 콘텐츠 (실제 투자 조언 아님)
 [${focusInstruction}]
+${realDataNote}
 
 다음 JSON 형식으로만 응답하세요 (순수 JSON, 마크다운 코드블록 없이):
 {
@@ -1638,7 +1738,7 @@ async function generateMarketFeed(sub, user) {
 }
 
 규칙:
-- indicators 값은 학습 데이터 기준 대표적 수치 사용 (교육 목적 추정치, 실시간 아님)
+${snapshot ? '- indicators는 위 [실제 시장 데이터]를 절대 변경하지 말고 그대로 옮기세요' : '- indicators 값은 학습 데이터 기준 대표적 수치 사용 (교육 목적 추정치, 실시간 아님)'}
 - dir은 반드시 "up" 또는 "down"만 사용
 - aiEconomicKnowledge는 반드시 3개
 - summary3 각 줄은 반드시 "• "로 시작
@@ -1657,6 +1757,10 @@ async function generateMarketFeed(sub, user) {
     ? generateMockMarketReport(sub, topic, isUS)
     : rawParsed;
 
+  /* 실시간 데이터가 있으면 LLM이 숫자를 바꿔 적었더라도 실제 조회값으로 강제 덮어씀
+     — 정확도가 LLM 순응 여부에 좌우되지 않게 함 */
+  const finalIndicators = snapshot ? snapshot.indicators : (parsed.indicators || []);
+
   return {
     type:               'market',
     category:           sub.category || 'economy',
@@ -1664,12 +1768,16 @@ async function generateMarketFeed(sub, user) {
     label:              sub.label,
     title:              parsed.title       || `${isUS ? '미국' : '한국'} 시황`,
     summary:            parsed.summary     || '',
-    indicators:         parsed.indicators  || [],
+    indicators:         finalIndicators,
     summary3:           parsed.summary3    || '',
     checkpoints:        parsed.checkpoints || [],
     report:             parsed.report      || '',
     aiEconomicKnowledge: parsed.aiEconomicKnowledge || [],
-    aiGenerated:        !!(process.env.GEMINI_API_KEY || process.env.ANTHROPIC_API_KEY)
+    aiGenerated:        !!(process.env.GEMINI_API_KEY || process.env.ANTHROPIC_API_KEY),
+    /* 실시간 데이터 메타 — 클라이언트가 "장중/마감" 배지 표시에 사용 */
+    isLive:             !!snapshot,
+    marketClosed:       snapshot ? snapshot.isClosed : null,
+    dataAsOf:           snapshot?.asOfTime ? new Date(snapshot.asOfTime * 1000).toISOString() : null
   };
 }
 

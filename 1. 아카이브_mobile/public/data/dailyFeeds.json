@@ -2636,5 +2636,527 @@
       "subCategory": "psychology",
       "aiGenerated": false
     }
+  },
+  "2026-07-05": {
+    "en_expr": {
+      "id": "2026-07-05::en_expr",
+      "date": "2026-07-05",
+      "subId": "en_expr",
+      "createdAt": "2026-07-05T10:06:28.730Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "language",
+      "category": "en",
+      "subCategory": "change_management",
+      "label": "US 영어 표현",
+      "title": "[일] 변화와 전환을 이끌어갈 때: Embrace the change. 외 4개",
+      "summary": "일요일 — 변화와 전환을 이끌어갈 때",
+      "theme": "change_management",
+      "themeTitle": "변화와 전환을 이끌어갈 때",
+      "themeTitleEn": "Leading Through Change",
+      "dayOfWeek": "일",
+      "vocabEntries": [
+        {
+          "item_id": "PACK_EN_023_01",
+          "expression": "Embrace the change.",
+          "meaning": "변화를 받아들이고 적극적으로 수용하다.",
+          "nuance": "조직에서 변화는 대부분 저항을 만납니다. 'Embrace'는 단순히 변화를 '받아들이는 것(accept)'을 넘어 팔 벌려 껴안는 것처럼 적극적으로 歡迎하는 뉘앙스입니다. 리더가 이 표현을 쓸 때는 팀에게 '변화가 위협이 아니라 기회'라는 신호를 보내는 것입니다. 단, 'embrace'만 외치고 왜 변화해야 하는지 설명하지 않으면 공허한 구호가 됩니다 — 맥락과 이유가 반드시 따라와야 합니다.",
+          "dialogue": "Team Member: The new workflow feels foreign. I preferred the old system.\nYou: I hear you — change is uncomfortable at first. But I want us to embrace the change, not just tolerate it. The old system was costing us four hours per project in rework.\nTeam Member: I didn't realize it was that significant.\nYou: It was. Give the new workflow three weeks. If we still see problems, we revisit.",
+          "dialogueKo": "",
+          "sourceSentence": "The CEO asked everyone to embrace the change not because it was easy, but because staying still was riskier than moving.",
+          "practiceSentence": "The teams that embrace the change fastest will have the biggest advantage when the market shifts."
+        },
+        {
+          "item_id": "PACK_EN_023_02",
+          "expression": "Bridge the gap",
+          "meaning": "간극을 메우다, 차이를 좁히다.",
+          "nuance": "현재 상태와 목표 상태 사이의 거리를 좁히는 행위를 뜻합니다. 조직 변화에서 'gap'은 기술 격차, 문화 격차, 세대 격차 등 여러 형태로 나타납니다. 이 표현을 쓰는 사람은 문제를 추상적으로 바라보는 것이 아니라 '구체적으로 무엇이 부족하고 어떻게 채울 것인가'를 생각한다는 인상을 줍니다.",
+          "dialogue": "Director: There's a clear disconnect between what leadership wants and what the frontline team understands.\nYou: We need to bridge the gap. My suggestion is a monthly 'strategy to execution' session — leadership translates decisions into ground-level implications.\nDirector: That's exactly the kind of mechanism we're missing.\nYou: I can design the first session. Two hours, cross-functional, with real Q&A.",
+          "dialogueKo": "",
+          "sourceSentence": "The new onboarding program was designed specifically to bridge the gap between what graduates learn at university and what the job actually requires.",
+          "practiceSentence": "Our job this quarter is to bridge the gap between the vision we announced and the daily reality our people are living."
+        },
+        {
+          "item_id": "PACK_EN_023_03",
+          "expression": "Resistance to change",
+          "meaning": "변화에 대한 저항",
+          "nuance": "조직 변화에서 저항은 예외가 아니라 규칙입니다. '왜 사람들은 저항하는가'를 이해하는 것이 변화 관리의 핵심입니다. 저항의 원인은 보통 세 가지입니다: 모르기 때문에(정보 부족), 할 수 없기 때문에(기술 부족), 하기 싫기 때문에(동기 부족). 이 원인을 구분하지 않고 저항을 일괄적으로 '부정적인 것'으로 대하면 변화는 실패합니다.",
+          "dialogue": "You: We're seeing a lot of resistance to change with the new CRM rollout.\nConsultant: What kind of resistance? Is it 'I don't understand it', 'I can't use it', or 'I don't want to use it'?\nYou: Mostly the second — people weren't trained properly.\nConsultant: Then it's not resistance, it's a training gap. Fix the training and the resistance will likely disappear.",
+          "dialogueKo": "",
+          "sourceSentence": "The merger failed not because the strategy was wrong, but because resistance to change was never addressed — people were told what was happening, not why.",
+          "practiceSentence": "Resistance to change is information. Instead of pushing harder, let's ask what it's telling us."
+        },
+        {
+          "item_id": "PACK_EN_023_04",
+          "expression": "Stay the course.",
+          "meaning": "흔들리지 말고 계속 나아가다, 경로를 유지하다.",
+          "nuance": "항해에서 폭풍이 와도 목적지를 향해 방향을 유지한다는 이미지에서 나왔습니다. 변화 과정에서 단기적인 어려움이나 비판이 있을 때, 장기적 목표를 향해 계속 나아가자는 의지를 표현합니다. 단, 'stay the course'는 잘못된 방향으로 고집을 부리는 것과는 다릅니다 — 새로운 정보가 나왔을 때는 방향을 수정할 줄도 알아야 합니다.",
+          "dialogue": "Board Member: The first two quarters are ugly. Maybe we pivoted too early.\nCEO: I understand the pressure, but I think we need to stay the course. The data from our pilot markets shows the model is working — it just takes time to scale.\nBoard Member: How much time?\nCEO: Give us two more quarters with the current strategy before we revisit.",
+          "dialogueKo": "",
+          "sourceSentence": "Halfway through the restructuring, when the noise got loudest, the leadership team made a deliberate decision to stay the course.",
+          "practiceSentence": "We knew this transition would be painful in the short term. Stay the course — the results are starting to show."
+        },
+        {
+          "item_id": "PACK_EN_023_05",
+          "expression": "Change is the only constant.",
+          "meaning": "변화만이 변하지 않는다. (헤라클레이토스의 철학)",
+          "nuance": "고대 그리스 철학자 헤라클레이토스의 사상을 현대 비즈니스 언어로 풀어낸 표현입니다. 변화를 예외적 사건이 아니라 일상적 조건으로 받아들이는 마인드셋을 담고 있습니다. 변화에 지쳐 있는 팀에게 쓸 때는 공감 없이 이 문장만 던지면 공허하게 들립니다 — '그렇기 때문에 우리는 변화에 적응하는 근육을 키워야 한다'는 구체적인 방향과 함께 써야 설득력이 생깁니다.",
+          "dialogue": "New Employee: I feel like every time I get comfortable with a process, it changes.\nYou: I know how that feels. Change is the only constant in this industry. The trick isn't to get comfortable with any one process — it's to get comfortable with changing itself.\nNew Employee: That's a different way to think about it.\nYou: The people who do best here are the ones who treat adaptability as a skill, not a burden.",
+          "dialogueKo": "",
+          "sourceSentence": "She opened every annual strategy meeting the same way: 'Change is the only constant — so let's decide which changes we make intentionally.'",
+          "practiceSentence": "Change is the only constant — so the question isn't whether to change, it's how fast and how well."
+        }
+      ],
+      "masterParagraph": {
+        "text": "Leading through transformation means being honest about what it costs. Not everyone will **embrace the change** immediately — that's not failure, it's human nature. What matters is understanding the **resistance to change**: is it confusion, capability, or conviction? Our job is to **bridge the gap** between where people are and where the organization needs to go — with training, clarity, and time. Some days the pressure to reverse course will feel overwhelming. Those are the days to **stay the course** — not out of stubbornness, but because the data still points the same direction. And when the team asks 'why is this happening again?' the honest answer is this: **change is the only constant**, and the real competitive advantage isn't any particular strategy — it's the speed at which we adapt to the next one.",
+        "translation": "전환을 이끈다는 것은 그 대가에 대해 솔직해지는 것을 의미합니다. 모든 사람이 즉시 변화를 적극 수용하지는 않을 것입니다 — 그것은 실패가 아니라 인간의 본성입니다. 중요한 것은 변화에 대한 저항을 이해하는 것입니다: 혼란인지, 역량 부족인지, 의지 부족인지. 우리의 역할은 사람들이 현재 있는 곳과 조직이 가야 하는 곳 사이의 간극을 메우는 것입니다 — 교육, 명확한 소통, 그리고 시간으로. 어떤 날은 경로를 되돌리라는 압박이 압도적으로 느껴질 것입니다. 그런 날이 바로 흔들리지 말고 계속 나아가야 할 때입니다 — 고집이 아니라, 데이터가 여전히 같은 방향을 가리키기 때문에. 그리고 팀이 '왜 또 이런 일이 생기나요?'라고 물을 때 솔직한 답은 이것입니다: 변화만이 변하지 않는다 — 그리고 진정한 경쟁 우위는 어떤 특정 전략이 아니라, 다음 변화에 적응하는 속도입니다.",
+        "highlights": [
+          "embrace the change",
+          "resistance to change",
+          "bridge the gap",
+          "stay the course",
+          "change is the only constant"
+        ]
+      },
+      "pack_id": "PACK_EN_023",
+      "aiGenerated": false
+    },
+    "hist_daily": {
+      "id": "2026-07-05::hist_daily",
+      "date": "2026-07-05",
+      "subId": "hist_daily",
+      "createdAt": "2026-07-05T10:06:28.736Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "history",
+      "label": "역사 지식 한줌",
+      "category": "history",
+      "item_id": "HI_098",
+      "era": "세계사",
+      "period": "2008년 ~ 2009년",
+      "title": "우버의 탄생 — 파리에서 택시를 못 잡은 두 남자",
+      "summary": "2008년 파리 눈 오는 밤, 트래비스 캘러닉(Travis Kalanick)과 개럿 캠프(Garrett Camp)가 택시를 잡지 못한 것이 우버의 출발점이었다. 개럿 캠프는 '버튼 하나로 차를 부를 수 없을까?'라는 아이디어를 떠올렸다. 2009년 샌프란시스코에서 '우버캡(UberCab)'으로 서비스를 시작했고, 2019년 IPO 당시 기업 가치는 820억 달러였다.",
+      "summary3": "",
+      "behindStory": "우버가 만든 혁신은 기술이 아니었다 — 스마트폰과 GPS는 이미 존재했다. 우버가 만든 것은 새로운 '비즈니스 모델'이었다: 유휴 자산(개인 차량)을 연결하여 새로운 서비스를 만드는 플랫폼. 에어비앤비(빈 방), 위워크(빈 사무실), 당근마켓(중고품)도 모두 같은 원리다 — 이미 있는 것을 연결한다. 혁신의 재료는 새로운 기술이 아니라 새로운 연결이라는 것을 우버가 증명했다.",
+      "lesson": "",
+      "aiGenerated": false
+    },
+    "idiom_daily": {
+      "id": "2026-07-05::idiom_daily",
+      "date": "2026-07-05",
+      "subId": "idiom_daily",
+      "createdAt": "2026-07-05T10:06:28.737Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "idiom",
+      "label": "오늘의 고사성어",
+      "category": "history",
+      "item_id": "IDC_004",
+      "title": "교학상장 (敎學相長)",
+      "idiom": "교학상장",
+      "hanja": "敎學相長",
+      "meaning": "가르치고 배우면서 함께 성장한다. 가르치는 행위 자체가 가르치는 사람에게도 깊은 배움이 된다.",
+      "origin": "《예기(禮記)》〈학기(學記)〉에 나오는 말이다. '배우고 나서야 부족함을 알고, 가르치고 나서야 어려움을 안다. 그렇게 서로 가르치고 배우며 함께 성장한다'는 의미로 전해진다.",
+      "story": "신입사원에게 업무를 가르치다 보니, 오히려 내가 당연하게 여기던 것들을 교학상장의 눈으로 다시 보게 됐다.",
+      "behindStory": "",
+      "application": "후배 또는 팀원을 멘토링하거나 사내 강의를 맡았을 때, 가르치는 과정에서 자신의 지식이 더 깊어지는 경험을 표현하기 좋다. 팀 내 지식 공유 문화를 만들 때 '가르치는 것도 배움'임을 설득하는 근거로도 활용할 수 있다. 스터디·사내 세미나·온보딩 멘토 제도 등의 가치를 설명할 때 이 성어를 인용하면 공감을 이끌어낼 수 있다.",
+      "aiGenerated": false
+    },
+    "liber_classic": {
+      "id": "2026-07-05::liber_classic",
+      "date": "2026-07-05",
+      "subId": "liber_classic",
+      "createdAt": "2026-07-05T10:06:28.738Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "liber",
+      "label": "오늘의 고전",
+      "category": "inbox",
+      "item_id": "CLQ_108",
+      "title": "선악의 저편 — 프리드리히 니체",
+      "book": "선악의 저편",
+      "author": "프리드리히 니체",
+      "era": "19th Century German Philosophy",
+      "quote": "심연을 오래 들여다보면, 심연 또한 당신을 들여다본다.",
+      "source": "《선악의 저편(Jenseits von Gut und Böse)》1886 — 4부 146절",
+      "theme": "수단과목적",
+      "context": "원문의 맥락은 괴물과 싸우는 자에 대한 경고다 — '괴물과 싸우는 자는 스스로 괴물이 되지 않도록 조심해야 한다.' 심연을 오래 들여다보면 심연도 당신을 들여다본다는 것은, 우리가 맞서 싸우는 것에 지나치게 오래 집중하면 그것이 우리를 변형시킨다는 뜻이다. 직장에서의 함의: 경쟁자를 이기기 위해 경쟁자의 방식을 채택하다 보면 결국 경쟁자와 같아진다. 수단이 목적을 정당화하는 순간, 우리는 심연 속에 들어가 있다. 가치관을 지키면서 싸우는 것이 진짜 어려운 이유다.",
+      "tags": [
+        "수단과목적",
+        "가치관",
+        "경쟁",
+        "윤리",
+        "자기인식"
+      ],
+      "aiGenerated": false
+    },
+    "insight_daily": {
+      "id": "2026-07-05::insight_daily",
+      "date": "2026-07-05",
+      "subId": "insight_daily",
+      "createdAt": "2026-07-05T10:06:28.740Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "insight",
+      "label": "오늘의 인사이트",
+      "category": "inbox",
+      "item_id": "INS_005",
+      "title": "리더십 — 심리적 안전감",
+      "topic": "심리적 안전감",
+      "headline": "구글이 5년 연구 끝에 발견한 최고 팀의 공통점 — 능력이 아니라 '말할 수 있는 분위기'였다",
+      "body": "구글은 2012년부터 5년간 180개 팀을 분석한 프로젝트 아리스토텔레스(Project Aristotle)를 통해, 팀 성과를 결정하는 가장 강력한 요인이 심리적 안전감(Psychological Safety)임을 발견했다. 심리적 안전감이란 '이 팀에서 솔직한 의견을 말해도 비난받거나 불이익을 받지 않는다'는 집단적 믿음이다. 팀원이 실수를 숨기고, 반대 의견을 삼키고, 모르는 것을 묻지 않는 조직은 — 겉보기에는 조용하고 질서 있어 보여도 — 실제로는 정보가 왜곡되고 위험이 축적된다.",
+      "realLife": "팀장이 아이디어 발표 중에 '그건 왜 생각했어요?'라고 비판적으로 물으면, 이후 팀원들은 아이디어를 내는 것 자체를 두려워하게 된다. 반대로 실수한 팀원이 '제가 이걸 놓쳤어요'라고 먼저 말할 수 있는 팀은 문제가 커지기 전에 빠르게 해결된다. 에이미 에드먼슨(Amy Edmondson) 교수에 따르면, 역설적으로 심리적 안전감이 높은 팀이 보고하는 실수 건수가 더 많다 — 실수가 더 많아서가 아니라, 말할 수 있는 환경이 되어서다.",
+      "question": "내 팀원들은 나에게 '나쁜 소식'을 솔직하게 먼저 말할 수 있는가?",
+      "tags": [
+        "심리적안전감",
+        "리더십",
+        "팀문화",
+        "혁신",
+        "구글"
+      ],
+      "icon": "🎯",
+      "color": "#dc2626",
+      "subCategory": "leadership",
+      "aiGenerated": false
+    },
+    "us_market": {
+      "id": "2026-07-05::us_market",
+      "date": "2026-07-05",
+      "subId": "us_market",
+      "createdAt": "2026-07-05T10:06:28.733Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "market",
+      "category": "economy",
+      "subCategory": "미국 증시 · 경제",
+      "label": "미국 시황",
+      "title": "혼조세 속 연준 관망, 채권 시장 주시",
+      "summary": "미국 증시는 다우 상승, 나스닥 하락의 혼조세를 보이며 연준의 향후 금리 정책과 채권 시장의 움직임에 촉각을 곤두세우는 모습입니다.",
+      "indicators": [
+        {
+          "name": "S&P 500",
+          "value": "7,483.24",
+          "change": "+0.00%",
+          "dir": "up"
+        },
+        {
+          "name": "나스닥",
+          "value": "25,832.67",
+          "change": "-0.80%",
+          "dir": "down"
+        },
+        {
+          "name": "다우 지수",
+          "value": "52,900.07",
+          "change": "+1.14%",
+          "dir": "up"
+        },
+        {
+          "name": "미 국채 10년물",
+          "value": "4.48%",
+          "change": "+1bp",
+          "dir": "up"
+        },
+        {
+          "name": "VIX 공포지수",
+          "value": "15.81",
+          "change": "-4.70%",
+          "dir": "down"
+        }
+      ],
+      "summary3": "• 미국 증시는 다우 강세 속 나스닥 하락의 혼조세를 보이며, 연준의 금리 인하 기대감 조정과 채권 시장의 변동성에 주목합니다.\n• 금리 민감도가 낮은 전통 산업 섹터는 상대적 강세를, 성장주는 조정 압력을 받을 수 있어 업종별 차별화에 유의해야 합니다.\n• 불확실성이 상존하는 만큼, 변동성 지표와 주요 경제 지표 발표를 주시하며 장기적 관점에서 포트폴리오의 균형을 유지하는 전략이 필요합니다.",
+      "checkpoints": [
+        "체크포인트 1: 다음 FOMC 회의록 공개 및 연준 위원들의 발언을 통해 금리 인하 시점과 폭에 대한 힌트를 파악해야 합니다.",
+        "체크포인트 2: 미국 소비자물가지수(CPI) 및 고용 보고서 발표를 통해 인플레이션 압력과 노동 시장의 견고성을 지속적으로 확인해야 합니다.",
+        "체크포인트 3: 중동 등 지정학적 리스크의 전개 양상과 국제 유가 변동이 글로벌 공급망 및 인플레이션에 미칠 영향을 면밀히 관찰해야 합니다."
+      ],
+      "report": "## 시장 흐름\n최근 미국 증시는 다우의 상승과 나스닥의 하락이 교차하는 혼조세를 보였습니다. 이는 연준의 '고금리 장기화' 기조가 여전히 시장에 영향을 미치고 있음을 시사합니다. 미 국채 10년물 금리의 미세한 상승은 금리 인하 기대감을 다소 후퇴시키며 시장 참여자들의 신중한 태도를 반영합니다. 유가는 안정세를 유지하며 인플레이션 압력을 완화하고 있으나, 지정학적 리스크는 언제든 변수로 작용할 수 있습니다.\n\n## 투자 인사이트\n현재 시장은 금리 방향성에 대한 불확실성 속에서 개별 기업의 실적과 성장 잠재력에 더욱 집중하는 경향이 있습니다. 변동성 지수(VIX)의 하락은 단기적인 시장 불안감이 다소 완화되었음을 의미하지만, 이는 언제든 반전될 수 있습니다. 성재님께서는 금리 변화에 덜 민감한 가치주와 꾸준한 현금 흐름을 창출하는 기업에 대한 관심을 유지하며, 분산 투자를 통해 리스크를 관리하는 것이 중요합니다.",
+      "aiEconomicKnowledge": [
+        {
+          "term": "연방공개시장위원회 (FOMC)",
+          "importance": "FOMC는 미국 중앙은행인 연방준비제도(Fed)의 주요 통화정책 결정 기구로, 기준금리 결정 및 양적 완화/긴축 정책을 통해 글로벌 금융 시장에 막대한 영향을 미칩니다. 예를 들어, FOMC의 금리 0.25% 인상 결정은 전 세계 주식, 채권, 환율 시장에 즉각적인 파급 효과를 가져옵니다.",
+          "connection": "FOMC의 결정은 은행 예금 금리, 주택담보대출 금리 등 우리의 실생활 금융 비용에 직접적인 영향을 미치며, 기업 투자와 고용에도 영향을 주어 경기 전반의 흐름을 좌우합니다."
+        },
+        {
+          "term": "채권 수익률 곡선 (Yield Curve)",
+          "importance": "채권 수익률 곡선은 만기별 국채 수익률을 연결한 그래프로, 미래 경제 성장과 인플레이션에 대한 시장의 기대를 나타냅니다. 장단기 금리 역전은 일반적으로 경기 침체의 강력한 신호로 해석됩니다.",
+          "connection": "채권 수익률 곡선의 형태는 우리가 은행에서 대출받을 때 적용되는 금리나 기업의 자금 조달 비용에 영향을 미쳐, 개인의 재정 계획과 기업의 투자 결정에 중요한 지표가 됩니다."
+        },
+        {
+          "term": "VIX 공포지수",
+          "importance": "VIX 지수는 S&P 500 지수 옵션 가격을 기반으로 향후 30일간 시장의 예상 변동성을 측정하는 지표입니다. 이 지수가 높으면 투자자들의 불안감이 크다는 것을 의미하며, 시장 하락에 대한 우려가 커집니다.",
+          "connection": "VIX 지수는 주식 시장의 심리 상태를 대변하며, 이 지수의 급등은 주식 포트폴리오의 리스크 관리 필요성을 알려주는 신호로 활용될 수 있습니다."
+        }
+      ],
+      "aiGenerated": true,
+      "isLive": true,
+      "marketClosed": true,
+      "dataAsOf": "2026-07-03T15:30:01.000Z"
+    }
+  },
+  "2026-07-12": {
+    "en_expr": {
+      "id": "2026-07-12::en_expr",
+      "date": "2026-07-12",
+      "subId": "en_expr",
+      "createdAt": "2026-07-12T09:42:30.394Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "language",
+      "category": "en",
+      "subCategory": "american_tv_expressions",
+      "label": "US 영어 표현",
+      "title": "[일] 미드에서 가장 많이 들리는 표현 5가지: You've got to be kidding me. 외 4개",
+      "summary": "일요일 — 미드에서 가장 많이 들리는 표현 5가지",
+      "theme": "american_tv_expressions",
+      "themeTitle": "미드에서 가장 많이 들리는 표현 5가지",
+      "themeTitleEn": "Expressions You'll Hear in Every American TV Show",
+      "dayOfWeek": "일",
+      "vocabEntries": [
+        {
+          "item_id": "PACK_EN_031_01",
+          "expression": "You've got to be kidding me.",
+          "meaning": "농담하는 거죠? 말도 안 돼요. 믿기 어려운 상황에 터져 나오는 반응.",
+          "nuance": "미드 전 장르를 통틀어 가장 자주 나오는 표현 중 하나입니다. 분노·충격·황당함·황폐함을 모두 담을 수 있는 만능 표현이에요. 톤에 따라 뜻이 크게 달라집니다 — 살짝 웃으며 쓰면 '설마요?', 딱딱하게 쓰면 '진짜 말도 안 된다'는 뜻이 됩니다. 'You're kidding!'이나 'No way!'와 함께 쓰면 더 자연스럽습니다.",
+          "dialogue": "A: The launch is postponed. Again. Third time this year.\nB: You've got to be kidding me. What happened this time?\nA: Some compliance issue they found last minute.\nB: I can't believe this. The whole team has been working nights for this.",
+          "dialogueKo": "",
+          "sourceSentence": "You've got to be kidding me — the flight got canceled and they want to put me on a flight two days later?",
+          "practiceSentence": "You've got to be kidding me. We spent three months on this proposal and they went with someone else without even telling us?"
+        },
+        {
+          "item_id": "PACK_EN_031_02",
+          "expression": "Are you serious right now?",
+          "meaning": "지금 진심이에요? 지금 그 말이 진짜예요? 믿기 힘든 말을 들었을 때 확인하는 표현.",
+          "nuance": "'Are you serious?'보다 'right now'가 붙으면 현재 상황에 대한 당혹감이 더해집니다. 'Seriously?'를 한 단어로 줄여 쓰기도 합니다. 미드에서 갈등·반전·충격적인 폭로 장면에서 거의 빠지지 않고 등장합니다. 감탄사처럼 'Seriously?' 한 마디만 쓰는 경우도 매우 흔합니다.",
+          "dialogue": "A: They want all the revisions done by tomorrow morning.\nB: Are you serious right now? It's already 7pm.\nA: I know. They said it's non-negotiable.\nB: Then someone needs to tell them what 'non-negotiable' actually costs.",
+          "dialogueKo": "",
+          "sourceSentence": "Are you serious right now? You're telling me I've been CCed on every email for six months and nobody noticed I wasn't actually in this department?",
+          "practiceSentence": "Are you serious right now? You knew about the issue for two weeks and didn't mention it until the day before the client presentation?"
+        },
+        {
+          "item_id": "PACK_EN_031_03",
+          "expression": "That's what I'm talking about!",
+          "meaning": "바로 이거예요! 이게 제가 말하던 거예요! 기대하던 것이 드디어 나왔을 때 터지는 표현.",
+          "nuance": "뭔가 잘 됐을 때, 좋은 일이 생겼을 때, 자신이 주장하던 것이 맞았다고 드러났을 때 쓰는 기쁨의 표현입니다. 'Yes! That's exactly what I meant!'를 캐주얼하게 압축한 것입니다. 스포츠 중계, 팀 성과 발표, 친구 사이의 좋은 소식 공유 등에서 매우 자주 등장합니다.",
+          "dialogue": "A: The numbers are in — we hit 130% of our quarterly target.\nB: That's what I'm talking about! I knew if we focused on the enterprise segment we'd see this.\nA: You called it three months ago.\nB: Now let's make sure this becomes the baseline, not the exception.",
+          "dialogueKo": "",
+          "sourceSentence": "You stayed up all night and fixed the entire pipeline? That's what I'm talking about — this is the kind of ownership that makes a team great.",
+          "practiceSentence": "Finally, a design that feels both premium and accessible. That's what I'm talking about — this is the direction we needed."
+        },
+        {
+          "item_id": "PACK_EN_031_04",
+          "expression": "I've been there.",
+          "meaning": "저도 그런 경험 있어요. 상대방의 힘든 상황에 공감하며 '나도 겪어봤다'고 말할 때.",
+          "nuance": "직역하면 '나 거기 가본 적 있어'지만, 실제 의미는 '그 상황을 나도 겪어봤어요'입니다. 위로나 공감을 표현할 때 'I understand'나 'I know how you feel'보다 훨씬 생생하고 진심 어린 표현입니다. 뒤에 자신의 경험을 짧게 덧붙이면 더욱 자연스럽습니다.",
+          "dialogue": "A: I feel like no matter how hard I work, I'm not getting recognized. It's demoralizing.\nB: I've been there. In my last job I put in 18 months of serious work before anyone really noticed. What got me through was keeping a record of my wins — even the small ones.\nA: That's a good idea actually.\nB: When you start doubting yourself, the evidence helps.",
+          "dialogueKo": "",
+          "sourceSentence": "I've been there — the burnout, the feeling that no one sees what you're contributing. It does get better.",
+          "practiceSentence": "I've been there with the imposter syndrome. The first six months in a new role, I questioned every decision I made."
+        },
+        {
+          "item_id": "PACK_EN_031_05",
+          "expression": "My two cents",
+          "meaning": "제 개인적인 의견인데요, 참고로 제 생각을 말하자면. 의견을 부드럽게 꺼낼 때 쓰는 표현.",
+          "nuance": "2센트(매우 작은 금액)짜리 의견이라는 겸손한 표현입니다. '제 생각이 맞을 수도 있고 아닐 수도 있지만, 그래도 한마디 보태자면'이라는 뉘앙스입니다. 회의나 토론에서 자신의 의견을 강요하지 않으면서도 말하고 싶을 때 씁니다. 'Just my two cents'처럼 'just'를 앞에 붙여 더 겸손하게 만들 수 있습니다.",
+          "dialogue": "Manager: We're still deciding between the two vendors. Any thoughts?\nYou: Just my two cents — I'd look at their post-sale support record more than the initial price. We learned that the hard way last year.\nManager: That's a fair point.\nYou: Take it or leave it, obviously — just wanted to flag it.",
+          "dialogueKo": "",
+          "sourceSentence": "For what it's worth, my two cents: the product is great but the onboarding is losing people in the first ten minutes.",
+          "practiceSentence": "My two cents — I think we're optimizing the wrong thing. We're focused on acquisition when retention is the actual problem."
+        }
+      ],
+      "masterParagraph": {
+        "text": "You've got to be kidding me — you're telling me nobody flagged this until now? Are you serious right now? Okay, deep breath. I've been there — I've had projects blow up in the exact same way, and there's always a way through. My two cents: we stop pointing fingers and focus on what we can still fix before the client sees it. And when this is resolved — and it will be — that's what I'm talking about. Let's turn this into the moment the team proved what it's made of.",
+        "translation": "말도 안 돼 — 지금까지 아무도 이걸 몰랐다고요? 지금 진심으로 하는 말이에요? 좋아요, 심호흡. 저도 그런 경험 있어요 — 똑같은 방식으로 프로젝트가 터진 적 있어요, 그리고 항상 방법은 있었어요. 제 의견을 말하자면: 손가락질 멈추고 클라이언트가 보기 전에 고칠 수 있는 것에 집중해요. 그리고 이게 해결되면 — 반드시 됩니다 — 바로 그게 제가 말하는 거예요. 이 순간을 팀이 진가를 보여준 순간으로 만들어봅시다.",
+        "highlights": [
+          "You've got to be kidding me",
+          "Are you serious right now",
+          "I've been there",
+          "my two cents",
+          "that's what I'm talking about"
+        ]
+      },
+      "pack_id": "PACK_EN_031",
+      "aiGenerated": false
+    },
+    "hist_daily": {
+      "id": "2026-07-12::hist_daily",
+      "date": "2026-07-12",
+      "subId": "hist_daily",
+      "createdAt": "2026-07-12T09:42:30.437Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "history",
+      "label": "역사 지식 한줌",
+      "category": "history",
+      "item_id": "HI_015",
+      "era": "세계사",
+      "period": "1971년",
+      "title": "나이키 로고 — 35달러에 만들어진 세계적 브랜드",
+      "summary": "나이키의 상징 스우시(Swoosh) 로고는 1971년 그래픽 디자인 학생에게 35달러를 주고 의뢰한 것이다. 역사상 ROI가 가장 높은 디자인 투자.",
+      "summary3": "",
+      "behindStory": "1971년, 나이키의 공동창업자 필 나이트(Phil Knight)는 포틀랜드 주립대 회계학 교수였다. 그는 자신의 학생인 캐럴린 데이비슨(Carolyn Davidson)에게 새 운동화 회사의 로고 제작을 의뢰했다. 당시 데이비슨은 그래픽 디자인을 전공하며 학비를 벌기 위해 프리랜서 일을 하고 있었고, 시간당 2달러를 받아 총 17.5시간을 작업해 35달러를 받았다. 나이트는 처음 로고를 보고 '마음에 들지 않지만, 마음에 들게 될 것 같다'고 했다. 10년 후 나이키가 세계적 기업이 된 1983년, 필 나이트는 데이비슨을 불러 감사의 뜻으로 다이아몬드가 박힌 스우시 반지와 나이키 주식을 선물했다. 그 주식의 현재 가치는 수백만 달러에 달한다. 좋은 디자인의 가치는 제작 비용으로 측정할 수 없다.",
+      "lesson": "",
+      "aiGenerated": false
+    },
+    "idiom_daily": {
+      "id": "2026-07-12::idiom_daily",
+      "date": "2026-07-12",
+      "subId": "idiom_daily",
+      "createdAt": "2026-07-12T09:42:30.448Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "idiom",
+      "label": "오늘의 고사성어",
+      "category": "history",
+      "item_id": "IDC_081",
+      "title": "이심전심 (以心傳心)",
+      "idiom": "이심전심",
+      "hanja": "以心傳心",
+      "meaning": "마음으로 마음에 전하다. 말하지 않아도 서로의 마음이 통하는 것.",
+      "origin": "불교 선종(禪宗)의 핵심 개념. 부처가 가섭에게 꽃을 들어 보이자 가섭이 미소로 답한 염화시중(拈花示衆) 고사에서 유래. 언어를 초월한 마음의 전달.",
+      "story": "오래 함께 일하다 보니 이심전심으로 서로가 어떤 방향을 생각하는지 말하지 않아도 알게 됐다.",
+      "behindStory": "",
+      "application": "팀워크가 잘 맞아 말 없이도 협업이 이루어지는 상황, 오랜 관계에서 축적된 이해를 표현할 때 쓴다. 다만 '이심전심'에 과도하게 의존하면 명시적 소통이 부족해지는 문제가 생길 수 있다는 반성적 용법으로도 쓰인다.",
+      "aiGenerated": false
+    },
+    "liber_classic": {
+      "id": "2026-07-12::liber_classic",
+      "date": "2026-07-12",
+      "subId": "liber_classic",
+      "createdAt": "2026-07-12T09:42:30.459Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "liber",
+      "label": "오늘의 고전",
+      "category": "inbox",
+      "item_id": "CLQ_038",
+      "title": "어린 왕자 — 앙투안 드 생텍쥐페리",
+      "book": "어린 왕자",
+      "author": "앙투안 드 생텍쥐페리",
+      "era": "French Literature",
+      "quote": "가장 중요한 것은 눈에 보이지 않아. 오직 마음으로만 볼 수 있어.",
+      "source": "On ne voit bien qu'avec le cœur. L'essentiel est invisible pour les yeux. — 어린 왕자 (Le Petit Prince, 1943) 21장, 여우의 말",
+      "theme": "본질",
+      "context": "어린 왕자에서 여우가 이별 직전에 전하는 비밀이다. 직장에서 가장 중요한 것들 — 신뢰·문화·동기·관계·사기 — 은 대부분 숫자나 보고서로 측정되지 않는다. KPI 달성률은 보여도 팀원의 소진 정도는 보이지 않고, 매출은 보여도 고객의 충성도가 어디서 오는지는 보이지 않는다. 지표 너머의 본질을 볼 줄 아는 사람이 진짜 리더다.",
+      "tags": [
+        "본질",
+        "리더십",
+        "문화",
+        "측정",
+        "통찰"
+      ],
+      "aiGenerated": false
+    },
+    "insight_daily": {
+      "id": "2026-07-12::insight_daily",
+      "date": "2026-07-12",
+      "subId": "insight_daily",
+      "createdAt": "2026-07-12T09:42:30.461Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "insight",
+      "label": "오늘의 인사이트",
+      "category": "inbox",
+      "item_id": "INS_026",
+      "title": "게임이론·전략 — 죄수의 딜레마",
+      "topic": "죄수의 딜레마",
+      "headline": "개인의 합리성이 집단의 비합리성을 낳는다 — 협력하면 모두 이기는데 왜 배신을 택하는가",
+      "body": "죄수의 딜레마(Prisoner's Dilemma)는 게임 이론의 핵심 개념이다. 두 명의 공범이 각자 독방에서 심문받는다. 둘 다 침묵하면 각 1년 형, 하나가 배신하면 배신자는 자유·나머지는 10년, 둘 다 배신하면 각 5년 형. 개인의 합리적 선택(배신)을 따르면 둘 다 5년을 받지만, 협력하면 둘 다 1년만 받는다. 개인 최적과 집단 최적이 일치하지 않는 것이 핵심이다.",
+      "realLife": "가격 경쟁이 대표적인 예다. A사와 B사 모두 가격을 유지하면 둘 다 수익을 낸다. 그러나 A사가 가격을 내리면 B사 고객을 빼앗는다 — 그래서 B사도 내린다. 결과: 둘 다 수익이 줄었다. 공유지의 비극(Commons Tragedy), 광고 과열, 야근 문화의 악순환도 같은 구조다. 죄수의 딜레마가 반복되면 협력이 가능해진다 — 반복 게임에서 '팃 포 탯(Tit for Tat)' 전략(처음엔 협력, 이후엔 상대방이 한 것 그대로 따라하기)이 가장 강하다.",
+      "question": "내 업무나 산업에서 '죄수의 딜레마' 구조로 인해 모두가 손해를 보는 패턴이 있는가?",
+      "tags": [
+        "죄수의딜레마",
+        "게임이론",
+        "협력",
+        "경쟁전략",
+        "조직"
+      ],
+      "icon": "♟️",
+      "color": "#0891b2",
+      "subCategory": "economics",
+      "aiGenerated": false
+    },
+    "us_market": {
+      "id": "2026-07-12::us_market",
+      "date": "2026-07-12",
+      "subId": "us_market",
+      "createdAt": "2026-07-12T09:42:30.398Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "market",
+      "category": "economy",
+      "subCategory": "미국 증시 · 경제",
+      "label": "미국 시황",
+      "title": "미 증시: 금리, 경제 지표 주시",
+      "summary": "미국 증시는 국채 금리 상승에도 불구하고 VIX 하락하며 위험 선호 심리가 유지되는 가운데 소폭 상승 마감했습니다.",
+      "indicators": [
+        {
+          "name": "S&P 500",
+          "value": "7,575.39",
+          "change": "+0.42%",
+          "dir": "up"
+        },
+        {
+          "name": "나스닥",
+          "value": "26,281.61",
+          "change": "+0.29%",
+          "dir": "up"
+        },
+        {
+          "name": "다우 지수",
+          "value": "52,637.01",
+          "change": "+0.29%",
+          "dir": "up"
+        },
+        {
+          "name": "미 국채 10년물",
+          "value": "4.57%",
+          "change": "+3bp",
+          "dir": "up"
+        },
+        {
+          "name": "VIX 공포지수",
+          "value": "15.03",
+          "change": "-5.11%",
+          "dir": "down"
+        }
+      ],
+      "summary3": "• 국채 금리 상승에도 위험 선호 지속되며 증시 상승, VIX 하락으로 시장 불안감 완화.\n• 견조한 경제 지표에 따른 연준의 금리 인하 지연 가능성 및 기술주 실적 발표 주시.\n• 금리 변동성 대비하며 기업 실적과 매크로 지표를 바탕으로 선별적 접근 필요.",
+      "checkpoints": [
+        "체크포인트 1: 다음 주 발표될 미국 소비자물가지수(CPI) 및 생산자물가지수(PPI) 데이터 확인.",
+        "체크포인트 2: 연준 위원들의 발언 및 경제 전망 보고서(베이지북 등)를 통해 금리 인하 시점 단서 탐색.",
+        "체크포인트 3: 주요 기업들의 실적 발표와 가이던스 변화가 시장 전반에 미치는 영향 분석."
+      ],
+      "report": "## 시장 흐름\n미국 증시는 국채 10년물 금리 상승에도 불구하고 VIX 하락으로 투자심리가 개선되며 상승 마감했습니다. 연준의 '더 오래 높은 금리' 우려 속에서도 견조한 경제 지표와 기업 실적 기대감이 시장을 지지한 것으로 보입니다. 달러 강세는 지속될 수 있으며, 지정학적 리스크는 유가와 인플레이션 경로에 불확실성을 더하고 있습니다.\n\n## 투자 인사이트\n금리 인하 시점 불확실성에 대비해야 합니다. 견조한 경제 지표가 지속되면 시장은 금리 인하 지연을 소화하며 성장주 중심의 선별적 강세를 보일 수 있습니다. 인플레이션 재점화 조짐은 금리 상승 압력을 가중시키므로, 방어적 섹터와 현금 비중 유지도 고려해야 합니다. 개별 기업의 실적과 펀더멘털에 집중하는 전략이 유효합니다.",
+      "aiEconomicKnowledge": [
+        {
+          "term": "연준(Fed) 금리 전망",
+          "importance": "연준의 금리 정책은 시중 금리, 기업 대출 비용, 소비자의 주택 담보 대출 금리 등 경제 전반에 막대한 영향을 미칩니다. 예를 들어, 기준 금리 0.25%p 인상은 가계와 기업의 자금 조달 비용을 직접적으로 높여 경제 활동을 위축시킬 수 있습니다.",
+          "connection": "주식 시장의 상승 또는 하락 추세는 물론, 내가 받을 대출 금리나 예금 금리에 직접적인 영향을 미칩니다."
+        },
+        {
+          "term": "VIX 공포지수",
+          "importance": "VIX 지수는 S&P 500 지수 옵션 가격을 기반으로 향후 30일간 시장의 예상 변동성을 측정하는 지표입니다. 일반적으로 VIX가 20 이상이면 시장 불안정이 높다고 판단하며, 15.03(-5.11%)처럼 낮은 수준은 시장의 안정적인 심리를 반영합니다.",
+          "connection": "이 지수가 높으면 주식 시장에 대한 불안감이 커져 투자 심리가 위축되고, 낮으면 시장이 안정적이라 판단하여 투자하기 좋은 시기일 수 있습니다."
+        },
+        {
+          "term": "채권 수익률 곡선 (Yield Curve)",
+          "importance": "채권 수익률 곡선은 만기별 국채 금리를 연결한 그래프로, 장단기 금리 차이를 통해 미래 경기 전망을 예측하는 중요한 지표입니다. 보통 장기 금리가 단기 금리보다 높지만, 역전될 경우(장단기 금리 역전) 과거에는 경기 침체의 강력한 신호로 작용했습니다.",
+          "connection": "장단기 금리 역전 현상이 나타나면, 미래 경제 상황이 어려워질 수 있다는 신호로 받아들여 주식 투자를 조심해야 할 수 있습니다."
+        }
+      ],
+      "aiGenerated": true,
+      "isLive": true,
+      "marketClosed": true,
+      "dataAsOf": "2026-07-10T21:28:35.000Z"
+    }
   }
 }

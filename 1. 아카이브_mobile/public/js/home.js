@@ -17,7 +17,15 @@ Object.assign(Mob, {
   /* ────────────────────────────────────────────
      초기화
   ────────────────────────────────────────────── */
-  init() {
+  async init() {
+    const loginScreen = el('loginScreen');
+    const ok = await this.checkAuth();
+    if (!ok) {
+      if (loginScreen) loginScreen.hidden = false;
+      return;
+    }
+    this._enterAppEntrance();
+
     const mode = localStorage.getItem('userMode');
     if (!mode) return; // 앱 진입 화면이 모드 선택을 처리함
     this._applyMode(mode);
@@ -25,6 +33,34 @@ Object.assign(Mob, {
     this.checkFeedBadge();
     this._initTheme();
     this._checkNewUserOnboarding();
+  },
+
+  /** 로그인 확인 후 스플래시→모드선택 진입 화면을 보여준다 (appEntrance) */
+  _enterAppEntrance() {
+    const entrance = el('appEntrance');
+    if (!entrance) return;
+    const splash = el('aepSplash');
+    const select = el('aepSelect');
+    entrance.style.display = 'flex';
+
+    // 모드가 이미 선택된 경우: 로고 스플래시만 잠깐 보여주고 곧바로 앱으로(모드 선택 건너뜀)
+    if (localStorage.getItem('userMode')) {
+      setTimeout(() => {
+        entrance.style.transition = 'opacity 0.4s ease';
+        entrance.style.opacity    = '0';
+        setTimeout(() => { entrance.style.display = 'none'; }, 400);
+      }, 1500);
+      return;
+    }
+    // 최초 진입: Phase 1 → Phase 2 (1.8초 후 스플래시 → 모드 선택)
+    setTimeout(() => {
+      splash.style.transition = 'opacity 0.4s ease';
+      splash.style.opacity    = '0';
+      setTimeout(() => {
+        splash.style.display = 'none';
+        select.style.display = 'flex';
+      }, 400);
+    }, 1800);
   },
 
   /**

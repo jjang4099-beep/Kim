@@ -131,6 +131,7 @@ const FEED_ARCHIVE_MAP = {
    전역 상태 — 모든 앱 상태는 이 객체에만 저장
 ────────────────────────────────────────────── */
 const state = {
+  currentUser      : null,   /* 로그인한 유저 { id, email, name, currentMode } — checkAuth()가 채움 */
   currentView      : 'home',
   currentCat       : 'all',
   items            : [],

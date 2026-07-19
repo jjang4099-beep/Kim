@@ -11,8 +11,9 @@
 1. 아카이브_mobile/
 ├── public/
 │   ├── index_mobile.html       # 앱 진입점, SPA 뷰 구조 (CSS/JS는 ?v=N 캐시버스팅)
-│   ├── js/                     # 로드 순서: core → home → feed/library/manage/add → app_exam → pwa
+│   ├── js/                     # 로드 순서: core → auth → home → feed/library/manage/add → app_exam → pwa
 │   │   ├── core.js             # 전역 상수·유틸·state·const Mob={} 선언
+│   │   ├── auth.js             # 로그인/회원가입·세션 확인(checkAuth)·로그아웃 (Mob 확장)
 │   │   ├── home.js             # 앱 초기화·홈뷰·공통 카드·상세·검색 (Mob 확장)
 │   │   ├── feed.js             # 지식 배달 카드·뷰·설정 (Mob 확장)
 │   │   ├── library.js          # 내 서재 매거진 뷰 (Mob 확장)
@@ -28,6 +29,16 @@
 │   │   ├── dailyFeeds.json     # 직장인 배달 캐시
 │   │   ├── knowledge_db/       # 직장인 영어/중국어/명언/고사성어/역사 시드
 │   │   └── exam_db/            # 수험생 영어단어/한국사 시드
+│   ├── db/                     # DB 접근 계층 — server.js 라우트는 이 함수들만 호출(raw SQL 직접 작성 금지)
+│   │   ├── connection.js       # sql.js 커넥션 싱글턴(getSQLiteDB/_persistDB/_sqlQuery/_sqlGet)
+│   │   ├── items.js            # items CRUD — userId 인지 래퍼(getItemsByUser 등)가 기본 접근 경로
+│   │   ├── users.js            # 인증 유저 CRUD (data/users.json 배달설정과는 별개 개념)
+│   │   ├── categories.js       # user_categories CRUD
+│   │   └── summaries.js        # 결산 캐시(userId 포함 캐시 키)
+│   ├── lib/
+│   │   ├── auth.js             # JWT 발급/검증·requireAuth 미들웨어
+│   │   ├── domain.js           # 8대 도메인·모드 정규화 헬퍼 (server.js·db/items.js 공용)
+│   │   └── jsonStore.js        # 범용 JSON 파일 read/write
 │   └── server.js               # Node.js + Express API 서버
 └── .claude/launch.json         # preview 실행 설정
 ```
@@ -46,6 +57,7 @@ ExamMob   // 수험생 모드 전용 로직 (app_exam.js) — 이미 존재, Mob
 ```
 - **절대로 전역 함수 새로 만들지 말 것** — 반드시 Mob 또는 ExamMob 안에 넣을 것
 - **새 Mob 메서드 추가 위치**: 역할에 맞는 파일의 `Object.assign(Mob, { … })` 블록 안에 추가
+  - 로그인/회원가입/세션 관련 → `auth.js`
   - 홈·카드·검색 관련 → `home.js`
   - 배달 카드·뷰·설정 관련 → `feed.js`
   - 서재 관련 → `library.js`
@@ -53,11 +65,13 @@ ExamMob   // 수험생 모드 전용 로직 (app_exam.js) — 이미 존재, Mob
   - 추가 모달 관련 → `add.js`
 - 전역 허용(core.js에 존재): `el`, `toast`, `fmt`, `fmtFull`, `dayLabel`, `fetchJSON`, `parseFeedsArray`, `toLocalDateStr`
 
-### 모드 격리 (중요)
+### 모드 격리 + 유저 격리 (중요)
 - 직장인=`PROFESSIONAL`, 수험생=`EXAM_PREP`. 클라이언트는 `localStorage.userMode`('work'/'exam'),
   서버 ENUM 변환은 `Mob._modeEnum()`.
 - `items` 테이블의 `mode` 컬럼으로 물리 격리. 모든 조회/저장에 `mode` 파라미터를 반드시 전달.
 - 직장인 콘텐츠(`knowledge_db`)와 수험생 콘텐츠(`exam_db`)는 폴더·테이블·시드 함수까지 완전 독립.
+- **모든 `/api/*` 라우트는 `requireAuth` 전역 가드가 적용된다** (예외는 server.js의 `PUBLIC_API_PATHS` 화이트리스트 — 인증 라우트 자체 + 순수 공용 참조 데이터뿐). `req.userId` 없이 유저 데이터에 접근하는 새 라우트를 추가하면 안 된다 — 다른 유저 데이터가 새는 보안 사고다.
+- `items`/`user_categories`는 `user_id` 컬럼으로 물리 격리. 새 라우트는 `db/items.js`의 `getItemsByUser(userId, mode)` 등 userId 인지 래퍼만 사용할 것 — `readDB()`/`dbInsert()` 등 무필터 함수는 배치/마이그레이션 전용이다.
 
 ### 상태 관리
 ```js
@@ -181,10 +195,13 @@ border     : 1px solid var(--border);   /* ✅ 변수명은 --border (--border-c
 
 ### 저장소: SQLite (sql.js WASM) — `data/archive.db`
 - MongoDB 아님. 단일 `items` 테이블에 아이템을 **JSON 문자열(`data` 컬럼)**로 저장하고,
-  `id / category / mode / date / created_at`을 인덱스 컬럼으로 둔다.
+  `id / category / mode / user_id / date / created_at`을 인덱스 컬럼으로 둔다.
 - 콘텐츠 시드 테이블: `english_themes`·`english_expressions`(직장인 영어),
   `exam_vocab_themes`·`exam_vocab_words`·`exam_history_items`(수험생).
-- 쓰기 헬퍼: `dbInsert(item)` / `dbUpdate(item)` / `dbDelete(id)` → 내부에서 `_persistDB()`로 디스크 저장.
+- **라우트에서 raw SQL 직접 작성 금지** — `public/db/*.js`의 named 함수만 호출한다(향후 Postgres 전환 시 이 파일들만 교체하면 되도록).
+  유저 데이터 접근은 반드시 userId 인지 함수 사용: `ItemsDB.getItemsByUser(userId, mode)` / `getItemByIdForUser` / `insertItem` / `updateItemForUser` / `deleteItemForUser`, `CategoriesDB.*`, `SummariesDB.*`, `UsersDB.*`.
+  `userId`는 항상 함수의 첫 번째 파라미터로 명시 전달 — `req`에서 깊이 읽거나 전역에 두지 않는다.
+- 관리자/마이그레이션 전용 무필터 함수(`readDB()`/`dbInsert()`/`dbUpdate()`/`dbDelete()`, `public/db/items.js`)는 배치 작업(예: `reshelfOldInboxItems`)에서만 쓰고 라우트 핸들러에서는 쓰지 않는다.
 
 ### Item 객체 기본 구조 (data 컬럼에 직렬화)
 ```js
@@ -198,7 +215,13 @@ border     : 1px solid var(--border);   /* ✅ 변수명은 --border (--border-c
 
 ### API 엔드포인트
 ```
-GET    /api/items?mode=…&domain=…&limit=…   → 목록 (mode 격리 필수)
+POST   /api/auth/register                    → 이메일 회원가입 (쿠키 세션 발급)
+POST   /api/auth/login                       → 이메일 로그인
+POST   /api/auth/logout                      → 로그아웃
+GET    /api/auth/me                          → 현재 세션 유저 조회 (requireAuth)
+PATCH  /api/auth/mode                        → 유저의 현재 모드 서버 저장
+
+GET    /api/items?mode=…&domain=…&limit=…   → 목록 (mode + userId 격리 필수)
 POST   /api/items                            → 생성
 PATCH  /api/items/:id                        → 부분 수정 (PUT 금지)
 DELETE /api/items/:id                        → 삭제
@@ -238,6 +261,7 @@ POST   /api/exam/daily-knowledge/save        → 수험생 배달 저장
 □ state 객체에 새 상태 필드를 추가하고 초기값을 설정했는가?
 □ VIEW_CONFIG에 새 뷰를 등록했는가? (해당 시)
 □ mode 격리(PROFESSIONAL/EXAM_PREP)를 지켰는가?
+□ userId 격리를 지켰는가? (raw SQL 대신 db/*.js의 userId 인지 함수 사용)
 □ CSS 변수를 사용했는가? (--border 등)
 □ fetchJSON 헬퍼를 사용했는가?
 □ 토스트 메시지가 한국어인가?
@@ -269,6 +293,6 @@ idiom_daily→ 📜 고사성어    #c2410c
 
 ---
 
-*SJ 지식 아카이브 | v68 7파일 분리 기준 (core / home / feed / library / manage / add / app_exam)*
+*SJ 지식 아카이브 | v69 8파일 분리 기준 (core / auth / home / feed / library / manage / add / app_exam) + 이메일 로그인·멀티유저 격리(db/lib 계층 분리) 적용*
 *이 파일이 업데이트되면 버전과 날짜를 하단에 기록할 것*
-**마지막 업데이트**: 2026-06-20
+**마지막 업데이트**: 2026-07-12

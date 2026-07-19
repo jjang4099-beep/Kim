@@ -238,6 +238,107 @@ img { display: block; max-width: 100%; }
 @keyframes aepSlideUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
 
 /* ══════════════════════════════════════════════════════════
+   로그인 / 회원가입 (appEntrance보다 먼저 뜨는 최상단 게이트)
+   --mob-card/--mob-border/--text-primary/--text-muted/--accent-color는
+   이미 라이트(Papyrus)/다크(Midnight) 양쪽에서 정의된 시맨틱 변수 — 별도 오버라이드 불필요
+══════════════════════════════════════════════════════════ */
+.mob-login-screen {
+  position  : fixed;
+  inset     : 0;
+  z-index   : 10000;
+  background: radial-gradient(ellipse at 50% 40%, #1b2a5e 0%, #0d1528 100%);
+  display   : flex;
+  align-items    : center;
+  justify-content: center;
+  padding   : 24px;
+}
+.mob-login-wrap {
+  width     : 100%;
+  max-width : 380px;
+  padding   : 32px 24px;
+  background: var(--mob-card);
+  border    : 1px solid var(--mob-border);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 40px rgba(0,0,0,.35);
+  display   : flex;
+  flex-direction: column;
+  align-items   : center;
+  gap       : 14px;
+  animation : aepFadeIn 0.5s cubic-bezier(0.16,1,0.3,1) both;
+}
+.mob-login-logo-img { width: 56px; height: 56px; margin-bottom: -4px; }
+.mob-login-logo {
+  font-family: 'Cinzel', 'Noto Serif KR', serif;
+  font-size  : 19px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  color      : var(--mob-gold);
+}
+.mob-login-tabs {
+  display   : flex;
+  width     : 100%;
+  border-bottom: 1px solid var(--mob-border);
+  margin-top: 6px;
+}
+.mob-login-tab {
+  flex   : 1;
+  padding: 10px;
+  font-size  : 14px;
+  font-weight: 600;
+  color      : var(--text-muted);
+  border-bottom: 2px solid transparent;
+}
+.mob-login-tab.active { color: var(--accent-color); border-bottom-color: var(--accent-color); }
+.mob-login-email-form {
+  width  : 100%;
+  display: flex;
+  flex-direction: column;
+  gap    : 10px;
+  margin-top: 4px;
+}
+.mob-login-input {
+  width     : 100%;
+  padding   : 12px 14px;
+  border-radius: var(--radius-sm);
+  border    : 1px solid var(--mob-border);
+  background: var(--bg-card-expanded);
+  color     : var(--text-primary);
+  font-size : 14px;
+  min-height: 44px;
+}
+.mob-login-input:focus { outline: 2px solid var(--accent-color); outline-offset: 1px; }
+.mob-login-submit {
+  width     : 100%;
+  padding   : 13px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-color);
+  color     : #fff;
+  font-weight: 700;
+  font-size : 15px;
+  min-height: 44px;
+  margin-top: 4px;
+}
+.mob-login-submit:active { transform: scale(0.98); }
+.mob-login-error {
+  color      : #ef4444;
+  font-size  : 12.5px;
+  text-align : center;
+  line-height: 1.5;
+}
+.mob-login-divider {
+  width: 100%; display: flex; align-items: center; gap: 10px;
+  color: var(--text-muted); font-size: 12px; margin: 4px 0;
+}
+.mob-login-divider::before, .mob-login-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--mob-border);
+}
+.mob-login-social { width: 100%; }
+.mob-login-kakao-btn {
+  width: 100%; padding: 13px; border-radius: var(--radius-sm);
+  background: #FEE500; color: #191600; font-weight: 700; font-size: 15px; min-height: 44px;
+}
+
+/* ══════════════════════════════════════════════════════════
    상단 헤더
 ══════════════════════════════════════════════════════════ */
 .mob-topbar {
@@ -4236,6 +4337,33 @@ html[data-theme="dark"] .mob-exam-history        { border-left-color: #d97706; }
   min-height : 18px;
   transition : opacity .3s;
 }
+
+/* ──────────────────────────────────────────────
+   계정 (로그아웃)
+────────────────────────────────────────────── */
+.mvw-account-section {
+  margin-top: 8px;
+  border-top: 2px solid var(--border);
+  padding-top: 20px;
+}
+.mvw-account-section .mvw-block-title {
+  font-size  : 15px;
+  font-weight: 700;
+  color      : var(--text-1);
+  margin-bottom: 12px;
+}
+.mvw-logout-btn {
+  width      : 100%;
+  padding    : 13px;
+  border-radius: var(--radius-sm);
+  border     : 1px solid var(--border);
+  background : var(--surface);
+  color      : #dc2626;
+  font-weight: 600;
+  font-size  : 14px;
+  min-height : 44px;
+}
+.mvw-logout-btn:active { background: color-mix(in srgb, #dc2626 8%, var(--surface)); }
 
 /* ──────────────────────────────────────────────
    라이프 설정 토글

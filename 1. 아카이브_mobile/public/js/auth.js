@@ -55,6 +55,7 @@ Object.assign(Mob, {
     document.querySelectorAll('.mob-login-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === 'login'));
     el('authName').hidden = true;
     el('authPassword').setAttribute('autocomplete', 'current-password');
+    el('authPassword').setAttribute('placeholder', '비밀번호');
     el('authSubmitBtn').textContent = '로그인';
     el('authError').hidden = true;
   },
@@ -63,6 +64,7 @@ Object.assign(Mob, {
     document.querySelectorAll('.mob-login-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === 'register'));
     el('authName').hidden = false;
     el('authPassword').setAttribute('autocomplete', 'new-password');
+    el('authPassword').setAttribute('placeholder', '비밀번호 (8자 이상)');
     el('authSubmitBtn').textContent = '회원가입';
     el('authError').hidden = true;
   },

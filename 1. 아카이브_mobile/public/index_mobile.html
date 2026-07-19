@@ -53,7 +53,7 @@
     <form id="authForm" class="mob-login-email-form" onsubmit="return Mob._handleAuthSubmit(event)">
       <input type="text" id="authName" class="mob-login-input" placeholder="이름 (선택)" hidden autocomplete="name"/>
       <input type="email" id="authEmail" class="mob-login-input" placeholder="이메일" required autocomplete="email"/>
-      <input type="password" id="authPassword" class="mob-login-input" placeholder="비밀번호 (8자 이상)" required autocomplete="current-password" minlength="8"/>
+      <input type="password" id="authPassword" class="mob-login-input" placeholder="비밀번호" required autocomplete="current-password"/>
       <button type="submit" class="mob-login-submit" id="authSubmitBtn">로그인</button>
       <p class="mob-login-error" id="authError" hidden></p>
     </form>
@@ -930,7 +930,7 @@
 <div class="mob-toast" id="mobToast" hidden></div>
 
 <script src="js/core.js?v=11"></script>
-<script src="js/auth.js?v=1"></script>
+<script src="js/auth.js?v=2"></script>
 <script src="js/home.js?v=24"></script>
 <script src="js/feed.js?v=10"></script>
 <script src="js/library.js?v=10"></script>

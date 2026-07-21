@@ -1,0 +1,429 @@
+{
+  "meta": {
+    "batch": 4,
+    "theme": "수능 영단어 테마팩 — 인지·기억 / 갈등·대립 / 협력·공동체 / 윤리·도덕 / 진화·생태 / 혁신·기술",
+    "id_range": {
+      "exam_vocab_themes": "EV_PACK_019 ~ EV_PACK_024",
+      "words": "EV_091 ~ EV_120"
+    },
+    "created": "2026-07-21"
+  },
+  "exam_vocab_themes": [
+    {
+      "id": "EV_PACK_019",
+      "theme_title": "인지·기억 핵심 어휘",
+      "level": "high",
+      "tip": "인지심리학·뇌과학 지문에서 빈칸 추론과 제목 파악 문제로 자주 나온다. 기억의 단계(부호화→저장→인출)를 나타내는 동사들을 구분해 숙지할 것.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_091",
+          "order": 1,
+          "word": "perceive",
+          "pos": "동사",
+          "meaning": "인식하다, 지각하다",
+          "example_en": "We often perceive the world not as it is, but as we expect it to be.",
+          "example_ko": "우리는 종종 세상을 있는 그대로가 아니라 우리가 예상하는 대로 인식한다.",
+          "csat_ref": "수능 심리·인지 지문 빈칸 추론 (34~35번) 빈출",
+          "synonyms": "recognize, detect, sense, observe"
+        },
+        {
+          "id": "EV_092",
+          "order": 2,
+          "word": "retrieve",
+          "pos": "동사",
+          "meaning": "(기억을) 인출하다, 검색하다",
+          "example_en": "Students who test themselves regularly find it easier to retrieve information during exams.",
+          "example_ko": "스스로 정기적으로 시험을 치르는 학생들은 시험 중 정보를 인출하기가 더 쉽다는 것을 알게 된다.",
+          "csat_ref": "수능 기억·학습 지문, 빈칸 추론 빈출",
+          "synonyms": "recall, recover, access, fetch"
+        },
+        {
+          "id": "EV_093",
+          "order": 3,
+          "word": "encode",
+          "pos": "동사",
+          "meaning": "(정보를) 부호화하다, 기억에 저장하다",
+          "example_en": "The brain encodes emotional memories more vividly than neutral ones.",
+          "example_ko": "뇌는 중립적인 기억보다 감정적인 기억을 더 생생하게 부호화한다.",
+          "csat_ref": "수능 기억·뇌과학 지문 (37~38번 순서·삽입 유형)",
+          "synonyms": "store, record, process, imprint"
+        },
+        {
+          "id": "EV_094",
+          "order": 4,
+          "word": "cognitive",
+          "pos": "형용사",
+          "meaning": "인지적인, 인식의",
+          "example_en": "Multitasking reduces cognitive performance even in people who believe they are good at it.",
+          "example_ko": "멀티태스킹은 자신이 잘한다고 믿는 사람들조차 인지 능력을 저하시킨다.",
+          "csat_ref": "수능 심리·과학 지문 전반에서 빈출 형용사",
+          "synonyms": "mental, intellectual, psychological, conceptual"
+        },
+        {
+          "id": "EV_095",
+          "order": 5,
+          "word": "consolidate",
+          "pos": "동사",
+          "meaning": "(기억을) 공고히 하다, 통합·강화하다",
+          "example_en": "Sleep plays a critical role in consolidating the memories formed during the day.",
+          "example_ko": "수면은 낮 동안 형성된 기억을 공고히 하는 데 중요한 역할을 한다.",
+          "csat_ref": "수능 수면·기억 과학 지문 빈칸, 제목 파악 유형",
+          "synonyms": "strengthen, reinforce, solidify, integrate"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_020",
+      "theme_title": "갈등·대립 핵심 어휘",
+      "level": "high",
+      "tip": "사회·역사·심리 지문에서 갈등 구조를 설명할 때 핵심적으로 등장한다. 동사와 명사 형태를 함께 숙지하고, 수능 글의 맥락 속에서 부정적 뉘앙스를 정확히 파악할 것.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_096",
+          "order": 1,
+          "word": "contradict",
+          "pos": "동사",
+          "meaning": "모순되다, 반박하다",
+          "example_en": "The new evidence contradicts the previously accepted theory.",
+          "example_ko": "새로운 증거는 이전에 받아들여진 이론과 모순된다.",
+          "csat_ref": "수능 논리·주장 파악 유형, 빈칸 추론 고난도",
+          "synonyms": "refute, conflict with, oppose, negate"
+        },
+        {
+          "id": "EV_097",
+          "order": 2,
+          "word": "dispute",
+          "pos": "명사/동사",
+          "meaning": "분쟁, 논쟁 / 이의를 제기하다",
+          "example_en": "The dispute over land rights has lasted for decades without resolution.",
+          "example_ko": "토지 권리를 둘러싼 분쟁은 수십 년간 해결 없이 지속되었다.",
+          "csat_ref": "수능 사회·법 지문, 장문 독해 빈출",
+          "synonyms": "conflict, controversy, argument / challenge, contest"
+        },
+        {
+          "id": "EV_098",
+          "order": 3,
+          "word": "antagonize",
+          "pos": "동사",
+          "meaning": "적대시하다, 반감을 사다",
+          "example_en": "Policies that antagonize minority groups tend to create long-term social instability.",
+          "example_ko": "소수 집단을 적대시하는 정책은 장기적인 사회 불안정을 초래하는 경향이 있다.",
+          "csat_ref": "수능 사회·정치 지문 어휘 문제 (25~26번)",
+          "synonyms": "provoke, alienate, irritate, aggravate"
+        },
+        {
+          "id": "EV_099",
+          "order": 4,
+          "word": "polarize",
+          "pos": "동사",
+          "meaning": "(의견을) 양극화하다, 갈라놓다",
+          "example_en": "Social media tends to polarize public opinion rather than encourage dialogue.",
+          "example_ko": "소셜 미디어는 대화를 장려하기보다 여론을 양극화하는 경향이 있다.",
+          "csat_ref": "수능 사회·미디어 지문 고난도 빈칸, 요지 파악",
+          "synonyms": "divide, split, separate, bifurcate"
+        },
+        {
+          "id": "EV_100",
+          "order": 5,
+          "word": "reconcile",
+          "pos": "동사",
+          "meaning": "화해시키다, 조화시키다, (모순을) 해소하다",
+          "example_en": "It is difficult to reconcile the desire for individual freedom with the need for social order.",
+          "example_ko": "개인의 자유 욕구와 사회 질서의 필요를 조화시키기는 어렵다.",
+          "csat_ref": "수능 철학·사회 지문 빈칸 추론 고난도 (31~34번)",
+          "synonyms": "resolve, harmonize, settle, integrate"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_021",
+      "theme_title": "협력·공동체 핵심 어휘",
+      "level": "high",
+      "tip": "사회과학·경제·인류학 지문에서 집단의 협력과 공동체 형성을 설명할 때 필수로 등장하는 어휘군. '개인 vs 집단'의 대립 구도 속에서 맥락을 파악하는 연습이 중요하다.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_101",
+          "order": 1,
+          "word": "collaborate",
+          "pos": "동사",
+          "meaning": "협력하다, 공동으로 작업하다",
+          "example_en": "Scientists who collaborate across disciplines tend to produce more innovative research.",
+          "example_ko": "학문 분야를 넘어 협력하는 과학자들이 더 혁신적인 연구를 생산하는 경향이 있다.",
+          "csat_ref": "수능 사회·과학 지문 전반, 글의 목적 파악 유형",
+          "synonyms": "cooperate, partner, work together, coordinate"
+        },
+        {
+          "id": "EV_102",
+          "order": 2,
+          "word": "solidarity",
+          "pos": "명사",
+          "meaning": "연대(감), 결속",
+          "example_en": "A sense of solidarity among workers led to successful collective bargaining.",
+          "example_ko": "노동자들 사이의 연대감이 성공적인 단체 교섭으로 이어졌다.",
+          "csat_ref": "수능 사회·노동·역사 지문 어휘 문제",
+          "synonyms": "unity, cohesion, fellowship, togetherness"
+        },
+        {
+          "id": "EV_103",
+          "order": 3,
+          "word": "consensus",
+          "pos": "명사",
+          "meaning": "합의, 의견 일치",
+          "example_en": "Reaching consensus in large groups often requires compromise from every member.",
+          "example_ko": "대규모 집단에서 합의에 도달하려면 모든 구성원의 타협이 필요하다.",
+          "csat_ref": "수능 사회·정치 지문, 빈칸 추론",
+          "synonyms": "agreement, accord, unanimity, concord"
+        },
+        {
+          "id": "EV_104",
+          "order": 4,
+          "word": "collective",
+          "pos": "형용사/명사",
+          "meaning": "집단적인, 공동의 / 집단체",
+          "example_en": "Collective action is necessary to address problems that no individual can solve alone.",
+          "example_ko": "어떤 개인도 혼자 해결할 수 없는 문제를 다루려면 집단적 행동이 필요하다.",
+          "csat_ref": "수능 사회과학 지문 고빈도 형용사 (빈칸·어휘 유형)",
+          "synonyms": "shared, communal, joint, cooperative"
+        },
+        {
+          "id": "EV_105",
+          "order": 5,
+          "word": "reciprocal",
+          "pos": "형용사",
+          "meaning": "상호적인, 서로에게 이익이 되는",
+          "example_en": "Healthy relationships are built on reciprocal trust and mutual respect.",
+          "example_ko": "건강한 관계는 상호적인 신뢰와 서로에 대한 존중 위에 세워진다.",
+          "csat_ref": "수능 심리·사회 지문 빈칸, 장문독해",
+          "synonyms": "mutual, bilateral, shared, two-way"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_022",
+      "theme_title": "윤리·도덕 핵심 어휘",
+      "level": "high",
+      "tip": "철학·윤리학 지문은 빈칸 추론 고난도 문제(31~34번)에 자주 등장한다. 윤리 개념어는 문맥 속 미묘한 차이를 파악해야 하므로, 예문을 통해 뉘앙스를 익힐 것.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_106",
+          "order": 1,
+          "word": "integrity",
+          "pos": "명사",
+          "meaning": "도덕적 성실성, 청렴, 완전성",
+          "example_en": "A leader with integrity is willing to make unpopular decisions when they are the right ones.",
+          "example_ko": "도덕적 성실성을 갖춘 리더는 그것이 옳을 때 인기 없는 결정을 기꺼이 내린다.",
+          "csat_ref": "수능 리더십·윤리 지문 빈칸, 제목 파악",
+          "synonyms": "honesty, uprightness, virtue, principle"
+        },
+        {
+          "id": "EV_107",
+          "order": 2,
+          "word": "virtue",
+          "pos": "명사",
+          "meaning": "덕(德), 미덕, 장점",
+          "example_en": "Aristotle argued that virtue is developed through habit, not simply through knowledge.",
+          "example_ko": "아리스토텔레스는 덕은 단순한 지식이 아니라 습관을 통해 발전한다고 주장했다.",
+          "csat_ref": "수능 철학·고전 지문 빈칸 추론, 어휘 문제",
+          "synonyms": "moral excellence, goodness, merit, righteousness"
+        },
+        {
+          "id": "EV_108",
+          "order": 3,
+          "word": "conscientious",
+          "pos": "형용사",
+          "meaning": "양심적인, 성실한, 꼼꼼한",
+          "example_en": "Conscientious workers tend to be more productive and make fewer errors.",
+          "example_ko": "양심적인 노동자들은 더 생산적이고 실수를 덜 하는 경향이 있다.",
+          "csat_ref": "수능 심리·성격 지문 어휘 문제",
+          "synonyms": "diligent, meticulous, principled, scrupulous"
+        },
+        {
+          "id": "EV_109",
+          "order": 4,
+          "word": "impartial",
+          "pos": "형용사",
+          "meaning": "공정한, 편견 없는, 중립적인",
+          "example_en": "A judge must remain impartial regardless of personal feelings about the defendant.",
+          "example_ko": "판사는 피고에 대한 개인적인 감정에 관계없이 공정함을 유지해야 한다.",
+          "csat_ref": "수능 법·사회 지문 어휘 문제, 빈칸 추론",
+          "synonyms": "neutral, unbiased, objective, fair"
+        },
+        {
+          "id": "EV_110",
+          "order": 5,
+          "word": "accountability",
+          "pos": "명사",
+          "meaning": "책임(감), 책무",
+          "example_en": "Transparency and accountability are essential for maintaining public trust in institutions.",
+          "example_ko": "투명성과 책임감은 기관에 대한 공공의 신뢰를 유지하는 데 필수적이다.",
+          "csat_ref": "수능 사회·정치 지문 빈칸 추론, 글의 주제 파악",
+          "synonyms": "responsibility, answerability, liability, obligation"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_023",
+      "theme_title": "진화·생태 핵심 어휘",
+      "level": "high",
+      "tip": "생물·환경 지문은 수능에서 꾸준히 출제된다. 진화론 관련 어휘(자연선택·적응·변이)와 생태계 어휘(서식지·생물다양성)를 정확히 구분해 알아두어야 한다.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_111",
+          "order": 1,
+          "word": "adaptation",
+          "pos": "명사",
+          "meaning": "적응, 개조, 각색",
+          "example_en": "The camel's ability to store fat in its hump is an adaptation to desert conditions.",
+          "example_ko": "낙타가 혹에 지방을 저장하는 능력은 사막 환경에 대한 적응이다.",
+          "csat_ref": "수능 생물·진화 지문 빈칸 추론 (34~35번)",
+          "synonyms": "adjustment, modification, evolution, acclimatization"
+        },
+        {
+          "id": "EV_112",
+          "order": 2,
+          "word": "biodiversity",
+          "pos": "명사",
+          "meaning": "생물다양성",
+          "example_en": "The destruction of rainforests threatens global biodiversity at an alarming rate.",
+          "example_ko": "열대우림의 파괴는 전 세계 생물다양성을 놀라운 속도로 위협하고 있다.",
+          "csat_ref": "수능 환경·생태 지문 제목·주제 파악 유형",
+          "synonyms": "biological diversity, species variety, ecological richness"
+        },
+        {
+          "id": "EV_113",
+          "order": 3,
+          "word": "predator",
+          "pos": "명사",
+          "meaning": "포식자, 약탈자",
+          "example_en": "The removal of apex predators from an ecosystem can trigger a cascade of ecological effects.",
+          "example_ko": "생태계에서 최상위 포식자를 제거하면 연속적인 생태적 영향을 촉발할 수 있다.",
+          "csat_ref": "수능 생태·동물 지문 어휘, 순서 파악 유형",
+          "synonyms": "hunter, carnivore, natural enemy"
+        },
+        {
+          "id": "EV_114",
+          "order": 4,
+          "word": "symbiotic",
+          "pos": "형용사",
+          "meaning": "공생의, 상호 의존적인",
+          "example_en": "The symbiotic relationship between bees and flowers benefits both species.",
+          "example_ko": "꿀벌과 꽃 사이의 공생 관계는 두 종 모두에게 이익을 준다.",
+          "csat_ref": "수능 생물·사회 지문 빈칸 추론, 어휘 문제",
+          "synonyms": "mutually beneficial, interdependent, cooperative, mutualistic"
+        },
+        {
+          "id": "EV_115",
+          "order": 5,
+          "word": "inheritable",
+          "pos": "형용사",
+          "meaning": "유전될 수 있는, 세습될 수 있는",
+          "example_en": "Only inheritable genetic changes can be passed down through natural selection.",
+          "example_ko": "오직 유전될 수 있는 유전적 변화만이 자연선택을 통해 전달될 수 있다.",
+          "csat_ref": "수능 진화·유전학 지문 빈칸 추론 고난도",
+          "synonyms": "heritable, genetic, transmissible, hereditary"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_024",
+      "theme_title": "혁신·기술 핵심 어휘",
+      "level": "high",
+      "tip": "기술·사회 변화 지문은 수능에서 비중이 높아지는 추세다. '혁신이 가져오는 변화와 부작용'을 다루는 지문에서 빈칸 추론과 제목 파악으로 자주 출제된다.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_116",
+          "order": 1,
+          "word": "innovation",
+          "pos": "명사",
+          "meaning": "혁신, 새로운 아이디어·방법의 도입",
+          "example_en": "Technological innovation has transformed how we communicate, work, and learn.",
+          "example_ko": "기술 혁신은 우리가 소통하고, 일하고, 배우는 방식을 변화시켰다.",
+          "csat_ref": "수능 기술·사회 지문 전반, 빈칸·주제 파악",
+          "synonyms": "invention, breakthrough, novelty, advancement"
+        },
+        {
+          "id": "EV_117",
+          "order": 2,
+          "word": "disrupt",
+          "pos": "동사",
+          "meaning": "파괴적으로 혁신하다, 혼란을 주다, 중단시키다",
+          "example_en": "Ride-sharing apps have disrupted the traditional taxi industry worldwide.",
+          "example_ko": "차량 공유 앱은 전 세계 전통 택시 산업을 파괴적으로 혁신했다.",
+          "csat_ref": "수능 기술·경제 지문 빈칸 추론, 어휘 문제",
+          "synonyms": "revolutionize, overturn, upend, destabilize"
+        },
+        {
+          "id": "EV_118",
+          "order": 3,
+          "word": "algorithm",
+          "pos": "명사",
+          "meaning": "알고리즘 (문제 해결을 위한 절차·규칙의 집합)",
+          "example_en": "Search engines use complex algorithms to rank the most relevant results for each query.",
+          "example_ko": "검색 엔진은 복잡한 알고리즘을 사용하여 각 검색어에 가장 관련성 높은 결과를 순위 매긴다.",
+          "csat_ref": "수능 IT·수학 지문 어휘, 장문 독해",
+          "synonyms": "procedure, process, formula, computational method"
+        },
+        {
+          "id": "EV_119",
+          "order": 4,
+          "word": "automate",
+          "pos": "동사",
+          "meaning": "자동화하다",
+          "example_en": "Factories that automate repetitive tasks can increase productivity while reducing error rates.",
+          "example_ko": "반복적인 작업을 자동화하는 공장은 오류율을 줄이면서 생산성을 높일 수 있다.",
+          "csat_ref": "수능 경제·미래사회 지문 빈칸, 요지 파악",
+          "synonyms": "mechanize, robotize, computerize, systematize"
+        },
+        {
+          "id": "EV_120",
+          "order": 5,
+          "word": "obsolete",
+          "pos": "형용사",
+          "meaning": "구식이 된, 더 이상 쓰이지 않는",
+          "example_en": "Rapid technological change has rendered many once-essential skills obsolete within a generation.",
+          "example_ko": "급격한 기술 변화는 한 세대 안에 한때 필수였던 많은 기술들을 구식으로 만들었다.",
+          "csat_ref": "수능 기술·변화 지문 빈칸 추론, 어휘 문제",
+          "synonyms": "outdated, outmoded, archaic, antiquated"
+        }
+      ]
+    }
+  ],
+  "exam_vocab_words": [
+    { "id": "EV_091", "theme_id": "EV_PACK_019", "word": "perceive", "meaning": "인식하다, 지각하다" },
+    { "id": "EV_092", "theme_id": "EV_PACK_019", "word": "retrieve", "meaning": "(기억을) 인출하다, 검색하다" },
+    { "id": "EV_093", "theme_id": "EV_PACK_019", "word": "encode", "meaning": "(정보를) 부호화하다, 기억에 저장하다" },
+    { "id": "EV_094", "theme_id": "EV_PACK_019", "word": "cognitive", "meaning": "인지적인, 인식의" },
+    { "id": "EV_095", "theme_id": "EV_PACK_019", "word": "consolidate", "meaning": "(기억을) 공고히 하다, 강화하다" },
+    { "id": "EV_096", "theme_id": "EV_PACK_020", "word": "contradict", "meaning": "모순되다, 반박하다" },
+    { "id": "EV_097", "theme_id": "EV_PACK_020", "word": "dispute", "meaning": "분쟁, 논쟁 / 이의를 제기하다" },
+    { "id": "EV_098", "theme_id": "EV_PACK_020", "word": "antagonize", "meaning": "적대시하다, 반감을 사다" },
+    { "id": "EV_099", "theme_id": "EV_PACK_020", "word": "polarize", "meaning": "(의견을) 양극화하다, 갈라놓다" },
+    { "id": "EV_100", "theme_id": "EV_PACK_020", "word": "reconcile", "meaning": "화해시키다, 조화시키다" },
+    { "id": "EV_101", "theme_id": "EV_PACK_021", "word": "collaborate", "meaning": "협력하다, 공동으로 작업하다" },
+    { "id": "EV_102", "theme_id": "EV_PACK_021", "word": "solidarity", "meaning": "연대(감), 결속" },
+    { "id": "EV_103", "theme_id": "EV_PACK_021", "word": "consensus", "meaning": "합의, 의견 일치" },
+    { "id": "EV_104", "theme_id": "EV_PACK_021", "word": "collective", "meaning": "집단적인, 공동의" },
+    { "id": "EV_105", "theme_id": "EV_PACK_021", "word": "reciprocal", "meaning": "상호적인, 서로에게 이익이 되는" },
+    { "id": "EV_106", "theme_id": "EV_PACK_022", "word": "integrity", "meaning": "도덕적 성실성, 청렴" },
+    { "id": "EV_107", "theme_id": "EV_PACK_022", "word": "virtue", "meaning": "덕(德), 미덕, 장점" },
+    { "id": "EV_108", "theme_id": "EV_PACK_022", "word": "conscientious", "meaning": "양심적인, 성실한, 꼼꼼한" },
+    { "id": "EV_109", "theme_id": "EV_PACK_022", "word": "impartial", "meaning": "공정한, 편견 없는" },
+    { "id": "EV_110", "theme_id": "EV_PACK_022", "word": "accountability", "meaning": "책임(감), 책무" },
+    { "id": "EV_111", "theme_id": "EV_PACK_023", "word": "adaptation", "meaning": "적응, 개조" },
+    { "id": "EV_112", "theme_id": "EV_PACK_023", "word": "biodiversity", "meaning": "생물다양성" },
+    { "id": "EV_113", "theme_id": "EV_PACK_023", "word": "predator", "meaning": "포식자, 약탈자" },
+    { "id": "EV_114", "theme_id": "EV_PACK_023", "word": "symbiotic", "meaning": "공생의, 상호 의존적인" },
+    { "id": "EV_115", "theme_id": "EV_PACK_023", "word": "inheritable", "meaning": "유전될 수 있는" },
+    { "id": "EV_116", "theme_id": "EV_PACK_024", "word": "innovation", "meaning": "혁신, 새로운 방법의 도입" },
+    { "id": "EV_117", "theme_id": "EV_PACK_024", "word": "disrupt", "meaning": "파괴적으로 혁신하다, 혼란을 주다" },
+    { "id": "EV_118", "theme_id": "EV_PACK_024", "word": "algorithm", "meaning": "알고리즘" },
+    { "id": "EV_119", "theme_id": "EV_PACK_024", "word": "automate", "meaning": "자동화하다" },
+    { "id": "EV_120", "theme_id": "EV_PACK_024", "word": "obsolete", "meaning": "구식이 된, 더 이상 쓰이지 않는" }
+  ]
+}

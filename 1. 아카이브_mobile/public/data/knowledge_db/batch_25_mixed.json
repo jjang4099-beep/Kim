@@ -1,0 +1,504 @@
+{
+  "meta": {
+    "label": "직장인 영어·중국어 25차",
+    "mode": "work",
+    "updated": "2026-07-21",
+    "count": {
+      "english_theme_packs": 1,
+      "english_expressions": 20,
+      "chinese_expressions": 10
+    }
+  },
+  "english_theme_packs": [
+    {
+      "id": "PACK_EN_039",
+      "theme_key": "change_management_en",
+      "theme_title": "변화 관리 영어",
+      "theme_title_en": "Change & Transition English",
+      "level": "advanced",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "EN_039_01",
+          "order": 1,
+          "expression": "We're moving in a new direction.",
+          "meaning": "우리는 새로운 방향으로 나아가고 있습니다",
+          "nuance": "조직 변화를 발표할 때 쓰는 가장 중립적이면서도 명확한 표현. '방향을 바꾼다'는 것은 이전이 틀렸다는 뜻이 아니라 '이제 앞으로 나아갈 곳이 여기다'라는 신호다. 불필요한 방어나 사과 없이 변화를 선언하는 자신감 있는 표현이다.",
+          "dialogue": {
+            "A": "Are we scrapping everything we've built?",
+            "B": "Not at all — we're moving in a new direction, building on what worked and letting go of what didn't."
+          },
+          "example": "As of next quarter, we're moving in a new direction with our product strategy.",
+          "practice": "팀에게 전략 전환을 알릴 때, 방어적이지 않게 변화를 선언할 때"
+        },
+        {
+          "id": "EN_039_02",
+          "order": 2,
+          "expression": "This is going to be an adjustment period.",
+          "meaning": "이것은 적응 기간이 될 것입니다",
+          "nuance": "변화에 따르는 혼란과 불편함을 미리 인정하는 표현. '어렵겠지만 정상이다'는 메시지를 담고 있다. 변화 초기에 팀의 불안을 줄이고 심리적 안전감을 주는 가장 솔직한 커뮤니케이션 방식이다.",
+          "dialogue": {
+            "A": "The new process is so different — I'm not sure I'll get used to it.",
+            "B": "This is going to be an adjustment period for all of us. Let's give it a few weeks before we evaluate."
+          },
+          "example": "I'll be honest — this is going to be an adjustment period, but I'm confident we'll come out stronger.",
+          "practice": "조직 변화 초반 팀원들의 저항과 불안을 인정하며 안심시킬 때"
+        },
+        {
+          "id": "EN_039_03",
+          "order": 3,
+          "expression": "I want to be transparent about what's changing and why.",
+          "meaning": "무엇이 바뀌는지, 왜 바뀌는지에 대해 투명하게 말씀드리고 싶습니다",
+          "nuance": "변화 커뮤니케이션에서 가장 흔한 실수는 '무엇(what)'만 말하고 '왜(why)'를 빠뜨리는 것이다. '왜'가 없으면 사람들은 자기만의 이유를 만들어낸다 — 대부분 부정적으로. 이 표현은 '숨기는 게 없다'는 신뢰의 신호다.",
+          "dialogue": {
+            "A": "We heard there are big changes coming. Nobody's telling us anything.",
+            "B": "I want to be transparent about what's changing and why — let me walk you through it now."
+          },
+          "example": "Before we get into the details, I want to be transparent about what's changing and why we made this decision.",
+          "practice": "중요한 변화를 발표하기 전에 신뢰를 선언하며 시작할 때"
+        },
+        {
+          "id": "EN_039_04",
+          "order": 4,
+          "expression": "Your concerns are valid, and here's how we're addressing them.",
+          "meaning": "여러분의 우려는 타당합니다, 그리고 우리가 그것을 어떻게 다룰지 말씀드리겠습니다",
+          "nuance": "두 파트로 구성된 강력한 변화 관리 표현. 앞부분은 상대의 감정을 인정(validate)하고, 뒷부분은 해결책으로 바로 연결한다. 우려를 무시하거나 논리로만 누르려 하면 저항이 커진다 — 먼저 감정을 인정해야 논리가 들어갈 공간이 생긴다.",
+          "dialogue": {
+            "A": "What about our team? Are our jobs secure?",
+            "B": "Your concerns are valid, and here's how we're addressing them — no layoffs, and each of you will have a defined role in the new structure."
+          },
+          "example": "Your concerns are valid, and here's how we're addressing them — we've built a 90-day transition plan.",
+          "practice": "변화 발표 후 저항과 불안을 표출하는 팀원들에게 대응할 때"
+        },
+        {
+          "id": "EN_039_05",
+          "order": 5,
+          "expression": "Change is hard, but standing still is harder in the long run.",
+          "meaning": "변화는 어렵지만, 장기적으로는 제자리에 머무르는 것이 더 어렵습니다",
+          "nuance": "변화에 대한 저항을 우회하는 데 쓰는 표현. '변화하기 싫다'는 사람에게 '변하지 않는 것'의 비용을 제시하는 방식이다. 변화를 강요하는 것이 아니라 스스로 선택하게 만드는 구조다.",
+          "dialogue": {
+            "A": "I'd rather just keep doing what we've been doing. It works.",
+            "B": "Change is hard, but standing still is harder in the long run — and the market isn't standing still with us."
+          },
+          "example": "I understand the reluctance. Change is hard, but standing still is harder in the long run.",
+          "practice": "변화 피로감을 느끼는 팀이나 현상 유지를 원하는 이해관계자를 설득할 때"
+        }
+      ],
+      "master_paragraph": {
+        "text": "We're moving in a new direction, and I want to be transparent about what's changing and why. This is going to be an adjustment period for all of us — your concerns are valid, and here's how we're addressing them. Change is hard, but standing still is harder in the long run.",
+        "translation": "우리는 새로운 방향으로 나아가고 있으며, 무엇이 바뀌는지 왜 바뀌는지 투명하게 말씀드리고 싶습니다. 이것은 우리 모두에게 적응 기간이 될 것입니다 — 여러분의 우려는 타당하며, 우리가 그것을 어떻게 다룰지 말씀드리겠습니다. 변화는 어렵지만 장기적으로는 제자리에 머무르는 것이 더 어렵습니다.",
+        "highlights": [
+          "We're moving in a new direction",
+          "I want to be transparent about what's changing and why",
+          "This is going to be an adjustment period",
+          "Your concerns are valid, and here's how we're addressing them",
+          "Change is hard, but standing still is harder in the long run"
+        ]
+      }
+    }
+  ],
+  "english_expressions": [
+    {
+      "id": "EN_596",
+      "expression": "Hit the ground running",
+      "meaning": "빠르게 시작하다, 처음부터 속도를 내다",
+      "level": "intermediate",
+      "theme": "Initiative & Speed",
+      "example": "She hit the ground running on day one — already had three client calls by noon.",
+      "dialogue": {
+        "A": "How's the new hire doing?",
+        "B": "Hit the ground running — she set up her own onboarding checklist before we even gave her one."
+      }
+    },
+    {
+      "id": "EN_597",
+      "expression": "Put your money where your mouth is",
+      "meaning": "말로만 하지 말고 행동으로 보여라, 실제로 투자하라",
+      "level": "intermediate",
+      "theme": "Accountability & Action",
+      "example": "If you believe in this project, put your money where your mouth is and commit resources.",
+      "dialogue": {
+        "A": "I really think this initiative will work.",
+        "B": "Then put your money where your mouth is — get us the budget and we'll deliver."
+      }
+    },
+    {
+      "id": "EN_598",
+      "expression": "Get your ducks in a row",
+      "meaning": "모든 준비를 완벽하게 하다, 일을 체계적으로 정리하다",
+      "level": "intermediate",
+      "theme": "Preparation & Organization",
+      "example": "Before we pitch to investors, let's get our ducks in a row.",
+      "dialogue": {
+        "A": "Are we ready for the launch?",
+        "B": "Almost — just need to get our ducks in a row on the legal side and we're good to go."
+      }
+    },
+    {
+      "id": "EN_599",
+      "expression": "Touch base",
+      "meaning": "간략히 연락하다, 확인하다, 잠깐 이야기하다",
+      "level": "beginner",
+      "theme": "Communication & Follow-up",
+      "example": "Let's touch base on Friday to see where things stand.",
+      "dialogue": {
+        "A": "How should we stay aligned on this?",
+        "B": "Let's touch base every Monday morning — just 15 minutes to sync up."
+      }
+    },
+    {
+      "id": "EN_600",
+      "expression": "Think on your feet",
+      "meaning": "즉각적으로 생각하다, 상황에 빠르게 대응하다",
+      "level": "intermediate",
+      "theme": "Agility & Problem-Solving",
+      "example": "Great consultants can think on their feet when clients throw curveballs.",
+      "dialogue": {
+        "A": "What if they ask something we haven't prepared for?",
+        "B": "That's why we rehearsed — but also just trust yourself to think on your feet."
+      }
+    },
+    {
+      "id": "EN_601",
+      "expression": "Keep the ball rolling",
+      "meaning": "추진력을 유지하다, 계속 진행시키다",
+      "level": "beginner",
+      "theme": "Momentum & Continuity",
+      "example": "Great meeting — let's keep the ball rolling and reconvene next week.",
+      "dialogue": {
+        "A": "We made some real progress today.",
+        "B": "Good. Let's keep the ball rolling — I'll send out action items by EOD."
+      }
+    },
+    {
+      "id": "EN_602",
+      "expression": "In the same boat",
+      "meaning": "같은 처지에 있다, 함께 어려움을 겪고 있다",
+      "level": "beginner",
+      "theme": "Solidarity & Empathy",
+      "example": "We're all in the same boat on this budget crunch — no team is spared.",
+      "dialogue": {
+        "A": "My team is overwhelmed with the new workload.",
+        "B": "We're all in the same boat, honestly. Let's figure out how to prioritize together."
+      }
+    },
+    {
+      "id": "EN_603",
+      "expression": "Push the envelope",
+      "meaning": "한계를 뛰어넘다, 경계를 확장하다, 혁신을 추구하다",
+      "level": "intermediate",
+      "theme": "Innovation & Ambition",
+      "example": "This team doesn't just follow industry norms — they push the envelope.",
+      "dialogue": {
+        "A": "Should we play it safe or try something bolder?",
+        "B": "Let's push the envelope a bit — we can always pull back, but you can't un-play it safe."
+      }
+    },
+    {
+      "id": "EN_604",
+      "expression": "Wear many hats",
+      "meaning": "여러 역할을 동시에 맡다",
+      "level": "beginner",
+      "theme": "Versatility & Startups",
+      "example": "At a startup, everyone wears many hats — you might be in sales and ops on the same day.",
+      "dialogue": {
+        "A": "What's your job title exactly?",
+        "B": "Hard to say — I wear many hats. Strategy, ops, sometimes even customer support."
+      }
+    },
+    {
+      "id": "EN_605",
+      "expression": "Raise the bar",
+      "meaning": "기준을 높이다, 기대 수준을 올리다",
+      "level": "beginner",
+      "theme": "Quality & Standards",
+      "example": "The new competitor just raised the bar for everyone in this space.",
+      "dialogue": {
+        "A": "Our last report was good.",
+        "B": "Good is our floor, not our ceiling. Let's raise the bar and make it exceptional."
+      }
+    },
+    {
+      "id": "EN_606",
+      "expression": "Have skin in the game",
+      "meaning": "직접적인 이해관계가 있다, 결과에 책임을 진다",
+      "level": "advanced",
+      "theme": "Accountability & Ownership",
+      "example": "Advisors give better advice when they have skin in the game.",
+      "dialogue": {
+        "A": "Why should we trust his recommendation?",
+        "B": "He has skin in the game — he invested his own money. That changes things."
+      }
+    },
+    {
+      "id": "EN_607",
+      "expression": "Dot the i's and cross the t's",
+      "meaning": "세부사항까지 꼼꼼하게 마무리하다, 빠진 것 없이 완벽하게 처리하다",
+      "level": "intermediate",
+      "theme": "Attention to Detail",
+      "example": "Before we sign the contract, make sure we dot the i's and cross the t's.",
+      "dialogue": {
+        "A": "I think the proposal is ready to send.",
+        "B": "Let me dot the i's and cross the t's first — I want legal to sign off before it goes out."
+      }
+    },
+    {
+      "id": "EN_608",
+      "expression": "Bang for the buck",
+      "meaning": "비용 대비 효과, 투자 대비 가치",
+      "level": "intermediate",
+      "theme": "Efficiency & ROI",
+      "example": "This tool gives us the most bang for the buck compared to any alternative.",
+      "dialogue": {
+        "A": "Which channel gives us the best results with this budget?",
+        "B": "Email is consistently the most bang for the buck — 40x ROI on average."
+      }
+    },
+    {
+      "id": "EN_609",
+      "expression": "Keep a low profile",
+      "meaning": "조용히 지내다, 눈에 띄지 않게 행동하다",
+      "level": "intermediate",
+      "theme": "Strategy & Discretion",
+      "example": "During the acquisition talks, we kept a low profile to avoid speculation.",
+      "dialogue": {
+        "A": "Should we announce the partnership now?",
+        "B": "Let's keep a low profile until the contract is signed — no point stirring things up early."
+      }
+    },
+    {
+      "id": "EN_610",
+      "expression": "Get on board",
+      "meaning": "동참하다, 합류하다, 동의하다",
+      "level": "beginner",
+      "theme": "Alignment & Buy-in",
+      "example": "We need everyone to get on board before we move forward.",
+      "dialogue": {
+        "A": "Some people on the team still seem resistant.",
+        "B": "Let's address their concerns directly and get them on board — we need everyone rowing the same direction."
+      }
+    },
+    {
+      "id": "EN_611",
+      "expression": "The bottom line",
+      "meaning": "핵심, 결론, 요점 (회계에서 '최종 손익'에서 유래)",
+      "level": "beginner",
+      "theme": "Communication & Clarity",
+      "example": "The bottom line is we need to cut costs by 15% this quarter.",
+      "dialogue": {
+        "A": "There are a lot of factors here.",
+        "B": "Sure — but the bottom line is: are we profitable or not? Everything else comes second."
+      }
+    },
+    {
+      "id": "EN_612",
+      "expression": "On the radar",
+      "meaning": "주목하고 있다, 인식하고 있다, 고려 대상이다",
+      "level": "beginner",
+      "theme": "Awareness & Priority",
+      "example": "That competitor has been on our radar for a while.",
+      "dialogue": {
+        "A": "Are you aware of the regulatory changes coming next year?",
+        "B": "Yes, it's been on our radar. We've started working with legal to prepare."
+      }
+    },
+    {
+      "id": "EN_613",
+      "expression": "Change gears",
+      "meaning": "다른 주제·방식으로 전환하다, 기어를 바꾸다",
+      "level": "beginner",
+      "theme": "Transition & Flexibility",
+      "example": "Let's change gears and talk about the Q4 roadmap.",
+      "dialogue": {
+        "A": "We've covered the budget. What's next?",
+        "B": "Let's change gears — I want to spend the next 20 minutes on team structure."
+      }
+    },
+    {
+      "id": "EN_614",
+      "expression": "Going forward",
+      "meaning": "앞으로는, 이제부터는",
+      "level": "beginner",
+      "theme": "Direction & Policy",
+      "example": "Going forward, all approvals above $10K require two sign-offs.",
+      "dialogue": {
+        "A": "What changes after the restructuring?",
+        "B": "Going forward, each team will own their own P&L. More autonomy, more accountability."
+      }
+    },
+    {
+      "id": "EN_615",
+      "expression": "Back to basics",
+      "meaning": "기본으로 돌아가다, 근본에 집중하다",
+      "level": "beginner",
+      "theme": "Focus & Simplicity",
+      "example": "After a year of overcomplicating things, we went back to basics.",
+      "dialogue": {
+        "A": "Our process has gotten so complex no one knows what to do.",
+        "B": "Time to go back to basics — what's the one thing that actually drives results here?"
+      }
+    }
+  ],
+  "chinese_expressions": [
+    {
+      "id": "ZH_188",
+      "expression": "宁静致远",
+      "pinyin": "níng jìng zhì yuǎn",
+      "meaning": "고요함이 멀리 도달하게 한다 → 마음의 평정이 큰 목표를 이루게 한다",
+      "level": "advanced",
+      "theme": "자기수양·집중",
+      "example": {
+        "zh": "宁静致远，浮躁只会让你离目标越来越远。",
+        "ko": "고요함이 멀리 가게 한다, 조급함은 오히려 목표에서 멀어지게 할 뿐이야."
+      },
+      "dialogue": {
+        "A": "竞争这么激烈，不焦虑怎么可能？(경쟁이 이렇게 치열한데, 불안하지 않을 수 있어?)",
+        "B": "宁静致远，越焦虑越出错，冷静下来才能看清楚方向。(고요함이 멀리 가게 해, 불안할수록 실수가 많아지고, 냉정해야 방향이 보여.)"
+      }
+    },
+    {
+      "id": "ZH_189",
+      "expression": "闻过则喜",
+      "pinyin": "wén guò zé xǐ",
+      "meaning": "잘못을 지적받으면 기뻐한다 → 비판과 피드백을 기꺼이 받아들이는 태도",
+      "level": "advanced",
+      "theme": "겸손·피드백",
+      "example": {
+        "zh": "真正成长的人闻过则喜，把批评当作礼物。",
+        "ko": "진짜 성장하는 사람은 잘못을 지적받으면 기뻐해, 비판을 선물로 여기는 거야."
+      },
+      "dialogue": {
+        "A": "你怎么能接受那么直接的批评？(어떻게 그렇게 직접적인 비판을 받아들일 수 있어?)",
+        "B": "闻过则喜，这是孟子的智慧。批评让我看到自己看不到的盲点。(잘못을 지적받으면 기뻐하는 거야, 이건 맹자의 지혜야. 비판이 내가 보지 못하는 맹점을 보게 해줘.)"
+      }
+    },
+    {
+      "id": "ZH_190",
+      "expression": "欲速则不达",
+      "pinyin": "yù sù zé bù dá",
+      "meaning": "빨리 하려 하면 오히려 이루지 못한다 → 조급함이 오히려 목표를 멀어지게 한다",
+      "level": "intermediate",
+      "theme": "인내·전략",
+      "example": {
+        "zh": "欲速则不达，做产品要一步一步来，不能急。",
+        "ko": "급하게 하려다 오히려 못 이뤄, 제품은 한 걸음씩 해야지, 급하면 안 돼."
+      },
+      "dialogue": {
+        "A": "我们能不能在一个月内上线所有功能？(한 달 안에 모든 기능을 출시할 수 있어?)",
+        "B": "欲速则不达，功能太多太快上线只会造成技术债和用户混乱。(급하게 하면 오히려 못 이뤄, 기능이 너무 많으면 기술 부채와 사용자 혼란만 만들어.)"
+      }
+    },
+    {
+      "id": "ZH_191",
+      "expression": "他山之石，可以攻玉",
+      "pinyin": "tā shān zhī shí, kě yǐ gōng yù",
+      "meaning": "다른 산의 돌로 옥을 다듬을 수 있다 → 다른 분야·타인의 경험에서 배울 수 있다",
+      "level": "advanced",
+      "theme": "학습·벤치마킹",
+      "example": {
+        "zh": "他山之石可以攻玉，我们可以从其他行业学到很多。",
+        "ko": "다른 산의 돌로 옥을 다듬을 수 있어, 다른 업계에서 배울 것이 많아."
+      },
+      "dialogue": {
+        "A": "为什么要研究零售业？我们是科技公司。(왜 유통업을 연구해? 우리는 테크 회사잖아.)",
+        "B": "他山之石可以攻玉，亚马逊的物流思维给了我们很多启发。(다른 산의 돌로 옥을 다듬을 수 있잖아, 아마존의 물류 사고방식이 많은 영감을 줬어.)"
+      }
+    },
+    {
+      "id": "ZH_192",
+      "expression": "一诺千金",
+      "pinyin": "yī nuò qiān jīn",
+      "meaning": "한 번의 약속은 천금과 같다 → 약속은 반드시 지켜야 한다, 신뢰의 가치",
+      "level": "intermediate",
+      "theme": "신뢰·약속",
+      "example": {
+        "zh": "一诺千金，既然答应了客户就一定要做到。",
+        "ko": "약속은 천금과 같아, 고객에게 약속했으면 반드시 지켜야 해."
+      },
+      "dialogue": {
+        "A": "项目延期了，我们要怎么跟客户说？(프로젝트가 지연됐는데, 고객에게 어떻게 말해?)",
+        "B": "一诺千金，先承认问题，再给出新的确定时间线，这才是负责任的做法。(약속은 천금과 같아, 먼저 문제를 인정하고 새로운 확실한 타임라인을 제시하는 게 책임있는 방법이야.)"
+      }
+    },
+    {
+      "id": "ZH_193",
+      "expression": "见微知著",
+      "pinyin": "jiàn wēi zhī zhù",
+      "meaning": "미세한 것을 보고 뚜렷한 것을 안다 → 작은 신호에서 큰 흐름을 읽는 통찰력",
+      "level": "advanced",
+      "theme": "통찰·분석",
+      "example": {
+        "zh": "见微知著，从用户的小抱怨里能看出大的产品问题。",
+        "ko": "미세한 것을 보고 큰 것을 알 수 있어, 사용자의 작은 불만에서 큰 제품 문제를 볼 수 있어."
+      },
+      "dialogue": {
+        "A": "这只是几个用户的投诉，不用太在意吧？(이건 몇몇 사용자의 불만인데, 너무 신경 쓰지 않아도 되지 않아?)",
+        "B": "见微知著，小投诉往往是大问题的早期信号。(미세한 것에서 큰 것을 알 수 있어, 작은 불만은 큰 문제의 초기 신호인 경우가 많아.)"
+      }
+    },
+    {
+      "id": "ZH_194",
+      "expression": "独木不成林",
+      "pinyin": "dú mù bù chéng lín",
+      "meaning": "나무 하나로는 숲이 되지 않는다 → 혼자서는 큰 일을 이루기 어렵다, 협력의 중요성",
+      "level": "intermediate",
+      "theme": "협력·팀워크",
+      "example": {
+        "zh": "独木不成林，一个人再厉害也需要好团队。",
+        "ko": "나무 하나로는 숲이 안 돼, 아무리 뛰어난 사람도 좋은 팀이 필요해."
+      },
+      "dialogue": {
+        "A": "他一个人能把这个项目搞定吗？(그 혼자서 이 프로젝트를 해낼 수 있을까?)",
+        "B": "独木不成林，再厉害的人也需要配合。我们要给他组建好团队。(나무 하나로는 숲이 안 돼, 아무리 뛰어나도 협력이 필요해. 좋은 팀을 구성해줘야 해.)"
+      }
+    },
+    {
+      "id": "ZH_195",
+      "expression": "磨刀不误砍柴工",
+      "pinyin": "mó dāo bù wù kǎn chái gōng",
+      "meaning": "칼을 가는 것이 나무 베는 일을 방해하지 않는다 → 준비에 투자하면 오히려 효율이 높아진다",
+      "level": "intermediate",
+      "theme": "준비·효율",
+      "example": {
+        "zh": "磨刀不误砍柴工，花时间学好工具会让后面的工作更快。",
+        "ko": "칼을 갈아도 나무 베는 일이 늦어지지 않아, 도구를 잘 배우는 데 시간을 쓰면 나중 작업이 더 빨라져."
+      },
+      "dialogue": {
+        "A": "学这个新工具要花两天，现在没时间啊。(새 도구 배우는 데 이틀이 걸리는데, 지금은 시간이 없어.)",
+        "B": "磨刀不误砍柴工，花两天学好，后面每周能省四天。(칼을 갈아도 손해 없어, 이틀 투자해서 배우면 매주 4일씩 아낄 수 있어.)"
+      }
+    },
+    {
+      "id": "ZH_196",
+      "expression": "知难而进",
+      "pinyin": "zhī nán ér jìn",
+      "meaning": "어려움을 알면서도 나아간다 → 어렵다는 것을 알고도 도전하는 용기",
+      "level": "intermediate",
+      "theme": "도전·용기",
+      "example": {
+        "zh": "知难而进，明知是hard mode也要去做。",
+        "ko": "어려운 줄 알면서도 나아가는 거야, 하드 모드인 줄 알면서도 해야 해."
+      },
+      "dialogue": {
+        "A": "这个市场竞争太激烈了，我们真的要进去吗？(이 시장은 경쟁이 너무 치열한데, 정말 들어가야 해?)",
+        "B": "知难而进，竞争激烈说明市场真实存在。我们的差异化够的话，就是机会。(어려운 걸 알면서도 나아가는 거야, 경쟁이 치열하다는 건 시장이 실제로 있다는 뜻이야. 우리 차별화가 충분하면 기회야.)"
+      }
+    },
+    {
+      "id": "ZH_197",
+      "expression": "路遥知马力，日久见人心",
+      "pinyin": "lù yáo zhī mǎ lì, rì jiǔ jiàn rén xīn",
+      "meaning": "멀리 가봐야 말의 힘을 알고, 오래 지내봐야 사람의 마음을 안다 → 사람의 진짜 됨됨이는 시간이 지나야 알 수 있다",
+      "level": "advanced",
+      "theme": "신뢰·판단",
+      "example": {
+        "zh": "路遥知马力日久见人心，真正的合作伙伴在困难时才显现。",
+        "ko": "오래 가봐야 알지, 진정한 파트너는 어려울 때 드러나."
+      },
+      "dialogue": {
+        "A": "怎么判断一个人值不值得信任？(어떻게 신뢰할 만한 사람인지 판단해?)",
+        "B": "路遥知马力，日久见人心。不用急，多相处，在压力下的表现说明一切。(오래 가봐야 알아. 급하지 않아도 돼, 많이 지내다 보면, 압박 속에서의 모습이 모든 걸 말해줘.)"
+      }
+    }
+  ]
+}

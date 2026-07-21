@@ -1,0 +1,429 @@
+{
+  "meta": {
+    "batch": 6,
+    "theme": "수능 영단어 테마팩 — 경제·시장 / 환경·기후2 / 심리·행동 / 교육·학습 / 과학연구방법 / 예술·창의",
+    "id_range": {
+      "exam_vocab_themes": "EV_PACK_031 ~ EV_PACK_036",
+      "words": "EV_151 ~ EV_180"
+    },
+    "created": "2026-07-21"
+  },
+  "exam_vocab_themes": [
+    {
+      "id": "EV_PACK_031",
+      "theme_title": "경제·시장 핵심 어휘",
+      "level": "high",
+      "tip": "수능에서 경제·소비·시장 지문의 비중이 높아지고 있다. 경제 개념어를 정확히 이해하면 빈칸 추론과 글의 주제·제목 파악 문제에서 유리하다.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_151",
+          "order": 1,
+          "word": "commodity",
+          "pos": "명사",
+          "meaning": "상품, 원자재, 일용품 (경제에서 시장에서 거래되는 재화)",
+          "example_en": "Water is increasingly being treated as a commodity rather than a public good.",
+          "example_ko": "물은 점점 더 공공재가 아닌 상품으로 취급되고 있다.",
+          "csat_ref": "수능 경제·환경 지문 빈칸 추론, 글의 주제 파악",
+          "synonyms": "product, goods, merchandise, raw material"
+        },
+        {
+          "id": "EV_152",
+          "order": 2,
+          "word": "deficit",
+          "pos": "명사",
+          "meaning": "적자, 부족, 결핍 (surplus의 반대)",
+          "example_en": "The country's trade deficit has widened as imports continue to outpace exports.",
+          "example_ko": "수입이 수출을 계속 앞지르면서 그 나라의 무역 적자가 확대됐다.",
+          "csat_ref": "수능 경제 지문 어휘 문제, surplus vs deficit 대비 출제",
+          "synonyms": "shortage, shortfall, gap, deficiency"
+        },
+        {
+          "id": "EV_153",
+          "order": 3,
+          "word": "incentive",
+          "pos": "명사",
+          "meaning": "동기, 유인책, 장려책",
+          "example_en": "Financial incentives alone are often insufficient to sustain long-term behavioral change.",
+          "example_ko": "금전적 유인만으로는 종종 장기적인 행동 변화를 유지하기에 충분하지 않다.",
+          "csat_ref": "수능 경제·심리 지문 빈칸 추론, 글의 요지 파악",
+          "synonyms": "motivation, reward, inducement, stimulus"
+        },
+        {
+          "id": "EV_154",
+          "order": 4,
+          "word": "surplus",
+          "pos": "명사/형용사",
+          "meaning": "잉여, 흑자, 남는 것 / 남아도는",
+          "example_en": "A food surplus in one region can exist alongside famine in another due to distribution failures.",
+          "example_ko": "유통 실패로 인해 한 지역의 식량 잉여가 다른 지역의 기근과 동시에 존재할 수 있다.",
+          "csat_ref": "수능 경제·사회 지문, deficit과 반의어 쌍으로 출제",
+          "synonyms": "excess, overabundance, remainder, glut"
+        },
+        {
+          "id": "EV_155",
+          "order": 5,
+          "word": "depreciate",
+          "pos": "동사",
+          "meaning": "가치가 떨어지다, 감가상각하다, 평가절하하다",
+          "example_en": "Unlike most assets, gold tends not to depreciate during periods of economic uncertainty.",
+          "example_ko": "대부분의 자산과 달리, 금은 경제적 불확실성 시기에 가치가 떨어지지 않는 경향이 있다.",
+          "csat_ref": "수능 경제·금융 지문 어휘 문제",
+          "synonyms": "decrease in value, devalue, fall, lose worth"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_032",
+      "theme_title": "환경·기후 핵심 어휘 2",
+      "level": "high",
+      "tip": "기후 위기·환경 지문은 수능에서 매해 출제된다. 완화(mitigation)·적응(adaptation)·회복력(resilience) 등 정책 관련 용어도 최근 출제 비중이 높아지고 있다.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_156",
+          "order": 1,
+          "word": "emission",
+          "pos": "명사",
+          "meaning": "배출, 방출 (greenhouse gas emissions: 온실가스 배출)",
+          "example_en": "Carbon emissions from transportation account for nearly a quarter of global warming.",
+          "example_ko": "교통에서의 탄소 배출이 지구온난화의 거의 4분의 1을 차지한다.",
+          "csat_ref": "수능 환경·기후 지문 핵심 어휘, 빈칸·주제 파악",
+          "synonyms": "discharge, release, output, exhaust"
+        },
+        {
+          "id": "EV_157",
+          "order": 2,
+          "word": "mitigation",
+          "pos": "명사",
+          "meaning": "완화, 경감 (문제의 심각성을 줄이는 것)",
+          "example_en": "Experts argue that mitigation strategies must be implemented immediately to avoid the worst outcomes.",
+          "example_ko": "전문가들은 최악의 결과를 피하기 위해 완화 전략을 즉시 시행해야 한다고 주장한다.",
+          "csat_ref": "수능 기후 정책 지문 빈칸, 요지 파악",
+          "synonyms": "reduction, alleviation, relief, lessening"
+        },
+        {
+          "id": "EV_158",
+          "order": 3,
+          "word": "resilience",
+          "pos": "명사",
+          "meaning": "회복력, 탄력성 (충격 후 원래대로 돌아오는 능력)",
+          "example_en": "Building ecological resilience is key to preparing communities for more frequent natural disasters.",
+          "example_ko": "생태적 회복력을 구축하는 것이 지역 사회가 더 잦은 자연재해에 대비하는 핵심이다.",
+          "csat_ref": "수능 환경·심리 지문 빈칸 추론, 최근 출제 빈도 높음",
+          "synonyms": "adaptability, toughness, elasticity, recovery"
+        },
+        {
+          "id": "EV_159",
+          "order": 4,
+          "word": "degrade",
+          "pos": "동사",
+          "meaning": "(환경·품질을) 저하시키다, 악화시키다, 분해되다",
+          "example_en": "Industrial farming practices can degrade soil quality over time.",
+          "example_ko": "산업적 농업 방식은 시간이 지남에 따라 토양 품질을 저하시킬 수 있다.",
+          "csat_ref": "수능 환경·농업 지문 어휘 문제",
+          "synonyms": "deteriorate, damage, deplete, erode, break down"
+        },
+        {
+          "id": "EV_160",
+          "order": 5,
+          "word": "sustainable",
+          "pos": "형용사",
+          "meaning": "지속 가능한, 환경을 파괴하지 않는",
+          "example_en": "Sustainable development means meeting the needs of the present without compromising the future.",
+          "example_ko": "지속 가능한 발전이란 미래를 희생시키지 않으면서 현재의 필요를 충족시키는 것을 의미한다.",
+          "csat_ref": "수능 환경·경제 지문 전반, 정의·개념 파악 문제로 출제",
+          "synonyms": "eco-friendly, long-term viable, enduring, maintainable"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_033",
+      "theme_title": "심리·행동 핵심 어휘",
+      "level": "high",
+      "tip": "행동심리학·신경과학 지문에서 행동의 강화·억제 메커니즘을 설명할 때 핵심 어휘다. 수능 심리 지문(빈칸·제목)에서 고빈도로 등장한다.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_161",
+          "order": 1,
+          "word": "reinforce",
+          "pos": "동사",
+          "meaning": "강화하다, 보강하다 (행동을 반복하게 만들다)",
+          "example_en": "Positive feedback tends to reinforce desired behaviors in both animals and humans.",
+          "example_ko": "긍정적인 피드백은 동물과 인간 모두에서 바람직한 행동을 강화하는 경향이 있다.",
+          "csat_ref": "수능 심리·교육 지문 빈칸 추론, '강화·보상' 관련 지문",
+          "synonyms": "strengthen, support, bolster, increase, solidify"
+        },
+        {
+          "id": "EV_162",
+          "order": 2,
+          "word": "inhibit",
+          "pos": "동사",
+          "meaning": "억제하다, 방해하다, 저해하다",
+          "example_en": "Fear of failure can inhibit creativity and discourage people from taking risks.",
+          "example_ko": "실패에 대한 두려움은 창의성을 억제하고 사람들이 위험을 감수하는 것을 막을 수 있다.",
+          "csat_ref": "수능 심리·창의성 지문 빈칸 추론",
+          "synonyms": "suppress, restrain, curb, prevent, hinder"
+        },
+        {
+          "id": "EV_163",
+          "order": 3,
+          "word": "stimulus",
+          "pos": "명사 (복수: stimuli)",
+          "meaning": "자극, 촉진제 (반응을 유발하는 것)",
+          "example_en": "The brain responds differently to the same stimulus depending on context and expectation.",
+          "example_ko": "뇌는 맥락과 기대에 따라 동일한 자극에 다르게 반응한다.",
+          "csat_ref": "수능 심리·신경과학 지문 빈칸, stimuli와 response의 관계",
+          "synonyms": "trigger, incentive, impulse, prompt, spur"
+        },
+        {
+          "id": "EV_164",
+          "order": 4,
+          "word": "aversion",
+          "pos": "명사",
+          "meaning": "혐오, 회피 경향, 강한 거부감 (loss aversion: 손실 회피)",
+          "example_en": "Loss aversion explains why people feel the pain of losing more intensely than the joy of gaining.",
+          "example_ko": "손실 회피는 사람들이 얻는 기쁨보다 잃는 고통을 더 강렬하게 느끼는 이유를 설명한다.",
+          "csat_ref": "수능 행동경제학·심리 지문 고난도 빈칸 (31~34번)",
+          "synonyms": "dislike, reluctance, avoidance, averseness"
+        },
+        {
+          "id": "EV_165",
+          "order": 5,
+          "word": "compulsive",
+          "pos": "형용사",
+          "meaning": "강박적인, 충동을 억제하기 어려운",
+          "example_en": "Compulsive checking of smartphones has become a recognized behavioral issue.",
+          "example_ko": "강박적인 스마트폰 확인은 공인된 행동 문제가 됐다.",
+          "csat_ref": "수능 심리·기술 지문 어휘 문제",
+          "synonyms": "obsessive, uncontrollable, irresistible, addictive"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_034",
+      "theme_title": "교육·학습 핵심 어휘",
+      "level": "high",
+      "tip": "수능 교육·심리 지문에서 자주 등장하는 어휘군. 교육학 용어(pedagogy, curriculum)와 학습 과정 용어(acquisition, retention)를 구분해 숙지할 것.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_166",
+          "order": 1,
+          "word": "pedagogy",
+          "pos": "명사",
+          "meaning": "교육학, 교수법, 가르치는 기술",
+          "example_en": "Effective pedagogy requires understanding how students at different stages acquire knowledge.",
+          "example_ko": "효과적인 교수법은 서로 다른 단계의 학생들이 어떻게 지식을 습득하는지 이해하는 것을 요구한다.",
+          "csat_ref": "수능 교육 지문 고난도 어휘 문제",
+          "synonyms": "teaching method, instruction, education, didactics"
+        },
+        {
+          "id": "EV_167",
+          "order": 2,
+          "word": "curriculum",
+          "pos": "명사 (복수: curricula)",
+          "meaning": "교육 과정, 교과 내용",
+          "example_en": "A curriculum that integrates real-world applications tends to improve student engagement.",
+          "example_ko": "실세계 적용을 통합한 교육 과정은 학생 참여를 향상시키는 경향이 있다.",
+          "csat_ref": "수능 교육·사회 지문 어휘 문제",
+          "synonyms": "syllabus, program, course of study, educational plan"
+        },
+        {
+          "id": "EV_168",
+          "order": 3,
+          "word": "retention",
+          "pos": "명사",
+          "meaning": "기억 유지, 보유, 보존",
+          "example_en": "Spacing out learning over time significantly improves long-term retention of information.",
+          "example_ko": "학습을 시간에 걸쳐 분산시키면 정보의 장기 기억 유지가 크게 향상된다.",
+          "csat_ref": "수능 기억·학습 지문 빈칸, '간격 반복 학습' 관련",
+          "synonyms": "memory, recall, preservation, maintenance"
+        },
+        {
+          "id": "EV_169",
+          "order": 4,
+          "word": "scaffold",
+          "pos": "동사/명사",
+          "meaning": "발판을 마련하다, 점진적 지원을 제공하다 / 발판 (비계)",
+          "example_en": "Good teachers scaffold learning by providing just enough support to allow students to progress.",
+          "example_ko": "좋은 교사는 학생들이 진보할 수 있도록 딱 적절한 지원을 제공함으로써 학습의 발판을 마련한다.",
+          "csat_ref": "수능 교육·발달심리 지문 어휘 문제 (비고츠키 근접발달영역과 연결)",
+          "synonyms": "support, guide, assist, structure, frame"
+        },
+        {
+          "id": "EV_170",
+          "order": 5,
+          "word": "acquisition",
+          "pos": "명사",
+          "meaning": "습득, 취득 (language acquisition: 언어 습득)",
+          "example_en": "Language acquisition in children occurs naturally when they are immersed in a rich linguistic environment.",
+          "example_ko": "아이들의 언어 습득은 풍부한 언어 환경에 몰입될 때 자연스럽게 일어난다.",
+          "csat_ref": "수능 언어·교육 지문 빈칸, 제목 파악",
+          "synonyms": "learning, gaining, attainment, obtaining"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_035",
+      "theme_title": "과학·연구방법 핵심 어휘",
+      "level": "high",
+      "tip": "수능 과학 지문(실험·연구 보고서 형식)에서 핵심적으로 등장한다. 가설→검증→결론의 연구 과정을 나타내는 어휘를 정확히 구분할 것.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_171",
+          "order": 1,
+          "word": "hypothesis",
+          "pos": "명사 (복수: hypotheses)",
+          "meaning": "가설 (검증 전 잠정적 설명)",
+          "example_en": "A hypothesis must be testable and falsifiable to be considered scientific.",
+          "example_ko": "가설이 과학적인 것으로 인정받으려면 검증 가능하고 반증 가능해야 한다.",
+          "csat_ref": "수능 과학 방법론 지문 빈칸, 글의 주제 파악",
+          "synonyms": "theory, assumption, proposition, supposition"
+        },
+        {
+          "id": "EV_172",
+          "order": 2,
+          "word": "empirical",
+          "pos": "형용사",
+          "meaning": "경험적인, 실증적인 (관찰·실험에 기반한)",
+          "example_en": "Empirical evidence from controlled experiments is the gold standard in medical research.",
+          "example_ko": "통제된 실험에서 나온 경험적 증거는 의학 연구의 황금 기준이다.",
+          "csat_ref": "수능 과학·철학 지문 빈칸 추론 고난도",
+          "synonyms": "observational, experimental, evidence-based, data-driven"
+        },
+        {
+          "id": "EV_173",
+          "order": 3,
+          "word": "replicate",
+          "pos": "동사",
+          "meaning": "복제하다, 반복하다 (실험을 재현하다)",
+          "example_en": "Scientific findings must be replicated by independent researchers before being widely accepted.",
+          "example_ko": "과학적 연구 결과는 널리 받아들여지기 전에 독립적인 연구자들에 의해 반복 재현돼야 한다.",
+          "csat_ref": "수능 과학 방법론·재현성 위기 지문 빈칸",
+          "synonyms": "reproduce, duplicate, copy, repeat"
+        },
+        {
+          "id": "EV_174",
+          "order": 4,
+          "word": "correlation",
+          "pos": "명사",
+          "meaning": "상관관계 (두 변수 간의 관련성, 인과관계와 다름)",
+          "example_en": "A correlation between two variables does not necessarily imply that one causes the other.",
+          "example_ko": "두 변수 간의 상관관계가 반드시 하나가 다른 하나를 야기함을 의미하지는 않는다.",
+          "csat_ref": "수능 과학·통계 지문 빈칸, 'correlation ≠ causation' 논리 출제",
+          "synonyms": "relationship, association, connection, link"
+        },
+        {
+          "id": "EV_175",
+          "order": 5,
+          "word": "variable",
+          "pos": "명사/형용사",
+          "meaning": "변수, 변인 / 가변적인, 변하기 쉬운",
+          "example_en": "In a controlled experiment, only one variable should be changed at a time.",
+          "example_ko": "통제된 실험에서는 한 번에 하나의 변인만 변경되어야 한다.",
+          "csat_ref": "수능 과학 실험 지문 빈칸, independent vs dependent variable 구분",
+          "synonyms": "factor, element, parameter, quantity"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_036",
+      "theme_title": "예술·창의성 핵심 어휘",
+      "level": "high",
+      "tip": "예술·인문 지문은 수능에서 꾸준히 출제되며, 특히 추상적 개념을 다루므로 어휘의 맥락적 의미 파악이 중요하다. 주제·요지 파악 유형에서 자주 등장한다.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_176",
+          "order": 1,
+          "word": "aesthetic",
+          "pos": "형용사/명사",
+          "meaning": "미적인, 심미적인 / 미학, 심미안",
+          "example_en": "The aesthetic appeal of a product can be just as important as its functionality.",
+          "example_ko": "제품의 미적 매력은 기능성만큼 중요할 수 있다.",
+          "csat_ref": "수능 예술·디자인 지문 빈칸, 어휘 문제",
+          "synonyms": "artistic, beautiful, tasteful, visually pleasing"
+        },
+        {
+          "id": "EV_177",
+          "order": 2,
+          "word": "evoke",
+          "pos": "동사",
+          "meaning": "(감정·기억을) 불러일으키다, 환기시키다",
+          "example_en": "Great literature can evoke emotions and experiences that transcend cultural boundaries.",
+          "example_ko": "위대한 문학은 문화적 경계를 초월하는 감정과 경험을 불러일으킬 수 있다.",
+          "csat_ref": "수능 예술·문학 지문 빈칸 추론, 글의 제목 파악",
+          "synonyms": "arouse, conjure, call up, stir, elicit"
+        },
+        {
+          "id": "EV_178",
+          "order": 3,
+          "word": "perspective",
+          "pos": "명사",
+          "meaning": "관점, 시각, 원근법",
+          "example_en": "Exposure to art from different cultures can broaden one's perspective on what is beautiful.",
+          "example_ko": "다양한 문화의 예술에 접하는 것은 아름다움에 대한 관점을 넓힐 수 있다.",
+          "csat_ref": "수능 예술·사회·철학 지문 전반 고빈도 어휘",
+          "synonyms": "viewpoint, standpoint, outlook, angle, point of view"
+        },
+        {
+          "id": "EV_179",
+          "order": 4,
+          "word": "genre",
+          "pos": "명사",
+          "meaning": "장르, 유형, 양식 (예술·문학·음악의 분류)",
+          "example_en": "The boundaries between musical genres have become increasingly fluid in the digital age.",
+          "example_ko": "디지털 시대에 음악 장르 간의 경계는 점점 더 유동적이 됐다.",
+          "csat_ref": "수능 예술·문화 지문 어휘 문제",
+          "synonyms": "type, category, style, form, kind"
+        },
+        {
+          "id": "EV_180",
+          "order": 5,
+          "word": "originality",
+          "pos": "명사",
+          "meaning": "독창성, 창의성, 새로움",
+          "example_en": "True originality in art does not mean ignoring tradition but rather transforming it.",
+          "example_ko": "예술에서의 진정한 독창성은 전통을 무시하는 것이 아니라 그것을 변형시키는 것을 의미한다.",
+          "csat_ref": "수능 예술·창의성 지문 빈칸 추론, 요지 파악",
+          "synonyms": "creativity, uniqueness, novelty, inventiveness, freshness"
+        }
+      ]
+    }
+  ],
+  "exam_vocab_words": [
+    { "id": "EV_151", "theme_id": "EV_PACK_031", "word": "commodity", "meaning": "상품, 원자재" },
+    { "id": "EV_152", "theme_id": "EV_PACK_031", "word": "deficit", "meaning": "적자, 부족" },
+    { "id": "EV_153", "theme_id": "EV_PACK_031", "word": "incentive", "meaning": "동기, 유인책" },
+    { "id": "EV_154", "theme_id": "EV_PACK_031", "word": "surplus", "meaning": "잉여, 흑자" },
+    { "id": "EV_155", "theme_id": "EV_PACK_031", "word": "depreciate", "meaning": "가치가 떨어지다, 감가상각하다" },
+    { "id": "EV_156", "theme_id": "EV_PACK_032", "word": "emission", "meaning": "배출, 방출" },
+    { "id": "EV_157", "theme_id": "EV_PACK_032", "word": "mitigation", "meaning": "완화, 경감" },
+    { "id": "EV_158", "theme_id": "EV_PACK_032", "word": "resilience", "meaning": "회복력, 탄력성" },
+    { "id": "EV_159", "theme_id": "EV_PACK_032", "word": "degrade", "meaning": "(환경을) 저하시키다, 악화시키다" },
+    { "id": "EV_160", "theme_id": "EV_PACK_032", "word": "sustainable", "meaning": "지속 가능한" },
+    { "id": "EV_161", "theme_id": "EV_PACK_033", "word": "reinforce", "meaning": "강화하다, 보강하다" },
+    { "id": "EV_162", "theme_id": "EV_PACK_033", "word": "inhibit", "meaning": "억제하다, 방해하다" },
+    { "id": "EV_163", "theme_id": "EV_PACK_033", "word": "stimulus", "meaning": "자극, 촉진제" },
+    { "id": "EV_164", "theme_id": "EV_PACK_033", "word": "aversion", "meaning": "혐오, 회피 경향" },
+    { "id": "EV_165", "theme_id": "EV_PACK_033", "word": "compulsive", "meaning": "강박적인" },
+    { "id": "EV_166", "theme_id": "EV_PACK_034", "word": "pedagogy", "meaning": "교육학, 교수법" },
+    { "id": "EV_167", "theme_id": "EV_PACK_034", "word": "curriculum", "meaning": "교육 과정, 교과 내용" },
+    { "id": "EV_168", "theme_id": "EV_PACK_034", "word": "retention", "meaning": "기억 유지, 보유" },
+    { "id": "EV_169", "theme_id": "EV_PACK_034", "word": "scaffold", "meaning": "발판을 마련하다, 점진적 지원" },
+    { "id": "EV_170", "theme_id": "EV_PACK_034", "word": "acquisition", "meaning": "습득, 취득" },
+    { "id": "EV_171", "theme_id": "EV_PACK_035", "word": "hypothesis", "meaning": "가설" },
+    { "id": "EV_172", "theme_id": "EV_PACK_035", "word": "empirical", "meaning": "경험적인, 실증적인" },
+    { "id": "EV_173", "theme_id": "EV_PACK_035", "word": "replicate", "meaning": "복제하다, 반복 재현하다" },
+    { "id": "EV_174", "theme_id": "EV_PACK_035", "word": "correlation", "meaning": "상관관계" },
+    { "id": "EV_175", "theme_id": "EV_PACK_035", "word": "variable", "meaning": "변수, 변인 / 가변적인" },
+    { "id": "EV_176", "theme_id": "EV_PACK_036", "word": "aesthetic", "meaning": "미적인, 심미적인" },
+    { "id": "EV_177", "theme_id": "EV_PACK_036", "word": "evoke", "meaning": "(감정·기억을) 불러일으키다" },
+    { "id": "EV_178", "theme_id": "EV_PACK_036", "word": "perspective", "meaning": "관점, 시각" },
+    { "id": "EV_179", "theme_id": "EV_PACK_036", "word": "genre", "meaning": "장르, 유형" },
+    { "id": "EV_180", "theme_id": "EV_PACK_036", "word": "originality", "meaning": "독창성, 창의성" }
+  ]
+}

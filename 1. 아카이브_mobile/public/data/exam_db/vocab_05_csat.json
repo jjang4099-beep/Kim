@@ -1,0 +1,429 @@
+{
+  "meta": {
+    "batch": 5,
+    "theme": "수능 영단어 테마팩 — 비교·대조 / 원인·결과 / 주장·논거 / 변화·전환 / 평가·판단 / 추상·개념",
+    "id_range": {
+      "exam_vocab_themes": "EV_PACK_025 ~ EV_PACK_030",
+      "words": "EV_121 ~ EV_150"
+    },
+    "created": "2026-07-21"
+  },
+  "exam_vocab_themes": [
+    {
+      "id": "EV_PACK_025",
+      "theme_title": "비교·대조 핵심 어휘",
+      "level": "high",
+      "tip": "수능 글의 구조(비교·대조)를 파악하는 유형(37~38번 순서·삽입)과 빈칸 추론에서 반드시 나온다. 두 대상의 공통점·차이점을 나타내는 어휘를 정확히 구분해야 한다.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_121",
+          "order": 1,
+          "word": "contrast",
+          "pos": "동사/명사",
+          "meaning": "대조하다, 대비하다 / 대조, 차이",
+          "example_en": "In contrast to popular belief, sugar does not cause children to become hyperactive.",
+          "example_ko": "일반적인 믿음과 대조적으로, 설탕이 아이들을 과잉행동하게 만들지는 않는다.",
+          "csat_ref": "수능 비교·대조 지문 시그널 표현, 빈칸·순서 유형",
+          "synonyms": "differ from, oppose, compare"
+        },
+        {
+          "id": "EV_122",
+          "order": 2,
+          "word": "distinguish",
+          "pos": "동사",
+          "meaning": "구별하다, 식별하다, 두드러지게 하다",
+          "example_en": "It is important to distinguish between correlation and causation in scientific research.",
+          "example_ko": "과학 연구에서 상관관계와 인과관계를 구별하는 것이 중요하다.",
+          "csat_ref": "수능 과학·논리 지문 빈칸 추론, 어휘 문제",
+          "synonyms": "differentiate, discriminate, tell apart"
+        },
+        {
+          "id": "EV_123",
+          "order": 3,
+          "word": "analogous",
+          "pos": "형용사",
+          "meaning": "유사한, 비슷한 (구조·기능이 유사한)",
+          "example_en": "The structure of the atom is analogous to that of the solar system.",
+          "example_ko": "원자의 구조는 태양계의 구조와 유사하다.",
+          "csat_ref": "수능 과학·철학 지문 비유 표현, 어휘 문제 고난도",
+          "synonyms": "similar, comparable, parallel, equivalent"
+        },
+        {
+          "id": "EV_124",
+          "order": 4,
+          "word": "whereas",
+          "pos": "접속사",
+          "meaning": "반면에, ~인 데 비해 (대조의 접속사)",
+          "example_en": "Western medicine tends to treat symptoms, whereas traditional medicine often focuses on the whole body.",
+          "example_ko": "서양 의학이 증상을 치료하는 경향이 있는 반면, 전통 의학은 종종 신체 전체에 초점을 맞춘다.",
+          "csat_ref": "수능 장문 독해 대조 구조, 빈칸·흐름 무관 문장 파악 유형",
+          "synonyms": "while, although, by contrast, on the other hand"
+        },
+        {
+          "id": "EV_125",
+          "order": 5,
+          "word": "asymmetry",
+          "pos": "명사",
+          "meaning": "비대칭, 불균형",
+          "example_en": "The power asymmetry between employers and employees affects wage negotiations.",
+          "example_ko": "고용주와 피고용인 사이의 권력 비대칭이 임금 협상에 영향을 미친다.",
+          "csat_ref": "수능 경제·사회 지문 빈칸 추론 고난도",
+          "synonyms": "imbalance, disproportion, unevenness, inequality"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_026",
+      "theme_title": "원인·결과 핵심 어휘",
+      "level": "high",
+      "tip": "수능에서 인과 관계를 나타내는 어휘는 빈칸 추론과 글의 흐름 파악에 결정적이다. 동사(trigger, stem from)와 명사(consequence, outcome)를 구분하여 문장 구조 속에서 파악하는 연습이 중요하다.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_126",
+          "order": 1,
+          "word": "trigger",
+          "pos": "동사/명사",
+          "meaning": "유발하다, 촉발하다 / 방아쇠, 계기",
+          "example_en": "A single social media post can trigger a chain reaction of public outrage.",
+          "example_ko": "단 하나의 소셜 미디어 게시글이 공공의 분노라는 연쇄 반응을 촉발할 수 있다.",
+          "csat_ref": "수능 사회·심리 지문 빈칸, 인과관계 파악",
+          "synonyms": "cause, provoke, prompt, set off, spark"
+        },
+        {
+          "id": "EV_127",
+          "order": 2,
+          "word": "attribute",
+          "pos": "동사",
+          "meaning": "~의 탓으로 돌리다, ~에 귀인하다 (attribute A to B: A를 B 탓으로 돌리다)",
+          "example_en": "Researchers attributed the decline in bee populations to widespread pesticide use.",
+          "example_ko": "연구자들은 꿀벌 개체 수 감소를 광범위한 살충제 사용 탓으로 돌렸다.",
+          "csat_ref": "수능 과학·환경 지문 빈칸, 'attribute A to B' 구문 출제",
+          "synonyms": "ascribe, credit, blame, assign"
+        },
+        {
+          "id": "EV_128",
+          "order": 3,
+          "word": "stem from",
+          "pos": "동사구",
+          "meaning": "~에서 비롯되다, 유래하다",
+          "example_en": "Many social problems stem from a lack of access to quality education.",
+          "example_ko": "많은 사회 문제들은 양질의 교육에 대한 접근성 부족에서 비롯된다.",
+          "csat_ref": "수능 사회·심리 지문 인과 구조, 빈칸 추론",
+          "synonyms": "originate from, arise from, result from, derive from"
+        },
+        {
+          "id": "EV_129",
+          "order": 4,
+          "word": "consequence",
+          "pos": "명사",
+          "meaning": "결과, 영향, 중요성 (as a consequence: 결과적으로)",
+          "example_en": "The long-term consequences of climate change are difficult to predict with certainty.",
+          "example_ko": "기후 변화의 장기적 결과를 확실하게 예측하기는 어렵다.",
+          "csat_ref": "수능 환경·과학 지문, 'as a consequence/in consequence of' 구문",
+          "synonyms": "result, outcome, effect, aftermath, repercussion"
+        },
+        {
+          "id": "EV_130",
+          "order": 5,
+          "word": "facilitate",
+          "pos": "동사",
+          "meaning": "촉진하다, 용이하게 하다",
+          "example_en": "Technology has facilitated communication across borders in ways previously unimaginable.",
+          "example_ko": "기술은 이전에는 상상할 수 없었던 방식으로 국경을 초월한 소통을 용이하게 했다.",
+          "csat_ref": "수능 기술·사회 지문 빈칸, 글의 주제 파악",
+          "synonyms": "enable, promote, assist, expedite, aid"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_027",
+      "theme_title": "주장·논거 핵심 어휘",
+      "level": "high",
+      "tip": "수능 글의 목적(20번)·주장(21번)·요지(22번) 파악 유형의 핵심이다. 저자의 주장을 나타내는 동사와 논거를 제시하는 표현을 구분할 수 있어야 한다.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_131",
+          "order": 1,
+          "word": "assert",
+          "pos": "동사",
+          "meaning": "주장하다, 단언하다 (확신을 갖고 주장)",
+          "example_en": "The researcher asserted that the findings challenge decades of accepted theory.",
+          "example_ko": "그 연구자는 연구 결과가 수십 년간 받아들여진 이론에 도전한다고 주장했다.",
+          "csat_ref": "수능 글의 주장·목적 파악 유형, 빈칸 추론",
+          "synonyms": "claim, declare, state, maintain, insist"
+        },
+        {
+          "id": "EV_132",
+          "order": 2,
+          "word": "advocate",
+          "pos": "동사/명사",
+          "meaning": "지지하다, 옹호하다 / 지지자, 옹호자",
+          "example_en": "Many psychologists advocate for integrating mindfulness into school curricula.",
+          "example_ko": "많은 심리학자들이 마음챙김을 학교 교육 과정에 통합하는 것을 지지한다.",
+          "csat_ref": "수능 주장·건의 지문, 어휘 문제",
+          "synonyms": "support, champion, promote, argue for"
+        },
+        {
+          "id": "EV_133",
+          "order": 3,
+          "word": "contend",
+          "pos": "동사",
+          "meaning": "주장하다 (경쟁하는 주장을 펼치다), 경쟁하다",
+          "example_en": "Some critics contend that social media does more harm than good to democracy.",
+          "example_ko": "일부 비평가들은 소셜 미디어가 민주주의에 득보다 실이 많다고 주장한다.",
+          "csat_ref": "수능 비평·논쟁 지문 빈칸, 어휘 고난도",
+          "synonyms": "argue, maintain, claim, hold, dispute"
+        },
+        {
+          "id": "EV_134",
+          "order": 4,
+          "word": "premise",
+          "pos": "명사",
+          "meaning": "전제, 근거 (논증의 출발점)",
+          "example_en": "The entire argument rests on the false premise that humans are naturally competitive.",
+          "example_ko": "이 주장 전체는 인간이 본성적으로 경쟁적이라는 잘못된 전제에 근거하고 있다.",
+          "csat_ref": "수능 논리·철학 지문 고난도 빈칸 (31~34번)",
+          "synonyms": "assumption, basis, foundation, supposition"
+        },
+        {
+          "id": "EV_135",
+          "order": 5,
+          "word": "rebut",
+          "pos": "동사",
+          "meaning": "반박하다, 논박하다",
+          "example_en": "The scientist was able to rebut each of the opposing arguments with clear data.",
+          "example_ko": "그 과학자는 명확한 데이터로 반대 주장 각각을 반박할 수 있었다.",
+          "csat_ref": "수능 논리·토론 지문 어휘 문제, 빈칸 추론",
+          "synonyms": "refute, counter, disprove, contradict, challenge"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_028",
+      "theme_title": "변화·전환 핵심 어휘",
+      "level": "high",
+      "tip": "수능 과학·사회·역사 지문에서 변화와 발전 과정을 서술할 때 핵심 어휘다. 변화의 방향(긍정/부정)과 속도(점진적/급격적)를 나타내는 뉘앙스 차이를 구분할 것.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_136",
+          "order": 1,
+          "word": "transform",
+          "pos": "동사",
+          "meaning": "변형시키다, 바꾸다 (근본적으로 변화시키다)",
+          "example_en": "The Industrial Revolution transformed not only economies but also social structures.",
+          "example_ko": "산업혁명은 경제뿐만 아니라 사회 구조도 변혁시켰다.",
+          "csat_ref": "수능 역사·사회 지문 전반, 글의 주제·제목 파악",
+          "synonyms": "change, alter, convert, reshape, revolutionize"
+        },
+        {
+          "id": "EV_137",
+          "order": 2,
+          "word": "evolve",
+          "pos": "동사",
+          "meaning": "진화하다, 점진적으로 발전하다",
+          "example_en": "Languages evolve continuously as speakers adapt them to new situations and needs.",
+          "example_ko": "언어는 화자들이 새로운 상황과 필요에 맞게 적응시키면서 끊임없이 진화한다.",
+          "csat_ref": "수능 생물·사회·언어 지문 빈칸, 주제 파악",
+          "synonyms": "develop, progress, advance, adapt, change gradually"
+        },
+        {
+          "id": "EV_138",
+          "order": 3,
+          "word": "transition",
+          "pos": "명사/동사",
+          "meaning": "전환, 이행, 과도기 / 이행하다",
+          "example_en": "The transition from fossil fuels to renewable energy requires massive investment.",
+          "example_ko": "화석 연료에서 재생 에너지로의 전환은 대규모 투자를 필요로 한다.",
+          "csat_ref": "수능 환경·경제 지문 빈칸, 장문 독해 주제",
+          "synonyms": "change, shift, transformation, changeover"
+        },
+        {
+          "id": "EV_139",
+          "order": 4,
+          "word": "undermine",
+          "pos": "동사",
+          "meaning": "약화시키다, 손상시키다, 서서히 무너뜨리다",
+          "example_en": "Constant criticism can undermine a child's confidence and willingness to take risks.",
+          "example_ko": "지속적인 비판은 아이의 자신감과 위험을 감수하려는 의지를 약화시킬 수 있다.",
+          "csat_ref": "수능 심리·교육 지문 빈칸 추론 고난도",
+          "synonyms": "weaken, erode, sabotage, diminish, subvert"
+        },
+        {
+          "id": "EV_140",
+          "order": 5,
+          "word": "displace",
+          "pos": "동사",
+          "meaning": "대체하다, 밀어내다, 이주시키다",
+          "example_en": "Automation threatens to displace millions of workers in manufacturing industries.",
+          "example_ko": "자동화는 제조업의 수백만 노동자를 대체할 위협이 된다.",
+          "csat_ref": "수능 기술·경제·사회 지문 빈칸, 요지 파악",
+          "synonyms": "replace, supplant, drive out, relocate, uproot"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_029",
+      "theme_title": "평가·판단 핵심 어휘",
+      "level": "high",
+      "tip": "수능 학술·연구 지문에서 연구 결과를 평가하거나 비판하는 맥락에서 자주 나온다. 중립적 평가(assess, evaluate)와 비판적 평가(scrutinize, critique)를 구분할 것.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_141",
+          "order": 1,
+          "word": "assess",
+          "pos": "동사",
+          "meaning": "평가하다, 사정하다 (중립적·체계적 평가)",
+          "example_en": "Teachers must assess not only academic performance but also social and emotional development.",
+          "example_ko": "교사들은 학업 성취도뿐만 아니라 사회적·정서적 발달도 평가해야 한다.",
+          "csat_ref": "수능 교육·심리 지문 빈칸, 글의 목적 파악",
+          "synonyms": "evaluate, judge, measure, appraise, gauge"
+        },
+        {
+          "id": "EV_142",
+          "order": 2,
+          "word": "scrutinize",
+          "pos": "동사",
+          "meaning": "면밀히 조사하다, 꼼꼼히 살펴보다",
+          "example_en": "Journalists have a responsibility to scrutinize the claims made by politicians.",
+          "example_ko": "언론인들은 정치인들이 하는 주장을 면밀히 조사할 책임이 있다.",
+          "csat_ref": "수능 미디어·사회 지문 어휘 문제",
+          "synonyms": "examine closely, inspect, probe, investigate"
+        },
+        {
+          "id": "EV_143",
+          "order": 3,
+          "word": "validate",
+          "pos": "동사",
+          "meaning": "타당성을 입증하다, 유효성을 확인하다",
+          "example_en": "The study was replicated three times to validate its findings.",
+          "example_ko": "연구 결과의 타당성을 입증하기 위해 연구는 세 번 반복됐다.",
+          "csat_ref": "수능 과학·연구 방법 지문 빈칸 추론",
+          "synonyms": "confirm, verify, substantiate, authenticate"
+        },
+        {
+          "id": "EV_144",
+          "order": 4,
+          "word": "subjective",
+          "pos": "형용사",
+          "meaning": "주관적인 (개인의 관점·감정에 기반한)",
+          "example_en": "Art criticism is inherently subjective — what one person finds beautiful, another may find dull.",
+          "example_ko": "예술 비평은 본질적으로 주관적이다 — 한 사람이 아름답다고 느끼는 것을 다른 사람은 따분하다고 느낄 수 있다.",
+          "csat_ref": "수능 예술·철학 지문, objective(객관적) vs subjective(주관적) 대비 출제",
+          "synonyms": "personal, individual, biased, one-sided"
+        },
+        {
+          "id": "EV_145",
+          "order": 5,
+          "word": "criteria",
+          "pos": "명사 (복수)",
+          "meaning": "기준, 척도 (단수: criterion)",
+          "example_en": "The criteria for selecting candidates should be transparent and applied consistently.",
+          "example_ko": "후보자 선발 기준은 투명하게 공개되고 일관되게 적용되어야 한다.",
+          "csat_ref": "수능 사회·논리 지문, criterion/criteria 단복수 구분 출제",
+          "synonyms": "standards, measures, benchmarks, requirements"
+        }
+      ]
+    },
+    {
+      "id": "EV_PACK_030",
+      "theme_title": "추상·개념 핵심 어휘",
+      "level": "high",
+      "tip": "수능 철학·인문·과학 지문에서 핵심 개념을 지칭하는 어휘다. 이 어휘들이 문장의 주어·목적어·보어로 쓰일 때 전체 문장의 핵심 주제가 되므로 정확한 의미 파악이 중요하다.",
+      "delivery_date": null,
+      "words": [
+        {
+          "id": "EV_146",
+          "order": 1,
+          "word": "paradigm",
+          "pos": "명사",
+          "meaning": "패러다임, 전형적인 예, 사고의 틀",
+          "example_en": "Thomas Kuhn argued that science advances through paradigm shifts, not gradual accumulation.",
+          "example_ko": "토마스 쿤은 과학이 점진적 축적이 아니라 패러다임 전환을 통해 발전한다고 주장했다.",
+          "csat_ref": "수능 과학사·철학 지문 빈칸 추론 고난도 (31~34번)",
+          "synonyms": "model, framework, example, standard, archetype"
+        },
+        {
+          "id": "EV_147",
+          "order": 2,
+          "word": "notion",
+          "pos": "명사",
+          "meaning": "개념, 생각, 관념 (막연하거나 일반적인 생각)",
+          "example_en": "The notion that multitasking improves productivity has been largely debunked by research.",
+          "example_ko": "멀티태스킹이 생산성을 향상시킨다는 개념은 연구에 의해 대부분 반박됐다.",
+          "csat_ref": "수능 심리·사회 지문 빈칸, 글의 주제 파악",
+          "synonyms": "idea, concept, belief, impression, view"
+        },
+        {
+          "id": "EV_148",
+          "order": 3,
+          "word": "framework",
+          "pos": "명사",
+          "meaning": "틀, 체계, 구조, 뼈대",
+          "example_en": "Scientists use theoretical frameworks to interpret experimental data and generate new hypotheses.",
+          "example_ko": "과학자들은 이론적 틀을 사용하여 실험 데이터를 해석하고 새로운 가설을 생성한다.",
+          "csat_ref": "수능 학문·연구 지문 전반, 빈칸·주제 파악",
+          "synonyms": "structure, system, scheme, outline, model"
+        },
+        {
+          "id": "EV_149",
+          "order": 4,
+          "word": "inherent",
+          "pos": "형용사",
+          "meaning": "본질적인, 내재된, 고유한",
+          "example_en": "There is an inherent tension between individual freedom and social responsibility.",
+          "example_ko": "개인의 자유와 사회적 책임 사이에는 본질적인 긴장이 존재한다.",
+          "csat_ref": "수능 철학·사회 지문 빈칸 추론 고난도",
+          "synonyms": "intrinsic, innate, built-in, fundamental, natural"
+        },
+        {
+          "id": "EV_150",
+          "order": 5,
+          "word": "ambiguous",
+          "pos": "형용사",
+          "meaning": "모호한, 여러 의미로 해석될 수 있는",
+          "example_en": "The law's ambiguous wording led to a series of conflicting court interpretations.",
+          "example_ko": "법의 모호한 문구가 일련의 상충되는 법원 해석으로 이어졌다.",
+          "csat_ref": "수능 논리·언어 지문 어휘 문제, 빈칸 추론",
+          "synonyms": "unclear, vague, equivocal, indefinite, uncertain"
+        }
+      ]
+    }
+  ],
+  "exam_vocab_words": [
+    { "id": "EV_121", "theme_id": "EV_PACK_025", "word": "contrast", "meaning": "대조하다, 대비하다 / 대조, 차이" },
+    { "id": "EV_122", "theme_id": "EV_PACK_025", "word": "distinguish", "meaning": "구별하다, 식별하다" },
+    { "id": "EV_123", "theme_id": "EV_PACK_025", "word": "analogous", "meaning": "유사한, 비슷한" },
+    { "id": "EV_124", "theme_id": "EV_PACK_025", "word": "whereas", "meaning": "반면에, ~인 데 비해" },
+    { "id": "EV_125", "theme_id": "EV_PACK_025", "word": "asymmetry", "meaning": "비대칭, 불균형" },
+    { "id": "EV_126", "theme_id": "EV_PACK_026", "word": "trigger", "meaning": "유발하다, 촉발하다" },
+    { "id": "EV_127", "theme_id": "EV_PACK_026", "word": "attribute", "meaning": "~의 탓으로 돌리다 (attribute A to B)" },
+    { "id": "EV_128", "theme_id": "EV_PACK_026", "word": "stem from", "meaning": "~에서 비롯되다, 유래하다" },
+    { "id": "EV_129", "theme_id": "EV_PACK_026", "word": "consequence", "meaning": "결과, 영향" },
+    { "id": "EV_130", "theme_id": "EV_PACK_026", "word": "facilitate", "meaning": "촉진하다, 용이하게 하다" },
+    { "id": "EV_131", "theme_id": "EV_PACK_027", "word": "assert", "meaning": "주장하다, 단언하다" },
+    { "id": "EV_132", "theme_id": "EV_PACK_027", "word": "advocate", "meaning": "지지하다, 옹호하다" },
+    { "id": "EV_133", "theme_id": "EV_PACK_027", "word": "contend", "meaning": "주장하다, 경쟁하다" },
+    { "id": "EV_134", "theme_id": "EV_PACK_027", "word": "premise", "meaning": "전제, 근거" },
+    { "id": "EV_135", "theme_id": "EV_PACK_027", "word": "rebut", "meaning": "반박하다, 논박하다" },
+    { "id": "EV_136", "theme_id": "EV_PACK_028", "word": "transform", "meaning": "변형시키다, 근본적으로 바꾸다" },
+    { "id": "EV_137", "theme_id": "EV_PACK_028", "word": "evolve", "meaning": "진화하다, 점진적으로 발전하다" },
+    { "id": "EV_138", "theme_id": "EV_PACK_028", "word": "transition", "meaning": "전환, 이행, 과도기" },
+    { "id": "EV_139", "theme_id": "EV_PACK_028", "word": "undermine", "meaning": "약화시키다, 서서히 무너뜨리다" },
+    { "id": "EV_140", "theme_id": "EV_PACK_028", "word": "displace", "meaning": "대체하다, 밀어내다" },
+    { "id": "EV_141", "theme_id": "EV_PACK_029", "word": "assess", "meaning": "평가하다, 사정하다" },
+    { "id": "EV_142", "theme_id": "EV_PACK_029", "word": "scrutinize", "meaning": "면밀히 조사하다" },
+    { "id": "EV_143", "theme_id": "EV_PACK_029", "word": "validate", "meaning": "타당성을 입증하다, 유효성을 확인하다" },
+    { "id": "EV_144", "theme_id": "EV_PACK_029", "word": "subjective", "meaning": "주관적인" },
+    { "id": "EV_145", "theme_id": "EV_PACK_029", "word": "criteria", "meaning": "기준, 척도 (복수형)" },
+    { "id": "EV_146", "theme_id": "EV_PACK_030", "word": "paradigm", "meaning": "패러다임, 사고의 틀" },
+    { "id": "EV_147", "theme_id": "EV_PACK_030", "word": "notion", "meaning": "개념, 생각, 관념" },
+    { "id": "EV_148", "theme_id": "EV_PACK_030", "word": "framework", "meaning": "틀, 체계, 구조" },
+    { "id": "EV_149", "theme_id": "EV_PACK_030", "word": "inherent", "meaning": "본질적인, 내재된" },
+    { "id": "EV_150", "theme_id": "EV_PACK_030", "word": "ambiguous", "meaning": "모호한, 여러 의미로 해석될 수 있는" }
+  ]
+}

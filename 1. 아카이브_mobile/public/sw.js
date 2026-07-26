@@ -11,13 +11,15 @@
 'use strict';
 
 /* ★ 배포 시 index_mobile.html의 ?v=XX와 함께 반드시 올려야 함
-   — 이 파일이 바뀌어야 브라우저가 새 SW를 설치하고 구 캐시를 비움 */
-const CACHE_NAME    = 'sj-library-v32';
+   — 이 파일이 바뀌어야 브라우저가 새 SW를 설치하고 구 캐시를 비움
+   (07-26: 로그인/멀티유저 배포 때 이 버전을 못 올려서 이미 설치된 PWA들이
+    구 서비스워커+구 페이지 상태로 남아 로그인 없이 API를 호출 → 전부 401 나던 버그 발생) */
+const CACHE_NAME    = 'sj-library-v33';
 const STATIC_ASSETS = [
   '/index_mobile.html',
-  '/css/style_mobile.css?v=32',
-  '/js/app_mobile.js?v=32',
-  '/js/pwa.js?v=1',
+  '/css/style_mobile.css?v=90',
+  '/js/core.js?v=11',
+  '/js/pwa.js?v=2',
   '/manifest.json',
   '/icons/icon.svg',
   '/icons/icon-192.png',

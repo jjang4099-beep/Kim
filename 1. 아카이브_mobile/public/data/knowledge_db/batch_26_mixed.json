@@ -1,0 +1,488 @@
+{
+  "meta": {
+    "label": "직장인 영어·중국어 26차",
+    "mode": "work",
+    "updated": "2026-07-26",
+    "count": {
+      "english_theme_packs": 1,
+      "english_expressions": 20,
+      "chinese_expressions": 10
+    }
+  },
+  "english_theme_packs": [
+    {
+      "id": "PACK_EN_040",
+      "theme_key": "conflict_resolution_en",
+      "theme_title": "갈등 해결·협상 영어",
+      "theme_title_en": "Conflict Resolution & Negotiation English",
+      "level": "advanced",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "EN_040_01",
+          "order": 1,
+          "expression": "I hear what you're saying.",
+          "meaning": "말씀하시는 것을 잘 듣고 있습니다 (상대의 감정과 입장을 인정하는 표현)",
+          "nuance": "단순히 '들었다'가 아니라 '이해하려고 노력하고 있다'는 신호다. 갈등 상황에서 가장 먼저 해야 할 일은 주장이 아니라 경청의 자세를 보여주는 것이다. 이 한 마디가 방어적인 대화를 협력적인 대화로 전환시키는 첫 번째 스위치다.",
+          "dialogue": {
+            "A": "You never listen to my ideas — you just push your own agenda.",
+            "B": "I hear what you're saying, and I want to understand where this frustration is coming from."
+          },
+          "example": "I hear what you're saying, and your concern about the timeline is completely valid.",
+          "practice": "상대가 불만을 표출하거나 방어적인 태도를 보일 때, 대화의 첫 문을 여는 경청 신호로"
+        },
+        {
+          "id": "EN_040_02",
+          "order": 2,
+          "expression": "Let's find a middle ground.",
+          "meaning": "서로 타협점을 찾아봅시다",
+          "nuance": "양측 모두가 100% 원하는 것을 얻을 수 없을 때 쓰는 표현. '네가 져야 내가 이긴다'는 제로섬이 아니라 '둘 다 일부를 얻는' 포지티브섬으로 대화를 이동시키는 효과가 있다. 협상의 핵심은 '나의 입장(position)'이 아니라 '나의 필요(interest)'가 무엇인지를 이해하는 것이다.",
+          "dialogue": {
+            "A": "We absolutely cannot extend the deadline.",
+            "B": "I understand the pressure. Let's find a middle ground — maybe we phase the deliverables?"
+          },
+          "example": "Both sides have valid points. Let's find a middle ground that works for everyone.",
+          "practice": "의견 충돌이 팽팽할 때 협력적 해결을 제안하는 상황"
+        },
+        {
+          "id": "EN_040_03",
+          "order": 3,
+          "expression": "I'd like to understand your perspective better.",
+          "meaning": "당신의 관점을 더 잘 이해하고 싶습니다",
+          "nuance": "'당신이 틀렸다'는 전제 없이 상대의 시각을 먼저 이해하려는 자세를 보여준다. 사람들은 자신의 이야기를 들어주는 사람에게 더 열린 마음을 갖는다. 이 표현 뒤에는 구체적인 질문이 따라오면 효과가 배가된다.",
+          "dialogue": {
+            "A": "I just don't think this approach will work.",
+            "B": "I'd like to understand your perspective better. What specifically concerns you about it?"
+          },
+          "example": "Before we decide, I'd like to understand your perspective better on the risks involved.",
+          "practice": "의사결정 전 다양한 입장을 수집하거나, 갈등 상황에서 상대방의 입장을 파악할 때"
+        },
+        {
+          "id": "EN_040_04",
+          "order": 4,
+          "expression": "Can we separate the issue from the person?",
+          "meaning": "문제 자체와 사람을 분리해서 생각해볼 수 있을까요?",
+          "nuance": "갈등이 격화될 때 자주 발생하는 실수는 '그 사람'을 공격하는 것이다. 문제와 사람을 분리하면 방어적 반응이 줄고 실제 문제 해결에 집중할 수 있다. 하버드 협상 프로그램(Getting to Yes)의 핵심 원칙이다.",
+          "dialogue": {
+            "A": "This is a mess and it's clearly his fault.",
+            "B": "Can we separate the issue from the person? Let's focus on what went wrong in the process."
+          },
+          "example": "I know tensions are high, but can we separate the issue from the person and focus on the solution?",
+          "practice": "팀 내 갈등이 개인 감정 싸움으로 번질 때, 논의를 문제 중심으로 되돌릴 때"
+        },
+        {
+          "id": "EN_040_05",
+          "order": 5,
+          "expression": "What would it take for us to move forward together?",
+          "meaning": "우리가 함께 앞으로 나아가려면 무엇이 필요할까요?",
+          "nuance": "갈등의 원인을 파헤치는 대신 '이제 무엇이 있어야 함께 갈 수 있는가'로 대화를 미래 지향적으로 전환시킨다. 상대에게 해결의 주도권을 주는 동시에 '나는 함께 가고 싶다'는 협력 의지를 담는다.",
+          "dialogue": {
+            "A": "I'm not sure we can continue like this.",
+            "B": "I hear you. What would it take for us to move forward together in a way that works for both of us?"
+          },
+          "example": "We've all shared our frustrations. Now — what would it take for us to move forward together?",
+          "practice": "교착 상태에 빠진 대화를 해결책 중심으로 전환할 때, 협상의 마무리 단계에서"
+        }
+      ],
+      "master_paragraph": {
+        "text": "When conflict arises, the first step is to say 'I hear what you're saying' to show you're listening. Then, instead of pushing your position, ask 'I'd like to understand your perspective better.' If the conversation gets personal, gently suggest 'Can we separate the issue from the person?' and work toward finding a middle ground. Finally, shift the conversation forward with 'What would it take for us to move forward together?'",
+        "translation": "갈등이 생겼을 때, 첫 번째 단계는 '말씀하시는 것을 잘 듣고 있습니다'라고 말해 경청하고 있음을 보여주는 것이다. 그런 다음, 자신의 입장을 밀어붙이는 대신 '당신의 관점을 더 잘 이해하고 싶습니다'라고 묻는다. 대화가 개인적으로 흐르면, '문제 자체와 사람을 분리해볼 수 있을까요?'라고 부드럽게 제안하며 타협점을 찾아간다. 마지막으로 '우리가 함께 앞으로 나아가려면 무엇이 필요할까요?'라는 질문으로 대화를 미래로 전환시킨다.",
+        "highlights": ["I hear what you're saying", "I'd like to understand your perspective better", "Can we separate the issue from the person?", "finding a middle ground", "What would it take for us to move forward together?"]
+      }
+    }
+  ],
+  "english_expressions": [
+    {
+      "id": "EN_616",
+      "expression": "See the writing on the wall",
+      "meaning": "변화나 위기의 조짐을 알아채다, 앞으로 일어날 일을 미리 감지하다",
+      "level": "advanced",
+      "theme": "insight",
+      "example": "The experienced manager saw the writing on the wall and started upskilling her team before the market shifted.",
+      "dialogue": {
+        "A": "Did you expect the layoffs?",
+        "B": "I saw the writing on the wall six months ago — the numbers just weren't adding up."
+      }
+    },
+    {
+      "id": "EN_617",
+      "expression": "Put something on the back burner",
+      "meaning": "무언가를 후순위로 미루다, 잠시 제쳐두다",
+      "level": "intermediate",
+      "theme": "priority",
+      "example": "We had to put the new product launch on the back burner while we dealt with the customer complaints.",
+      "dialogue": {
+        "A": "What happened to the international expansion plan?",
+        "B": "We put it on the back burner for now — Q3 targets take priority."
+      }
+    },
+    {
+      "id": "EN_618",
+      "expression": "Hit a wall",
+      "meaning": "막히다, 돌파구를 찾지 못하다, 더 이상 진전이 없다",
+      "level": "intermediate",
+      "theme": "obstacle",
+      "example": "The R&D team has hit a wall with the new formula and needs fresh perspectives from outside.",
+      "dialogue": {
+        "A": "How's the redesign going?",
+        "B": "Honestly, we've hit a wall. We keep going in circles with the same ideas."
+      }
+    },
+    {
+      "id": "EN_619",
+      "expression": "Think outside the box",
+      "meaning": "틀을 벗어나 창의적으로 생각하다, 고정관념에서 벗어나다",
+      "level": "intermediate",
+      "theme": "creativity",
+      "example": "To beat the competition, we need to think outside the box and explore models that others haven't tried.",
+      "dialogue": {
+        "A": "None of the standard approaches are working.",
+        "B": "Then it's time to think outside the box — what assumptions can we challenge here?"
+      }
+    },
+    {
+      "id": "EN_620",
+      "expression": "At the end of the day",
+      "meaning": "결국, 궁극적으로, 최종적으로 보면",
+      "level": "basic",
+      "theme": "conclusion",
+      "example": "We debated the details for hours, but at the end of the day, it's the customer's satisfaction that matters most.",
+      "dialogue": {
+        "A": "Should we focus on speed or quality?",
+        "B": "At the end of the day, both matter — but don't sacrifice one entirely for the other."
+      }
+    },
+    {
+      "id": "EN_621",
+      "expression": "Stay in the loop",
+      "meaning": "계속 최신 상황을 파악하다, 정보 흐름에서 소외되지 않다",
+      "level": "intermediate",
+      "theme": "communication",
+      "example": "Please keep me in the loop on any changes to the timeline — I need to update the client.",
+      "dialogue": {
+        "A": "You weren't at the meeting — did someone fill you in?",
+        "B": "Yeah, Jake kept me in the loop via Slack. Thanks for asking."
+      }
+    },
+    {
+      "id": "EN_622",
+      "expression": "Circle back",
+      "meaning": "나중에 다시 논의하다, 나중에 돌아오다 (지금 당장은 아니고 이후에)",
+      "level": "intermediate",
+      "theme": "meeting",
+      "example": "That's a great question — let me circle back to you on that after I check with the legal team.",
+      "dialogue": {
+        "A": "Can we decide on the budget today?",
+        "B": "I don't have the numbers yet. Let's circle back on that tomorrow morning."
+      }
+    },
+    {
+      "id": "EN_623",
+      "expression": "Run something by someone",
+      "meaning": "누군가에게 의견이나 승인을 구하다, 검토해달라고 하다",
+      "level": "intermediate",
+      "theme": "collaboration",
+      "example": "Before we send this proposal to the client, I want to run it by our legal team first.",
+      "dialogue": {
+        "A": "Did you finalize the contract terms?",
+        "B": "Not yet — I need to run it by Sarah before we commit to anything."
+      }
+    },
+    {
+      "id": "EN_624",
+      "expression": "Come to the table",
+      "meaning": "협상이나 논의에 참여하다, 해결 의지를 갖고 자리에 앉다",
+      "level": "advanced",
+      "theme": "negotiation",
+      "example": "Both sides need to come to the table with a genuine willingness to compromise.",
+      "dialogue": {
+        "A": "The other team keeps refusing to meet.",
+        "B": "They'll come to the table eventually — they need this deal as much as we do."
+      }
+    },
+    {
+      "id": "EN_625",
+      "expression": "Bridge the gap",
+      "meaning": "격차를 좁히다, 양측 사이의 차이를 메우다",
+      "level": "advanced",
+      "theme": "alignment",
+      "example": "The workshop was designed to bridge the gap between the engineering and marketing teams.",
+      "dialogue": {
+        "A": "There's still a big disconnect between what sales promised and what we can deliver.",
+        "B": "That's exactly why I set up this meeting — to bridge the gap before it becomes a crisis."
+      }
+    },
+    {
+      "id": "EN_626",
+      "expression": "Pick up the slack",
+      "meaning": "다른 사람이 못 하는 부분을 채우다, 부족한 부분을 메우다",
+      "level": "intermediate",
+      "theme": "teamwork",
+      "example": "When two team members were on leave, the rest of the team picked up the slack without complaint.",
+      "dialogue": {
+        "A": "How are you managing with half the team out?",
+        "B": "Everyone's picking up the slack — we're tired, but we're making it work."
+      }
+    },
+    {
+      "id": "EN_627",
+      "expression": "Drop the ball",
+      "meaning": "실수하다, 맡은 일을 제대로 처리하지 못하다",
+      "level": "intermediate",
+      "theme": "accountability",
+      "example": "We dropped the ball on the handover process and the client noticed immediately.",
+      "dialogue": {
+        "A": "Why didn't the client get the report on time?",
+        "B": "Honestly, we dropped the ball on the follow-up. It won't happen again."
+      }
+    },
+    {
+      "id": "EN_628",
+      "expression": "Get on the same page",
+      "meaning": "서로 이해를 맞추다, 같은 인식을 공유하다",
+      "level": "basic",
+      "theme": "alignment",
+      "example": "Before the client presentation, let's have a quick sync to make sure we're all on the same page.",
+      "dialogue": {
+        "A": "I thought the deadline was Friday, but the team thinks it's next Monday.",
+        "B": "We need to get on the same page — let me clarify with the project manager now."
+      }
+    },
+    {
+      "id": "EN_629",
+      "expression": "Hit the nail on the head",
+      "meaning": "핵심을 정확히 짚다, 딱 맞는 말을 하다",
+      "level": "intermediate",
+      "theme": "precision",
+      "example": "You hit the nail on the head — that's exactly the disconnect we've been struggling to articulate.",
+      "dialogue": {
+        "A": "Is the problem the process itself, or how it's being communicated?",
+        "B": "Both, but you really hit the nail on the head with the communication part."
+      }
+    },
+    {
+      "id": "EN_630",
+      "expression": "Speak volumes",
+      "meaning": "말 없이도 많은 것을 전달하다, 무언가를 강렬하게 보여주다",
+      "level": "advanced",
+      "theme": "impact",
+      "example": "The fact that they showed up 30 minutes early says — or rather, speaks volumes — about their commitment.",
+      "dialogue": {
+        "A": "She didn't say anything in the meeting.",
+        "B": "Her silence spoke volumes. She clearly disagrees but doesn't feel safe saying so."
+      }
+    },
+    {
+      "id": "EN_631",
+      "expression": "Leave no stone unturned",
+      "meaning": "돌 하나도 뒤집어 보지 않은 것이 없다, 가능한 모든 방법을 다 동원하다",
+      "level": "advanced",
+      "theme": "thoroughness",
+      "example": "We left no stone unturned in our investigation of the data breach.",
+      "dialogue": {
+        "A": "How confident are you in the findings?",
+        "B": "Very. We left no stone unturned — three teams reviewed the results independently."
+      }
+    },
+    {
+      "id": "EN_632",
+      "expression": "A double-edged sword",
+      "meaning": "양날의 검, 이점과 단점을 동시에 가진 것",
+      "level": "advanced",
+      "theme": "tradeoff",
+      "example": "Rapid growth can be a double-edged sword — it brings revenue but also strains the team and processes.",
+      "dialogue": {
+        "A": "Should we go fully remote?",
+        "B": "It's a double-edged sword — flexibility goes up, but spontaneous collaboration suffers."
+      }
+    },
+    {
+      "id": "EN_633",
+      "expression": "Jump on the bandwagon",
+      "meaning": "유행을 따르다, 대세에 편승하다",
+      "level": "intermediate",
+      "theme": "trend",
+      "example": "Many companies jumped on the AI bandwagon without a clear strategy for how to use it.",
+      "dialogue": {
+        "A": "Everyone seems to be launching a subscription model now.",
+        "B": "Let's not just jump on the bandwagon — we need to make sure it actually fits our customers."
+      }
+    },
+    {
+      "id": "EN_634",
+      "expression": "Have a lot on one's plate",
+      "meaning": "처리해야 할 일이 너무 많다, 할 일에 압도되어 있다",
+      "level": "basic",
+      "theme": "workload",
+      "example": "I know you have a lot on your plate right now, but this client request is urgent.",
+      "dialogue": {
+        "A": "Can you take on the new project this quarter?",
+        "B": "I'd love to, but I have a lot on my plate — let me see what I can defer."
+      }
+    },
+    {
+      "id": "EN_635",
+      "expression": "Separate the wheat from the chaff",
+      "meaning": "알맹이와 쭉정이를 분리하다, 중요한 것과 쓸모없는 것을 가려내다",
+      "level": "advanced",
+      "theme": "judgment",
+      "example": "With so many data points, the analyst's job was to separate the wheat from the chaff and find the real insights.",
+      "dialogue": {
+        "A": "We have hundreds of customer feedback entries — where do we even start?",
+        "B": "We need to separate the wheat from the chaff first. Let's cluster the most common themes."
+      }
+    }
+  ],
+  "chinese_expressions": [
+    {
+      "id": "ZH_198",
+      "expression": "厚德载物",
+      "pinyin": "hòu dé zài wù",
+      "meaning": "덕이 두터우면 만물을 실어 운반한다. 큰 덕을 가진 사람은 넓은 도량으로 많은 것을 품는다.",
+      "level": "advanced",
+      "theme": "덕·리더십",
+      "example": "他以厚德载物的精神，包容了团队中所有不同的声音。",
+      "dialogue": {
+        "A": "他怎么能容忍这么多不同意见？",
+        "B": "这就是厚德载物的境界——胸怀越宽，能承载的越多。",
+        "A_ko": "어떻게 저렇게 다양한 의견을 다 수용할 수 있죠?",
+        "B_ko": "그것이 바로 후덕재물의 경지입니다. 마음이 넓을수록 더 많은 것을 담을 수 있어요."
+      }
+    },
+    {
+      "id": "ZH_199",
+      "expression": "以退为进",
+      "pinyin": "yǐ tuì wéi jìn",
+      "meaning": "물러섬으로써 나아간다. 전략적으로 양보하거나 후퇴함으로써 더 큰 전진을 이룬다.",
+      "level": "advanced",
+      "theme": "전략·협상",
+      "example": "谈判时，他选择以退为进，先让步一步，最终赢得了更大的主动权。",
+      "dialogue": {
+        "A": "为什么要在这个问题上让步？",
+        "B": "以退为进，让他们觉得赢了，我们才能在核心条款上拿到我们想要的。",
+        "A_ko": "왜 이 문제에서 양보하는 거예요?",
+        "B_ko": "물러서서 나아가는 겁니다. 그들이 이겼다고 느끼게 해야 핵심 조항에서 우리가 원하는 걸 얻을 수 있어요."
+      }
+    },
+    {
+      "id": "ZH_200",
+      "expression": "循序渐进",
+      "pinyin": "xún xù jiàn jìn",
+      "meaning": "순서에 따라 점차 나아간다. 급하지 않고 단계를 밟아 천천히 발전한다.",
+      "level": "intermediate",
+      "theme": "성장·학습",
+      "example": "学习新技能需要循序渐进，不能急于求成。",
+      "dialogue": {
+        "A": "我想一个月内学完所有的课程。",
+        "B": "循序渐进更有效，贪多嚼不烂，一步步来吧。",
+        "A_ko": "한 달 안에 모든 과정을 다 배우고 싶어요.",
+        "B_ko": "단계적으로 나아가는 게 더 효과적이에요. 욕심내다 다 잃는 법이니 하나씩 해 나가요."
+      }
+    },
+    {
+      "id": "ZH_201",
+      "expression": "知行合一",
+      "pinyin": "zhī xíng hé yī",
+      "meaning": "앎과 행함이 하나가 되다. 알고 있는 것을 실제로 행동으로 옮겨야 진정한 앎이 된다.",
+      "level": "advanced",
+      "theme": "실천·성장",
+      "example": "王阳明的知行合一提醒我们：真正的知识必须通过行动来验证。",
+      "dialogue": {
+        "A": "他读了很多管理书籍，为什么管理能力还是不行？",
+        "B": "知行合一才是关键，光读不练，知识永远停在纸上。",
+        "A_ko": "관리 책을 많이 읽었는데 왜 아직도 관리를 잘 못하죠?",
+        "B_ko": "지행합일이 핵심입니다. 읽기만 하고 실천하지 않으면 지식은 영원히 종이 위에 머물러요."
+      }
+    },
+    {
+      "id": "ZH_202",
+      "expression": "事半功倍",
+      "pinyin": "shì bàn gōng bèi",
+      "meaning": "일은 절반인데 효과는 두 배. 적은 노력으로 큰 성과를 거두다. 효율적인 방법을 찾아 최대 성과를 내다.",
+      "level": "intermediate",
+      "theme": "효율·생산성",
+      "example": "找对方法，就能事半功倍，用更少的时间完成更多的工作。",
+      "dialogue": {
+        "A": "怎样才能提高工作效率？",
+        "B": "先找出最关键的20%任务，专注于此，自然事半功倍。",
+        "A_ko": "어떻게 해야 업무 효율을 높일 수 있을까요?",
+        "B_ko": "가장 핵심적인 20%의 업무를 먼저 찾아서 거기에 집중하면 자연스럽게 절반의 노력으로 두 배의 효과를 얻을 수 있어요."
+      }
+    },
+    {
+      "id": "ZH_203",
+      "expression": "随机应变",
+      "pinyin": "suí jī yìng biàn",
+      "meaning": "상황에 따라 임기응변하다. 변화하는 상황에 맞게 유연하게 대응하다.",
+      "level": "intermediate",
+      "theme": "유연성·대응",
+      "example": "在瞬息万变的市场中，能够随机应变的团队才能生存下来。",
+      "dialogue": {
+        "A": "计划突然变了，怎么办？",
+        "B": "这种时候就要随机应变——先稳住客户，内部我们再调整方案。",
+        "A_ko": "계획이 갑자기 바뀌었어요. 어떻게 하죠?",
+        "B_ko": "이럴 때일수록 임기응변이 필요합니다. 먼저 고객을 안심시키고, 내부적으로 방안을 조정하면 됩니다."
+      }
+    },
+    {
+      "id": "ZH_204",
+      "expression": "博采众长",
+      "pinyin": "bó cǎi zhòng cháng",
+      "meaning": "여러 사람의 장점을 두루 취하다. 다양한 관점과 강점을 적극적으로 흡수하여 자신의 것으로 만들다.",
+      "level": "advanced",
+      "theme": "학습·다양성",
+      "example": "优秀的领导者善于博采众长，汇聚团队中每个人的智慧。",
+      "dialogue": {
+        "A": "他是怎么成长这么快的？",
+        "B": "他特别善于博采众长，不管是前辈还是新人的建议，他都认真吸收。",
+        "A_ko": "그는 어떻게 이렇게 빠르게 성장했나요?",
+        "B_ko": "그는 다양한 사람의 장점을 두루 흡수하는 데 특히 뛰어납니다. 선배 조언이든 신입의 아이디어든 모두 진지하게 받아들여요."
+      }
+    },
+    {
+      "id": "ZH_205",
+      "expression": "锲而不舍",
+      "pinyin": "qiè ér bù shě",
+      "meaning": "끝까지 새기고 포기하지 않다. 어떤 어려움이 있어도 포기하지 않고 지속적으로 노력하여 목표를 이루다.",
+      "level": "intermediate",
+      "theme": "인내·끈기",
+      "example": "锲而不舍，金石可镂——只要坚持，再难的目标也能实现。",
+      "dialogue": {
+        "A": "这个项目失败了三次，还要继续吗？",
+        "B": "锲而不舍，每次失败都是在缩短成功的距离。",
+        "A_ko": "이 프로젝트가 세 번이나 실패했어요. 계속해야 할까요?",
+        "B_ko": "포기하지 않고 나아가야 합니다. 매번 실패는 성공에 가까워지는 거예요."
+      }
+    },
+    {
+      "id": "ZH_206",
+      "expression": "以柔克刚",
+      "pinyin": "yǐ róu kè gāng",
+      "meaning": "부드러움으로 강함을 제압한다. 유연하고 부드러운 접근이 딱딱하고 강경한 방법보다 효과적일 때가 있다.",
+      "level": "advanced",
+      "theme": "협상·리더십",
+      "example": "面对强硬的谈判对手，他采取以柔克刚的策略，最终达成了协议。",
+      "dialogue": {
+        "A": "对方态度这么强硬，我们要不要也强硬回去？",
+        "B": "以柔克刚——越对抗越僵，不如先理解他们的顾虑，找突破口。",
+        "A_ko": "상대방이 이렇게 강경한데, 우리도 강경하게 나가야 할까요?",
+        "B_ko": "부드러움으로 강함을 이겨야 합니다. 대립할수록 교착될 뿐이에요. 먼저 그들의 우려를 이해하고 돌파구를 찾는 것이 낫습니다."
+      }
+    },
+    {
+      "id": "ZH_207",
+      "expression": "言出必行",
+      "pinyin": "yán chū bì xíng",
+      "meaning": "말을 하면 반드시 행한다. 한번 한 약속은 반드시 지키며, 말과 행동이 일치한다.",
+      "level": "intermediate",
+      "theme": "신뢰·약속",
+      "example": "他言出必行，这也是客户和同事都信任他的原因。",
+      "dialogue": {
+        "A": "怎么才能让客户相信我们？",
+        "B": "言出必行，说到做到——信任是一次次兑现承诺积累起来的。",
+        "A_ko": "어떻게 해야 고객이 우리를 믿게 할 수 있을까요?",
+        "B_ko": "말한 것을 반드시 행동으로 옮겨야 합니다. 신뢰는 약속을 지켜나가는 과정에서 쌓이는 거예요."
+      }
+    }
+  ]
+}

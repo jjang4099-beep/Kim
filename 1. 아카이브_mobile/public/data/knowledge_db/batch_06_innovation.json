@@ -269,7 +269,8 @@
           "pushing the envelope",
           "paradigm shift"
         ]
-      }
+      },
+      "theme_category": "business_meeting"
     },
     {
       "id": "PACK_EN_011",
@@ -344,7 +345,8 @@
           "course-correct",
           "bounce back"
         ]
-      }
+      },
+      "theme_category": "business_meeting"
     },
     {
       "id": "PACK_EN_012",
@@ -419,7 +421,8 @@
           "touch base",
           "circle back"
         ]
-      }
+      },
+      "theme_category": "business_meeting"
     },
     {
       "id": "PACK_EN_013",
@@ -494,7 +497,8 @@
           "time-sensitive",
           "juggling"
         ]
-      }
+      },
+      "theme_category": "business_meeting"
     },
     {
       "id": "PACK_EN_014",
@@ -569,7 +573,8 @@
           "agree to disagree",
           "buried the hatchet"
         ]
-      }
+      },
+      "theme_category": "business_meeting"
     }
   ],
   "chinese_expressions": [],

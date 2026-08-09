@@ -167,6 +167,7 @@ async function initSQLiteDB() {
       theme_title          TEXT NOT NULL,
       theme_title_en       TEXT    DEFAULT '',
       theme_key            TEXT    DEFAULT '',
+      theme_category       TEXT    DEFAULT '',          -- 관리 화면 테마 체크박스와 대응: business_meeting|daily_travel|drama_spoken
       level                TEXT    DEFAULT 'intermediate',
       delivery_date        TEXT,                       -- YYYY-MM-DD, NULL=미지정
       master_paragraph_en  TEXT    NOT NULL DEFAULT '',
@@ -280,6 +281,7 @@ async function initSQLiteDB() {
   _migrateItemsUserId();
   _migrateCategoriesUserId();
   _migrateEnExpressionsExampleKo();
+  _migrateEnThemesCategory();
   _seedEnglishThemes();
   _seedExamKnowledge();
   _seedDefaultCategories();
@@ -356,6 +358,44 @@ function _migrateEnExpressionsExampleKo() {
     if (backfilled) console.log(`[SQLite] english_expressions.example_ko 백필 시도 ${backfilled}건`);
   } catch (e) {
     console.warn('[SQLite] example_ko 마이그레이션 실패 (무시):', e.message);
+  }
+}
+
+/**
+ * english_themes.theme_category 컬럼 추가(없으면) + 기존 행 백필.
+ * knowledge_db/*.json을 다시 읽어 pack_id 기준으로 theme_category가 비어있는 행만 UPDATE한다. 멱등.
+ */
+function _migrateEnThemesCategory() {
+  try {
+    const cols = getSQLiteDB().exec('PRAGMA table_info(english_themes)');
+    const hasCol = cols.length && cols[0].values.some(row => row[1] === 'theme_category');
+    if (!hasCol) {
+      getSQLiteDB().run(`ALTER TABLE english_themes ADD COLUMN theme_category TEXT DEFAULT ''`);
+      console.log('[SQLite] english_themes.theme_category 컬럼 추가 완료');
+    }
+    getSQLiteDB().run('CREATE INDEX IF NOT EXISTS idx_et_category ON english_themes(theme_category)');
+    const kdbDir = path.join(__dirname, 'data', 'knowledge_db');
+    if (!fs.existsSync(kdbDir)) return;
+    const upd = getSQLiteDB().prepare(
+      `UPDATE english_themes SET theme_category = ?, level = ? WHERE pack_id = ? AND (theme_category IS NULL OR theme_category = '')`
+    );
+    let backfilled = 0;
+    for (const file of fs.readdirSync(kdbDir).filter(f => f.endsWith('.json'))) {
+      try {
+        const batch = JSON.parse(fs.readFileSync(path.join(kdbDir, file), 'utf8'));
+        for (const pack of (batch.english_theme_packs || [])) {
+          if (!pack.theme_category) continue;
+          upd.run([pack.theme_category, pack.level || 'intermediate', pack.id]);
+          backfilled++;
+        }
+      } catch (e) {
+        console.warn(`[EnTheme theme_category] ${file} 파싱 실패:`, e.message);
+      }
+    }
+    upd.free();
+    if (backfilled) console.log(`[SQLite] english_themes.theme_category 백필 시도 ${backfilled}건`);
+  } catch (e) {
+    console.warn('[SQLite] theme_category 마이그레이션 실패 (무시):', e.message);
   }
 }
 
@@ -488,15 +528,16 @@ function _seedEnglishThemes() {
         /* 테마 INSERT OR IGNORE (pack_id UNIQUE) */
         const tStmt = getSQLiteDB().prepare(
           `INSERT OR IGNORE INTO english_themes
-           (pack_id, theme_title, theme_title_en, theme_key, level, delivery_date,
+           (pack_id, theme_title, theme_title_en, theme_key, theme_category, level, delivery_date,
             master_paragraph_en, master_paragraph_ko, highlights_json)
-           VALUES (?,?,?,?,?,?,?,?,?)`
+           VALUES (?,?,?,?,?,?,?,?,?,?)`
         );
         tStmt.run([
           pack.id,
           pack.theme_title          || '',
           pack.theme_title_en       || '',
           pack.theme_key            || '',
+          pack.theme_category       || '',
           pack.level                || 'intermediate',
           pack.delivery_date        || null,
           pack.master_paragraph?.text        || '',
@@ -541,38 +582,57 @@ function _seedEnglishThemes() {
 
 /**
  * 오늘 배달할 영어 테마팩 1개를 SQLite에서 선택 (AI 호출 없음)
- * 우선순위: ① today 날짜 지정 팩 ② 최근 미배달 랜덤 ③ 전체 랜덤 fallback
+ * categories(관리 화면에서 고른 테마 체크박스 값 배열)·level이 주어지면 그 조건에 맞는 팩만 고른다 —
+ * 조건에 맞는 팩이 하나도 없으면 null을 반환해 호출부가 Tier 2/3로 폴백하게 한다(엉뚱한 테마를 억지로 주지 않음).
+ * 우선순위: ① today 날짜 지정 팩 ② 최근 미배달 랜덤 ③ 최근 배달 여부 무시하고서라도 조건 일치 팩
  */
-function _queryEnThemePack(subId) {
+function _queryEnThemePack(subId, categories, level) {
   try {
     const recentPackIds = getRecentDeliveredIDs(subId, 30);
     const today = toDateStr(new Date());
+
+    const filters = [];
+    const filterParams = [];
+    if (Array.isArray(categories) && categories.length) {
+      filters.push(`theme_category IN (${categories.map(() => '?').join(',')})`);
+      filterParams.push(...categories);
+    }
+    if (level) {
+      filters.push('level = ?');
+      filterParams.push(level);
+    }
+    const filterSql = filters.length ? ` AND ${filters.join(' AND ')}` : '';
+
     let themeRow = null;
 
     if (recentPackIds.length > 0) {
       const notIn = recentPackIds.map(() => '?').join(',');
-      /* ① 오늘 지정 날짜 + 미배달 */
+      /* ① 오늘 지정 날짜 + 미배달 + 조건 일치 */
       themeRow = _sqlGet(
-        `SELECT * FROM english_themes WHERE delivery_date = ? AND pack_id NOT IN (${notIn}) LIMIT 1`,
-        [today, ...recentPackIds]
+        `SELECT * FROM english_themes WHERE delivery_date = ? AND pack_id NOT IN (${notIn})${filterSql} LIMIT 1`,
+        [today, ...recentPackIds, ...filterParams]
       );
-      /* ② 날짜 무관 미배달 랜덤 */
+      /* ② 날짜 무관 미배달 + 조건 일치 랜덤 */
       if (!themeRow) {
         themeRow = _sqlGet(
-          `SELECT * FROM english_themes WHERE pack_id NOT IN (${notIn}) ORDER BY RANDOM() LIMIT 1`,
-          recentPackIds
+          `SELECT * FROM english_themes WHERE pack_id NOT IN (${notIn})${filterSql} ORDER BY RANDOM() LIMIT 1`,
+          [...recentPackIds, ...filterParams]
         );
       }
     } else {
-      /* ① 오늘 지정 날짜 */
+      /* ① 오늘 지정 날짜 + 조건 일치 */
       themeRow = _sqlGet(
-        `SELECT * FROM english_themes WHERE delivery_date = ? LIMIT 1`, [today]
+        `SELECT * FROM english_themes WHERE delivery_date = ?${filterSql} LIMIT 1`, [today, ...filterParams]
       );
-      /* ② 전체 랜덤 */
-      if (!themeRow) themeRow = _sqlGet(`SELECT * FROM english_themes ORDER BY RANDOM() LIMIT 1`, []);
+      /* ② 조건 일치 전체 랜덤 */
+      if (!themeRow) {
+        themeRow = _sqlGet(`SELECT * FROM english_themes WHERE 1=1${filterSql} ORDER BY RANDOM() LIMIT 1`, filterParams);
+      }
     }
-    /* ③ 완전 fallback */
-    if (!themeRow) themeRow = _sqlGet(`SELECT * FROM english_themes ORDER BY RANDOM() LIMIT 1`, []);
+    /* ③ 최근 배달 여부는 무시하고서라도 조건 일치하는 팩이 있으면 재사용 */
+    if (!themeRow) {
+      themeRow = _sqlGet(`SELECT * FROM english_themes WHERE 1=1${filterSql} ORDER BY RANDOM() LIMIT 1`, filterParams);
+    }
     if (!themeRow) return null;
 
     const expressions = _sqlQuery(
@@ -1346,8 +1406,7 @@ const WEEKDAY_THEMES = {
  */
 /* 영어 테마 ID → 한국어 레이블 매핑 */
 const EN_THEME_LABELS = {
-  business_meeting : '비즈니스 미팅 & 회의 진행',
-  office_email     : '이메일 & 보고서 작성',
+  business_meeting : '비즈니스 영어 (미팅·이메일·보고 전반)',
   daily_travel     : '일상/여행 회화',
   drama_spoken     : '미드 구어체 & 슬랭'
 };
@@ -1446,14 +1505,41 @@ function _todayDayKr() {
   return dayNames[new Date().getDay()];
 }
 
-/** 언어 피드 Tier 1 — SQLite 영어 테마팩(DB-first, AI 호출 없음, 영어 전용). 없으면 null */
-function _tryEnThemePackFeed(sub) {
-  const pack = _queryEnThemePack(sub.id);
+/** 팩 표현이 유저가 설정한 개수보다 부족할 때 플랫 풀(knowledge_db 최상위 english_expressions)에서
+    나머지를 채운다 — 플랫 풀은 아직 theme_category 태깅 전이라 레벨만 맞춰서 뽑는다. */
+function _pickFlatPoolTopUp(langKey, level, excludeIds, count) {
+  if (count <= 0) return [];
+  const kdb  = loadKnowledgeDB();
+  const pool = langKey === 'en' ? kdb.english_expressions : kdb.chinese_expressions;
+  const base = pool.filter(item => !excludeIds.has(item.id));
+  const withLevel = level ? base.filter(item => item.level === level) : [];
+  const candidates = withLevel.length >= count ? withLevel : base;
+  const shuffled = [...candidates].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count).map(item => ({
+    item_id:          item.id,
+    expression:       item.expression,
+    meaning:          item.meaning,
+    nuance:           item.nuance   || '',
+    dialogue:         _dialogueToString(item.dialogue),
+    sourceSentence:   item.example || item.source_sentence || item.sourceSentence || '',
+    sourceSentenceKo: item.example_ko || '',
+    practiceSentence: item.practice_sentence || item.practiceSentence || ''
+  }));
+}
+
+/** 언어 피드 Tier 1 — SQLite 영어 테마팩(DB-first, AI 호출 없음, 영어 전용).
+ *  feedCfg(관리 화면 설정: themes/level/count)를 실제로 반영 — 조건에 맞는 팩이 없으면 null(Tier 2/3로 폴백). */
+function _tryEnThemePackFeed(sub, feedCfg) {
+  const categories = feedCfg?.themes?.length ? feedCfg.themes : null;
+  const level       = feedCfg?.level || null;
+  const wantCount   = feedCfg?.count || null;
+
+  const pack = _queryEnThemePack(sub.id, categories, level);
   if (!pack) return null;
   const { theme, expressions } = pack;
   const dayKr = _todayDayKr();
   const highlights   = JSON.parse(theme.highlights_json || '[]');
-  const vocabEntries = expressions.map(e => ({
+  let vocabEntries = expressions.map(e => ({
     item_id:          e.expr_id || String(e.id),
     expression:       e.expression,
     meaning:          e.meaning,
@@ -1464,7 +1550,17 @@ function _tryEnThemePackFeed(sub) {
     sourceSentenceKo: e.example_ko     || '',
     practiceSentence: e.practice_en    || ''
   }));
-  console.log(`[SQLite EnTheme] 서빙: ${theme.pack_id} (${theme.theme_title})`);
+
+  /* 설정한 개수가 팩 기본 개수(현재 전부 5개)보다 많으면 플랫 풀에서 부족분을 보충,
+     더 적으면 그만큼만 잘라낸다 — "배달 개수" 설정이 실제로 반영되도록 */
+  if (wantCount && vocabEntries.length < wantCount) {
+    const excludeIds = new Set(vocabEntries.map(v => v.item_id));
+    vocabEntries = vocabEntries.concat(_pickFlatPoolTopUp('en', level, excludeIds, wantCount - vocabEntries.length));
+  } else if (wantCount && vocabEntries.length > wantCount) {
+    vocabEntries = vocabEntries.slice(0, wantCount);
+  }
+
+  console.log(`[SQLite EnTheme] 서빙: ${theme.pack_id} (${theme.theme_title}) [${theme.theme_category || '미분류'}/${theme.level}] ${vocabEntries.length}개`);
   return {
     type:          'language',
     category:      'en',
@@ -1557,10 +1653,13 @@ async function _generateAiLanguageFeed(sub, langKey, lang, count, level, feedCfg
     theme = WEEKDAY_THEMES[langKey][dow] || sub.topic || `비즈니스 ${lang}`;
   }
 
-  /* 난이도 설명 */
-  const levelDesc = level === 'advanced'
-    ? '원어민 수준의 고급(Advanced) 뉘앙스 표현 — 관용구·비유적 표현·고급 어휘 중심'
-    : '직장인 필수 비즈니스 초중급(Intermediate) 표현 — 실전에서 바로 쓸 수 있는 핵심 어휘';
+  /* 난이도 설명 — 같은 상황이라도 레벨에 따라 원어민스러움의 정도가 다르게(초급=직역에 가까운 쉬운 표현,
+     고급=원어민이 실제로 압축해서 말하는 표현) 나오도록 명시 */
+  const LEVEL_DESC = {
+    beginner: '쉽고 직관적인 초급(Beginner) 표현 — 문법이 단순하고 뜻을 바로 유추할 수 있는 기본 어휘 중심(예: take a boat)',
+    advanced: '원어민 수준의 고급(Advanced) 뉘앙스 표현 — 관용구·비유적 표현·동사 하나로 압축해서 말하는 고급 어휘 중심(예: board)',
+  };
+  const levelDesc = LEVEL_DESC[level] || '직장인 필수 비즈니스 중급(Intermediate) 표현 — 실전에서 바로 쓸 수 있는 핵심 어휘';
 
   const dialogueInstruction = lang === '영어'
     ? `"dialogue": "A: (상황 세팅 1줄)\\nB: (표현 사용 1줄)\\nA: (자연스러운 반응 1줄)"`
@@ -1639,7 +1738,7 @@ async function generateLanguageFeed(sub, user) {
   const level          = feedCfg.level || '';
 
   if (langKey === 'en') {
-    const packFeed = _tryEnThemePackFeed(sub);
+    const packFeed = _tryEnThemePackFeed(sub, feedCfg);
     if (packFeed) return packFeed;
   }
 
@@ -3192,12 +3291,12 @@ app.patch('/api/delivery-settings/all', (req, res) => {
   /* 피드 타입별 유효성 검사 */
   if (feedId === 'en_expr' || feedId === 'zh_expr') {
     const validLangThemes = feedId === 'en_expr'
-      ? ['business_meeting', 'office_email', 'daily_travel', 'drama_spoken']
+      ? ['business_meeting', 'daily_travel', 'drama_spoken']
       : ['biz_hsk', 'biz_trip', 'daily_shop', 'drama_slang'];
     user.feed_settings[feedId] = {
       count : [5,7,10].includes(Number(settings.count)) ? Number(settings.count) : (feedId === 'zh_expr' ? 5 : 7),
       themes: Array.isArray(settings.themes) ? settings.themes.filter(t => validLangThemes.includes(t)) : [],
-      level : ['intermediate','advanced'].includes(settings.level) ? settings.level : 'intermediate'
+      level : ['beginner','intermediate','advanced'].includes(settings.level) ? settings.level : 'intermediate'
     };
   } else if (feedId === 'us_market' || feedId === 'kr_market') {
     /* 시황 피드 */

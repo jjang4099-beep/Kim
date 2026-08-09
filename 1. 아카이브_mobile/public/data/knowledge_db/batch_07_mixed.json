@@ -86,7 +86,8 @@
           "correlation doesn't mean causation",
           "the data spoke for itself"
         ]
-      }
+      },
+      "theme_category": "business_meeting"
     },
     {
       "id": "PACK_EN_016",
@@ -162,7 +163,8 @@
           "async by default",
           "over-communicate"
         ]
-      }
+      },
+      "theme_category": "business_meeting"
     },
     {
       "id": "PACK_EN_017",
@@ -238,7 +240,8 @@
           "action items",
           "wrap up"
         ]
-      }
+      },
+      "theme_category": "business_meeting"
     }
   ],
   "english_expressions": [

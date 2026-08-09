@@ -259,7 +259,9 @@
           "set boundaries",
           "one day at a time"
         ]
-      }
+      },
+      "theme_category": "business_meeting",
+      "level": "intermediate"
     },
     {
       "id": "PACK_EN_008",
@@ -333,7 +335,9 @@
           "burn bridges",
           "reach out"
         ]
-      }
+      },
+      "theme_category": "business_meeting",
+      "level": "intermediate"
     },
     {
       "id": "PACK_EN_009",
@@ -407,7 +411,9 @@
           "wear your heart on your sleeve",
           "swallow your pride"
         ]
-      }
+      },
+      "theme_category": "business_meeting",
+      "level": "intermediate"
     }
   ],
   "chinese_expressions": [

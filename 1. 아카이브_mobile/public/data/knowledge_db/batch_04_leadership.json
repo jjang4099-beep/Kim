@@ -259,7 +259,9 @@
           "take ownership",
           "walk the talk"
         ]
-      }
+      },
+      "theme_category": "business_meeting",
+      "level": "intermediate"
     },
     {
       "id": "PACK_EN_005",
@@ -333,7 +335,9 @@
           "get ahead of",
           "take the lead"
         ]
-      }
+      },
+      "theme_category": "business_meeting",
+      "level": "intermediate"
     },
     {
       "id": "PACK_EN_006",
@@ -407,7 +411,9 @@
           "looping people in",
           "keep this between us"
         ]
-      }
+      },
+      "theme_category": "business_meeting",
+      "level": "intermediate"
     }
   ],
   "chinese_expressions": [

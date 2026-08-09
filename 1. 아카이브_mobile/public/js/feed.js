@@ -1105,11 +1105,17 @@ Object.assign(Mob, {
         <div class="mvw-en-section">
           <div class="mvw-en-section-title">📊 난이도</div>
           <div class="mvw-level-group">
+            <label class="mvw-level-item${l==='beginner'?' active':''}">
+              <input type="radio" name="${feedId}Level" value="beginner"
+                     ${l==='beginner'?'checked':''}
+                     onchange="this.closest('.mvw-level-group').querySelectorAll('.mvw-level-item').forEach(x=>x.classList.remove('active'));this.closest('.mvw-level-item').classList.add('active')"/>
+              <span>🌱 초급 <small>(Beginner)</small></span>
+            </label>
             <label class="mvw-level-item${l==='intermediate'?' active':''}">
               <input type="radio" name="${feedId}Level" value="intermediate"
                      ${l==='intermediate'?'checked':''}
                      onchange="this.closest('.mvw-level-group').querySelectorAll('.mvw-level-item').forEach(x=>x.classList.remove('active'));this.closest('.mvw-level-item').classList.add('active')"/>
-              <span>🌱 초중급 <small>(Intermediate)</small></span>
+              <span>🌿 중급 <small>(Intermediate)</small></span>
             </label>
             <label class="mvw-level-item${l==='advanced'?' active':''}">
               <input type="radio" name="${feedId}Level" value="advanced"
@@ -1145,10 +1151,11 @@ Object.assign(Mob, {
     };
 
     /* ── 배지 텍스트 계산 ── */
+    const LEVEL_LABEL_KR = { beginner: '초급', intermediate: '중급', advanced: '고급' };
     const langBadge   = (id, def) => {
       const c = cfg[id]?.count || def;
       const l = cfg[id]?.level || 'intermediate';
-      return `${c}개 · ${l === 'advanced' ? '고급' : '초중급'}`;
+      return `${c}개 · ${LEVEL_LABEL_KR[l] || '중급'}`;
     };
     const marketBadge = (id) => {
       const mc = cfg[id]?.is_market_centric !== false;
@@ -1162,8 +1169,7 @@ Object.assign(Mob, {
 
     /* ── 테마 옵션 상수 ── */
     const EN_THEMES = [
-      { val:'business_meeting', label:'💼 비즈니스 미팅'   },
-      { val:'office_email',     label:'📧 오피스 이메일'   },
+      { val:'business_meeting', label:'💼 비즈니스 영어'   },
       { val:'daily_travel',     label:'✈️ 일상/여행 회화'  },
       { val:'drama_spoken',     label:'🎬 미드 구어체'     }
     ];
@@ -1299,7 +1305,8 @@ Object.assign(Mob, {
       const badge = el(`${feedId}Badge`);
       if (badge) {
         if (feedId === 'en_expr' || feedId === 'zh_expr') {
-          badge.textContent = `${settings.count}개 · ${settings.level === 'advanced' ? '고급' : '초중급'}`;
+          const lvlKr = { beginner: '초급', intermediate: '중급', advanced: '고급' }[settings.level] || '중급';
+          badge.textContent = `${settings.count}개 · ${lvlKr}`;
         } else if (feedId === 'us_market' || feedId === 'kr_market') {
           const { is_market_centric: mc, is_macro_centric: ma } = settings;
           badge.textContent = (mc && ma) ? '증시+Macro' : mc ? '증시 중심' : ma ? 'Macro 중심' : '테마 없음';

@@ -26,7 +26,8 @@
           "nuance": "직접적인 '아직 답장 안 오셨네요'가 아니라, '내가 먼저 챙기는 것'처럼 들리게 하는 세련된 표현입니다. 'I wanted to'는 약간 망설이는 뉘앙스를 주어 상대방에게 압박감을 덜어줍니다. 'follow up on our last conversation / the proposal / my previous email'처럼 뒤에 구체적인 대상을 붙이세요.",
           "dialogue": "Subject: Following up on the proposal\n\nHi Sarah,\n\nI wanted to follow up on the proposal I sent over last Thursday. I know you're likely busy, so no rush — I just wanted to make sure it didn't get buried in your inbox.\n\nPlease let me know if you have any questions or if there's anything I can clarify.\n\nBest,\nMinsu",
           "example": "I wanted to follow up on our conversation from Tuesday — did you get a chance to review the contract terms with your legal team?",
-          "practice": "I wanted to follow up on the budget approval request submitted two weeks ago. Could you let me know the current status?"
+          "practice": "I wanted to follow up on the budget approval request submitted two weeks ago. Could you let me know the current status?",
+          "example_ko": "화요일에 나눴던 대화에 대해 후속 연락드리고 싶어서요 — 법무팀과 계약 조건을 검토할 기회가 있으셨나요?"
         },
         {
           "id": "PACK_EN_033_02",
@@ -36,7 +37,8 @@
           "nuance": "영어 비즈니스 이메일에서 거의 공식처럼 쓰이는 표현입니다. 'I've attached...' 또는 'Attached, please find...'로 바꿔 쓸 수도 있습니다. 중요한 것은 파일명이나 내용을 함께 명시해서 상대방이 무엇을 확인해야 하는지 명확히 하는 것입니다. 'Please find attached the revised proposal for your review.'처럼 목적을 함께 쓰면 더 세련된 인상을 줍니다.",
           "dialogue": "Hi James,\n\nThank you for the meeting today. As discussed, please find attached:\n- The revised project timeline (v3)\n- The updated budget breakdown\n- Meeting notes from today's call\n\nPlease review and let me know if you'd like to schedule a follow-up call to go through any of the details.\n\nBest regards,\nJiyeon",
           "example": "Please find attached the Q2 performance report. Let me know if you need any additional data or context.",
-          "practice": "Please find attached the signed NDA. Could you confirm receipt and countersign at your earliest convenience?"
+          "practice": "Please find attached the signed NDA. Could you confirm receipt and countersign at your earliest convenience?",
+          "example_ko": "2분기 실적 보고서를 첨부해드립니다. 추가 데이터나 배경 설명이 필요하시면 알려주세요."
         },
         {
           "id": "PACK_EN_033_03",
@@ -46,7 +48,8 @@
           "nuance": "'Let me know if you have questions'보다 훨씬 따뜻하고 개방적인 표현입니다. 'hesitate'(망설이다)를 'don't'로 부정함으로써 '부담 갖지 말고 연락하라'는 진심 어린 초대가 됩니다. 이메일 마무리, 제안서 끝, 온보딩 안내 등 상대방이 질문을 가질 수 있는 모든 상황에서 씁니다.",
           "dialogue": "Hi Team,\n\nThe new onboarding guide is now live on the internal portal. Please take a few minutes to read through it before your first week.\n\nIf anything is unclear or you have questions about the process, please don't hesitate to reach out — I'm here to help make your transition as smooth as possible.\n\nWelcome aboard,\nHR Team",
           "example": "If you need any clarification on the scope of work, please don't hesitate to reach out — we want to make sure we're aligned before we start.",
-          "practice": "Please don't hesitate to reach out if the revised terms don't work for you. We have some flexibility and want to find a structure that works for both sides."
+          "practice": "Please don't hesitate to reach out if the revised terms don't work for you. We have some flexibility and want to find a structure that works for both sides.",
+          "example_ko": "업무 범위에 대해 명확히 할 부분이 있으시면 언제든 편하게 연락 주세요 — 시작 전에 서로 맞춰두고 싶습니다."
         },
         {
           "id": "PACK_EN_033_04",
@@ -56,7 +59,8 @@
           "nuance": "영어 비즈니스 이메일의 가장 클래식한 마무리 표현입니다. 'I look forward to your response'도 같은 의미입니다. 더 구체적으로 'I look forward to hearing from you by Friday'처럼 기한을 붙이거나, 'I look forward to our conversation on Thursday'처럼 다음 만남을 기대하는 표현으로도 씁니다. 'Waiting for your reply'처럼 들리지 않으면서 답을 기대한다는 것을 자연스럽게 전합니다.",
           "dialogue": "Dear Mr. Chen,\n\nThank you for considering us for this project. I've sent over the full proposal and pricing structure as discussed.\n\nI look forward to hearing from you and hope we can move forward together.\n\nWarm regards,\nDoyoon",
           "example": "Thank you for your time today — I look forward to hearing from you once you've had a chance to review the materials.",
-          "practice": "I look forward to hearing from you regarding the final decision. Please feel free to call me directly if you'd like to discuss any aspect of the offer."
+          "practice": "I look forward to hearing from you regarding the final decision. Please feel free to call me directly if you'd like to discuss any aspect of the offer.",
+          "example_ko": "오늘 시간 내주셔서 감사합니다 — 자료 검토하신 후 연락 기다리겠습니다."
         },
         {
           "id": "PACK_EN_033_05",
@@ -66,13 +70,20 @@
           "nuance": "'As per our conversation'은 전화나 미팅에서 나눈 내용을 이메일로 공식화할 때 쓰는 표현입니다. 구두 합의를 서면으로 남기는 중요한 역할을 합니다. 법적·계약적 맥락에서는 특히 중요하며, '우리가 이렇게 이야기했고 나는 그것을 이행하고 있다'는 것을 기록으로 남길 수 있습니다. 다만 너무 방어적으로 들릴 수 있으니 'As discussed'처럼 가볍게 쓰는 것도 좋습니다.",
           "dialogue": "Hi David,\n\nAs discussed in this morning's call, I'm sending over the updated scope of work with the changes we agreed on:\n- Timeline extended by two weeks\n- Phase 3 deliverables moved to Q4\n- Budget cap set at $45,000\n\nPlease review and confirm your approval so we can update the contract accordingly.\n\nThanks,\nEunbi",
           "example": "As per our conversation last week, I've drafted the amended terms and highlighted the key changes in yellow.",
-          "practice": "As discussed in Tuesday's meeting, I'm attaching the revised roadmap. Please sign off when you get a chance so we can share it with the wider team."
+          "practice": "As discussed in Tuesday's meeting, I'm attaching the revised roadmap. Please sign off when you get a chance so we can share it with the wider team.",
+          "example_ko": "지난주 나눴던 대화에 따라, 수정된 조건을 작성했고 주요 변경 사항은 노란색으로 표시했습니다."
         }
       ],
       "master_paragraph": {
         "text": "Hi Sarah,\n\nI wanted to follow up on the proposal from last week. Please find attached the updated version incorporating your feedback from our call. As discussed, we've extended the timeline by two weeks and adjusted the pricing structure accordingly.\n\nIf there's anything unclear or you'd like to walk through the changes together, please don't hesitate to reach out — happy to jump on a call whenever works for you.\n\nI look forward to hearing from you.\n\nBest regards,\nMinsu",
         "translation": "안녕하세요 Sarah,\n\n지난 주 제안서에 대한 후속 연락드립니다. 저희 통화에서 주신 피드백을 반영한 업데이트 버전을 첨부해 드립니다. 논의한 대로 일정을 2주 연장하고 그에 맞게 가격 구조도 조정했습니다.\n\n불명확한 부분이 있거나 변경 사항을 함께 살펴보고 싶으시면 언제든 편하게 연락 주세요 — 편한 시간에 통화할 수 있습니다.\n\n답변 기다리겠습니다.\n\n감사합니다,\n민수",
-        "highlights": ["I wanted to follow up on", "Please find attached", "As discussed", "please don't hesitate to reach out", "I look forward to hearing from you"]
+        "highlights": [
+          "I wanted to follow up on",
+          "Please find attached",
+          "As discussed",
+          "please don't hesitate to reach out",
+          "I look forward to hearing from you"
+        ]
       }
     }
   ],

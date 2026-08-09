@@ -29,7 +29,8 @@
             "B": "I'm afraid I won't be able to — my plate is full through next month."
           },
           "example": "I'm afraid I won't be able to make it to the Friday meeting.",
-          "practice": "추가 업무나 요청을 정중하게 거절할 때"
+          "practice": "추가 업무나 요청을 정중하게 거절할 때",
+          "example_ko": "죄송하지만 금요일 미팅에는 참석하지 못할 것 같습니다."
         },
         {
           "id": "EN_036_02",
@@ -42,7 +43,8 @@
             "B": "That's not going to work for me — can we discuss a more realistic deadline?"
           },
           "example": "A 10% discount is the best I can do — anything lower is not going to work for me.",
-          "practice": "협상에서 조건이 맞지 않을 때 명확히 선을 그을 때"
+          "practice": "협상에서 조건이 맞지 않을 때 명확히 선을 그을 때",
+          "example_ko": "10% 할인이 제가 드릴 수 있는 최선입니다 — 그보다 낮으면 저희 쪽에서 어렵습니다."
         },
         {
           "id": "EN_036_03",
@@ -55,7 +57,8 @@
             "B": "Let me get back to you on that — I need to check my schedule first."
           },
           "example": "That's an interesting proposal. Let me get back to you on that by end of week.",
-          "practice": "즉답을 피하고 숙고 시간을 확보할 때"
+          "practice": "즉답을 피하고 숙고 시간을 확보할 때",
+          "example_ko": "흥미로운 제안이네요. 이번 주말까지 다시 연락드리겠습니다."
         },
         {
           "id": "EN_036_04",
@@ -68,7 +71,8 @@
             "B": "I'd love to, but I have to pass on this one — I have a prior commitment."
           },
           "example": "Thanks for thinking of me, but I have to pass on this one.",
-          "practice": "초대나 제안을 부드럽게 거절할 때"
+          "practice": "초대나 제안을 부드럽게 거절할 때",
+          "example_ko": "생각해주셔서 감사하지만, 이번 건은 참여하지 않겠습니다."
         },
         {
           "id": "EN_036_05",
@@ -81,7 +85,8 @@
             "B": "I appreciate the offer, but I need to stay focused on my current role right now."
           },
           "example": "I appreciate the offer, but the timing doesn't work for me at the moment.",
-          "practice": "중요한 제안을 정중하게 거절하며 관계를 유지할 때"
+          "practice": "중요한 제안을 정중하게 거절하며 관계를 유지할 때",
+          "example_ko": "제안은 감사하지만, 지금 시점에는 타이밍이 맞지 않네요."
         }
       ],
       "master_paragraph": {

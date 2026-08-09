@@ -201,7 +201,8 @@
           "nuance": "분위기를 파악한다는 뜻이지만, 단순한 '눈치'가 아니라 청중의 에너지·감정·반응을 능동적으로 읽어내는 리더의 스킬을 가리킨다. 회의 도중 반응이 싸늘하면 말을 끊고 방향을 트는 게 진짜 '읽는 것'이다.",
           "dialogue": "A: The board seemed less engaged than expected.\nB: I noticed — I tried to read the room and cut the financial slides short.\nA: Smart move. They clearly wanted the roadmap, not the numbers.\nB: Exactly. Reading the room saved us twenty minutes and kept their attention.",
           "example": "A skilled facilitator reads the room and adjusts the pace when energy drops.",
-          "practice": "오늘 회의에서 참석자들의 반응을 관찰하고, 'I tried to read the room and noticed...'로 시작하는 문장을 만들어보세요."
+          "practice": "오늘 회의에서 참석자들의 반응을 관찰하고, 'I tried to read the room and noticed...'로 시작하는 문장을 만들어보세요.",
+          "example_ko": "능숙한 진행자는 분위기를 읽고 에너지가 떨어지면 속도를 조절한다."
         },
         {
           "id": "PACK_EN_004_E2",
@@ -211,7 +212,8 @@
           "nuance": "세부 사항이 아닌 전략적 방향과 궁극적 목표를 가리킨다. 'Lose sight of the big picture'(큰 그림을 놓치다)와 함께 쓰이는 경우가 많다. 리더십 대화에서 '지금 우리가 왜 이걸 하고 있는가'를 상기시킬 때 쓴다.",
           "dialogue": "A: We've been debating the logo for hours.\nB: Let's not lose sight of the big picture — does the product solve the actual problem?\nA: You're right. The logo is secondary to the core value.\nB: Focus on what matters first, then sweat the details.",
           "example": "Great managers zoom out regularly to keep the team focused on the big picture.",
-          "practice": "'I sometimes lose sight of the big picture when...'으로 시작하는 개인 경험 문장을 만들어보세요."
+          "practice": "'I sometimes lose sight of the big picture when...'으로 시작하는 개인 경험 문장을 만들어보세요.",
+          "example_ko": "훌륭한 매니저는 정기적으로 한 발 물러서서 팀이 큰 그림에 집중하도록 만든다."
         },
         {
           "id": "PACK_EN_004_E3",
@@ -221,7 +223,8 @@
           "nuance": "단순히 알리는 것이 아니라, 반대 의견을 해소하고 자발적 참여를 이끌어내는 과정을 내포한다. 특히 조직 변화나 새 전략 도입 시 '반발 없이 함께 가는 것'을 목표로 할 때 쓴다.",
           "dialogue": "A: The new workflow seems efficient, but half the team is resistant.\nB: Before rolling it out, we need to get everyone on board — especially the skeptics.\nA: Should we hold a Q&A session first?\nB: Yes, let them voice concerns. Buy-in is worth the extra time.",
           "example": "Change management fails when leaders implement decisions without getting everyone on board.",
-          "practice": "'In my experience, getting everyone on board requires...'로 시작하는 문장으로 자신의 방법을 표현해보세요."
+          "practice": "'In my experience, getting everyone on board requires...'로 시작하는 문장으로 자신의 방법을 표현해보세요.",
+          "example_ko": "리더가 모두를 동참시키지 않고 결정을 밀어붙이면 변화 관리는 실패한다."
         },
         {
           "id": "PACK_EN_004_E4",
@@ -231,7 +234,8 @@
           "nuance": "'Responsibility'(의무적 책임)와 달리, ownership은 자발적이고 능동적인 책임감을 강조한다. 결과가 나쁠 때도 변명 없이 '이건 내 일이다'라는 태도를 유지하는 것이다. 스타트업 문화·리더십 코칭에서 핵심 개념이다.",
           "dialogue": "A: The launch didn't go as planned. Who's responsible?\nB: I'll take ownership — the timeline was mine to manage, and I didn't flag the risks early enough.\nA: That's a mature response. What do you suggest now?\nB: Let me fix the immediate issues and then do a full retrospective.",
           "example": "High-performing employees take ownership of their mistakes before being asked.",
-          "practice": "'I should have taken more ownership of...'로 시작하는 과거 상황을 돌아보는 문장을 만들어보세요."
+          "practice": "'I should have taken more ownership of...'로 시작하는 과거 상황을 돌아보는 문장을 만들어보세요.",
+          "example_ko": "성과가 뛰어난 직원은 지적받기 전에 스스로 실수에 책임을 진다."
         },
         {
           "id": "PACK_EN_004_E5",
@@ -241,13 +245,20 @@
           "nuance": "리더십에서 특히 강조되는 개념으로, '말뿐인 리더'와 반대 지점에 있다. 가치(values)를 선언하는 것만으로는 충분하지 않으며, 리더 본인이 먼저 그 가치를 행동으로 보여줄 때만 조직이 따른다는 원칙이다.",
           "dialogue": "A: We keep saying we value transparency, but leadership never shares bad news.\nB: We need to walk the talk — I'll start by sharing the Q3 shortfalls openly at the all-hands.\nA: That will send a strong signal to the organization.\nB: Culture is defined by what leaders do, not what they say.",
           "example": "Employees notice quickly when managers don't walk the talk on company values.",
-          "practice": "'To walk the talk on [value], I plan to...'로 시작하는 구체적 행동 계획을 표현해보세요."
+          "practice": "'To walk the talk on [value], I plan to...'로 시작하는 구체적 행동 계획을 표현해보세요.",
+          "example_ko": "매니저가 회사 가치대로 행동하지 않으면 직원들은 금방 알아챈다."
         }
       ],
       "master_paragraph": {
         "text": "The most effective leaders I've worked with always know how to **read the room** before any major announcement. They never lose sight of **the big picture** even when day-to-day pressures mount. They work hard to **get everyone on board**, understanding that a decision nobody owns is a decision nobody executes. When things go wrong, they **take ownership** without hesitation. And above all, they **walk the talk** — because in organizations, culture is not what you declare; it's what you demonstrate.",
         "translation": "내가 함께 일한 가장 효과적인 리더들은 큰 발표 전에 항상 분위기를 읽는다. 일상의 압박 속에서도 큰 그림을 절대 놓치지 않는다. 아무도 주인의식을 갖지 않는 결정은 아무도 실행하지 않는다는 것을 알기에, 모두의 동의를 얻기 위해 노력한다. 일이 잘못되면 주저 없이 책임진다. 그리고 무엇보다 말한 대로 행동한다. 조직에서 문화란 선언하는 것이 아니라 실천으로 보여주는 것이기 때문이다.",
-        "highlights": ["read the room", "the big picture", "get everyone on board", "take ownership", "walk the talk"]
+        "highlights": [
+          "read the room",
+          "the big picture",
+          "get everyone on board",
+          "take ownership",
+          "walk the talk"
+        ]
       }
     },
     {
@@ -264,7 +275,8 @@
           "nuance": "결과에 따라 완전히 성공하거나 완전히 실패하는 이분법적 순간을 가리킨다. 보통 외부 기회나 위기 앞에서 쓰이며, 단순한 중요한 순간이 아니라 '이걸 못 넘기면 끝'이라는 절박한 무게감이 담겨 있다.",
           "dialogue": "A: The partnership decision is a make-or-break moment for the startup.\nB: I agree — if we get this right, we double our revenue. If not, we're out of runway.\nA: No pressure.\nB: Actually, clarity helps. Knowing the stakes sharpens focus.",
           "example": "The interview tomorrow is a make-or-break moment for his entire career trajectory.",
-          "practice": "'This week feels like a make-or-break moment because...'로 시작하는 현실적 상황을 표현해보세요."
+          "practice": "'This week feels like a make-or-break moment because...'로 시작하는 현실적 상황을 표현해보세요.",
+          "example_ko": "내일 면접은 그의 커리어 전체를 좌우할 결정적인 순간이다."
         },
         {
           "id": "PACK_EN_005_E2",
@@ -274,7 +286,8 @@
           "nuance": "'Crossroads'는 두 갈래 이상의 길이 교차하는 지점으로, 어느 방향으로든 갈 수 있지만 한번 선택하면 되돌리기 어려운 전환점을 의미한다. 커리어·인생·비즈니스 맥락 모두에서 쓰이며, 반드시 위기 상황이 아닌 성장 기회의 순간에도 사용한다.",
           "dialogue": "A: I got offers from two very different companies. I'm at a crossroads.\nB: What's pulling you toward each?\nA: One is safe and stable, the other is risky but exciting.\nB: The right crossroads question isn't what's safer — it's which path aligns with who you want to become.",
           "example": "She's at a crossroads: stay in her comfortable role or take the leap into entrepreneurship.",
-          "practice": "'I was at a crossroads when...'으로 시작하는 과거 경험을 떠올려 설명해보세요."
+          "practice": "'I was at a crossroads when...'으로 시작하는 과거 경험을 떠올려 설명해보세요.",
+          "example_ko": "그녀는 갈림길에 서 있다: 익숙한 자리에 머물지, 아니면 창업이라는 도전에 뛰어들지."
         },
         {
           "id": "PACK_EN_005_E3",
@@ -284,7 +297,8 @@
           "nuance": "야구에서 타석에 들어서는 동작에서 유래한 표현으로, 아무도 하려 하지 않는 어려운 역할을 자발적으로 맡거나, 기대되는 역할을 충분히 해냈을 때 쓴다. '도전을 회피하지 않고 정면으로 받아들이는 사람'을 칭찬할 때 자주 쓰인다.",
           "dialogue": "A: The team was lost when the project lead quit without notice.\nB: But Minho really stepped up to the plate — he organized everything within 24 hours.\nA: That kind of initiative is what separates good employees from great ones.\nB: Absolutely. He'll be leading his own projects soon.",
           "example": "When the crisis hit, she stepped up to the plate and guided the team through it.",
-          "practice": "'I had to step up to the plate when...'으로 시작하는 자신의 경험을 영어로 표현해보세요."
+          "practice": "'I had to step up to the plate when...'으로 시작하는 자신의 경험을 영어로 표현해보세요.",
+          "example_ko": "위기가 닥쳤을 때, 그녀는 앞장서서 팀을 이끌었다."
         },
         {
           "id": "PACK_EN_005_E4",
@@ -294,7 +308,8 @@
           "nuance": "문제가 커지기 전에 먼저 손을 쓴다는 의미다. 수동적 대응(reactive)이 아닌 능동적 예방(proactive)의 태도를 표현할 때 쓴다. 특히 홍보·위기 관리·팀 갈등 해소 상황에서 자주 등장한다.",
           "dialogue": "A: Employee satisfaction scores dropped. How should we handle it?\nB: We need to get ahead of this — let's schedule listening sessions before it becomes a retention issue.\nA: Proactive communication is always better.\nB: The longer we wait, the more control we lose over the narrative.",
           "example": "Smart leaders get ahead of problems before they escalate into crises.",
-          "practice": "'Next time, I'll try to get ahead of [specific situation] by...'로 구체적 대응 계획을 표현해보세요."
+          "practice": "'Next time, I'll try to get ahead of [specific situation] by...'로 구체적 대응 계획을 표현해보세요.",
+          "example_ko": "현명한 리더는 문제가 위기로 번지기 전에 미리 대처한다."
         },
         {
           "id": "PACK_EN_005_E5",
@@ -304,13 +319,20 @@
           "nuance": "'Lead'는 명사와 동사 양쪽으로 쓰이며, 여기서는 '자발적으로 앞에 나서서 방향을 설정하고 이끄는 행동'을 의미한다. 'I'll take the lead'는 단순한 자원봉사가 아니라 전체 방향에 대한 책임을 자발적으로 지겠다는 선언이다.",
           "dialogue": "A: Nobody's coordinating the Q4 planning process. It's chaotic.\nB: I'll take the lead — send me all the department inputs and I'll consolidate them.\nA: Are you sure? It's a lot of work.\nB: Someone has to. And it's also a good opportunity to build visibility.",
           "example": "She took the lead on the diversity initiative and transformed company culture within a year.",
-          "practice": "'I decided to take the lead on [project/situation] because...'로 시작하는 문장으로 동기를 설명해보세요."
+          "practice": "'I decided to take the lead on [project/situation] because...'로 시작하는 문장으로 동기를 설명해보세요.",
+          "example_ko": "그녀는 다양성 이니셔티브를 주도해서 1년 만에 회사 문화를 바꿔놓았다."
         }
       ],
       "master_paragraph": {
         "text": "Every meaningful career has moments that feel **make-or-break** — points where everything seems to hang in the balance. These are the crossroads where you find yourself truly **at a crossroads**, uncertain which path to choose. The ones who build lasting careers are those who consistently **step up to the plate** when others hesitate. They **get ahead of** challenges rather than waiting for them to arrive. And when the moment demands it, they don't wait to be asked — they simply **take the lead**.",
         "translation": "모든 의미 있는 커리어에는 성패를 가르는 순간들이 있다. 모든 것이 아슬아슬하게 걸려 있는 것처럼 느껴지는 중요한 갈림길. 지속적인 커리어를 쌓는 사람들은 다른 사람들이 망설일 때 기대에 부응하여 나서는 사람들이다. 그들은 도전이 닥치기를 기다리는 것이 아니라 선제적으로 대응한다. 그리고 그 순간이 요구할 때, 누군가가 요청하기를 기다리지 않는다. 그냥 앞장선다.",
-        "highlights": ["make-or-break", "at a crossroads", "step up to the plate", "get ahead of", "take the lead"]
+        "highlights": [
+          "make-or-break",
+          "at a crossroads",
+          "step up to the plate",
+          "get ahead of",
+          "take the lead"
+        ]
       }
     },
     {
@@ -327,7 +349,8 @@
           "nuance": "'Candid'는 '사탕발림 없이 진실을 말하는' 태도를 뜻한다. 상처를 주려는 게 아니라, 상대방의 성장을 진심으로 원하기 때문에 불편한 진실도 말하는 것이다. 신뢰가 있어야 candid feedback이 가능하고, candid feedback이 있어야 신뢰가 깊어진다.",
           "dialogue": "A: Is there something you've been holding back about my work?\nB: Since you're asking — I want to give you some candid feedback. Your analysis is solid, but your delivery needs work.\nA: I appreciate you saying that directly.\nB: I only say it because I know you can handle it and want to improve.",
           "example": "The best managers create environments where candid feedback flows in both directions.",
-          "practice": "'Receiving candid feedback is [easy/difficult] for me because...'로 시작하는 자기 성찰 문장을 만들어보세요."
+          "practice": "'Receiving candid feedback is [easy/difficult] for me because...'로 시작하는 자기 성찰 문장을 만들어보세요.",
+          "example_ko": "최고의 매니저는 솔직한 피드백이 양방향으로 오가는 환경을 만든다."
         },
         {
           "id": "PACK_EN_006_E2",
@@ -337,7 +360,8 @@
           "nuance": "상대방이 실망하지 않도록 미리 현실적인 범위를 설정하는 것이다. 거짓말이 아니라, 무엇이 가능하고 무엇이 불가능한지를 명확히 소통하는 것이다. 과도한 약속(overpromise)의 반대 전략이며, 장기적 신뢰의 기반이 된다.",
           "dialogue": "A: The client expects the full rollout by next month.\nB: We need to manage expectations — a phased delivery over two months is more realistic.\nA: Won't that disappoint them?\nB: A small disappointment now beats a big failure later. Honesty builds trust.",
           "example": "Managing expectations early prevents the far greater damage of unmet commitments later.",
-          "practice": "'I should have managed expectations better when...'으로 시작하는 과거 상황을 떠올려보세요."
+          "practice": "'I should have managed expectations better when...'으로 시작하는 과거 상황을 떠올려보세요.",
+          "example_ko": "미리 기대치를 관리하면 나중에 약속이 지켜지지 않았을 때의 훨씬 큰 피해를 막을 수 있다."
         },
         {
           "id": "PACK_EN_006_E3",
@@ -347,7 +371,8 @@
           "nuance": "전략·목표·메시지에 대해 팀원들이 동일한 이해와 방향성을 가지고 있는 상태를 가리킨다. 외부적 행동의 일치를 넘어서 내적 이해의 공유를 강조한다. 'We need to be aligned before the client call'처럼 쓰일 때, 단순한 정보 공유가 아닌 해석과 방향의 일치를 요구한다.",
           "dialogue": "A: Before the town hall, I want to make sure we're all aligned on the messaging.\nB: Core message: we're restructuring to grow, not because of financial trouble.\nA: Exactly. Different words but the same direction.\nB: Good. Let's do a quick sync with all managers at 9 AM.",
           "example": "When leadership is not aligned, mixed signals destroy employee confidence.",
-          "practice": "'I find it hardest to stay aligned with my team when...'으로 시작하는 도전 상황을 묘사해보세요."
+          "practice": "'I find it hardest to stay aligned with my team when...'으로 시작하는 도전 상황을 묘사해보세요.",
+          "example_ko": "리더십이 조율되지 않으면, 엇갈린 신호가 직원들의 신뢰를 무너뜨린다."
         },
         {
           "id": "PACK_EN_006_E4",
@@ -357,7 +382,8 @@
           "nuance": "원래 알림을 받지 못했던 사람을 프로세스 중간에 포함시키는 것을 뜻한다. 'Include'보다 더 구체적으로, 이메일 CC·미팅 초대·업데이트 공유 등의 행동을 통해 이루어진다. 투명성과 협업 문화의 언어다.",
           "dialogue": "A: Should I loop in the legal team on the vendor contract draft?\nB: Definitely — loop them in now, not after issues arise.\nA: Good point. I'll CC them on the next revision.\nB: And loop in the finance lead too. Cost implications need their review.",
           "example": "Good project managers loop in all stakeholders before decisions are finalized.",
-          "practice": "'I forgot to loop in [team/person] once, and it led to...'로 시작하는 경험을 영어로 설명해보세요."
+          "practice": "'I forgot to loop in [team/person] once, and it led to...'로 시작하는 경험을 영어로 설명해보세요.",
+          "example_ko": "좋은 프로젝트 매니저는 결정이 확정되기 전에 모든 이해관계자를 참여시킨다."
         },
         {
           "id": "PACK_EN_006_E5",
@@ -367,13 +393,20 @@
           "nuance": "비밀 유지 요청이지만, 동시에 상대방에 대한 신뢰의 표현이기도 하다. 조직 내에서 민감한 정보나 아직 발표 전인 사안을 공유할 때, 신중함을 당부하는 표현이다. 남용하면 오히려 불신을 만들 수 있으므로, 신뢰 관계가 전제되어야 한다.",
           "dialogue": "A: Between you and me, the acquisition might close next week.\nB: Let's keep this between us — the wrong leak at this stage could derail everything.\nA: Understood. I won't say a word until the official announcement.\nB: I trust you. That's why I'm telling you now.",
           "example": "He shared the reorganization news early, asking her to keep it between them.",
-          "practice": "'I've been trusted to keep something between us, and I handled it by...'로 시작하는 문장을 만들어보세요."
+          "practice": "'I've been trusted to keep something between us, and I handled it by...'로 시작하는 문장을 만들어보세요.",
+          "example_ko": "그는 조직 개편 소식을 미리 공유하면서, 그녀에게 아직은 둘만 알고 있자고 부탁했다."
         }
       ],
       "master_paragraph": {
         "text": "Trust inside an organization is not given — it is built interaction by interaction. It begins with the courage to offer **candid feedback**, even when the truth is uncomfortable. It requires the integrity to **manage expectations** honestly rather than overpromising. It depends on every leader committing to **be aligned** before speaking to the team. It grows through the habit of **looping people in** proactively rather than letting them feel excluded. And sometimes, it is deepened by the simple act of saying: let's **keep this between us** — because I trust you with what matters.",
         "translation": "조직 내 신뢰는 주어지는 것이 아니다. 한 번 한 번의 상호작용으로 쌓인다. 진실이 불편하더라도 솔직한 피드백을 할 용기에서 시작된다. 과도한 약속 대신 기대치를 솔직하게 조율하는 성실함이 필요하다. 팀에게 말하기 전에 모든 리더가 같은 방향을 공유하는 노력에 달려 있다. 사람들이 소외감을 느끼기 전에 미리 포함시키는 습관에서 자란다. 그리고 때로는, '이건 우리 사이에서만'이라는 한마디로 깊어진다. 중요한 것을 믿고 맡긴다는 뜻이기 때문이다.",
-        "highlights": ["candid feedback", "manage expectations", "be aligned", "looping people in", "keep this between us"]
+        "highlights": [
+          "candid feedback",
+          "manage expectations",
+          "be aligned",
+          "looping people in",
+          "keep this between us"
+        ]
       }
     }
   ],

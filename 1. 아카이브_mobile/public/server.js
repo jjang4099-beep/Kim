@@ -189,6 +189,7 @@ async function initSQLiteDB() {
       dialogue_en      TEXT DEFAULT '',
       dialogue_ko      TEXT DEFAULT '',
       example_en       TEXT DEFAULT '',
+      example_ko       TEXT DEFAULT '',
       practice_en      TEXT DEFAULT ''
     );
     CREATE INDEX IF NOT EXISTS idx_ee_theme_id ON english_expressions(theme_id);
@@ -278,6 +279,7 @@ async function initSQLiteDB() {
   _migrateItemModes();
   _migrateItemsUserId();
   _migrateCategoriesUserId();
+  _migrateEnExpressionsExampleKo();
   _seedEnglishThemes();
   _seedExamKnowledge();
   _seedDefaultCategories();
@@ -314,6 +316,46 @@ function _migrateCategoriesUserId() {
     getSQLiteDB().run('CREATE INDEX IF NOT EXISTS idx_uc_user_id ON user_categories(user_id)');
   } catch (e) {
     console.warn('[SQLite] user_categories user_id 마이그레이션 실패 (무시):', e.message);
+  }
+}
+
+/**
+ * english_expressions.example_ko 컬럼 추가(없으면) + 기존 행 백필.
+ * _seedEnglishThemes()는 INSERT OR IGNORE라 이미 시드된 행은 새 컬럼값을 못 받으므로,
+ * knowledge_db/*.json을 다시 읽어 expr_id 기준으로 example_ko가 비어있는 행만 UPDATE한다. 멱등.
+ */
+function _migrateEnExpressionsExampleKo() {
+  try {
+    const cols = getSQLiteDB().exec('PRAGMA table_info(english_expressions)');
+    const hasCol = cols.length && cols[0].values.some(row => row[1] === 'example_ko');
+    if (!hasCol) {
+      getSQLiteDB().run(`ALTER TABLE english_expressions ADD COLUMN example_ko TEXT DEFAULT ''`);
+      console.log('[SQLite] english_expressions.example_ko 컬럼 추가 완료');
+    }
+    const kdbDir = path.join(__dirname, 'data', 'knowledge_db');
+    if (!fs.existsSync(kdbDir)) return;
+    const upd = getSQLiteDB().prepare(
+      `UPDATE english_expressions SET example_ko = ? WHERE expr_id = ? AND (example_ko IS NULL OR example_ko = '')`
+    );
+    let backfilled = 0;
+    for (const file of fs.readdirSync(kdbDir).filter(f => f.endsWith('.json'))) {
+      try {
+        const batch = JSON.parse(fs.readFileSync(path.join(kdbDir, file), 'utf8'));
+        for (const pack of (batch.english_theme_packs || [])) {
+          for (const expr of (pack.expressions || [])) {
+            if (!expr.example_ko) continue;
+            upd.run([expr.example_ko, expr.id]);
+            backfilled++;
+          }
+        }
+      } catch (e) {
+        console.warn(`[EnTheme example_ko] ${file} 파싱 실패:`, e.message);
+      }
+    }
+    upd.free();
+    if (backfilled) console.log(`[SQLite] english_expressions.example_ko 백필 시도 ${backfilled}건`);
+  } catch (e) {
+    console.warn('[SQLite] example_ko 마이그레이션 실패 (무시):', e.message);
   }
 }
 
@@ -420,6 +462,16 @@ function _migrateFromJSON() {
    (INSERT OR IGNORE → 멱등, 재시작마다 안전 실행)
 ══════════════════════════════════════════════════════════ */
 
+/** dialogue 필드가 {A,B,...} 객체 형태(batch_19+)여도 "A: ...\nB: ..." 문자열로 통일 —
+    SQL TEXT 컬럼 바인딩과 프론트 _fvEntrySections 라인 파서가 문자열을 전제로 하기 때문 */
+function _dialogueToString(dialogue) {
+  if (typeof dialogue === 'string') return dialogue;
+  if (dialogue && typeof dialogue === 'object') {
+    return Object.entries(dialogue).map(([speaker, line]) => `${speaker}: ${line}`).join('\n');
+  }
+  return '';
+}
+
 /** 서버 시작 시 knowledge_db 배치 파일에서 테마팩을 SQLite로 시드 */
 function _seedEnglishThemes() {
   const kdbDir = path.join(__dirname, 'data', 'knowledge_db');
@@ -460,8 +512,8 @@ function _seedEnglishThemes() {
           const eStmt = getSQLiteDB().prepare(
             `INSERT OR IGNORE INTO english_expressions
              (theme_id, expression_order, expr_id, expression, meaning,
-              nuance_story, dialogue_en, dialogue_ko, example_en, practice_en)
-             VALUES (?,?,?,?,?,?,?,?,?,?)`
+              nuance_story, dialogue_en, dialogue_ko, example_en, example_ko, practice_en)
+             VALUES (?,?,?,?,?,?,?,?,?,?,?)`
           );
           eStmt.run([
             themeRow.id,
@@ -470,9 +522,10 @@ function _seedEnglishThemes() {
             expr.expression,
             expr.meaning,
             expr.nuance           || '',
-            expr.dialogue         || '',
+            _dialogueToString(expr.dialogue),
             expr.dialogue_ko      || '',
             expr.example          || '',
+            expr.example_ko       || '',
             expr.practice         || ''
           ]);
           eStmt.free();
@@ -1408,6 +1461,7 @@ function _tryEnThemePackFeed(sub) {
     dialogue:         e.dialogue_en    || '',
     dialogueKo:       e.dialogue_ko    || '',
     sourceSentence:   e.example_en     || '',
+    sourceSentenceKo: e.example_ko     || '',
     practiceSentence: e.practice_en    || ''
   }));
   console.log(`[SQLite EnTheme] 서빙: ${theme.pack_id} (${theme.theme_title})`);
@@ -3407,6 +3461,7 @@ app.get('/api/en-theme/today', (req, res) => {
         dialogue_en:  e.dialogue_en   || '',
         dialogue_ko:  e.dialogue_ko   || '',
         example_en:   e.example_en    || '',
+        example_ko:   e.example_ko    || '',
         practice_en:  e.practice_en   || ''
       }))
     });

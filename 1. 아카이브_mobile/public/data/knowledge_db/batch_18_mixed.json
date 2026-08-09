@@ -26,7 +26,8 @@
           "nuance": "'I agree'보다 훨씬 협상적이고 유연한 표현입니다. '완전히 마음에 든다'가 아니라 '일단 그걸로 진행할 수 있다'는 뉘앙스입니다. 협상에서 상대가 제안을 수정했을 때 수용 신호를 보내면서도 자신이 양보했다는 것을 자연스럽게 전달합니다. 반대로 'That's going to be tough to work with'라고 하면 수용하기 어렵다는 의사를 부드럽게 표현할 수 있습니다.",
           "dialogue": "A: What if we extend the deadline by a week and reduce the deliverables in Phase 1?\nB: I can work with that. The week extension is what we really needed — let me confirm the scope change with my team and we'll finalize by Thursday.\nA: Perfect. That gives us time to get everyone aligned.\nB: Agreed. I'll send a summary of what we discussed so there's no confusion later.",
           "example": "A: We can offer 15% instead of 20%.\nB: I can work with that, as long as the payment terms stay at Net 30.",
-          "practice": "I can work with the revised timeline, but I'll need the additional resources we discussed to make it happen."
+          "practice": "I can work with the revised timeline, but I'll need the additional resources we discussed to make it happen.",
+          "example_ko": "A: 20% 대신 15%를 제안드릴 수 있어요.\nB: 결제 조건이 Net 30으로 유지된다면 그 정도는 받아들일 수 있어요."
         },
         {
           "id": "PACK_EN_034_02",
@@ -36,7 +37,8 @@
           "nuance": "협상이 교착 상태에 빠졌을 때 대화를 재개하는 가장 세련된 표현입니다. '내가 양보할 테니 너도 양보해'를 직접적으로 말하지 않고, '우리 둘 다 받아들일 수 있는 지점을 함께 찾아보자'는 협력적 프레임을 만듭니다. 'Could we find a middle ground on this?'처럼 질문 형태로 쓰면 더 부드럽습니다.",
           "dialogue": "A: We're stuck. You need 6 months and we can only commit to 3.\nB: Let's find a middle ground — what if we do a 4-month pilot with an option to extend? You get a genuine test period, and we're not locked into 6 months without seeing results.\nA: A pilot with clear success metrics?\nB: Exactly. If the numbers look good at 4 months, extending is an easy decision for both sides.",
           "example": "There's a gap between what you're asking for and what we can offer. Let's find a middle ground that respects both constraints.",
-          "practice": "I don't think either of us is willing to move fully to the other side. Let's find a middle ground — what's the one thing each of us absolutely can't give up?"
+          "practice": "I don't think either of us is willing to move fully to the other side. Let's find a middle ground — what's the one thing each of us absolutely can't give up?",
+          "example_ko": "요청하신 것과 저희가 제공할 수 있는 것 사이에 간극이 있네요. 양쪽 제약을 모두 존중하는 중간 지점을 찾아봅시다."
         },
         {
           "id": "PACK_EN_034_03",
@@ -46,7 +48,8 @@
           "nuance": "Deal-breaker는 협상 자체를 중단시킬 수 있는 핵심 조건이나 요구사항입니다. 강한 표현이지만, 협상에서 자신의 한계를 명확히 하는 것은 필수입니다. 불명확하게 '좀 어려울 것 같아요'라고 하면 협상이 계속 끌리지만, 'That's a deal-breaker'는 이 조건이 없으면 거래가 없다는 것을 상대방이 알게 합니다. 반드시 그것을 대체할 수 있는 대안도 함께 제시하면 대화가 끊기지 않습니다.",
           "dialogue": "A: We'd need full IP ownership transferred upon delivery.\nB: That's a deal-breaker for me. We retain IP ownership on all custom work — it's non-negotiable across all our contracts.\nA: Even with a higher fee?\nB: Even then. But we can offer an exclusive license for your market, which gives you effective ownership rights without the IP transfer. Would that address what you're actually trying to protect?",
           "example": "Reducing the support period from 12 months to 3 is a deal-breaker for me — our clients need that assurance.",
-          "practice": "I want to make this work, but removing the warranty clause entirely is a deal-breaker for me. Can we find a version of this that addresses your concerns without eliminating it completely?"
+          "practice": "I want to make this work, but removing the warranty clause entirely is a deal-breaker for me. Can we find a version of this that addresses your concerns without eliminating it completely?",
+          "example_ko": "지원 기간을 12개월에서 3개월로 줄이는 건 저희 쪽에는 받아들이기 어려운 조건이에요 — 저희 고객들에게는 그 보장이 꼭 필요합니다."
         },
         {
           "id": "PACK_EN_034_04",
@@ -56,7 +59,8 @@
           "nuance": "'What if we...?'는 협상에서 가장 강력한 문장 구조 중 하나입니다. 직접적인 요구가 아니라 가능성을 탐색하는 프레임이기 때문에 상대방이 방어적으로 반응하지 않습니다. 'We should do X'라고 하면 상대방은 동의/거부 중에 선택해야 하지만, 'What if we tried X?'라고 하면 함께 아이디어를 검토하는 모드가 됩니다. 창의적 해결책을 제시하거나 교착 상태를 깨는 데 매우 효과적입니다.",
           "dialogue": "A: We can't do the full project by Q3.\nB: What if we broke it into two phases? Phase 1 covers the core functionality by Q3, and Phase 2 handles the advanced features in Q4. You'd have something to show stakeholders earlier, and we'd have more realistic timelines.\nA: That could work. What would Phase 1 look like exactly?\nB: Let me sketch that out this week — I think we can get 70% of the value in the first phase.",
           "example": "What if we started with a smaller pilot program? That way both sides can test the partnership before committing to the full scope.",
-          "practice": "What if we structured the payment as milestone-based rather than upfront? That would ease our cash flow concern while keeping you protected."
+          "practice": "What if we structured the payment as milestone-based rather than upfront? That would ease our cash flow concern while keeping you protected.",
+          "example_ko": "규모를 줄인 파일럿 프로그램으로 시작하면 어떨까요? 그러면 양쪽 다 전체 범위에 합의하기 전에 파트너십을 시험해볼 수 있어요."
         },
         {
           "id": "PACK_EN_034_05",
@@ -66,13 +70,21 @@
           "nuance": "'Why do you want that?'는 공격적으로 들릴 수 있지만, 'Help me understand...'는 진심으로 이해하려는 자세를 보여줍니다. 협상에서 상대방이 무엇을 요구하는지(position)보다 왜 그것을 원하는지(interest)를 파악하는 것이 핵심입니다. 'Help me understand the concern behind this requirement'처럼 쓰면 진짜 문제를 찾아내 창의적 해결책을 낼 수 있습니다.",
           "dialogue": "A: We need to include a penalty clause for any delays.\nB: Help me understand the concern behind that — is this about past experiences with vendors, or is there a downstream commitment on your end that makes timing critical?\nA: We have a product launch in November that depends on this deliverable.\nB: That context helps enormously. If we build a milestone tracker with early warning alerts, would that address the underlying concern? The penalty clause is a last resort — what you actually need is visibility.",
           "example": "Before I respond to that, help me understand — is the main driver here cost, or is it something else?",
-          "practice": "Help me understand what's most important to you in this contract — if I know your priorities, I can find a way to meet them while staying within our constraints."
+          "practice": "Help me understand what's most important to you in this contract — if I know your priorities, I can find a way to meet them while staying within our constraints.",
+          "example_ko": "답변드리기 전에, 여기서 가장 중요한 요인이 비용인지 아니면 다른 게 있는지 이해하고 싶어요."
         }
       ],
       "master_paragraph": {
         "text": "A: We've been going back and forth on this for a while. Help me understand — what's the absolute non-negotiable for you?\nB: Honestly? The timeline. Everything else I can work with.\nA: That's a deal-breaker on our end too — we can't rush the security review. What if we found a middle ground? We hit the core launch date but defer the advanced features to Phase 2.\nB: I can work with that. Let's define what goes into Phase 2 and make sure we're on the same page before we finalize.",
         "translation": "A: 우리가 한동안 왔다 갔다 했네요. 이해할 수 있도록 도와주세요 — 당신에게 절대 양보할 수 없는 게 뭔가요?\nB: 솔직히? 일정이요. 나머지는 조율 가능해요.\nA: 저희 쪽에서도 마찬가지예요 — 보안 검토를 서두를 수는 없거든요. 중간 지점을 찾아보는 게 어떨까요? 핵심 출시일은 맞추되 고급 기능은 Phase 2로 미루는 거요.\nB: 그렇게 하면 가능해요. Phase 2에 뭐가 들어가는지 정의하고 마무리 전에 같은 이해를 가지도록 해봅시다.",
-        "highlights": ["Help me understand", "I can work with", "That's a deal-breaker", "What if we", "middle ground", "on the same page"]
+        "highlights": [
+          "Help me understand",
+          "I can work with",
+          "That's a deal-breaker",
+          "What if we",
+          "middle ground",
+          "on the same page"
+        ]
       }
     }
   ],

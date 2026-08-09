@@ -29,7 +29,8 @@
             "B": "Ah, I see — those numbers are significantly higher than last year."
           },
           "example": "I'd like to draw your attention to this key data point before we move on.",
-          "practice": "슬라이드 전환 시 중요한 데이터나 차트로 청중 시선을 유도할 때"
+          "practice": "슬라이드 전환 시 중요한 데이터나 차트로 청중 시선을 유도할 때",
+          "example_ko": "다음으로 넘어가기 전에 이 핵심 데이터에 주목해주셨으면 합니다."
         },
         {
           "id": "EN_035_02",
@@ -42,7 +43,8 @@
             "B": "Exactly. Can we take a vote and move on?"
           },
           "example": "To summarize what we've discussed so far, we have two viable paths forward.",
-          "practice": "길어진 논의를 정리하며 결론으로 이끌 때"
+          "practice": "길어진 논의를 정리하며 결론으로 이끌 때",
+          "example_ko": "지금까지 논의한 내용을 요약하면, 실행 가능한 방향이 두 가지 있습니다."
         },
         {
           "id": "EN_035_03",
@@ -55,7 +57,8 @@
             "B": "Thank you. I have a question about the rollout timeline."
           },
           "example": "We've covered the key points. I'd now like to open the floor to questions.",
-          "practice": "발표 마무리 후 질의응답 세션을 시작할 때"
+          "practice": "발표 마무리 후 질의응답 세션을 시작할 때",
+          "example_ko": "핵심 내용은 다뤘으니, 이제 질문을 받도록 하겠습니다."
         },
         {
           "id": "EN_035_04",
@@ -68,7 +71,8 @@
             "B": "Fair enough. Can you share that data with the team?"
           },
           "example": "That's a valid point; however, I think we need to consider the long-term implications.",
-          "practice": "회의에서 상대 의견에 반론을 부드럽게 제시할 때"
+          "practice": "회의에서 상대 의견에 반론을 부드럽게 제시할 때",
+          "example_ko": "타당한 지적이지만, 장기적인 영향도 고려해야 한다고 생각합니다."
         },
         {
           "id": "EN_035_05",
@@ -81,7 +85,8 @@
             "B": "Good idea — we still haven't resolved that one."
           },
           "example": "Before we wrap up, let me circle back to the question about the launch date.",
-          "practice": "회의 중 미처 해결하지 못한 주제로 다시 돌아갈 때"
+          "practice": "회의 중 미처 해결하지 못한 주제로 다시 돌아갈 때",
+          "example_ko": "마무리하기 전에, 출시일에 대한 질문으로 다시 돌아가보겠습니다."
         }
       ],
       "master_paragraph": {

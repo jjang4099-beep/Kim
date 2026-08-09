@@ -25,7 +25,8 @@
           "nuance": "미드 전 장르를 통틀어 가장 자주 나오는 표현 중 하나입니다. 분노·충격·황당함·황폐함을 모두 담을 수 있는 만능 표현이에요. 톤에 따라 뜻이 크게 달라집니다 — 살짝 웃으며 쓰면 '설마요?', 딱딱하게 쓰면 '진짜 말도 안 된다'는 뜻이 됩니다. 'You're kidding!'이나 'No way!'와 함께 쓰면 더 자연스럽습니다.",
           "dialogue": "A: The launch is postponed. Again. Third time this year.\nB: You've got to be kidding me. What happened this time?\nA: Some compliance issue they found last minute.\nB: I can't believe this. The whole team has been working nights for this.",
           "example": "You've got to be kidding me — the flight got canceled and they want to put me on a flight two days later?",
-          "practice": "You've got to be kidding me. We spent three months on this proposal and they went with someone else without even telling us?"
+          "practice": "You've got to be kidding me. We spent three months on this proposal and they went with someone else without even telling us?",
+          "example_ko": "이거 말도 안 돼 — 비행기가 취소됐는데 이틀 뒤 비행기에 태워주겠다고?"
         },
         {
           "id": "PACK_EN_031_02",
@@ -35,7 +36,8 @@
           "nuance": "'Are you serious?'보다 'right now'가 붙으면 현재 상황에 대한 당혹감이 더해집니다. 'Seriously?'를 한 단어로 줄여 쓰기도 합니다. 미드에서 갈등·반전·충격적인 폭로 장면에서 거의 빠지지 않고 등장합니다. 감탄사처럼 'Seriously?' 한 마디만 쓰는 경우도 매우 흔합니다.",
           "dialogue": "A: They want all the revisions done by tomorrow morning.\nB: Are you serious right now? It's already 7pm.\nA: I know. They said it's non-negotiable.\nB: Then someone needs to tell them what 'non-negotiable' actually costs.",
           "example": "Are you serious right now? You're telling me I've been CCed on every email for six months and nobody noticed I wasn't actually in this department?",
-          "practice": "Are you serious right now? You knew about the issue for two weeks and didn't mention it until the day before the client presentation?"
+          "practice": "Are you serious right now? You knew about the issue for two weeks and didn't mention it until the day before the client presentation?",
+          "example_ko": "지금 진심이야? 6개월 동안 모든 이메일에 나를 참조로 넣었는데 내가 이 부서 소속이 아니었다는 걸 아무도 몰랐다는 거야?"
         },
         {
           "id": "PACK_EN_031_03",
@@ -45,7 +47,8 @@
           "nuance": "뭔가 잘 됐을 때, 좋은 일이 생겼을 때, 자신이 주장하던 것이 맞았다고 드러났을 때 쓰는 기쁨의 표현입니다. 'Yes! That's exactly what I meant!'를 캐주얼하게 압축한 것입니다. 스포츠 중계, 팀 성과 발표, 친구 사이의 좋은 소식 공유 등에서 매우 자주 등장합니다.",
           "dialogue": "A: The numbers are in — we hit 130% of our quarterly target.\nB: That's what I'm talking about! I knew if we focused on the enterprise segment we'd see this.\nA: You called it three months ago.\nB: Now let's make sure this becomes the baseline, not the exception.",
           "example": "You stayed up all night and fixed the entire pipeline? That's what I'm talking about — this is the kind of ownership that makes a team great.",
-          "practice": "Finally, a design that feels both premium and accessible. That's what I'm talking about — this is the direction we needed."
+          "practice": "Finally, a design that feels both premium and accessible. That's what I'm talking about — this is the direction we needed.",
+          "example_ko": "밤새 안 자고 파이프라인 전체를 고쳤다고? 바로 그거지 — 이런 주인의식이 팀을 위대하게 만드는 거야."
         },
         {
           "id": "PACK_EN_031_04",
@@ -55,7 +58,8 @@
           "nuance": "직역하면 '나 거기 가본 적 있어'지만, 실제 의미는 '그 상황을 나도 겪어봤어요'입니다. 위로나 공감을 표현할 때 'I understand'나 'I know how you feel'보다 훨씬 생생하고 진심 어린 표현입니다. 뒤에 자신의 경험을 짧게 덧붙이면 더욱 자연스럽습니다.",
           "dialogue": "A: I feel like no matter how hard I work, I'm not getting recognized. It's demoralizing.\nB: I've been there. In my last job I put in 18 months of serious work before anyone really noticed. What got me through was keeping a record of my wins — even the small ones.\nA: That's a good idea actually.\nB: When you start doubting yourself, the evidence helps.",
           "example": "I've been there — the burnout, the feeling that no one sees what you're contributing. It does get better.",
-          "practice": "I've been there with the imposter syndrome. The first six months in a new role, I questioned every decision I made."
+          "practice": "I've been there with the imposter syndrome. The first six months in a new role, I questioned every decision I made.",
+          "example_ko": "나도 그래봤어 — 번아웃, 아무도 내가 기여하는 걸 안 알아주는 것 같은 느낌. 그래도 나아지긴 해."
         },
         {
           "id": "PACK_EN_031_05",
@@ -65,13 +69,20 @@
           "nuance": "2센트(매우 작은 금액)짜리 의견이라는 겸손한 표현입니다. '제 생각이 맞을 수도 있고 아닐 수도 있지만, 그래도 한마디 보태자면'이라는 뉘앙스입니다. 회의나 토론에서 자신의 의견을 강요하지 않으면서도 말하고 싶을 때 씁니다. 'Just my two cents'처럼 'just'를 앞에 붙여 더 겸손하게 만들 수 있습니다.",
           "dialogue": "Manager: We're still deciding between the two vendors. Any thoughts?\nYou: Just my two cents — I'd look at their post-sale support record more than the initial price. We learned that the hard way last year.\nManager: That's a fair point.\nYou: Take it or leave it, obviously — just wanted to flag it.",
           "example": "For what it's worth, my two cents: the product is great but the onboarding is losing people in the first ten minutes.",
-          "practice": "My two cents — I think we're optimizing the wrong thing. We're focused on acquisition when retention is the actual problem."
+          "practice": "My two cents — I think we're optimizing the wrong thing. We're focused on acquisition when retention is the actual problem.",
+          "example_ko": "참고로 제 의견을 말씀드리자면, 제품은 훌륭한데 온보딩에서 처음 10분 만에 사람들을 놓치고 있어요."
         }
       ],
       "master_paragraph": {
         "text": "You've got to be kidding me — you're telling me nobody flagged this until now? Are you serious right now? Okay, deep breath. I've been there — I've had projects blow up in the exact same way, and there's always a way through. My two cents: we stop pointing fingers and focus on what we can still fix before the client sees it. And when this is resolved — and it will be — that's what I'm talking about. Let's turn this into the moment the team proved what it's made of.",
         "translation": "말도 안 돼 — 지금까지 아무도 이걸 몰랐다고요? 지금 진심으로 하는 말이에요? 좋아요, 심호흡. 저도 그런 경험 있어요 — 똑같은 방식으로 프로젝트가 터진 적 있어요, 그리고 항상 방법은 있었어요. 제 의견을 말하자면: 손가락질 멈추고 클라이언트가 보기 전에 고칠 수 있는 것에 집중해요. 그리고 이게 해결되면 — 반드시 됩니다 — 바로 그게 제가 말하는 거예요. 이 순간을 팀이 진가를 보여준 순간으로 만들어봅시다.",
-        "highlights": ["You've got to be kidding me", "Are you serious right now", "I've been there", "my two cents", "that's what I'm talking about"]
+        "highlights": [
+          "You've got to be kidding me",
+          "Are you serious right now",
+          "I've been there",
+          "my two cents",
+          "that's what I'm talking about"
+        ]
       }
     }
   ],

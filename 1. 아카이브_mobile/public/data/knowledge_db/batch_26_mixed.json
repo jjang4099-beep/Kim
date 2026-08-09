@@ -29,7 +29,8 @@
             "B": "I hear what you're saying, and I want to understand where this frustration is coming from."
           },
           "example": "I hear what you're saying, and your concern about the timeline is completely valid.",
-          "practice": "상대가 불만을 표출하거나 방어적인 태도를 보일 때, 대화의 첫 문을 여는 경청 신호로"
+          "practice": "상대가 불만을 표출하거나 방어적인 태도를 보일 때, 대화의 첫 문을 여는 경청 신호로",
+          "example_ko": "무슨 말씀인지 알겠습니다, 그리고 일정에 대한 우려는 충분히 타당합니다."
         },
         {
           "id": "EN_040_02",
@@ -42,7 +43,8 @@
             "B": "I understand the pressure. Let's find a middle ground — maybe we phase the deliverables?"
           },
           "example": "Both sides have valid points. Let's find a middle ground that works for everyone.",
-          "practice": "의견 충돌이 팽팽할 때 협력적 해결을 제안하는 상황"
+          "practice": "의견 충돌이 팽팽할 때 협력적 해결을 제안하는 상황",
+          "example_ko": "양쪽 다 타당한 지점이 있네요. 모두에게 맞는 중간 지점을 찾아봅시다."
         },
         {
           "id": "EN_040_03",
@@ -55,7 +57,8 @@
             "B": "I'd like to understand your perspective better. What specifically concerns you about it?"
           },
           "example": "Before we decide, I'd like to understand your perspective better on the risks involved.",
-          "practice": "의사결정 전 다양한 입장을 수집하거나, 갈등 상황에서 상대방의 입장을 파악할 때"
+          "practice": "의사결정 전 다양한 입장을 수집하거나, 갈등 상황에서 상대방의 입장을 파악할 때",
+          "example_ko": "결정하기 전에, 관련된 리스크에 대한 관점을 더 이해하고 싶습니다."
         },
         {
           "id": "EN_040_04",
@@ -68,7 +71,8 @@
             "B": "Can we separate the issue from the person? Let's focus on what went wrong in the process."
           },
           "example": "I know tensions are high, but can we separate the issue from the person and focus on the solution?",
-          "practice": "팀 내 갈등이 개인 감정 싸움으로 번질 때, 논의를 문제 중심으로 되돌릴 때"
+          "practice": "팀 내 갈등이 개인 감정 싸움으로 번질 때, 논의를 문제 중심으로 되돌릴 때",
+          "example_ko": "긴장이 높다는 건 알지만, 문제와 사람을 분리해서 해결책에 집중할 수 있을까요?"
         },
         {
           "id": "EN_040_05",
@@ -81,13 +85,20 @@
             "B": "I hear you. What would it take for us to move forward together in a way that works for both of us?"
           },
           "example": "We've all shared our frustrations. Now — what would it take for us to move forward together?",
-          "practice": "교착 상태에 빠진 대화를 해결책 중심으로 전환할 때, 협상의 마무리 단계에서"
+          "practice": "교착 상태에 빠진 대화를 해결책 중심으로 전환할 때, 협상의 마무리 단계에서",
+          "example_ko": "다들 답답함을 나눴네요. 이제 — 함께 앞으로 나아가려면 무엇이 필요할까요?"
         }
       ],
       "master_paragraph": {
         "text": "When conflict arises, the first step is to say 'I hear what you're saying' to show you're listening. Then, instead of pushing your position, ask 'I'd like to understand your perspective better.' If the conversation gets personal, gently suggest 'Can we separate the issue from the person?' and work toward finding a middle ground. Finally, shift the conversation forward with 'What would it take for us to move forward together?'",
         "translation": "갈등이 생겼을 때, 첫 번째 단계는 '말씀하시는 것을 잘 듣고 있습니다'라고 말해 경청하고 있음을 보여주는 것이다. 그런 다음, 자신의 입장을 밀어붙이는 대신 '당신의 관점을 더 잘 이해하고 싶습니다'라고 묻는다. 대화가 개인적으로 흐르면, '문제 자체와 사람을 분리해볼 수 있을까요?'라고 부드럽게 제안하며 타협점을 찾아간다. 마지막으로 '우리가 함께 앞으로 나아가려면 무엇이 필요할까요?'라는 질문으로 대화를 미래로 전환시킨다.",
-        "highlights": ["I hear what you're saying", "I'd like to understand your perspective better", "Can we separate the issue from the person?", "finding a middle ground", "What would it take for us to move forward together?"]
+        "highlights": [
+          "I hear what you're saying",
+          "I'd like to understand your perspective better",
+          "Can we separate the issue from the person?",
+          "finding a middle ground",
+          "What would it take for us to move forward together?"
+        ]
       }
     }
   ],

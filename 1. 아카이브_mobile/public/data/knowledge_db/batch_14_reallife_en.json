@@ -25,7 +25,8 @@
           "nuance": "'Swamped'는 늪(swamp)에 빠진 것처럼 일에 파묻혀 있다는 뜻입니다. 'Busy'보다 훨씬 생생하고 자연스러운 표현으로, 원어민이 일상에서 가장 자주 쓰는 단어 중 하나입니다. 'Catch up'은 오랜만에 또는 잠깐 만나서 이야기 나누는 것을 뜻합니다. '지금 당장은 어렵지만 대화를 피하는 게 아니라 나중에 꼭 하겠다'는 뜻을 자연스럽게 전달합니다.",
           "dialogue": "A: Hey, do you have a minute? I wanted to run something by you.\nB: I'm swamped right now — we have a client call in ten minutes and I'm still prepping. Can we catch up after lunch?\nA: Of course, no rush. I'll ping you around 1:30?\nB: Perfect. See you then.",
           "example": "I'm completely swamped this week with the product launch — can we push the review meeting to Monday?",
-          "practice": "I'm a bit swamped at the moment. Can I get back to you by end of day?"
+          "practice": "I'm a bit swamped at the moment. Can I get back to you by end of day?",
+          "example_ko": "이번 주 제품 출시 때문에 완전히 정신없어요 — 리뷰 미팅을 월요일로 미룰 수 있을까요?"
         },
         {
           "id": "PACK_EN_030_02",
@@ -35,7 +36,8 @@
           "nuance": "'It's okay'나 'Don't worry'보다 훨씬 자연스럽고 따뜻한 표현입니다. 'No worries'는 호주에서 왔지만 지금은 미국·영국에서도 일상적으로 씁니다. 'These things happen'을 덧붙이면 '이런 일은 누구에게나 생긴다'는 공감의 뉘앙스가 추가됩니다. 상대방의 사과를 받아줄 때 진심 어린 관대함을 보여줍니다.",
           "dialogue": "A: I'm so sorry I forgot to send you the file before the meeting. That must have been really inconvenient.\nB: No worries at all — these things happen. I had a copy saved from last week, so we were fine.\nA: Still, I should have been more careful.\nB: Honestly, don't stress about it. Just send it over when you have a chance.",
           "example": "No worries at all — these things happen. Let's just focus on moving forward from here.",
-          "practice": "No worries! These things happen. Just send it over when you get a chance."
+          "practice": "No worries! These things happen. Just send it over when you get a chance.",
+          "example_ko": "전혀 괜찮아요 — 그런 일 있을 수 있죠. 여기서부터 앞으로 나아가는 데만 집중합시다."
         },
         {
           "id": "PACK_EN_030_03",
@@ -45,7 +47,8 @@
           "nuance": "'Slipped my mind'는 기억에서 빠져나가 버렸다는 생생한 표현입니다. 'I forgot'보다 훨씬 구어적이고 자연스럽습니다. 'My bad'는 'My mistake' 또는 'Sorry about that'의 캐주얼한 버전으로, 젊은 직장인들이 가장 많이 쓰는 사과 표현 중 하나입니다. 지나치게 격식 없이 쓰면 진지함이 부족하게 들릴 수 있으니 상황을 파악해서 쓰세요.",
           "dialogue": "A: Did you end up booking the conference room for tomorrow?\nB: Oh no — that completely slipped my mind. My bad! I'll do it right now. Is 2pm still okay?\nA: Actually, we need it at 3pm now. Can you check if that's available?\nB: On it. I'll confirm within five minutes.",
           "example": "The meeting reminder — that totally slipped my mind. My bad! I should have set a calendar alert.",
-          "practice": "Oh, sending you the summary — that slipped my mind completely. My bad, I'll have it to you within the hour."
+          "practice": "Oh, sending you the summary — that slipped my mind completely. My bad, I'll have it to you within the hour.",
+          "example_ko": "미팅 알림 — 완전히 깜빡했어요. 제 실수예요! 캘린더 알림을 설정했어야 했는데."
         },
         {
           "id": "PACK_EN_030_04",
@@ -55,7 +58,8 @@
           "nuance": "'Sleep on it'은 밤새 생각한다는 의미로, 중요한 결정을 급하게 하지 않겠다는 신중함을 표현합니다. 즉답을 강요받는 상황에서 '거절하는 것도 아니고 수락하는 것도 아닌' 상태를 유지하며 시간을 벌 때 매우 유용합니다. 거절처럼 들리지 않으면서도 'get back to you tomorrow'로 책임감 있는 후속 조치를 약속합니다.",
           "dialogue": "A: So, are you interested in taking on the regional manager role? We'd love your answer by this week.\nB: I'm genuinely honored, and I'm very interested. But I want to make sure I'm making the right decision for everyone involved. Can I sleep on it and get back to you tomorrow morning?\nA: Of course. Take the time you need.\nB: I appreciate that. I'll have a clear answer for you by 9am.",
           "example": "That's a significant proposal — let me sleep on it and get back to you with a proper response tomorrow.",
-          "practice": "I don't want to give you a half-considered answer. Let me sleep on it and get back to you tomorrow."
+          "practice": "I don't want to give you a half-considered answer. Let me sleep on it and get back to you tomorrow.",
+          "example_ko": "중요한 제안이네요 — 하루 생각해보고 내일 제대로 답변드릴게요."
         },
         {
           "id": "PACK_EN_030_05",
@@ -65,13 +69,23 @@
           "nuance": "'All ears'는 귀가 전부라는 재미있는 표현으로, 온전히 당신의 말에 집중하겠다는 뜻입니다. 'What's on your mind?'는 '무슨 생각을 하고 있어요?' 또는 '무슨 말이 하고 싶어요?'라는 뜻으로, 상대가 망설이거나 뭔가 말하고 싶어하는 것 같을 때 열어주는 표현입니다. 리더십, 팀원 관계, 1대1 미팅에서 심리적 안전감을 만들어주는 표현입니다.",
           "dialogue": "Team member: Do you have a second? I've been meaning to talk to you about something.\nManager: Of course — I'm all ears. What's on your mind?\nTeam member: It's about the new process. I have a few concerns I wasn't sure how to raise.\nManager: I'm glad you came to me. Tell me everything.",
           "example": "I've set aside the next 30 minutes — I'm all ears. What's on your mind about the project?",
-          "practice": "I'm all ears. You've seemed a bit distracted lately — what's on your mind?"
+          "practice": "I'm all ears. You've seemed a bit distracted lately — what's on your mind?",
+          "example_ko": "다음 30분은 비워뒀어요 — 다 들을 준비 됐습니다. 프로젝트 관련해서 어떤 생각 있으세요?"
         }
       ],
       "master_paragraph": {
         "text": "I know you're swamped right now, so no worries at all if the timing's bad — these things happen. Just a heads up: I realized something totally slipped my mind from our last conversation, and my bad for not flagging it sooner. I don't want to give you a rushed answer on the bigger question, so let me sleep on it and get back to you tomorrow with something concrete. But if you have a minute at some point today, I'm all ears — what's on your mind about how things are going?",
         "translation": "지금 엄청 바쁘신 거 알아요, 그러니 타이밍이 안 좋으면 전혀 괜찮아요 — 그럴 수 있죠. 미리 말씀드리자면: 지난 대화에서 뭔가 완전히 깜빡했다는 걸 깨달았어요, 더 일찍 말씀드리지 못해서 제 실수예요. 더 큰 질문에 대해 급하게 답하고 싶지 않아서요, 좀 더 생각해보고 내일 구체적으로 답드릴게요. 하지만 오늘 중에 잠깐 시간이 되시면, 잘 듣고 있을게요 — 요즘 어떻게 돌아가고 있는지 무슨 생각이세요?",
-        "highlights": ["swamped", "no worries at all", "slipped my mind", "my bad", "sleep on it", "get back to you", "all ears", "what's on your mind"]
+        "highlights": [
+          "swamped",
+          "no worries at all",
+          "slipped my mind",
+          "my bad",
+          "sleep on it",
+          "get back to you",
+          "all ears",
+          "what's on your mind"
+        ]
       }
     }
   ],

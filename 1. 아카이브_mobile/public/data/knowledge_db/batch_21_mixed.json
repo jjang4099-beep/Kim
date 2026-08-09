@@ -29,7 +29,8 @@
             "B": "I started in data analytics, then moved into product strategy after leading a cross-functional project that taught me how to connect data to business decisions."
           },
           "example": "Sure — I'll walk you through the key milestones that led me to this role.",
-          "practice": "경력의 흐름을 인과관계로 연결해 설명할 때"
+          "practice": "경력의 흐름을 인과관계로 연결해 설명할 때",
+          "example_ko": "네 — 제가 이 자리까지 오게 된 주요 이정표들을 말씀드릴게요."
         },
         {
           "id": "EN_037_02",
@@ -42,7 +43,8 @@
             "B": "I'm particularly proud of rebuilding the onboarding flow — it cut churn by 30% and got featured in our company newsletter."
           },
           "example": "I'm particularly proud of how the team came together under pressure to ship on time.",
-          "practice": "성과와 함께 가치관이나 동기를 드러낼 때"
+          "practice": "성과와 함께 가치관이나 동기를 드러낼 때",
+          "example_ko": "팀이 압박 속에서도 하나로 뭉쳐 제때 출시해낸 게 특히 자랑스럽습니다."
         },
         {
           "id": "EN_037_03",
@@ -55,7 +57,8 @@
             "B": "One area I'm actively working on is public speaking — I've joined a Toastmasters chapter and recently gave my first keynote."
           },
           "example": "One area I'm actively working on is delegating more effectively instead of doing everything myself.",
-          "practice": "약점 질문에 자기인식과 성장 의지를 동시에 보여줄 때"
+          "practice": "약점 질문에 자기인식과 성장 의지를 동시에 보여줄 때",
+          "example_ko": "제가 적극적으로 개선하려는 부분은 모든 걸 직접 다 하기보다 더 효과적으로 위임하는 것입니다."
         },
         {
           "id": "EN_037_04",
@@ -68,7 +71,8 @@
             "B": "Based on my research into similar roles in this market, I was hoping for a range of $90K to $105K."
           },
           "example": "Based on my research and my seven years of experience, I was hoping for a range of 70M to 80M KRW.",
-          "practice": "연봉 협상에서 사전 조사를 근거로 희망 범위를 제시할 때"
+          "practice": "연봉 협상에서 사전 조사를 근거로 희망 범위를 제시할 때",
+          "example_ko": "제 조사와 7년 경력을 바탕으로, 7천만 원에서 8천만 원 사이를 기대하고 있었습니다."
         },
         {
           "id": "EN_037_05",
@@ -81,7 +85,8 @@
             "B": "Yes — what does success look like in this role in the first 90 days?"
           },
           "example": "I'd love to understand what success looks like in this role in the first 90 days so I can hit the ground running.",
-          "practice": "면접 역질문으로 적극적인 인상을 줄 때"
+          "practice": "면접 역질문으로 적극적인 인상을 줄 때",
+          "example_ko": "처음 90일 동안 이 역할에서 성공이 어떤 모습인지 알고 싶습니다, 그래야 바로 속도를 낼 수 있으니까요."
         }
       ],
       "master_paragraph": {

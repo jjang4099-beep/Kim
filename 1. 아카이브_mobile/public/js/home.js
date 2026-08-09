@@ -1307,7 +1307,7 @@ Object.assign(Mob, {
     return [
       e.nuance         ? `<div class="mob-fv-sect"><div class="mob-fv-sect-lbl">${nuanceLbl}</div><div class="mob-fv-sect-txt">${e.nuance}</div></div>` : '',
       dlgHTML          ? `<div class="mob-fv-sect"><div class="mob-fv-sect-lbl">Dialogue</div><div class="mob-fv-dlg">${dlgHTML}</div></div>` : '',
-      e.sourceSentence ? `<div class="mob-fv-sect"><div class="mob-fv-sect-lbl">Example</div><div class="mob-fv-sect-txt mob-fv-italic">"${e.sourceSentence}"</div>${e.practiceSentence ? `<div class="mob-fv-sect-txt mob-fv-practice">${e.practiceSentence}</div>` : ''}</div>` : ''
+      e.sourceSentence ? `<div class="mob-fv-sect"><div class="mob-fv-sect-lbl">Example</div><div class="mob-fv-sect-txt mob-fv-italic">"${e.sourceSentence}"</div>${e.sourceSentenceKo ? `<div class="mob-fv-dlg-tr">${e.sourceSentenceKo}</div>` : ''}${e.practiceSentence ? `<div class="mob-fv-sect-txt mob-fv-practice">${e.practiceSentence}</div>` : ''}</div>` : ''
     ].filter(Boolean).join('');
   },
 

@@ -29,7 +29,8 @@
             "B": "I completely understand where you're coming from — the timing feels uncertain. That's exactly why I want to show you what the data says."
           },
           "example": "I completely understand where you're coming from, and I'd like to offer a different angle.",
-          "practice": "반대 의견을 받았을 때 공감으로 시작하며 설득의 문을 열 때"
+          "practice": "반대 의견을 받았을 때 공감으로 시작하며 설득의 문을 열 때",
+          "example_ko": "말씀하시는 취지는 충분히 이해합니다, 그리고 다른 관점도 하나 제안드리고 싶어요."
         },
         {
           "id": "EN_038_02",
@@ -42,7 +43,8 @@
             "B": "What if we looked at it this way — the risk of doing nothing might actually be higher?"
           },
           "example": "What if we looked at it this way: what's the cost of not acting now?",
-          "practice": "관점을 부드럽게 전환하며 새로운 논리를 제시할 때"
+          "practice": "관점을 부드럽게 전환하며 새로운 논리를 제시할 때",
+          "example_ko": "이렇게 한번 생각해보면 어떨까요: 지금 행동하지 않았을 때의 비용은 얼마일까요?"
         },
         {
           "id": "EN_038_03",
@@ -55,7 +57,8 @@
             "B": "The data suggests that similar initiatives in our sector have a 70% success rate."
           },
           "example": "The data suggests that customer retention improves significantly in the first 30 days of onboarding.",
-          "practice": "감정적 반박을 줄이고 사실 기반 설득을 할 때"
+          "practice": "감정적 반박을 줄이고 사실 기반 설득을 할 때",
+          "example_ko": "데이터에 따르면 온보딩 첫 30일 동안 고객 유지율이 크게 개선됩니다."
         },
         {
           "id": "EN_038_04",
@@ -68,7 +71,8 @@
             "B": "Let me share what's been working for others in similar situations — the key difference was in the implementation."
           },
           "example": "Let me share what's been working for others in similar situations before you make a decision.",
-          "practice": "사례 기반으로 신뢰를 쌓으며 설득할 때"
+          "practice": "사례 기반으로 신뢰를 쌓으며 설득할 때",
+          "example_ko": "결정하시기 전에, 비슷한 상황에서 다른 분들에게 효과가 있었던 방법을 공유드리고 싶어요."
         },
         {
           "id": "EN_038_05",
@@ -81,7 +85,8 @@
             "B": "I'd love your input on this before we move forward — your perspective will make this much stronger."
           },
           "example": "I'd love your input on this before we move forward — what am I missing?",
-          "practice": "상대를 결정 과정에 참여시켜 주인의식과 동의를 이끌 때"
+          "practice": "상대를 결정 과정에 참여시켜 주인의식과 동의를 이끌 때",
+          "example_ko": "진행하기 전에 의견을 듣고 싶어요 — 제가 놓치고 있는 부분이 있을까요?"
         }
       ],
       "master_paragraph": {

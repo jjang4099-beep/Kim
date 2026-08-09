@@ -26,7 +26,8 @@
           "nuance": "정면 반박('That's wrong.') 대신 상대의 관점을 먼저 인정하고 나서 자신의 의견을 제시합니다. 'Where you're coming from'은 '당신이 그런 말을 하게 된 배경·맥락'을 뜻하며, 상대방을 비판하지 않으면서도 다른 입장을 유지할 수 있게 해줍니다. 이 표현을 쓰면 갈등이 줄고 대화가 지속됩니다.",
           "dialogue": "Colleague: I think we should delay the launch by three months to polish everything.\nYou: I see where you're coming from — quality matters and I share that concern. But three months in this market means three months of ground given to the competitor who's launching next week. Can we agree on a two-week intensive QA sprint and launch with a known issues list?\nColleague: A known issues list feels risky.\nYou: Every launch has one. The question is whether we're transparent about it.",
           "example": "I see where you're coming from with the conservative budget forecast, but if we don't invest in acquisition now, we won't have the revenue base to be conservative about next year.",
-          "practice": "I see where you're coming from on the headcount freeze, but the team is already at capacity and one more quarter like this will cost us more in attrition than the hire would."
+          "practice": "I see where you're coming from on the headcount freeze, but the team is already at capacity and one more quarter like this will cost us more in attrition than the hire would.",
+          "example_ko": "보수적인 예산 전망 말씀하시는 취지는 이해하지만, 지금 고객 확보에 투자하지 않으면 내년에 보수적일 수 있는 매출 기반 자체가 없을 겁니다."
         },
         {
           "id": "PACK_EN_029_02",
@@ -36,7 +37,8 @@
           "nuance": "'Push back'은 물리적으로 밀어낸다는 이미지로, 상대방의 주장에 맞서 자신의 입장을 밀어 올리는 것입니다. 이 표현은 고위 리더들이 자주 쓰는 표현으로, 직접적이지만 무례하지 않고 전문적인 인상을 줍니다. '틀렸다'고 말하는 대신 '다시 생각해볼 여지가 있다'고 제안하는 톤입니다.",
           "dialogue": "Director: I think we should go with Option A. It's safer.\nYou: I'd like to push back on that. 'Safer' depends on the time horizon. Option A is safer in the next six months, but it leaves us structurally vulnerable in two years when the market shifts. Option B has more short-term risk but builds a capability we'll need regardless.\nDirector: Walk me through that vulnerability.\nYou: If we go Option A, we stay dependent on a single supplier in a market that's consolidating. That's the risk I'm worried about.",
           "example": "Let me push back on the assumption that our churn problem is a product problem. Our data suggests it's actually an onboarding problem — users who complete onboarding stay at 80% one-year retention.",
-          "practice": "I want to push back on the idea that more features will solve the engagement problem. Every feature we've added in the last two quarters hasn't moved retention."
+          "practice": "I want to push back on the idea that more features will solve the engagement problem. Every feature we've added in the last two quarters hasn't moved retention.",
+          "example_ko": "이탈 문제가 제품 문제라는 전제에 반대 의견을 내고 싶습니다. 저희 데이터는 사실 온보딩 문제라는 걸 보여줍니다 — 온보딩을 완료한 사용자는 1년 유지율이 80%예요."
         },
         {
           "id": "PACK_EN_029_03",
@@ -46,7 +48,8 @@
           "nuance": "'Different perspective'는 '당신이 틀렸다'는 대립 대신 '보는 각도를 하나 더 추가한다'는 협력적 프레이밍입니다. 특히 상대가 시니어이거나 회의에서 이미 공감대가 형성된 것처럼 보일 때, 분위기를 과도하게 해치지 않으면서 다른 의견을 낼 수 있는 방법입니다.",
           "dialogue": "Manager: Everyone seems aligned on the premium pricing strategy.\nYou: Before we finalize — I'd like to offer a different perspective. I've been talking to a few customers this week, and the word I kept hearing was 'accessible.' They love the product but feel the pricing puts it out of reach. What if premium pricing is right for the long term, but we need a more accessible entry point first?\nManager: That's worth exploring. What would the entry product look like?\nYou: A lighter version with a clear upgrade path.",
           "example": "I'd like to offer a different perspective on the failure rate — instead of seeing it as a quality problem, what if it's telling us something about how customers are using the product in ways we didn't design for?",
-          "practice": "I'd like to offer a different perspective on the timeline. We keep framing it as 'how fast can we go?' but the better question might be 'what's the minimum viable version we can test in four weeks?'"
+          "practice": "I'd like to offer a different perspective on the timeline. We keep framing it as 'how fast can we go?' but the better question might be 'what's the minimum viable version we can test in four weeks?'",
+          "example_ko": "실패율에 대해 다른 관점을 제시하고 싶습니다 — 품질 문제로만 볼 게 아니라, 우리가 설계하지 않은 방식으로 고객이 제품을 쓰고 있다는 신호일 수도 있지 않을까요?"
         },
         {
           "id": "PACK_EN_029_04",
@@ -56,7 +59,8 @@
           "nuance": "모든 의견 불일치가 하나의 결론으로 해소될 필요는 없습니다. 이 표현은 '당신을 설득하는 것을 포기한다'는 의미가 아니라, '이 시점에서 합의보다 각자의 관점을 존중하는 것이 더 생산적이다'는 성숙한 판단을 나타냅니다. 관계는 유지하면서 대화를 마무리하는 전문적인 방식입니다.",
           "dialogue": "You: I genuinely believe the market is ready for this.\nPartner: And I genuinely believe it isn't. We've been going back and forth for an hour.\nYou: I think we may have to agree to disagree on the timing. But we do agree on the product direction. Can we run a small pilot in one market to get actual data instead of continuing to debate projections?\nPartner: A pilot I can get behind. Let's define the parameters.",
           "example": "On the question of remote vs. hybrid, we may have to agree to disagree — but what we can agree on is that output matters more than location, so let's define clear output expectations and revisit the policy in six months.",
-          "practice": "We may have to agree to disagree on the root cause, but what we both agree on is that churn is too high. Can we focus our energy on the solution rather than relitigating the diagnosis?"
+          "practice": "We may have to agree to disagree on the root cause, but what we both agree on is that churn is too high. Can we focus our energy on the solution rather than relitigating the diagnosis?",
+          "example_ko": "원격이냐 하이브리드냐에 대해서는 서로 의견이 다를 수 있다는 걸 인정합시다 — 하지만 위치보다 성과가 중요하다는 데는 동의할 수 있으니, 명확한 성과 기대치를 정하고 6개월 후 정책을 다시 논의합시다."
         },
         {
           "id": "PACK_EN_029_05",
@@ -66,13 +70,20 @@
           "nuance": "이 질문은 대화의 게임을 바꿉니다. '내가 어떻게 설득할까'가 아니라 '상대가 무엇을 기준으로 판단하는가'를 먼저 알아내는 것입니다. 때로는 이 질문 하나로 설득의 핵심 조건이 드러납니다. 답이 '데이터'라면 데이터를 가져오고, '파일럿'이라면 파일럿을 제안하면 됩니다. 가장 효율적인 설득 전략입니다.",
           "dialogue": "You: I'm convinced this is the right direction. What would it take for you to be convinced?\nSkeptic: Honestly? I'd need to see it work in a market similar to ours. Not just case studies — actual comparable data.\nYou: That's fair. I can find three comparable companies and pull their public numbers. If the pattern holds, would that be enough to move forward with a small pilot?\nSkeptic: If the data holds, yes. I'm not against the idea — I just need more than conviction.",
           "example": "Instead of continuing to present more slides, I want to ask directly: what would it take for you to be convinced? That way I can make sure the next conversation has exactly what you need.",
-          "practice": "What would it take for you to be convinced that this hire is worth the budget? I want to make sure I'm addressing the right concern, not just adding more reasons."
+          "practice": "What would it take for you to be convinced that this hire is worth the budget? I want to make sure I'm addressing the right concern, not just adding more reasons.",
+          "example_ko": "슬라이드를 더 보여드리는 대신, 직접 여쭤보고 싶습니다: 무엇이 있어야 확신이 서시겠어요? 그래야 다음 논의에서 필요하신 걸 정확히 준비할 수 있으니까요."
         }
       ],
       "master_paragraph": {
         "text": "I see where you're coming from — the risk is real and I'm not dismissing it. But I'd like to push back on the idea that caution is always the right answer here. I'd like to offer a different perspective: the biggest risk might not be moving too fast, but moving too slow while others move. That said, if we can't fully align today, we may have to agree to disagree on the pace — but let's at least agree on what a minimal test would look like. And before we close — what would it take for you to be convinced? Tell me what you'd need to see, and I'll make sure our next meeting has it.",
         "translation": "말씀하시는 맥락은 이해합니다 — 위험이 실제로 있고, 저도 그것을 무시하는 게 아닙니다. 하지만 신중함이 항상 정답이라는 생각에는 반론을 제기하고 싶습니다. 다른 관점을 하나 제시하자면: 여기서 가장 큰 위험은 너무 빨리 움직이는 것이 아니라, 다른 사람들이 움직이는 동안 너무 느리게 움직이는 것일 수 있습니다. 그렇긴 해도, 오늘 속도에 대해 완전히 합의하지 못한다면 이견을 인정하고 넘어가야 할 수도 있습니다 — 하지만 최소한 어떤 테스트를 해볼지는 합의할 수 있지 않을까요? 마무리하기 전에 — 무엇이 있어야 납득하실 수 있으신가요? 필요하신 것을 알려주시면, 다음 회의에서 그걸 준비해 오겠습니다.",
-        "highlights": ["I see where you're coming from", "push back on", "offer a different perspective", "agree to disagree", "what would it take for you to be convinced"]
+        "highlights": [
+          "I see where you're coming from",
+          "push back on",
+          "offer a different perspective",
+          "agree to disagree",
+          "what would it take for you to be convinced"
+        ]
       }
     }
   ],

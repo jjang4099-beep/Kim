@@ -25,7 +25,8 @@
           "nuance": "이 말을 들으면 바로 귀를 기울이게 됩니다. '이 정보는 공식적이지 않고, 당신만 아는 것'이라는 신뢰의 제스처입니다. 비공식적 정보, 솔직한 의견, 내부 분위기를 전달할 때 씁니다. 단, 받는 사람이 실제로 비밀을 지킬 사람인지 확인한 후 쓰세요 — '우리끼리'가 세 명이 되는 경우가 많습니다.",
           "dialogue": "A: Between you and me, the restructuring announcement isn't just about efficiency — there are some numbers that aren't looking great in Q3.\nB: I had a feeling. What should I be doing differently right now?\nA: Keep your project wins documented and visible. That's all I can say.\nB: Understood. Thank you for telling me.",
           "example": "Between you and me, I think the real reason the launch was delayed has nothing to do with the product — it's internal politics.",
-          "practice": "Between you and me, the new director and the product team lead are not seeing eye to eye, and it's starting to affect decisions."
+          "practice": "Between you and me, the new director and the product team lead are not seeing eye to eye, and it's starting to affect decisions.",
+          "example_ko": "우리끼리 얘긴데, 출시가 늦어진 진짜 이유는 제품이랑은 아무 상관없고 사내 정치 때문인 것 같아."
         },
         {
           "id": "PACK_EN_032_02",
@@ -35,7 +36,8 @@
           "nuance": "하루 일과나 회의, 작업을 마무리하자는 제안입니다. 'Let's wrap up'보다 조금 더 캐주얼하고 인간적인 느낌입니다. '우리 충분히 했다, 이제 쉬자'는 뉘앙스가 담겨 있어, 팀원들에게 좋은 에너지로 하루를 마무리하게 해줍니다. 영어권 직장에서 오후 회의 마무리에 자연스럽게 씁니다.",
           "dialogue": "A: It's almost 7pm and we've been in this room since 9. We're going in circles.\nB: Agreed. Let's call it a day. We've made good progress — let's sleep on the remaining questions and come back fresh tomorrow.\nA: That's probably the best call.\nB: Fresh eyes in the morning. See you all at 10.",
           "example": "We've hit all our targets for today and then some. Let's call it a day — you've all earned it.",
-          "practice": "We've been at this for five hours and the energy is dropping. Let's call it a day and come back tomorrow with fresh perspectives."
+          "practice": "We've been at this for five hours and the energy is dropping. Let's call it a day and come back tomorrow with fresh perspectives.",
+          "example_ko": "오늘 목표는 다 채우고도 남았어요. 여기서 마무리합시다 — 다들 그럴 자격 있어요."
         },
         {
           "id": "PACK_EN_032_03",
@@ -45,7 +47,8 @@
           "nuance": "정확하지 않을 수 있는 정보를 공유할 때 '나를 source로 쓰지 마세요'라는 의미입니다. 숫자·날짜·계획처럼 변경될 수 있는 정보를 전달할 때 씁니다. 비공식 정보라는 것을 표시하는 동시에 상대방이 직접 확인해야 한다는 책임도 전달합니다. 회사 내 소문이나 아직 확정되지 않은 내용에 자주 씁니다.",
           "dialogue": "A: Do you know when the new hires are starting?\nB: Don't quote me on this, but I heard it's mid-July. The formal announcement should be next week.\nA: That's helpful to know for planning. I'll wait for the official date.\nB: Yeah, plans could still change.",
           "example": "Don't quote me on this, but I think the budget got approved — I overheard something in the hallway.",
-          "practice": "The new policy might take effect next month — don't quote me on that, though. I'd check with HR directly."
+          "practice": "The new policy might take effect next month — don't quote me on that, though. I'd check with HR directly.",
+          "example_ko": "확실친 않은데, 예산이 승인된 것 같아 — 복도에서 얼핏 들었어."
         },
         {
           "id": "PACK_EN_032_04",
@@ -55,7 +58,8 @@
           "nuance": "'Loop'는 정보가 순환하는 고리입니다. 그 고리 '밖'에 있으면 최신 상황을 모르는 것이고, '안'에 있으면 알고 있는 것입니다. 'I've been out of the loop'처럼 자신이 모르고 있었음을 인정할 때, 또는 'Keep me in the loop'처럼 앞으로 정보를 공유해달라고 요청할 때 씁니다.",
           "dialogue": "A: What's your take on the new partnership announcement?\nB: I'll be honest — I've been completely out of the loop on this. I've been heads-down on the product side. Can you catch me up?\nA: Sure. Quick version: we're co-launching with a fintech partner in Q4.\nB: That's significant. Who else knows? I want to understand the full picture.",
           "example": "I've been traveling for two weeks — I'm a bit out of the loop. Can someone give me a quick summary of where things stand?",
-          "practice": "Loop me in on the vendor negotiation — I don't want to be out of the loop when the client asks me about timelines."
+          "practice": "Loop me in on the vendor negotiation — I don't want to be out of the loop when the client asks me about timelines.",
+          "example_ko": "2주 동안 출장 다녀와서 상황을 잘 몰라요. 누가 지금 어떻게 돌아가는지 간단히 정리해줄 수 있을까요?"
         },
         {
           "id": "PACK_EN_032_05",
@@ -65,13 +69,20 @@
           "nuance": "'How are you?'는 그냥 인사지만, 'How are you holding up?'은 '나는 당신이 힘든 상황에 있다는 걸 알고 있고, 실제로 어떻게 지내는지 궁금하다'는 뜻입니다. 누군가 큰 프로젝트를 끝냈거나, 힘든 일을 겪고 있거나, 스트레스가 많은 시기를 보내고 있을 때 씁니다. 상대방이 속마음을 더 쉽게 열게 만드는 표현입니다.",
           "dialogue": "A: Hey — you've been in the middle of this product crisis for three weeks now. How are you holding up?\nB: Honestly? Running on fumes. But we're close to a resolution.\nA: Is there anything I can take off your plate right now?\nB: If you could handle the stakeholder update email this afternoon, that would genuinely help.\nA: Consider it done.",
           "example": "With everything that's happened this month — the launch, the team changes, the budget cuts — how are you honestly holding up?",
-          "practice": "How are you holding up with the new manager? I know the transition has been bumpy."
+          "practice": "How are you holding up with the new manager? I know the transition has been bumpy.",
+          "example_ko": "이번 달에 있었던 모든 일 — 출시, 팀 변화, 예산 삭감까지 — 솔직히 어떻게 버티고 계세요?"
         }
       ],
       "master_paragraph": {
         "text": "Between you and me, I've been a bit out of the loop this week — don't quote me on this, but I think there may be some restructuring conversations happening. How are you holding up with all the uncertainty? Honestly, I think we all just need to do our best work and keep the right people informed. At some point today let's call it a day early and reset — we'll think more clearly tomorrow.",
         "translation": "우리끼리 얘기인데요, 이번 주에 제가 상황을 좀 모르고 있었어요 — 공식 발언으로는 인용하지 마세요, 구조 조정 관련 이야기가 오가고 있는 것 같아요. 이 모든 불확실성 속에서 어떻게 버티고 있어요? 솔직히, 우리 모두 그냥 최선을 다하고 적절한 사람들한테 계속 보고하면 될 것 같아요. 오늘 어느 시점에 일찍 마무리하고 리셋합시다 — 내일 더 맑은 정신으로 생각할 수 있을 거예요.",
-        "highlights": ["between you and me", "out of the loop", "don't quote me on this", "how are you holding up", "let's call it a day"]
+        "highlights": [
+          "between you and me",
+          "out of the loop",
+          "don't quote me on this",
+          "how are you holding up",
+          "let's call it a day"
+        ]
       }
     }
   ],

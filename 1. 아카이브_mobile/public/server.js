@@ -59,7 +59,10 @@ const EXAM_SETTINGS_PATH     = path.join(_DATA_DIR, 'exam_settings.json');
 // → public/lib/domain.js로 이관 (db/items.js와 공유)
 
 // ── 이미지 업로드 디렉토리 + multer 설정 ──
-const UPLOADS_DIR = path.join(__dirname, 'uploads');
+/* ⚠️ 반드시 _DATA_DIR(Fly.io 영구 볼륨 /data) 아래에 둘 것 —
+   예전엔 public/uploads/(컨테이너 내부)에 저장해서 재배포할 때마다 업로드 사진이 전부 사라졌다.
+   DB(archive.db)에는 사진 URL이 남아있는데 파일만 없어져 404가 나던 버그(2026-09-10 수정). */
+const UPLOADS_DIR = path.join(_DATA_DIR, 'uploads');
 if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
 
 const upload = multer({

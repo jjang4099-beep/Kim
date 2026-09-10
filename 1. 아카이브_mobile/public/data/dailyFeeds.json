@@ -3662,5 +3662,271 @@
       ],
       "aiGenerated": false
     }
+  },
+  "2026-09-10": {
+    "en_expr": {
+      "id": "2026-09-10::en_expr",
+      "date": "2026-09-10",
+      "subId": "en_expr",
+      "createdAt": "2026-09-10T12:04:55.163Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "language",
+      "category": "en",
+      "subCategory": "deadline_breakthrough",
+      "label": "US 영어 표현",
+      "title": "[목] 마감 압박 속에서 돌파구를 찾을 때: We're down to the wire. 외 4개",
+      "summary": "목요일 — 마감 압박 속에서 돌파구를 찾을 때",
+      "theme": "deadline_breakthrough",
+      "themeTitle": "마감 압박 속에서 돌파구를 찾을 때",
+      "themeTitleEn": "Finding a Breakthrough When the Clock Is Ticking",
+      "dayOfWeek": "목",
+      "vocabEntries": [
+        {
+          "item_id": "PACK_EN_003_01",
+          "expression": "We're down to the wire.",
+          "meaning": "마감이 코앞입니다 / 시간이 촉박합니다",
+          "nuance": "'Down to the wire'는 결승선에 코를 박은 말들처럼 마감이 극도로 임박해 조금의 여유도 없는 상태입니다. 'The deadline is near'보다 훨씬 극적인 긴장감을 전달하며, 이 상황에서는 팀원 누구도 여유를 부릴 수 없다는 집단적 위기감을 환기시킵니다.",
+          "dialogue": "You: Is the report finalized yet?\nDev: Still working on the final section. We're really down to the wire on this one.\nYou: Okay, how much longer do you realistically need?\nDev: Ninety minutes, maybe two hours if the data export runs slow again.",
+          "dialogueKo": "",
+          "sourceSentence": "We're down to the wire on the product launch — every single day counts at this point.",
+          "sourceSentenceKo": "제품 출시가 임박해서 하루하루가 매우 중요한 시점이다.",
+          "practiceSentence": "We're down to the wire on the RFP response. Can everyone clear their schedules for tomorrow morning?"
+        },
+        {
+          "item_id": "PACK_EN_003_02",
+          "expression": "Let's cut to the chase.",
+          "meaning": "서론은 생략하고 핵심만 얘기합시다",
+          "nuance": "'Cut to the chase'는 할리우드 초창기에 클라이맥스 추격 장면(chase scene)으로 바로 넘어가라는 편집 지시에서 유래했습니다. 불필요한 서론이나 우회 없이 핵심만 말하라는 요청으로, 시간이 촉박하거나 상대방이 장황한 설명을 늘어놓을 때 효과적으로 사용합니다.",
+          "dialogue": "Colleague: So, the background of this issue goes back to Q1, when the team decided to restructure the entire reporting pipeline—\nYou: Sorry to interrupt, but let's cut to the chase — what exactly do you need from me before 5 PM?\nColleague: Right. I need your sign-off on the revised budget and the vendor shortlist.\nYou: Both sent to you in the next ten minutes.",
+          "dialogueKo": "",
+          "sourceSentence": "We only have 20 minutes, so let's cut to the chase and address the three biggest blockers.",
+          "sourceSentenceKo": "20분밖에 없으니 바로 본론으로 들어가서 가장 큰 걸림돌 세 가지를 다룹시다.",
+          "practiceSentence": "I'll cut to the chase: the client needs a revised timeline and cost breakdown by Friday morning."
+        },
+        {
+          "item_id": "PACK_EN_003_03",
+          "expression": "Let's fast-track this.",
+          "meaning": "이것을 최우선으로 신속하게 진행합시다",
+          "nuance": "'Fast-track'은 원래 특수 엘리트 코스나 우선 처리 레인을 뜻하며, 비즈니스에서는 일반적인 검토·승인 절차를 건너뛰고 최우선 순위로 처리하겠다는 선언입니다. 위기 상황이나 경쟁 대응 시에 쓰며, '빠르게 하자'는 단순한 요청보다 더 강한 공식 의지를 표현합니다.",
+          "dialogue": "Director: The competitor just announced a very similar product. When can we ship?\nYou: Normally six weeks, but if we fast-track this and pull in two senior engineers, we can ship in three.\nDirector: What's the trade-off?\nYou: We'll need to defer the premium analytics dashboard to version 1.2, but the core product will be rock solid.",
+          "dialogueKo": "",
+          "sourceSentence": "Given the regulatory deadline, we need to fast-track the compliance documentation review.",
+          "sourceSentenceKo": "규제 마감일을 고려해서 컴플라이언스 문서 검토를 서둘러야 합니다.",
+          "practiceSentence": "Legal has agreed to fast-track the contract review so we can sign before the quarter closes."
+        },
+        {
+          "item_id": "PACK_EN_003_04",
+          "expression": "I'll circle back to you on this.",
+          "meaning": "이 건으로 나중에 다시 연락드리겠습니다",
+          "nuance": "'Circle back'은 현재는 다른 우선순위가 있거나 정보가 부족해 즉시 답하기 어려울 때, 반드시 다시 돌아와 이 주제를 다루겠다는 신뢰 있는 약속입니다. 'I'll get back to you'보다 더 적극적이고, 상대방을 잊지 않겠다는 책임감이 담겨 있습니다.",
+          "dialogue": "Client: Can you confirm whether the API integration will support our legacy database architecture?\nYou: Great question, and I want to give you a fully accurate answer. Let me circle back to you on this by end of day after checking with our technical lead.\nClient: Perfect. That's exactly what we need before we can commit to the timeline.\nYou: I'll send a written confirmation along with any technical constraints we identify.",
+          "dialogueKo": "",
+          "sourceSentence": "I don't have the final numbers yet — let me circle back to you on this after the finance call.",
+          "sourceSentenceKo": "아직 최종 수치가 안 나왔어요 — 재무팀 통화 이후에 다시 연락드릴게요.",
+          "practiceSentence": "I'll circle back to you on this by Thursday once the legal team has reviewed the terms."
+        },
+        {
+          "item_id": "PACK_EN_003_05",
+          "expression": "We need to think outside the box.",
+          "meaning": "기존 틀을 벗어나 창의적으로 생각해야 합니다",
+          "nuance": "'Think outside the box'는 기존의 틀과 관행에서 벗어나 창의적이고 비전통적인 해결책을 모색하라는 촉구입니다. 매우 흔한 비즈니스 표현이 되어 다소 진부해졌지만, 역설적으로 팀이 '예상 가능한 답'에만 집착할 때 이 표현 하나가 사고방식을 전환시키는 트리거가 됩니다.",
+          "dialogue": "Manager: The traditional ad campaign is 50% over budget and results are flat. We have to change course.\nYou: What if we think outside the box and partner with five micro-influencers instead of running paid ads?\nManager: That's actually interesting. What would the reach and cost look like?\nYou: Their combined audience is 200,000 in our exact target demographic, and the total cost is a quarter of the ad spend.",
+          "dialogueKo": "",
+          "sourceSentence": "We've tried the standard approaches. It's time to think outside the box on customer acquisition.",
+          "sourceSentenceKo": "표준적인 방법은 다 써봤어요. 이제 고객 확보에 대해 새로운 시각으로 생각해볼 때입니다.",
+          "practiceSentence": "To hit the growth targets with a reduced budget, we'll need to really think outside the box this quarter."
+        }
+      ],
+      "masterParagraph": {
+        "text": "The moment I walked into the Monday all-hands, I could feel the tension — we were clearly down to the wire on the product launch, and nobody had a clean solution. Our VP said, 'Let's cut to the chase: we have 48 hours. What can we actually ship?' I suggested we fast-track the authentication module and defer the reporting dashboard, which got a nod from engineering. For the vendor partnership question, I told the room, 'Let me circle back to you on this by tomorrow morning once I have the legal team's input.' On the way out, the designer pulled me aside and whispered, 'I know it feels impossible, but we need to think outside the box on the onboarding UX — what if it were a single screen instead of five?' That ten-second conversation became our breakthrough.",
+        "translation": "월요일 전체 회의에 발을 들여놓는 순간 긴장감이 느껴졌다 — 제품 출시 마감이 코앞으로 다가왔는데 깔끔한 해결책이 없었다. 부사장이 말했다. '핵심만 얘기합시다: 48시간 남았습니다. 실제로 무엇을 출시할 수 있나요?' 나는 인증 모듈을 최우선으로 신속하게 진행하고 리포팅 대시보드는 미루자고 제안했고, 엔지니어링 팀이 고개를 끄덕였다. 파트너십 계약 문제가 나왔을 때, 나는 방 안에 있는 사람들에게 '법무팀 의견을 받아서 내일 아침까지 다시 연락드리겠습니다'라고 했다. 회의를 나오는 길에 디자이너가 나를 불러 속삭였다. '불가능해 보이는 건 알지만, 온보딩 UX를 기존 틀 밖에서 생각해봐야 해요 — 다섯 화면 대신 단 하나의 화면이면 어떨까요?' 그 10초짜리 대화가 우리의 돌파구가 되었다.",
+        "highlights": [
+          "down to the wire",
+          "cut to the chase",
+          "fast-track",
+          "circle back to you",
+          "think outside the box"
+        ]
+      },
+      "pack_id": "PACK_EN_003",
+      "aiGenerated": false
+    },
+    "hist_daily": {
+      "id": "2026-09-10::hist_daily",
+      "date": "2026-09-10",
+      "subId": "hist_daily",
+      "createdAt": "2026-09-10T12:04:55.203Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "history",
+      "label": "역사 지식 한줌",
+      "category": "history",
+      "item_id": "HI_042",
+      "era": "세계사",
+      "period": "1215년 6월 15일",
+      "title": "마그나카르타 — 왕권 제한과 법치주의의 씨앗",
+      "summary": "1215년 영국 귀족들이 존 왕에게 강제로 서명하게 한 마그나카르타(대헌장)는 '왕도 법 위에 있지 않다'는 원칙을 확립한 인류 최초의 헌법적 문서다.",
+      "summary3": "",
+      "behindStory": "존 왕(King John, 재위 1199~1216)은 프랑스와의 전쟁에서 패하고 막대한 세금을 귀족들에게 부과했다. 1215년 귀족들이 반란을 일으켜 런던을 점령하자, 존 왕은 런던 남서쪽 러니미드(Runnymede) 초원에서 마그나카르타에 서명할 수밖에 없었다. 핵심 조항은 두 가지였다. 첫째, 왕은 귀족의 동의 없이 세금을 부과할 수 없다(현대 의회 민주주의의 원형). 둘째, 어떤 자유민도 법적 절차 없이 체포·투옥·재산 몰수·추방될 수 없다(적법 절차의 원칙). 존 왕은 서명 후 교황에게 무효화를 요청했고, 이후 수십 년간 마그나카르타는 유명무실했다. 그러나 17세기 영국 의회가 왕권에 맞서 싸울 때 이 문서를 '고대로부터의 권리'로 부활시켰다. 이것이 미국 헌법과 권리장전, 나아가 유엔 세계인권선언의 사상적 출발점이 됐다.",
+      "lesson": "",
+      "aiGenerated": false
+    },
+    "idiom_daily": {
+      "id": "2026-09-10::idiom_daily",
+      "date": "2026-09-10",
+      "subId": "idiom_daily",
+      "createdAt": "2026-09-10T12:04:55.220Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "idiom",
+      "label": "오늘의 고사성어",
+      "category": "history",
+      "item_id": "IDC_051",
+      "title": "좌불안석 (坐不安席)",
+      "idiom": "좌불안석",
+      "hanja": "坐不安席",
+      "meaning": "앉아도 자리가 편하지 않다. 걱정이나 불안으로 가만히 있지 못하고 초조한 상태.",
+      "origin": "《사기(史記)》. '불안석(不安席)'은 자리에 편안히 앉지 못한다는 뜻으로, 심리적 불안과 조급함을 나타낸다.",
+      "story": "마감 전날, 핵심 기능이 아직 완성되지 않았다는 소식을 들은 팀장은 좌불안석이었다.",
+      "behindStory": "",
+      "application": "중요한 결과를 기다리거나 해결되지 않은 문제가 있을 때의 심리적 불안과 초조함을 묘사할 때 쓴다. 다소 문어적인 표현이므로 글로 쓸 때 더 자연스럽다. 자신의 현재 상태를 유머러스하게 표현하거나, 타인의 안절부절못하는 상태를 정확히 묘사할 때 좋다.",
+      "aiGenerated": false
+    },
+    "liber_classic": {
+      "id": "2026-09-10::liber_classic",
+      "date": "2026-09-10",
+      "subId": "liber_classic",
+      "createdAt": "2026-09-10T12:04:55.253Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "liber",
+      "label": "오늘의 고전",
+      "category": "inbox",
+      "item_id": "CLQ_058",
+      "title": "명심보감 — 범립본(范立本) 편찬",
+      "book": "명심보감",
+      "author": "범립본(范立本) 편찬",
+      "era": "Ming Dynasty",
+      "quote": "말이 많으면 반드시 잃는 것이 많고, 일이 많으면 반드시 걱정이 많다.",
+      "source": "多言必多失，多事必多憂。— 명심보감 언어편(言語篇)",
+      "theme": "절제",
+      "context": "말의 경제학을 설명하는 구절이다. 회의에서 말을 많이 할수록 신중하지 않은 말이 섞이고, 그 말이 관계와 신뢰를 망친다. '말이 많은 사람'보다 '말수는 적지만 핵심을 짚는 사람'이 더 설득력 있다는 것을 직장에서 빨리 배우는 사람이 먼저 성장한다. 두 번째 문장도 날카롭다 — 불필요한 일을 자꾸 벌이면 생기는 걱정의 양도 비례해서 늘어난다. 선택과 집중은 일을 줄이는 것에서 시작한다.",
+      "tags": [
+        "절제",
+        "커뮤니케이션",
+        "집중",
+        "설득",
+        "우선순위"
+      ],
+      "aiGenerated": false
+    },
+    "insight_daily": {
+      "id": "2026-09-10::insight_daily",
+      "date": "2026-09-10",
+      "subId": "insight_daily",
+      "createdAt": "2026-09-10T12:04:55.255Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "insight",
+      "label": "오늘의 인사이트",
+      "category": "inbox",
+      "item_id": "INS_005",
+      "title": "리더십 — 심리적 안전감",
+      "topic": "심리적 안전감",
+      "headline": "구글이 5년 연구 끝에 발견한 최고 팀의 공통점 — 능력이 아니라 '말할 수 있는 분위기'였다",
+      "body": "구글은 2012년부터 5년간 180개 팀을 분석한 프로젝트 아리스토텔레스(Project Aristotle)를 통해, 팀 성과를 결정하는 가장 강력한 요인이 심리적 안전감(Psychological Safety)임을 발견했다. 심리적 안전감이란 '이 팀에서 솔직한 의견을 말해도 비난받거나 불이익을 받지 않는다'는 집단적 믿음이다. 팀원이 실수를 숨기고, 반대 의견을 삼키고, 모르는 것을 묻지 않는 조직은 — 겉보기에는 조용하고 질서 있어 보여도 — 실제로는 정보가 왜곡되고 위험이 축적된다.",
+      "realLife": "팀장이 아이디어 발표 중에 '그건 왜 생각했어요?'라고 비판적으로 물으면, 이후 팀원들은 아이디어를 내는 것 자체를 두려워하게 된다. 반대로 실수한 팀원이 '제가 이걸 놓쳤어요'라고 먼저 말할 수 있는 팀은 문제가 커지기 전에 빠르게 해결된다. 에이미 에드먼슨(Amy Edmondson) 교수에 따르면, 역설적으로 심리적 안전감이 높은 팀이 보고하는 실수 건수가 더 많다 — 실수가 더 많아서가 아니라, 말할 수 있는 환경이 되어서다.",
+      "question": "내 팀원들은 나에게 '나쁜 소식'을 솔직하게 먼저 말할 수 있는가?",
+      "tags": [
+        "심리적안전감",
+        "리더십",
+        "팀문화",
+        "혁신",
+        "구글"
+      ],
+      "icon": "🎯",
+      "color": "#dc2626",
+      "subCategory": "leadership",
+      "aiGenerated": false
+    },
+    "us_market": {
+      "id": "2026-09-10::us_market",
+      "date": "2026-09-10",
+      "subId": "us_market",
+      "createdAt": "2026-09-10T12:04:55.166Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "market",
+      "category": "economy",
+      "subCategory": "미국 증시 · 경제",
+      "label": "미국 시황",
+      "title": "금리 불안 재점화, 채권시장 경고음",
+      "summary": "10년물 국채 수익률 4.84% 재상승하며 긴축 우려 확산, 주요 지수 동반 약세 흐름 지속",
+      "indicators": [
+        {
+          "name": "S&P 500",
+          "value": "7,636.36",
+          "change": "-0.48%",
+          "dir": "down"
+        },
+        {
+          "name": "나스닥",
+          "value": "26,253.34",
+          "change": "-0.64%",
+          "dir": "down"
+        },
+        {
+          "name": "다우 지수",
+          "value": "52,380.66",
+          "change": "-0.77%",
+          "dir": "down"
+        },
+        {
+          "name": "미 국채 10년물",
+          "value": "4.84%",
+          "change": "+3bp",
+          "dir": "up"
+        },
+        {
+          "name": "VIX 공포지수",
+          "value": "16.72",
+          "change": "+1.58%",
+          "dir": "up"
+        }
+      ],
+      "summary3": "• 10년물 국채 수익률 4.84% 돌파하며 연준의 '더 오래 높은 금리' 시나리오 가시화\n• 금리 민감 성장주 중심 매도세 강화, 다우지수 낙폭(-0.77%) 가장 커\n• VIX 상승에도 16대 중반 수준은 투자자들이 패닉보다 '경계 모드' 유지 중임을 시사",
+      "checkpoints": [
+        "이번 주 발표될 PCE 물가지수 - 연준 선호 인플레이션 지표로 금리 방향성 좌우",
+        "미 국채 10년물 4.85~4.90% 돌파 여부 - 기술적 저항선 돌파 시 조정 심화 가능",
+        "달러 인덱스 강세 지속 여부 - 신흥국 자금 유출과 글로벌 유동성 긴축 신호"
+      ],
+      "report": "## 시장 흐름\n채권시장이 보내는 경고음이 커지고 있습니다. 10년물 국채 수익률이 4.84%까지 상승하며 2월 중순 이후 최고 수준을 재시험 중입니다. 이는 시장이 연준의 금리 인하 기대를 빠르게 거두고 있다는 신호입니다. 인플레이션 재가속 우려와 재정 적자 확대 논란이 맞물리며 장기 금리 상승 압력이 구조화되는 양상입니다. VIX 지수 상승은 투자자들의 경계심이 높아지고 있음을 보여줍니다.\n\n## 투자 인사이트\n현재 국채 수익률 곡선의 가파른 상승은 '골디락스 종료' 가능성을 경고합니다. 금리가 높은 수준에서 장기화될 경우 기업 이익 추정치 하향이 불가피하며, 밸류에이션 부담이 큰 성장주는 추가 조정 압력에 노출됩니다. 역사적으로 10년물 수익률이 5% 근접 시 주식 멀티플 압축이 가속화됐던 점을 주목해야 합니다. 현금 및 단기채권 비중 확대로 방어적 포지셔닝 강화가 필요한 국면입니다.",
+      "aiEconomicKnowledge": [
+        {
+          "term": "국채 수익률 곡선(Yield Curve)",
+          "importance": "단기와 장기 국채 금�� 차이를 나타내며, 경기 침체 예측의 핵심 지표입니다. 역사적으로 장단기 금리 역전(10년물<2년물) 발생 후 평균 12~18개월 내 경기 침체가 왔으며, 현재는 정상화 국면이지만 장기물 급등은 경착륙 리스크를 의미합니다.",
+          "connection": "주택담보대출, 기업 대출 금리가 장기 국채 수익률을 따라 움직여 실물경제 자금 조달 비용에 직접 영향을 줍니다."
+        },
+        {
+          "term": "PCE 물가지수(Personal Consumption Expenditures)",
+          "importance": "연준이 CPI보다 중시하는 인플레이션 지표로, 소비 패턴 변화를 반영해 더 정확합니다. 연준의 목표치 2%를 지속 상회할 경우 금리 인하 시점이 2025년 하반기 이후로 미뤄질 수 있습니다.",
+          "connection": "물가 상승률이 임금 상승률을 초과하면 실질 구매력이 감소해 가계 소비 여력이 줄어듭니다."
+        },
+        {
+          "term": "VIX 공포지수(Volatility Index)",
+          "importance": "S&P 500 옵션 가격에서 산출한 향후 30일 변동성 예상치입니다. 20 이상은 불안, 30 이상은 공포 국면을 의미하며, 현재 16대는 '경계' 단계로 아직 시스템적 위기 수준은 아닙니다.",
+          "connection": "VIX 급등 시 개인투��자 계좌의 신용거래 마진콜이 증가하고, 연금펀드의 리밸런싱 매도가 촉발됩니다."
+        }
+      ],
+      "aiGenerated": true,
+      "isLive": true,
+      "marketClosed": false,
+      "dataAsOf": "2026-09-10T11:49:46.000Z"
+    }
   }
 }

@@ -324,9 +324,11 @@
     const photos = (it.life?.photos || []).filter(Boolean);
     const meta = [it.life?.mood, it.life?.location, it.life?.weather].filter(Boolean).join(' · ');
     const caption = it.text || it.title || '';
+    /* lazy 로딩을 쓰지 않는다 — 하루치 사진은 몇 장 안 되고, 지연되면 404 대체 표시가
+       화면에 들어올 때까지 안 걸려서 빈 칸으로 보인다(재배포 전 업로드분은 전부 유실 상태). */
     const shots = photos.length
       ? `<div class="shots">${photos.map(p =>
-          `<img src="${esc(p)}" alt="" loading="lazy"
+          `<img src="${esc(p)}" alt=""
                 onerror="this.outerHTML='&lt;div class=&quot;shot-missing&quot;&gt;사진을 찾을 수 없어요&lt;/div&gt;'"/>`).join('')}</div>`
       : '';
     return `<article class="entry">
@@ -351,13 +353,24 @@
     </article>`;
   }
 
+  const isUrl = s => /^https?:\/\/\S+$/.test(String(s || '').trim());
+
   function textCard(it) {
     const d = dom(it.domain);
     const a = it.analysis || {};
-    const title = a.title || it.title || (it.text || '').split('\n')[0].slice(0, 60) || '기록';
+    const firstLine = (it.text || '').split('\n')[0].trim();
+
+    /* 공유 시트로 들어온 링크는 title이 URL 그대로인 경우가 있다 — 그땐 요약을 제목으로 올리고
+       URL은 아래 링크로 뺀다(제목 자리에 주소가 박히면 읽기 어렵다). */
+    const candidates = [a.title, it.title, firstLine].filter(Boolean);
+    const title = candidates.find(t => !isUrl(t)) || '기록';
+
+    const link = [it.source, it.title, firstLine].find(isUrl) || null;
+
     let body = it.myInsight || a.summary || it.summary || it.text || '';
-    if (body === title) body = it.text && it.text !== title ? it.text : '';
+    if (body === title || isUrl(body)) body = (it.text && it.text !== title && !isUrl(it.text)) ? it.text : '';
     if (body.length > 420) body = body.slice(0, 420) + '…';
+
     return `<article class="entry">
       <div class="entry__kind">
         <i class="dot" style="background:${d.color}"></i>${esc(d.label)}
@@ -366,6 +379,7 @@
       <div class="entry__body">
         <h3 class="entry__title">${esc(title)}</h3>
         ${body ? `<p class="entry__text">${esc(body)}</p>` : ''}
+        ${link ? `<a class="entry__link" href="${esc(link)}" target="_blank" rel="noopener">원문 열기 ↗</a>` : ''}
       </div>
     </article>`;
   }

@@ -482,9 +482,19 @@
     }
   });
 
+  /* 총평은 마크다운으로 오는 경우가 있는데 이 페이지는 평문으로 보여주므로 기호만 걷어낸다 */
+  function stripMd(t) {
+    return String(t || '')
+      .replace(/^#{1,6}\s*/gm, '')      // 제목 기호
+      .replace(/\*\*(.+?)\*\*/g, '$1')  // 굵게
+      .replace(/^\s*[-*]\s+/gm, '· ')   // 목록
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
+  }
+
   function paintAI(data) {
     const s = data.stats || {};
-    $('aiBody').textContent = data.aiReview || '아직 총평을 만들 만큼 기록이 쌓이지 않았어요.';
+    $('aiBody').textContent = stripMd(data.aiReview) || '아직 총평을 만들 만큼 기록이 쌓이지 않았어요.';
     const kws = (s.topKeywords || []).slice(0, 12);
     $('aiKw').innerHTML = kws.map(k => `<span class="kw">${esc(k.word || k)}</span>`).join('');
     $('aiTitle').textContent = `${state.year}년, 무엇을 배웠나`;

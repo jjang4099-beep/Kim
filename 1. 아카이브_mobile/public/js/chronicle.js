@@ -362,7 +362,7 @@
 
     /* 공유 시트로 들어온 링크는 title이 URL 그대로인 경우가 있다 — 그땐 요약을 제목으로 올리고
        URL은 아래 링크로 뺀다(제목 자리에 주소가 박히면 읽기 어렵다). */
-    const candidates = [a.title, it.title, firstLine].filter(Boolean);
+    const candidates = [a.title, it.title, it.summary, firstLine].filter(Boolean);
     const title = candidates.find(t => !isUrl(t)) || '기록';
 
     const link = [it.source, it.title, firstLine].find(isUrl) || null;

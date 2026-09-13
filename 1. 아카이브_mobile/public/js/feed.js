@@ -254,7 +254,10 @@ Object.assign(Mob, {
       </div>` : '';
 
     const hasExpand = !!(behindSect || lessonSect);
+    /* ⚠️ item.summary(사건 본문 4~5문장)는 예전에 아예 렌더되지 않아 카드에 제목만 남았었다.
+       DB 서빙 역사 항목은 summary3/lesson이 비어 있으므로 summary가 유일한 본문이다 — 지우지 말 것. */
     const frontLesson = item.lesson || s3Lines[0] || '';
+    const bodyText    = item.summary || '';
     const subId = item.subId || '';
     const date  = item.date  || '';
     const isSaved = !!(item.saved || item.savedItemId);
@@ -271,7 +274,7 @@ Object.assign(Mob, {
       <div class="mob-hum-badge-row">
         <span class="mob-hum-badge">역사 · ${item.era || '세계사'}</span>
         <div class="mob-hum-badge-row-r">
-          <span class="mob-hum-period">${item.period || ''}</span>
+          <span class="mob-hum-period">${[item.period, item.region].filter(Boolean).join(' · ')}</span>
           ${saveBtn}
         </div>
       </div>
@@ -281,6 +284,7 @@ Object.assign(Mob, {
         <div class="mob-hum-lesson">
           <span>${frontLesson}</span>
         </div>` : ''}
+        ${bodyText ? `<div class="mob-hum-behind-txt" style="padding:10px 0 0">${bodyText}</div>` : ''}
       </div>
       ${hasExpand ? `
       <button class="mob-hum-behind-btn" onclick="event.stopPropagation();Mob._toggleBehindStory(this)">
@@ -417,9 +421,17 @@ Object.assign(Mob, {
 
   /** 고사성어 카드 v53 — Closed: 성어+뜻+출처 / Expanded: 유래+Strategic Lesson */
   _cardHumIdiom(item) {
+    /* ⚠️ origin이 진짜 '유래', story(=example)는 한 문장짜리 예문이다.
+       예전엔 예문에 '유래 이야기' 라벨이 붙고 유래는 닫힌 카드에 작게만 나와서 내용이 없어 보였다. */
+    const originSect = item.origin ? `
+      <div class="mob-hum-acc-sect">
+        <div class="mob-hum-acc-lbl">유래</div>
+        <div class="mob-hum-acc-body">${item.origin}</div>
+      </div>` : '';
+
     const storySect = item.story ? `
       <div class="mob-hum-acc-sect">
-        <div class="mob-hum-acc-lbl">유래 이야기</div>
+        <div class="mob-hum-acc-lbl">이렇게 쓴다</div>
         <div class="mob-hum-acc-body">${item.story}</div>
       </div>` : '';
 
@@ -435,7 +447,7 @@ Object.assign(Mob, {
         <div class="mob-hum-acc-body">${item.application}</div>
       </div>` : '';
 
-    const hasExpand = !!(storySect || behindSect || applSect);
+    const hasExpand = !!(originSect || storySect || behindSect || applSect);
     const subId = item.subId || '';
     const date  = item.date  || '';
     const isSaved = !!(item.saved || item.savedItemId);
@@ -459,14 +471,13 @@ Object.assign(Mob, {
       <div class="mob-hum-content">
         <div class="mob-hum-idiom-title">${item.idiom || item.title || ''}</div>
         ${item.meaning ? `<div class="mob-hum-meaning">${item.meaning}</div>` : ''}
-        ${item.origin ? `<div class="mob-hum-origin">${item.origin}</div>` : ''}
       </div>
       ${hasExpand ? `
       <button class="mob-hum-behind-btn" onclick="event.stopPropagation();Mob._toggleBehindStory(this)">
         자세히 보기 <i class="ti ti-chevron-down"></i>
       </button>
       <div class="mob-hum-behind-panel">
-        ${storySect}${applSect}${behindSect}
+        ${originSect}${storySect}${applSect}${behindSect}
       </div>` : ''}
     </div>`;
   },
@@ -1041,12 +1052,13 @@ Object.assign(Mob, {
     /* 배달 알림 버튼 상태 동기화 */
     this._refreshPushStatus();
 
-    /* 허용 피드: 7종 (언어 2 + 시황 2 + 인문학 3) */
-    const ALLOWED_IDS = ['en_expr', 'zh_expr', 'us_market', 'kr_market', 'hist_daily', 'quote_daily', 'idiom_daily'];
+    /* 허용 피드: 5종 (언어 2 + 시황 2 + 지식 한줌 1)
+       — 역사/명언/고사성어/고전/인사이트는 daily_knowledge 하나로 합쳐졌다 */
+    const ALLOWED_IDS = ['en_expr', 'zh_expr', 'us_market', 'kr_market', 'daily_knowledge'];
     const filtered         = feeds.filter(f => ALLOWED_IDS.includes(f.id));
     const langFeeds        = filtered.filter(f => f.type === 'language'   || f.id.includes('expr'));
     const marketFeeds      = filtered.filter(f => f.type === 'market'     || f.id.includes('market'));
-    const humanitiesFeeds  = filtered.filter(f => f.type === 'humanities' || ['hist_daily','quote_daily','idiom_daily'].includes(f.id));
+    const humanitiesFeeds  = filtered.filter(f => f.type === 'humanities' || f.id === 'daily_knowledge');
 
     /* ── 공통: 아코디언 행 + 패널 래퍼 생성기 ── */
     const wrapPanel = (sub, badgeTxt, panelBody) => `
@@ -1165,7 +1177,7 @@ Object.assign(Mob, {
       if (ma)       return 'Macro 중심';
       return '테마 없음';
     };
-    const histBadge   = () => cfg['hist_daily']?.era || '상관없음';
+    const histBadge   = (fid) => cfg[fid]?.era || '상관없음';
 
     /* ── 테마 옵션 상수 ── */
     const EN_THEMES = [
@@ -1181,8 +1193,8 @@ Object.assign(Mob, {
     ];
 
     /* ── 역사 피드 패널 본문 ── */
-    const histPanelBody = () => {
-      const era = cfg['hist_daily']?.era || '상관없음';
+    const histPanelBody = (fid) => {
+      const era = cfg[fid]?.era || '상관없음';
       const opts = [
         { val: '한국사',  label: '🐯 한국사' },
         { val: '세계사',  label: '🌍 세계사'  },
@@ -1194,7 +1206,7 @@ Object.assign(Mob, {
           <div class="mvw-level-group">
             ${opts.map(o => `
             <label class="mvw-level-item${era === o.val ? ' active' : ''}">
-              <input type="radio" name="hist_dailyEra" value="${o.val}"
+              <input type="radio" name="${fid}Era" value="${o.val}"
                      ${era === o.val ? 'checked' : ''}
                      onchange="this.closest('.mvw-level-group').querySelectorAll('.mvw-level-item').forEach(x=>x.classList.remove('active'));this.closest('.mvw-level-item').classList.add('active')"/>
               <span>${o.label}</span>
@@ -1226,9 +1238,7 @@ Object.assign(Mob, {
     if (filtered.length) {
       const en   = langFeeds.find(f => f.id === 'en_expr');
       const zh   = langFeeds.find(f => f.id === 'zh_expr');
-      const hist = humanitiesFeeds.find(f => f.id === 'hist_daily');
-      const quot = humanitiesFeeds.find(f => f.id === 'quote_daily');
-      const idio = humanitiesFeeds.find(f => f.id === 'idiom_daily');
+      const know = humanitiesFeeds.find(f => f.id === 'daily_knowledge');
 
       subsList.innerHTML = `
         <div class="mvw-dp-group-label">🎓 언어 학습</div>
@@ -1236,10 +1246,8 @@ Object.assign(Mob, {
         ${zh ? wrapPanel(zh, langBadge('zh_expr', 5),  langPanelBody('zh_expr', ZH_THEMES, 5)) : ''}
         <div class="mvw-dp-group-label">📊 시황 분석</div>
         ${marketFeeds.map(mf => wrapPanel(mf, marketBadge(mf.id), marketPanelBody(mf.id))).join('')}
-        <div class="mvw-dp-group-label">🏛️ 인문학</div>
-        ${hist ? wrapPanel(hist, histBadge(), histPanelBody()) : ''}
-        ${quot ? wrapSimpleSub(quot) : ''}
-        ${idio ? wrapSimpleSub(idio) : ''}`;
+        <div class="mvw-dp-group-label">🧠 지식 한줌</div>
+        ${know ? wrapPanel(know, histBadge('daily_knowledge'), histPanelBody('daily_knowledge')) : ''}`;
     } else {
       subsList.innerHTML = `<div style="padding:12px 0;font-size:13px;color:var(--text-3)">설정 로드 실패</div>`;
     }
@@ -1282,12 +1290,12 @@ Object.assign(Mob, {
         `#${feedId}Panel .mvw-theme-list input[type="checkbox"]:checked`)].map(cb => cb.value);
       settings.is_market_centric = checked.includes('market_centric');
       settings.is_macro_centric  = checked.includes('macro_centric');
-    } else if (feedId === 'hist_daily') {
-      /* 역사 피드 — 시대 선호 */
-      const eraInput = document.querySelector(`#hist_dailyPanel input[name="hist_dailyEra"]:checked`);
+    } else if (feedId === 'hist_daily' || feedId === 'daily_knowledge') {
+      /* 지식 한줌 — 역사 갈래의 시대 선호 */
+      const eraInput = document.querySelector(`#${feedId}Panel input[name="${feedId}Era"]:checked`);
       settings.era   = eraInput?.value || '상관없음';
     } else {
-      /* quote_daily, idiom_daily — 상세 설정 없음 */
+      /* 상세 설정이 없는 피드 */
       settings = {};
     }
 
@@ -1310,7 +1318,7 @@ Object.assign(Mob, {
         } else if (feedId === 'us_market' || feedId === 'kr_market') {
           const { is_market_centric: mc, is_macro_centric: ma } = settings;
           badge.textContent = (mc && ma) ? '증시+Macro' : mc ? '증시 중심' : ma ? 'Macro 중심' : '테마 없음';
-        } else if (feedId === 'hist_daily') {
+        } else if (feedId === 'hist_daily' || feedId === 'daily_knowledge') {
           badge.textContent = settings.era || '상관없음';
         }
       }

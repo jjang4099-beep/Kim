@@ -6,7 +6,9 @@
     "category": "en",
     "topic": "비즈니스 영어",
     "lang": "영어",
-    "options": { "count": 7 },
+    "options": {
+      "count": 7
+    },
     "enabled": true,
     "desc": "요일별 테마 비즈니스 영어 표현 7선 + 실전 대화문",
     "icon": "🗽"
@@ -18,7 +20,9 @@
     "category": "en",
     "topic": "비즈니스 중국어",
     "lang": "중국어",
-    "options": { "count": 5 },
+    "options": {
+      "count": 5
+    },
     "enabled": false,
     "desc": "요일별 테마 비즈니스 중국어 표현 5선 + 실전 대화문",
     "icon": "🐉"
@@ -72,7 +76,7 @@
     "label": "오늘의 고사성어",
     "category": "history",
     "topic": "한자 성어와 삶의 지혜",
-    "enabled": true,
+    "enabled": false,
     "desc": "한자 성어 뜻풀이 + 유래 설화 + 비하인드 이야기",
     "icon": "📜"
   },
@@ -83,7 +87,7 @@
     "label": "오늘의 고전",
     "category": "inbox",
     "topic": "고전·철학 명구절 (LIBER)",
-    "enabled": true,
+    "enabled": false,
     "desc": "세계 고전·철학에서 길어 올린 한 구절 + 직장인 관점 해석",
     "icon": "📖"
   },
@@ -94,8 +98,19 @@
     "label": "오늘의 인사이트",
     "category": "inbox",
     "topic": "심리·행동경제·철학·조직 인사이트",
-    "enabled": true,
+    "enabled": false,
     "desc": "3분이면 써먹는 심리·행동경제·철학 개념 + 실전 사례",
     "icon": "💡"
+  },
+  {
+    "id": "daily_knowledge",
+    "type": "humanities",
+    "subType": "mixed",
+    "label": "지식 한줌",
+    "category": "history",
+    "topic": "역사 · 고사성어 · 고전 · 인사이트",
+    "enabled": true,
+    "desc": "하루 한 갈래씩 — 사건과 그 배경까지 같이 읽는 일반상식 한 조각",
+    "icon": "🧠"
   }
 ]

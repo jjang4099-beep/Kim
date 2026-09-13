@@ -3928,5 +3928,191 @@
       "marketClosed": false,
       "dataAsOf": "2026-09-10T11:49:46.000Z"
     }
+  },
+  "2026-09-13": {
+    "en_expr": {
+      "id": "2026-09-13::en_expr",
+      "date": "2026-09-13",
+      "subId": "en_expr",
+      "createdAt": "2026-09-13T12:02:51.961Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "language",
+      "category": "en",
+      "subCategory": "driving_change_innovation",
+      "label": "US 영어 표현",
+      "title": "[일] 변화와 혁신을 이끌 때: shake things up 외 4개",
+      "summary": "일요일 — 변화와 혁신을 이끌 때",
+      "theme": "driving_change_innovation",
+      "themeTitle": "변화와 혁신을 이끌 때",
+      "themeTitleEn": "Driving Change and Innovation",
+      "dayOfWeek": "일",
+      "vocabEntries": [
+        {
+          "item_id": "PACK_EN_010_01",
+          "expression": "shake things up",
+          "meaning": "기존 방식을 과감하게 뒤흔들다",
+          "nuance": "'Shake'는 물리적으로 흔드는 행위입니다. 오랫동안 고착된 관행이나 루틴을 강하게 뒤흔들어 변화를 만들어내는 것을 의미합니다. 혁신적인 리더가 부임하거나 조직이 침체됐을 때 '이제 판을 바꾸겠다'는 의지를 표현할 때 자주 쓰입니다. 긍정적 맥락에서는 혁신과 돌파의 언어이고, 비판적 맥락에서는 '불필요한 혼란을 만든다'는 우려의 언어이기도 합니다.",
+          "dialogue": "New Director: The team has been using the same workflow for four years. Productivity is flat.\nYou: I think it's time to shake things up. What if we moved to async-first communication and cut the standing meetings by half?\nNew Director: That's a significant change. How do you handle pushback from people attached to the old process?\nYou: You bring data first, then the proposal. Nobody argues with a chart showing where three hours a week disappear.",
+          "dialogueKo": "",
+          "sourceSentence": "The new CMO came in ready to shake things up — six underperforming campaigns were rebuilt within her first quarter.",
+          "sourceSentenceKo": "새로 온 CMO는 판을 뒤흔들 준비가 되어 있었다 — 부임 첫 분기 만에 성과 부진한 캠페인 6개를 전면 재구성했다.",
+          "practiceSentence": "Sometimes you need to shake things up to remind the team what creative risk-taking actually feels like."
+        },
+        {
+          "item_id": "PACK_EN_010_02",
+          "expression": "ahead of the curve",
+          "meaning": "시대를 앞서가다. 남들보다 먼저 파악하고 행동하다",
+          "nuance": "'커브(곡선)'가 상승하기 전에 이미 그 방향을 예측하고 대비한다는 이미지입니다. 단순히 '빠른 것'이 아니라 '이미 어디로 가는지 보인다'는 예측적 통찰을 내포합니다. 시장 변화, 기술 트렌드, 규제 환경 변화를 누구보다 먼저 감지하고 그에 맞게 조직을 준비시키는 사람이나 회사를 묘사할 때 씁니다. 반대는 'behind the curve(뒤처진)'입니다.",
+          "dialogue": "VP Strategy: Competitors are still debating whether to invest in AI tools. We've been integrating them for eight months.\nYou: That's what it means to stay ahead of the curve. The platforms are shifting faster than most teams can adapt.\nVP Strategy: But what if AI adoption doesn't reach mainstream as fast as we expect?\nYou: Then we've learned more than our competitors at the same cost. Early experiments are cheap. Catching up later is expensive.",
+          "dialogueKo": "",
+          "sourceSentence": "The company was ahead of the curve on remote work infrastructure — they'd been building async communication tools since 2019.",
+          "sourceSentenceKo": "그 회사는 원격근무 인프라에서 시대를 앞서갔다 — 2019년부터 이미 비동기 커뮤니케이션 도구를 구축해왔다.",
+          "practiceSentence": "Being ahead of the curve on sustainability reporting meant we were compliant before it became mandatory."
+        },
+        {
+          "item_id": "PACK_EN_010_03",
+          "expression": "move the needle",
+          "meaning": "실질적이고 측정 가능한 변화를 만들어내다",
+          "nuance": "계기판의 바늘(needle)을 움직인다는 이미지에서 나왔습니다. 사소한 조정이나 느껴지지 않는 개선이 아니라, 측정 가능한 의미 있는 변화를 만드는 것을 뜻합니다. 성과 리뷰, 전략 회의, KPI 논의에서 자주 등장하며 'Making progress'보다 훨씬 구체적이고 결과 지향적인 표현입니다. 반대는 'treading water(제자리걸음)'입니다.",
+          "dialogue": "CEO: We've been optimising the funnel for two quarters. Conversion improved 0.4%.\nYou: 0.4% isn't moving the needle. We need to find the single biggest friction point users hit before they drop off.\nCEO: Our data shows 36% of users abandon at the payment screen.\nYou: Then that's where we focus. Fix that one moment — everything else can wait.",
+          "dialogueKo": "",
+          "sourceSentence": "Switching from monthly to weekly standups didn't move the needle. The bottleneck was always decisions, not communication frequency.",
+          "sourceSentenceKo": "월간 스탠드업을 주간으로 바꿔도 별 변화가 없었다. 병목은 언제나 소통 빈도가 아니라 의사결정이었다.",
+          "practiceSentence": "None of the incremental UX changes moved the needle. The breakthrough came from rethinking the onboarding flow entirely."
+        },
+        {
+          "item_id": "PACK_EN_010_04",
+          "expression": "push the envelope",
+          "meaning": "기존의 한계를 넘어서다. 가능성의 경계를 확장하다",
+          "nuance": "항공 공학에서 비행기의 안전 비행 한계 범위를 'flight envelope'이라고 부릅니다. 이 한계를 밀어붙이는(push) 것이 표현의 유래입니다. 창의적 업무, R&D, 혁신 문화에서 자주 등장하며 단순히 열심히 하는 것이 아니라 '기존에 가능하다고 여겨진 것의 경계 자체를 확장하려는 의지'를 나타냅니다. 위험 감수와 함께한 도전을 인정하는 표현입니다.",
+          "dialogue": "Client: Our competitors are already doing what we're asking for.\nYou: Then we need to push the envelope further. Let's scope what a version 2 of this feature would look like — something they haven't conceived of yet.\nClient: That could require additional budget.\nYou: If it becomes a category-defining feature, that's the right investment. Let's show you the cost-benefit first.",
+          "dialogueKo": "",
+          "sourceSentence": "The research team was constantly pushing the envelope on materials science, running experiments competitors hadn't even conceptualised.",
+          "sourceSentenceKo": "연구팀은 소재과학의 한계를 끊임없이 넓혀가며, 경쟁사들이 상상조차 못한 실험을 진행하고 있었다.",
+          "practiceSentence": "If you're not pushing the envelope at least once a quarter, you're probably optimising for comfort rather than growth."
+        },
+        {
+          "item_id": "PACK_EN_010_05",
+          "expression": "a paradigm shift",
+          "meaning": "패러다임의 전환. 문제를 보는 방식 자체가 근본적으로 바뀌다",
+          "nuance": "철학자 토마스 쿤이 《과학혁명의 구조》에서 정의한 개념입니다. 단순한 업그레이드나 점진적 개선이 아니라, 문제를 바라보는 방식 자체가 완전히 바뀌는 근본적 전환을 의미합니다. 스마트폰의 등장, 스트리밍의 부상, 클라우드 전환 등 기존 규칙을 무력화하는 변화에 씁니다. 자주 쓰면 클리셰가 되지만, 진짜 구조적 변화가 있을 때 이 표현은 정확합니다.",
+          "dialogue": "You: Generative AI isn't just another productivity tool. It's changing how we make decisions.\nColleague: How is it different from, say, cloud computing?\nYou: Cloud changed where we stored and processed information. AI is a paradigm shift — it's changing the cognition layer. That's categorical, not incremental.\nColleague: So the companies that treat it as just another tool will miss the structural shift entirely?\nYou: Exactly. The ones who see it as infrastructure will build on top of it. The others will be built around.",
+          "dialogueKo": "",
+          "sourceSentence": "The shift from desktop to mobile wasn't a feature update — it was a paradigm shift in how humans related to software.",
+          "sourceSentenceKo": "데스크톱에서 모바일로의 전환은 단순한 기능 업데이트가 아니라, 인간이 소프트웨어와 관계 맺는 방식 자체의 패러다임 전환이었다.",
+          "practiceSentence": "Remote-first work turned out to be a paradigm shift in how companies thought about talent geography, not just a temporary adjustment."
+        }
+      ],
+      "masterParagraph": {
+        "text": "We knew it was time to **shake things up** — three years of careful increments had done nothing to close the gap with our main competitor. Our new product lead insisted we needed to stay **ahead of the curve** by making bets on user behaviours that hadn't yet fully formed. The goal was never just to iterate; we had to genuinely **move the needle** on how the category was experienced. The board thought we were **pushing the envelope** too aggressively, but every major market shift in this industry had come from companies willing to go there. In the end, what we launched wasn't a product update — it was a **paradigm shift** in how our customers thought about the entire problem space.",
+        "translation": "기존 방식을 과감하게 바꿀 시간임을 우리는 알고 있었다 — 3년간의 신중한 점진적 접근으로는 주요 경쟁사와의 격차를 전혀 좁히지 못했다. 새 제품 리드는 아직 완전히 형성되지 않은 사용자 행동에 베팅함으로써 시대를 앞서 나가야 한다고 주장했다. 목표는 단순히 반복 개발이 아니었다 — 카테고리가 경험되는 방식에서 실질적인 변화를 만들어내야 했다. 이사회는 우리가 너무 공격적으로 한계를 밀어붙이고 있다고 생각했지만, 이 업계의 모든 주요 시장 전환은 기꺼이 그 길을 간 회사들로부터 나왔다. 결국 우리가 출시한 것은 제품 업데이트가 아니었다 — 고객들이 전체 문제 공간에 대해 생각하는 방식의 패러다임 전환이었다.",
+        "highlights": [
+          "shake things up",
+          "ahead of the curve",
+          "move the needle",
+          "pushing the envelope",
+          "paradigm shift"
+        ]
+      },
+      "pack_id": "PACK_EN_010",
+      "aiGenerated": false
+    },
+    "us_market": {
+      "id": "2026-09-13::us_market",
+      "date": "2026-09-13",
+      "subId": "us_market",
+      "createdAt": "2026-09-13T12:02:51.968Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "market",
+      "category": "economy",
+      "subCategory": "미국 증시 · 경제",
+      "label": "미국 시황",
+      "title": "뉴욕 증시, 기술주 중심 완만한 상승",
+      "summary": "AI·반도체 섹터 수요 기대감에 나스닥이 상대적 강세, 금리 불확실성은 지속",
+      "indicators": [
+        {
+          "name": "S&P 500",
+          "value": "7,656.98",
+          "change": "+0.86%",
+          "dir": "up"
+        },
+        {
+          "name": "나스닥",
+          "value": "26,333.04",
+          "change": "+0.96%",
+          "dir": "up"
+        },
+        {
+          "name": "다우 지수",
+          "value": "52,573.29",
+          "change": "+0.98%",
+          "dir": "up"
+        },
+        {
+          "name": "미 국채 10년물",
+          "value": "4.97%",
+          "change": "+3bp",
+          "dir": "up"
+        },
+        {
+          "name": "VIX 공포지수",
+          "value": "15.84",
+          "change": "-11.21%",
+          "dir": "down"
+        }
+      ],
+      "summary3": "• 나스닥 중심 기술주 상승 — AI 인프라 투자 기대감 반영\n• 연준 금리 동결 기조 유지, 채권시장은 소폭 약세\n• 에너지·유틸리티는 차익실현으로 상대적 약세",
+      "checkpoints": [
+        "FOMC 위원 발언 일정 확인 (매파/비둘기파 스탠스)",
+        "빅테크 실적 발표 예정 여부 체크",
+        "VIX 15 이하 유지 시 위험자산 선호 지속 가능성"
+      ],
+      "report": "## 미국 증시 · 경제 — 오늘의 흐름\n\n기술주 중심의 완만한 상승세. AI·반도체 업황 기대감이 나스닥을 지지하고 있으며, 연준의 금리 동결 기조가 단기적으로 긍정적 환경을 제공합니다.\n\n## 오늘의 투자 인사이트\n빅테크 실적 시즌 앞두고 관망세와 매수세가 혼재. 단기 변동성보다는 중장기 AI 인프라 사이클에 집중하는 전략이 유효합니다.",
+      "aiEconomicKnowledge": [
+        {
+          "term": "VIX (공포지수)",
+          "importance": "시장 참가자들의 단기 변동성 기대를 수치화한 지표. VIX 20 이하는 안정, 30 이상은 공포 구간으로 해석합니다.",
+          "connection": "날씨로 비유하면 VIX는 \"기상 불안 지수\" — 숫자가 높을수록 폭풍 예보, 낮을수록 맑은 날씨."
+        },
+        {
+          "term": "매파 vs 비둘기파",
+          "importance": "중앙은행 내 금리 인상 선호(매파)와 금리 동결/인하 선호(비둘기파) 성향의 구분. FOMC 회의록과 위원 발언에서 읽어냄.",
+          "connection": "매파 발언이 많을수록 금리 인상 가능성 ↑ → 채권 약세 / 성장주 약세 패턴."
+        },
+        {
+          "term": "섹터 로테이션",
+          "importance": "경기 사이클에 따라 투자 자금이 성장주 → 방어주 → 경기민감주 순으로 이동하는 현상.",
+          "connection": "\"다 오른 종목 팔고 안 오른 종목 산다\"는 투자자들의 행동 패턴."
+        }
+      ],
+      "aiGenerated": true,
+      "isLive": true,
+      "marketClosed": true,
+      "dataAsOf": "2026-09-11T21:15:59.000Z"
+    },
+    "daily_knowledge": {
+      "id": "2026-09-13::daily_knowledge",
+      "date": "2026-09-13",
+      "subId": "daily_knowledge",
+      "createdAt": "2026-09-13T12:02:52.001Z",
+      "saved": false,
+      "savedEntries": {},
+      "type": "humanities",
+      "subType": "history",
+      "label": "역사 지식 한줌",
+      "category": "history",
+      "item_id": "HI_034",
+      "era": "세계사",
+      "period": "1789년 7월 14일",
+      "region": "프랑스 파리",
+      "title": "프랑스 혁명 — 바스티유 감옥 함락과 절대왕정의 종말",
+      "summary": "1789년 7월 14일, 파리 시민들이 바스티유 감옥을 습격했다. 이 날 하나의 절대왕정이 무너지고 '자유·평등·박애'의 근대 민주주의 원칙이 탄생했다.",
+      "summary3": "",
+      "behindStory": "루이 16세 치하의 프랑스는 국가 재정이 파산 직전이었다. 미국 독립전쟁 지원으로 빚이 쌓인 데다, 귀족과 성직자는 면세 특권을 누리며 세금 부담은 오로지 평민(제3신분)에게 집중됐다. 1789년 5월 루이 16세가 175년 만에 소집한 삼부회에서 제3신분 대표들이 국민의회를 선언하자 왕은 군대를 파리로 집결시켰다. 분노한 파리 시민들이 7월 14일 왕정 전제의 상징이었던 바스티유 감옥을 습격했다. 실제로 안에 수감된 죄수는 단 7명이었지만, 이 사건의 상징성은 절대적이었다. 이후 귀족들의 특권이 폐지되고 '인간과 시민의 권리 선언(인권선언)'이 발표됐다. 프랑스 혁명은 '국민주권', '법 앞의 평등', '사유재산권' 등 현대 민주주의와 자본주의를 떠받치는 원칙들을 세계에 전파했다. 7월 14일은 지금도 프랑스 국경일(바스티유의 날)이다.",
+      "lesson": "",
+      "aiGenerated": false
+    }
   }
 }

@@ -7,12 +7,9 @@
     "enabled_feeds": [
       "en_expr",
       "us_market",
-      "hist_daily",
-      "idiom_daily",
-      "liber_classic",
-      "insight_daily"
+      "daily_knowledge"
     ],
-    "updated_at": "2026-06-24T12:20:36.363Z",
+    "updated_at": "2026-09-13T12:02:17.196Z",
     "feed_settings": {
       "en_expr": {
         "count": 5,
@@ -38,6 +35,9 @@
       "kr_market": {
         "is_market_centric": true,
         "is_macro_centric": true
+      },
+      "daily_knowledge": {
+        "era": "상관없음"
       }
     }
   }

@@ -1072,9 +1072,9 @@ function buildPushPayload(feeds) {
 const DEFAULT_USER = {
   id: 'sj', name: 'SJ', delivery_time: '07:30',
   timezone: 'Asia/Seoul',
-  enabled_feeds: ['en_expr', 'us_market', 'hist_daily', 'idiom_daily', 'liber_classic', 'insight_daily'],
+  enabled_feeds: ['en_expr', 'us_market', 'daily_knowledge'],
   feed_settings: {
-    en_expr:   { count: 10, themes: ['business_meeting', 'office_email'], level: 'advanced' },
+    en_expr:   { count: 10, themes: ['business_meeting'], level: 'advanced' },
     zh_expr:   { count: 7,  themes: ['biz_hsk', 'biz_trip'],             level: 'advanced' },
     us_market: { is_market_centric: false, is_macro_centric: true },
     kr_market: { is_market_centric: true,  is_macro_centric: true }
@@ -1089,6 +1089,14 @@ function readUsers() {
   if (!u.feed_settings) u.feed_settings = { ...DEFAULT_USER.feed_settings };
   if (!u.enabled_feeds?.length || u.enabled_feeds.length < 3) {
     u.enabled_feeds = DEFAULT_USER.enabled_feeds;
+  }
+  /* 역사·고사성어·고전·인사이트를 '지식 한줌' 하나로 합침 — 기존 유저 설정 이관(멱등) */
+  const MERGED_INTO_KNOWLEDGE = ['hist_daily', 'idiom_daily', 'liber_classic', 'insight_daily', 'quote_daily'];
+  if (u.enabled_feeds.some(f => MERGED_INTO_KNOWLEDGE.includes(f))) {
+    u.enabled_feeds = [...new Set([
+      ...u.enabled_feeds.filter(f => !MERGED_INTO_KNOWLEDGE.includes(f)),
+      'daily_knowledge',
+    ])];
   }
   return users;
 }
@@ -1486,20 +1494,33 @@ function pickUnseenItems(pool, recentIds, count) {
   return result;
 }
 
+/**
+ * 최근 배달된 item_id 목록.
+ * @param {string|string[]} subId  복수 지정 가능 — 통합 피드(daily_knowledge)가
+ *   합쳐지기 전의 옛 키(hist_daily 등)까지 같이 훑어야 중복 배달이 안 난다.
+ */
 function getRecentDeliveredIDs(subId, days = 60) {
   const all = readDailyFeeds();
+  const wanted = new Set(Array.isArray(subId) ? subId : [subId]);
   const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - days);
   const cutoffStr = toDateStr(cutoff);
   const ids = [];
   for (const [date, feeds] of Object.entries(all)) {
     if (date < cutoffStr) continue;
-    const feed = feeds?.[subId];
-    if (!feed) continue;
-    if (Array.isArray(feed.vocabEntries)) feed.vocabEntries.forEach(e => { if (e.item_id) ids.push(e.item_id); });
-    if (feed.item_id)  ids.push(feed.item_id);
-    if (feed.pack_id)  ids.push(feed.pack_id);
+    for (const key of wanted) {
+      const feed = feeds?.[key];
+      if (!feed) continue;
+      if (Array.isArray(feed.vocabEntries)) feed.vocabEntries.forEach(e => { if (e.item_id) ids.push(e.item_id); });
+      if (feed.item_id)  ids.push(feed.item_id);
+      if (feed.pack_id)  ids.push(feed.pack_id);
+    }
   }
   return [...new Set(ids)];
+}
+
+/** 중복 배달 판정에 쓸 키 — 통합 피드는 shim sub에 dedupKeys를 달아 옛 키까지 포함시킨다 */
+function _dedupKeys(sub) {
+  return sub.dedupKeys || sub.id;
 }
 
 /** 오늘 요일 한글 표기 — generateLanguageFeed의 3단계 모두에서 동일하게 사용 */
@@ -2237,7 +2258,7 @@ function loadWorkDB() {
 function generateLiberFeed(sub) {
   const pool = loadWorkDB().classic_quotes;
   if (!pool.length) return null;
-  const [q] = pickUnseenItems(pool, getRecentDeliveredIDs(sub.id, 90), 1);
+  const [q] = pickUnseenItems(pool, getRecentDeliveredIDs(_dedupKeys(sub), 90), 1);
   if (!q) return null;
   console.log(`[WorkDB] LIBER 서빙 (${q.id} · ${q.book})`);
   return {
@@ -2254,7 +2275,7 @@ function generateInsightFeed(sub) {
   const all = loadWorkDB().daily_insights;
   if (!all.length) return null;
   const dow  = new Date().getDay();
-  const seen = getRecentDeliveredIDs(sub.id, 60);
+  const seen = getRecentDeliveredIDs(_dedupKeys(sub), 60);
   let pool = all.filter(i => i.dayOfWeek === dow);
   if (!pool.length) pool = all;
   let [it] = pickUnseenItems(pool, seen, 1);
@@ -2274,7 +2295,7 @@ function generateInsightFeed(sub) {
 function generateIdiomFeedDB(sub) {
   const pool = loadWorkDB().idiom_cards;
   if (!pool.length) return null;
-  const [c] = pickUnseenItems(pool, getRecentDeliveredIDs(sub.id, 90), 1);
+  const [c] = pickUnseenItems(pool, getRecentDeliveredIDs(_dedupKeys(sub), 90), 1);
   if (!c) return null;
   console.log(`[WorkDB] 고사성어 서빙 (${c.id} · ${c.idiom})`);
   return {
@@ -2282,7 +2303,7 @@ function generateIdiomFeedDB(sub) {
     item_id: c.id, title: `${c.idiom || ''} (${c.hanja || ''})`,
     idiom: c.idiom || '', hanja: c.hanja || '', meaning: c.meaning || '',
     origin: c.origin || '', story: c.example || '', behindStory: '',
-    application: c.modernUse || '', aiGenerated: false,
+    application: c.modernUse || '', tags: c.tags || [], aiGenerated: false,
   };
 }
 
@@ -2291,9 +2312,48 @@ function generateIdiomFeedDB(sub) {
  * DB-First: knowledge_db·work_db에 항목이 있으면 AI 호출 없이 즉시 반환 (비용 0원)
  * DB 항목 부족 시 기존 AI 생성 함수로 폴백
  */
+/* history_facts 시드에는 era 필드가 없어서 '한국사/세계사' 필터가 아무것도 거르지 못했다.
+   region·title에서 한국사 여부를 추론한다 — 시드에 era가 생기면 그 값을 우선한다. */
+const _KR_HISTORY_RE = /한국|한반도|조선|고려|신라|백제|고구려|발해|가야|대한민국|대한제국|고조선/;
+function _historyEra(item) {
+  if (item.era === '한국사' || item.era === '세계사') return item.era;
+  return _KR_HISTORY_RE.test(`${item.region || ''} ${item.title || ''}`) ? '한국사' : '세계사';
+}
+
+/* 지식 한줌이 오늘 어느 갈래를 낼지 결정한다 — 날짜 기반 결정적 회전이라 하루에 한 갈래로 고정된다.
+   반환값은 기존 생성기가 그대로 받을 수 있는 shim sub. */
+const KNOWLEDGE_POOLS = [
+  { id: 'hist_daily',    subType: 'history', label: '역사 지식 한줌' },
+  { id: 'idiom_daily',   subType: 'idiom',   label: '오늘의 고사성어' },
+  { id: 'insight_daily', subType: 'insight', label: '오늘의 인사이트' },
+  { id: 'liber_classic', subType: 'liber',   label: '오늘의 고전' },
+];
+
+function _pickKnowledgePool(sub) {
+  const pool = KNOWLEDGE_POOLS[dayOfYearIndex() % KNOWLEDGE_POOLS.length];
+  console.log(`[지식 한줌] 오늘의 갈래 — ${pool.label} (${pool.subType})`);
+  return {
+    ...sub,
+    id:        pool.id,
+    subType:   pool.subType,
+    label:     pool.label,
+    /* 합치기 전 옛 키까지 훑어야 최근 배달분이 다시 나오지 않는다 */
+    dedupKeys: [sub.id, pool.id],
+  };
+}
+
 async function generateHumanitiesFeed(sub, user) {
   const subType = sub.subType || '';
   const kdb     = loadKnowledgeDB();
+
+  /* ── 지식 한줌(통합) ── 역사·고사성어·고전·인사이트를 하루 하나씩 돌려 배달한다.
+     피드 수를 6개에서 3개로 줄이면서 네 갈래를 한 슬롯에 합친 것 —
+     기존 생성기를 그대로 재사용하고 subId만 daily_knowledge로 통일한다. */
+  if (subType === 'mixed' || sub.id === 'daily_knowledge') {
+    const shim = _pickKnowledgePool(sub);
+    const feed = await generateHumanitiesFeed(shim, user);
+    return feed ? { ...feed, subId: sub.id } : feed;
+  }
 
   /* ── 고전 LIBER (work_db) ── */
   if (subType === 'liber' || sub.id === 'liber_classic') {
@@ -2313,15 +2373,16 @@ async function generateHumanitiesFeed(sub, user) {
 
   /* ── 역사 피드 ── */
   if (subType === 'history' || sub.id === 'hist_daily') {
-    const cfg       = user?.feed_settings?.['hist_daily'] || {};
+    /* 통합 후에는 daily_knowledge에 저장되지만 합치기 전 hist_daily 설정도 계속 존중한다 */
+    const cfg       = user?.feed_settings?.['daily_knowledge'] || user?.feed_settings?.['hist_daily'] || {};
     const eraFilter = cfg.era || '상관없음';
     let pool = kdb.history_facts;
     if (eraFilter !== '상관없음') {
-      const filtered = pool.filter(i => i.era === eraFilter);
+      const filtered = pool.filter(i => _historyEra(i) === eraFilter);
       if (filtered.length > 0) pool = filtered;
     }
     if (pool.length > 0) {
-      const recentIds = getRecentDeliveredIDs(sub.id, 60);
+      const recentIds = getRecentDeliveredIDs(_dedupKeys(sub), 60);
       const [item]    = pickUnseenItems(pool, recentIds, 1);
       if (item) {
         console.log(`[KnowledgeDB] 역사피드 DB 서빙 (${item.id})`);
@@ -2332,8 +2393,9 @@ async function generateHumanitiesFeed(sub, user) {
           label:       sub.label,
           category:    'history',
           item_id:     item.id,
-          era:         item.era          || '세계사',
+          era:         _historyEra(item),
           period:      item.period       || '',
+          region:      item.region       || '',
           title:       item.title        || '오늘의 역사',
           summary:     item.summary      || '',
           summary3:    item.summary3     || '',
@@ -2350,7 +2412,7 @@ async function generateHumanitiesFeed(sub, user) {
   if (subType === 'quote' || sub.id === 'quote_daily') {
     const pool = kdb.idioms_and_quotes.filter(i => i.type === 'quote');
     if (pool.length > 0) {
-      const recentIds = getRecentDeliveredIDs(sub.id, 60);
+      const recentIds = getRecentDeliveredIDs(_dedupKeys(sub), 60);
       const [item]    = pickUnseenItems(pool, recentIds, 1);
       if (item) {
         console.log(`[KnowledgeDB] 명언피드 DB 서빙 (${item.id})`);
@@ -2381,7 +2443,7 @@ async function generateHumanitiesFeed(sub, user) {
   if (subType === 'idiom' || sub.id === 'idiom_daily') {
     const pool = kdb.idioms_and_quotes.filter(i => i.type === 'idiom');
     if (pool.length > 0) {
-      const recentIds = getRecentDeliveredIDs(sub.id, 60);
+      const recentIds = getRecentDeliveredIDs(_dedupKeys(sub), 60);
       const [item]    = pickUnseenItems(pool, recentIds, 1);
       if (item) {
         console.log(`[KnowledgeDB] 고사성어피드 DB 서빙 (${item.id})`);
@@ -3286,7 +3348,7 @@ app.patch('/api/delivery-settings/all', (req, res) => {
   if (!user.feed_settings) user.feed_settings = {};
 
   const { feedId, settings } = req.body;
-  const VALID_FEED_IDS = ['en_expr', 'zh_expr', 'us_market', 'kr_market', 'hist_daily', 'quote_daily', 'idiom_daily', 'liber_classic', 'insight_daily'];
+  const VALID_FEED_IDS = ['en_expr', 'zh_expr', 'us_market', 'kr_market', 'hist_daily', 'quote_daily', 'idiom_daily', 'liber_classic', 'insight_daily', 'daily_knowledge'];
   if (!VALID_FEED_IDS.includes(feedId)) {
     return res.status(400).json({ success: false, error: '유효하지 않은 feedId' });
   }
@@ -3307,7 +3369,7 @@ app.patch('/api/delivery-settings/all', (req, res) => {
       is_market_centric: settings.is_market_centric !== false,
       is_macro_centric : settings.is_macro_centric  !== false
     };
-  } else if (feedId === 'hist_daily') {
+  } else if (feedId === 'hist_daily' || feedId === 'daily_knowledge') {
     /* 역사 피드 — 시대 선호 */
     user.feed_settings[feedId] = {
       era: ['한국사', '세계사', '상관없음'].includes(settings.era) ? settings.era : '상관없음'

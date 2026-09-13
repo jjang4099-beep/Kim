@@ -112,6 +112,8 @@ const FEED_CHIP_MAP = {
   idiom_daily: { icon: '📜',  label: '고사성어',  color: '#c2410c' },
   liber_classic: { icon: '📖', label: '고전',     color: '#92400e' },
   insight_daily: { icon: '💡', label: '인사이트', color: '#7c3aed' },
+  /* 역사·고사성어·고전·인사이트 통합 피드 (위 네 개는 과거 배달분 표시용으로 남겨둔다) */
+  daily_knowledge: { icon: '🧠', label: '지식 한줌', color: '#92400e' },
 };
 
 /* Archive Row 모노그램 맵 (subId → 약어 코드 + 영문 전칭) */

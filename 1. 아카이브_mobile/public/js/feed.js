@@ -223,6 +223,12 @@ Object.assign(Mob, {
 
   /** 인문학 피드 카드 — subType 기반 분기 */
   _cardFeedHumanities(item) {
+    /* ⚠️ 서재에 저장된 배달 항목은 카드 본문이 feedData 안에 들어가고 최상위에는
+       type:'humanities'만 남는다. 그대로 넘기면 subType이 없어 "인문학 지식"
+       빈 카드가 떴다(2026-07 저장분에서 확인). feedData를 펼쳐서 렌더한다. */
+    if (!item.subType && item.feedData?.subType) {
+      item = { ...item.feedData, savedItemId: item._id || item.id, saved: true };
+    }
     const subType = item.subType || '';
     if (subType === 'history') return this._cardHumHistory(item);
     if (subType === 'quote')   return this._cardHumQuote(item);

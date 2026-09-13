@@ -285,6 +285,7 @@ async function initSQLiteDB() {
   _migrateCategoriesUserId();
   _migrateEnExpressionsExampleKo();
   _migrateEnThemesCategory();
+  _migrateExamHistoryUnitCode();
   _seedEnglishThemes();
   _seedExamKnowledge();
   _seedDefaultCategories();
@@ -368,6 +369,45 @@ function _migrateEnExpressionsExampleKo() {
  * english_themes.theme_category 컬럼 추가(없으면) + 기존 행 백필.
  * knowledge_db/*.json을 다시 읽어 pack_id 기준으로 theme_category가 비어있는 행만 UPDATE한다. 멱등.
  */
+/* 한국사 시대 구분: era 코드 → 표준 라벨 + 교육과정 단원 코드.
+   시드 JSON은 정리했지만 이미 들어간 행은 INSERT OR IGNORE라 갱신되지 않으므로 여기서 맞춘다. */
+const EXAM_HISTORY_ERA = {
+  ancient:             { label: '선사·고조선',   unitCode: 'HIST_01' },
+  three_kingdoms:      { label: '삼국시대',      unitCode: 'HIST_02' },
+  unified_silla:       { label: '통일신라·발해', unitCode: 'HIST_03' },
+  goryeo:              { label: '고려',          unitCode: 'HIST_04' },
+  joseon_early:        { label: '조선 전기',     unitCode: 'HIST_05' },
+  joseon_late:         { label: '조선 후기',     unitCode: 'HIST_06' },
+  modern:              { label: '근대',          unitCode: 'HIST_07' },
+  japanese_occupation: { label: '일제강점기',    unitCode: 'HIST_08' },
+  contemporary:        { label: '현대',          unitCode: 'HIST_09' },
+};
+
+/** exam_history_items.unit_code 컬럼 추가 + era_label 표기 정규화 (멱등) */
+function _migrateExamHistoryUnitCode() {
+  try {
+    const cols = getSQLiteDB().exec('PRAGMA table_info(exam_history_items)');
+    const hasCol = cols.length && cols[0].values.some(row => row[1] === 'unit_code');
+    if (!hasCol) {
+      getSQLiteDB().run(`ALTER TABLE exam_history_items ADD COLUMN unit_code TEXT DEFAULT ''`);
+      console.log('[SQLite] exam_history_items.unit_code 컬럼 추가 완료');
+    }
+    let fixed = 0;
+    for (const [era, v] of Object.entries(EXAM_HISTORY_ERA)) {
+      const stmt = getSQLiteDB().prepare(
+        `UPDATE exam_history_items SET era_label = ?, unit_code = ?
+         WHERE era = ? AND (era_label != ? OR unit_code != ?)`
+      );
+      stmt.run([v.label, v.unitCode, era, v.label, v.unitCode]);
+      stmt.free();
+      fixed += getSQLiteDB().getRowsModified();
+    }
+    if (fixed) console.log(`[SQLite] 한국사 시대 라벨·단원코드 정규화 ${fixed}건`);
+  } catch (e) {
+    console.warn('[SQLite] 한국사 단원코드 마이그레이션 실패 (무시):', e.message);
+  }
+}
+
 function _migrateEnThemesCategory() {
   try {
     const cols = getSQLiteDB().exec('PRAGMA table_info(english_themes)');
@@ -696,13 +736,15 @@ function _seedExamKnowledge() {
 
       /* ── 한국사 ── */
       for (const h of (batch.exam_history_items || [])) {
+        const era = EXAM_HISTORY_ERA[h.era];
         const hStmt = getSQLiteDB().prepare(
           `INSERT OR IGNORE INTO exam_history_items
-           (item_id, era, era_label, title, summary, key_point, exam_tip, delivery_date)
-           VALUES (?,?,?,?,?,?,?,?)`
+           (item_id, era, era_label, unit_code, title, summary, key_point, exam_tip, delivery_date)
+           VALUES (?,?,?,?,?,?,?,?,?)`
         );
         hStmt.run([
-          h.id, h.era || '', h.era_label || '', h.title,
+          h.id, h.era || '', era?.label || h.era_label || '', h.unitCode || era?.unitCode || '',
+          h.title,
           h.summary || '', h.key_point || '', h.exam_tip || '', h.delivery_date || null
         ]);
         hStmt.free();
@@ -4916,7 +4958,7 @@ app.get('/api/exam/daily-knowledge', (req, res) => {
       history: history ? {
         id:       history.item_id,
         era:      history.era,
-        eraLabel: history.era_label,
+        eraLabel: history.era_label, unitCode: history.unit_code || '',
         title:    history.title,
         summary:  history.summary,
         keyPoint: history.key_point,
@@ -4997,7 +5039,7 @@ app.post('/api/exam/daily-knowledge/save', (req, res) => {
         text, summary: h.summary || '',
         date, createdAt: now.toISOString(),
         examHistory: {
-          id: h.item_id, era: h.era, eraLabel: h.era_label, title: h.title,
+          id: h.item_id, era: h.era, eraLabel: h.era_label, unitCode: h.unit_code || '', title: h.title,
           summary: h.summary, keyPoint: h.key_point, examTip: h.exam_tip
         }
       };

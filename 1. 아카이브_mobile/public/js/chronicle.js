@@ -228,9 +228,20 @@
     strip.innerHTML = html;
     strip.querySelectorAll('.daycell').forEach(c =>
       c.addEventListener('click', () => select(c.dataset.key)));
+    centerSelectedDay(false);
+  }
 
+  /* 고른 날짜를 스트립 가운데로.
+     scrollIntoView는 가로 컨테이너를 제대로 안 움직이고 페이지까지 스크롤시키는 경우가 있어
+     컨테이너 scrollLeft를 직접 계산한다. */
+  function centerSelectedDay(smooth) {
+    const strip = $('monthStrip');
     const sel = strip.querySelector('[aria-selected="true"]');
-    if (sel) sel.scrollIntoView({ block: 'nearest', inline: 'center' });
+    if (!sel) return;
+    strip.scrollTo({
+      left: sel.offsetLeft - (strip.clientWidth - sel.offsetWidth) / 2,
+      behavior: smooth ? 'smooth' : 'auto'
+    });
   }
 
   /* ── 렌더: 년 파형 ───────────────────────── */
@@ -320,11 +331,9 @@
       state.month = m;
       renderMonth();
     } else {
-      const strip = $('monthStrip');
-      strip.querySelectorAll('.daycell').forEach(c =>
+      $('monthStrip').querySelectorAll('.daycell').forEach(c =>
         c.setAttribute('aria-selected', c.dataset.key === key));
-      const sel = strip.querySelector('[aria-selected="true"]');
-      if (sel) sel.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+      centerSelectedDay(true);
     }
     renderDay();
   }

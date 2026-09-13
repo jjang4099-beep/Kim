@@ -201,34 +201,36 @@
       .join('') + `<span><i class="seal">記</i>자취를 남긴 날</span>`;
   }
 
-  /* ── 렌더: 월 그리드 ─────────────────────── */
+  /* ── 렌더: 월 보기(가로 날짜 스트립) ─────── */
   function renderMonth() {
     $('monthLabel').textContent = (state.month + 1) + '월';
-    const grid = $('grid');
-    const first = new Date(state.year, state.month, 1).getDay();
+    const strip = $('monthStrip');
     const last  = daysInMonth(state.year, state.month);
     const todayKey = isoOf(new Date());
     let html = '';
 
-    for (let i = 0; i < first; i++) html += `<div class="cell pad"></div>`;
-
     for (let d = 1; d <= last; d++) {
       const key = `${state.year}-${pad2(state.month + 1)}-${pad2(d)}`;
+      const date = new Date(state.year, state.month, d);
       const items = state.byDate[key] || [];
       const kinds = [...new Set(items.map(i => i.domain))].slice(0, 3);
       const marks = isSeal(key)
         ? `<i class="seal">記</i>`
         : kinds.map(k => `<i class="dot" style="background:${dom(k).color}"></i>`).join('');
-      html += `<button class="cell${items.length ? ' has' : ''}${key === todayKey ? ' today' : ''}"
+      html += `<button class="daycell${items.length ? ' has' : ''}${date.getDay() === 0 ? ' sun' : ''}${key === todayKey ? ' today' : ''}"
                  role="option" aria-selected="${key === state.selected}" data-key="${key}"
                  title="${items.length ? items.length + '건' : '기록 없음'}">
-                 <span class="cell__num">${d}</span>
-                 <span class="cell__marks">${marks}</span>
+                 <span class="daycell__dow">${DOW[date.getDay()]}</span>
+                 <span class="daycell__num">${d}</span>
+                 <span class="daycell__marks">${marks}</span>
                </button>`;
     }
-    grid.innerHTML = html;
-    grid.querySelectorAll('.cell:not(.pad)').forEach(c =>
+    strip.innerHTML = html;
+    strip.querySelectorAll('.daycell').forEach(c =>
       c.addEventListener('click', () => select(c.dataset.key)));
+
+    const sel = strip.querySelector('[aria-selected="true"]');
+    if (sel) sel.scrollIntoView({ block: 'nearest', inline: 'center' });
   }
 
   /* ── 렌더: 년 파형 ───────────────────────── */
@@ -314,9 +316,16 @@
   function select(key) {
     state.selected = key;
     const m = Number(key.slice(5, 7)) - 1;
-    if (m !== state.month) { state.month = m; renderMonth(); }
-    else $('grid').querySelectorAll('.cell:not(.pad)').forEach(c =>
-      c.setAttribute('aria-selected', c.dataset.key === key));
+    if (m !== state.month) {
+      state.month = m;
+      renderMonth();
+    } else {
+      const strip = $('monthStrip');
+      strip.querySelectorAll('.daycell').forEach(c =>
+        c.setAttribute('aria-selected', c.dataset.key === key));
+      const sel = strip.querySelector('[aria-selected="true"]');
+      if (sel) sel.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+    }
     renderDay();
   }
 

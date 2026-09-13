@@ -50,7 +50,7 @@ body::before{
   content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
   background:radial-gradient(120% 80% at 50% -20%, rgba(127,168,214,.10), transparent 60%);
 }
-.wrap{position:relative; z-index:1; max-width:1440px; margin:0 auto; padding:0 var(--gutter) 110px}
+.wrap{position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:0 var(--gutter) 110px}
 button{font:inherit; color:inherit; background:none; border:none; padding:0; cursor:pointer}
 :focus-visible{outline:2px solid var(--d-language); outline-offset:3px; border-radius:2px}
 a{color:inherit}
@@ -110,17 +110,13 @@ a{color:inherit}
 .check{display:flex; align-items:center; gap:7px; cursor:pointer; user-select:none}
 .check input{accent-color:var(--jusa); width:14px; height:14px; cursor:pointer}
 
-/* ── 본문 2단 ─────────────────────────────── */
-.board{display:grid; grid-template-columns:minmax(0,540px) minmax(0,1fr); gap:34px; align-items:start}
-@media (max-width:1080px){ .board{grid-template-columns:1fr} }
-
 /* ── 달력 ─────────────────────────────────── */
+/* 원본 샘플 구조: 날짜가 위에 가로로 쭉 늘어서고, 고른 날짜의 기록이 아래로 펼쳐진다. */
 .calendar{
   background:var(--ink-plate); border:1px solid var(--ink-line-soft);
-  border-radius:3px; padding:18px clamp(14px,2vw,22px) 20px; position:sticky; top:22px;
+  border-radius:3px; padding:20px clamp(16px,3vw,26px) 22px;
 }
-@media (max-width:1080px){ .calendar{position:static} }
-.calendar__bar{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:18px}
+.calendar__bar{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:20px}
 .scope{display:flex; border:1px solid var(--ink-line); border-radius:2px; overflow:hidden}
 .scope button{font-family:var(--serif); font-size:16px; width:46px; height:32px; color:var(--paper-faint); transition:color .18s,background .18s}
 .scope button[aria-pressed="true"]{background:var(--ink-line); color:var(--paper)}
@@ -132,25 +128,27 @@ a{color:inherit}
 }
 .nav button:hover{color:var(--paper); border-color:var(--paper-faint)}
 
-/* 월 그리드 */
-.grid-dow{display:grid; grid-template-columns:repeat(7,1fr); gap:4px; margin-bottom:6px}
-.grid-dow span{text-align:center; font-size:11px; color:var(--paper-faint); letter-spacing:.06em}
-.grid-dow span:first-child{color:#8E6058}
-.grid{display:grid; grid-template-columns:repeat(7,1fr); gap:4px}
-.cell{
-  aspect-ratio:1/1; border:1px solid transparent; border-radius:2px;
-  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px;
-  transition:background .16s,border-color .16s;
+/* 월 보기 — 가로 날짜 스트립 */
+.months{display:flex; gap:6px; overflow-x:auto; padding-bottom:10px; scroll-snap-type:x proximity}
+.months::-webkit-scrollbar{height:3px}
+.months::-webkit-scrollbar-thumb{background:var(--ink-line); border-radius:2px}
+.daycell{
+  scroll-snap-align:center;
+  flex:0 0 auto; width:54px; padding:10px 0 9px;
+  border:1px solid transparent; border-radius:2px;
+  display:flex; flex-direction:column; align-items:center; gap:7px;
+  transition:background .18s, border-color .18s;
 }
-.cell.pad{pointer-events:none}
-.cell:not(.pad):hover{background:var(--ink-hover)}
-.cell__num{font-family:var(--serif); font-size:16px; line-height:1; color:var(--paper-faint)}
-.cell.has .cell__num{color:var(--paper)}
-.cell.today .cell__num{text-decoration:underline; text-underline-offset:3px}
-.cell__marks{display:flex; gap:3px; height:5px; align-items:center}
+.daycell:hover{background:var(--ink-hover)}
+.daycell__dow{font-size:11px; color:var(--paper-faint); letter-spacing:.06em}
+.daycell__num{font-family:var(--serif); font-size:21px; line-height:1; color:var(--paper-dim)}
+.daycell.has .daycell__num{color:var(--paper)}
+.daycell.sun .daycell__dow{color:#8E6058}
+.daycell.today .daycell__num{text-decoration:underline; text-underline-offset:3px}
+.daycell__marks{display:flex; gap:3px; height:5px; align-items:center}
 .dot{width:5px; height:5px; border-radius:50%; flex:0 0 auto}
-.cell[aria-selected="true"]{background:#1E2836; border-color:var(--ink-line)}
-.cell[aria-selected="true"] .cell__num{color:var(--paper)}
+.daycell[aria-selected="true"]{background:#1E2836; border-color:var(--ink-line)}
+.daycell[aria-selected="true"] .daycell__num{color:var(--paper)}
 .seal{
   width:15px; height:15px; border:1px solid var(--jusa); border-radius:2px;
   color:var(--jusa); font-family:var(--serif); font-size:9.5px; line-height:13px; text-align:center;
@@ -174,11 +172,12 @@ a{color:inherit}
 .legend span{display:flex; align-items:center; gap:6px}
 
 /* ── 하루 ─────────────────────────────────── */
+.day{margin-top:56px}
 .day__head{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; padding-bottom:13px; border-bottom:1px solid var(--ink-line)}
 .day__date{font-family:var(--serif); font-size:clamp(24px,3vw,31px); font-weight:700; margin:0}
 .day__dow{color:var(--paper-faint); font-size:14px}
 .day__seal{margin-left:auto; font-family:var(--serif); color:var(--jusa); font-size:14px; display:flex; align-items:center; gap:8px}
-.entries{margin-top:22px; display:grid; grid-template-columns:repeat(auto-fill,minmax(258px,1fr)); gap:16px; align-items:start}
+.entries{margin-top:26px; display:grid; grid-template-columns:repeat(auto-fill,minmax(268px,1fr)); gap:18px; align-items:start}
 .entry{border:1px solid var(--ink-line-soft); border-radius:3px; overflow:hidden; background:var(--ink-plate)}
 .entry__kind{display:flex; align-items:center; gap:7px; padding:11px 14px 0; font-size:11.5px; color:var(--paper-faint)}
 .entry__kind .auto{margin-left:auto; border:1px solid var(--ink-line); border-radius:2px; padding:0 5px; font-size:10px}
@@ -295,37 +294,34 @@ a{color:inherit}
     <span class="muted" id="filterNote"></span>
   </div>
 
-  <div class="board">
-    <section class="calendar" aria-label="달력">
-      <div class="calendar__bar">
-        <div class="scope" role="group" aria-label="보기 단위">
-          <button id="scopeMonth" aria-pressed="true">月</button>
-          <button id="scopeYear" aria-pressed="false">年</button>
-        </div>
-        <div class="nav" id="monthNav">
-          <button id="prevMonth" aria-label="이전 달">‹</button>
-          <span class="nav__label" id="monthLabel">—</span>
-          <button id="nextMonth" aria-label="다음 달">›</button>
-        </div>
+  <section class="calendar" aria-label="달력">
+    <div class="calendar__bar">
+      <div class="scope" role="group" aria-label="보기 단위">
+        <button id="scopeMonth" aria-pressed="true">月</button>
+        <button id="scopeYear" aria-pressed="false">年</button>
       </div>
-
-      <div id="monthView">
-        <div class="grid-dow"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>
-        <div class="grid" id="grid" role="listbox" aria-label="날짜 선택"></div>
+      <div class="nav" id="monthNav">
+        <button id="prevMonth" aria-label="이전 달">‹</button>
+        <span class="nav__label" id="monthLabel">—</span>
+        <button id="nextMonth" aria-label="다음 달">›</button>
       </div>
+    </div>
 
-      <div id="yearView" class="yearview" hidden>
-        <div class="readout" id="readout"><span>막대를 짚으면 그날의 기록 수가 보입니다.</span></div>
-        <div class="wave" id="wave" role="slider" tabindex="0" aria-label="연간 기록 분포"
-             aria-valuemin="1" aria-valuemax="366" aria-valuenow="1"></div>
-        <div class="ruler" id="ruler"></div>
-      </div>
+    <div id="monthView">
+      <div class="months" id="monthStrip" role="listbox" aria-label="날짜 선택"></div>
+    </div>
 
-      <div class="legend" id="legend"></div>
-    </section>
+    <div id="yearView" class="yearview" hidden>
+      <div class="readout" id="readout"><span>막대를 짚으면 그날의 기록 수가 보입니다.</span></div>
+      <div class="wave" id="wave" role="slider" tabindex="0" aria-label="연간 기록 분포"
+           aria-valuemin="1" aria-valuemax="366" aria-valuenow="1"></div>
+      <div class="ruler" id="ruler"></div>
+    </div>
 
-    <section class="day" id="day" aria-live="polite"></section>
-  </div>
+    <div class="legend" id="legend"></div>
+  </section>
+
+  <section class="day" id="day" aria-live="polite"></section>
 
   <section class="review">
     <h2>올해의 결</h2>
@@ -368,6 +364,6 @@ a{color:inherit}
 
 <div class="loading" id="loading">불러오는 중…</div>
 
-<script src="js/chronicle.js?v=4"></script>
+<script src="js/chronicle.js?v=5"></script>
 </body>
 </html>

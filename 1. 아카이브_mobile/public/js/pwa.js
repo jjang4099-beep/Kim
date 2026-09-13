@@ -166,6 +166,21 @@ function listenSWMessages() {
 function handleShareQueryParams() {
   const params = new URLSearchParams(location.search);
 
+  /* 사진 공유가 라이프 기록으로 저장된 직후 — '한 줄 남기기' 시트를 띄운다.
+     사진 저장은 이미 끝났으므로 여기서 실패하거나 닫혀도 기록은 남아 있다. */
+  if (params.has('life_added')) {
+    const id  = params.get('life_added');
+    const cnt = params.get('photos') || 0;
+    history.replaceState({}, '', location.pathname);
+
+    const openSheet = () => {
+      if (typeof Mob?._openLifeNoteSheet === 'function') Mob._openLifeNoteSheet(id, cnt);
+      if (typeof toast === 'function') toast(`📷 사진 ${cnt}장이 연대기에 담겼어요`, 'ok');
+    };
+    if (document.readyState === 'complete') setTimeout(openSheet, 800);
+    else document.addEventListener('DOMContentLoaded', () => setTimeout(openSheet, 800));
+  }
+
   if (params.has('share_ok')) {
     // 히스토리에서 파라미터 제거 (뒤로가기 방지)
     const cleanUrl = location.pathname + (params.has('view') ? `?view=${params.get('view')}` : '');

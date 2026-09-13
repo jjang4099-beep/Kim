@@ -170,6 +170,7 @@ const state = {
   selectedMood   : '',
   addType        : 'knowledge',   /* 추가 모달 탭: 'knowledge' | 'image' | 'life' */
   lifePhotos     : [],
+  lifeNoteId     : null,          /* 공유 사진 저장 후 '한 줄' 붙일 대상 item id */
   /* 카테고리 */
   userCategories : [],
   /* 결산 */

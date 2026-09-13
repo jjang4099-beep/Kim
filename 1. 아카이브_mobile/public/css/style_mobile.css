@@ -6080,3 +6080,41 @@ html[data-theme="dark"] .public-sanctuary-banner {
   padding: 18px 0 6px;
   font-size: 12.5px; color: var(--text-3); text-align: center;
 }
+
+/* ── 공유 사진 '한 줄 남기기' 시트 ────────────────────────
+   사진은 이미 저장된 뒤에 뜨는 화면이라, 건너뛰기를 저장 버튼만큼 쉽게 둔다. */
+.mob-life-note-hint {
+  font-size: 13px; color: var(--text-2); line-height: 1.6;
+  margin: 0 0 12px;
+}
+.mob-life-note-input {
+  width: 100%; box-sizing: border-box;
+  padding: 12px 14px; border-radius: 12px;
+  border: 1px solid var(--border); background: var(--bg);
+  color: var(--text-1); font-size: 15px; line-height: 1.6;
+  font-family: inherit; resize: none;
+}
+.mob-life-note-input:focus {
+  outline: none; border-color: var(--accent); background: var(--surface);
+}
+.mob-life-note-input::placeholder { color: var(--text-3); }
+.mob-life-note-actions {
+  display: flex; gap: 8px; margin: 14px 0 8px;
+}
+.mob-life-note-skip,
+.mob-life-note-save {
+  min-height: 46px; border-radius: 12px;
+  font-size: 15px; font-weight: 700; font-family: inherit;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.mob-life-note-skip {
+  flex: 0 0 34%;
+  background: var(--bg); color: var(--text-2);
+  border: 1px solid var(--border);
+}
+.mob-life-note-save {
+  flex: 1;
+  background: var(--accent); color: #fff; border: none;
+}
+.mob-life-note-save:disabled { opacity: .6; }
+html[data-theme="dark"] .mob-life-note-input { background: var(--bg); }

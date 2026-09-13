@@ -41,7 +41,7 @@ const UsersDB = require('./db/users');
 const CategoriesDB = require('./db/categories');
 const SummariesDB = require('./db/summaries');
 const { DOMAINS, CATEGORY_TO_DOMAIN, getDomain, MODE_EXAM, MODE_PRO, normalizeMode, deriveItemMode } = require('./lib/domain');
-const { generateToken, setAuthCookie, clearAuthCookie, requireAuth } = require('./lib/auth');
+const { generateToken, setAuthCookie, clearAuthCookie, requireAuth, getUserId } = require('./lib/auth');
 
 const PORT                   = process.env.PORT || 3000;
 /* DATA_DIR: Fly.io 볼륨 경로(/data)를 env로 주입, 로컬은 기존 경로 유지 */
@@ -3260,6 +3260,58 @@ app.get('/share-handler', (req, res) => {
 });
 
 /**
+ * POST /share-handler — 사진 공유 수신 (서비스워커 폴백)
+ *
+ * 정상 경로는 sw.js의 handleSharedPhotos다. 다만 SW가 아직 설치 전이거나
+ * 갱신 중이면 이 POST가 서버로 그대로 넘어온다. 라우트가 없으면 404가 나면서
+ * 공유한 사진이 통째로 사라지므로 반드시 받아준다.
+ *
+ * 페이지 이동이라 401 JSON 대신 앱으로 리다이렉트한다.
+ */
+app.post('/share-handler', upload.array('photos', 10), (req, res) => {
+  const back   = (q) => res.redirect(303, `/index_mobile.html?${q}`);
+  const userId = getUserId(req);
+  if (!userId) return back('share_err=' + encodeURIComponent('로그인이 필요해요'));
+
+  try {
+    const files = req.files || [];
+    const text  = (req.body?.text || '').trim();
+    const now   = new Date();
+
+    /* 사진이 없으면 링크·텍스트 공유 — 인박스로 */
+    if (!files.length) {
+      const content = (req.body?.url || text || req.body?.title || '').trim();
+      if (!content) return back('share_err=' + encodeURIComponent('공유할 내용이 없어요'));
+      ItemsDB.insertItem(userId, {
+        id: uuidv4(), title: (req.body?.title || content).slice(0, 50),
+        text: content, summary: '', category: 'inbox', contentType: 'knowledge',
+        mode: MODE_PRO, source: 'share-sheet',
+        date: toDateStr(now), createdAt: now.toISOString(),
+      });
+      return back('share_ok=1&content=' + encodeURIComponent(content.slice(0, 60)));
+    }
+
+    const item = {
+      id: uuidv4(),
+      title: text.slice(0, 50) || '라이프 기록',
+      text, category: 'life', contentType: 'life', mode: MODE_PRO,
+      createdAt: now.toISOString(), date: toDateStr(now),
+      life: {
+        mood: '', location: '', weather: '',
+        photos: files.map(f => `/uploads/${f.filename}`),
+        privacy: 'private', date: now.toISOString(),
+      },
+    };
+    ItemsDB.insertItem(userId, item);
+    console.log(`[공유] 사진 ${files.length}장 → 라이프 기록 (SW 폴백)`);
+    return back(`life_added=${encodeURIComponent(item.id)}&photos=${files.length}`);
+  } catch (e) {
+    console.error('[공유] 사진 저장 실패:', e.message);
+    return back('share_err=' + encodeURIComponent(e.message));
+  }
+});
+
+/**
  * POST /api/inbox
  * 공유 시트 / 빠른 수집을 통해 들어온 콘텐츠를 인박스에 저장
  * Body: { text, source?, title? }
@@ -4010,6 +4062,11 @@ app.patch('/api/items/:id', (req, res) => {
     item.wrongAnswer = { ...item.wrongAnswer, memo: req.body.wrongAnswerMemo };
   }
   allowed.forEach(k => { if (req.body[k] !== undefined) item[k] = req.body[k]; });
+  /* 라이프 기록은 제목을 본문 앞부분에서 만든다 — 나중에 글을 채워 넣어도
+     카드 제목이 '라이프 기록'으로 남아 있으면 연대기에서 무엇이었는지 알 수 없다. */
+  if (item.contentType === 'life' && req.body.text !== undefined && req.body.title === undefined) {
+    item.title = String(req.body.text).slice(0, 50) || '라이프 기록';
+  }
   // domain 변경 시 category·shelf 자동 동기화 (updateItemForUser 내부에서도 처리)
   item.updatedAt = new Date().toISOString();
   ItemsDB.updateItemForUser(req.userId, item);

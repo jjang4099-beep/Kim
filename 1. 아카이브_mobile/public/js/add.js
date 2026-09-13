@@ -279,4 +279,76 @@ Object.assign(Mob, {
       </div>`).join('');
   },
 
+  /* ══════════════════════════════════════════
+     공유 시트로 들어온 사진에 '한 줄' 붙이기
+     사진은 이미 저장된 뒤에 뜬다 — 여기서 닫거나 건너뛰어도 기록은 남는다.
+     이 앱에서 사용자가 직접 쓴 글이 생기는 거의 유일한 지점이라 마찰을 최소로 둔다.
+  ══════════════════════════════════════════ */
+  _openLifeNoteSheet(itemId, photoCount) {
+    if (!itemId) return;
+    state.lifeNoteId = itemId;
+    let modal = el('mobLifeNote');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'mobLifeNote';
+      modal.className = 'mob-modal';
+      document.body.appendChild(modal);
+    }
+    const n = Number(photoCount) || 0;
+    modal.innerHTML = `
+      <div class="mob-modal-sheet">
+        <div class="mob-modal-handle"></div>
+        <div class="mob-modal-header">
+          <div>
+            <div class="mob-modal-badge">사진 ${n}장 저장됨</div>
+            <div class="mob-modal-title" style="margin-top:6px">오늘 한 줄 남길래요?</div>
+          </div>
+          <button class="mob-modal-close" onclick="Mob._closeLifeNote()" aria-label="닫기">
+            <i class="ti ti-x"></i>
+          </button>
+        </div>
+        <div class="mob-modal-body">
+          <p class="mob-life-note-hint">나중에 이 사진을 다시 볼 때, 그때 무슨 생각이었는지가 제일 궁금해져요.</p>
+          <textarea id="lifeNoteInput" class="mob-life-note-input" rows="4"
+                    placeholder="오늘 어땠어요? (안 써도 사진은 이미 저장됐어요)"></textarea>
+          <div class="mob-life-note-actions">
+            <button class="mob-life-note-skip" onclick="Mob._closeLifeNote()">나중에</button>
+            <button class="mob-life-note-save" onclick="Mob._saveLifeNote(this)">
+              <i class="ti ti-check"></i> 남기기
+            </button>
+          </div>
+        </div>
+      </div>`;
+    modal.hidden = false;
+    setTimeout(() => el('lifeNoteInput')?.focus(), 250);
+  },
+
+  _closeLifeNote() {
+    const modal = el('mobLifeNote');
+    if (modal) modal.hidden = true;
+    state.lifeNoteId = null;
+  },
+
+  async _saveLifeNote(btn) {
+    const text = el('lifeNoteInput')?.value?.trim() || '';
+    const id   = state.lifeNoteId;
+    if (!id)   { this._closeLifeNote(); return; }
+    if (!text) { this._closeLifeNote(); return; }   /* 빈 글은 저장하지 않고 조용히 닫는다 */
+
+    if (btn) { btn.disabled = true; btn.innerHTML = '<span class="mob-spin"></span> 저장 중…'; }
+    try {
+      await fetchJSON(`/api/items/${id}`, {
+        method : 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify({ text }),
+      }, 15000);
+      toast('✍️ 오늘의 한 줄이 남았어요', 'ok');
+      this._closeLifeNote();
+      if (typeof this._loadItems === 'function') this._loadItems();
+    } catch (e) {
+      toast('저장 실패: ' + (e.message || '다시 시도해주세요'), 'err');
+      if (btn) { btn.disabled = false; btn.innerHTML = '<i class="ti ti-check"></i> 남기기'; }
+    }
+  },
+
 });

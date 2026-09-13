@@ -21,6 +21,22 @@ function clearAuthCookie(res) {
   res.clearCookie(COOKIE_NAME);
 }
 
+/**
+ * 토큰이 있으면 userId를, 없거나 만료됐으면 null을 반환한다.
+ * 401 JSON 대신 **리다이렉트**로 응답해야 하는 페이지 라우트(예: POST /share-handler)용 —
+ * API 라우트는 계속 requireAuth를 쓸 것.
+ */
+function getUserId(req) {
+  const token = req.cookies?.[COOKIE_NAME] ||
+    (req.headers.authorization?.startsWith('Bearer ') ? req.headers.authorization.slice(7) : null);
+  if (!token) return null;
+  try {
+    return jwt.verify(token, process.env.JWT_SECRET).userId || null;
+  } catch {
+    return null;
+  }
+}
+
 /** userId는 req.userId에만 부착 — 전역 변수 없음, 요청마다 새로 검증 */
 function requireAuth(req, res, next) {
   const token = req.cookies?.[COOKIE_NAME] ||
@@ -35,4 +51,4 @@ function requireAuth(req, res, next) {
   }
 }
 
-module.exports = { COOKIE_NAME, generateToken, setAuthCookie, clearAuthCookie, requireAuth };
+module.exports = { COOKIE_NAME, generateToken, setAuthCookie, clearAuthCookie, requireAuth, getUserId };

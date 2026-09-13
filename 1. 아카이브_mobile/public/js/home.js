@@ -242,6 +242,10 @@ Object.assign(Mob, {
     const prevMode = localStorage.getItem('userMode');
     localStorage.setItem('userMode', mode);
     const switching = prevMode && prevMode !== mode;
+    /* 서버에 현재 모드를 알린다 — '시기'(언제부터 언제까지 수험생이었나)가 여기서 쌓인다.
+       ⚠️ 소급이 안 되는 기록이라 실패해도 앱 동작은 막지 않고 조용히 넘어간다.
+       (이 호출이 없던 동안 users.current_mode는 가입 기본값에 멈춰 있었다) */
+    this._syncMode(mode);
     /* 떠나는 모드의 표시 상태를 메모리 버킷에 보관(서버 데이터 아님, 순수 클라이언트 캐시) */
     if (switching) this._snapshotMode(prevMode);
 
@@ -275,6 +279,19 @@ Object.assign(Mob, {
     } else {
       enter();
     }
+  },
+
+  /** 현재 모드를 서버에 동기화 (실패해도 앱 흐름을 막지 않는다)
+      _modeEnum()은 localStorage를 읽으므로 호출 순서에 기대지 않도록 인자로 변환한다 */
+  async _syncMode(mode) {
+    const enumMode = mode === 'exam' ? 'EXAM_PREP' : 'PROFESSIONAL';
+    try {
+      await fetchJSON('/api/auth/mode', {
+        method : 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body   : JSON.stringify({ mode: enumMode }),
+      }, 8000);
+    } catch { /* 오프라인·비로그인 — 다음 전환 때 다시 기록된다 */ }
   },
 
   /* 모드별 표시 상태 버킷 — 전환해도 다시 안 받게 메모리에 보관 */

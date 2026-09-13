@@ -277,6 +277,18 @@ async function initSQLiteDB() {
       last_login_at TEXT
     );
     CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
+
+    /* 모드 '시기' — 언제부터 언제까지 수험생/일반인이었나.
+       연대기에서 인생 구간 띠를 그리고, 졸업 결산의 기간을 정하는 근거가 된다.
+       ⚠️ 소급 불가 — 지금부터 쌓이는 것만 남는다. */
+    CREATE TABLE IF NOT EXISTS user_mode_periods (
+      id         INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id    TEXT NOT NULL,
+      mode       TEXT NOT NULL,
+      started_at TEXT NOT NULL,
+      ended_at   TEXT
+    );
+    CREATE INDEX IF NOT EXISTS idx_ump_user ON user_mode_periods(user_id, started_at);
   `);
   _migrateFromJSON();
   _migrateLegacyDomains();
@@ -286,6 +298,7 @@ async function initSQLiteDB() {
   _migrateEnExpressionsExampleKo();
   _migrateEnThemesCategory();
   _migrateExamHistoryUnitCode();
+  _migrateSeedModePeriods();
   _seedEnglishThemes();
   _seedExamKnowledge();
   _seedDefaultCategories();
@@ -369,6 +382,29 @@ function _migrateEnExpressionsExampleKo() {
  * english_themes.theme_category 컬럼 추가(없으면) + 기존 행 백필.
  * knowledge_db/*.json을 다시 읽어 pack_id 기준으로 theme_category가 비어있는 행만 UPDATE한다. 멱등.
  */
+/**
+ * 기존 유저에게 첫 모드 시기를 하나 열어준다 (멱등).
+ *
+ * ⚠️ 과거 전환 이력은 기록된 적이 없어 복원이 불가능하다. 추측해서 만들지 않고,
+ *    "가입 시점부터 지금 모드로 쭉"이라는 한 구간만 연다. 지금부터의 전환은 정확히 쌓인다.
+ */
+function _migrateSeedModePeriods() {
+  try {
+    const users = _sqlQuery('SELECT id, current_mode, created_at FROM users', []);
+    let seeded = 0;
+    for (const u of users) {
+      const has = _sqlGet('SELECT id FROM user_mode_periods WHERE user_id = ? LIMIT 1', [u.id]);
+      if (has) continue;
+      if (UsersDB.recordModeChange(u.id, u.current_mode || MODE_PRO, u.created_at || new Date().toISOString())) {
+        seeded++;
+      }
+    }
+    if (seeded) console.log(`[SQLite] 모드 시기 최초 기록 ${seeded}명 (가입 시점 기준)`);
+  } catch (e) {
+    console.warn('[SQLite] 모드 시기 시드 실패 (무시):', e.message);
+  }
+}
+
 /* 한국사 시대 구분: era 코드 → 표준 라벨 + 교육과정 단원 코드.
    시드 JSON은 정리했지만 이미 들어간 행은 INSERT OR IGNORE라 갱신되지 않으므로 여기서 맞춘다. */
 const EXAM_HISTORY_ERA = {
@@ -3183,7 +3219,26 @@ app.get('/api/auth/me', requireAuth, (req, res) => {
 app.patch('/api/auth/mode', requireAuth, (req, res) => {
   const mode = normalizeMode(req.body?.mode);
   UsersDB.updateCurrentMode(req.userId, mode);
-  res.json({ success: true, currentMode: mode });
+  /* 시기 기록 — 같은 모드면 내부에서 알아서 무시된다(멱등) */
+  const changed = UsersDB.recordModeChange(req.userId, mode);
+  if (changed) console.log(`[모드] ${req.userId} → ${mode} (새 시기 시작)`);
+  res.json({ success: true, currentMode: mode, periodStarted: changed });
+});
+
+/**
+ * GET /api/auth/mode-periods
+ * 연대기의 인생 구간 띠 + 졸업 결산의 기간 근거.
+ * ended_at이 null인 구간이 현재 진행 중인 시기다.
+ */
+app.get('/api/auth/mode-periods', requireAuth, (req, res) => {
+  const periods = UsersDB.getModePeriods(req.userId).map(p => ({
+    mode:      p.mode,
+    label:     p.mode === MODE_EXAM ? '수험생' : '일반',
+    startedAt: p.started_at,
+    endedAt:   p.ended_at || null,
+    current:   !p.ended_at,
+  }));
+  res.json({ success: true, periods });
 });
 
 // ══════════════════════════════════════════════════

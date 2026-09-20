@@ -398,12 +398,24 @@ Object.assign(Mob, {
         title="${isSaved ? '이미 저장됨' : '서재에 저장'}" ${isSaved ? 'disabled' : ''}>
         <i class="ti ti-${isSaved ? 'bookmark-filled' : 'bookmark'}"></i>
       </button>` : '';
-    const ctxBlock = item.context ? `
+    /* 배경(그 사람이 누구였나·이 말이 나온 장면)이 먼저, 직장 적용은 그 다음.
+       순서가 중요하다 — 조언부터 나오면 읽히지 않는다. */
+    const backSect = item.backstory ? `
+      <div class="mob-hum-acc-sect">
+        <div class="mob-hum-acc-lbl">그때 무슨 일이</div>
+        <div class="mob-hum-acc-body">${item.backstory}</div>
+      </div>` : '';
+    const ctxSect = item.context ? `
+      <div class="mob-hum-acc-sect mob-hum-acc-lesson">
+        <div class="mob-hum-acc-lbl">오늘의 나에게</div>
+        <div class="mob-hum-acc-body">${item.context}</div>
+      </div>` : '';
+    const ctxBlock = (backSect || ctxSect) ? `
       <button class="mob-hum-behind-btn" onclick="event.stopPropagation();Mob._toggleBehindStory(this)">
-        해설 보기 <i class="ti ti-chevron-down"></i>
+        ${item.backstory ? '이야기 보기' : '해설 보기'} <i class="ti ti-chevron-down"></i>
       </button>
       <div class="mob-hum-behind-panel">
-        <div class="mob-hum-behind-txt">${item.context}</div>
+        ${backSect}${ctxSect}
       </div>` : '';
 
     return `

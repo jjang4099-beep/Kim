@@ -2403,6 +2403,8 @@ function generateLiberFeed(sub) {
     item_id: q.id, title: `${q.book} — ${q.author}`,
     book: q.book, author: q.author, era: q.era || '', quote: q.quote || '',
     source: q.source || '', theme: q.theme || '', context: q.context || '',
+    /* 배경·일화 — context(직장 적용)와 다른 칸이다. 이게 있어야 '읽을거리'가 된다 */
+    backstory: q.backstory || '',
     tags: q.tags || [], aiGenerated: false,
   };
 }

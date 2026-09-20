@@ -560,5 +560,40 @@
     renderAll();
   });
 
+  /* ── 테마 전환 ──────────────────────────────
+     저장 키('app-theme')는 모바일 앱과 공유한다 — 같은 오리진이라
+     여기서 바꾸면 앱도, 앱에서 바꾸면 여기도 따라온다.
+     첫 적용은 chronicle.html의 head 인라인 스크립트가 이미 했다(깜빡임 방지). */
+  const THEME_LABEL = { dark: '먹지', light: '종이' };
+
+  function currentTheme() {
+    const attr = document.documentElement.getAttribute('data-theme');
+    if (attr === 'dark' || attr === 'light') return attr;
+    /* 저장값이 없으면 시스템 설정을 따르는 중 */
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function paintThemeToggle() {
+    const btn = $('themeToggle');
+    if (!btn) return;
+    /* 버튼은 '지금 무엇인지'가 아니라 '누르면 무엇이 되는지'를 보여준다 */
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    btn.querySelector('.themetoggle__icon').textContent  = next === 'dark' ? '☾' : '☀';
+    btn.querySelector('.themetoggle__label').textContent = THEME_LABEL[next];
+    btn.setAttribute('aria-label', `${THEME_LABEL[next]} 모드로 전환`);
+  }
+
+  $('themeToggle')?.addEventListener('click', () => {
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('app-theme', next); } catch { /* 저장 못 해도 이번 세션은 적용됨 */ }
+    paintThemeToggle();
+  });
+
+  /* 아직 고른 적이 없어 시스템을 따르는 중이면, 시스템이 바뀔 때 라벨도 따라간다 */
+  window.matchMedia('(prefers-color-scheme: dark)')
+    .addEventListener('change', () => { if (!document.documentElement.getAttribute('data-theme')) paintThemeToggle(); });
+
+  paintThemeToggle();
   boot();
 })();

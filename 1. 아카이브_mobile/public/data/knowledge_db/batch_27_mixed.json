@@ -1,500 +1,308 @@
 {
-  "meta": {
-    "label": "직장인 영어·중국어 27차",
-    "mode": "work",
-    "updated": "2026-08-09",
-    "count": {
-      "english_theme_packs": 1,
-      "english_expressions": 20,
-      "chinese_expressions": 10
+ "meta": {
+  "label": "직장인 영어·중국어 27차",
+  "mode": "work",
+  "updated": "2026-08-09",
+  "count": {
+   "english_theme_packs": 1,
+   "english_expressions": 20,
+   "chinese_expressions": 10
+  }
+ },
+ "english_theme_packs": [
+  {
+   "id": "PACK_EN_041",
+   "theme_key": "feedback_coaching_en",
+   "theme_title": "피드백·코칭 영어",
+   "theme_title_en": "Feedback & Coaching English",
+   "level": "intermediate",
+   "delivery_date": null,
+   "theme_category": "business_meeting",
+   "expressions": [
+    {
+     "id": "EN_041_01",
+     "order": 1,
+     "expression": "I'd like to share some observations.",
+     "meaning": "몇 가지 관찰한 점을 공유하고 싶습니다 (피드백을 시작하는 부드러운 도입 표현)",
+     "nuance": "직접적으로 '문제가 있다'거나 '비판이 있다'고 말하지 않고, 중립적이고 비방어적인 방식으로 피드백 대화를 여는 표현이다. 'observations'는 판단이 아닌 '관찰'이라는 의미를 담아, 상대방이 방어적이 되지 않게 하는 효과가 있다.",
+     "dialogue": {
+      "A": "Do you have a moment? I'd like to share some observations about the client presentation.",
+      "B": "Of course. I'd appreciate any feedback you have."
+     },
+     "example": "Before we wrap up today's one-on-one, I'd like to share some observations about your recent reports.",
+     "practice": "1:1 면담, 팀 리뷰, 프로젝트 검토에서 피드백을 시작하기 전 도입 문구로",
+     "example_ko": "오늘 1:1 면담을 마무리하기 전에, 최근 보고서에 대해 몇 가지 관찰한 점을 공유하고 싶습니다."
+    },
+    {
+     "id": "EN_041_02",
+     "order": 2,
+     "expression": "What's working well, and what could be improved?",
+     "meaning": "잘 되고 있는 것과 개선할 수 있는 것이 무엇인지 말해주세요",
+     "nuance": "일방적으로 문제점을 지적하는 대신 긍정적인 것과 개선점을 균형 있게 탐색하는 코칭 질문이다. '나쁜 것'이 아닌 '개선 가능한 것'이라는 표현이 상대방에게 성장의 여지를 주는 심리적 안전감을 만든다.",
+     "dialogue": {
+      "A": "How do you feel about how the project is going?",
+      "B": "That's a good question. What's working well, and what could be improved? Let's think through both."
+     },
+     "example": "Let's start our retrospective with the basics: what's working well, and what could be improved?",
+     "practice": "팀 회고, 성과 리뷰, 코칭 세션에서 균형 잡힌 피드백을 이끌어낼 때",
+     "example_ko": "회고를 기본적인 것부터 시작해봅시다 — 잘 되고 있는 것과 개선할 수 있는 것이 무엇인지 얘기해봅시다."
+    },
+    {
+     "id": "EN_041_03",
+     "order": 3,
+     "expression": "Can you walk me through your thinking?",
+     "meaning": "어떤 생각으로 그렇게 했는지 설명해줄 수 있나요?",
+     "nuance": "실수나 의외의 결과에 대해 즉시 비판하는 대신, 상대방의 의사결정 과정을 이해하려는 코칭 접근법이다. '왜 그랬어요?'보다 훨씬 부드럽고, 상대방이 자신의 논리를 스스로 점검하게 유도하는 효과도 있다.",
+     "dialogue": {
+      "A": "Can you walk me through your thinking on the pricing decision?",
+      "B": "Sure. I assumed we'd want to match the competitor's rate, but looking back, I should have checked with the team first."
+     },
+     "example": "Before I give you my feedback, can you walk me through your thinking on how you structured the proposal?",
+     "practice": "결과에 의문이 생겼을 때, 즉각적인 비판 대신 의사결정 과정을 이해하려 할 때",
+     "example_ko": "피드백을 드리기 전에, 제안서를 어떻게 구성했는지 생각하신 과정을 설명해줄 수 있나요?"
+    },
+    {
+     "id": "EN_041_04",
+     "order": 4,
+     "expression": "Here's what I noticed — and I might be missing context.",
+     "meaning": "제가 관찰한 것을 말씀드리는데 — 놓친 맥락이 있을 수도 있습니다",
+     "nuance": "'I might be missing context'라는 인정이 핵심이다. 이 문구는 피드백 제공자가 모든 것을 알지 못할 수 있다는 겸손함을 표현하면서도, 관찰 내용을 전달할 수 있게 해준다. 결과적으로 수신자가 덜 방어적이 되고 대화가 더 개방적으로 흐른다.",
+     "dialogue": {
+      "A": "Here's what I noticed — and I might be missing context. The deadline slipped twice this month.",
+      "B": "You're right to flag that. There were some blockers I should have communicated earlier."
+     },
+     "example": "Here's what I noticed — and I might be missing context — the client seemed disengaged in the last two calls.",
+     "practice": "완전한 정보 없이 피드백을 전달해야 할 때, 열린 대화를 유지하면서 관찰을 공유할 때",
+     "example_ko": "제가 관찰한 것을 말씀드리는데 — 놓친 맥락이 있을 수도 있습니다 — 최근 두 번의 통화에서 고객이 집중하지 않는 것처럼 보였습니다."
+    },
+    {
+     "id": "EN_041_05",
+     "order": 5,
+     "expression": "What support do you need from me?",
+     "meaning": "제가 어떤 지원을 드릴 수 있을까요?",
+     "nuance": "피드백이나 코칭 대화의 마무리에 쓰는 핵심 문구다. 문제를 지적하는 것에서 끝나지 않고, '해결을 함께 만들어가겠다'는 의지를 보여준다. 특히 어려운 피드백 후에 이 질문이 있으면 관계가 훼손되지 않고 신뢰로 마무리된다.",
+     "dialogue": {
+      "A": "I understand the feedback. I know I need to be more proactive about communicating blockers.",
+      "B": "I appreciate that. Going forward, what support do you need from me to make that easier?"
+     },
+     "example": "I've shared my observations, and I know some of this is challenging. What support do you need from me?",
+     "practice": "피드백 세션 마무리, 어려운 대화 후 관계를 복원하고 다음 단계를 열 때",
+     "example_ko": "제 관찰 내용을 공유했는데, 일부는 어려울 수 있다는 걸 압니다. 제가 어떤 지원을 드릴 수 있을까요?"
     }
+   ],
+   "master_paragraph": {
+    "text": "Before we close today's session, I'd like to share some observations — and I might be missing context. What's working well is your ability to stay calm under pressure. That said, can you walk me through your thinking on the last deliverable? There were a few things I noticed that we could refine. Here's what I'd suggest: start by flagging blockers earlier. And going forward, what support do you need from me to make that easier?",
+    "translation": "오늘 세션을 마무리하기 전에, 몇 가지 관찰한 점을 공유하고 싶습니다 — 놓친 맥락이 있을 수 있지만요. 잘 되고 있는 점은 압박 상황에서 침착함을 유지하는 능력입니다. 다만 마지막 결과물에 대해 어떤 생각으로 진행했는지 설명해줄 수 있나요? 몇 가지 개선할 수 있는 부분이 보였거든요. 제가 제안드리고 싶은 것은 장애물이 생겼을 때 더 일찍 알려달라는 것입니다. 앞으로 나아가는 데 있어서, 제가 어떤 지원을 드릴 수 있을까요?",
+    "highlights": [
+     "I'd like to share some observations",
+     "I might be missing context",
+     "What's working well",
+     "Can you walk me through your thinking",
+     "What support do you need from me"
+    ]
+   }
+  }
+ ],
+ "english_expressions": [
+  {
+   "id": "EN_639",
+   "expression": "loop someone in",
+   "meaning": "누구를 대화·정보에 포함시키다",
+   "level": "intermediate",
+   "theme": "communication",
+   "example": "Can you loop in the legal team before we finalize the contract terms?",
+   "dialogue": {
+    "A": "Should I send this directly to the client?",
+    "B": "Not yet — loop in Sarah first so she's aware of what we're sending."
+   }
   },
-  "english_theme_packs": [
-    {
-      "id": "PACK_EN_041",
-      "theme_key": "feedback_coaching_en",
-      "theme_title": "피드백·코칭 영어",
-      "theme_title_en": "Feedback & Coaching English",
-      "level": "intermediate",
-      "delivery_date": null,
-      "theme_category": "feedback",
-      "expressions": [
-        {
-          "id": "EN_041_01",
-          "order": 1,
-          "expression": "I'd like to share some observations.",
-          "meaning": "몇 가지 관찰한 점을 공유하고 싶습니다 (피드백을 시작하는 부드러운 도입 표현)",
-          "nuance": "직접적으로 '문제가 있다'거나 '비판이 있다'고 말하지 않고, 중립적이고 비방어적인 방식으로 피드백 대화를 여는 표현이다. 'observations'는 판단이 아닌 '관찰'이라는 의미를 담아, 상대방이 방어적이 되지 않게 하는 효과가 있다.",
-          "dialogue": {
-            "A": "Do you have a moment? I'd like to share some observations about the client presentation.",
-            "B": "Of course. I'd appreciate any feedback you have."
-          },
-          "example": "Before we wrap up today's one-on-one, I'd like to share some observations about your recent reports.",
-          "practice": "1:1 면담, 팀 리뷰, 프로젝트 검토에서 피드백을 시작하기 전 도입 문구로",
-          "example_ko": "오늘 1:1 면담을 마무리하기 전에, 최근 보고서에 대해 몇 가지 관찰한 점을 공유하고 싶습니다."
-        },
-        {
-          "id": "EN_041_02",
-          "order": 2,
-          "expression": "What's working well, and what could be improved?",
-          "meaning": "잘 되고 있는 것과 개선할 수 있는 것이 무엇인지 말해주세요",
-          "nuance": "일방적으로 문제점을 지적하는 대신 긍정적인 것과 개선점을 균형 있게 탐색하는 코칭 질문이다. '나쁜 것'이 아닌 '개선 가능한 것'이라는 표현이 상대방에게 성장의 여지를 주는 심리적 안전감을 만든다.",
-          "dialogue": {
-            "A": "How do you feel about how the project is going?",
-            "B": "That's a good question. What's working well, and what could be improved? Let's think through both."
-          },
-          "example": "Let's start our retrospective with the basics: what's working well, and what could be improved?",
-          "practice": "팀 회고, 성과 리뷰, 코칭 세션에서 균형 잡힌 피드백을 이끌어낼 때",
-          "example_ko": "회고를 기본적인 것부터 시작해봅시다 — 잘 되고 있는 것과 개선할 수 있는 것이 무엇인지 얘기해봅시다."
-        },
-        {
-          "id": "EN_041_03",
-          "order": 3,
-          "expression": "Can you walk me through your thinking?",
-          "meaning": "어떤 생각으로 그렇게 했는지 설명해줄 수 있나요?",
-          "nuance": "실수나 의외의 결과에 대해 즉시 비판하는 대신, 상대방의 의사결정 과정을 이해하려는 코칭 접근법이다. '왜 그랬어요?'보다 훨씬 부드럽고, 상대방이 자신의 논리를 스스로 점검하게 유도하는 효과도 있다.",
-          "dialogue": {
-            "A": "Can you walk me through your thinking on the pricing decision?",
-            "B": "Sure. I assumed we'd want to match the competitor's rate, but looking back, I should have checked with the team first."
-          },
-          "example": "Before I give you my feedback, can you walk me through your thinking on how you structured the proposal?",
-          "practice": "결과에 의문이 생겼을 때, 즉각적인 비판 대신 의사결정 과정을 이해하려 할 때",
-          "example_ko": "피드백을 드리기 전에, 제안서를 어떻게 구성했는지 생각하신 과정을 설명해줄 수 있나요?"
-        },
-        {
-          "id": "EN_041_04",
-          "order": 4,
-          "expression": "Here's what I noticed — and I might be missing context.",
-          "meaning": "제가 관찰한 것을 말씀드리는데 — 놓친 맥락이 있을 수도 있습니다",
-          "nuance": "'I might be missing context'라는 인정이 핵심이다. 이 문구는 피드백 제공자가 모든 것을 알지 못할 수 있다는 겸손함을 표현하면서도, 관찰 내용을 전달할 수 있게 해준다. 결과적으로 수신자가 덜 방어적이 되고 대화가 더 개방적으로 흐른다.",
-          "dialogue": {
-            "A": "Here's what I noticed — and I might be missing context. The deadline slipped twice this month.",
-            "B": "You're right to flag that. There were some blockers I should have communicated earlier."
-          },
-          "example": "Here's what I noticed — and I might be missing context — the client seemed disengaged in the last two calls.",
-          "practice": "완전한 정보 없이 피드백을 전달해야 할 때, 열린 대화를 유지하면서 관찰을 공유할 때",
-          "example_ko": "제가 관찰한 것을 말씀드리는데 — 놓친 맥락이 있을 수도 있습니다 — 최근 두 번의 통화에서 고객이 집중하지 않는 것처럼 보였습니다."
-        },
-        {
-          "id": "EN_041_05",
-          "order": 5,
-          "expression": "What support do you need from me?",
-          "meaning": "제가 어떤 지원을 드릴 수 있을까요?",
-          "nuance": "피드백이나 코칭 대화의 마무리에 쓰는 핵심 문구다. 문제를 지적하는 것에서 끝나지 않고, '해결을 함께 만들어가겠다'는 의지를 보여준다. 특히 어려운 피드백 후에 이 질문이 있으면 관계가 훼손되지 않고 신뢰로 마무리된다.",
-          "dialogue": {
-            "A": "I understand the feedback. I know I need to be more proactive about communicating blockers.",
-            "B": "I appreciate that. Going forward, what support do you need from me to make that easier?"
-          },
-          "example": "I've shared my observations, and I know some of this is challenging. What support do you need from me?",
-          "practice": "피드백 세션 마무리, 어려운 대화 후 관계를 복원하고 다음 단계를 열 때",
-          "example_ko": "제 관찰 내용을 공유했는데, 일부는 어려울 수 있다는 걸 압니다. 제가 어떤 지원을 드릴 수 있을까요?"
-        }
-      ],
-      "master_paragraph": {
-        "text": "Before we close today's session, I'd like to share some observations — and I might be missing context. What's working well is your ability to stay calm under pressure. That said, can you walk me through your thinking on the last deliverable? There were a few things I noticed that we could refine. Here's what I'd suggest: start by flagging blockers earlier. And going forward, what support do you need from me to make that easier?",
-        "translation": "오늘 세션을 마무리하기 전에, 몇 가지 관찰한 점을 공유하고 싶습니다 — 놓친 맥락이 있을 수 있지만요. 잘 되고 있는 점은 압박 상황에서 침착함을 유지하는 능력입니다. 다만 마지막 결과물에 대해 어떤 생각으로 진행했는지 설명해줄 수 있나요? 몇 가지 개선할 수 있는 부분이 보였거든요. 제가 제안드리고 싶은 것은 장애물이 생겼을 때 더 일찍 알려달라는 것입니다. 앞으로 나아가는 데 있어서, 제가 어떤 지원을 드릴 수 있을까요?",
-        "highlights": [
-          "I'd like to share some observations",
-          "I might be missing context",
-          "What's working well",
-          "Can you walk me through your thinking",
-          "What support do you need from me"
-        ]
-      }
-    }
-  ],
-  "english_expressions": [
-    {
-      "id": "EN_636",
-      "expression": "get the ball rolling",
-      "meaning": "일을 시작하다, 추진력을 만들다",
-      "level": "intermediate",
-      "theme": "project_kickoff",
-      "example": "Let's get the ball rolling on the new initiative before the end of the quarter.",
-      "dialogue": {
-        "A": "When should we start the onboarding process?",
-        "B": "Let's get the ball rolling this week — the sooner, the better."
-      }
-    },
-    {
-      "id": "EN_637",
-      "expression": "bring to the table",
-      "meaning": "기여하다, 강점을 제공하다",
-      "level": "intermediate",
-      "theme": "team_collaboration",
-      "example": "Each team member brings different skills to the table, which is what makes us effective.",
-      "dialogue": {
-        "A": "Why do you think the cross-functional team worked so well?",
-        "B": "Everyone brought something unique to the table — design, tech, and business all aligned."
-      }
-    },
-    {
-      "id": "EN_638",
-      "expression": "raise the bar",
-      "meaning": "기준을 높이다, 더 높은 수준을 요구하다",
-      "level": "intermediate",
-      "theme": "performance_management",
-      "example": "With this hire, we're raising the bar for what exceptional work looks like on this team.",
-      "dialogue": {
-        "A": "The new campaign really set a new standard.",
-        "B": "Exactly — it raised the bar for everything we do going forward."
-      }
-    },
-    {
-      "id": "EN_639",
-      "expression": "loop someone in",
-      "meaning": "누구를 대화·정보에 포함시키다",
-      "level": "intermediate",
-      "theme": "communication",
-      "example": "Can you loop in the legal team before we finalize the contract terms?",
-      "dialogue": {
-        "A": "Should I send this directly to the client?",
-        "B": "Not yet — loop in Sarah first so she's aware of what we're sending."
-      }
-    },
-    {
-      "id": "EN_640",
-      "expression": "take ownership",
-      "meaning": "책임감을 가지다, 주도적으로 책임을 맡다",
-      "level": "intermediate",
-      "theme": "accountability",
-      "example": "I want each team lead to take ownership of their department's quarterly targets.",
-      "dialogue": {
-        "A": "Who's responsible for this project?",
-        "B": "I'll take ownership — I know this area best and I'm committed to seeing it through."
-      }
-    },
-    {
-      "id": "EN_641",
-      "expression": "move the needle",
-      "meaning": "의미 있는 변화를 만들다, 성과에 실질적 영향을 주다",
-      "level": "advanced",
-      "theme": "strategy",
-      "example": "We need campaigns that actually move the needle on brand awareness, not just vanity metrics.",
-      "dialogue": {
-        "A": "Did the new feature have any impact?",
-        "B": "It moved the needle on user retention — we saw a 12% improvement in the first month."
-      }
-    },
-    {
-      "id": "EN_642",
-      "expression": "on the same page",
-      "meaning": "같은 이해를 공유하다, 동일한 입장이다",
-      "level": "basic",
-      "theme": "alignment",
-      "example": "Before we start, I want to make sure we're all on the same page about the scope.",
-      "dialogue": {
-        "A": "Are we aligned on the timeline?",
-        "B": "Let's confirm — I want to make sure everyone's on the same page before we commit."
-      }
-    },
-    {
-      "id": "EN_643",
-      "expression": "drill down into",
-      "meaning": "깊이 분석하다, 세부 사항을 집중적으로 살펴보다",
-      "level": "intermediate",
-      "theme": "analysis",
-      "example": "Let's drill down into the data to understand why conversion dropped last month.",
-      "dialogue": {
-        "A": "The numbers look off but I'm not sure why.",
-        "B": "We need to drill down into each segment to find where the drop is coming from."
-      }
-    },
-    {
-      "id": "EN_644",
-      "expression": "bandwidth",
-      "meaning": "(업무 맥락에서) 여유 시간·처리 용량",
-      "level": "intermediate",
-      "theme": "workload_management",
-      "example": "I don't have the bandwidth to take on another project right now — my plate is full.",
-      "dialogue": {
-        "A": "Could you review the proposal by Friday?",
-        "B": "I'll check my bandwidth — if I can't do it justice, I'll flag it early rather than rushing."
-      }
-    },
-    {
-      "id": "EN_645",
-      "expression": "put it on the back burner",
-      "meaning": "나중으로 미루다, 우선순위를 낮추다",
-      "level": "intermediate",
-      "theme": "prioritization",
-      "example": "We've decided to put the new feature on the back burner until we stabilize the core product.",
-      "dialogue": {
-        "A": "What happened to the international expansion plan?",
-        "B": "We put it on the back burner — we need to nail the domestic market first."
-      }
-    },
-    {
-      "id": "EN_646",
-      "expression": "touch base",
-      "meaning": "간략히 연락·확인하다",
-      "level": "basic",
-      "theme": "communication",
-      "example": "I'll touch base with the client after the proposal is sent to gauge their initial reaction.",
-      "dialogue": {
-        "A": "Have you heard anything from the vendor?",
-        "B": "Not yet — I'll touch base with them tomorrow to get an update."
-      }
-    },
-    {
-      "id": "EN_647",
-      "expression": "heads-up",
-      "meaning": "사전 귀띔, 미리 알려주는 것",
-      "level": "basic",
-      "theme": "communication",
-      "example": "Just a quick heads-up — the meeting has been moved to 3 PM.",
-      "dialogue": {
-        "A": "Thanks for the heads-up about the budget freeze.",
-        "B": "Of course — I wanted to give you time to adjust your plans before the announcement."
-      }
-    },
-    {
-      "id": "EN_648",
-      "expression": "think outside the box",
-      "meaning": "틀에서 벗어나 창의적으로 생각하다",
-      "level": "intermediate",
-      "theme": "problem_solving",
-      "example": "The standard approach isn't working — let's think outside the box and explore unconventional solutions.",
-      "dialogue": {
-        "A": "We've tried everything we normally do and it's not working.",
-        "B": "Then it's time to think outside the box — what if we approached this from the customer's perspective first?"
-      }
-    },
-    {
-      "id": "EN_649",
-      "expression": "circle back",
-      "meaning": "나중에 다시 논의하다, 추후 확인하다",
-      "level": "basic",
-      "theme": "meeting_management",
-      "example": "Let's table this for now and circle back once we have more data.",
-      "dialogue": {
-        "A": "We're running out of time to resolve this today.",
-        "B": "Agreed — let's circle back on Thursday after everyone's reviewed the numbers."
-      }
-    },
-    {
-      "id": "EN_650",
-      "expression": "above and beyond",
-      "meaning": "기대 이상으로, 추가적으로 노력하다",
-      "level": "intermediate",
-      "theme": "performance_recognition",
-      "example": "She consistently goes above and beyond — her commitment to the team is remarkable.",
-      "dialogue": {
-        "A": "Did you see what the team pulled off over the weekend?",
-        "B": "Absolutely — they went above and beyond, and I want to make sure we recognize that."
-      }
-    },
-    {
-      "id": "EN_651",
-      "expression": "low-hanging fruit",
-      "meaning": "쉽게 얻을 수 있는 기회·성과",
-      "level": "intermediate",
-      "theme": "strategy",
-      "example": "Before pursuing complex solutions, let's pick the low-hanging fruit and fix the quick wins first.",
-      "dialogue": {
-        "A": "Where should we start with the process improvement?",
-        "B": "Start with the low-hanging fruit — the documentation gaps we can fix in a day."
-      }
-    },
-    {
-      "id": "EN_652",
-      "expression": "hit the ground running",
-      "meaning": "바로 실행에 들어가다, 즉시 성과를 내다",
-      "level": "intermediate",
-      "theme": "onboarding",
-      "example": "We need someone who can hit the ground running — we don't have time for a long ramp-up.",
-      "dialogue": {
-        "A": "How was your first week?",
-        "B": "Great — I hit the ground running thanks to the thorough onboarding materials the team prepared."
-      }
-    },
-    {
-      "id": "EN_653",
-      "expression": "keep someone in the loop",
-      "meaning": "누군가를 계속 정보에 포함시키다",
-      "level": "basic",
-      "theme": "communication",
-      "example": "Please keep me in the loop as the negotiation progresses.",
-      "dialogue": {
-        "A": "Should I copy you on all the vendor emails?",
-        "B": "Just the key decisions — I don't need every thread, but keep me in the loop on anything significant."
-      }
-    },
-    {
-      "id": "EN_654",
-      "expression": "at the end of the day",
-      "meaning": "결국에는, 가장 중요한 것은",
-      "level": "basic",
-      "theme": "conclusion",
-      "example": "At the end of the day, what matters most is whether our customers are satisfied.",
-      "dialogue": {
-        "A": "We've been debating the features for weeks.",
-        "B": "At the end of the day, let's ask what problem we're actually solving for the user."
-      }
-    },
-    {
-      "id": "EN_655",
-      "expression": "push the envelope",
-      "meaning": "한계를 뛰어넘다, 기존의 경계를 확장하다",
-      "level": "advanced",
-      "theme": "innovation",
-      "example": "We've always pushed the envelope with our product design — that's what sets us apart.",
-      "dialogue": {
-        "A": "Is this proposal too ambitious?",
-        "B": "Maybe, but I'd rather push the envelope and scale back than play it safe from the start."
-      }
-    }
-  ],
-  "chinese_expressions": [
-    {
-      "id": "ZH_208",
-      "expression": "稳扎稳打",
-      "pinyin": "wěn zhā wěn dǎ",
-      "meaning": "안정적으로 한 발씩 나아가다, 착실하게 기반을 다지다",
-      "level": "intermediate",
-      "theme": "전략·진행",
-      "example": "我们公司一直稳扎稳打，不追求短期利益。(우리 회사는 단기 이익을 쫓지 않고 항상 착실하게 나아갑니다.)",
-      "dialogue": {
-        "A": "竞争对手发展得很快，我们是不是也应该加快步伐？(경쟁사가 매우 빠르게 성장하고 있는데, 우리도 속도를 내야 할까요?)",
-        "B": "我们还是稳扎稳打比较好，盲目追速可能会出问题。(그래도 착실하게 나아가는 게 좋습니다. 무작정 속도를 내면 문제가 생길 수 있어요.)",
-        "A_ko": "경쟁사가 매우 빠르게 성장하고 있는데, 우리도 속도를 내야 할까요?",
-        "B_ko": "그래도 착실하게 나아가는 게 좋습니다. 무작정 속도를 내면 문제가 생길 수 있어요."
-      }
-    },
-    {
-      "id": "ZH_209",
-      "expression": "触类旁通",
-      "pinyin": "chù lèi páng tōng",
-      "meaning": "한 가지를 배워 다른 것에 응용하다, 유추를 통해 깨달음을 얻다",
-      "level": "advanced",
-      "theme": "학습·응용",
-      "example": "他触类旁通，把在技术领域学到的思维方式用在了管理上。(그는 기술 분야에서 배운 사고방식을 경영에 응용했습니다.)",
-      "dialogue": {
-        "A": "他没有管理经验，怎么做得这么好？(그는 관리 경험이 없는데 어떻게 이렇게 잘 하죠?)",
-        "B": "他很善于触类旁通，把其他领域的经验转化过来了。(그는 다른 분야의 경험을 잘 전환시키는 능력이 있어요.)",
-        "A_ko": "그는 관리 경험이 없는데 어떻게 이렇게 잘 하죠?",
-        "B_ko": "그는 다른 분야의 경험을 잘 전환시키는 능력이 있어요."
-      }
-    },
-    {
-      "id": "ZH_210",
-      "expression": "精益求精",
-      "pinyin": "jīng yì qiú jīng",
-      "meaning": "이미 훌륭한 것을 더욱 완벽하게 만들려 하다, 끊임없이 개선하다",
-      "level": "intermediate",
-      "theme": "품질·개선",
-      "example": "我们的产品已经很好了，但我们精益求精，还在持续改进。(우리 제품은 이미 좋지만, 우리는 끊임없이 더 나은 것을 추구하며 계속 개선하고 있습니다.)",
-      "dialogue": {
-        "A": "这个版本已经很不错了，还需要再改吗？(이 버전은 이미 꽤 좋은데, 더 수정해야 할까요?)",
-        "B": "我们精益求精，总有可以做得更好的地方。(우리는 더 나은 것을 추구합니다. 항상 더 잘할 수 있는 부분이 있거든요.)",
-        "A_ko": "이 버전은 이미 꽤 좋은데, 더 수정해야 할까요?",
-        "B_ko": "우리는 더 나은 것을 추구합니다. 항상 더 잘할 수 있는 부분이 있거든요."
-      }
-    },
-    {
-      "id": "ZH_211",
-      "expression": "事半功倍",
-      "pinyin": "shì bàn gōng bèi",
-      "meaning": "절반의 노력으로 두 배의 성과를 거두다, 효율적이다",
-      "level": "intermediate",
-      "theme": "효율·생산성",
-      "example": "找到正确的方法，就能事半功倍。(올바른 방법을 찾으면 절반의 노력으로 두 배의 성과를 낼 수 있습니다.)",
-      "dialogue": {
-        "A": "有没有什么办法能提高工作效率？(업무 효율을 높일 방법이 없을까요?)",
-        "B": "先把优先级排好，事半功倍的关键就在这里。(먼저 우선순위를 정하세요. 효율의 핵심은 바로 거기 있어요.)",
-        "A_ko": "업무 효율을 높일 방법이 없을까요?",
-        "B_ko": "먼저 우선순위를 정하세요. 효율의 핵심은 바로 거기 있어요."
-      }
-    },
-    {
-      "id": "ZH_212",
-      "expression": "无懈可击",
-      "pinyin": "wú xiè kě jī",
-      "meaning": "흠잡을 데가 없다, 완벽하다",
-      "level": "advanced",
-      "theme": "완성도·발표",
-      "example": "他的方案逻辑严密，无懈可击，赢得了所有人的认可。(그의 방안은 논리가 치밀하고 흠잡을 데 없어서 모두의 인정을 받았습니다.)",
-      "dialogue": {
-        "A": "董事会对提案有什么反应？(이사회는 제안서에 어떻게 반응했나요?)",
-        "B": "反应非常好，他们说准备得无懈可击。(반응이 매우 좋았어요. 준비가 완벽하다고 했습니다.)",
-        "A_ko": "이사회는 제안서에 어떻게 반응했나요?",
-        "B_ko": "반응이 매우 좋았어요. 준비가 완벽하다고 했습니다."
-      }
-    },
-    {
-      "id": "ZH_213",
-      "expression": "因地制宜",
-      "pinyin": "yīn dì zhì yí",
-      "meaning": "현지 상황에 맞게 대처하다, 상황에 따라 유연하게 적용하다",
-      "level": "advanced",
-      "theme": "전략·적응",
-      "example": "进入新市场要因地制宜，不能照搬其他地区的经验。(신규 시장 진출 시에는 현지 상황에 맞게 대처해야 하며, 다른 지역의 경험을 그대로 적용해선 안 됩니다.)",
-      "dialogue": {
-        "A": "我们在其他市场的策略可以直接用在这里吗？(다른 시장에서 사용한 전략을 여기에도 그대로 쓸 수 있을까요?)",
-        "B": "不行，要因地制宜，每个市场的文化和需求都不一样。(안 됩니다. 상황에 맞게 적용해야 해요. 각 시장의 문화와 수요가 다릅니다.)",
-        "A_ko": "다른 시장에서 사용한 전략을 여기에도 그대로 쓸 수 있을까요?",
-        "B_ko": "안 됩니다. 상황에 맞게 적용해야 해요. 각 시장의 문화와 수요가 다릅니다."
-      }
-    },
-    {
-      "id": "ZH_214",
-      "expression": "厚积薄发",
-      "pinyin": "hòu jī bó fā",
-      "meaning": "오랜 축적 끝에 폭발적으로 발휘되다, 내공을 쌓아 한꺼번에 터뜨리다",
-      "level": "advanced",
-      "theme": "성장·역량",
-      "example": "他多年的积累终于厚积薄发，在这次竞标中展现了惊人的实力。(그의 수년간 축적이 마침내 빛을 발했고, 이번 입찰에서 놀라운 실력을 발휘했습니다.)",
-      "dialogue": {
-        "A": "他以前表现平平，为什么这次这么突出？(그는 이전에는 평범했는데, 왜 이번에 이렇게 뛰어난 거죠?)",
-        "B": "厚积薄发，他一直在默默学习和积累呢。(내공을 쌓아 한꺼번에 터뜨린 거예요. 그는 조용히 계속 배우고 쌓아왔거든요.)",
-        "A_ko": "그는 이전에는 평범했는데, 왜 이번에 이렇게 뛰어난 거죠?",
-        "B_ko": "내공을 쌓아 한꺼번에 터뜨린 거예요. 그는 조용히 계속 배우고 쌓아왔거든요."
-      }
-    },
-    {
-      "id": "ZH_215",
-      "expression": "举一反三",
-      "pinyin": "jǔ yī fǎn sān",
-      "meaning": "하나를 들으면 셋을 안다, 유추 능력이 뛰어나다",
-      "level": "intermediate",
-      "theme": "학습·이해력",
-      "example": "好的员工能够举一反三，把一个案例的经验应用到多种场景。(뛰어난 직원은 하나의 사례 경험을 다양한 상황에 적용할 수 있습니다.)",
-      "dialogue": {
-        "A": "她只培训了一天就独立工作了，真的吗？(그녀는 하루 교육만 받고 바로 독립 업무를 했다고요, 정말인가요?)",
-        "B": "对，她举一反三的能力很强，一点就通。(네, 그녀는 유추 능력이 매우 뛰어나요. 조금만 알려줘도 금방 이해해요.)",
-        "A_ko": "그녀는 하루 교육만 받고 바로 독립 업무를 했다고요, 정말인가요?",
-        "B_ko": "네, 그녀는 유추 능력이 매우 뛰어나요. 조금만 알려줘도 금방 이해해요."
-      }
-    },
-    {
-      "id": "ZH_216",
-      "expression": "脚踏实地",
-      "pinyin": "jiǎo tā shí dì",
-      "meaning": "발을 땅에 딛고 착실하게 하다, 현실적이고 성실하게 임하다",
-      "level": "intermediate",
-      "theme": "태도·성실함",
-      "example": "成功没有捷径，还是要脚踏实地，一步一步来。(성공에는 지름길이 없습니다. 역시 착실하게 한 걸음씩 나아가야 합니다.)",
-      "dialogue": {
-        "A": "他总是想找捷径，怎么说服他？(그는 항상 지름길을 찾으려 하는데, 어떻게 설득하죠?)",
-        "B": "让他看看那些脚踏实地、最终成功的人的案例。(착실하게 임해서 결국 성공한 사람들의 사례를 보여주세요.)",
-        "A_ko": "그는 항상 지름길을 찾으려 하는데, 어떻게 설득하죠?",
-        "B_ko": "착실하게 임해서 결국 성공한 사람들의 사례를 보여주세요."
-      }
-    },
-    {
-      "id": "ZH_217",
-      "expression": "开诚布公",
-      "pinyin": "kāi chéng bù gōng",
-      "meaning": "솔직하고 공정하게 터놓고 말하다",
-      "level": "intermediate",
-      "theme": "커뮤니케이션·신뢰",
-      "example": "我们今天开诚布公地谈一谈，把所有的问题都摆在桌面上。(오늘 솔직하게 터놓고 얘기하면서 모든 문제를 테이블에 올려놓겠습니다.)",
-      "dialogue": {
-        "A": "团队内部矛盾越来越深，怎么办？(팀 내부 갈등이 점점 깊어지고 있어요, 어떻게 하죠?)",
-        "B": "安排一次全体会议，开诚布公地说清楚各自的想法。(전체 회의를 마련해서 각자의 생각을 솔직하게 터놓고 얘기하세요.)",
-        "A_ko": "팀 내부 갈등이 점점 깊어지고 있어요, 어떻게 하죠?",
-        "B_ko": "전체 회의를 마련해서 각자의 생각을 솔직하게 터놓고 얘기하세요."
-      }
-    }
-  ]
+  {
+   "id": "EN_643",
+   "expression": "drill down into",
+   "meaning": "깊이 분석하다, 세부 사항을 집중적으로 살펴보다",
+   "level": "intermediate",
+   "theme": "analysis",
+   "example": "Let's drill down into the data to understand why conversion dropped last month.",
+   "dialogue": {
+    "A": "The numbers look off but I'm not sure why.",
+    "B": "We need to drill down into each segment to find where the drop is coming from."
+   }
+  },
+  {
+   "id": "EN_645",
+   "expression": "put it on the back burner",
+   "meaning": "나중으로 미루다, 우선순위를 낮추다",
+   "level": "intermediate",
+   "theme": "prioritization",
+   "example": "We've decided to put the new feature on the back burner until we stabilize the core product.",
+   "dialogue": {
+    "A": "What happened to the international expansion plan?",
+    "B": "We put it on the back burner — we need to nail the domestic market first."
+   }
+  },
+  {
+   "id": "EN_650",
+   "expression": "above and beyond",
+   "meaning": "기대 이상으로, 추가적으로 노력하다",
+   "level": "intermediate",
+   "theme": "performance_recognition",
+   "example": "She consistently goes above and beyond — her commitment to the team is remarkable.",
+   "dialogue": {
+    "A": "Did you see what the team pulled off over the weekend?",
+    "B": "Absolutely — they went above and beyond, and I want to make sure we recognize that."
+   }
+  }
+ ],
+ "chinese_expressions": [
+  {
+   "id": "ZH_208",
+   "expression": "稳扎稳打",
+   "pinyin": "wěn zhā wěn dǎ",
+   "meaning": "안정적으로 한 발씩 나아가다, 착실하게 기반을 다지다",
+   "level": "intermediate",
+   "theme": "전략·진행",
+   "example": "我们公司一直稳扎稳打，不追求短期利益。(우리 회사는 단기 이익을 쫓지 않고 항상 착실하게 나아갑니다.)",
+   "dialogue": {
+    "A": "竞争对手发展得很快，我们是不是也应该加快步伐？(경쟁사가 매우 빠르게 성장하고 있는데, 우리도 속도를 내야 할까요?)",
+    "B": "我们还是稳扎稳打比较好，盲目追速可能会出问题。(그래도 착실하게 나아가는 게 좋습니다. 무작정 속도를 내면 문제가 생길 수 있어요.)",
+    "A_ko": "경쟁사가 매우 빠르게 성장하고 있는데, 우리도 속도를 내야 할까요?",
+    "B_ko": "그래도 착실하게 나아가는 게 좋습니다. 무작정 속도를 내면 문제가 생길 수 있어요."
+   }
+  },
+  {
+   "id": "ZH_209",
+   "expression": "触类旁通",
+   "pinyin": "chù lèi páng tōng",
+   "meaning": "한 가지를 배워 다른 것에 응용하다, 유추를 통해 깨달음을 얻다",
+   "level": "advanced",
+   "theme": "학습·응용",
+   "example": "他触类旁通，把在技术领域学到的思维方式用在了管理上。(그는 기술 분야에서 배운 사고방식을 경영에 응용했습니다.)",
+   "dialogue": {
+    "A": "他没有管理经验，怎么做得这么好？(그는 관리 경험이 없는데 어떻게 이렇게 잘 하죠?)",
+    "B": "他很善于触类旁通，把其他领域的经验转化过来了。(그는 다른 분야의 경험을 잘 전환시키는 능력이 있어요.)",
+    "A_ko": "그는 관리 경험이 없는데 어떻게 이렇게 잘 하죠?",
+    "B_ko": "그는 다른 분야의 경험을 잘 전환시키는 능력이 있어요."
+   }
+  },
+  {
+   "id": "ZH_210",
+   "expression": "精益求精",
+   "pinyin": "jīng yì qiú jīng",
+   "meaning": "이미 훌륭한 것을 더욱 완벽하게 만들려 하다, 끊임없이 개선하다",
+   "level": "intermediate",
+   "theme": "품질·개선",
+   "example": "我们的产品已经很好了，但我们精益求精，还在持续改进。(우리 제품은 이미 좋지만, 우리는 끊임없이 더 나은 것을 추구하며 계속 개선하고 있습니다.)",
+   "dialogue": {
+    "A": "这个版本已经很不错了，还需要再改吗？(이 버전은 이미 꽤 좋은데, 더 수정해야 할까요?)",
+    "B": "我们精益求精，总有可以做得更好的地方。(우리는 더 나은 것을 추구합니다. 항상 더 잘할 수 있는 부분이 있거든요.)",
+    "A_ko": "이 버전은 이미 꽤 좋은데, 더 수정해야 할까요?",
+    "B_ko": "우리는 더 나은 것을 추구합니다. 항상 더 잘할 수 있는 부분이 있거든요."
+   }
+  },
+  {
+   "id": "ZH_211",
+   "expression": "事半功倍",
+   "pinyin": "shì bàn gōng bèi",
+   "meaning": "절반의 노력으로 두 배의 성과를 거두다, 효율적이다",
+   "level": "intermediate",
+   "theme": "효율·생산성",
+   "example": "找到正确的方法，就能事半功倍。(올바른 방법을 찾으면 절반의 노력으로 두 배의 성과를 낼 수 있습니다.)",
+   "dialogue": {
+    "A": "有没有什么办法能提高工作效率？(업무 효율을 높일 방법이 없을까요?)",
+    "B": "先把优先级排好，事半功倍的关键就在这里。(먼저 우선순위를 정하세요. 효율의 핵심은 바로 거기 있어요.)",
+    "A_ko": "업무 효율을 높일 방법이 없을까요?",
+    "B_ko": "먼저 우선순위를 정하세요. 효율의 핵심은 바로 거기 있어요."
+   }
+  },
+  {
+   "id": "ZH_212",
+   "expression": "无懈可击",
+   "pinyin": "wú xiè kě jī",
+   "meaning": "흠잡을 데가 없다, 완벽하다",
+   "level": "advanced",
+   "theme": "완성도·발표",
+   "example": "他的方案逻辑严密，无懈可击，赢得了所有人的认可。(그의 방안은 논리가 치밀하고 흠잡을 데 없어서 모두의 인정을 받았습니다.)",
+   "dialogue": {
+    "A": "董事会对提案有什么反应？(이사회는 제안서에 어떻게 반응했나요?)",
+    "B": "反应非常好，他们说准备得无懈可击。(반응이 매우 좋았어요. 준비가 완벽하다고 했습니다.)",
+    "A_ko": "이사회는 제안서에 어떻게 반응했나요?",
+    "B_ko": "반응이 매우 좋았어요. 준비가 완벽하다고 했습니다."
+   }
+  },
+  {
+   "id": "ZH_213",
+   "expression": "因地制宜",
+   "pinyin": "yīn dì zhì yí",
+   "meaning": "현지 상황에 맞게 대처하다, 상황에 따라 유연하게 적용하다",
+   "level": "advanced",
+   "theme": "전략·적응",
+   "example": "进入新市场要因地制宜，不能照搬其他地区的经验。(신규 시장 진출 시에는 현지 상황에 맞게 대처해야 하며, 다른 지역의 경험을 그대로 적용해선 안 됩니다.)",
+   "dialogue": {
+    "A": "我们在其他市场的策略可以直接用在这里吗？(다른 시장에서 사용한 전략을 여기에도 그대로 쓸 수 있을까요?)",
+    "B": "不行，要因地制宜，每个市场的文化和需求都不一样。(안 됩니다. 상황에 맞게 적용해야 해요. 각 시장의 문화와 수요가 다릅니다.)",
+    "A_ko": "다른 시장에서 사용한 전략을 여기에도 그대로 쓸 수 있을까요?",
+    "B_ko": "안 됩니다. 상황에 맞게 적용해야 해요. 각 시장의 문화와 수요가 다릅니다."
+   }
+  },
+  {
+   "id": "ZH_214",
+   "expression": "厚积薄发",
+   "pinyin": "hòu jī bó fā",
+   "meaning": "오랜 축적 끝에 폭발적으로 발휘되다, 내공을 쌓아 한꺼번에 터뜨리다",
+   "level": "advanced",
+   "theme": "성장·역량",
+   "example": "他多年的积累终于厚积薄发，在这次竞标中展现了惊人的实力。(그의 수년간 축적이 마침내 빛을 발했고, 이번 입찰에서 놀라운 실력을 발휘했습니다.)",
+   "dialogue": {
+    "A": "他以前表现平平，为什么这次这么突出？(그는 이전에는 평범했는데, 왜 이번에 이렇게 뛰어난 거죠?)",
+    "B": "厚积薄发，他一直在默默学习和积累呢。(내공을 쌓아 한꺼번에 터뜨린 거예요. 그는 조용히 계속 배우고 쌓아왔거든요.)",
+    "A_ko": "그는 이전에는 평범했는데, 왜 이번에 이렇게 뛰어난 거죠?",
+    "B_ko": "내공을 쌓아 한꺼번에 터뜨린 거예요. 그는 조용히 계속 배우고 쌓아왔거든요."
+   }
+  },
+  {
+   "id": "ZH_215",
+   "expression": "举一反三",
+   "pinyin": "jǔ yī fǎn sān",
+   "meaning": "하나를 들으면 셋을 안다, 유추 능력이 뛰어나다",
+   "level": "intermediate",
+   "theme": "학습·이해력",
+   "example": "好的员工能够举一反三，把一个案例的经验应用到多种场景。(뛰어난 직원은 하나의 사례 경험을 다양한 상황에 적용할 수 있습니다.)",
+   "dialogue": {
+    "A": "她只培训了一天就独立工作了，真的吗？(그녀는 하루 교육만 받고 바로 독립 업무를 했다고요, 정말인가요?)",
+    "B": "对，她举一反三的能力很强，一点就通。(네, 그녀는 유추 능력이 매우 뛰어나요. 조금만 알려줘도 금방 이해해요.)",
+    "A_ko": "그녀는 하루 교육만 받고 바로 독립 업무를 했다고요, 정말인가요?",
+    "B_ko": "네, 그녀는 유추 능력이 매우 뛰어나요. 조금만 알려줘도 금방 이해해요."
+   }
+  },
+  {
+   "id": "ZH_216",
+   "expression": "脚踏实地",
+   "pinyin": "jiǎo tā shí dì",
+   "meaning": "발을 땅에 딛고 착실하게 하다, 현실적이고 성실하게 임하다",
+   "level": "intermediate",
+   "theme": "태도·성실함",
+   "example": "成功没有捷径，还是要脚踏实地，一步一步来。(성공에는 지름길이 없습니다. 역시 착실하게 한 걸음씩 나아가야 합니다.)",
+   "dialogue": {
+    "A": "他总是想找捷径，怎么说服他？(그는 항상 지름길을 찾으려 하는데, 어떻게 설득하죠?)",
+    "B": "让他看看那些脚踏实地、最终成功的人的案例。(착실하게 임해서 결국 성공한 사람들의 사례를 보여주세요.)",
+    "A_ko": "그는 항상 지름길을 찾으려 하는데, 어떻게 설득하죠?",
+    "B_ko": "착실하게 임해서 결국 성공한 사람들의 사례를 보여주세요."
+   }
+  },
+  {
+   "id": "ZH_217",
+   "expression": "开诚布公",
+   "pinyin": "kāi chéng bù gōng",
+   "meaning": "솔직하고 공정하게 터놓고 말하다",
+   "level": "intermediate",
+   "theme": "커뮤니케이션·신뢰",
+   "example": "我们今天开诚布公地谈一谈，把所有的问题都摆在桌面上。(오늘 솔직하게 터놓고 얘기하면서 모든 문제를 테이블에 올려놓겠습니다.)",
+   "dialogue": {
+    "A": "团队内部矛盾越来越深，怎么办？(팀 내부 갈등이 점점 깊어지고 있어요, 어떻게 하죠?)",
+    "B": "安排一次全体会议，开诚布公地说清楚各自的想法。(전체 회의를 마련해서 각자의 생각을 솔직하게 터놓고 얘기하세요.)",
+    "A_ko": "팀 내부 갈등이 점점 깊어지고 있어요, 어떻게 하죠?",
+    "B_ko": "전체 회의를 마련해서 각자의 생각을 솔직하게 터놓고 얘기하세요."
+   }
+  }
+ ]
 }

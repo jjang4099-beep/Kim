@@ -55,6 +55,11 @@ const USERS_PATH             = path.join(_DATA_DIR, 'users.json');
 const PUSH_SUBS_PATH         = path.join(_DATA_DIR, 'push_subscriptions.json');
 const EXAM_SETTINGS_PATH     = path.join(_DATA_DIR, 'exam_settings.json');
 
+/* 영어 테마 카테고리 — 관리 화면 체크박스·시드 검증이 같은 목록을 본다.
+   여기에 없는 값으로 팩을 만들면 어떤 설정으로도 매칭되지 않아 콘텐츠가 죽는다.
+   (옛 office_email은 2026-09에 폐기됨) */
+const EN_THEME_CATEGORIES = new Set(['business_meeting', 'daily_travel', 'drama_spoken']);
+
 // DOMAINS / CATEGORY_TO_DOMAIN / getDomain / MODE_EXAM / MODE_PRO / normalizeMode / deriveItemMode
 // → public/lib/domain.js로 이관 (db/items.js와 공유)
 
@@ -455,8 +460,14 @@ function _migrateEnThemesCategory() {
     getSQLiteDB().run('CREATE INDEX IF NOT EXISTS idx_et_category ON english_themes(theme_category)');
     const kdbDir = path.join(__dirname, 'data', 'knowledge_db');
     if (!fs.existsSync(kdbDir)) return;
+    /* 빈 값뿐 아니라 **허용 목록에 없는 값**도 시드 파일 기준으로 되돌린다.
+       예전엔 빈 값만 백필해서, 잘못된 카테고리로 한 번 들어간 행(PACK_EN_041='feedback')이
+       시드 JSON을 고쳐도 DB에 그대로 남아 계속 배달되지 않았다. */
+    const allow = [...EN_THEME_CATEGORIES].map(c => `'${c}'`).join(',');
     const upd = getSQLiteDB().prepare(
-      `UPDATE english_themes SET theme_category = ?, level = ? WHERE pack_id = ? AND (theme_category IS NULL OR theme_category = '')`
+      `UPDATE english_themes SET theme_category = ?, level = ?
+       WHERE pack_id = ?
+         AND (theme_category IS NULL OR theme_category = '' OR theme_category NOT IN (${allow}))`
     );
     let backfilled = 0;
     for (const file of fs.readdirSync(kdbDir).filter(f => f.endsWith('.json'))) {
@@ -603,6 +614,16 @@ function _seedEnglishThemes() {
       const packs = batch.english_theme_packs;
       if (!Array.isArray(packs) || !packs.length) continue;
       for (const pack of packs) {
+        /* ⚠️ 허용 목록에 없는 theme_category는 어떤 설정으로도 매칭되지 않아 팩이 통째로 죽는다.
+           (2026-09: PACK_EN_041이 'feedback'으로 들어가 한 번도 배달되지 않고 있었다)
+           시드는 그대로 하되 반드시 눈에 띄게 경고한다. */
+        if (pack.theme_category && !EN_THEME_CATEGORIES.has(pack.theme_category)) {
+          console.warn(`[EnTheme Seed] ⚠️ ${pack.id} theme_category='${pack.theme_category}' — ` +
+            `허용값(${[...EN_THEME_CATEGORIES].join('|')})이 아니라 배달되지 않습니다.`);
+        }
+        if (!pack.theme_category) {
+          console.warn(`[EnTheme Seed] ⚠️ ${pack.id} theme_category 없음 — 테마 설정에서 걸러집니다.`);
+        }
         const highlights = JSON.stringify(pack.master_paragraph?.highlights || []);
         /* 테마 INSERT OR IGNORE (pack_id UNIQUE) */
         const tStmt = getSQLiteDB().prepare(
@@ -3505,7 +3526,7 @@ app.patch('/api/delivery-settings/all', (req, res) => {
   /* 피드 타입별 유효성 검사 */
   if (feedId === 'en_expr' || feedId === 'zh_expr') {
     const validLangThemes = feedId === 'en_expr'
-      ? ['business_meeting', 'daily_travel', 'drama_spoken']
+      ? [...EN_THEME_CATEGORIES]
       : ['biz_hsk', 'biz_trip', 'daily_shop', 'drama_slang'];
     user.feed_settings[feedId] = {
       count : [5,7,10].includes(Number(settings.count)) ? Number(settings.count) : (feedId === 'zh_expr' ? 5 : 7),

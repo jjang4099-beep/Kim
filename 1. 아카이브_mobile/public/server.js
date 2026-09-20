@@ -1564,7 +1564,7 @@ let _kdb = null;
 function loadKnowledgeDB() {
   if (_kdb) return _kdb;
   const dbDir = path.join(__dirname, 'data', 'knowledge_db');
-  const db = { english_expressions: [], chinese_expressions: [], idioms_and_quotes: [], history_facts: [], english_theme_packs: [] };
+  const db = { english_expressions: [], chinese_expressions: [], idioms_and_quotes: [], history_facts: [], english_theme_packs: [], english_words: [] };
   try {
     if (!fs.existsSync(dbDir)) { _kdb = db; return db; }
     const files = fs.readdirSync(dbDir).filter(f => f.endsWith('.json')).sort();
@@ -1576,10 +1576,37 @@ function loadKnowledgeDB() {
         }
       } catch (e) { console.warn(`[KnowledgeDB] ${file} 파싱 실패:`, e.message); }
     }
-    console.log(`[KnowledgeDB] 로드 완료 EN:${db.english_expressions.length} ZH:${db.chinese_expressions.length} IQ:${db.idioms_and_quotes.length} HI:${db.history_facts.length}`);
+    console.log(`[KnowledgeDB] 로드 완료 EN:${db.english_expressions.length} ZH:${db.chinese_expressions.length} IQ:${db.idioms_and_quotes.length} HI:${db.history_facts.length} WD:${db.english_words.length}`);
   } catch (e) { console.warn('[KnowledgeDB] 로드 실패:', e.message); }
   _kdb = db;
   return db;
+}
+
+/**
+ * 오늘의 단어 고르기 — 표현(expression) 트랙과 별개인 어휘 트랙.
+ *
+ * 왜 별도 피드가 아니라 영어 카드 안에 붙이는가: 배달 피드를 6개에서 3개로 줄인 방향을
+ * 되돌리지 않기 위해서다. 단어는 표현 카드 하단에 섹션으로 들어간다.
+ *
+ * 레벨이 맞는 게 모자라면 전체 풀에서 채운다(_pickFlatPoolTopUp과 같은 방식).
+ */
+function _pickDailyWords(level, recentIds, count = 3) {
+  if (count <= 0) return [];
+  const pool = loadKnowledgeDB().english_words || [];
+  if (!pool.length) return [];
+  const byLevel = level ? pool.filter(w => w.level === level) : [];
+  const base = byLevel.length >= count ? byLevel : pool;
+  return pickUnseenItems(base, recentIds, count).map(w => ({
+    item_id:      w.id,
+    word:         w.word,
+    pos:          w.pos          || '',
+    meaning:      w.meaning      || '',
+    collocations: Array.isArray(w.collocations) ? w.collocations : [],
+    confusable:   w.confusable   || '',
+    nuance:       w.nuance       || '',
+    example:      w.example      || '',
+    exampleKo:    w.example_ko   || '',
+  }));
 }
 
 function pickUnseenItems(pool, recentIds, count) {
@@ -1683,7 +1710,10 @@ function _tryEnThemePackFeed(sub, feedCfg) {
     vocabEntries = vocabEntries.slice(0, wantCount);
   }
 
-  console.log(`[SQLite EnTheme] 서빙: ${theme.pack_id} (${theme.theme_title}) [${theme.theme_category || '미분류'}/${theme.level}] ${vocabEntries.length}개`);
+  /* 오늘의 단어 — 표현과 별개 트랙. 같은 subId 이력으로 중복을 피한다 */
+  const wordEntries = _pickDailyWords(level, getRecentDeliveredIDs(sub.id, 30), 3);
+
+  console.log(`[SQLite EnTheme] 서빙: ${theme.pack_id} (${theme.theme_title}) [${theme.theme_category || '미분류'}/${theme.level}] 표현 ${vocabEntries.length}개 + 단어 ${wordEntries.length}개`);
   return {
     type:          'language',
     category:      'en',
@@ -1696,6 +1726,7 @@ function _tryEnThemePackFeed(sub, feedCfg) {
     themeTitleEn:  theme.theme_title_en || '',
     dayOfWeek:     dayKr,
     vocabEntries,
+    wordEntries,
     masterParagraph: {
       text:        theme.master_paragraph_en,
       translation: theme.master_paragraph_ko,
@@ -1741,11 +1772,17 @@ function _tryKnowledgeDbLanguageFeed(sub, langKey, lang, count, level) {
     expression:       item.expression,
     meaning:          item.meaning,
     nuance:           item.nuance            || '',
-    sourceSentence:   item.source_sentence   || item.sourceSentence   || '',
+    /* ⚠️ 평면 풀 시드의 예문 키는 `example`이다. 예전엔 source_sentence만 봐서
+       Tier 2로 떨어지면 예문이 통째로 비어 있었다(_pickFlatPoolTopUp은 제대로 보고 있었다). */
+    sourceSentence:   item.example || item.source_sentence || item.sourceSentence || '',
+    sourceSentenceKo: item.example_ko || '',
     practiceSentence: item.practice_sentence || item.practiceSentence || '',
-    dialogue:         item.dialogue           || ''
+    dialogue:         _dialogueToString(item.dialogue)
   }));
-  console.log(`[KnowledgeDB] 언어피드 DB 서빙 (${sub.id}) ${items.length}개`);
+  /* 오늘의 단어 — 팩 경로(Tier 1)와 동일하게 붙인다. 여기서 빠뜨리면
+     평면 풀로 떨어진 사용자만 단어를 못 받는다. */
+  const wordEntries = _pickDailyWords(level, getRecentDeliveredIDs(sub.id, 30), 3);
+  console.log(`[KnowledgeDB] 언어피드 DB 서빙 (${sub.id}) 표현 ${items.length}개 + 단어 ${wordEntries.length}개`);
   return {
     type:        'language',
     category:    sub.category || langKey,
@@ -1757,6 +1794,7 @@ function _tryKnowledgeDbLanguageFeed(sub, langKey, lang, count, level) {
     theme,
     dayOfWeek:   dayKr,
     vocabEntries,
+    wordEntries,
     aiGenerated: false
   };
 }

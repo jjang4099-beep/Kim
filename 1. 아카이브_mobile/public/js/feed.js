@@ -82,6 +82,7 @@ Object.assign(Mob, {
       ${!isThemePack && item.summary ? `<div class="mob-card-summary">${item.summary}</div>` : ''}
       ${themeBand}
       <div class="mob-feed-vocab-list">${vocabHTML}</div>
+      ${this._renderWordTrack(item.wordEntries)}
       ${masterHTML}
       <div class="mob-feed-card-ft">
         <button class="mob-feed-save-btn${isSavedLang ? ' saved' : ''}"
@@ -91,6 +92,42 @@ Object.assign(Mob, {
         </button>
         <span class="mob-feed-ai-tag">${item.aiGenerated ? 'AI 생성' : (item.pack_id ? '테마팩' : 'DB')}</span>
       </div>
+    </div>`;
+  },
+
+  /**
+   * 오늘의 단어 (어휘 트랙) — 표현 트랙과 별개.
+   * 단어는 뜻만 알면 못 쓰기 때문에 **연어(어떤 말과 붙는가)와 혼동어**가 핵심 칸이다.
+   * 데이터가 없으면 아무것도 그리지 않는다(구버전 캐시 피드 호환).
+   */
+  _renderWordTrack(words) {
+    if (!Array.isArray(words) || !words.length) return '';
+    const rows = words.map((w, i) => {
+      const colloc = (w.collocations || []).length
+        ? `<div class="mob-wd-colloc">${w.collocations.map(c => `<span>${c}</span>`).join('')}</div>` : '';
+      const body = [
+        w.nuance     ? `<div class="mob-wd-sect"><span class="mob-wd-lbl">쓰임</span>${w.nuance}</div>` : '',
+        w.confusable ? `<div class="mob-wd-sect"><span class="mob-wd-lbl">헷갈리는 말</span>${w.confusable}</div>` : '',
+        w.example    ? `<div class="mob-wd-ex">${w.example}${w.exampleKo ? `<span class="mob-wd-ex-ko">${w.exampleKo}</span>` : ''}</div>` : '',
+      ].filter(Boolean).join('');
+      return `
+      <div class="mob-wd-item">
+        <div class="mob-wd-front" onclick="Mob._toggleFvEntry(this.querySelector('.mob-wd-toggle'))">
+          <div class="mob-wd-head">
+            <span class="mob-wd-word">${w.word || ''}</span>
+            ${w.pos ? `<span class="mob-wd-pos">${w.pos}</span>` : ''}
+          </div>
+          <div class="mob-wd-meaning">${w.meaning || ''}</div>
+          ${colloc}
+          ${body ? `<button class="mob-wd-toggle" onclick="event.stopPropagation();Mob._toggleFvEntry(this)"><i class="ti ti-chevron-down"></i></button>` : ''}
+        </div>
+        ${body ? `<div class="mob-fv-body">${body}</div>` : ''}
+      </div>`;
+    }).join('');
+    return `
+    <div class="mob-wd-block">
+      <div class="mob-wd-kicker">오늘의 단어 <span>${words.length}</span></div>
+      ${rows}
     </div>`;
   },
 
@@ -152,7 +189,8 @@ Object.assign(Mob, {
 
   /** 표현 항목 아코디언 토글 */
   _toggleFvEntry(btn) {
-    const item = btn.closest('.mob-fv-item');
+    /* 표현 항목(.mob-fv-item)과 단어 항목(.mob-wd-item)이 같은 아코디언을 쓴다 */
+    const item = btn.closest('.mob-fv-item, .mob-wd-item');
     const body = item?.querySelector('.mob-fv-body');
     if (!body) return;
     const isOpen = item.classList.toggle('fv-open');

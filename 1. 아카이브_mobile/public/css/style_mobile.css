@@ -6118,3 +6118,55 @@ html[data-theme="dark"] .public-sanctuary-banner {
 }
 .mob-life-note-save:disabled { opacity: .6; }
 html[data-theme="dark"] .mob-life-note-input { background: var(--bg); }
+
+/* ── 오늘의 단어 (어휘 트랙) ──────────────────────────────
+   표현 트랙과 별개 섹션. 단어는 뜻만으로 못 쓰므로 연어·혼동어를 앞세운다.
+   아코디언은 .mob-fv-body / .fv-open 를 그대로 재사용한다. */
+.mob-wd-block {
+  margin: 14px 0 0; padding: 14px 0 2px;
+  border-top: 1px dashed var(--border);
+}
+.mob-wd-kicker {
+  font-size: 11px; font-weight: 700; letter-spacing: .06em;
+  color: var(--text-3); text-transform: uppercase; margin-bottom: 10px;
+}
+.mob-wd-kicker span {
+  display: inline-block; margin-left: 4px; padding: 1px 6px;
+  border-radius: 20px; background: var(--bg); color: var(--text-2);
+}
+.mob-wd-item {
+  position: relative;
+  border: 1px solid var(--border); border-radius: 10px;
+  margin-bottom: 8px; overflow: hidden; background: var(--surface);
+}
+.mob-wd-front { padding: 11px 44px 11px 13px; cursor: pointer; }
+.mob-wd-head { display: flex; align-items: baseline; gap: 7px; flex-wrap: wrap; }
+.mob-wd-word {
+  font-size: 17px; font-weight: 700; color: var(--text-1); letter-spacing: -.01em;
+}
+.mob-wd-pos { font-size: 11px; color: var(--text-3); }
+.mob-wd-meaning { font-size: 13.5px; color: var(--text-2); margin-top: 3px; line-height: 1.55; }
+.mob-wd-colloc { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.mob-wd-colloc span {
+  font-size: 11.5px; padding: 3px 8px; border-radius: 6px;
+  background: var(--bg); color: var(--text-2);
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+.mob-wd-toggle {
+  position: absolute; top: 10px; right: 8px;
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-3); background: none; border: none;
+}
+.mob-wd-item.fv-open .mob-wd-toggle i { transform: rotate(180deg); }
+.mob-wd-toggle i { transition: transform .3s ease; }
+.mob-wd-sect { padding: 10px 13px 0; font-size: 13px; color: var(--text-2); line-height: 1.7; }
+.mob-wd-lbl {
+  display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .05em;
+  color: var(--text-3); text-transform: uppercase; margin-bottom: 3px;
+}
+.mob-wd-ex {
+  margin: 10px 13px 13px; padding: 9px 11px; border-radius: 8px;
+  background: var(--bg); font-size: 13px; color: var(--text-1); line-height: 1.6;
+}
+.mob-wd-ex-ko { display: block; margin-top: 4px; font-size: 12.5px; color: var(--text-3); }

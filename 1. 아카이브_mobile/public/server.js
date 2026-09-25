@@ -3007,28 +3007,41 @@ console.log('[스케줄러] node-cron 등록 완료 — 30분마다 실행 (매�
 //  Claude API 래퍼 (분류·인사이트용)
 // ══════════════════════════════════════════════════
 
-async function callClaude({ model = 'claude-haiku-4-5-20251001', maxTokens = 600, messages, system }) {
+/* extra: 요청 본문에 더할 필드(fallbacks 등) / betas: anthropic-beta 헤더 값 목록 */
+async function callClaude({ model = 'claude-haiku-4-5-20251001', maxTokens = 600, messages, system, extra, betas }) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) return null;
 
   const https   = require('https');
-  const bodyObj = { model, max_tokens: maxTokens, messages };
+  const bodyObj = { model, max_tokens: maxTokens, messages, ...(extra || {}) };
   if (system) bodyObj.system = system;
   const body = JSON.stringify(bodyObj);
 
+  const headers = {
+    'Content-Type': 'application/json',
+    'x-api-key': apiKey,
+    'anthropic-version': '2023-06-01'
+  };
+  if (betas && betas.length) headers['anthropic-beta'] = betas.join(',');
+
   return new Promise(resolve => {
     const req = https.request({
-      hostname: 'api.anthropic.com', path: '/v1/messages', method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01'
-      }
+      hostname: 'api.anthropic.com', path: '/v1/messages', method: 'POST', headers
     }, res => {
       let raw = '';
       res.on('data', c => raw += c);
       res.on('end', () => {
-        try { resolve(JSON.parse(raw).content?.[0]?.text || null); }
+        try {
+          const json = JSON.parse(raw);
+          if (json.error) {
+            console.error(`[Claude] API 오류 (${json.error.type}): ${String(json.error.message || '').slice(0, 200)}`);
+            return resolve(null);
+          }
+          if (json.stop_reason === 'refusal') return resolve(null);
+          /* 생각(thinking)을 켜는 모델은 content[0]이 thinking 블록이다 — 첫 text 블록을 찾는다 */
+          const text = (json.content || []).find(b => b.type === 'text')?.text;
+          resolve(text || null);
+        }
         catch { resolve(null); }
       });
     });
@@ -5531,6 +5544,124 @@ app.get('/api/summary/:type/:period', async (req, res) => {
     res.json(result);
   } catch (e) {
     res.status(500).json({ error: '결산 생성 실패: ' + e.message });
+  }
+});
+
+/**
+ * GET /api/chronicle/review/:year?mode=ALL|PROFESSIONAL|EXAM_PREP
+ * 연대기(PC 웹)의 연말 회고. /api/summary와 다른 점:
+ *  - 자동 배달분(type daily_delivery)은 빼고 "내가 직접 남긴 것"만 읽는다
+ *  - ALL이면 직장인·수험생 기록을 한 해로 묶는다(연대기 전용 교차 조회)
+ *  - 숫자·키워드가 아니라 실제 내용(사진에 붙인 글, 저장한 고전·역사·표현)을 모델에 준다
+ *  - 캐시는 기록 지문(건수+마지막 수정시각)으로 — 기록이 늘면 자동으로 다시 쓴다
+ */
+function _chronicleLearnedLine(it) {
+  const fd = it.feedData;
+  if (fd && typeof fd === 'object') {
+    if (fd.subType === 'liber' && fd.quote)   return ['고전', `${fd.book || ''}: "${fd.quote}"`];
+    if (fd.subType === 'idiom' && fd.idiom)   return ['고사성어', `${fd.idiom} — ${fd.meaning || ''}`];
+    if (fd.subType === 'history' && fd.title) return ['역사', fd.title];
+    if (fd.subType === 'insight')             return ['인사이트', fd.headline || fd.topic || ''];
+    if (fd.subType === 'quote' && fd.quote)   return ['명언', `"${fd.quote}" — ${fd.author || ''}`];
+    if (Array.isArray(fd.vocabEntries) && fd.vocabEntries.length)
+      return ['영어', `${fd.themeTitle || fd.title || ''}: ${fd.vocabEntries.slice(0, 4).map(v => v.expression || v.word).filter(Boolean).join(', ')}`];
+  }
+  if (it.source === 'daily-feed-entry') {
+    const first = String(it.text || '').split('\n')[0].replace(/^\[[^\]]*\]\s*/, '').trim();
+    if (first) return ['영어', first];
+  }
+  if (it.examWord && it.examWord.word) return ['수능 영단어', `${it.examWord.word} — ${it.examWord.meaning || ''}`];
+  if (it.examHistory && it.examHistory.title) return ['한국사', it.examHistory.title];
+  if (it.type === 'wrong_answer' || it.wrongAnswer) {
+    const w = it.wrongAnswer || {};
+    return ['오답노트', `${w.subjectName || ''} ${w.unit || it.title || ''}${w.keyConceptName ? ` (놓친 개념: ${w.keyConceptName})` : ''}`.trim()];
+  }
+  const t = it.analysis?.title || it.title || '';
+  return t && !/^https?:\/\//.test(t) ? ['메모·기사', t] : null;
+}
+
+app.get('/api/chronicle/review/:year', async (req, res) => {
+  const year = Number(req.params.year);
+  if (!Number.isInteger(year) || year < 2000 || year > 2100)
+    return res.status(400).json({ success: false, error: '연도가 올바르지 않아요' });
+  const rawMode = String(req.query.mode || 'ALL').toUpperCase();
+  const mode = rawMode === 'ALL' ? 'ALL' : normalizeMode(rawMode);
+
+  try {
+    const items = ItemsDB.getItemsByUser(req.userId, mode === 'ALL' ? undefined : mode)
+      .filter(i => String(i.date || i.createdAt || '').startsWith(year + '-'))
+      .filter(i => i.type !== 'daily_delivery');
+
+    const fp = items.length + '-' + items.reduce((m, i) => {
+      const t = String(i.updatedAt || i.createdAt || '');
+      return t > m ? t : m;
+    }, '');
+    const period = `${year}@${fp}`;
+    const cached = SummariesDB.getCachedSummary(req.userId, mode, 'chronicle', period);
+    if (cached && req.query.force !== '1') return res.json(cached);
+
+    const lifes = items.filter(i => i.contentType === 'life')
+      .sort((a, b) => String(a.date || a.createdAt).localeCompare(String(b.date || b.createdAt)));
+    const learned = {};
+    items.filter(i => i.contentType !== 'life').forEach(i => {
+      const l = _chronicleLearnedLine(i);
+      if (l && l[1]) (learned[l[0]] = learned[l[0]] || []).push(l[1]);
+    });
+    const days = new Set(items.map(i => String(i.date || i.createdAt).slice(0, 10))).size;
+    const photos = lifes.reduce((s, i) => s + ((i.life && i.life.photos) || []).length, 0);
+
+    /* 키워드는 태그 칩용 — 모델 입력과 별개로 로컬에서 센다 */
+    const kw = {};
+    items.forEach(i => ((i.analysis && i.analysis.keywords) || i.keywords || [])
+      .forEach(k => { if (k && k.length > 1) kw[k] = (kw[k] || 0) + 1; }));
+    const threads = [
+      ...Object.entries(learned).sort((a, b) => b[1].length - a[1].length).map(([k, v]) => `${k} ${v.length}`),
+      ...Object.entries(kw).sort((a, b) => b[1] - a[1]).slice(0, 8).map(([k]) => k),
+    ];
+
+    const base = { success: true, year, mode, days, photos, threads,
+                   counts: Object.fromEntries(Object.entries(learned).map(([k, v]) => [k, v.length])),
+                   lifeCount: lifes.length, generatedAt: new Date().toISOString() };
+
+    if (!items.length) return res.json({ ...base, aiReview: '' });
+
+    /* 모델 입력 — 사진에 붙인 글은 전부(최대 60), 배운 것은 갈래별 표본 */
+    const lifeLines = lifes.slice(-60).map(i => {
+      const d = String(i.date || i.createdAt).slice(5, 10);
+      const meta = [i.life && i.life.location, i.life && i.life.mood].filter(Boolean).join(', ');
+      const text = String(i.text || i.title || '').replace(/\s+/g, ' ').slice(0, 140);
+      const n = ((i.life && i.life.photos) || []).length;
+      return `- ${d}${meta ? ` (${meta})` : ''}${n ? ` [사진 ${n}]` : ''} ${text}`;
+    }).join('\n');
+    const learnedBlock = Object.entries(learned).map(([k, v]) =>
+      `[${k} ${v.length}개]\n` + v.slice(-12).map(s => `- ${String(s).slice(0, 120)}`).join('\n')).join('\n\n');
+
+    const system = '너는 한 사람의 1년 기록을 읽고 그해를 돌아보는 짧은 글을 써 주는 사람이다. ' +
+      '이 글의 목적은 읽는 사람이 "올해 헛살지 않았다"는 것을 자기 기록으로 확인하게 하는 것이다. ' +
+      '기록에 실제로 있는 날짜·장소·문장·배운 내용을 구체적으로 짚어라. 기록에 없는 일을 지어내지 마라. ' +
+      '과장된 칭찬이나 자기계발 문구 대신, 오래 알던 친구가 담담하게 건네는 말투로 쓴다. ' +
+      '한국어로 4~6문장, 한 문단의 평문. 마크다운·목록·제목을 쓰지 않는다.';
+    const user = `${year}년 기록 요약 — 기록한 날 ${days}일, 사진 ${photos}장, 자취 ${lifes.length}건.\n\n` +
+      `## 사진과 함께 남긴 글 (날짜순)\n${lifeLines || '(없음)'}\n\n` +
+      `## 저장한 지식\n${learnedBlock || '(없음)'}`;
+
+    /* 연 1회 수준 호출이라 비용보다 글의 질이 중요하다 — 최신 Opus 사용.
+       안전 분류기가 거절하면 서버 측 폴백이 알아서 다른 모델로 넘긴다. */
+    const raw = await callClaude({
+      model: 'claude-opus-5',
+      maxTokens: 8000,
+      system,
+      messages: [{ role: 'user', content: user }],
+      extra: { fallbacks: 'default' },
+      betas: ['server-side-fallback-2026-07-01'],
+    });
+
+    const result = { ...base, aiReview: raw || '' };
+    if (raw) SummariesDB.setCachedSummary(req.userId, mode, 'chronicle', period, result);
+    res.json(result);
+  } catch (e) {
+    console.error('[연대기 회고] 실패:', e.message);
+    res.status(500).json({ success: false, error: '회고를 만들지 못했어요: ' + e.message });
   }
 });
 

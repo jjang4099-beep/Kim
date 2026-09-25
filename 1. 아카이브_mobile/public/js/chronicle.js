@@ -6,7 +6,7 @@
  *   GET  /api/auth/me                      세션 확인
  *   POST /api/auth/login                   로그인
  *   GET  /api/items?mode=&limit=           기록 전체(연대기 재료)
- *   GET  /api/summary/yearly/:year?mode=   연말 AI 총평(캐시됨)
+ *   GET  /api/chronicle/review/:year?mode= 연말 AI 회고(기록이 바뀔 때만 다시 씀)
  * 같은 오리진이라 httpOnly 쿠키 세션이 그대로 먹는다(별도 도메인이면 sameSite=lax 때문에 불가).
  */
 
@@ -30,7 +30,7 @@
     life:       { label: '자취·일상',     color: 'var(--d-life)' },
     society:    { label: '사회·정치',     color: 'var(--d-society)' },
   };
-  const dom = d => DOMAIN[d] || { label: '기타', color: 'var(--paper-faint)' };
+  const dom = d => DOMAIN[d] || { label: '기타', color: 'var(--text-3)' };
 
   /* ── 상태 ───────────────────────────────── */
   const state = {
@@ -263,8 +263,8 @@
         ? items.map(i => i.domain).sort((a, b) =>
             items.filter(i => i.domain === b).length - items.filter(i => i.domain === a).length)[0]
         : null;
-      bar.style.background = isSeal(key) ? 'var(--jusa)' : (main ? dom(main).color : 'var(--ink-line)');
-      if (date.getDate() === 1) bar.style.boxShadow = '-1px 0 0 var(--ink-line-soft)';
+      bar.style.background = isSeal(key) ? 'var(--jusa)' : (main ? dom(main).color : 'var(--border)');
+      if (date.getDate() === 1) bar.style.boxShadow = '-1px 0 0 var(--border-soft)';
       wave.appendChild(bar);
     });
     wave.dataset.len = days.length;
@@ -400,6 +400,101 @@
     </article>`;
   }
 
+  /* ── 배운 것 카드 ────────────────────────────
+     배달에서 저장한 지식은 원본 구조(feedData)나 "[태그] 표현\n뜻: …" 형식 텍스트로 남아 있어
+     textCard로 그리면 내부 키·중복 본문이 그대로 보인다. 종류별로 풀어서 "무엇을 배웠는지"가
+     한눈에 보이게 한다. 못 알아보는 모양이면 null → textCard로 넘긴다. */
+  function parseEntryText(text) {
+    const lines = String(text || '').split('\n').map(s => s.trim()).filter(Boolean);
+    if (!lines.length) return null;
+    const pick = label => (lines.find(l => l.startsWith(label + ':')) || '').slice(label.length + 1).trim();
+    const meaning = pick('뜻');
+    if (!meaning) return null;
+    return {
+      expr: lines[0].replace(/^\[[^\]]*\]\s*/, ''),
+      meaning,
+      nuance: pick('뉘앙스'),
+    };
+  }
+
+  function learnedView(it) {
+    const fd = it.feedData;
+    if (fd && typeof fd === 'object') {
+      const sub = fd.subType || '';
+      if (sub === 'liber' && fd.quote) return {
+        kind: '고전', quote: fd.quote,
+        sub: [fd.book || fd.source, fd.author].filter(Boolean).join(' — '),
+        detail: fd.backstory || fd.context || '',
+      };
+      if (sub === 'idiom' && fd.idiom) return {
+        kind: '고사성어', title: fd.idiom + (fd.hanja ? ` ${fd.hanja}` : ''),
+        sub: fd.meaning || '', detail: fd.origin || fd.story || '',
+      };
+      if (sub === 'history' && fd.title) return {
+        kind: '역사', title: fd.title,
+        sub: [fd.period, fd.region].filter(Boolean).join(' · '),
+        detail: fd.summary || fd.summary3 || fd.behindStory || '',
+      };
+      if (sub === 'quote' && fd.quote) return {
+        kind: '명언', quote: fd.quote, sub: fd.author || '', detail: fd.context || fd.story || '',
+      };
+      if (sub === 'insight' && (fd.headline || fd.topic)) return {
+        kind: '인사이트', title: fd.headline || fd.topic,
+        sub: fd.headline && fd.topic ? fd.topic : '', detail: fd.body || fd.summary || '',
+      };
+      const vocab = Array.isArray(fd.vocabEntries) ? fd.vocabEntries : [];
+      if (vocab.length) return {
+        kind: '영어 · 테마팩', title: fd.themeTitle || fd.title || '오늘의 표현',
+        list: vocab.slice(0, 8).map(v => ({ a: v.expression || v.word || '', b: v.meaning || '' })).filter(v => v.a),
+      };
+    }
+    /* 수험생 기록 — 나중에 "그때 얼마나 치열했는지"를 보는 재료라 문제 사진까지 살린다 */
+    const ew = it.examWord;
+    if (ew && ew.word) return {
+      kind: '수능 영단어', title: ew.word + (ew.pos ? ` (${ew.pos})` : ''),
+      sub: ew.meaning || '', detail: [ew.exampleEn, ew.exampleKo].filter(Boolean).join('\n'),
+    };
+    const eh = it.examHistory;
+    if (eh && eh.title) return {
+      kind: '한국사', title: eh.title, sub: eh.eraLabel || '', detail: eh.keyPoint || eh.summary || '',
+    };
+    const wa = it.wrongAnswer;
+    if (it.type === 'wrong_answer' && wa) return {
+      kind: `오답노트 · ${wa.subjectName || '문제'}`,
+      title: wa.unit || it.title || '틀린 문제',
+      sub: wa.keyConceptName ? `놓친 개념 — ${wa.keyConceptName}` : '',
+      detail: wa.problemSummary || '',
+      img: it.thumbnailUrl || it.imageUrl || '',
+    };
+    if (it.source === 'daily-feed-entry') {
+      const p = parseEntryText(it.text);
+      if (p) return { kind: '영어 표현', title: p.expr, sub: p.meaning, detail: p.nuance };
+    }
+    return null;
+  }
+
+  function learnedCard(it, v) {
+    const d = dom(it.domain);
+    const clip = s => (s && s.length > 360 ? s.slice(0, 360) + '…' : s);
+    const note = it.myInsight && !String(it.myInsight).startsWith('[') ? it.myInsight : '';
+    return `<article class="entry entry--learned">
+      <div class="entry__kind">
+        <i class="dot" style="background:${d.color}"></i>${esc(v.kind)}
+        ${isAuto(it) ? '<span class="auto">배달</span>' : ''}
+      </div>
+      ${v.img ? `<img class="entry__thumb entry__thumb--doc" src="${esc(v.img)}" alt="" loading="lazy" onerror="this.remove()"/>` : ''}
+      <div class="entry__body">
+        ${v.quote ? `<blockquote class="entry__quote">${esc(v.quote)}</blockquote>` : ''}
+        ${v.title ? `<h3 class="entry__title">${esc(v.title)}</h3>` : ''}
+        ${v.sub ? `<p class="entry__sub">${esc(v.sub)}</p>` : ''}
+        ${v.list ? `<dl class="entry__list">${v.list.map(x =>
+            `<div><dt>${esc(x.a)}</dt><dd>${esc(x.b)}</dd></div>`).join('')}</dl>` : ''}
+        ${v.detail ? `<p class="entry__text">${esc(clip(v.detail))}</p>` : ''}
+        ${note ? `<p class="entry__note">${esc(note)}</p>` : ''}
+      </div>
+    </article>`;
+  }
+
   function renderDay() {
     const key = state.selected;
     const [y, m, d] = key.split('-').map(Number);
@@ -416,9 +511,12 @@
       $('day').innerHTML = head + `<div class="empty">이날은 비워 두었습니다.</div>`;
       return;
     }
-    const cards = items.map(it =>
-      isLife(it) ? photoCard(it) : (it.type === 'youtube' ? youtubeCard(it) : textCard(it))
-    ).join('');
+    const cards = items.map(it => {
+      if (isLife(it)) return photoCard(it);
+      if (it.type === 'youtube') return youtubeCard(it);
+      const v = learnedView(it);
+      return v ? learnedCard(it, v) : textCard(it);
+    }).join('');
     $('day').innerHTML = head + `<div class="entries enter">${cards}</div>`;
   }
 
@@ -460,6 +558,9 @@
       .map(([k, v]) => `<span><i class="dot" style="background:${dom(k).color}"></i>${esc(dom(k).label)} ${Math.round(v / sum * 100)}%</span>`)
       .join('') || '<span class="muted">아직 기록이 없어요</span>';
 
+    renderTally();
+    renderScenes();
+
     /* 월별 줄 */
     const maxM = Math.max(1, ...byMonth);
     $('monthsReview').innerHTML = byMonth.map((n, i) => {
@@ -476,9 +577,65 @@
     }).join('');
   }
 
+  /* 올해 쌓은 것 — 내가 직접 저장한 것만 센다(자동 배달분은 "받은 것"이지 "쌓은 것"이 아니다).
+     토글과 무관하게 같은 숫자를 보여야 연말에 비교가 된다. */
+  const yearRaw = () => state.raw.filter(it => dateKey(it).startsWith(state.year + '-'));
+
+  function renderTally() {
+    const counts = {};
+    const bump = k => { counts[k] = (counts[k] || 0) + 1; };
+    let days = new Set();
+    yearRaw().forEach(it => {
+      if (isAuto(it)) return;
+      days.add(dateKey(it));
+      if (isLife(it)) return bump('자취');
+      const v = learnedView(it);
+      if (v) return bump(v.kind.startsWith('영어') ? '영어 표현' : v.kind.startsWith('오답') ? '오답노트' : v.kind);
+      if (it.type === 'youtube') return bump('영상');
+      bump('메모·기사');
+    });
+    const ORDER = ['자취', '영어 표현', '고전', '역사', '고사성어', '인사이트', '명언',
+                   '오답노트', '수능 영단어', '한국사', '영상', '메모·기사'];
+    const cells = ORDER.filter(k => counts[k])
+      .map(k => `<div class="tally__cell"><b>${counts[k]}</b><span>${esc(k)}</span></div>`).join('');
+    $('tally').innerHTML = cells
+      ? cells
+      : '<span class="muted">올해 직접 남긴 기록이 아직 없어요. 배달 카드에서 저장하거나 사진을 공유해 보세요.</span>';
+    $('tallyDays').textContent = days.size ? `직접 남긴 날 ${days.size}일` : '';
+  }
+
+  /* 올해의 장면 — 글을 붙여 남긴 자취 가운데 최근 것부터. 누르면 그날로 간다 */
+  function renderScenes() {
+    const lifes = yearRaw().filter(isLife)
+      .filter(it => (it.text || it.title || '').trim() || (it.life?.photos || []).length)
+      .sort((a, b) => dateKey(b).localeCompare(dateKey(a)))
+      .slice(0, 8);
+    const box = $('scenes');
+    if (!lifes.length) {
+      box.innerHTML = '<span class="muted">사진을 공유하거나 한 줄을 남기면 여기에 그 해의 장면들이 모입니다.</span>';
+      return;
+    }
+    box.innerHTML = lifes.map(it => {
+      const k = dateKey(it);
+      const photo = (it.life?.photos || []).find(Boolean);
+      const line = (it.text || it.title || '').trim().split('\n')[0];
+      return `<button class="scene" data-key="${k}">
+        ${photo ? `<img src="${esc(photo)}" alt="" loading="lazy" onerror="this.remove()"/>` : ''}
+        <span class="scene__date">${Number(k.slice(5, 7))}월 ${Number(k.slice(8, 10))}일</span>
+        ${line ? `<span class="scene__line">${esc(line.length > 60 ? line.slice(0, 60) + '…' : line)}</span>` : ''}
+      </button>`;
+    }).join('');
+    box.querySelectorAll('.scene').forEach(b => b.addEventListener('click', () => {
+      setScope(true);
+      select(b.dataset.key);
+      $('day').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }));
+  }
+
   /* ── AI 총평 ─────────────────────────────── */
   $('aiBtn').addEventListener('click', async () => {
-    const mode = state.mode || 'PROFESSIONAL';
+    /* '전체'는 직장인·수험생 기록을 한 해로 묶어 읽는다(연대기 전용 교차 조회) */
+    const mode = state.mode || 'ALL';
     const cacheKey = `${state.year}|${mode}`;
     const btn = $('aiBtn'), body = $('aiBody'), kw = $('aiKw');
 
@@ -488,7 +645,7 @@
     body.innerHTML = '<span class="muted">한 해 기록을 훑어보고 있어요… (처음 생성은 시간이 좀 걸려요)</span>';
     kw.innerHTML = '';
     try {
-      const data = await api(`/api/summary/yearly/${state.year}?mode=${encodeURIComponent(mode)}`);
+      const data = await api(`/api/chronicle/review/${state.year}?mode=${encodeURIComponent(mode)}`);
       state.aiCache[cacheKey] = data;
       paintAI(data);
     } catch (e) {
@@ -509,11 +666,10 @@
   }
 
   function paintAI(data) {
-    const s = data.stats || {};
     $('aiBody').textContent = stripMd(data.aiReview) || '아직 총평을 만들 만큼 기록이 쌓이지 않았어요.';
-    const kws = (s.topKeywords || []).slice(0, 12);
-    $('aiKw').innerHTML = kws.map(k => `<span class="kw">${esc(k.word || k)}</span>`).join('');
-    $('aiTitle').textContent = `${state.year}년, 무엇을 배웠나`;
+    const kws = (data.threads || []).slice(0, 12);
+    $('aiKw').innerHTML = kws.map(k => `<span class="kw">${esc(k)}</span>`).join('');
+    $('aiTitle').textContent = `${state.year}년, 헛살지 않았다`;
   }
 
   /* ── 컨트롤 ─────────────────────────────── */

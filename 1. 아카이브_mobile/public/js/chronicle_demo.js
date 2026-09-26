@@ -183,6 +183,17 @@
   const henry = window.CHRONICLE_DEMO_ITEMS.find(it => it.id === 'd-h1');
   if (henry) henry.myInsight = '결국 신앙이 아니라 정치가 판을 갈랐다. 명분(레위기)은 나중에 찾은 것 — 회사에서 "원칙"이라며 밀어붙이는 결정도 사실은 누군가의 필요에서 출발하는 경우가 많다.';
 
+  /* 팩에서 표현 하나만 저장한 경우 — 서버가 붙여 주는 packContext(그 팩의 글·다른 표현)와 같은 모양 */
+  const pk = window.CHRONICLE_DEMO_ITEMS.find(it => it.id === 'd-p1')?.feedData;
+  if (pk) {
+    const v = pk.vocabEntries[3];
+    window.CHRONICLE_DEMO_ITEMS.push({
+      ...en('d-e7', 1, 9, v.expression, v.meaning, v.nuance, v), type: 'language',
+      packContext: { packId: pk.pack_id, themeTitle: pk.themeTitle, themeTitleEn: pk.themeTitleEn,
+        masterParagraph: pk.masterParagraph, siblings: pk.vocabEntries.map(e => ({ expression: e.expression, meaning: e.meaning })) },
+    });
+  }
+
   /* 샘플 노트 — 배달받은 카드를 @로 엮어 내 말로 정리한 긴 글 */
   const m = (id, label) => `<a class="mention" contenteditable="false" data-id="${id}">${label}</a>`;
   const note = (id, offset, hh, n) => ({ id, type: 'note', domain: 'humanities', mode: 'PROFESSIONAL', ...at(offset, hh), note: n });

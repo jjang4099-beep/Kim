@@ -127,7 +127,7 @@
       /* 데모 데이터 스크립트는 이때만 불러온다 — 평소에는 한 바이트도 받지 않게 */
       await new Promise((ok, bad) => {
         const s = document.createElement('script');
-        s.src = 'js/chronicle_demo.js?v=6'; s.onload = ok; s.onerror = () => bad(new Error('샘플 데이터를 불러오지 못했어요'));
+        s.src = 'js/chronicle_demo.js?v=7'; s.onload = ok; s.onerror = () => bad(new Error('샘플 데이터를 불러오지 못했어요'));
         document.head.appendChild(s);
       }).catch(e => fail(e.message));
       $('demoBanner').hidden = false;
@@ -587,7 +587,8 @@
     };
     if (it.source === 'daily-feed-entry') {
       const p = parseEntryText(it.text);
-      if (p) return { kind: '영어 표현', title: p.expr, sub: p.meaning, detail: p.nuance };
+      if (p) return { kind: '영어 표현', title: p.expr, sub: p.meaning, detail: p.nuance,
+                      from: it.packContext?.themeTitle ? `📖 「${it.packContext.themeTitle}」 글과 함께` : '' };
     }
     return null;
   }
@@ -609,6 +610,7 @@
         ${v.list ? `<dl class="entry__list">${v.list.map(x =>
             `<div><dt>${esc(x.a)}</dt><dd>${esc(x.b)}</dd></div>`).join('')}</dl>` : ''}
         ${v.detail ? `<p class="entry__text">${esc(clip(v.detail))}</p>` : ''}
+        ${v.from ? `<p class="entry__from">${esc(v.from)}</p>` : ''}
         ${note ? `<p class="entry__note">${esc(note)}</p>` : ''}
       </div>
     </article>`;
@@ -642,16 +644,19 @@
   /* ── 테마팩 한 벌 ──
      팩을 통째로 저장하면 표현만이 아니라 그 표현들로 쓴 글(마스터 패러그래프)·오늘의 단어까지 함께 남는다
      (서버 save가 feedData에 배달 원본을 그대로 넣음). 복습은 "글 → 표현 → 단어" 순서가 자연스럽다. */
-  function masterHTML(mp) {
+  /* focus: 낱개 저장한 표현 — 글 안에서 그 표현만 진하게, 나머지는 옅게 */
+  function masterHTML(mp, opt = {}) {
     if (!mp || !mp.text) return '';
     const hl = (mp.highlights || []).filter(Boolean);
+    const focus = String(opt.focus || '').toLowerCase();
     let txt = esc(mp.text);
     hl.forEach((h, i) => {
       const re = new RegExp(`(${esc(h).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'i');
-      txt = txt.replace(re, `<mark class="md__hl" data-n="${i + 1}">$1</mark>`);
+      const mine = focus && focus.includes(String(h).toLowerCase());
+      txt = txt.replace(re, `<mark class="md__hl${focus ? (mine ? ' is-mine' : ' is-dim') : ''}" data-n="${i + 1}">$1</mark>`);
     });
     return `<section class="md__pack-sec" id="pk-text">
-        <h4 class="md__pack-h">📖 오늘의 글 <small>표현 ${hl.length}개가 한 문맥에</small></h4>
+        <h4 class="md__pack-h">${opt.title || `📖 오늘의 글 <small>표현 ${hl.length}개가 한 문맥에</small>`}</h4>
         <div class="md__master">${txt}</div>
         ${mp.translation ? `<details class="md__tr"><summary>해석 보기</summary><p>${para(mp.translation)}</p></details>` : ''}
       </section>`;
@@ -667,6 +672,17 @@
         </div>
       </details>`;
   }
+  /* 낱개로 저장한 표현 — 그 표현이 나온 팩의 글과, 같은 팩에 함께 있던 표현들 */
+  function packContextHTML(pc, v) {
+    if (!pc || !pc.masterParagraph?.text) return '';
+    const me = String(v.expression || '').toLowerCase();
+    const others = (pc.siblings || []).filter(s => String(s.expression || '').toLowerCase() !== me);
+    return `<hr class="md__hr">`
+      + masterHTML(pc.masterParagraph, { focus: v.expression, title: `📖 이 표현이 나온 글 <small>「${esc(pc.themeTitle || '')}」</small>` })
+      + (others.length ? `<section class="md__pack-sec"><h4 class="md__pack-h">🔤 같은 글의 다른 표현</h4>
+          <dl class="md__siblings">${others.map(s => `<div><dt>${esc(s.expression)}</dt><dd>${esc(s.meaning || '')}</dd></div>`).join('')}</dl></section>` : '');
+  }
+
   function packHTML(vocab, mp, words) {
     const jump = [mp && mp.text ? ['pk-text', '📖 글 1편'] : null, ['pk-expr', `🔤 표현 ${vocab.length}`],
                   words.length ? ['pk-word', `📚 단어 ${words.length}`] : null].filter(Boolean);
@@ -752,7 +768,8 @@
     if (vocab.length) {
       const title = fd.themeTitle || (vocab.length > 1 ? (it.title || '오늘의 표현') : '');
       return head(vocab.length > 1 ? `영어 · 표현 ${vocab.length}개` : '영어 표현', title, '')
-        + vocab.map(v => vocabBlock(v, vocab.length === 1)).join('<hr class="md__hr">') + noteSec;
+        + vocab.map(v => vocabBlock(v, vocab.length === 1)).join('<hr class="md__hr">')
+        + (vocab.length === 1 ? packContextHTML(it.packContext, vocab[0]) : '') + noteSec;
     }
 
     const ew = it.examWord;

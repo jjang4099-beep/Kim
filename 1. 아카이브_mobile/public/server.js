@@ -306,6 +306,7 @@ async function initSQLiteDB() {
   _migrateExamHistoryUnitCode();
   _migrateSeedModePeriods();
   _seedEnglishThemes();
+  _migrateVocabPackContext();          // 팩 시드 이후에 돌아야 팩을 찾을 수 있다
   _seedExamKnowledge();
   _seedDefaultCategories();
   _migrateCreateOwnerAccount();
@@ -918,6 +919,73 @@ function _migrateLegacyDomains() {
  * getDomain이 모두 'business'로 떨어뜨려 저장됐다. lib/domain의 contentDomain으로 다시 판별해
  * data.domain·shelf와 category 인덱스 컬럼을 함께 고친다. 바꿀 게 있을 때만 DB 파일을 먼저 백업한다.
  */
+/**
+ * 낱개로 저장한 영어 표현이 속했던 테마팩의 "글"(마스터 패러그래프)을 찾는다.
+ * 표현 하나만 남기면 어떤 문맥에서 배웠는지가 사라진다 — 복습할 때 그 글을 다시 읽을 수 있게.
+ * 클라이언트가 보낸 값을 믿지 않고 시드 테이블에서 직접 찾는다(expr_id 우선, 없으면 표현 문자열 일치).
+ * 플랫 풀(팩 없는 표현)이면 null.
+ */
+function _packContextFor(entry) {
+  if (!entry) return null;
+  try {
+    let row = null;
+    if (entry.item_id) row = _sqlGet('SELECT theme_id FROM english_expressions WHERE expr_id = ?', [String(entry.item_id)]);
+    if (!row && entry.expression) row = _sqlGet('SELECT theme_id FROM english_expressions WHERE expression = ? LIMIT 1', [String(entry.expression)]);
+    if (!row) return null;
+    const t = _sqlGet('SELECT * FROM english_themes WHERE id = ?', [row.theme_id]);
+    if (!t || !t.master_paragraph_en) return null;
+    const siblings = _sqlQuery(
+      'SELECT expression, meaning FROM english_expressions WHERE theme_id = ? ORDER BY expression_order', [row.theme_id]);
+    let highlights = [];
+    try { highlights = JSON.parse(t.highlights_json || '[]'); } catch {}
+    return {
+      packId:       t.pack_id,
+      themeTitle:   t.theme_title,
+      themeTitleEn: t.theme_title_en || '',
+      masterParagraph: { text: t.master_paragraph_en, translation: t.master_paragraph_ko || '', highlights },
+      siblings:     siblings.map(s => ({ expression: s.expression, meaning: s.meaning })),
+    };
+  } catch (e) {
+    console.warn('[PackContext] 조회 실패 (무시):', e.message);
+    return null;
+  }
+}
+
+/** 이미 낱개로 저장된 영어 표현에 팩 글을 채워 넣는다 — 부팅 시, 멱등(packContext 있으면 건너뜀), 백업 후 수정 */
+function _migrateVocabPackContext() {
+  const result = getSQLiteDB().exec('SELECT id, data FROM items');
+  if (!result.length) return;
+  const fixes = [];
+  for (const [id, dataStr] of result[0].values) {
+    try {
+      const item = JSON.parse(dataStr);
+      if (item.packContext !== undefined || item.source !== 'daily-feed-entry') continue;
+      if (!Array.isArray(item.vocabEntries) || item.vocabEntries.length !== 1) continue;
+      fixes.push([id, item, _packContextFor(item.vocabEntries[0])]);
+    } catch {}
+  }
+  if (!fixes.length) return;
+
+  try {
+    const bak = `${SQLITE_PATH}.bak-packctx-${Date.now()}`;
+    fs.copyFileSync(SQLITE_PATH, bak);
+    console.log(`[Migration] 팩 글 백필 전 DB 백업 → ${bak}`);
+  } catch (e) {
+    console.warn('[Migration] 백업 실패 — 팩 글 백필을 건너뜀:', e.message);
+    return;
+  }
+  const stmt = getSQLiteDB().prepare('UPDATE items SET data=? WHERE id=?');
+  let found = 0;
+  for (const [id, item, ctx] of fixes) {
+    item.packContext = ctx;                 // 팩이 없으면 null로 표시해 다음 부팅 때 다시 찾지 않는다
+    if (ctx) found++;
+    stmt.run([JSON.stringify(item), id]);
+  }
+  stmt.free();
+  _persistDB();
+  console.log(`[Migration] 낱개 영어 표현 팩 글 백필: 대상 ${fixes.length}건, 팩 찾음 ${found}건`);
+}
+
 function _migrateContentDomains() {
   const result = getSQLiteDB().exec('SELECT id, data FROM items');
   if (!result.length) return;
@@ -4192,6 +4260,7 @@ app.post('/api/items', async (req, res) => {
       source,
       type:        'language',
       vocabEntries: body.vocabEntries,
+      packContext: _packContextFor(entry),   // 이 표현이 나온 팩의 글 — 문맥째 복습
       subCategory: body.subCategory || '',
       date:        toDateStr(now2),
       time:        toTimeStr(now2),

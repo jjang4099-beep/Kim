@@ -1385,7 +1385,9 @@ Object.assign(Mob, {
       const themeTitle  = item.themeTitle   || fd.themeTitle   || '';
       const themeTitleEn= item.themeTitleEn || fd.themeTitleEn || '';
       const isThemePack = !!themeTitle;
-      const masterPara  = item.masterParagraph || fd.masterParagraph || null;
+      /* 낱개로 저장한 표현도 서버가 붙여 준 packContext로 "이 표현이 나온 글"을 함께 보여 준다 */
+      const pc          = (!isThemePack && item.packContext) || null;
+      const masterPara  = item.masterParagraph || fd.masterParagraph || pc?.masterParagraph || null;
 
       if (isThemePack) {
         body += `<div class="mob-fv-theme-band">
@@ -1410,6 +1412,13 @@ Object.assign(Mob, {
         </div>`;
       }).join('') + `</div>`;
 
+      if (pc?.themeTitle) {
+        body += `<div class="mob-fv-theme-band">
+          <div class="mob-fv-theme-kicker">이 표현이 나온 글</div>
+          <div class="mob-fv-theme-title">${pc.themeTitle}</div>
+          ${pc.themeTitleEn ? `<div class="mob-fv-theme-title-en">${pc.themeTitleEn}</div>` : ''}
+        </div>`;
+      }
       if (masterPara && this._renderMasterParagraph) {
         body += this._renderMasterParagraph(masterPara);
       }

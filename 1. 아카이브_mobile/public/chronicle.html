@@ -441,6 +441,14 @@ html.modal-open, html.modal-open body{overflow:hidden}
 .md__hl{position:relative; padding:0 2px; border-radius:3px; color:inherit;
   background:linear-gradient(transparent 55%, color-mix(in srgb, var(--jusa) 24%, transparent) 55%)}
 .md__hl::after{content:attr(data-n); position:relative; top:-.55em; margin-left:2px; font-family:var(--sans, inherit); font-size:10px; font-weight:700; color:var(--jusa)}
+.md__hl.is-mine{background:color-mix(in srgb, var(--jusa) 26%, transparent); font-weight:700}
+.md__hl.is-dim{background:linear-gradient(transparent 70%, color-mix(in srgb, var(--text-3) 22%, transparent) 70%)}
+.md__hl.is-dim::after{color:var(--text-3)}
+.md__siblings{margin:0; display:grid; gap:8px}
+.md__siblings div{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px; font-size:13.5px}
+.md__siblings dt{font-weight:600; color:var(--text-1)}
+.md__siblings dd{margin:0; color:var(--text-2)}
+.entry__from{margin:9px 0 0; font-size:12px; color:var(--jusa)}
 .md__tr{margin-top:8px}
 .md__tr summary{display:inline-block; padding:3px 0; font-size:12.5px; color:var(--jusa); cursor:pointer; list-style:none}
 .md__tr summary::-webkit-details-marker{display:none}
@@ -890,6 +898,6 @@ html.modal-open, html.modal-open body{overflow:hidden}
   </article>
 </div>
 
-<script src="js/chronicle.js?v=23"></script>
+<script src="js/chronicle.js?v=24"></script>
 </body>
 </html>

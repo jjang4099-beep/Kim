@@ -40,7 +40,7 @@ const ItemsDB = require('./db/items');
 const UsersDB = require('./db/users');
 const CategoriesDB = require('./db/categories');
 const SummariesDB = require('./db/summaries');
-const { DOMAINS, CATEGORY_TO_DOMAIN, getDomain, MODE_EXAM, MODE_PRO, normalizeMode, deriveItemMode } = require('./lib/domain');
+const { DOMAINS, CATEGORY_TO_DOMAIN, getDomain, contentDomain, MODE_EXAM, MODE_PRO, normalizeMode, deriveItemMode } = require('./lib/domain');
 const { generateToken, setAuthCookie, clearAuthCookie, requireAuth, getUserId } = require('./lib/auth');
 
 const PORT                   = process.env.PORT || 3000;
@@ -297,6 +297,7 @@ async function initSQLiteDB() {
   `);
   _migrateFromJSON();
   _migrateLegacyDomains();
+  _migrateContentDomains();
   _migrateItemModes();
   _migrateItemsUserId();
   _migrateCategoriesUserId();
@@ -909,6 +910,48 @@ function _migrateLegacyDomains() {
   }
   stmt.free();
   if (migrated > 0) console.log(`[Migration] domain 백필 완료: ${migrated}개`);
+}
+
+/**
+ * 내용으로 판별되는 도메인 보정 (서버 시작 시, 멱등)
+ * 수험생 단어·한국사·오답은 domain 'exam'(8대 도메인 밖), 저장한 고전은 category 'inbox'로 들어가
+ * getDomain이 모두 'business'로 떨어뜨려 저장됐다. lib/domain의 contentDomain으로 다시 판별해
+ * data.domain·shelf와 category 인덱스 컬럼을 함께 고친다. 바꿀 게 있을 때만 DB 파일을 먼저 백업한다.
+ */
+function _migrateContentDomains() {
+  const result = getSQLiteDB().exec('SELECT id, data FROM items');
+  if (!result.length) return;
+  const fixes = [];
+  for (const [id, dataStr] of result[0].values) {
+    try {
+      const item = JSON.parse(dataStr);
+      const d = contentDomain(item);
+      if (d && item.domain !== d) fixes.push([id, item, d]);
+    } catch {}
+  }
+  if (!fixes.length) return;
+
+  try {
+    const bak = `${SQLITE_PATH}.bak-domains-${Date.now()}`;
+    fs.copyFileSync(SQLITE_PATH, bak);
+    console.log(`[Migration] 도메인 보정 전 DB 백업 → ${bak}`);
+  } catch (e) {
+    console.warn('[Migration] 백업 실패 — 도메인 보정을 건너뜀:', e.message);
+    return;
+  }
+
+  const stmt = getSQLiteDB().prepare('UPDATE items SET category=?, data=? WHERE id=?');
+  const tally = {};
+  for (const [id, item, d] of fixes) {
+    const key = `${item.domain || '-'}→${d}`;
+    tally[key] = (tally[key] || 0) + 1;
+    item.domain = d;
+    item.shelf  = d;
+    stmt.run([d, JSON.stringify(item), id]);
+  }
+  stmt.free();
+  _persistDB();
+  console.log(`[Migration] 내용 기반 도메인 보정 ${fixes.length}건:`, JSON.stringify(tally));
 }
 
 /**

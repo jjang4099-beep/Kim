@@ -30,7 +30,33 @@ const CATEGORY_TO_DOMAIN = {
   society:   'society',
 };
 
+/* 내용으로 확실히 판별되는 도메인. 저장 경로가 domain을 'exam'(8대 도메인 밖)으로 넣거나
+   category 'inbox'로만 저장하면 아래 getDomain이 전부 'business'로 떨어뜨렸다 —
+   수험생 단어·한국사·오답, 저장한 고전이 "비즈니스·경제"로 분류되던 원인.
+   강한 신호(구조화 필드)가 있을 때만 값을 내고, 없으면 null. */
+const WRONG_SUBJECT_TO_DOMAIN = {
+  math: 'science', science: 'science', physics: 'science', chemistry: 'science',
+  biology: 'science', earth: 'science', english: 'language', korean: 'language',
+  history: 'humanities', korean_history: 'humanities', social: 'society', ethics: 'psychology',
+};
+const FEED_SUBTYPE_TO_DOMAIN = {
+  liber: 'psychology', quote: 'psychology', idiom: 'humanities', history: 'humanities', insight: 'business',
+};
+function contentDomain(item) {
+  if (!item) return null;
+  if (item.examWord) return 'language';
+  if (item.examHistory) return 'humanities';
+  if (item.wrongAnswer || item.type === 'wrong_answer')
+    return WRONG_SUBJECT_TO_DOMAIN[item.wrongAnswer && item.wrongAnswer.subject] || 'science';
+  const fd = item.feedData;
+  if (fd && FEED_SUBTYPE_TO_DOMAIN[fd.subType]) return FEED_SUBTYPE_TO_DOMAIN[fd.subType];
+  if (fd && Array.isArray(fd.vocabEntries) && fd.vocabEntries.length) return 'language';
+  return null;
+}
+
 function getDomain(item) {
+  const c = contentDomain(item);
+  if (c) return c;
   if (item.domain && DOMAINS[item.domain]) return item.domain;
   return CATEGORY_TO_DOMAIN[item.category] || 'business';
 }
@@ -61,4 +87,4 @@ function deriveItemMode(item) {
   return isExam ? MODE_EXAM : MODE_PRO;
 }
 
-module.exports = { DOMAINS, CATEGORY_TO_DOMAIN, getDomain, MODE_EXAM, MODE_PRO, normalizeMode, deriveItemMode };
+module.exports = { DOMAINS, CATEGORY_TO_DOMAIN, getDomain, contentDomain, MODE_EXAM, MODE_PRO, normalizeMode, deriveItemMode };

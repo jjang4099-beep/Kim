@@ -410,7 +410,7 @@ html.modal-open, html.modal-open body{overflow:hidden}
 .modal[hidden]{display:none}
 .modal__sheet{position:relative; width:100%; max-width:620px; max-height:min(86vh,900px); display:flex; flex-direction:column;
   background:var(--surface); border:1px solid var(--border-soft); border-radius:var(--r-card); box-shadow:0 24px 64px rgba(0,0,0,.22); overflow:hidden}
-.modal__close{position:absolute; top:12px; right:12px; z-index:2; width:34px; height:34px; border-radius:50%;
+.modal__close{position:absolute; top:12px; right:12px; z-index:6; width:34px; height:34px; border-radius:50%;
   background:var(--surface); border:1px solid var(--border-soft); color:var(--text-2); font-size:14px}
 .modal__close:hover{color:var(--text-1)}
 .modal__body{overflow-y:auto; padding:26px 26px 30px; -webkit-overflow-scrolling:touch}
@@ -425,6 +425,39 @@ html.modal-open, html.modal-open body{overflow:hidden}
 .modal__body{position:relative}
 .md__back{margin:-6px 0 12px; padding:4px 0; font-size:13px; color:var(--jusa); background:none; border:0; cursor:pointer}
 .md__back:hover{text-decoration:underline}
+
+/* ── 테마팩 한 벌(글·표현·단어) ── */
+.md__jump{position:sticky; top:-26px; z-index:2; display:flex; gap:6px; flex-wrap:wrap; margin:0 -26px 6px; padding:10px 60px 10px 26px;
+  background:color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter:blur(6px)}
+@media (max-width:640px){ .md__jump{top:-22px; margin:0 -18px 6px; padding:10px 56px 10px 18px} }
+.md__jump button{padding:5px 12px; border-radius:var(--r-ctl); border:1px solid var(--border-soft); background:var(--surface);
+  color:var(--text-2); font-size:12.5px; cursor:pointer}
+.md__jump button:hover{border-color:var(--jusa); color:var(--jusa)}
+.md__pack-sec{margin-top:22px; scroll-margin-top:52px}
+.md__pack-h{display:flex; align-items:baseline; gap:8px; margin:0 0 10px; font-size:15px; font-weight:700; color:var(--text-1)}
+.md__pack-h small{font-size:12px; font-weight:400; color:var(--text-3)}
+.md__master{padding:16px 18px; border-radius:calc(var(--r-card) * .7); background:var(--hover); font-family:var(--serif);
+  font-size:15.5px; line-height:1.85; color:var(--text-1)}
+.md__hl{position:relative; padding:0 2px; border-radius:3px; color:inherit;
+  background:linear-gradient(transparent 55%, color-mix(in srgb, var(--jusa) 24%, transparent) 55%)}
+.md__hl::after{content:attr(data-n); position:relative; top:-.55em; margin-left:2px; font-family:var(--sans, inherit); font-size:10px; font-weight:700; color:var(--jusa)}
+.md__tr{margin-top:8px}
+.md__tr summary{display:inline-block; padding:3px 0; font-size:12.5px; color:var(--jusa); cursor:pointer; list-style:none}
+.md__tr summary::-webkit-details-marker{display:none}
+.md__tr summary::before{content:'▸ '}
+.md__tr[open] summary::before{content:'▾ '}
+.md__tr p{margin:6px 0 0; font-size:14px; line-height:1.8; color:var(--text-2)}
+.md__fold{border:1px solid var(--border-soft); border-radius:12px; margin-bottom:8px; background:var(--surface)}
+.md__fold > summary{display:flex; flex-wrap:wrap; align-items:baseline; gap:10px; padding:12px 14px; cursor:pointer; list-style:none}
+.md__fold > summary::-webkit-details-marker{display:none}
+.md__fold > summary::after{content:'›'; margin-left:auto; color:var(--text-3); transition:transform .15s}
+.md__fold[open] > summary::after{transform:rotate(90deg)}
+.md__fold > summary em{font-style:normal; font-size:11.5px; font-weight:700; color:var(--jusa); min-width:14px}
+.md__fold > summary b{font-weight:700; color:var(--text-1)}
+.md__fold > summary i{font-style:normal; font-size:11.5px; color:var(--text-3)}
+.md__fold > summary span{font-size:13px; color:var(--text-2)}
+.md__fold-body{padding:0 14px 12px}
+.md__fold-body .md__sec:first-child{margin-top:0}
 
 /* ── 노트(노션처럼) ── 넓은 한 장: 커버 → 아이콘 → 큰 제목 → 속성 → 본문 블록 */
 .modal--note .modal__sheet{max-width:880px; height:min(90vh,1000px); max-height:none}
@@ -857,6 +890,6 @@ html.modal-open, html.modal-open body{overflow:hidden}
   </article>
 </div>
 
-<script src="js/chronicle.js?v=22"></script>
+<script src="js/chronicle.js?v=23"></script>
 </body>
 </html>

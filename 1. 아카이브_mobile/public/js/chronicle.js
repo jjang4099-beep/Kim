@@ -127,7 +127,7 @@
       /* 데모 데이터 스크립트는 이때만 불러온다 — 평소에는 한 바이트도 받지 않게 */
       await new Promise((ok, bad) => {
         const s = document.createElement('script');
-        s.src = 'js/chronicle_demo.js?v=5'; s.onload = ok; s.onerror = () => bad(new Error('샘플 데이터를 불러오지 못했어요'));
+        s.src = 'js/chronicle_demo.js?v=6'; s.onload = ok; s.onerror = () => bad(new Error('샘플 데이터를 불러오지 못했어요'));
         document.head.appendChild(s);
       }).catch(e => fail(e.message));
       $('demoBanner').hidden = false;
@@ -562,6 +562,8 @@
       const vocab = Array.isArray(fd.vocabEntries) ? fd.vocabEntries : [];
       if (vocab.length) return {
         kind: '영어 · 테마팩', title: fd.themeTitle || fd.title || '오늘의 표현',
+        sub: [fd.masterParagraph?.text ? '📖 글 1편' : '', `🔤 표현 ${vocab.length}`,
+              (fd.wordEntries || []).length ? `📚 단어 ${fd.wordEntries.length}` : ''].filter(Boolean).join(' · '),
         list: vocab.slice(0, 8).map(v => ({ a: v.expression || v.word || '', b: v.meaning || '' })).filter(v => v.a),
       };
     }
@@ -628,13 +630,54 @@
   /* 영어 표현 하나(테마팩 항목 또는 낱개 저장) */
   function vocabBlock(v, big) {
     return `<div class="md__vocab${big ? ' md__vocab--big' : ''}">
-        <p class="md__expr">${esc(v.expression || v.word || '')}</p>
+        ${v.expression || v.word ? `<p class="md__expr">${esc(v.expression || v.word)}</p>` : ''}
         ${v.meaning ? `<p class="md__mean">${esc(v.meaning)}</p>` : ''}
         ${sec('뉘앙스', v.nuance ? para(v.nuance) : '')}
         ${sec('예문', v.sourceSentence ? `${para(v.sourceSentence)}${v.sourceSentenceKo ? `<span class="md__ko">${para(v.sourceSentenceKo)}</span>` : ''}` : '')}
-        ${sec('대화', v.dialogue ? `<p class="md__dialog">${para(typeof v.dialogue === 'string' ? v.dialogue : JSON.stringify(v.dialogue))}</p>` : '')}
+        ${sec('대화', v.dialogue ? `<p class="md__dialog">${para(typeof v.dialogue === 'string' ? v.dialogue : JSON.stringify(v.dialogue))}</p>${v.dialogueKo ? `<span class="md__ko">${para(v.dialogueKo)}</span>` : ''}` : '')}
         ${sec('따라 써 보기', v.practiceSentence ? para(v.practiceSentence) : '')}
       </div>`;
+  }
+
+  /* ── 테마팩 한 벌 ──
+     팩을 통째로 저장하면 표현만이 아니라 그 표현들로 쓴 글(마스터 패러그래프)·오늘의 단어까지 함께 남는다
+     (서버 save가 feedData에 배달 원본을 그대로 넣음). 복습은 "글 → 표현 → 단어" 순서가 자연스럽다. */
+  function masterHTML(mp) {
+    if (!mp || !mp.text) return '';
+    const hl = (mp.highlights || []).filter(Boolean);
+    let txt = esc(mp.text);
+    hl.forEach((h, i) => {
+      const re = new RegExp(`(${esc(h).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'i');
+      txt = txt.replace(re, `<mark class="md__hl" data-n="${i + 1}">$1</mark>`);
+    });
+    return `<section class="md__pack-sec" id="pk-text">
+        <h4 class="md__pack-h">📖 오늘의 글 <small>표현 ${hl.length}개가 한 문맥에</small></h4>
+        <div class="md__master">${txt}</div>
+        ${mp.translation ? `<details class="md__tr"><summary>해석 보기</summary><p>${para(mp.translation)}</p></details>` : ''}
+      </section>`;
+  }
+  function wordBlock(w) {
+    return `<details class="md__fold">
+        <summary><b>${esc(w.word)}</b>${w.pos ? `<i>${esc(w.pos)}</i>` : ''}<span>${esc(w.meaning || '')}</span></summary>
+        <div class="md__fold-body">
+          ${sec('함께 쓰는 말', (w.collocations || []).length ? `<p class="md__tags">${w.collocations.map(c => `<span>${esc(c)}</span>`).join('')}</p>` : '')}
+          ${sec('헷갈리는 말', w.confusable ? para(w.confusable.replace(/\*\*/g, '')) : '')}
+          ${sec('뉘앙스', w.nuance ? para(w.nuance) : '')}
+          ${sec('예문', w.example ? `${para(w.example)}${w.exampleKo ? `<span class="md__ko">${para(w.exampleKo)}</span>` : ''}` : '')}
+        </div>
+      </details>`;
+  }
+  function packHTML(vocab, mp, words) {
+    const jump = [mp && mp.text ? ['pk-text', '📖 글 1편'] : null, ['pk-expr', `🔤 표현 ${vocab.length}`],
+                  words.length ? ['pk-word', `📚 단어 ${words.length}`] : null].filter(Boolean);
+    return `<nav class="md__jump">${jump.map(([id, l]) => `<button type="button" data-jump="${id}">${l}</button>`).join('')}</nav>`
+      + masterHTML(mp)
+      + `<section class="md__pack-sec" id="pk-expr"><h4 class="md__pack-h">🔤 표현 <small>눌러서 뉘앙스·예문·대화 보기</small></h4>
+          ${vocab.map((v, i) => `<details class="md__fold"${i ? '' : ' open'}>
+            <summary><em>${i + 1}</em><b>${esc(v.expression || v.word || '')}</b><span>${esc(v.meaning || '')}</span></summary>
+            <div class="md__fold-body">${vocabBlock({ ...v, expression: '', meaning: '' }, false)}</div>
+          </details>`).join('')}</section>`
+      + (words.length ? `<section class="md__pack-sec" id="pk-word"><h4 class="md__pack-h">📚 오늘의 단어</h4>${words.map(wordBlock).join('')}</section>` : '');
   }
 
   function detailHTML(it) {
@@ -698,6 +741,13 @@
     if (fd.subType === 'quote' && fd.quote) return head('명언', '', fd.author)
       + `<blockquote class="md__quote">${para(fd.quote)}</blockquote>`
       + sec('맥락', (fd.context || fd.story) ? para(fd.context || fd.story) : '') + noteSec;
+
+    const packTitle = it.themeTitle || fd.themeTitle;
+    if (vocab.length > 1 && packTitle) {
+      const words = [it.wordEntries, fd.wordEntries].find(a => Array.isArray(a) && a.length) || [];
+      return head('영어 · 테마팩', packTitle, it.themeTitleEn || fd.themeTitleEn || '')
+        + packHTML(vocab, it.masterParagraph || fd.masterParagraph, words) + noteSec;
+    }
 
     if (vocab.length) {
       const title = fd.themeTitle || (vocab.length > 1 ? (it.title || '오늘의 표현') : '');
@@ -1225,6 +1275,9 @@
     showModal((back ? `<button type="button" class="md__back" id="mdBack">← 노트로 돌아가기</button>` : '') + detailHTML(it));
     if (back) $('mdBack').addEventListener('click', () => openNote(back));
     bindThought();
+    $('modalBody').querySelectorAll('[data-jump]').forEach(b => b.addEventListener('click', () => {
+      const t = document.getElementById(b.dataset.jump); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }));
     /* 사진 넘기기 */
     const g = $('modalBody').querySelector('.md__gallery');
     if (g && Number(g.dataset.n) > 1) {

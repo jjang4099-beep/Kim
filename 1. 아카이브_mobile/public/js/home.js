@@ -1413,6 +1413,9 @@ Object.assign(Mob, {
       if (masterPara && this._renderMasterParagraph) {
         body += this._renderMasterParagraph(masterPara);
       }
+      /* 팩 전체 저장 시 함께 배달된 '오늘의 단어'도 feedData에 남아 있다 — 배달 카드와 같은 모양으로 */
+      const wordEntries = item.wordEntries || fd.wordEntries || [];
+      if (wordEntries.length && this._renderWordTrack) body += this._renderWordTrack(wordEntries);
 
     } else if (cat === 'en') {
       /* 단건 영어 표현 아이템 (vocabEntries 없음) — 텍스트 파싱 폴백 */

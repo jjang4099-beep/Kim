@@ -17,7 +17,9 @@
    "level": "intermediate",
    "theme": "daily-life",
    "example": "I know the actor's name — it's on the tip of my tongue. Give me a second.",
-   "dialogue": "A: Do you remember the name of that restaurant we went to last year?\nB: It's on the tip of my tongue! The one near the river with the outdoor seating... starts with an L, I think."
+   "dialogue": "A: Do you remember the name of that restaurant we went to last year?\nB: It's on the tip of my tongue! The one near the river with the outdoor seating... starts with an L, I think.",
+   "nuance": "심리학에서도 \"설단 현상(tip-of-the-tongue)\"이라고 부르는 실제 현상입니다. 이름·단어가 기억은 나는데 안 튀어나올 때 쓰며, \"잠깐만 기다려 주면 떠오를 것 같다\"는 뉘앙스가 있습니다. \"I forgot\"과 달리 완전히 잊은 건 아니라는 점이 핵심입니다.",
+   "example_ko": "그 배우 이름 아는데 — 입에서 맴도네요. 잠깐만요."
   },
   {
    "id": "EN_102",
@@ -26,7 +28,9 @@
    "level": "beginner",
    "theme": "daily-life",
    "example": "Sorry I keep losing track of what I was saying — I'm all over the place today.",
-   "dialogue": "A: You seem distracted. Everything okay?\nB: I'm all over the place today — barely slept, missed my alarm, and I forgot my laptop at home. Today is not my day."
+   "dialogue": "A: You seem distracted. Everything okay?\nB: I'm all over the place today — barely slept, missed my alarm, and I forgot my laptop at home. Today is not my day.",
+   "nuance": "머리가 여기저기 흩어져 있다는 뜻으로, 집중이 안 되거나 감정이 오락가락할 때 씁니다. 사람이 아니라 발표나 글에 쓰면 \"두서없다\"는 비판이 됩니다(\"The presentation was all over the place\"). 자기 상태를 말할 때는 사과의 쿠션이 되어 상대가 이해해 줍니다.",
+   "example_ko": "자꾸 말하다 흐름을 놓쳐서 죄송해요 — 오늘 정신이 하나도 없네요."
   },
   {
    "id": "EN_103",
@@ -35,7 +39,9 @@
    "level": "intermediate",
    "theme": "emotion",
    "example": "The part of the documentary about loneliness in big cities really hit home for me.",
-   "dialogue": "A: What did you think of the speech?\nB: It really hit home. When she talked about how small moments define who we are — I couldn't stop thinking about my own life after that."
+   "dialogue": "A: What did you think of the speech?\nB: It really hit home. When she talked about how small moments define who we are — I couldn't stop thinking about my own life after that.",
+   "nuance": "화살이 과녁 중앙(home)에 꽂히듯 \"바로 내 얘기 같아서 찔렸다\"는 느낌입니다. 단순한 공감보다 개인적으로 아프게 와닿은 경우에 씁니다. 비슷한 \"strike a chord\"가 마음이 울린 쪽이라면, hit home은 뜨끔함에 더 가깝습니다.",
+   "example_ko": "다큐에서 대도시의 외로움을 다룬 부분이 정말 가슴에 와닿았어요."
   },
   {
    "id": "EN_104",
@@ -44,7 +50,9 @@
    "level": "intermediate",
    "theme": "praise",
    "example": "Staying until midnight to finish the report wasn't expected — you really went above and beyond.",
-   "dialogue": "A: I rewrote the whole proposal and added a competitive analysis on top.\nB: You didn't have to do all that — but you really went above and beyond. The client is going to love it."
+   "dialogue": "A: I rewrote the whole proposal and added a competitive analysis on top.\nB: You didn't have to do all that — but you really went above and beyond. The client is going to love it.",
+   "nuance": "미군 훈장 수여문의 \"above and beyond the call of duty(의무 이상의 헌신)\"에서 온 표현입니다. 그래서 단순한 \"고마워요\"보다 훨씬 무게 있는 칭찬이고, 추천서나 평가에서도 씁니다. 사소한 일에 쓰면 과해 보이니 정말 기대 이상일 때만 쓰세요.",
+   "example_ko": "보고서 끝내려고 자정까지 남을 필요는 없었는데 — 정말 기대 이상으로 애써줬어요."
   },
   {
    "id": "EN_105",
@@ -53,7 +61,9 @@
    "level": "intermediate",
    "theme": "communication",
    "example": "We've been dancing around this issue for weeks — let's not beat around the bush anymore.",
-   "dialogue": "A: Well, there are various factors to consider and the situation is complex...\nB: Let's not beat around the bush. Are you saying the project is over budget or not?"
+   "dialogue": "A: Well, there are various factors to consider and the situation is complex...\nB: Let's not beat around the bush. Are you saying the project is over budget or not?",
+   "nuance": "덤불 주위만 두드린다는 뜻으로, 사냥 몰이꾼이 덤불을 두드려 새를 몰던 데서 왔다는 설이 있습니다. \"본론으로 들어가자\"는 제안이라 회의에서 유용하지만, 상대가 돌려 말하고 있다는 지적이 되기도 하니 \"Let's\"를 써서 함께 하자는 형태로 말하는 것이 부드럽습니다.",
+   "example_ko": "몇 주째 이 문제를 빙빙 돌기만 했잖아요 — 이제 돌려 말하지 말고 얘기합시다."
   },
   {
    "id": "EN_106",
@@ -62,7 +72,9 @@
    "level": "beginner",
    "theme": "daily-life",
    "example": "I've been staring at this screen for six hours — I could really use a break.",
-   "dialogue": "A: You look exhausted. When did you last step away from your desk?\nB: Honestly? I can't remember. I could use a break — even just ten minutes of fresh air would help."
+   "dialogue": "A: You look exhausted. When did you last step away from your desk?\nB: Honestly? I can't remember. I could use a break — even just ten minutes of fresh air would help.",
+   "nuance": "\"I need a break\"보다 부드럽고 완곡해서 불평처럼 들리지 않습니다. could use는 \"있으면 좋겠다\"는 뜻이라 \"I could use a coffee(커피 한잔 하면 좋겠다)\", \"I could use some help(도움이 좀 필요해)\"처럼 다른 명사에도 두루 쓸 수 있습니다.",
+   "example_ko": "여섯 시간째 이 화면만 보고 있어요 — 정말 좀 쉬어야겠어요."
   },
   {
    "id": "EN_107",
@@ -71,7 +83,9 @@
    "level": "beginner",
    "theme": "daily-life",
    "example": "You say just 'be more confident,' but that's easier said than done.",
-   "dialogue": "A: Just stop worrying about what people think of you.\nB: That's easier said than done when you're presenting to fifty people who are all experts in the field."
+   "dialogue": "A: Just stop worrying about what people think of you.\nB: That's easier said than done when you're presenting to fifty people who are all experts in the field.",
+   "nuance": "상대의 조언을 부정하진 않지만 \"실제로 하기는 어렵다\"고 받아칩니다. 조언한 사람에게 바로 쓰면 \"쉽게 말하지 마\"라는 반박으로 들릴 수 있어요. 스스로의 계획을 두고 \"I know, easier said than done\"이라고 하면 겸손한 인정이 됩니다.",
+   "example_ko": "그냥 \"자신감을 가져\"라고 하지만, 그게 말처럼 쉽지 않아요."
   },
   {
    "id": "EN_108",
@@ -80,7 +94,9 @@
    "level": "beginner",
    "theme": "communication",
    "example": "The test results aren't back yet, but I'll keep you posted as soon as I hear anything.",
-   "dialogue": "A: Any news on the apartment application?\nB: Not yet — they said it could take a few more days. I'll keep you posted the moment I hear something."
+   "dialogue": "A: Any news on the apartment application?\nB: Not yet — they said it could take a few more days. I'll keep you posted the moment I hear something.",
+   "nuance": "posted는 \"소식이 전해지는 상태\"라는 뜻으로, 진행 상황을 계속 알려주겠다는 약속입니다. \"I'll let you know\"는 결과가 나오면 한 번 알려준다는 느낌이고, 이 표현은 중간중간 업데이트까지 포함합니다. 약속이니 실제로 알려주지 않으면 신뢰를 잃습니다.",
+   "example_ko": "검사 결과가 아직 안 나왔는데, 소식 들리는 대로 계속 알려드릴게요."
   },
   {
    "id": "EN_109",
@@ -89,7 +105,9 @@
    "level": "beginner",
    "theme": "life-advice",
    "example": "I almost skipped that café because it looked run-down, but don't judge a book by its cover — it was the best coffee I've had all year.",
-   "dialogue": "A: He seemed a bit awkward in the interview. I'm not sure about him.\nB: Don't judge a book by its cover. Once I actually worked with him on a project, his quiet confidence and attention to detail were exactly what we needed."
+   "dialogue": "A: He seemed a bit awkward in the interview. I'm not sure about him.\nB: Don't judge a book by its cover. Once I actually worked with him on a project, his quiet confidence and attention to detail were exactly what we needed.",
+   "nuance": "사람뿐 아니라 가게·물건·아이디어에도 씁니다. 속담 그대로 인용하면 조금 설교처럼 들릴 수 있어서, 원어민은 \"Never judge a book...\"처럼 앞부분만 말하고 뒤를 생략하기도 합니다. 반대로 겉모습이 기대대로일 땐 \"What you see is what you get\"이라고 합니다.",
+   "example_ko": "허름해 보여서 그 카페를 지나칠 뻔했는데, 겉만 보고 판단하면 안 되더라고요 — 올해 마신 커피 중 최고였어요."
   },
   {
    "id": "EN_110",
@@ -98,7 +116,9 @@
    "level": "beginner",
    "theme": "daily-life",
    "example": "Don't expect much from me before 9 AM — I'm not a morning person.",
-   "dialogue": "A: Want to join the 6 AM jogging club?\nB: I appreciate the invite, but I'm really not a morning person. I'm barely functional before I've had two cups of coffee. Maybe an evening run instead?"
+   "dialogue": "A: Want to join the 6 AM jogging club?\nB: I appreciate the invite, but I'm really not a morning person. I'm barely functional before I've had two cups of coffee. Maybe an evening run instead?",
+   "nuance": "자기 성향을 가볍게 밝히는 표현이라 변명이 아니라 농담처럼 들립니다. 반대는 \"early bird\", 밤에 강한 사람은 \"night owl\"입니다. 다만 직장에서 지각을 해놓고 이 말을 하면 핑계로 들리니, 성향 소개로만 쓰세요.",
+   "example_ko": "오전 9시 전엔 저한테 기대하지 마세요 — 저는 아침형 인간이 아니에요."
   },
   {
    "id": "EN_112",
@@ -107,7 +127,9 @@
    "level": "beginner",
    "theme": "decision-making",
    "example": "If you can get the same quality at half the price, switching suppliers is a no-brainer.",
-   "dialogue": "A: Should we take the direct flight or the one with two stopovers that costs half as much?\nB: You've got a meeting at 8 AM the next day — the direct flight is a no-brainer. Pay the extra and arrive fresh."
+   "dialogue": "A: Should we take the direct flight or the one with two stopovers that costs half as much?\nB: You've got a meeting at 8 AM the next day — the direct flight is a no-brainer. Pay the extra and arrive fresh.",
+   "nuance": "\"뇌가 필요 없을 정도로 쉬운 결정\"이라는 뜻입니다. 선택지를 비교할 때 한쪽이 압도적이면 씁니다. 주의할 점은, 상대가 고민 중인 문제에 이 말을 하면 \"이걸 왜 고민해?\"라며 무시하는 것처럼 들릴 수 있다는 것입니다.",
+   "example_ko": "같은 품질을 반값에 받을 수 있다면, 공급처를 바꾸는 건 고민할 것도 없죠."
   },
   {
    "id": "EN_113",
@@ -116,7 +138,9 @@
    "level": "intermediate",
    "theme": "social",
    "example": "You're telling me this deal just happened to land in my inbox with no strings attached? I wasn't born yesterday.",
-   "dialogue": "A: It's a limited-time offer, completely risk-free, and the returns are guaranteed at 30%.\nB: I wasn't born yesterday. No investment guarantees 30% returns — what's the catch?"
+   "dialogue": "A: It's a limited-time offer, completely risk-free, and the returns are guaranteed at 30%.\nB: I wasn't born yesterday. No investment guarantees 30% returns — what's the catch?",
+   "nuance": "\"어제 태어난 아기가 아니다\" = 그렇게 순진하지 않다는 뜻으로, 상대가 뻔한 수작을 부린다고 느낄 때 씁니다. 상대를 거짓말쟁이로 몰 수 있는 표현이라 농담 톤이 아니면 공격적으로 들립니다. 비슷한 \"Do I look stupid?\"보다는 한결 가볍습니다.",
+   "example_ko": "이 거래가 아무 조건 없이 우연히 내 메일함에 들어왔다고요? 저 그렇게 순진하지 않아요."
   },
   {
    "id": "EN_114",
@@ -125,7 +149,9 @@
    "level": "intermediate",
    "theme": "social",
    "example": "It's my first week on the job — cut me some slack if I don't know every procedure yet.",
-   "dialogue": "A: You misspelled three things in that email to the client.\nB: I know, I'm sorry — cut me some slack. I was typing it up between two meetings and I'll proofread more carefully next time."
+   "dialogue": "A: You misspelled three things in that email to the client.\nB: I know, I'm sorry — cut me some slack. I was typing it up between two meetings and I'll proofread more carefully next time.",
+   "nuance": "slack은 밧줄의 느슨함으로, \"줄을 좀 풀어달라\" = 너무 조이지 말라는 뜻입니다. 실수했을 때 이해를 구하는 말이지만 억울한 톤으로 하면 \"나한테 그만 좀 해\"라는 짜증이 됩니다. 남을 감싸줄 때 \"Cut him some slack\"이라고도 씁니다.",
+   "example_ko": "출근 첫 주라서요 — 모든 절차를 아직 다 모르더라도 좀 봐주세요."
   },
   {
    "id": "EN_115",
@@ -134,7 +160,9 @@
    "level": "beginner",
    "theme": "life-advice",
    "example": "He promises every week that he'll change, but actions speak louder than words.",
-   "dialogue": "A: He keeps saying he's committed to the project, but the deadlines keep slipping.\nB: Exactly. Actions speak louder than words. If he doesn't deliver by Friday, we need to have a serious conversation."
+   "dialogue": "A: He keeps saying he's committed to the project, but the deadlines keep slipping.\nB: Exactly. Actions speak louder than words. If he doesn't deliver by Friday, we need to have a serious conversation.",
+   "nuance": "약속보다 실제 행동을 보라는 속담으로, 상대의 반복된 말뿐인 다짐을 지적할 때 많이 씁니다. 그래서 당사자 앞에서 쓰면 꽤 날카로운 비판이 됩니다. 자기 다짐으로 \"I'll let my actions speak\"라고 하면 \"말보다 행동으로 보여주겠다\"가 됩니다.",
+   "example_ko": "그는 매주 달라지겠다고 약속하지만, 말보다 행동이 중요하죠."
   },
   {
    "id": "EN_117",
@@ -143,7 +171,9 @@
    "level": "intermediate",
    "theme": "exploration",
    "example": "We've identified five pain points, but I think we're just scratching the surface of what customers are really frustrated about.",
-   "dialogue": "A: We've covered a lot of ground today.\nB: We've made good progress, but honestly we're just scratching the surface. There's a whole layer of systemic issues we haven't even touched yet."
+   "dialogue": "A: We've covered a lot of ground today.\nB: We've made good progress, but honestly we're just scratching the surface. There's a whole layer of systemic issues we haven't even touched yet.",
+   "nuance": "표면을 살짝 긁었을 뿐 아래에 훨씬 많은 게 있다는 뜻입니다. 겸손하게 \"아직 시작일 뿐\"이라고 말할 때도, 문제의 심각성을 강조할 때도 씁니다. \"We've barely scratched the surface\"라고 하면 더 강조됩니다.",
+   "example_ko": "고객 불편 사항을 다섯 개 찾았지만, 고객이 진짜로 답답해하는 것의 표면만 긁은 것 같아요."
   },
   {
    "id": "EN_118",
@@ -152,7 +182,9 @@
    "level": "intermediate",
    "theme": "life-advice",
    "example": "Getting laid off felt devastating at the time, but it turned out to be a blessing in disguise — it pushed me to start my own business.",
-   "dialogue": "A: I'm still upset we lost that client.\nB: I know it stings, but it might be a blessing in disguise. They were demanding, constantly changing scope, and paying below market rate. Now we have room for a better client."
+   "dialogue": "A: I'm still upset we lost that client.\nB: I know it stings, but it might be a blessing in disguise. They were demanding, constantly changing scope, and paying below market rate. Now we have room for a better client.",
+   "nuance": "\"변장한 축복\" — 처음엔 나쁜 일처럼 보였지만 나중에 보니 좋은 일이었다는 뜻입니다. 사후에 돌아보며 쓰는 표현이라, 지금 힘든 일을 겪는 사람에게 바로 쓰면 무신경하게 들릴 수 있습니다. 그땐 \"Things happen for a reason\"보다 그냥 공감하는 게 낫습니다.",
+   "example_ko": "해고됐을 땐 절망적이었지만 결국 전화위복이었어요 — 덕분에 제 사업을 시작했거든요."
   },
   {
    "id": "EN_119",
@@ -161,7 +193,9 @@
    "level": "intermediate",
    "theme": "social",
    "example": "I'd love to join dinner tonight, but I'm exhausted — can I take a rain check?",
-   "dialogue": "A: We're all going out for drinks after work. You coming?\nB: I'll have to take a rain check — I promised I'd help my sister move this evening. Next time for sure."
+   "dialogue": "A: We're all going out for drinks after work. You coming?\nB: I'll have to take a rain check — I promised I'd help my sister move this evening. Next time for sure.",
+   "nuance": "야구 경기가 비로 취소되면 다음 경기에 쓸 수 있는 표(rain check)를 주던 데서 왔습니다. 그래서 단순한 거절이 아니라 \"다음에 꼭 하고 싶다\"는 뜻이 담깁니다. 정말 다시 할 생각이 없으면 쓰지 마세요 — 상대는 다음 약속을 기대합니다.",
+   "example_ko": "오늘 저녁 정말 가고 싶은데 너무 지쳤어요 — 다음 기회로 미뤄도 될까요?"
   },
   {
    "id": "EN_120",
@@ -170,7 +204,9 @@
    "level": "intermediate",
    "theme": "decision-making",
    "example": "You want maximum speed AND zero risk — you can't have it both ways in product development.",
-   "dialogue": "A: I want to launch next month, but I also need it to be perfect.\nB: You can't have it both ways. If we rush to next month, something will break. If we go until it's perfect, we launch in six months. You need to choose."
+   "dialogue": "A: I want to launch next month, but I also need it to be perfect.\nB: You can't have it both ways. If we rush to next month, something will break. If we go until it's perfect, we launch in six months. You need to choose.",
+   "nuance": "서로 모순되는 두 가지를 동시에 원하는 사람에게 선을 긋는 말입니다. 꽤 단호한 표현이라 상대가 논리적으로 모순된다는 지적이 됩니다. 한국어 \"두 마리 토끼\"는 욕심을 말하지만, 이 표현은 \"앞뒤가 안 맞는다\"는 쪽에 더 가깝습니다.",
+   "example_ko": "최고 속도에 위험은 0을 원하시는데 — 제품 개발에선 둘 다 가질 수 없어요."
   },
   {
    "id": "EN_121",
@@ -179,7 +215,9 @@
    "level": "intermediate",
    "theme": "creativity",
    "example": "I was in the shower this morning and had a lightbulb moment about how to fix the bug.",
-   "dialogue": "A: How did you figure out the solution so fast?\nB: I had a lightbulb moment on the train. The whole thing clicked when I stopped trying to force it and just thought about what the user actually needs."
+   "dialogue": "A: How did you figure out the solution so fast?\nB: I had a lightbulb moment on the train. The whole thing clicked when I stopped trying to force it and just thought about what the user actually needs.",
+   "nuance": "만화에서 아이디어가 떠오를 때 머리 위에 전구가 켜지는 그림에서 온 표현입니다. \"I had an idea\"보다 갑작스럽고 극적인 깨달음을 강조합니다. 영국에서는 \"penny dropped(이제야 이해했다)\"도 비슷하게 쓰지만, 그쪽은 깨달음이 늦게 왔다는 뉘앙스가 있습니다.",
+   "example_ko": "오늘 아침 샤워하다가 그 버그를 고칠 방법이 번뜩 떠올랐어요."
   },
   {
    "id": "EN_122",
@@ -188,7 +226,9 @@
    "level": "intermediate",
    "theme": "planning",
    "example": "What if the investor says no? Let's cross that bridge when we come to it — first let's prepare the best pitch we can.",
-   "dialogue": "A: What happens if we go over budget in Phase 2?\nB: Let's cross that bridge when we come to it. Right now we're under budget in Phase 1 — focus on what's in front of us."
+   "dialogue": "A: What happens if we go over budget in Phase 2?\nB: Let's cross that bridge when we come to it. Right now we're under budget in Phase 1 — focus on what's in front of us.",
+   "nuance": "아직 오지 않은 다리를 미리 걱정하지 말자는 뜻으로, 불필요한 가정을 멈출 때 씁니다. 상대의 걱정을 무시하는 것처럼 들릴 수 있으니, 뒤에 \"지금 할 수 있는 것\"을 제시하면 설득력이 생깁니다. 단, 대비가 필요한 위험에 쓰면 무책임하게 보입니다.",
+   "example_ko": "투자자가 거절하면 어쩌냐고요? 그건 그때 가서 생각하죠 — 우선 최고의 발표부터 준비해요."
   },
   {
    "id": "EN_124",
@@ -197,7 +237,9 @@
    "level": "intermediate",
    "theme": "workplace",
    "example": "I'd love to offer you a better deal, but my hands are tied — the pricing was set by headquarters.",
-   "dialogue": "A: Can you extend the deadline by even one day?\nB: I wish I could, but my hands are tied. The client presentation is locked in and the CEO is flying in for it. There's no flexibility on this one."
+   "dialogue": "A: Can you extend the deadline by even one day?\nB: I wish I could, but my hands are tied. The client presentation is locked in and the CEO is flying in for it. There's no flexibility on this one.",
+   "nuance": "\"손이 묶여 있다\" = 도와주고 싶지만 규정이나 윗선 때문에 권한이 없다는 뜻입니다. 거절할 때 책임을 구조 쪽으로 돌려 관계를 지키는 표현이라 협상에서 자주 씁니다. 실제로 권한이 있는데 쓰면 핑계가 되니 주의하세요.",
+   "example_ko": "더 좋은 조건을 드리고 싶지만 제 권한 밖이에요 — 가격은 본사에서 정했거든요."
   },
   {
    "id": "EN_125",
@@ -206,7 +248,9 @@
    "level": "advanced",
    "theme": "analysis",
    "example": "Going viral on social media is a double-edged sword — massive exposure, but also massive scrutiny.",
-   "dialogue": "A: Making the app free should massively increase our user base.\nB: It's a double-edged sword. More users means more growth, but we lose our revenue stream and suddenly need to monetize through ads or convert free users, which is incredibly hard."
+   "dialogue": "A: Making the app free should massively increase our user base.\nB: It's a double-edged sword. More users means more growth, but we lose our revenue stream and suddenly need to monetize through ads or convert free users, which is incredibly hard.",
+   "nuance": "장점이 곧 단점이 되는 상황을 말합니다. 한국어 \"양날의 검\"과 거의 같아서 쓰기 쉽습니다. 단순히 \"장단점이 있다(pros and cons)\"와 달리, 같은 특성이 좋은 쪽과 나쁜 쪽으로 동시에 작용한다는 점이 핵심입니다.",
+   "example_ko": "소셜미디어에서 화제가 되는 건 양날의 검이에요 — 엄청난 노출, 그만큼의 감시."
   },
   {
    "id": "EN_126",
@@ -215,7 +259,9 @@
    "level": "beginner",
    "theme": "daily-life",
    "example": "We were supposed to talk for an hour and ended up chatting for three — time flies when you're having fun.",
-   "dialogue": "A: I can't believe it's already midnight!\nB: Time flies when you're having fun. This was exactly what I needed — I haven't laughed this hard in months."
+   "dialogue": "A: I can't believe it's already midnight!\nB: Time flies when you're having fun. This was exactly what I needed — I haven't laughed this hard in months.",
+   "nuance": "즐거운 시간이 빨리 지나갔다는 말이지만, 반어적으로도 아주 많이 씁니다. 지루한 회의가 끝났을 때 \"Time flies when you're having fun\"이라고 하면 \"시간 참 안 가더라\"는 농담이 됩니다. 톤과 상황으로 구분하세요.",
+   "example_ko": "한 시간만 얘기하려다 세 시간을 떠들었네요 — 즐거우면 시간이 금방 가요."
   },
   {
    "id": "EN_127",
@@ -224,7 +270,9 @@
    "level": "intermediate",
    "theme": "strategy",
    "example": "We're 90% dependent on one platform for our revenue — we shouldn't put all our eggs in one basket.",
-   "dialogue": "A: We're going all-in on TikTok for our marketing.\nB: I'd diversify if I were you. Don't put all your eggs in one basket — algorithms change overnight and we could lose our entire audience."
+   "dialogue": "A: We're going all-in on TikTok for our marketing.\nB: I'd diversify if I were you. Don't put all your eggs in one basket — algorithms change overnight and we could lose our entire audience.",
+   "nuance": "계란을 한 바구니에 다 담으면 떨어뜨렸을 때 전부 깨진다는 뜻입니다. 투자·사업·커리어 모두에 씁니다. 반대로 한 가지에 집중하는 전략을 옹호할 때는 앤드루 카네기가 했다고 알려진 \"모든 계란을 한 바구니에 담고 그 바구니를 지켜보라\"는 반론도 있습니다.",
+   "example_ko": "매출의 90%를 한 플랫폼에 의존하고 있어요 — 한 곳에 모든 걸 걸면 안 돼요."
   },
   {
    "id": "EN_128",
@@ -233,7 +281,9 @@
    "level": "beginner",
    "theme": "motivation",
    "example": "I've never done public speaking before, but I'll give it my best shot.",
-   "dialogue": "A: Can you present the quarterly results to the board on Thursday?\nB: I've never presented to that level before, but I'll give it my best shot. Can you send me some background on who'll be in the room?"
+   "dialogue": "A: Can you present the quarterly results to the board on Thursday?\nB: I've never presented to that level before, but I'll give it my best shot. Can you send me some background on who'll be in the room?",
+   "nuance": "\"최선을 다해볼게요\"지만, 결과는 장담 못 한다는 겸손이 함께 담깁니다. \"I'll do my best\"와 비슷한데 더 캐주얼하고 도전 느낌이 있습니다. 약속이 확실해야 하는 상황에선 \"I'll make sure it gets done\"처럼 결과를 약속하는 표현이 낫습니다.",
+   "example_ko": "대중 앞에서 말해본 적은 없지만 최선을 다해볼게요."
   },
   {
    "id": "EN_129",
@@ -242,7 +292,9 @@
    "level": "intermediate",
    "theme": "emotion",
    "example": "They canceled on me for the third time this month — that's the last straw.",
-   "dialogue": "A: The supplier missed the deadline again and didn't even apologize.\nB: That's the last straw. I've given them three chances. Let's start the vendor replacement process today."
+   "dialogue": "A: The supplier missed the deadline again and didn't even apologize.\nB: That's the last straw. I've given them three chances. Let's start the vendor replacement process today.",
+   "nuance": "\"낙타 등을 부러뜨리는 마지막 지푸라기\"에서 온 말로, 쌓이고 쌓인 끝에 결정적인 한 번을 가리킵니다. 그래서 이 말을 한다는 건 이미 여러 번 참았다는 뜻이고, 관계를 끊거나 행동에 나서겠다는 선언에 가깝습니다. 가벼운 짜증에는 과한 표현입니다.",
+   "example_ko": "이번 달에만 세 번째로 약속을 취소했어요 — 이제 더는 못 참아요."
   },
   {
    "id": "EN_130",
@@ -251,7 +303,9 @@
    "level": "advanced",
    "theme": "communication",
    "example": "You're telling me we need more diverse hires? You're preaching to the choir — I've been pushing for this for two years.",
-   "dialogue": "A: I think the team needs more autonomy and less micromanagement.\nB: You're preaching to the choir. I've been making that exact argument to leadership for months. The challenge is convincing the people above us."
+   "dialogue": "A: I think the team needs more autonomy and less micromanagement.\nB: You're preaching to the choir. I've been making that exact argument to leadership for months. The challenge is convincing the people above us.",
+   "nuance": "이미 믿는 성가대에게 설교하는 것처럼, \"나도 이미 동의하니 설득할 필요 없다\"는 뜻입니다. 동의의 표현이지만 \"나한테 말해봐야 소용없다\"는 뉘앙스가 있어, 말하는 사람을 살짝 무안하게 할 수 있습니다. 웃으면서 말하면 강한 동의가 됩니다.",
+   "example_ko": "다양한 인재를 더 뽑아야 한다고요? 저한테 설득하실 필요 없어요 — 2년째 그걸 밀어붙이고 있거든요."
   },
   {
    "id": "EN_131",
@@ -260,7 +314,9 @@
    "level": "intermediate",
    "theme": "emotion",
    "example": "You've been quiet all day. Whatever is bothering you — just get it off your chest.",
-   "dialogue": "A: There's something that's been really bothering me about how the team handled this.\nB: I'm glad you brought it up. Please, get it off your chest — I want to hear it, and I'm not going to get defensive."
+   "dialogue": "A: There's something that's been really bothering me about how the team handled this.\nB: I'm glad you brought it up. Please, get it off your chest — I want to hear it, and I'm not going to get defensive.",
+   "nuance": "가슴에 얹힌 무거운 것을 내려놓으라는 이미지로, 고민·불만·고백을 털어놓게 할 때 씁니다. 상대를 배려하는 말이지만 억지로 말하게 하는 압박으로 느껴질 수 있으니 \"whenever you're ready\"를 붙이면 더 따뜻합니다. 스스로 \"I need to get this off my chest\"라고 하면 고백의 예고가 됩니다.",
+   "example_ko": "하루 종일 말이 없네. 뭐가 신경 쓰이든 — 그냥 털어놔 봐."
   },
   {
    "id": "EN_132",
@@ -269,7 +325,9 @@
    "level": "beginner",
    "theme": "social",
    "example": "I'd rather not get involved in that conversation — it's political and I have to work with both of them.",
-   "dialogue": "A: Do you want to be the one to tell him his presentation went badly?\nB: I'd rather not. Could someone closer to him deliver that feedback? It'd be better received coming from a peer."
+   "dialogue": "A: Do you want to be the one to tell him his presentation went badly?\nB: I'd rather not. Could someone closer to him deliver that feedback? It'd be better received coming from a peer.",
+   "nuance": "\"No\"를 가장 부드럽게 하는 방법 중 하나로, 이유를 길게 대지 않아도 됩니다. \"I don't want to\"는 감정이 드러나지만, 이 표현은 선호의 문제로 말해서 대립을 피합니다. 단, 윗사람의 지시에 쓰면 거부로 받아들여질 수 있으니 이유를 덧붙이세요.",
+   "example_ko": "그 대화에는 끼지 않는 게 좋겠어요 — 정치적인 얘기고, 저는 두 사람 모두와 일해야 하거든요."
   },
   {
    "id": "EN_133",
@@ -278,7 +336,9 @@
    "level": "intermediate",
    "theme": "relationships",
    "example": "Don't just blame him for the argument — it takes two to tango.",
-   "dialogue": "A: The client relationship completely fell apart and it was all their fault.\nB: I hear you, but it takes two to tango. Let's look honestly at where our team's communication could have been better before we assign all the blame."
+   "dialogue": "A: The client relationship completely fell apart and it was all their fault.\nB: I hear you, but it takes two to tango. Let's look honestly at where our team's communication could have been better before we assign all the blame.",
+   "nuance": "1952년 미국 노래 \"Takes Two to Tango\"로 널리 퍼진 표현입니다. 탱고는 혼자 출 수 없듯, 갈등이나 문제에는 양쪽 모두 책임이 있다는 뜻입니다. 한쪽만 비난하는 사람에게 균형을 잡아주는 말이지만, 피해자에게 쓰면 책임을 떠넘기는 말로 들릴 수 있습니다.",
+   "example_ko": "말다툼을 그 사람 탓만 하지 마요 — 손뼉도 마주쳐야 소리가 나잖아요."
   },
   {
    "id": "EN_135",
@@ -287,7 +347,9 @@
    "level": "beginner",
    "theme": "life-advice",
    "example": "The pandemic was devastating, but for many small businesses every cloud has a silver lining — they found entirely new customer bases online.",
-   "dialogue": "A: I'm gutted we didn't win the pitch.\nB: Every cloud has a silver lining. We learned a lot about how we present our pricing, and the feedback they gave us is going to make our next pitch much stronger."
+   "dialogue": "A: I'm gutted we didn't win the pitch.\nB: Every cloud has a silver lining. We learned a lot about how we present our pricing, and the feedback they gave us is going to make our next pitch much stronger.",
+   "nuance": "먹구름 가장자리에 햇빛이 비쳐 은색으로 빛나는 모습에서 온 속담입니다. \"blessing in disguise\"가 지나고 보니 좋은 일이었다는 쪽이라면, 이 표현은 힘든 일 속에서도 좋은 면을 찾자는 쪽입니다. 대화에서는 \"The silver lining is...\"로 줄여 더 자주 씁니다.",
+   "example_ko": "팬데믹은 참혹했지만, 많은 작은 가게들에겐 좋은 면도 있었어요 — 온라인에서 완전히 새로운 고객층을 찾았거든요."
   },
   {
    "id": "EN_136",
@@ -296,7 +358,9 @@
    "level": "intermediate",
    "theme": "workplace",
    "example": "After missing the last two deadlines, our team is on thin ice with the client.",
-   "dialogue": "A: Should we ask for another extension?\nB: Absolutely not. We're already on thin ice. One more delay and they'll cancel the contract. We work the weekend if we have to."
+   "dialogue": "A: Should we ask for another extension?\nB: Absolutely not. We're already on thin ice. One more delay and they'll cancel the contract. We work the weekend if we have to.",
+   "nuance": "얇은 얼음 위를 걷는 것처럼 한 번만 더 실수하면 끝이라는 경고입니다. 보통 이미 신뢰를 잃어가는 상황에서 씁니다. 남에게 \"You're on thin ice\"라고 하면 마지막 경고라서 꽤 무겁게 들립니다. 한국어 \"살얼음판\"과 거의 같습니다.",
+   "example_ko": "마감을 두 번 연속 놓친 뒤라, 우리 팀은 고객과 살얼음판을 걷고 있어요."
   },
   {
    "id": "EN_137",
@@ -305,7 +369,9 @@
    "level": "intermediate",
    "theme": "daily-life",
    "example": "He said he'd respond by noon — but don't hold your breath. He's notoriously slow with emails.",
-   "dialogue": "A: Do you think the CEO will approve our budget request this quarter?\nB: Don't hold your breath. They just froze all discretionary spending last week. We might want to plan for a leaner version of the project."
+   "dialogue": "A: Do you think the CEO will approve our budget request this quarter?\nB: Don't hold your breath. They just froze all discretionary spending last week. We might want to plan for a leaner version of the project.",
+   "nuance": "\"숨 참고 기다리지 마, 질식할 거야\" = 그 일은 쉽게 안 일어날 테니 기대하지 말라는 뜻입니다. 약간 비꼬는 톤이 있어서 당사자에 대한 불신을 드러냅니다. 제3자에 대해 말할 땐 괜찮지만, 당사자가 들으면 기분 나빠할 수 있습니다.",
+   "example_ko": "정오까지 답장한다고 했는데 — 기대는 하지 마요. 그 사람 메일 늦기로 유명하거든요."
   },
   {
    "id": "EN_138",
@@ -314,7 +380,9 @@
    "level": "intermediate",
    "theme": "daily-life",
    "example": "I told everyone the problem was fixed, but I spoke too soon — it came back an hour later.",
-   "dialogue": "A: Did you say the server was stable again?\nB: I spoke too soon. It went down again about twenty minutes after I sent that update. I'm sorry — we're still working on the root cause."
+   "dialogue": "A: Did you say the server was stable again?\nB: I spoke too soon. It went down again about twenty minutes after I sent that update. I'm sorry — we're still working on the root cause.",
+   "nuance": "\"좋은 일이 생겼다\"고 말하자마자 일이 틀어졌을 때 쓰는 자조적인 표현입니다. 한국어 \"김칫국 마셨다\"보다 말을 섣불리 한 행동에 초점이 있습니다. 원어민은 이 징크스 때문에 좋은 소식을 말한 뒤 \"knock on wood(나무를 두드리자)\"를 덧붙이기도 합니다.",
+   "example_ko": "문제가 해결됐다고 다들 말했는데, 제가 너무 일찍 말했네요 — 한 시간 뒤에 다시 터졌어요."
   },
   {
    "id": "EN_139",
@@ -323,7 +391,9 @@
    "level": "advanced",
    "theme": "relationships",
    "example": "We've been at odds for months — I think it's time to bury the hatchet and move forward.",
-   "dialogue": "A: Things have been tense between our teams since the product launch dispute.\nB: Can we just bury the hatchet? We're on the same side at the end of the day. How about lunch this week, just us?"
+   "dialogue": "A: Things have been tense between our teams since the product launch dispute.\nB: Can we just bury the hatchet? We're on the same side at the end of the day. How about lunch this week, just us?",
+   "nuance": "도끼(hatchet)를 땅에 묻는다는 뜻으로, 북미 원주민이 화해의 표시로 무기를 묻던 관습에서 왔다고 알려져 있습니다. 오랜 갈등을 끝내자는 꽤 무게 있는 제안이라 사소한 말다툼보다는 오래된 앙금에 어울립니다.",
+   "example_ko": "몇 달째 사이가 틀어져 있었잖아요 — 이제 지난 일은 묻고 앞으로 나아갈 때인 것 같아요."
   },
   {
    "id": "EN_140",
@@ -332,7 +402,9 @@
    "level": "advanced",
    "theme": "decision-making",
    "example": "If I say yes to the project, I burn out. If I say no, I risk losing the client. I'm between a rock and a hard place.",
-   "dialogue": "A: Can't you just tell the vendor to push the delivery date?\nB: I'm between a rock and a hard place. If we push the vendor, they'll charge us penalties. If we don't, we miss the launch. Neither option is good."
+   "dialogue": "A: Can't you just tell the vendor to push the delivery date?\nB: I'm between a rock and a hard place. If we push the vendor, they'll charge us penalties. If we don't, we miss the launch. Neither option is good.",
+   "nuance": "바위와 딱딱한 곳 사이에 끼었다 = 어느 쪽을 택해도 나쁜 결과라는 뜻입니다. 선택지가 둘 다 불리할 때 쓰는 대표 표현입니다. 비슷한 \"catch-22\"는 조건이 서로 맞물려 빠져나갈 수 없는 모순 구조를 말하는 반면, 이 표현은 둘 다 나쁜 선택지 사이의 고민입니다.",
+   "example_ko": "프로젝트를 맡으면 번아웃이 오고, 거절하면 고객을 잃을 수 있어요. 진퇴양난이에요."
   },
   {
    "id": "EN_141",
@@ -341,7 +413,9 @@
    "level": "advanced",
    "theme": "emotion",
    "example": "The line about not waiting for the 'right time' to pursue your dreams really struck a chord with me.",
-   "dialogue": "A: Which part of the book resonated with you the most?\nB: The chapter on forgiveness struck a chord. I didn't expect it to — but it made me think about some relationships in my own life I've been avoiding."
+   "dialogue": "A: Which part of the book resonated with you the most?\nB: The chapter on forgiveness struck a chord. I didn't expect it to — but it made me think about some relationships in my own life I've been avoiding.",
+   "nuance": "악기 줄을 튕기면 같은 음의 다른 줄이 함께 울리는 공명 현상에서 온 표현입니다. 내 안의 생각이나 경험과 딱 맞아 마음이 울렸다는 뜻입니다. hit home이 찔리는 공감이라면 이 표현은 따뜻하고 긍정적인 공감입니다.",
+   "example_ko": "꿈을 좇는 데 \"적당한 때\"를 기다리지 말라는 구절이 정말 마음에 울렸어요."
   },
   {
    "id": "EN_143",
@@ -350,7 +424,9 @@
    "level": "intermediate",
    "theme": "praise",
    "example": "That presentation was flawless — you hit it out of the park.",
-   "dialogue": "A: I was so nervous the whole time. I couldn't tell if they liked it.\nB: Are you kidding? You hit it out of the park. Three of the investors came up to me afterward asking for your contact details."
+   "dialogue": "A: I was so nervous the whole time. I couldn't tell if they liked it.\nB: Are you kidding? You hit it out of the park. Three of the investors came up to me afterward asking for your contact details.",
+   "nuance": "야구에서 공을 경기장 밖으로 넘겨버리는 장외 홈런에서 온 표현입니다. \"You did well\"보다 훨씬 열정적인 칭찬으로, 기대를 크게 뛰어넘었을 때 씁니다. 스포츠 비유가 많은 미국 직장에서 특히 자주 들을 수 있습니다.",
+   "example_ko": "그 발표는 완벽했어요 — 완전히 홈런이었어요."
   },
   {
    "id": "EN_145",
@@ -359,7 +435,9 @@
    "level": "intermediate",
    "theme": "social",
    "example": "Sorry I ranted about the policy for twenty minutes — I got a little carried away.",
-   "dialogue": "A: You kept adding features that weren't in the original brief.\nB: I know, I got carried away. Once I started building, I kept thinking 'wouldn't it be cool if...' and just couldn't stop. I'll rein it in going forward."
+   "dialogue": "A: You kept adding features that weren't in the original brief.\nB: I know, I got carried away. Once I started building, I kept thinking 'wouldn't it be cool if...' and just couldn't stop. I'll rein it in going forward.",
+   "nuance": "감정이나 흥분에 \"실려 가서\" 선을 넘었다는 뜻으로, 스스로의 과함을 인정하고 사과할 때 씁니다. 좋은 일로 들떠 과하게 쇼핑했을 때도 씁니다. \"Don't get carried away\"는 \"너무 들뜨지 마\"라는 경고가 됩니다.",
+   "example_ko": "그 정책 얘기로 20분이나 열변을 토해서 미안해요 — 제가 좀 흥분했네요."
   },
   {
    "id": "EN_146",
@@ -368,7 +446,9 @@
    "level": "beginner",
    "theme": "emotion",
    "example": "You failed one exam. It's not the end of the world — there are retakes and other paths forward.",
-   "dialogue": "A: I can't believe I made that mistake in front of the whole team.\nB: It's not the end of the world. Everyone makes mistakes. What matters is how you handle it — own it, fix it, and move on."
+   "dialogue": "A: I can't believe I made that mistake in front of the whole team.\nB: It's not the end of the world. Everyone makes mistakes. What matters is how you handle it — own it, fix it, and move on.",
+   "nuance": "낙담한 사람을 위로할 때 쓰지만, 상대의 고통을 작게 만드는 말로 들릴 수 있습니다. 먼저 공감한 뒤에 쓰는 것이 좋습니다. 자기 실수에 대해 스스로 말하면 \"괜찮아, 별일 아니야\"라는 담담한 태도가 되어 오히려 성숙해 보입니다.",
+   "example_ko": "시험 하나 떨어진 거예요. 세상이 끝나는 일은 아니에요 — 재시험도 있고 다른 길도 있어요."
   },
   {
    "id": "EN_147",
@@ -377,7 +457,9 @@
    "level": "beginner",
    "theme": "social",
    "example": "We were just wondering where you'd gone — speak of the devil!",
-   "dialogue": "A: Has anyone heard from Jake today? He missed the standup.\nB: Speak of the devil — here he comes down the hall now."
+   "dialogue": "A: Has anyone heard from Jake today? He missed the standup.\nB: Speak of the devil — here he comes down the hall now.",
+   "nuance": "원래 \"Speak of the devil and he shall appear(악마 얘기를 하면 악마가 나타난다)\"의 앞부분입니다. 방금 얘기하던 사람이 나타났을 때 쓰는데, \"악마\"라는 말 때문에 당사자가 들으면 뒷담화를 한 것처럼 느낄 수 있으니 밝은 톤으로 하세요. 한국어 \"호랑이도 제 말 하면 온다\"와 거의 같습니다.",
+   "example_ko": "어디 갔나 얘기하던 참이었는데 — 호랑이도 제 말 하면 온다더니!"
   },
   {
    "id": "EN_148",
@@ -386,7 +468,9 @@
    "level": "intermediate",
    "theme": "daily-life",
    "example": "Everyone keeps telling me to take weekends off, but I'll sleep when I'm dead — this is a once-in-a-decade opportunity.",
-   "dialogue": "A: You worked all weekend again, didn't you?\nB: I'll sleep when I'm dead. We're so close to launching and I genuinely love what we're building. But okay — I promise I'll take a proper break after the release."
+   "dialogue": "A: You worked all weekend again, didn't you?\nB: I'll sleep when I'm dead. We're so close to launching and I genuinely love what we're building. But okay — I promise I'll take a proper break after the release.",
+   "nuance": "쉬라는 조언을 반쯤 농담으로 거절하는 말로, 1976년 워런 제번의 노래 제목으로도 유명합니다. 열정을 보여주지만, 번아웃에 대한 경고를 무시하는 태도로도 읽힙니다. 직장에서 자랑처럼 말하면 건강을 해치는 문화를 부추기는 것처럼 보일 수 있습니다.",
+   "example_ko": "다들 주말엔 쉬라고 하지만, 잠은 죽어서 자면 돼요 — 10년에 한 번 올 기회거든요."
   },
   {
    "id": "EN_149",
@@ -395,7 +479,9 @@
    "level": "intermediate",
    "theme": "life-advice",
    "example": "The influencer deal seemed amazing until we read the fine print — there's no such thing as a free lunch.",
-   "dialogue": "A: This software is completely free with unlimited storage. Why would they offer that?\nB: There's no such thing as a free lunch. They're monetizing your data. Read the privacy policy before you upload anything sensitive."
+   "dialogue": "A: This software is completely free with unlimited storage. Why would they offer that?\nB: There's no such thing as a free lunch. They're monetizing your data. Read the privacy policy before you upload anything sensitive.",
+   "nuance": "19세기 미국 술집들이 술을 사면 점심을 \"공짜\"로 준다고 광고했지만 실제로는 짠 음식으로 술을 더 팔았던 데서 온 말로 알려져 있습니다. 좋은 조건 뒤엔 반드시 대가가 있다는 뜻입니다. 경제학자 밀턴 프리드먼이 책 제목으로 써서 더 유명해졌습니다.",
+   "example_ko": "인플루언서 계약이 대단해 보였는데 깨알 같은 약관을 읽어 보니 — 세상에 공짜는 없더라고요."
   },
   {
    "id": "EN_150",
@@ -404,7 +490,9 @@
    "level": "beginner",
    "theme": "social",
    "example": "A: This commute is absolutely brutal in rush hour. B: You can say that again — it took me an hour and a half today.",
-   "dialogue": "A: This project has had more moving parts than anything I've ever worked on.\nB: You can say that again. I've been in this industry for fifteen years and I've never seen a scope this complex managed with such a small team."
+   "dialogue": "A: This project has had more moving parts than anything I've ever worked on.\nB: You can say that again. I've been in this industry for fifteen years and I've never seen a scope this complex managed with such a small team.",
+   "nuance": "\"그 말 한 번 더 해도 돼\" = 그만큼 완전히 동의한다는 뜻입니다. 문자 그대로 \"다시 말해 주세요\"로 알아듣는 실수가 흔합니다. 못 들어서 다시 말해 달라고 할 때는 \"Could you say that again?\"을 써야 합니다.",
+   "example_ko": "A: 출퇴근 시간 교통은 정말 지옥이에요. B: 누가 아니래요 — 오늘 한 시간 반 걸렸어요."
   },
   {
    "id": "EN_151",
@@ -413,7 +501,9 @@
    "level": "intermediate",
    "theme": "productivity",
    "example": "Everyone's here and we have a lot to cover — let's get started. We're burning daylight.",
-   "dialogue": "A: Should we wait for the others before we begin?\nB: We're already ten minutes late and we're burning daylight. Let's start and catch them up when they arrive."
+   "dialogue": "A: Should we wait for the others before we begin?\nB: We're already ten minutes late and we're burning daylight. Let's start and catch them up when they arrive.",
+   "nuance": "해가 떠 있는 귀한 시간을 태워 없애고 있다는 뜻으로, 셰익스피어의 《로미오와 줄리엣》에도 \"we burn daylight\"라는 대사가 나옵니다. 서부 영화에서 카우보이들이 출발을 재촉할 때 자주 쓰여 유명해졌습니다. 재촉하는 말이라 윗사람에게는 조심해야 합니다.",
+   "example_ko": "다들 모였고 다룰 게 많아요 — 시작합시다. 시간 낭비하고 있어요."
   },
   {
    "id": "EN_152",
@@ -422,7 +512,9 @@
    "level": "beginner",
    "theme": "communication",
    "example": "I said the new system was slow, but I take back what I said — it's actually very fast once you know how to use it.",
-   "dialogue": "A: You said you thought the new hire wasn't working out.\nB: I take back what I said. I've seen her work this week and she's actually incredibly methodical and sharp. I judged too quickly."
+   "dialogue": "A: You said you thought the new hire wasn't working out.\nB: I take back what I said. I've seen her work this week and she's actually incredibly methodical and sharp. I judged too quickly.",
+   "nuance": "내가 한 말을 공식적으로 거둬들이는 표현으로, 틀렸음을 깔끔하게 인정합니다. \"I was wrong\"보다 조금 가볍고, 특히 앞서 비판했던 것을 칭찬으로 바꿀 때 자연스럽습니다. 논쟁 중에 쓰면 성숙한 태도로 보입니다.",
+   "example_ko": "새 시스템이 느리다고 했는데, 그 말 취소할게요 — 쓸 줄 알면 정말 빨라요."
   },
   {
    "id": "EN_153",
@@ -431,7 +523,9 @@
    "level": "intermediate",
    "theme": "emotion",
    "example": "I've been on edge all morning waiting for the board's decision.",
-   "dialogue": "A: You seem really tense today.\nB: I'm on edge. The offer for the house is in and we're waiting to hear back. If we lose this one, I genuinely don't know what we'll do — the market is brutal."
+   "dialogue": "A: You seem really tense today.\nB: I'm on edge. The offer for the house is in and we're waiting to hear back. If we lose this one, I genuinely don't know what we'll do — the market is brutal.",
+   "nuance": "칼날 끝(edge)에 서 있는 것처럼 신경이 곤두선 상태입니다. 초조함과 짜증이 섞여 있어서, \"I'm nervous\"보다 예민하고 폭발 직전인 느낌이 강합니다. 남에게 \"You seem on edge\"라고 하면 \"너 좀 예민해 보여\"라는 조심스러운 관찰이 됩니다.",
+   "example_ko": "이사회 결정을 기다리느라 아침 내내 신경이 곤두서 있었어요."
   },
   {
    "id": "EN_154",
@@ -440,7 +534,9 @@
    "level": "advanced",
    "theme": "leadership",
    "example": "If the launch fails, I'll take the fall for it — this was my call to make.",
-   "dialogue": "A: Someone has to explain to the board why we missed the target.\nB: I'll take the fall for this. I made the final decision on the strategy and I should be the one to own it. Set up the meeting."
+   "dialogue": "A: Someone has to explain to the board why we missed the target.\nB: I'll take the fall for this. I made the final decision on the strategy and I should be the one to own it. Set up the meeting.",
+   "nuance": "\"넘어짐(fall)을 대신 받겠다\" = 책임과 비난을 떠안겠다는 뜻입니다. 리더가 쓰면 멋지지만, 범죄 영화에서는 남의 죄를 뒤집어쓰는 \"희생양\"의 뉘앙스로도 쓰입니다. \"take responsibility\"보다 극적이라 무게 있는 상황에 어울립니다.",
+   "example_ko": "출시가 실패하면 제가 책임질게요 — 제가 내린 결정이었으니까요."
   },
   {
    "id": "EN_155",
@@ -449,7 +545,9 @@
    "level": "beginner",
    "theme": "relationships",
    "example": "Don't worry about being formal — we go way back. Just talk to him like a normal person.",
-   "dialogue": "A: I didn't realize you knew the CEO personally.\nB: Oh yeah, we go way back. We were in the same study group in university. You'd never guess it from how formal he is in meetings."
+   "dialogue": "A: I didn't realize you knew the CEO personally.\nB: Oh yeah, we go way back. We were in the same study group in university. You'd never guess it from how formal he is in meetings.",
+   "nuance": "way back은 \"아주 오래전\"이라는 뜻으로, 두 사람의 오랜 인연을 가볍게 소개하는 말입니다. 격식 없는 친근함이 담겨 있어서 제3자에게 관계를 설명할 때 자주 씁니다. 몇 년 됐는지 구체적으로 말하려면 \"We go back ten years\"처럼 씁니다.",
+   "example_ko": "격식 차리지 않아도 돼요 — 우린 오랜 사이거든요. 그냥 편하게 얘기해요."
   },
   {
    "id": "EN_156",
@@ -458,7 +556,9 @@
    "level": "beginner",
    "theme": "gratitude",
    "example": "You sent me the file right before my presentation — you're a lifesaver.",
-   "dialogue": "A: I thought you might need the extra charger, so I packed one just in case.\nB: You're a lifesaver. My laptop was at 4% and the presentation is in ten minutes. Seriously, thank you so much."
+   "dialogue": "A: I thought you might need the extra charger, so I packed one just in case.\nB: You're a lifesaver. My laptop was at 4% and the presentation is in ten minutes. Seriously, thank you so much.",
+   "nuance": "물에 빠진 사람을 구하는 구조원처럼 \"덕분에 살았다\"는 감사입니다. 과장이 섞인 가벼운 표현이라 급한 부탁을 들어준 동료에게 딱 맞습니다. 영국에서는 \"You're a star\"도 비슷하게 씁니다. 진지한 도움에는 \"I really owe you one\"이 더 무게 있습니다.",
+   "example_ko": "발표 직전에 파일 보내줘서 — 진짜 덕분에 살았어요."
   },
   {
    "id": "EN_157",
@@ -467,7 +567,9 @@
    "level": "intermediate",
    "theme": "communication",
    "example": "The suggestion to simplify the onboarding instead of adding more features — that's food for thought.",
-   "dialogue": "A: What if the reason users churn isn't the product itself but the fact that we're attracting the wrong users from the start?\nB: That's food for thought. It would reframe our entire acquisition strategy. Let me sit with that over the weekend."
+   "dialogue": "A: What if the reason users churn isn't the product itself but the fact that we're attracting the wrong users from the start?\nB: That's food for thought. It would reframe our entire acquisition strategy. Let me sit with that over the weekend.",
+   "nuance": "\"생각의 양식\" = 곱씹어볼 만한 이야기라는 뜻입니다. 동의도 반대도 아닌 중립적 표현이라, 제안을 바로 수용하긴 어렵지만 무시하지 않겠다는 신호로 쓰기 좋습니다. 회의에서 결정을 미루는 정중한 표현이 되기도 합니다.",
+   "example_ko": "기능을 더 넣는 대신 온보딩을 단순화하자는 제안 — 곱씹어볼 만하네요."
   },
   {
    "id": "EN_158",
@@ -476,7 +578,9 @@
    "level": "intermediate",
    "theme": "self-reflection",
    "example": "After six months of management, I've realized I'm not cut out for it — I miss doing the actual work.",
-   "dialogue": "A: How are you finding the new leadership role?\nB: Honestly? I'm not sure I'm cut out for this. I spend my whole day in meetings and I haven't written a single line of code in three months. I got into tech to build things."
+   "dialogue": "A: How are you finding the new leadership role?\nB: Honestly? I'm not sure I'm cut out for this. I spend my whole day in meetings and I haven't written a single line of code in three months. I got into tech to build things.",
+   "nuance": "옷감을 재단하듯 \"그 일에 맞게 재단되지 않았다\" = 적성이 아니라는 뜻입니다. 능력 부족보다 기질·성향이 맞지 않는다는 뉘앙스라, 스스로 말하면 솔직한 자기 인식이 됩니다. 남에게 \"You're not cut out for this\"라고 하면 상당히 모욕적이니 주의하세요.",
+   "example_ko": "관리자로 6개월 일해 보니 저는 이게 적성이 아니더라고요 — 실무가 그리워요."
   },
   {
    "id": "EN_159",
@@ -485,7 +589,9 @@
    "level": "beginner",
    "theme": "daily-life",
    "example": "We've hit every item on the agenda — let's call it a day and get some rest.",
-   "dialogue": "A: Should we try to fit in one more review before we wrap?\nB: It's already 7:30 and everyone's running on fumes. Let's call it a day. We'll come back fresh in the morning and it'll be better work anyway."
+   "dialogue": "A: Should we try to fit in one more review before we wrap?\nB: It's already 7:30 and everyone's running on fumes. Let's call it a day. We'll come back fresh in the morning and it'll be better work anyway.",
+   "nuance": "\"오늘 하루는 이걸로 치자\"는 뜻으로 일을 마무리할 때 씁니다. 누군가 이 말을 하면 보통 회의나 작업의 종료 선언입니다. 비슷한 \"Let's wrap it up\"은 \"마무리 단계로 가자\"이고, 이 표현은 \"오늘은 끝\"이라는 더 분명한 선언입니다.",
+   "example_ko": "안건을 다 다뤘네요 — 오늘은 여기까지 하고 좀 쉽시다."
   },
   {
    "id": "EN_160",
@@ -494,7 +600,9 @@
    "level": "intermediate",
    "theme": "daily-life",
    "example": "The new tax code has so many exceptions — I can't wrap my head around it.",
-   "dialogue": "A: Did you understand the architect's explanation of the new infrastructure?\nB: Honestly, I couldn't wrap my head around most of it. Could you send me a summary? I'm a visual person — maybe a diagram would help."
+   "dialogue": "A: Did you understand the architect's explanation of the new infrastructure?\nB: Honestly, I couldn't wrap my head around most of it. Could you send me a summary? I'm a visual person — maybe a diagram would help.",
+   "nuance": "머리로 감싸 안을 수가 없다 = 너무 복잡하거나 이해가 안 되는 것에 씁니다. \"I don't understand\"와 달리 논리적으로 받아들이기 어렵다는 당혹감이 담깁니다. 충격적인 소식에 \"I still can't wrap my head around it\"이라고 하면 \"아직도 믿기지 않아\"가 됩니다.",
+   "example_ko": "새 세법은 예외가 너무 많아서 — 도저히 이해가 안 돼요."
   },
   {
    "id": "EN_161",
@@ -503,7 +611,9 @@
    "level": "advanced",
    "theme": "critical-thinking",
    "example": "I'm just playing devil's advocate here, but what if the data is pointing us in the wrong direction?",
-   "dialogue": "A: So we all agree the new feature is a priority?\nB: Before we finalize — I'm just playing devil's advocate — but who specifically asked for this? Is it a vocal minority or does the data actually back up the demand?"
+   "dialogue": "A: So we all agree the new feature is a priority?\nB: Before we finalize — I'm just playing devil's advocate — but who specifically asked for this? Is it a vocal minority or does the data actually back up the demand?",
+   "nuance": "가톨릭 성인 심사에서 일부러 반대 논거를 대던 \"악마의 변호인\" 직책에서 온 말입니다. \"내 진짜 의견이 아니라 검증을 위한 반론\"이라는 면책이 붙어 있어, 회의에서 공격적이지 않게 반론을 던질 수 있습니다. 매번 쓰면 반대만 하는 사람으로 보입니다.",
+   "example_ko": "일부러 반대 입장에서 말해보는 건데요, 데이터가 우리를 잘못된 방향으로 이끌고 있다면요?"
   },
   {
    "id": "EN_162",
@@ -512,7 +622,9 @@
    "level": "intermediate",
    "theme": "progress",
    "example": "Once we got the first investor on board, the ball really got rolling and three more followed within a month.",
-   "dialogue": "A: The early days of the startup sound chaotic.\nB: They were. But once we landed that first enterprise client, the ball really got rolling. Word spread fast and suddenly everyone wanted a demo."
+   "dialogue": "A: The early days of the startup sound chaotic.\nB: They were. But once we landed that first enterprise client, the ball really got rolling. Word spread fast and suddenly everyone wanted a demo.",
+   "nuance": "공이 한 번 구르기 시작하면 계속 굴러가듯, 일이 탄력을 받았다는 뜻입니다. 시작을 제안할 땐 \"Let's get the ball rolling(시작해 봅시다)\"을 가장 많이 씁니다. 이미 진행 중인 흐름을 말할 땐 이 형태, 시작할 땐 get the ball rolling을 쓰세요.",
+   "example_ko": "첫 투자자를 확보하자 일이 본격적으로 굴러가기 시작했고, 한 달 안에 세 곳이 더 따라왔어요."
   },
   {
    "id": "EN_163",
@@ -521,7 +633,9 @@
    "level": "intermediate",
    "theme": "daily-life",
    "example": "I studied everything last night, but in the exam I was drawing a complete blank.",
-   "dialogue": "A: What was the name of that framework we used in the last project?\nB: I'm completely drawing a blank right now. Let me search through my emails — I know I emailed about it at the time."
+   "dialogue": "A: What was the name of that framework we used in the last project?\nB: I'm completely drawing a blank right now. Let me search through my emails — I know I emailed about it at the time.",
+   "nuance": "옛 복권에서 꽝 표(blank)를 뽑는 것에서 왔다는 설이 있습니다. 머리가 하얘져 아무것도 떠오르지 않는 상태로, 시험이나 발표에서 긴장했을 때 딱 맞습니다. tip of my tongue이 거의 떠오를 듯한 상태라면, 이 표현은 완전히 백지인 상태입니다.",
+   "example_ko": "어젯밤에 다 공부했는데 시험장에서 머리가 완전히 하얘졌어요."
   },
   {
    "id": "EN_164",
@@ -530,7 +644,9 @@
    "level": "intermediate",
    "theme": "relationships",
    "example": "We had a falling out two years ago, but it's water under the bridge — we've moved on.",
-   "dialogue": "A: Are you sure you're okay working with him after what happened?\nB: It's water under the bridge. That conflict was two years ago, we both said things we regret, and we've talked it through. I'm genuinely fine."
+   "dialogue": "A: Are you sure you're okay working with him after what happened?\nB: It's water under the bridge. That conflict was two years ago, we both said things we regret, and we've talked it through. I'm genuinely fine.",
+   "nuance": "다리 밑으로 이미 흘러간 물처럼 되돌릴 수 없고 이제 신경 쓰지 않는다는 뜻입니다. 과거의 갈등을 \"난 이제 괜찮다\"고 정리할 때 씁니다. 상대가 사과할 때 이 말로 답하면 용서의 표현이 됩니다. 비슷한 \"Let bygones be bygones\"는 조금 더 격식 있습니다.",
+   "example_ko": "2년 전에 사이가 틀어졌지만 다 지난 일이에요 — 이미 털고 일어났어요."
   },
   {
    "id": "EN_165",
@@ -539,7 +655,9 @@
    "level": "intermediate",
    "theme": "self-improvement",
    "example": "This year I'm really going to turn over a new leaf with my health — no more skipping the gym.",
-   "dialogue": "A: You've said you'll work on your time management before.\nB: I know, I know. But I've got an accountability partner now and I've blocked off deep work hours on my calendar. I'm genuinely turning over a new leaf."
+   "dialogue": "A: You've said you'll work on your time management before.\nB: I know, I know. But I've got an accountability partner now and I've blocked off deep work hours on my calendar. I'm genuinely turning over a new leaf.",
+   "nuance": "leaf는 나뭇잎이 아니라 책장(page)으로, \"새 페이지를 넘긴다\" = 새 출발을 한다는 뜻입니다. 나쁜 습관이나 과거를 버리고 달라지겠다는 결심에 씁니다. 결심의 표현이라 신년 계획과 잘 어울리지만, 남에게 \"You need to turn over a new leaf\"라고 하면 훈계가 됩니다.",
+   "example_ko": "올해는 건강에 대해선 정말 새 출발을 할 거예요 — 더 이상 운동 빼먹지 않을 거예요."
   },
   {
    "id": "EN_166",
@@ -548,7 +666,9 @@
    "level": "beginner",
    "theme": "social",
    "example": "I don't get the appeal of true crime podcasts, but to each their own.",
-   "dialogue": "A: How can you like pineapple on pizza?\nB: To each their own! I love the sweet and salty combination. I'm not going to judge what you put on yours if you don't judge mine."
+   "dialogue": "A: How can you like pineapple on pizza?\nB: To each their own! I love the sweet and salty combination. I'm not going to judge what you put on yours if you don't judge mine.",
+   "nuance": "내 취향은 아니지만 존중한다는 뜻입니다. 원래 \"To each his own\"이었지만 최근에는 성별 중립적인 \"their\"를 더 많이 씁니다. 톤에 따라 \"난 이해 안 가지만 뭐...\"라는 은근한 비꼼이 될 수 있으니, 진심으로 존중할 땐 밝게 말하세요.",
+   "example_ko": "실화 범죄 팟캐스트의 매력은 잘 모르겠지만, 사람마다 취향이 있죠."
   },
   {
    "id": "EN_167",
@@ -557,7 +677,9 @@
    "level": "advanced",
    "theme": "emotion",
    "example": "I've tried everything to fix the bug and I'm at my wit's end — do you have any ideas?",
-   "dialogue": "A: The client keeps rejecting every version of the design with no specific feedback.\nB: I'm at my wit's end with them, honestly. We've gone through eleven revisions. I think we need to schedule a workshop to uncover what they actually want before we design anything else."
+   "dialogue": "A: The client keeps rejecting every version of the design with no specific feedback.\nB: I'm at my wit's end with them, honestly. We've gone through eleven revisions. I think we need to schedule a workshop to uncover what they actually want before we design anything else.",
+   "nuance": "\"지혜(wit)의 끝에 이르렀다\"는 뜻으로, 킹 제임스 성경 시편 107편의 \"지혜가 다하였다\"에서 온 표현입니다. 할 수 있는 건 다 해봤는데 방법이 없다는 좌절이라, 도움을 요청할 때 진정성이 느껴집니다. 짜증이 폭발 직전이라는 뜻으로도 씁니다.",
+   "example_ko": "버그를 고치려고 다 해봤는데 이제 방법이 없어요 — 혹시 아이디어 있어요?"
   },
   {
    "id": "EN_168",
@@ -566,7 +688,9 @@
    "level": "beginner",
    "theme": "daily-life",
    "example": "I skipped lunch and it's now 6 PM — I could eat a horse right now.",
-   "dialogue": "A: Should we grab something small before the dinner reservation at 8?\nB: Honestly, I could eat a horse. I've been in back-to-back meetings since 8 AM without a proper meal. Let's grab something now."
+   "dialogue": "A: Should we grab something small before the dinner reservation at 8?\nB: Honestly, I could eat a horse. I've been in back-to-back meetings since 8 AM without a proper meal. Let's grab something now.",
+   "nuance": "말 한 마리도 먹을 수 있을 만큼 배고프다는 과장입니다. 친구끼리 쓰는 유머러스한 표현이라 격식 있는 식사 자리에서는 어색합니다. 한국어 \"배고파 죽겠다\"와 비슷하고, 더 가볍게는 \"I'm starving\"을 씁니다.",
+   "example_ko": "점심을 걸렀는데 벌써 저녁 6시예요 — 지금 뭐든 다 먹을 수 있을 것 같아요."
   },
   {
    "id": "EN_169",
@@ -575,7 +699,9 @@
    "level": "intermediate",
    "theme": "life-advice",
    "example": "You're already stretched thin — don't bite off more than you can chew by taking on this extra project.",
-   "dialogue": "A: I said yes to the conference talk, the book chapter, and the podcast all in the same month.\nB: Don't bite off more than you can chew. You already have a full load. Which one actually matters most for where you want to be in two years? Do that one well."
+   "dialogue": "A: I said yes to the conference talk, the book chapter, and the podcast all in the same month.\nB: Don't bite off more than you can chew. You already have a full load. Which one actually matters most for where you want to be in two years? Do that one well.",
+   "nuance": "씹을 수 있는 것보다 크게 물어뜯지 말라 = 감당할 수 있는 만큼만 맡으라는 조언입니다. 이미 과부하인 사람에게 하는 충고라서 걱정의 표현이지만, 능력을 의심하는 말로 들릴 수도 있습니다. 스스로 \"I bit off more than I could chew\"라고 하면 반성이 됩니다.",
+   "example_ko": "이미 여유가 없잖아요 — 이 추가 프로젝트까지 맡아서 감당 못 할 일을 벌이지 마요."
   },
   {
    "id": "EN_172",
@@ -584,7 +710,9 @@
    "level": "intermediate",
    "theme": "feelings",
    "example": "I wasn't a fan of jazz at first, but it really grew on me after a few weeks of listening.",
-   "dialogue": "A: I remember you said you didn't like studying abroad when you first arrived.\nB: Yeah, it grew on me. The first month was tough, but now I can't imagine going back so soon."
+   "dialogue": "A: I remember you said you didn't like studying abroad when you first arrived.\nB: Yeah, it grew on me. The first month was tough, but now I can't imagine going back so soon.",
+   "nuance": "처음엔 별로였는데 시간이 지나며 좋아졌다는 뜻으로, 음악·음식·사람 모두에 씁니다. 주어가 사물이고 \"me\"가 목적어라는 점이 핵심입니다 — \"I grew on it\"은 틀린 표현입니다. 첫인상이 좋지 않았다는 것을 솔직히 인정하는 말이기도 합니다.",
+   "example_ko": "처음엔 재즈를 별로 안 좋아했는데, 몇 주 들으니 점점 좋아지더라고요."
   },
   {
    "id": "EN_174",
@@ -593,7 +721,9 @@
    "level": "intermediate",
    "theme": "encouragement",
    "example": "You've studied harder than anyone this semester — pull yourself together and walk into that exam room with confidence.",
-   "dialogue": "A: I blanked on everything in the practice test. I think I'm going to fail the actual exam.\nB: Hey. Pull yourself together. One bad practice test doesn't define you. What section gave you the most trouble?"
+   "dialogue": "A: I blanked on everything in the practice test. I think I'm going to fail the actual exam.\nB: Hey. Pull yourself together. One bad practice test doesn't define you. What section gave you the most trouble?",
+   "nuance": "흩어진 자신을 다시 추스르라는 뜻입니다. 격려로도 쓰지만 기본적으로는 \"정신 차려\"라는 강한 말이라, 울고 있거나 상처받은 사람에게 쓰면 차갑게 들릴 수 있습니다. 부드럽게 하려면 \"Take a deep breath, you've got this\"가 낫습니다.",
+   "example_ko": "이번 학기에 누구보다 열심히 공부했잖아요 — 마음 다잡고 자신 있게 시험장에 들어가요."
   },
   {
    "id": "EN_176",
@@ -602,7 +732,9 @@
    "level": "beginner",
    "theme": "momentum",
    "example": "I've solved five practice problems in a row — I'm on a roll today.",
-   "dialogue": "A: You've been studying for four hours straight. Aren't you tired?\nB: Not at all — I'm on a roll. I finally understand the organic chemistry mechanisms I've been stuck on for weeks.\nA: Okay, but take a short break. You don't want to burn out before the exam."
+   "dialogue": "A: You've been studying for four hours straight. Aren't you tired?\nB: Not at all — I'm on a roll. I finally understand the organic chemistry mechanisms I've been stuck on for weeks.\nA: Okay, but take a short break. You don't want to burn out before the exam.",
+   "nuance": "주사위 게임에서 연속으로 좋은 숫자가 나오는 데서 왔다는 설이 있습니다. 좋은 흐름이 계속될 때 씁니다. 자기 자랑처럼 들리지 않게 가볍게 말하는 게 자연스럽고, 남에게 \"You're on a roll!\"이라고 하면 \"오늘 제대로 풀리네!\"라는 칭찬이 됩니다.",
+   "example_ko": "연습문제를 다섯 개 연속으로 풀었어요 — 오늘 제대로 풀리네요."
   },
   {
    "id": "EN_177",
@@ -611,7 +743,9 @@
    "level": "beginner",
    "theme": "reassurance",
    "example": "You mispronounced one word in the presentation — don't sweat it. Nobody noticed.",
-   "dialogue": "A: I totally forgot to cite one of my sources in the bibliography. The professor is going to take points off.\nB: Don't sweat it — email the professor now and explain. Most of them appreciate the honesty and will let you resubmit.\nA: Do you think that actually works?\nB: Nine times out of ten."
+   "dialogue": "A: I totally forgot to cite one of my sources in the bibliography. The professor is going to take points off.\nB: Don't sweat it — email the professor now and explain. Most of them appreciate the honesty and will let you resubmit.\nA: Do you think that actually works?\nB: Nine times out of ten.",
+   "nuance": "\"땀 흘릴 필요 없다\" = 걱정할 필요 없다는 캐주얼한 안심의 말입니다. \"Don't worry\"보다 가볍고 친근합니다. 비슷한 \"No sweat\"은 부탁을 들어줄 때 \"문제없어\"라는 뜻이고, 이 표현은 걱정하는 상대를 안심시킬 때 씁니다.",
+   "example_ko": "발표에서 단어 하나 발음 틀린 거요 — 신경 쓰지 마요. 아무도 몰랐어요."
   },
   {
    "id": "EN_178",
@@ -620,7 +754,9 @@
    "level": "intermediate",
    "theme": "self-reflection",
    "example": "I took six courses this semester and I'm completely in over my head.",
-   "dialogue": "A: How's the research assistant position going?\nB: Honestly, I feel like I'm in over my head. The professor assumes a level of statistics background I just don't have yet.\nA: Have you told her that?\nB: Not yet. I was afraid to look incompetent.\nA: Telling her now is way better than handing in bad work later."
+   "dialogue": "A: How's the research assistant position going?\nB: Honestly, I feel like I'm in over my head. The professor assumes a level of statistics background I just don't have yet.\nA: Have you told her that?\nB: Not yet. I was afraid to look incompetent.\nA: Telling her now is way better than handing in bad work later.",
+   "nuance": "물이 머리 위까지 차올랐다 = 감당 못 할 만큼 깊이 들어와 버렸다는 뜻입니다. 능력 밖의 일을 맡았을 때 솔직하게 도움을 청하는 표현이기도 합니다. \"I'm busy\"보다 훨씬 절박하고, 이 말을 들으면 상대는 도와줘야겠다고 느낍니다.",
+   "example_ko": "이번 학기에 여섯 과목을 들었는데 완전히 감당이 안 돼요."
   },
   {
    "id": "EN_179",
@@ -629,16 +765,9 @@
    "level": "intermediate",
    "theme": "reality-check",
    "example": "You've been skipping class every week and expecting an A. Wake up and smell the coffee.",
-   "dialogue": "A: I'm sure I'll figure out my career path eventually. Something will come along.\nB: Wake up and smell the coffee — internship application season closes in two weeks and you haven't applied anywhere.\nA: That soon?\nB: Yes. Let's sit down tonight and work on your resume together."
-  },
-  {
-   "id": "EN_180",
-   "expression": "That's water under the bridge.",
-   "meaning": "이미 지나간 일이에요. / 다 지나간 거예요.",
-   "level": "intermediate",
-   "theme": "moving-on",
-   "example": "We had a rough start as study partners, but that's water under the bridge now. We work great together.",
-   "dialogue": "A: I still feel bad about bombing that group presentation last semester and dragging everyone's grade down.\nB: That's water under the bridge. We all have off days, and you've more than made up for it since.\nA: Are you sure the others aren't still upset?\nB: Trust me — nobody even remembers it the way you do."
+   "dialogue": "A: I'm sure I'll figure out my career path eventually. Something will come along.\nB: Wake up and smell the coffee — internship application season closes in two weeks and you haven't applied anywhere.\nA: That soon?\nB: Yes. Let's sit down tonight and work on your resume together.",
+   "nuance": "아침 커피 냄새를 맡고 잠에서 깨듯 \"현실을 직시하라\"는 꽤 직설적인 말입니다. 상대가 비현실적인 기대를 할 때 쓰는데, 훈계 톤이 강해서 친한 사이가 아니면 무례할 수 있습니다. 부드럽게는 \"Let's be realistic\"이 좋습니다.",
+   "example_ko": "매주 수업을 빼먹으면서 A를 기대한다고요? 정신 차리고 현실을 봐요."
   },
   {
    "id": "EN_181",
@@ -647,7 +776,9 @@
    "level": "advanced",
    "theme": "burnout",
    "example": "Between exams, my part-time job, and club activities, I've been burning the candle at both ends for months.",
-   "dialogue": "A: You look exhausted. When did you last get a full night's sleep?\nB: Honestly? I can't remember. I've been burning the candle at both ends — studying until 2 AM and starting work at 7.\nA: That's not sustainable. Something has to give.\nB: I know. I'm dropping the weekend shift next month."
+   "dialogue": "A: You look exhausted. When did you last get a full night's sleep?\nB: Honestly? I can't remember. I've been burning the candle at both ends — studying until 2 AM and starting work at 7.\nA: That's not sustainable. Something has to give.\nB: I know. I'm dropping the weekend shift next month.",
+   "nuance": "초를 양쪽에서 태우면 두 배로 밝지만 두 배로 빨리 닳는다는 이미지입니다. 일과 생활을 동시에 무리하게 밀어붙이는 상태로, 번아웃 직전이라는 경고가 담겨 있습니다. 걱정하는 사람에게 \"You can't keep burning the candle at both ends\"라고 말합니다.",
+   "example_ko": "시험, 아르바이트, 동아리까지 겹쳐서 몇 달째 몸을 혹사하고 있어요."
   },
   {
    "id": "EN_182",
@@ -656,7 +787,9 @@
    "level": "advanced",
    "theme": "dilemma",
    "example": "Job listings want three years of experience, but how do you get experience without a job? It's a catch-22.",
-   "dialogue": "A: Every company I apply to wants work experience, but I can't get work experience without a job.\nB: Classic catch-22. That's why internships and volunteer projects matter — they break the loop.\nA: I never thought of it that way.\nB: Build the evidence first. Then the experience requirement becomes a formality."
+   "dialogue": "A: Every company I apply to wants work experience, but I can't get work experience without a job.\nB: Classic catch-22. That's why internships and volunteer projects matter — they break the loop.\nA: I never thought of it that way.\nB: Build the evidence first. Then the experience requirement becomes a formality.",
+   "nuance": "조지프 헬러의 1961년 소설 《캐치-22》에서 온 말입니다. 소설 속 규정은 \"미쳤으면 비행을 면제받는다, 하지만 면제를 요청하는 건 제정신이라는 증거다\"였습니다. 그래서 단순한 딜레마가 아니라 조건이 서로 물고 물려 빠져나갈 수 없는 모순 구조에 씁니다.",
+   "example_ko": "채용 공고는 3년 경력을 원하는데, 일자리 없이 어떻게 경력을 쌓아요? 완전히 모순이에요."
   },
   {
    "id": "EN_183",
@@ -665,7 +798,9 @@
    "level": "beginner",
    "theme": "hope",
    "example": "The university results come out tomorrow. I'm keeping my fingers crossed.",
-   "dialogue": "A: Did you hear back from the scholarship committee yet?\nB: Not yet. The results should be out by end of this week. I'm keeping my fingers crossed.\nA: You had the strongest application in our group. If anyone gets it, it's you.\nB: Thank you — I really need this one to come through."
+   "dialogue": "A: Did you hear back from the scholarship committee yet?\nB: Not yet. The results should be out by end of this week. I'm keeping my fingers crossed.\nA: You had the strongest application in our group. If anyone gets it, it's you.\nB: Thank you — I really need this one to come through.",
+   "nuance": "검지와 중지를 꼬는 행운의 손짓에서 온 말로, 말로만 \"Fingers crossed!\"라고 하는 경우가 더 많습니다. 주의할 점은 아이들이 거짓 약속을 할 때 손가락을 등 뒤에서 꼬면 \"무효\"라는 장난이 있다는 것 — 그래서 약속하며 손가락을 꼬면 오해를 삽니다.",
+   "example_ko": "내일 대학 합격 발표가 나요. 잘 되길 빌고 있어요."
   },
   {
    "id": "EN_184",
@@ -674,16 +809,9 @@
    "level": "beginner",
    "theme": "optimism",
    "example": "After a rough first semester, things are really looking up — I found my study group and my grades improved.",
-   "dialogue": "A: How are you feeling after all those midterms?\nB: Much better, actually. Things are looking up — I got a B+ on the chemistry exam I thought I'd failed.\nA: That's a huge turnaround from last month.\nB: I finally stopped studying alone and joined a study group. Total game changer."
-  },
-  {
-   "id": "EN_185",
-   "expression": "I'll give it a shot.",
-   "meaning": "한번 해볼게요. / 시도해볼게요.",
-   "level": "beginner",
-   "theme": "willingness",
-   "example": "I've never spoken in front of a hundred people before, but I'll give it a shot.",
-   "dialogue": "A: The professor is looking for a student to present at the departmental seminar next month. Would you be interested?\nB: That sounds nerve-wracking, but I'll give it a shot. It'd be good experience.\nA: Great. I'll put your name forward.\nB: Could you send me the format and expected content? I want to prepare properly."
+   "dialogue": "A: How are you feeling after all those midterms?\nB: Much better, actually. Things are looking up — I got a B+ on the chemistry exam I thought I'd failed.\nA: That's a huge turnaround from last month.\nB: I finally stopped studying alone and joined a study group. Total game changer.",
+   "nuance": "상황이 \"위를 보기 시작했다\" = 나아지고 있다는 뜻입니다. 힘든 시기를 지나 회복되는 흐름을 담담하게 말할 때 씁니다. \"Things are great\"처럼 완전히 좋다는 게 아니라 좋아지는 중이라는 점이 핵심이라, 조심스러운 낙관을 표현하기에 딱 좋습니다.",
+   "example_ko": "힘들었던 첫 학기 이후로 상황이 정말 나아지고 있어요 — 스터디 그룹도 생기고 성적도 올랐어요."
   },
   {
    "id": "EN_186",
@@ -693,7 +821,9 @@
    "theme": "life-lesson",
    "example": "I submitted the wrong file to the professor, but you live and learn — I triple-check everything now.",
    "dialogue": "A: I spent two weeks on the wrong essay topic because I misread the prompt.\nB: Oh no — did you have time to redo it?\nA: Barely. But I submitted something. You live and learn.\nB: Always read the prompt twice. Three times for exams.",
-   "dialogue_ko": null
+   "dialogue_ko": null,
+   "nuance": "실수를 했지만 그걸로 배웠다는 뜻으로, 실수를 가볍게 털어내는 태도를 보여줍니다. 자기 실수에 쓰면 성숙해 보이지만, 남의 큰 실수에 이 말을 하면 \"그러게 조심하지\"라는 가벼운 핀잔처럼 들릴 수 있습니다.",
+   "example_ko": "교수님께 파일을 잘못 제출했지만, 살면서 배우는 거죠 — 이제는 뭐든 세 번씩 확인해요."
   },
   {
    "id": "EN_188",
@@ -702,7 +832,9 @@
    "level": "beginner",
    "theme": "gratitude",
    "example": "The gift was small, but it's the thought that counts — she remembered exactly what I'd mentioned months ago.",
-   "dialogue": "A: I couldn't afford a big birthday present for my study partner, so I just made her a card.\nB: That's really sweet. It's the thought that counts.\nA: I hope she feels that way.\nB: Handmade things mean more than bought things, most of the time."
+   "dialogue": "A: I couldn't afford a big birthday present for my study partner, so I just made her a card.\nB: That's really sweet. It's the thought that counts.\nA: I hope she feels that way.\nB: Handmade things mean more than bought things, most of the time.",
+   "nuance": "선물의 크기보다 마음이 중요하다는 뜻입니다. 받는 사람이 쓰면 감사의 말이지만, 주는 사람이 스스로 \"It's the thought that counts\"라고 하면 \"선물이 별로라도 봐줘\"라는 변명처럼 들립니다. 또 기대 이하의 선물에 반어적으로 쓰이기도 합니다.",
+   "example_ko": "작은 선물이었지만 마음이 중요한 거죠 — 몇 달 전에 제가 한 말을 정확히 기억하고 있었어요."
   },
   {
    "id": "EN_189",
@@ -711,7 +843,9 @@
    "level": "beginner",
    "theme": "encouragement",
    "example": "I can only study for thirty minutes before work, but every little bit helps.",
-   "dialogue": "A: I only managed twenty vocabulary words today. That feels like nothing.\nB: Every little bit helps. Twenty words a day is over six hundred words in a month.\nA: When you put it that way, it sounds significant.\nB: Consistency beats intensity every time. Keep going."
+   "dialogue": "A: I only managed twenty vocabulary words today. That feels like nothing.\nB: Every little bit helps. Twenty words a day is over six hundred words in a month.\nA: When you put it that way, it sounds significant.\nB: Consistency beats intensity every time. Keep going.",
+   "nuance": "작은 기여도 모이면 의미가 있다는 뜻으로, 적은 노력이나 소액 기부를 격려할 때 씁니다. 스스로 말하면 \"조금이라도 하는 게 낫다\"는 꾸준함의 다짐이 됩니다. 모금이나 봉사 요청 문구에도 자주 쓰입니다.",
+   "example_ko": "출근 전에 30분밖에 공부 못 하지만, 조금씩이라도 다 도움이 돼요."
   },
   {
    "id": "EN_190",
@@ -720,7 +854,9 @@
    "level": "intermediate",
    "theme": "decision",
    "example": "I applied to the law school, but now I'm having second thoughts — I'm not sure it's the right fit.",
-   "dialogue": "A: You seemed so sure about studying abroad last semester. Are you still going?\nB: Honestly, I'm having second thoughts. The cost is higher than I planned and my parents are worried.\nA: What changed?\nB: I got the scholarship I wanted, so financially it works — I just got scared. I think I'm going."
+   "dialogue": "A: You seemed so sure about studying abroad last semester. Are you still going?\nB: Honestly, I'm having second thoughts. The cost is higher than I planned and my parents are worried.\nA: What changed?\nB: I got the scholarship I wanted, so financially it works — I just got scared. I think I'm going.",
+   "nuance": "이미 내린 결정에 대해 \"두 번째 생각\"이 든다 = 확신이 흔들린다는 뜻입니다. 아직 결정을 뒤집은 건 아니라는 점이 중요합니다. 결혼·이직처럼 큰 결정 직전에 자주 쓰며, 남에게 \"Having second thoughts?\"라고 물으면 \"혹시 마음 바뀌었어?\"가 됩니다.",
+   "example_ko": "로스쿨에 지원은 했는데 지금은 마음이 흔들려요 — 저한테 맞는 길인지 모르겠어요."
   }
  ],
  "chinese_expressions": [],

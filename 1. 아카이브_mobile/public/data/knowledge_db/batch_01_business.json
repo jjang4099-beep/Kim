@@ -20,7 +20,9 @@
    "level": "intermediate",
    "theme": "meeting",
    "example": "We're running out of time, so let's table this for now and revisit it next week.",
-   "dialogue": "A: Should we finalize the budget today?\nB: I don't think we have enough data yet. Let's table this for now and come back once the finance team sends their report."
+   "dialogue": "A: Should we finalize the budget today?\nB: I don't think we have enough data yet. Let's table this for now and come back once the finance team sends their report.",
+   "nuance": "미국과 영국에서 뜻이 정반대인 대표 표현입니다. 미국에서 \"table\"은 \"보류하다\"지만, 영국에서는 \"안건으로 올려 논의하다\"입니다. 영국·유럽 파트너와 회의할 때 쓰면 정반대로 알아들을 수 있으니, 국제 회의에서는 \"Let's park this\"나 \"Let's revisit this later\"가 안전합니다.",
+   "example_ko": "시간이 부족하니 이 건은 일단 보류하고 다음 주에 다시 봅시다."
   },
   {
    "id": "EN_002",
@@ -29,7 +31,9 @@
    "level": "intermediate",
    "theme": "communication",
    "example": "I don't have the final numbers yet, but I'll touch base with you before end of day.",
-   "dialogue": "A: Did you get a chance to review my proposal?\nB: Not fully yet. Let me touch base with you tomorrow morning once I've gone through it properly."
+   "dialogue": "A: Did you get a chance to review my proposal?\nB: Not fully yet. Let me touch base with you tomorrow morning once I've gone through it properly.",
+   "nuance": "야구에서 주자가 베이스를 찍고 확인하는 데서 온 말로, 짧게 연락해 상황을 확인하자는 뜻입니다. \"contact\"보다 가볍고 부담이 없습니다. 다만 무엇을 확인할지 없이 \"Let's touch base\"만 반복하면 빈말처럼 들리니, 언제·무엇을 붙이는 게 좋습니다.",
+   "example_ko": "최종 숫자가 아직 없는데, 오늘 퇴근 전에 다시 연락드릴게요."
   },
   {
    "id": "EN_003",
@@ -38,7 +42,9 @@
    "level": "intermediate",
    "theme": "meeting",
    "example": "This seems like a detailed discussion — let's take this offline rather than keep everyone waiting.",
-   "dialogue": "A: I have some concerns about the vendor selection.\nB: I'd love to discuss that, but let's take this offline after the meeting so we don't derail the agenda."
+   "dialogue": "A: I have some concerns about the vendor selection.\nB: I'd love to discuss that, but let's take this offline after the meeting so we don't derail the agenda.",
+   "nuance": "여러 사람이 있는 회의에서 두세 명만 관련된 긴 논의를 \"회의 밖에서 따로 하자\"는 뜻입니다. 회의 시간을 지키는 배려지만, 불편한 주제를 피하는 수단으로 쓰일 때도 있어 상대가 \"회피한다\"고 느낄 수 있습니다. 따로 할 시간을 바로 잡으면 오해가 없습니다.",
+   "example_ko": "세부적인 논의 같네요 — 다들 기다리게 하지 말고 따로 얘기합시다."
   },
   {
    "id": "EN_004",
@@ -47,7 +53,9 @@
    "level": "intermediate",
    "theme": "workload",
    "example": "I know you're swamped with the product launch — do you have the bandwidth to take on the client report as well?",
-   "dialogue": "A: We need someone to lead the new onboarding project.\nB: I'm interested, but I'm not sure I have the bandwidth right now. Can we discuss the timeline first?"
+   "dialogue": "A: We need someone to lead the new onboarding project.\nB: I'm interested, but I'm not sure I have the bandwidth right now. Can we discuss the timeline first?",
+   "nuance": "원래 통신 용량을 뜻하는 기술 용어가 사람의 업무 여력으로 넘어온 말입니다. \"Are you busy?\"보다 상대의 상황을 존중하는 느낌이라 업무를 부탁하기 전에 쓰기 좋습니다. 다만 너무 자주 쓰면 전형적인 회사 말투(corporate jargon)로 들립니다.",
+   "example_ko": "제품 출시로 바쁜 거 아는데 — 고객 보고서까지 맡을 여력이 있을까요?"
   },
   {
    "id": "EN_005",
@@ -56,7 +64,9 @@
    "level": "advanced",
    "theme": "performance",
    "example": "Our satisfaction scores have been flat for two quarters — we really need to move the needle on customer experience.",
-   "dialogue": "A: The campaign has been running for three months with minimal results.\nB: Agreed. We need to move the needle on engagement, or we'll have to rethink the entire strategy."
+   "dialogue": "A: The campaign has been running for three months with minimal results.\nB: Agreed. We need to move the needle on engagement, or we'll have to rethink the entire strategy.",
+   "nuance": "계기판 바늘이 움직일 만큼 눈에 띄는 변화를 만들자는 뜻입니다. 작은 개선이 아니라 지표에 실제로 드러나는 성과를 강조할 때 씁니다. 부정형 \"It won't move the needle\"은 \"해봐야 티도 안 난다\"는 뜻이라 제안을 거절할 때 자주 들립니다.",
+   "example_ko": "만족도 점수가 두 분기째 제자리예요 — 고객 경험에서 실질적인 변화를 만들어야 해요."
   },
   {
    "id": "EN_006",
@@ -65,7 +75,9 @@
    "level": "intermediate",
    "theme": "kickoff",
    "example": "We've been in the planning phase long enough — it's time to get the ball rolling on implementation.",
-   "dialogue": "A: We've finalized the project scope and the team is in place.\nB: Perfect. Let's get the ball rolling with a kickoff meeting this Friday."
+   "dialogue": "A: We've finalized the project scope and the team is in place.\nB: Perfect. Let's get the ball rolling with a kickoff meeting this Friday.",
+   "nuance": "공을 굴리기 시작하자 = 첫 행동을 하자는 뜻입니다. 계획만 오래 한 상황에서 실행을 재촉할 때 특히 자연스럽습니다. 회의를 시작할 때 \"Let's get the ball rolling\"이라고 하면 \"자, 시작해 봅시다\"라는 가벼운 오프닝 멘트가 됩니다.",
+   "example_ko": "기획 단계는 충분히 했어요 — 이제 실행에 들어갈 때예요."
   },
   {
    "id": "EN_007",
@@ -74,7 +86,9 @@
    "level": "beginner",
    "theme": "communication",
    "example": "Before we move forward, I just want to make sure we're all on the same page about the deliverables.",
-   "dialogue": "A: So the deadline is the 30th and the scope includes the API integration?\nB: Exactly. Are we all on the same page? Any questions before we assign tasks?"
+   "dialogue": "A: So the deadline is the 30th and the scope includes the API integration?\nB: Exactly. Are we all on the same page? Any questions before we assign tasks?",
+   "nuance": "같은 페이지를 보고 있냐 = 이해가 일치하는지 확인하는 질문입니다. 회의 끝에 합의 사항을 점검할 때 가장 많이 씁니다. 톤에 따라 \"제 말 이해했죠?\"라는 확인 압박이 될 수도 있어서, \"Let me make sure we're all on the same page\"처럼 내가 확인하는 형태가 부드럽습니다.",
+   "example_ko": "진행하기 전에 산출물에 대해 모두 같은 이해를 하고 있는지 확인하고 싶어요."
   },
   {
    "id": "EN_008",
@@ -83,7 +97,9 @@
    "level": "intermediate",
    "theme": "strategy",
    "example": "Instead of overhauling the entire checkout process, fixing the payment error on mobile is the low-hanging fruit.",
-   "dialogue": "A: Where should we focus first to improve retention?\nB: Email re-engagement is the low-hanging fruit — we already have the data and the tools, it just needs execution."
+   "dialogue": "A: Where should we focus first to improve retention?\nB: Email re-engagement is the low-hanging fruit — we already have the data and the tools, it just needs execution.",
+   "nuance": "손만 뻗으면 따는 낮은 가지의 열매 = 적은 노력으로 바로 얻을 수 있는 성과입니다. 우선순위를 정할 때 유용하지만, \"쉬운 것만 한다\"는 비판을 받을 수도 있습니다. 동료가 한 일을 이렇게 부르면 \"별것 아닌 일\"로 깎아내리는 것처럼 들리니 주의하세요.",
+   "example_ko": "결제 과정 전체를 뜯어고치는 대신, 모바일 결제 오류부터 고치는 게 가장 쉽게 얻을 수 있는 성과예요."
   },
   {
    "id": "EN_009",
@@ -92,7 +108,9 @@
    "level": "advanced",
    "theme": "planning",
    "example": "I appreciate the ambition, but let's not boil the ocean — we should focus on three core features for the MVP.",
-   "dialogue": "A: What if we also added a loyalty program, a referral system, and a subscription tier?\nB: Let's not boil the ocean. Get the basics right first, then we can layer in the extras."
+   "dialogue": "A: What if we also added a loyalty program, a referral system, and a subscription tier?\nB: Let's not boil the ocean. Get the basics right first, then we can layer in the extras.",
+   "nuance": "바다 전체를 끓이려 하지 말자 = 불가능할 만큼 거창하게 하지 말자는 뜻입니다. 범위를 좁히자는 제안이라 야심 찬 동료의 기를 꺾지 않으려면 앞에 칭찬을 붙이는 게 좋습니다. 컨설팅 업계에서 특히 많이 쓰는 표현입니다.",
+   "example_ko": "의욕은 좋은데, 한꺼번에 다 하려고 하지 맙시다 — MVP는 핵심 기능 세 개에 집중해야 해요."
   },
   {
    "id": "EN_010",
@@ -101,7 +119,9 @@
    "level": "advanced",
    "theme": "negotiation",
    "example": "The founding team has a lot of skin in the game — they've invested their own savings, so they're highly motivated.",
-   "dialogue": "A: Will the partner agency put in full effort on this campaign?\nB: Absolutely. They have significant skin in the game since their performance bonus is tied directly to our results."
+   "dialogue": "A: Will the partner agency put in full effort on this campaign?\nB: Absolutely. They have significant skin in the game since their performance bonus is tied directly to our results.",
+   "nuance": "게임에 자기 돈(피부)이 걸려 있다 = 결과에 직접적인 손익이 걸려 있다는 뜻입니다. 그래서 \"진심으로 책임질 사람\"이라는 신뢰의 근거가 됩니다. 반대로 \"They have no skin in the game\"은 \"잃을 게 없으니 말만 쉽게 한다\"는 비판입니다.",
+   "example_ko": "창업팀은 이 일에 걸린 게 많아요 — 개인 저축까지 넣었으니 동기가 엄청나죠."
   },
   {
    "id": "EN_011",
@@ -110,7 +130,9 @@
    "level": "intermediate",
    "theme": "reporting",
    "example": "We can debate the methods all day, but the bottom line is that revenue needs to grow by 20% this year.",
-   "dialogue": "A: There are a lot of moving parts in this project.\nB: True, but the bottom line is the client expects a working prototype by the end of this month. Let's keep that in focus."
+   "dialogue": "A: There are a lot of moving parts in this project.\nB: True, but the bottom line is the client expects a working prototype by the end of this month. Let's keep that in focus.",
+   "nuance": "회계 장부 맨 아래 줄(최종 손익)에서 온 말로, 긴 논의를 끊고 \"결국 핵심은 이거다\"라고 정리할 때 씁니다. 상대의 설명을 자르고 쓰면 \"요점만 말해\"라는 압박이 될 수 있습니다. 회사의 \"bottom line\"은 말 그대로 순이익을 뜻하기도 합니다.",
+   "example_ko": "방법론은 하루 종일 토론할 수 있지만, 결론은 올해 매출이 20% 늘어야 한다는 거예요."
   },
   {
    "id": "EN_012",
@@ -119,7 +141,9 @@
    "level": "intermediate",
    "theme": "standards",
    "example": "The last two product releases had too many bugs — it's time to raise the bar on our QA process.",
-   "dialogue": "A: The customer complaints about delivery speed are increasing.\nB: I know. We need to raise the bar on our logistics standards if we want to stay competitive."
+   "dialogue": "A: The customer complaints about delivery speed are increasing.\nB: I know. We need to raise the bar on our logistics standards if we want to stay competitive.",
+   "nuance": "높이뛰기의 가로대(bar)를 올린다는 뜻으로, 기준 자체를 높이자는 말입니다. \"improve quality\"보다 \"지금 기준으로는 부족하다\"는 메시지가 강합니다. 누군가 뛰어난 성과를 냈을 때 \"You've raised the bar\"라고 하면 \"기준을 새로 세웠다\"는 칭찬이 됩니다.",
+   "example_ko": "지난 두 번의 출시에 버그가 너무 많았어요 — QA 기준을 더 높일 때예요."
   },
   {
    "id": "EN_013",
@@ -128,7 +152,9 @@
    "level": "intermediate",
    "theme": "meeting",
    "example": "We don't have enough data to decide today, so let's circle back on this next week after the audit.",
-   "dialogue": "A: Should we finalize the hiring decision today?\nB: I'd prefer to circle back after I've reviewed all the interview feedback. Can we schedule a call for Tuesday?"
+   "dialogue": "A: Should we finalize the hiring decision today?\nB: I'd prefer to circle back after I've reviewed all the interview feedback. Can we schedule a call for Tuesday?",
+   "nuance": "나중에 다시 돌아와 논의하자는 뜻으로 미국 직장에서 아주 흔합니다. 다만 영어권 설문에서 \"가장 짜증나는 회사 말투\"로 자주 꼽히는 표현이기도 합니다 — 실제로 다시 다루지 않으면 \"흐지부지하겠다\"는 뜻으로 받아들여지니 날짜를 붙이세요.",
+   "example_ko": "오늘은 결정할 데이터가 부족하니, 감사 끝나고 다음 주에 다시 얘기합시다."
   },
   {
    "id": "EN_014",
@@ -137,7 +163,9 @@
    "level": "intermediate",
    "theme": "kickoff",
    "example": "The client expects results within the first two weeks, so we need to hit the ground running from day one.",
-   "dialogue": "A: The new project kicks off Monday. How should we approach it?\nB: Let's hit the ground running — I'll send everyone the brief tonight so we can start with action items, not introductions."
+   "dialogue": "A: The new project kicks off Monday. How should we approach it?\nB: Let's hit the ground running — I'll send everyone the brief tonight so we can start with action items, not introductions.",
+   "nuance": "착지하자마자 바로 달려 나간다 = 적응 기간 없이 첫날부터 성과를 내자는 뜻입니다. 채용 공고의 \"hit the ground running\"은 \"교육 기간 없이 바로 실무 가능한 사람\"을 원한다는 신호입니다. 신입에게 요구하면 부담스러운 말이 될 수 있습니다.",
+   "example_ko": "고객이 첫 2주 안에 성과를 기대하니까, 첫날부터 전력으로 달려야 해요."
   },
   {
    "id": "EN_015",
@@ -146,7 +174,9 @@
    "level": "intermediate",
    "theme": "communication",
    "example": "After just twenty minutes, I could tell we were on the same wavelength about what the product needed to become.",
-   "dialogue": "A: I was thinking the priority should be retention, not acquisition.\nB: Exactly what I had in mind. We're on the same wavelength — let's build the roadmap around that."
+   "dialogue": "A: I was thinking the priority should be retention, not acquisition.\nB: Exactly what I had in mind. We're on the same wavelength — let's build the roadmap around that.",
+   "nuance": "라디오 주파수가 맞는다는 이미지로, 생각의 방향이 자연스럽게 통한다는 뜻입니다. \"on the same page\"가 정보나 합의의 일치라면, 이 표현은 사고방식과 감각이 맞는다는 쪽이라 더 인간적인 호감이 담깁니다.",
+   "example_ko": "20분 만에 이 제품이 뭐가 되어야 하는지에 대해 우리가 완전히 통한다는 걸 알았어요."
   },
   {
    "id": "EN_018",
@@ -155,7 +185,9 @@
    "level": "intermediate",
    "theme": "workload",
    "example": "With the deadline moved up to Thursday, we're going to have to burn the midnight oil to get this done.",
-   "dialogue": "A: The client just called — they want the final deck by Wednesday morning instead of Friday.\nB: That means we'll need to burn the midnight oil tonight and tomorrow. Let's order dinner and get started."
+   "dialogue": "A: The client just called — they want the final deck by Wednesday morning instead of Friday.\nB: That means we'll need to burn the midnight oil tonight and tomorrow. Let's order dinner and get started.",
+   "nuance": "전기가 없던 시절 밤에 등잔 기름을 태우며 일하던 데서 온 말입니다. 야근이나 밤샘을 조금 낭만적으로 표현하는 말이라, \"work overtime\"보다 부담이 덜하게 들립니다. 다만 팀원에게 요구하는 형태로 쓰면 야근 강요로 받아들여질 수 있습니다.",
+   "example_ko": "마감이 목요일로 당겨져서, 끝내려면 밤늦게까지 일해야 할 것 같아요."
   },
   {
    "id": "EN_019",
@@ -164,7 +196,9 @@
    "level": "beginner",
    "theme": "planning",
    "example": "The focus group hated every aspect of the concept — it's back to the drawing board.",
-   "dialogue": "A: The prototype failed the safety tests completely.\nB: I was afraid of that. It's back to the drawing board. Let's schedule a redesign session for Monday and figure out where the core assumptions went wrong."
+   "dialogue": "A: The prototype failed the safety tests completely.\nB: I was afraid of that. It's back to the drawing board. Let's schedule a redesign session for Monday and figure out where the core assumptions went wrong.",
+   "nuance": "설계도판(drawing board)으로 돌아가 처음부터 다시 그린다는 뜻입니다. 실패를 인정하는 말이지만 포기가 아니라 \"다시 해보자\"는 의지가 담겨 있습니다. 가볍게 \"Back to square one\"도 비슷한데, 그쪽은 \"원점\"이라는 허탈함이 더 강합니다.",
+   "example_ko": "포커스 그룹이 콘셉트를 전부 싫어했어요 — 처음부터 다시 해야 해요."
   },
   {
    "id": "EN_020",
@@ -173,7 +207,9 @@
    "level": "intermediate",
    "theme": "decision-making",
    "example": "Laying off ten people was the hardest decision of my career, but we had to bite the bullet to save the company.",
-   "dialogue": "A: The system migration is going to cause three days of downtime. Clients are going to be furious.\nB: I know, but we've delayed it twice already. We have to bite the bullet and get it done. Let's prepare a strong communication plan."
+   "dialogue": "A: The system migration is going to cause three days of downtime. Clients are going to be furious.\nB: I know, but we've delayed it twice already. We have to bite the bullet and get it done. Let's prepare a strong communication plan.",
+   "nuance": "마취제 없이 수술받던 병사가 총알을 물고 고통을 참았다는 데서 왔다는 설이 널리 알려져 있습니다. 피할 수 없는 고통스러운 결정을 받아들일 때 씁니다. 사소한 불편에 쓰면 과장이 되니, 정말 힘든 결정에 어울립니다.",
+   "example_ko": "열 명을 내보낸 건 제 커리어에서 가장 힘든 결정이었지만, 회사를 살리려면 감수해야 했어요."
   },
   {
    "id": "EN_021",
@@ -182,7 +218,9 @@
    "level": "advanced",
    "theme": "analysis",
    "example": "The individual metrics look fine in isolation, but when you connect the dots, you see a troubling pattern emerging.",
-   "dialogue": "A: We have data from sales, support tickets, and churn reports, but nothing adds up.\nB: Let's connect the dots in a single dashboard. I have a feeling the answer is hiding in the overlap between these three."
+   "dialogue": "A: We have data from sales, support tickets, and churn reports, but nothing adds up.\nB: Let's connect the dots in a single dashboard. I have a feeling the answer is hiding in the overlap between these three.",
+   "nuance": "점을 이어 그림을 완성하는 놀이에서 온 말로, 흩어진 정보에서 패턴을 찾는다는 뜻입니다. 스티브 잡스가 2005년 스탠퍼드 졸업 연설에서 \"점은 앞을 보며 이을 수 없고, 뒤돌아볼 때만 이어진다\"고 말해 더 유명해졌습니다.",
+   "example_ko": "개별 지표만 보면 괜찮아 보이지만, 연결해서 보면 걱정스러운 패턴이 드러나요."
   },
   {
    "id": "EN_022",
@@ -191,7 +229,9 @@
    "level": "advanced",
    "theme": "negotiation",
    "example": "We agreed on the scope three weeks ago — if you keep moving the goalposts, we'll need to renegotiate the entire contract.",
-   "dialogue": "A: Actually, we'd also like to include the mobile app in the original deliverable price.\nB: That wasn't in the original brief. Please don't move the goalposts after we've already allocated resources. We're happy to discuss an addendum."
+   "dialogue": "A: Actually, we'd also like to include the mobile app in the original deliverable price.\nB: That wasn't in the original brief. Please don't move the goalposts after we've already allocated resources. We're happy to discuss an addendum.",
+   "nuance": "경기 도중 골대를 옮기는 것처럼, 합의된 기준을 일방적으로 바꾸는 불공정함을 지적합니다. 상대를 비난하는 표현이라 꽤 강하게 들립니다. 요구사항이 계속 바뀌는 클라이언트에게 쓸 때는 \"We agreed on...\"처럼 합의 내용을 먼저 짚는 게 좋습니다.",
+   "example_ko": "3주 전에 범위를 합의했어요 — 계속 기준을 바꾸시면 계약 전체를 다시 협상해야 해요."
   },
   {
    "id": "EN_023",
@@ -200,16 +240,9 @@
    "level": "intermediate",
    "theme": "teamwork",
    "example": "With two team members out this week, the rest of us are going to need to pick up the slack.",
-   "dialogue": "A: Jake is on leave and Sarah's project just got reprioritized. We're short-handed.\nB: I know. Let's reassign the critical tasks and pick up the slack as a team. Who has capacity this week?"
-  },
-  {
-   "id": "EN_024",
-   "expression": "I'm totally swamped right now.",
-   "meaning": "지금 완전히 (일에) 파묻혀 있어요. / 너무 바빠서 정신이 없어요.",
-   "level": "beginner",
-   "theme": "workload",
-   "example": "I'd love to join the brainstorm, but I'm totally swamped right now — can you catch me up afterward?",
-   "dialogue": "A: Hey, do you have a minute to look at this proposal?\nB: Honestly, I'm totally swamped right now — three deadlines by Friday. Can I get back to you Monday morning?"
+   "dialogue": "A: Jake is on leave and Sarah's project just got reprioritized. We're short-handed.\nB: I know. Let's reassign the critical tasks and pick up the slack as a team. Who has capacity this week?",
+   "nuance": "밧줄의 늘어진(slack) 부분을 당겨 팽팽하게 만든다 = 누군가 빠진 자리의 일을 나눠 메운다는 뜻입니다. 팀워크를 강조하는 긍정적인 말이지만, \"누가 일을 안 해서 우리가 떠안았다\"는 불만으로 쓰일 수도 있습니다.",
+   "example_ko": "이번 주에 두 명이 빠져서, 나머지가 그 몫을 메워야 해요."
   },
   {
    "id": "EN_025",
@@ -218,7 +251,9 @@
    "level": "intermediate",
    "theme": "meeting",
    "example": "That's a great point about the pricing model, but we're getting sidetracked — let's put a pin in that and come back to it.",
-   "dialogue": "A: While we're on the topic, I also wanted to raise the issue of the vendor contract renewal.\nB: Good point, but let's put a pin in that for now — we only have ten minutes left and need to finalize the launch date first."
+   "dialogue": "A: While we're on the topic, I also wanted to raise the issue of the vendor contract renewal.\nB: Good point, but let's put a pin in that for now — we only have ten minutes left and need to finalize the launch date first.",
+   "nuance": "지도에 핀을 꽂아 두듯, 좋은 주제를 잊지 않도록 표시해 두고 나중에 다루자는 뜻입니다. \"table\"이 미국·영국에서 뜻이 갈리는 것과 달리 이 표현은 어디서나 같은 뜻이라 국제 회의에서 안전합니다. 상대 의견을 무시하지 않는다는 존중이 담겨 있습니다.",
+   "example_ko": "가격 모델에 대해 좋은 지적인데 주제에서 벗어나고 있어요 — 일단 표시해 두고 나중에 다시 봐요."
   },
   {
    "id": "EN_026",
@@ -227,7 +262,9 @@
    "level": "beginner",
    "theme": "communication",
    "example": "I haven't seen this system before — can you walk me through how the approval process works?",
-   "dialogue": "A: Here's the dashboard we built for tracking campaign performance.\nB: It looks great, but I'm new to this tool. Can you walk me through it? Especially how the conversion funnel is set up."
+   "dialogue": "A: Here's the dashboard we built for tracking campaign performance.\nB: It looks great, but I'm new to this tool. Can you walk me through it? Especially how the conversion funnel is set up.",
+   "nuance": "옆에서 함께 걸으며 안내하듯 단계별로 설명해 달라는 요청입니다. \"Explain it\"보다 부드럽고, 모른다는 것을 인정하면서도 적극적으로 배우려는 자세가 보입니다. 면접관이 \"Walk me through your resume\"라고 하면 이력을 순서대로 설명하라는 뜻입니다.",
+   "example_ko": "이 시스템은 처음 보는데 — 승인 절차가 어떻게 돌아가는지 차근차근 설명해 주실래요?"
   },
   {
    "id": "EN_027",
@@ -236,7 +273,9 @@
    "level": "beginner",
    "theme": "reporting",
    "example": "We've got the design finalized, the copy approved, and the dev build is 90% done — we're in good shape for the Tuesday launch.",
-   "dialogue": "A: How are we looking for the client presentation tomorrow?\nB: We're in good shape — the deck is done, we've rehearsed twice, and the demo environment is stable. Just need to confirm the room booking."
+   "dialogue": "A: How are we looking for the client presentation tomorrow?\nB: We're in good shape — the deck is done, we've rehearsed twice, and the demo environment is stable. Just need to confirm the room booking.",
+   "nuance": "몸 상태가 좋다는 뜻에서 나와, 일정이나 준비가 순조롭다는 보고로 씁니다. \"Everything is perfect\"보다 담백하고 과장이 없어 신뢰를 줍니다. 반대는 \"We're in bad shape\"로, 상황이 좋지 않다는 솔직한 경고입니다.",
+   "example_ko": "디자인 확정, 문구 승인, 개발 빌드 90% 완료 — 화요일 출시는 순조로워요."
   },
   {
    "id": "EN_028",
@@ -245,7 +284,9 @@
    "level": "intermediate",
    "theme": "negotiation",
    "example": "Asking the board to double the marketing budget with last quarter's numbers is going to be a tough sell.",
-   "dialogue": "A: I want to propose switching our entire infrastructure to a new cloud provider mid-project.\nB: That's going to be a tough sell with the timeline we have. The stakeholders are already nervous about scope. Let's build a really solid cost-benefit case first."
+   "dialogue": "A: I want to propose switching our entire infrastructure to a new cloud provider mid-project.\nB: That's going to be a tough sell with the timeline we have. The stakeholders are already nervous about scope. Let's build a really solid cost-benefit case first.",
+   "nuance": "팔기 어려운 물건처럼, 상대를 설득하기 어려운 제안이라는 뜻입니다. 제안 자체를 반대하지 않으면서 현실적인 걸림돌을 지적할 수 있어 외교적입니다. \"That's a hard sell\"도 같은 뜻이고, 반대로 쉽게 받아들여질 제안은 \"an easy sell\"입니다.",
+   "example_ko": "지난 분기 실적으로 이사회에 마케팅 예산 두 배를 요청하는 건 설득하기 쉽지 않을 거예요."
   },
   {
    "id": "EN_029",
@@ -254,7 +295,9 @@
    "level": "intermediate",
    "theme": "decision-making",
    "example": "The proposal looks interesting — let me run it by my team and get back to you by end of week.",
-   "dialogue": "A: So are you on board with the revised terms?\nB: The direction feels right, but let me run it by my team before I commit. I'll have a clear answer for you by Thursday."
+   "dialogue": "A: So are you on board with the revised terms?\nB: The direction feels right, but let me run it by my team before I commit. I'll have a clear answer for you by Thursday.",
+   "nuance": "팀 앞에 한 번 \"지나가게 해서\" 의견을 듣겠다는 뜻입니다. 혼자 결정하지 않겠다는 신중함이면서 동시에 시간을 버는 정중한 방법입니다. 협상에서는 즉답을 피하는 전형적인 전술이기도 해서, 상대는 \"결정권자가 따로 있구나\"라고 받아들입니다.",
+   "example_ko": "제안이 흥미롭네요 — 팀에 한번 확인해 보고 이번 주 안에 답을 드릴게요."
   },
   {
    "id": "EN_030",
@@ -263,7 +306,9 @@
    "level": "beginner",
    "theme": "project-management",
    "example": "The client's been asking about the revised mockups — what's the ETA on this?",
-   "dialogue": "A: I sent the bug report to the dev team yesterday.\nB: Good. What's the ETA on the fix? The QA window closes Friday and we can't slip the release date."
+   "dialogue": "A: I sent the bug report to the dev team yesterday.\nB: Good. What's the ETA on the fix? The QA window closes Friday and we can't slip the release date.",
+   "nuance": "원래 비행기나 배의 \"도착 예정 시각\"이지만, 업무에서는 \"언제 끝나요?\"를 짧게 묻는 말로 씁니다. 슬랙이나 메신저에서 자주 보입니다. 짧은 만큼 재촉처럼 들릴 수 있어서, 윗사람에게는 \"When do you think this will be ready?\"가 더 부드럽습니다.",
+   "example_ko": "고객이 수정된 시안을 계속 물어봐요 — 이거 언제쯤 될까요?"
   },
   {
    "id": "EN_031",
@@ -272,7 +317,9 @@
    "level": "beginner",
    "theme": "communication",
    "example": "You hit the nail on the head — the real problem isn't the product, it's how we've been positioning it.",
-   "dialogue": "A: I think the reason our retention is low is that we're attracting the wrong users with our ads in the first place.\nB: You hit the nail on the head. That's exactly what the data's been telling us but no one wanted to say it out loud."
+   "dialogue": "A: I think the reason our retention is low is that we're attracting the wrong users with our ads in the first place.\nB: You hit the nail on the head. That's exactly what the data's been telling us but no one wanted to say it out loud.",
+   "nuance": "못대가리를 정확히 때렸다 = 문제의 핵심을 정확히 짚었다는 칭찬입니다. \"You nailed it\"이 일을 잘 해냈다는 칭찬이라면, 이 표현은 분석이나 진단이 정확하다는 쪽에 가깝습니다. 회의에서 누군가의 통찰을 인정할 때 딱 좋습니다.",
+   "example_ko": "정확히 핵심을 짚으셨어요 — 진짜 문제는 제품이 아니라 우리가 포지셔닝한 방식이에요."
   },
   {
    "id": "EN_032",
@@ -281,7 +328,9 @@
    "level": "advanced",
    "theme": "meeting",
    "example": "We've got thirty minutes with the CEO — let's stay high-level and not get into the weeds on implementation details.",
-   "dialogue": "A: Actually, if we look at each individual API endpoint, the latency breaks down as follows—\nB: I appreciate the detail, but let's not get into the weeds. The exec team just needs to know if we're on track or not. We can share the technical breakdown separately."
+   "dialogue": "A: Actually, if we look at each individual API endpoint, the latency breaks down as follows—\nB: I appreciate the detail, but let's not get into the weeds. The exec team just needs to know if we're on track or not. We can share the technical breakdown separately.",
+   "nuance": "잡초(weeds) 속으로 들어가면 길을 잃듯, 세부 사항에 빠져 큰 그림을 놓치지 말자는 뜻입니다. 임원 보고처럼 시간이 짧은 자리에서 특히 중요합니다. 반대로 \"I'm in the weeds\"는 \"일이 너무 밀려 허우적대고 있다\"는 뜻이 되니 구분하세요.",
+   "example_ko": "CEO와 30분밖에 없어요 — 큰 그림만 얘기하고 구현 세부사항까지는 들어가지 맙시다."
   },
   {
    "id": "EN_033",
@@ -290,7 +339,9 @@
    "level": "intermediate",
    "theme": "strategy",
    "example": "We could have acquired them two years ago for a fraction of the price, but that ship has sailed.",
-   "dialogue": "A: Should we reconsider launching in the Japanese market?\nB: Honestly, that ship has sailed. Two competitors got there 18 months ahead of us and already own the category. Our resources are better spent doubling down on Southeast Asia."
+   "dialogue": "A: Should we reconsider launching in the Japanese market?\nB: Honestly, that ship has sailed. Two competitors got there 18 months ahead of us and already own the category. Our resources are better spent doubling down on Southeast Asia.",
+   "nuance": "배는 이미 떠났다 = 기회를 놓쳐서 이제 되돌릴 수 없다는 뜻입니다. 아쉬움을 담담하게 정리할 때도 쓰지만, 상대의 뒤늦은 제안을 \"이미 늦었다\"고 단칼에 끊는 말로도 쓰여서 차갑게 들릴 수 있습니다.",
+   "example_ko": "2년 전에 헐값에 인수할 수 있었는데, 이미 늦었어요."
   },
   {
    "id": "EN_034",
@@ -299,7 +350,9 @@
    "level": "intermediate",
    "theme": "daily-life",
    "example": "I've read both reviews — one says it's the best phone on the market, the other says the battery life is terrible. I'm on the fence about buying it.",
-   "dialogue": "A: Are you going to apply for that position in Singapore?\nB: I'm honestly on the fence about it. The opportunity is incredible, but uprooting my whole life is a huge decision. I need more time to think."
+   "dialogue": "A: Are you going to apply for that position in Singapore?\nB: I'm honestly on the fence about it. The opportunity is incredible, but uprooting my whole life is a huge decision. I need more time to think.",
+   "nuance": "울타리 위에 걸터앉아 어느 쪽으로도 내려가지 못한 상태 = 결정을 못 내렸다는 뜻입니다. 솔직한 고민의 표현이지만, 정치인이나 리더에게 쓰면 \"태도가 분명하지 않다\"는 비판이 됩니다. 결정을 재촉할 땐 \"Get off the fence\"라고 합니다.",
+   "example_ko": "리뷰를 둘 다 읽었는데 — 하나는 최고의 폰이라 하고 하나는 배터리가 형편없대요. 살지 말지 아직 모르겠어요."
   },
   {
    "id": "EN_035",
@@ -308,7 +361,9 @@
    "level": "advanced",
    "theme": "social",
    "example": "We spent an hour talking about workflow improvements, but nobody mentioned the elephant in the room — the team lead's management style.",
-   "dialogue": "A: The meeting went well, don't you think? Lots of good ideas.\nB: I guess, but nobody addressed the elephant in the room — we're six weeks behind schedule and still pretending the launch date is realistic."
+   "dialogue": "A: The meeting went well, don't you think? Lots of good ideas.\nB: I guess, but nobody addressed the elephant in the room — we're six weeks behind schedule and still pretending the launch date is realistic.",
+   "nuance": "방 안에 코끼리가 있는데 모두 못 본 척한다 = 모두 알지만 아무도 꺼내지 않는 불편한 문제입니다. 이 말을 꺼낸다는 것 자체가 \"이제 그 얘기를 하자\"는 용기 있는 신호라, 회의 분위기가 확 바뀔 수 있습니다. 부드럽게 \"Can we address the elephant in the room?\"으로 시작하세요.",
+   "example_ko": "한 시간 동안 업무 개선만 얘기했지만, 아무도 진짜 문제 — 팀장의 관리 방식은 꺼내지 않았어요."
   },
   {
    "id": "EN_036",
@@ -317,7 +372,9 @@
    "level": "beginner",
    "theme": "communication",
    "example": "You said you had a completely different take on the problem — I'm all ears.",
-   "dialogue": "A: I actually have a suggestion that might fix the whole bottleneck, but it's a bit unconventional.\nB: Seriously? I'm all ears. We've tried everything conventional at this point."
+   "dialogue": "A: I actually have a suggestion that might fix the whole bottleneck, but it's a bit unconventional.\nB: Seriously? I'm all ears. We've tried everything conventional at this point.",
+   "nuance": "온몸이 귀가 될 만큼 집중해서 듣겠다는 뜻입니다. 상대에게 말할 기회를 열어주는 적극적인 경청의 신호라 대화를 부드럽게 합니다. 다만 비꼬는 톤으로 말하면 \"어디 한번 말해 봐\"라는 도전이 되니 표정과 톤이 중요합니다.",
+   "example_ko": "문제를 완전히 다르게 보신다고요 — 말씀해 보세요, 듣고 있어요."
   },
   {
    "id": "EN_037",
@@ -326,7 +383,9 @@
    "level": "intermediate",
    "theme": "negotiation",
    "example": "You want to finish by Friday; I need until the following Wednesday — let's meet in the middle and say Monday.",
-   "dialogue": "A: I can't go below $80,000 for this project.\nB: Our budget caps at $65,000. Neither of us is moving, so let's meet in the middle — $72,500 and we extend the timeline by two weeks. Does that work?"
+   "dialogue": "A: I can't go below $80,000 for this project.\nB: Our budget caps at $65,000. Neither of us is moving, so let's meet in the middle — $72,500 and we extend the timeline by two weeks. Does that work?",
+   "nuance": "양쪽이 조금씩 양보해 중간에서 만나자는 타협 제안입니다. 협상에서 가장 자연스러운 절충 표현이지만, 상대의 요구가 터무니없을 때 바로 쓰면 오히려 손해를 봅니다. \"split the difference\"는 숫자를 정확히 반으로 나눌 때 더 많이 씁니다.",
+   "example_ko": "당신은 금요일까지, 저는 다음 주 수요일까지 필요하니 — 중간에서 월요일로 합시다."
   },
   {
    "id": "EN_039",
@@ -335,7 +394,9 @@
    "level": "advanced",
    "theme": "communication",
    "example": "After thirty minutes of going back and forth, I realized we were talking past each other — I meant user acquisition, she meant user activation.",
-   "dialogue": "A: I keep saying we need more resources and you keep saying the timeline is fine. I think we're talking past each other.\nB: You're right. Let me stop and ask a basic question — what specific outcome are you most worried about not hitting?"
+   "dialogue": "A: I keep saying we need more resources and you keep saying the timeline is fine. I think we're talking past each other.\nB: You're right. Let me stop and ask a basic question — what specific outcome are you most worried about not hitting?",
+   "nuance": "서로를 향해 말하지 않고 \"옆으로 지나쳐\" 말한다 = 같은 단어로 다른 것을 얘기하고 있다는 뜻입니다. 누구 잘못도 아니라는 중립적인 표현이라, 논쟁이 꼬였을 때 감정을 식히고 용어를 정리하자고 제안하기 좋습니다.",
+   "example_ko": "30분 동안 주고받다 보니 서로 다른 얘기를 하고 있었더라고요 — 저는 사용자 유입을, 그녀는 활성화를 말한 거였어요."
   },
   {
    "id": "EN_040",
@@ -344,7 +405,9 @@
    "level": "intermediate",
    "theme": "formal",
    "example": "It goes without saying that confidentiality is expected from everyone who participates in this process.",
-   "dialogue": "A: Should I remind the team that the client's data is confidential?\nB: It goes without saying, but yes — a quick reminder never hurts, especially with new members on board."
+   "dialogue": "A: Should I remind the team that the client's data is confidential?\nB: It goes without saying, but yes — a quick reminder never hurts, especially with new members on board.",
+   "nuance": "프랑스어 \"cela va sans dire\"를 그대로 옮긴 표현입니다. 당연한 것을 굳이 말하며 강조할 때 씁니다. 역설적으로 \"말할 필요 없다\"면서 말하는 것이라, 규칙이나 기대를 부드럽게 못 박는 효과가 있습니다. 공지문이나 이메일에서 자주 쓰입니다.",
+   "example_ko": "말할 필요도 없지만, 이 과정에 참여하는 모든 분께 비밀 유지를 기대합니다."
   },
   {
    "id": "EN_041",
@@ -353,16 +416,9 @@
    "level": "intermediate",
    "theme": "life-advice",
    "example": "You're leading three projects, mentoring two juniors, and organizing the offsite — don't spread yourself too thin.",
-   "dialogue": "A: I said yes to the new committee, and I'm also joining the product steering group, plus my usual workload.\nB: I respect the ambition, but don't spread yourself too thin. Doing five things at 60% is worse than doing two things exceptionally."
-  },
-  {
-   "id": "EN_043",
-   "expression": "I need to sleep on it.",
-   "meaning": "하룻밤 자면서 생각해볼게요. / 바로 결정 내리지 않겠어요.",
-   "level": "beginner",
-   "theme": "decision-making",
-   "example": "It's a big financial commitment — I need to sleep on it before I give you a definitive answer.",
-   "dialogue": "A: Can we get your sign-off on the new agency contract today?\nB: The terms look reasonable, but I need to sleep on it. It's a two-year commitment and I want to make sure I'm not missing anything. I'll have an answer for you by 9 AM tomorrow."
+   "dialogue": "A: I said yes to the new committee, and I'm also joining the product steering group, plus my usual workload.\nB: I respect the ambition, but don't spread yourself too thin. Doing five things at 60% is worse than doing two things exceptionally.",
+   "nuance": "버터를 너무 넓게 펴 바르면 얇아져 맛이 안 나는 것처럼, 여러 일에 에너지를 나누면 어느 것도 제대로 못 한다는 뜻입니다. 《반지의 제왕》에서 빌보가 \"너무 많은 빵에 버터를 긁어 바른 것 같다\"고 한 대사로도 유명합니다. 걱정을 담은 조언이라 동료에게 쓰기 좋습니다.",
+   "example_ko": "프로젝트 셋을 이끌고, 후배 둘을 멘토링하고, 워크숍까지 준비하잖아요 — 너무 많이 벌이지 마요."
   }
  ],
  "chinese_expressions": [

@@ -6174,7 +6174,7 @@ html[data-theme="dark"] .mob-life-note-input { background: var(--bg); }
 
 /* ══ LIGHT-INDIGO-OVERRIDES ══ */
 /* 라이트 테마를 연대기와 같은 톤(흰 바탕·인디고 포인트)으로 — 파피루스·골드 하드코딩 색의 라이트 전용 덮어쓰기.
-   scripts: scratchpad/gen_light_overrides.py 로 생성. 원본 규칙은 그대로 두어 다크에 영향 없음. */
+   scripts/gen_light_overrides.py 로 생성. 원본 규칙은 그대로 두어 다크에 영향 없음. */
 html[data-theme="light"] { --mob-gold:#5B5BD6; --mob-card:#FFFFFF; --mob-section:#F3F3FA; --mob-border:#E6E6EE; --bg-card-expanded:#FAFAFC; --bg-highlight-box:#F4F3FB; --accent-color:#5B5BD6; --kmc-bg:#FFFFFF; --kmc-border:rgba(91,91,214,.22); }
 html[data-theme="light"] .mob-section-hd { color:#8E7CE6; border-top:2px solid #8E7CE6; }
 html[data-theme="light"] .mob-section-hd::after { background:rgba(142,124,230,.2); }

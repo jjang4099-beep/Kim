@@ -183,4 +183,7 @@
     { id: 'd-x1', examWord: { word: 'analogy', pos: 'noun', meaning: '유추, 비유를 통한 설명', exampleEn: 'The author draws an analogy between the immune system and a city\'s defense.', exampleKo: '저자는 면역 체계와 도시 방어 사이의 유추를 제시한다.' },
       type: 'exam_word', domain: 'language', mode: 'EXAM_PREP', ...at(12, 21), title: 'analogy' },
   ];
+  /* 샘플 "내 생각" 하나 — 카드와 팝업에서 어떻게 보이는지 */
+  const henry = window.CHRONICLE_DEMO_ITEMS.find(it => it.id === 'd-h1');
+  if (henry) henry.myInsight = '결국 신앙이 아니라 정치가 판을 갈랐다. 명분(레위기)은 나중에 찾은 것 — 회사에서 "원칙"이라며 밀어붙이는 결정도 사실은 누군가의 필요에서 출발하는 경우가 많다.';
 })();

@@ -4123,6 +4123,8 @@ app.post('/api/items', async (req, res) => {
   const manualCategory = body.category || body.manualCategory || null;
   const extraTags      = Array.isArray(body.tags) ? body.tags : [];
   const sessionMode    = normalizeMode(body.mode);   // 현재 세션 모드 인터셉트 → 강제 적재
+  /* 저장하면서 함께 적은 "내 생각"(연대기 웹의 기록하기) — 빈 값이면 필드를 만들지 않는다 */
+  const myInsight      = typeof body.myInsight === 'string' && body.myInsight.trim() ? body.myInsight.trim().slice(0, 4000) : undefined;
 
   // ── YouTube URL 전용 처리 ──
   const ytUrl = extractYouTubeUrl(rawText);
@@ -4161,7 +4163,8 @@ app.post('/api/items', async (req, res) => {
       time       : toTimeStr(now),
       createdAt  : clientTs,
       updatedAt  : now.toISOString(),
-      insights   : []
+      insights   : [],
+      ...(myInsight ? { myInsight } : {})
     };
 
     ItemsDB.insertItem(req.userId, newItem);
@@ -4222,7 +4225,8 @@ app.post('/api/items', async (req, res) => {
     time      : toTimeStr(now),
     createdAt : clientTs,
     updatedAt : now.toISOString(),
-    insights  : []
+    insights  : [],
+    ...(myInsight ? { myInsight } : {})
   };
 
   ItemsDB.insertItem(req.userId, newItem);

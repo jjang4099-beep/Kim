@@ -125,7 +125,7 @@
       /* 데모 데이터 스크립트는 이때만 불러온다 — 평소에는 한 바이트도 받지 않게 */
       await new Promise((ok, bad) => {
         const s = document.createElement('script');
-        s.src = 'js/chronicle_demo.js?v=3'; s.onload = ok; s.onerror = () => bad(new Error('샘플 데이터를 불러오지 못했어요'));
+        s.src = 'js/chronicle_demo.js?v=4'; s.onload = ok; s.onerror = () => bad(new Error('샘플 데이터를 불러오지 못했어요'));
         document.head.appendChild(s);
       }).catch(e => fail(e.message));
       $('demoBanner').hidden = false;
@@ -185,7 +185,10 @@
     /* 모드 격리 규칙에 따라 모드를 지정할 땐 반드시 파라미터로 명시.
        '전체'는 연대기 전용(직장인+수험생을 한 타임라인에 얹기 위함) — 이때만 생략. */
     if (DEMO) {
-      const all = (window.CHRONICLE_DEMO_ITEMS || []);
+      /* 샘플 + 이 브라우저에서 추가한 기록, 그리고 적어 둔 생각을 합친다 */
+      const st = demoStore.read();
+      const all = [...(window.CHRONICLE_DEMO_ITEMS || []), ...(st.added || [])]
+        .map(it => (st.thoughts && st.thoughts[it.id] !== undefined ? { ...it, myInsight: st.thoughts[it.id] } : it));
       state.raw = all.filter(it => !state.mode || (it.mode || 'PROFESSIONAL') === state.mode).map(fixDomain);
       regroup();
       return;
@@ -471,6 +474,7 @@
       <div class="entry__body">
         <h3 class="entry__title">${esc(it.title || '영상')}</h3>
         ${it.channelName ? `<p class="entry__meta">${esc(it.channelName)}</p>` : ''}
+        ${thoughtOf(it) ? `<p class="entry__note">${esc(thoughtOf(it))}</p>` : ''}
         ${it.source ? `<a class="entry__link" href="${esc(it.source)}" target="_blank" rel="noopener">유튜브에서 보기 ↗</a>` : ''}
       </div>
     </article>`;
@@ -490,7 +494,7 @@
 
     const link = [it.source, it.title, firstLine].find(isUrl) || null;
 
-    let body = it.myInsight || a.summary || it.summary || it.text || '';
+    let body = a.summary || it.summary || it.text || '';
     if (body === title || isUrl(body)) body = (it.text && it.text !== title && !isUrl(it.text)) ? it.text : '';
     if (body.length > 420) body = body.slice(0, 420) + '…';
 
@@ -502,6 +506,7 @@
       <div class="entry__body">
         <h3 class="entry__title">${esc(title)}</h3>
         ${body ? `<p class="entry__text">${esc(body)}</p>` : ''}
+        ${thoughtOf(it) ? `<p class="entry__note">${esc(thoughtOf(it))}</p>` : ''}
         ${link ? `<a class="entry__link" href="${esc(link)}" target="_blank" rel="noopener">원문 열기 ↗</a>` : ''}
       </div>
     </article>`;
@@ -583,7 +588,7 @@
   function learnedCard(it, v) {
     const d = dom(it.domain);
     const clip = s => (s && s.length > 360 ? s.slice(0, 360) + '…' : s);
-    const note = it.myInsight && !String(it.myInsight).startsWith('[') ? it.myInsight : '';
+    const note = thoughtOf(it);
     return `<article class="entry entry--learned">
       <div class="entry__kind">
         <i class="dot" style="background:${d.color}"></i>${esc(v.kind)}
@@ -629,8 +634,7 @@
 
   function detailHTML(it) {
     const d = dom(it.domain);
-    const note = it.myInsight && !String(it.myInsight).startsWith('[') ? it.myInsight : '';
-    const noteSec = sec('내 메모', note ? para(note) : '', 'md__sec--note');
+    const noteSec = thoughtHTML(it);
     const head = (kind, title, sub) => `<header class="md__head">
         <div class="md__kind"><i class="dot" style="background:${d.color}"></i>${esc(kind)}</div>
         ${title ? `<h3 class="md__title">${esc(title)}</h3>` : ''}
@@ -741,6 +745,156 @@
       + (link ? `<a class="entry__link" href="${esc(link)}" target="_blank" rel="noopener">원문 열기 ↗</a>` : '');
   }
 
+  /* ── 내 생각 ─────────────────────────────────
+     받은 지식에 내 생각을 붙이는 칸. 여기 적힌 것이 "받은 것"을 "내 것"으로 바꾼다.
+     실제 계정은 PATCH /api/items/:id {myInsight}, 샘플 모드는 이 브라우저(localStorage)에만 둔다.
+     옛 기록 중 '['로 시작하는 myInsight는 시스템이 넣은 태그라 유저 글로 보지 않는다. */
+  const thoughtOf = it => (it.myInsight && !String(it.myInsight).startsWith('[') ? String(it.myInsight) : '');
+  function thoughtHTML(it) {
+    const t = thoughtOf(it);
+    return `<section class="md__sec md__thought" data-id="${esc(it.id)}">
+        <h4>💭 내 생각</h4>
+        <div class="md__thought-view">${t ? `<p class="md__thought-text">${para(t)}</p>`
+          : '<p class="muted">이걸 읽고 떠오른 생각, 내 일·삶과 이어지는 점을 적어 두세요. 연말 총평이 이 글을 읽습니다.</p>'}
+          <button type="button" class="btn btn--sm md__thought-edit">${t ? '고치기' : '생각 적기'}</button></div>
+        <div class="md__thought-form" hidden>
+          <textarea rows="4" maxlength="4000" placeholder="예) 결국 정치가 종교를 이긴 이야기. 요즘 회사 조직 개편이랑 닮았다.">${esc(t)}</textarea>
+          <div class="md__thought-actions"><span class="muted md__thought-msg"></span>
+            <button type="button" class="btn btn--sm md__thought-cancel">취소</button>
+            <button type="button" class="btn btn--sm btn--primary md__thought-save">저장</button></div>
+        </div>
+      </section>`;
+  }
+
+  /* 샘플 모드 저장소 — 새로고침해도 방금 적은 생각·기록이 남아 있게(이 브라우저에만) */
+  const DEMO_KEY = 'chronicle-demo-v1';
+  const demoStore = {
+    read() { try { return JSON.parse(localStorage.getItem(DEMO_KEY)) || { thoughts: {}, added: [] }; } catch { return { thoughts: {}, added: [] }; } },
+    write(v) { try { localStorage.setItem(DEMO_KEY, JSON.stringify(v)); } catch { /* 저장 못 해도 이번 화면에는 반영됨 */ } },
+  };
+
+  async function saveThought(id, text) {
+    const it = state.raw.find(x => String(x.id) === String(id));
+    if (!it) return;
+    if (DEMO) {
+      const st = demoStore.read(); st.thoughts[id] = text; demoStore.write(st);
+    } else {
+      await api(`/api/items/${encodeURIComponent(id)}`, {
+        method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ myInsight: text }),
+      });
+    }
+    it.myInsight = text;
+  }
+
+  function bindThought() {
+    const box = $('modalBody').querySelector('.md__thought');
+    if (!box) return;
+    const view = box.querySelector('.md__thought-view'), form = box.querySelector('.md__thought-form');
+    const ta = form.querySelector('textarea'), msg = form.querySelector('.md__thought-msg');
+    box.querySelector('.md__thought-edit').addEventListener('click', () => {
+      view.hidden = true; form.hidden = false; ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length);
+    });
+    form.querySelector('.md__thought-cancel').addEventListener('click', () => { form.hidden = true; view.hidden = false; });
+    form.querySelector('.md__thought-save').addEventListener('click', async e => {
+      const btn = e.currentTarget; btn.disabled = true; msg.textContent = '저장 중…';
+      try {
+        await saveThought(box.dataset.id, ta.value.trim());
+        box.outerHTML = thoughtHTML(state.raw.find(x => String(x.id) === box.dataset.id));
+        bindThought();
+        renderDay();                                  // 카드에도 생각 미리보기가 바로 보이게
+      } catch (err) {
+        msg.textContent = '저장하지 못했어요 — ' + (err.message || ''); btn.disabled = false;
+      }
+    });
+    /* Ctrl/⌘+Enter로 저장 */
+    ta.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) form.querySelector('.md__thought-save').click(); });
+  }
+
+  /* ── 웹에서 바로 기록하기 ──────────────────────
+     유튜브·기사 링크나 메모를 붙여 넣고, 원하면 내 생각을 함께 적는다.
+     실제 계정은 앱과 같은 POST /api/items(유튜브는 제목·썸네일·요약 자동), 샘플은 이 브라우저에만. */
+  const YT_RE = /(?:youtube\.com\/(?:watch\?v=|shorts\/|live\/)|youtu\.be\/)([\w-]{11})/;
+  const kindHint = t => {
+    const s = t.trim();
+    if (!s) return '';
+    if (YT_RE.test(s)) return '🎬 유튜브 영상으로 저장돼요 — 제목·썸네일·요약은 자동으로 채워져요';
+    if (/https?:\/\/\S+/.test(s)) return '🔗 링크로 저장돼요 — 내용을 읽고 분류·요약해요';
+    return '📝 메모로 저장돼요 — 내용에 맞는 분야로 자동 분류해요';
+  };
+
+  function openCompose() {
+    const cur = state.mode || 'PROFESSIONAL';
+    showModal(`<header class="md__head">
+        <div class="md__kind">✍️ 기록하기</div>
+        <h3 class="md__title">무엇을 남길까요?</h3>
+        <p class="md__sub">유튜브·기사 링크나, 오늘 배운 것·떠오른 생각을 그대로 붙여 넣으세요. 오늘 날짜로 연대기에 남습니다.</p>
+      </header>
+      <form class="compose" id="composeForm">
+        <label class="compose__label" for="cText">내용</label>
+        <textarea id="cText" rows="5" required maxlength="8000" placeholder="https://youtu.be/…  또는  오늘 회의에서 배운 것…"></textarea>
+        <p class="compose__hint" id="cHint"></p>
+        <label class="compose__label" for="cThought">💭 내 생각 <span class="muted">(선택)</span></label>
+        <textarea id="cThought" rows="3" maxlength="4000" placeholder="왜 저장하는지, 어디에 써먹을지"></textarea>
+        <div class="compose__row">
+          <div class="seg seg--sm" role="group" aria-label="모드">
+            <button type="button" data-cmode="PROFESSIONAL" aria-pressed="${cur !== 'EXAM_PREP'}">직장인</button>
+            <button type="button" data-cmode="EXAM_PREP" aria-pressed="${cur === 'EXAM_PREP'}">수험생</button>
+          </div>
+          <span class="muted compose__msg" id="cMsg"></span>
+          <button type="submit" class="btn btn--primary" id="cSave">저장</button>
+        </div>
+      </form>`);
+    let mode = cur === 'EXAM_PREP' ? 'EXAM_PREP' : 'PROFESSIONAL';
+    const text = $('cText');
+    text.addEventListener('input', () => { $('cHint').textContent = kindHint(text.value); });
+    $('modalBody').querySelectorAll('[data-cmode]').forEach(b => b.addEventListener('click', () => {
+      mode = b.dataset.cmode;
+      $('modalBody').querySelectorAll('[data-cmode]').forEach(x => x.setAttribute('aria-pressed', x === b));
+    }));
+    $('composeForm').addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) $('composeForm').requestSubmit(); });
+    $('composeForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const body = text.value.trim(); if (!body) return;
+      const thought = $('cThought').value.trim();
+      $('cSave').disabled = true;
+      $('cMsg').textContent = YT_RE.test(body) || /https?:\/\//.test(body) ? '저장 중… 내용을 읽고 요약하고 있어요' : '저장 중…';
+      try {
+        const item = DEMO ? demoCreate(body, thought, mode) : (await api('/api/items', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: body, mode, source: 'chronicle-web', myInsight: thought || undefined, createdAt: new Date().toISOString() }),
+        })).item;
+        if (!item) throw new Error('응답이 비어 있어요');
+        state.raw.unshift(fixDomain(item));
+        const k = dateKey(item) || isoOf(new Date());
+        state.year = Number(k.slice(0, 4)); state.selected = k; state.month = Number(k.slice(5, 7)) - 1;
+        state.cat = ''; state.scope = 'day';
+        regroup(); renderAll();
+        openDetail(item.id);                          // 저장된 모습을 바로 보여 준다
+      } catch (err) {
+        $('cMsg').textContent = '저장하지 못했어요 — ' + (err.message || ''); $('cSave').disabled = false;
+      }
+    });
+    text.focus();
+  }
+
+  /* 샘플 모드용 가짜 저장 — 서버 없이 비슷한 모양을 만든다 */
+  function demoCreate(body, thought, mode) {
+    const now = new Date();
+    const base = { id: 'demo-' + now.getTime(), date: isoOf(now), createdAt: now.toISOString(), mode, source: 'chronicle-web',
+                   ...(thought ? { myInsight: thought } : {}) };
+    const yt = body.match(YT_RE);
+    const url = (body.match(/https?:\/\/\S+/) || [])[0];
+    const firstLine = body.split('\n')[0].slice(0, 60);
+    const item = yt
+      ? { ...base, type: 'youtube', domain: 'business', title: '(샘플) 저장한 유튜브 영상', channelName: '샘플 모드 — 실제 저장 시 채널명', source: url,
+          thumbnail: `https://i.ytimg.com/vi/${yt[1]}/hqdefault.jpg`, text: body,
+          analysis: { title: '(샘플) 저장한 유튜브 영상', summary: '실제 계정에서는 영상 제목·요약이 자동으로 채워져요.' } }
+      : { ...base, domain: url ? 'business' : 'psychology', text: body,
+          analysis: { title: url ? '저장한 링크' : firstLine, summary: url ? '실제 계정에서는 기사 내용을 읽고 요약해요.' : '' } };
+    const st = demoStore.read(); st.added = [...(st.added || []), item]; demoStore.write(st);
+    return item;
+  }
+
   let _lastFocus = null;
   function showModal(html) {
     if ($('modal').hidden) _lastFocus = document.activeElement;
@@ -753,6 +907,7 @@
     const it = state.raw.find(x => String(x.id) === String(id));
     if (!it) return;
     showModal(detailHTML(it));
+    bindThought();
     /* 사진 넘기기 */
     const g = $('modalBody').querySelector('.md__gallery');
     if (g && Number(g.dataset.n) > 1) {
@@ -1212,6 +1367,8 @@
       renderAll();
     });
   });
+
+  $('composeBtn').addEventListener('click', openCompose);
 
   /* 데모에서는 AI 총평을 만들지 않는다(가짜 기록으로 실제 API를 부르지 않게) */
   if (DEMO) {

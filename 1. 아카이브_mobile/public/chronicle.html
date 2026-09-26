@@ -459,6 +459,35 @@ html.modal-open, html.modal-open body{overflow:hidden}
 .md__nav--prev{left:12px} .md__nav--next{right:12px}
 .md__count{position:absolute; bottom:10px; right:12px; padding:2px 10px; border-radius:var(--r-ctl); background:rgba(0,0,0,.55); color:#fff; font-size:12px}
 
+/* 버튼 변형 */
+.btn--sm{padding:5px 12px; font-size:12.5px}
+.btn--primary{background:var(--primary-bg); color:var(--jusa-on); border-color:transparent; font-weight:600}
+.btn--primary:hover:not(:disabled){color:var(--jusa-on); border-color:transparent; filter:brightness(1.06)}
+.compose-btn{margin-left:auto; padding:8px 16px}
+
+/* 카드의 내 생각 미리보기 */
+.entry__note::before{content:'💭 '}
+.entry__note{display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden}
+
+/* 팝업 — 내 생각 */
+.md__thought{margin-top:24px; padding:14px 16px; border-radius:calc(var(--r-card) * .7); background:var(--hover); border:1px solid var(--border-soft)}
+.md__thought h4{color:var(--text-1)}
+.md__thought-view{display:flex; align-items:flex-end; justify-content:space-between; gap:12px}
+.md__thought-view p{margin:0; flex:1}
+.md__thought-text{font-size:15px; line-height:1.8; color:var(--text-1)}
+.md__thought textarea, .compose textarea{width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:calc(var(--r-card) * .5);
+  background:var(--surface); color:var(--text-1); font:inherit; font-size:14.5px; line-height:1.7; resize:vertical}
+.md__thought textarea:focus, .compose textarea:focus{outline:none; border-color:var(--jusa)}
+.md__thought-actions{display:flex; align-items:center; justify-content:flex-end; gap:8px; margin-top:8px}
+.md__thought-msg{margin-right:auto; font-size:12px}
+
+/* 기록하기 폼 */
+.compose{display:flex; flex-direction:column; gap:6px}
+.compose__label{margin-top:10px; font-size:12.5px; font-weight:700; color:var(--text-2)}
+.compose__hint{margin:2px 0 0; min-height:18px; font-size:12.5px; color:var(--jusa)}
+.compose__row{display:flex; align-items:center; gap:12px; margin-top:16px}
+.compose__msg{margin-left:auto; font-size:12.5px}
+
 /* 범위 보기의 날짜 묶음 */
 .dgroup{margin-top:34px; padding-top:18px; border-top:1px solid var(--border-soft)}
 .dgroup:first-of-type{border-top:none; padding-top:0}
@@ -635,6 +664,7 @@ html.modal-open, html.modal-open body{overflow:hidden}
       <span>매일 배달받은 지식도 포함</span>
     </label>
     <span class="muted" id="filterNote"></span>
+    <button type="button" class="btn btn--primary compose-btn" id="composeBtn">＋ 기록하기</button>
   </div>
   <!-- 분류 — 추억/공부를 나눠 보거나, 영어·역사처럼 한 갈래만 골라 복습 -->
   <div class="cats" id="cats" role="group" aria-label="분류"></div>
@@ -732,6 +762,6 @@ html.modal-open, html.modal-open body{overflow:hidden}
   </article>
 </div>
 
-<script src="js/chronicle.js?v=17"></script>
+<script src="js/chronicle.js?v=18"></script>
 </body>
 </html>

@@ -125,7 +125,7 @@
       /* 데모 데이터 스크립트는 이때만 불러온다 — 평소에는 한 바이트도 받지 않게 */
       await new Promise((ok, bad) => {
         const s = document.createElement('script');
-        s.src = 'js/chronicle_demo.js?v=1'; s.onload = ok; s.onerror = () => bad(new Error('샘플 데이터를 불러오지 못했어요'));
+        s.src = 'js/chronicle_demo.js?v=2'; s.onload = ok; s.onerror = () => bad(new Error('샘플 데이터를 불러오지 못했어요'));
         document.head.appendChild(s);
       }).catch(e => fail(e.message));
       $('demoBanner').hidden = false;
@@ -458,7 +458,7 @@
       <div class="entry__kind"><i class="dot" style="background:${dom('life').color}"></i>자취·일상</div>
       <figure>
         ${shots}
-        ${(caption || meta) ? `<figcaption>${esc(caption)}${meta ? `<div class="entry__meta">${esc(meta)}</div>` : ''}</figcaption>` : ''}
+        ${(caption || meta) ? `<figcaption>${caption ? `<span class="entry__cap">${esc(caption)}</span>` : ''}${meta ? `<div class="entry__meta">${esc(meta)}</div>` : ''}</figcaption>` : ''}
       </figure>
     </article>`;
   }
@@ -602,11 +602,191 @@
     </article>`;
   }
 
+  /* ── 상세 팝업 ───────────────────────────────
+     카드는 요약만 보여 주고, 누르면 저장된 내용을 빠짐없이 펼친다.
+     필드가 비어 있으면 그 칸은 그리지 않는다 — 기록마다 채워진 정도가 달라서. */
+  const para = s => esc(s).replace(/\n/g, '<br>');
+  const sec = (label, body, cls = '') => body ? `<section class="md__sec ${cls}"><h4>${label}</h4><div>${body}</div></section>` : '';
+  const whenOf = it => {
+    const k = dateKey(it); if (!k) return '';
+    const dd = new Date(k + 'T00:00:00');
+    const t = it.createdAt ? new Date(it.createdAt) : null;
+    const time = t && !isNaN(t) ? ` · ${t.getHours() < 12 ? '오전' : '오후'} ${((t.getHours() + 11) % 12) + 1}:${pad2(t.getMinutes())}` : '';
+    return `${dd.getFullYear()}년 ${dd.getMonth() + 1}월 ${dd.getDate()}일 ${DOW[dd.getDay()]}요일${time}`;
+  };
+
+  /* 영어 표현 하나(테마팩 항목 또는 낱개 저장) */
+  function vocabBlock(v, big) {
+    return `<div class="md__vocab${big ? ' md__vocab--big' : ''}">
+        <p class="md__expr">${esc(v.expression || v.word || '')}</p>
+        ${v.meaning ? `<p class="md__mean">${esc(v.meaning)}</p>` : ''}
+        ${sec('뉘앙스', v.nuance ? para(v.nuance) : '')}
+        ${sec('예문', v.sourceSentence ? `${para(v.sourceSentence)}${v.sourceSentenceKo ? `<span class="md__ko">${para(v.sourceSentenceKo)}</span>` : ''}` : '')}
+        ${sec('대화', v.dialogue ? `<p class="md__dialog">${para(typeof v.dialogue === 'string' ? v.dialogue : JSON.stringify(v.dialogue))}</p>` : '')}
+        ${sec('따라 써 보기', v.practiceSentence ? para(v.practiceSentence) : '')}
+      </div>`;
+  }
+
+  function detailHTML(it) {
+    const d = dom(it.domain);
+    const note = it.myInsight && !String(it.myInsight).startsWith('[') ? it.myInsight : '';
+    const noteSec = sec('내 메모', note ? para(note) : '', 'md__sec--note');
+    const head = (kind, title, sub) => `<header class="md__head">
+        <div class="md__kind"><i class="dot" style="background:${d.color}"></i>${esc(kind)}</div>
+        ${title ? `<h3 class="md__title">${esc(title)}</h3>` : ''}
+        ${sub ? `<p class="md__sub">${esc(sub)}</p>` : ''}
+        <p class="md__when">${whenOf(it)}</p>
+      </header>`;
+
+    /* 추억 — 사진은 크게, 글은 전부 */
+    if (isLife(it)) {
+      const photos = (it.life?.photos || []).filter(Boolean);
+      const meta = [it.life?.mood, it.life?.location, it.life?.weather].filter(Boolean);
+      return `<div class="md__gallery" data-n="${photos.length}">
+          ${photos.map((p, i) => `<img src="${esc(p)}" alt="" data-i="${i}" ${i ? 'hidden' : ''}
+              onerror="this.outerHTML='&lt;div class=&quot;shot-missing&quot; data-i=&quot;${i}&quot;&gt;사진을 찾을 수 없어요&lt;/div&gt;'"/>`).join('')}
+          ${photos.length > 1 ? `<button type="button" class="md__nav md__nav--prev" aria-label="이전 사진">‹</button>
+            <button type="button" class="md__nav md__nav--next" aria-label="다음 사진">›</button>
+            <div class="md__count"><b>1</b> / ${photos.length}</div>` : ''}
+        </div>
+        ${head('추억', '', '')}
+        ${lifeCaption(it) ? `<p class="md__story">${para(lifeCaption(it))}</p>` : '<p class="muted">글 없이 사진만 남긴 날이에요.</p>'}
+        ${meta.length ? `<p class="md__meta">${meta.map(esc).join(' · ')}</p>` : ''}`;
+    }
+
+    const fd = it.feedData || {};
+    const vocab = Array.isArray(it.vocabEntries) && it.vocabEntries.length ? it.vocabEntries
+      : Array.isArray(fd.vocabEntries) ? fd.vocabEntries : [];
+
+    if (fd.subType === 'liber' && fd.quote) return head('고전', '', [fd.book, fd.author, fd.era].filter(Boolean).join(' · '))
+      + `<blockquote class="md__quote">${para(fd.quote)}</blockquote>`
+      + sec('원문', fd.source ? para(fd.source) : '', 'md__sec--muted')
+      + sec('그때 무슨 일이', fd.backstory ? para(fd.backstory) : '')
+      + sec('오늘의 나에게', fd.context ? para(fd.context) : '')
+      + (Array.isArray(fd.tags) && fd.tags.length ? `<p class="md__tags">${fd.tags.map(t => `<span>#${esc(t)}</span>`).join('')}</p>` : '')
+      + noteSec;
+
+    if (fd.subType === 'idiom' && fd.idiom) return head('고사성어', `${fd.idiom}${fd.hanja ? ` ${fd.hanja}` : ''}`, fd.meaning)
+      + sec('유래', fd.origin ? para(fd.origin) : '')
+      + sec('이렇게 쓴다', fd.story ? para(fd.story) : '')
+      + sec('숨은 이야기', fd.behindStory ? para(fd.behindStory) : '')
+      + sec('오늘의 적용', fd.application ? para(fd.application) : '')
+      + noteSec;
+
+    if (fd.subType === 'history' && fd.title) return head('역사', fd.title, [fd.era, fd.period, fd.region].filter(Boolean).join(' · '))
+      + sec('무슨 일이 있었나', fd.summary ? para(fd.summary) : '')
+      + sec('세 줄 요약', fd.summary3 ? para(fd.summary3) : '')
+      + sec('비하인드', fd.behindStory ? para(fd.behindStory) : '')
+      + sec('교훈', fd.lesson ? para(fd.lesson) : '')
+      + noteSec;
+
+    if (fd.subType === 'insight' && (fd.headline || fd.topic)) return head('인사이트', fd.headline || fd.topic, fd.headline ? fd.topic : '')
+      + sec('핵심', fd.body ? para(fd.body) : '')
+      + sec('실제로는', fd.realLife ? para(fd.realLife) : '')
+      + sec('생각해 볼 질문', fd.question ? para(fd.question) : '')
+      + noteSec;
+
+    if (fd.subType === 'quote' && fd.quote) return head('명언', '', fd.author)
+      + `<blockquote class="md__quote">${para(fd.quote)}</blockquote>`
+      + sec('맥락', (fd.context || fd.story) ? para(fd.context || fd.story) : '') + noteSec;
+
+    if (vocab.length) {
+      const title = fd.themeTitle || (vocab.length > 1 ? (it.title || '오늘의 표현') : '');
+      return head(vocab.length > 1 ? `영어 · 표현 ${vocab.length}개` : '영어 표현', title, '')
+        + vocab.map(v => vocabBlock(v, vocab.length === 1)).join('<hr class="md__hr">') + noteSec;
+    }
+
+    const ew = it.examWord;
+    if (ew && ew.word) return head('수능 영단어', `${ew.word}${ew.pos ? ` (${ew.pos})` : ''}`, ew.meaning)
+      + sec('예문', ew.exampleEn ? `${para(ew.exampleEn)}${ew.exampleKo ? `<span class="md__ko">${para(ew.exampleKo)}</span>` : ''}` : '')
+      + sec('기출', ew.csatRef ? para(ew.csatRef) : '') + noteSec;
+
+    const eh = it.examHistory;
+    if (eh && eh.title) return head('한국사', eh.title, eh.eraLabel)
+      + sec('내용', eh.summary ? para(eh.summary) : '')
+      + sec('핵심', eh.keyPoint ? para(eh.keyPoint) : '')
+      + sec('시험 팁', eh.examTip ? para(eh.examTip) : '') + noteSec;
+
+    const wa = it.wrongAnswer;
+    if (it.type === 'wrong_answer' && wa) {
+      const img = it.imageUrl || it.thumbnailUrl;
+      const concepts = Array.isArray(wa.requiredConcepts) ? wa.requiredConcepts : [];
+      const steps = Array.isArray(wa.modelSteps) ? wa.modelSteps : [];
+      return head(`오답노트 · ${wa.subjectName || ''}`, wa.unit || it.title, wa.keyConceptName ? `놓친 개념 — ${wa.keyConceptName}` : '')
+        + (img ? `<img class="md__doc" src="${esc(img)}" alt="" onerror="this.remove()"/>` : '')
+        + sec('문제', wa.problemSummary ? para(wa.problemSummary) : '')
+        + sec('정답', wa.answer ? para(wa.answer) : '')
+        + sec('필요한 개념', concepts.length ? concepts.map(c => `<p><b>${esc(c.term || '')}</b> ${esc(c.desc || '')}</p>`).join('') : '')
+        + sec('풀이 순서', steps.length ? `<ol>${steps.map(s => `<li>${esc(String(s).replace(/^\d+\.\s*/, ''))}</li>`).join('')}</ol>` : '')
+        + sec('보강할 점', wa.whatToReinforce ? para(wa.whatToReinforce) : '') + noteSec;
+    }
+
+    /* 낱개 저장 영어(구형 텍스트만 있는 것) */
+    if (it.source === 'daily-feed-entry') {
+      const lines = String(it.text || '').split('\n').map(s => s.trim()).filter(Boolean);
+      const expr = (lines.shift() || '').replace(/^\[[^\]]*\]\s*/, '');
+      const rows = lines.map(l => { const m = l.match(/^([^:]{1,8}):\s*(.*)$/); return m ? sec(esc(m[1]), para(m[2])) : `<p>${para(l)}</p>`; }).join('');
+      return head('영어 표현', expr, '') + rows + noteSec;
+    }
+
+    /* 영상 · 메모 · 링크 */
+    const a = it.analysis || {};
+    const link = [it.source, it.title, it.text].find(isUrl);
+    return head(it.type === 'youtube' ? '영상' : d.label, [a.title, it.title].find(t => t && !isUrl(t)) || '기록', it.channelName || '')
+      + (it.thumbnail ? `<img class="md__doc" src="${esc(it.thumbnail)}" alt="" onerror="this.remove()"/>` : '')
+      + sec('요약', (a.summary || it.summary) ? para(a.summary || it.summary) : '')
+      + sec('내용', it.text && !isUrl(it.text) && it.text !== it.title ? para(it.text) : '')
+      + sec('인사이트', a.insight ? para(a.insight) : '')
+      + noteSec
+      + (link ? `<a class="entry__link" href="${esc(link)}" target="_blank" rel="noopener">원문 열기 ↗</a>` : '');
+  }
+
+  let _lastFocus = null;
+  function openDetail(id) {
+    const it = state.raw.find(x => String(x.id) === String(id));
+    if (!it) return;
+    _lastFocus = document.activeElement;
+    $('modalBody').innerHTML = detailHTML(it);
+    $('modal').hidden = false;
+    document.documentElement.classList.add('modal-open');
+    $('modalBody').scrollTop = 0;
+    /* 사진 넘기기 */
+    const g = $('modalBody').querySelector('.md__gallery');
+    if (g && Number(g.dataset.n) > 1) {
+      let i = 0; const n = Number(g.dataset.n);
+      const show = k => {
+        i = (k + n) % n;
+        g.querySelectorAll('[data-i]').forEach(el2 => { el2.hidden = Number(el2.dataset.i) !== i; });
+        g.querySelector('.md__count b').textContent = i + 1;
+      };
+      g.querySelector('.md__nav--prev').addEventListener('click', () => show(i - 1));
+      g.querySelector('.md__nav--next').addEventListener('click', () => show(i + 1));
+      g._show = d2 => show(i + d2);
+    }
+    $('modalClose').focus();
+  }
+  function closeDetail() {
+    $('modal').hidden = true;
+    document.documentElement.classList.remove('modal-open');
+    _lastFocus?.focus?.();
+  }
+  $('modalClose').addEventListener('click', closeDetail);
+  $('modal').addEventListener('click', e => { if (e.target === $('modal')) closeDetail(); });
+  document.addEventListener('keydown', e => {
+    if ($('modal').hidden) return;
+    if (e.key === 'Escape') closeDetail();
+    const g = $('modalBody').querySelector('.md__gallery');
+    if (g?._show && e.key === 'ArrowRight') g._show(1);
+    if (g?._show && e.key === 'ArrowLeft') g._show(-1);
+  });
+
   function cardOf(it) {
-    if (isLife(it)) return photoCard(it);
-    if (it.type === 'youtube') return youtubeCard(it);
-    const v = learnedView(it);
-    return v ? learnedCard(it, v) : textCard(it);
+    let html;
+    if (isLife(it)) html = photoCard(it);
+    else if (it.type === 'youtube') html = youtubeCard(it);
+    else { const v = learnedView(it); html = v ? learnedCard(it, v) : textCard(it); }
+    /* 팝업을 열 수 있도록 카드에 id를 붙인다(모든 카드 템플릿이 <article class="entry…">로 시작) */
+    return html.replace('<article class="entry', `<article tabindex="0" data-id="${esc(it.id)}" class="entry is-openable`);
   }
 
   /* 추억(사진·일상)과 공부한 것을 섞지 않고 구획을 나눈다 — 한 날 안에서도 "무엇을 했나"와
@@ -616,13 +796,26 @@
     { key: 'study',  label: '공부한 것', note: '영어·지식·오답',    test: it => STUDY_CATS.has(catOf(it)) },
     { key: 'memo',   label: '메모·링크', note: '영상·기사 등',      test: it => catOf(it) === 'memo' },
   ];
+  /* 공부한 것은 갈래별로 한 번 더 묶는다 — 영어·역사·고전이 한 격자에 섞이면 무엇을 얼마나 했는지 안 보인다.
+     갈래가 하나뿐이면 소제목 없이 바로 카드. 순서는 매일 가장 많이 쌓이는 것부터. */
+  const STUDY_ORDER = ['english', 'history', 'classic', 'idiom', 'insight', 'wrong'];
+  const STUDY_COLOR = { english: 'language', history: 'humanities', classic: 'psychology', idiom: 'humanities', insight: 'business', wrong: 'science' };
+  function studyGroupsHTML(list) {
+    const groups = STUDY_ORDER.map(k => [k, list.filter(it => catOf(it) === k)]).filter(([, l]) => l.length);
+    if (groups.length <= 1) return `<div class="entries enter">${list.map(cardOf).join('')}</div>`;
+    return '<div class="sgroups">' + groups.map(([k, l]) => `<div class="sgroup">
+        <div class="sgroup__head"><i class="dot" style="background:${dom(STUDY_COLOR[k]).color}"></i>${esc((CATS.find(c => c.key === k) || {}).label || k)}<small>${l.length}</small></div>
+        <div class="entries enter">${l.map(cardOf).join('')}</div>
+      </div>`).join('') + '</div>';
+  }
+
   function sectionsHTML(items) {
     return SECTIONS.map(s => {
       const list = items.filter(s.test);
       if (!list.length) return '';
       return `<section class="dsec dsec--${s.key}">
           <h3 class="dsec__head">${s.label}<small>${list.length}</small><span>${s.note}</span></h3>
-          <div class="entries enter">${list.map(cardOf).join('')}</div>
+          ${s.key === 'study' ? studyGroupsHTML(list) : `<div class="entries enter">${list.map(cardOf).join('')}</div>`}
         </section>`;
     }).join('');
   }
@@ -696,10 +889,18 @@
     box.querySelectorAll('.dgroup__date').forEach(b => b.addEventListener('click', () => {
       state.scope = 'day'; state.month = Number(b.dataset.key.slice(5, 7)) - 1; select(b.dataset.key);
     }));
-    /* 답 가리기 중에는 카드를 눌러 한 장씩 확인 */
-    box.querySelectorAll('.entry--learned').forEach(c => c.addEventListener('click', () => {
-      if (box.classList.contains('quiz')) c.classList.toggle('revealed');
-    }));
+    /* 카드를 누르면 상세 팝업. 답 가리기 중인 공부 카드는 첫 번째 누름에 답만 보여 주고, 다시 누르면 팝업 */
+    box.querySelectorAll('.entry.is-openable').forEach(c => {
+      const open = e => {
+        if (e.target.closest('a')) return;   // 카드 안 링크는 링크대로
+        if (box.classList.contains('quiz') && c.classList.contains('entry--learned') && !c.classList.contains('revealed')) {
+          c.classList.add('revealed'); return;
+        }
+        openDetail(c.dataset.id);
+      };
+      c.addEventListener('click', open);
+      c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(e); } });
+    });
   }
 
   /* ── 렌더: 올해의 결 ─────────────────────── */

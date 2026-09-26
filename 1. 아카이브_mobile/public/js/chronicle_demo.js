@@ -45,9 +45,11 @@
     id, contentType: 'life', domain: 'life', mode: 'PROFESSIONAL', ...at(offset, hh),
     title: text || '라이프 기록', text, life: { photos, ...extra },
   });
-  const en = (id, offset, hh, expr, meaning, nuance) => ({
+  /* 실제 낱개 저장 영어처럼 vocabEntries(뉘앙스·예문·대화)도 함께 갖게 한다 */
+  const en = (id, offset, hh, expr, meaning, nuance, more = {}) => ({
     id, source: 'daily-feed-entry', domain: 'language', mode: 'PROFESSIONAL', ...at(offset, hh),
     title: expr, text: `[demo] ${expr}\n뜻: ${meaning}\n뉘앙스: ${nuance}`,
+    vocabEntries: [{ expression: expr, meaning, nuance, ...more }],
   });
   const fd = (id, offset, hh, domain, feedData, mode = 'PROFESSIONAL') => ({
     id, type: 'humanities', domain, mode, ...at(offset, hh), title: feedData.title || '', feedData,
@@ -55,29 +57,48 @@
 
   window.CHRONICLE_DEMO_ITEMS = [
     /* ── 오늘 ── */
-    life('d-l1', 0, 19, '퇴근길 한강. 하늘이 이렇게 분홍색인 건 오랜만이다.', [PHOTO.riverSunset], { location: '여의도', mood: '🙂' }),
+    life('d-l1', 0, 19, '퇴근길 한강. 하늘이 이렇게 분홍색인 건 오랜만이다.\n\n요즘 계속 야근이라 해 지는 걸 본 게 한 달 만인 것 같다. 벤치에 앉아서 20분쯤 그냥 멍하니 있었는데, 그게 오늘 제일 좋았던 시간. 내일은 조금 일찍 나와서 걸어야지.',
+      [PHOTO.riverSunset, PHOTO.morningHill], { location: '여의도 한강공원', mood: '🙂', weather: '맑음 · 21°' }),
     life('d-l2', 0, 13, '드디어 가 본 그 파스타집. 줄 설 만했다.', [PHOTO.pasta], { location: '성수', mood: '😋' }),
     en('d-e1', 0, 8, "Let's circle back on this next week.", '이 주제는 다음 주에 다시 논의하죠.',
-      '나중에 다시 돌아와 논의하자는 뜻으로 미국 직장에서 아주 흔합니다. 실제로 다시 다루지 않으면 "흐지부지하겠다"는 뜻으로 받아들여지니 날짜를 붙이세요.'),
+      '나중에 다시 돌아와 논의하자는 뜻으로 미국 직장에서 아주 흔합니다. 실제로 다시 다루지 않으면 "흐지부지하겠다"는 뜻으로 받아들여지니 날짜를 붙이세요.',
+      { sourceSentence: "We don't have enough data to decide today, so let's circle back on this next week after the audit.",
+        sourceSentenceKo: '오늘은 결정할 데이터가 부족하니, 감사 끝나고 다음 주에 다시 얘기합시다.',
+        dialogue: "A: Should we lock the budget now?\nB: Let's circle back on this next Tuesday — I want the Q3 numbers first.",
+        practiceSentence: "Let's circle back on the hiring plan once we hear from finance." }),
     en('d-e2', 0, 8, "That's on me.", '그건 제 실수예요, 제 책임이에요.',
       '"I\'m sorry"는 사과지만 책임 소재는 흐릴 수 있는 반면, 이 표현은 책임을 분명히 가져갑니다. 식당에서 "It\'s on me"는 "제가 살게요"라는 전혀 다른 뜻입니다.'),
     { id: 'd-p1', type: 'language', domain: 'language', mode: 'PROFESSIONAL', ...at(0, 8),
       feedData: { themeTitle: '회의에서 이견을 부드럽게 말할 때', vocabEntries: [
-        { expression: "I'd like to offer a different perspective.", meaning: '다른 관점을 제시하고 싶습니다.' },
+        { expression: "I'd like to offer a different perspective.", meaning: '다른 관점을 제시하고 싶습니다.',
+          nuance: "'당신이 틀렸다' 대신 '보는 각도를 하나 더 추가한다'는 협력적 프레이밍입니다. 상대가 시니어일 때 특히 유용해요.",
+          dialogue: "Manager: Everyone seems aligned on the premium pricing.\nYou: Before we finalize — I'd like to offer a different perspective.",
+          sourceSentence: "I'd like to offer a different perspective on the launch timeline.", sourceSentenceKo: '출시 일정에 대해 다른 관점을 말씀드리고 싶어요.' },
         { expression: 'I see where you\'re coming from, but…', meaning: '무슨 뜻인지는 알겠지만…' },
         { expression: 'Can we unpack this a bit more?', meaning: '이걸 좀 더 풀어서 볼까요?' },
         { expression: 'Let\'s agree to disagree.', meaning: '서로 생각이 다르다는 걸 인정하죠.' } ] } },
     fd('d-h1', 0, 9, 'humanities', { subType: 'history', title: '헨리 8세와 아라곤의 캐서린 — 이혼 하나가 나라의 종교를 바꾸다 (1527~1534년)',
       period: '근세', region: '영국 런던·이탈리아 로마',
-      summary: '캐서린은 원래 헨리의 형 아서의 아내였다. 아들이 없으면 왕조가 흔들린다고 믿은 헨리는 결혼 자체가 무효라고 주장했지만 교황은 끝내 허락하지 않았고, 결국 1534년 수장령으로 로마 교회와 결별했다.' }),
+      summary: '캐서린은 원래 헨리의 형 아서의 아내였다. 아서가 결혼 몇 달 만에 죽자 스페인과의 동맹을 놓치기 싫었던 영국 왕실은 교황의 특별 허가를 받아 동생 헨리와 재혼시켰다. 아들이 없으면 왕조가 흔들린다고 믿은 헨리는 결혼 자체가 무효라고 주장했지만 교황은 끝내 허락하지 않았고, 결국 1534년 수장령으로 로마 교회와 결별했다.',
+      behindStory: '교황이 버틴 진짜 이유는 정치였다. 1527년 캐서린의 조카인 황제 카를 5세의 군대가 로마를 약탈했고, 교황은 사실상 그의 손안에 있었다. 1529년 재판정에서 캐서린은 헨리 앞에 무릎을 꿇고 "나는 20년 동안 당신의 진실하고 순종하는 아내였다"고 말한 뒤 법정을 나가 버렸다.' }),
     fd('d-i1', 0, 9, 'humanities', { subType: 'idiom', idiom: '불치하문', hanja: '不恥下問', meaning: '아랫사람에게 묻는 것을 부끄러워하지 않는다.',
-      origin: '《논어》 〈공야장〉편에서 자공이 물었다. "공문자는 어째서 문(文)이라는 시호를 받았습니까?" 공자의 답은 이랬다. "영민하면서도 배우기를 좋아하고, 아랫사람에게 묻기를 부끄러워하지 않았다."' }),
+      origin: '《논어》 〈공야장〉편에서 자공이 물었다. "공문자는 어째서 문(文)이라는 시호를 받았습니까?" 자공이 의아해한 데는 이유가 있었다. 공문자는 사사로운 행실에 흠이 많은 위나라 대부였기 때문이다. 공자의 답은 이랬다. "영민하면서도 배우기를 좋아하고, 아랫사람에게 묻기를 부끄러워하지 않았다."',
+      story: '팀에서 가장 오래된 시니어인데도 신입에게 새 툴 사용법을 먼저 물어보는 그의 태도가 불치하문이었다.',
+      application: '직급이 높아질수록 모른다고 말하기 어려워진다. 그 순간이 배움이 멈추는 순간이다.' }),
     fd('d-c1', 0, 10, 'psychology', { subType: 'liber', book: '명상록', author: '마르쿠스 아우렐리우스',
       quote: '당신이 외적인 것들로 인해 고통받는다면, 그 고통은 그것들 때문이 아니라 당신의 판단 때문이다.',
-      backstory: '마르쿠스는 어려서부터 몸이 약했고, 위와 가슴의 통증 때문에 거의 먹지 못했다고 전해진다. 매일 아픈 몸으로 전선을 지킨 사람이 스스로를 붙들기 위해 쓴 문장이다.' }),
+      backstory: '마르쿠스는 어려서부터 몸이 약했고, 위와 가슴의 통증 때문에 거의 먹지 못했다고 전해진다. 매일 아픈 몸으로 전선을 지킨 사람이 스스로를 붙들기 위해 쓴 문장이다.',
+      source: 'Meditations VIII.47', era: 'Roman Stoicism',
+      context: '회의에서 누군가의 한마디에 하루 종일 기분이 상했다면, 상처를 준 건 그 말이 아니라 그 말에 내가 붙인 해석일 수 있다. 해석은 지금 당장 바꿀 수 있다.',
+      tags: ['스토아', '감정', '판단', '회복력'] }),
     { id: 'd-w1', type: 'wrong_answer', domain: 'science', mode: 'EXAM_PREP', ...at(0, 21), title: '[수학] 속도와 위치',
       wrongAnswer: { subject: 'math', subjectName: '수학', unit: '미분과 적분 > 속도와 가속도',
-        keyConceptName: '위치, 속도, 이동 거리의 관계', problemSummary: '속도 함수 v(t)=t²−kt+4가 주어졌을 때 점 P의 위치·운동 방향·이동 거리를 판단하는 문제.' } },
+        keyConceptName: '위치, 속도, 이동 거리의 관계', problemSummary: '속도 함수 v(t)=t²−kt+4가 주어졌을 때 점 P의 위치·운동 방향·이동 거리를 판단하는 문제.',
+        answer: '정답은 3번 (ㄱ, ㄷ)',
+        requiredConcepts: [{ term: '위치 = 속도의 적분', desc: 'x(t) = ∫v(t)dt, 출발점이 원점이면 적분상수 0.' },
+                           { term: '이동 거리', desc: '속도의 부호가 바뀌는 구간을 나눠 |v(t)|를 적분한다.' }],
+        modelSteps: ['1. k 값마다 v(t)를 세운다.', '2. v(t)=0인 시각으로 운동 방향이 바뀌는지 본다.', '3. 이동 거리는 절댓값 적분으로 구한다.'],
+        whatToReinforce: '위치 변화량(∫v)과 이동 거리(∫|v|)를 구분하는 것이 핵심. 부호가 바뀌는 구간을 먼저 찾는 습관을 들이자.' } },
     { id: 'd-y1', type: 'youtube', domain: 'business', mode: 'PROFESSIONAL', ...at(0, 22), title: '10분 만에 이해하는 금리와 환율', channelName: '경제 한 입', source: 'https://www.youtube.com/' },
     { id: 'd-a1', type: 'daily_delivery', domain: 'business', mode: 'PROFESSIONAL', ...at(0, 5), title: '미국 증시: 기술주 중심 완만한 상승', text: '자동 배달된 시황 카드 (체크박스를 켜야 보임)' },
 

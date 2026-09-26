@@ -641,8 +641,9 @@
       const n = (it.life?.photos || []).length;
       const line = lifeCaption(it).split('\n')[0]
         || [it.life?.mood, n ? `사진 ${n}장` : ''].filter(Boolean).join(' ');
-      return `<button class="scene" data-key="${k}">
-        ${photo ? `<img src="${esc(photo)}" alt="" loading="lazy" onerror="this.remove()"/>` : ''}
+      /* 사진이 있으면 사진 타일, 없으면(또는 사진 파일이 사라졌으면) 그라데이션 텍스트 타일 */
+      return `<button class="scene${photo ? '' : ' scene--text'}" data-key="${k}">
+        ${photo ? `<img src="${esc(photo)}" alt="" loading="lazy" onerror="this.closest('.scene').classList.add('scene--text');this.remove()"/>` : ''}
         <span class="scene__date">${Number(k.slice(5, 7))}월 ${Number(k.slice(8, 10))}일</span>
         ${line ? `<span class="scene__line">${esc(line.length > 60 ? line.slice(0, 60) + '…' : line)}</span>` : ''}
       </button>`;
@@ -742,7 +743,7 @@
      저장 키('app-theme')는 모바일 앱과 공유한다 — 같은 오리진이라
      여기서 바꾸면 앱도, 앱에서 바꾸면 여기도 따라온다.
      첫 적용은 chronicle.html의 head 인라인 스크립트가 이미 했다(깜빡임 방지). */
-  const THEME_LABEL = { dark: '먹지', light: '종이' };
+  const THEME_LABEL = { dark: '먹지', light: '화이트' };
 
   function currentTheme() {
     const attr = document.documentElement.getAttribute('data-theme');

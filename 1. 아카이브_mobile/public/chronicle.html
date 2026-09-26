@@ -28,7 +28,8 @@
    ⚠️ 모든 색은 반드시 :root에 한 번 정의할 것 — 다크 블록에만 있는 색을 만들면
       라이트에서 그 색이 통째로 비어 버린다. */
 :root{
-  /* 라이트 — 인스타그램 결: 흰 바탕, 가는 선, 부드러운 그림자, 굵은 고딕, 그라데이션 포인트.
+  /* 라이트 — 밝고 깨끗한 바탕(흰 카드·가는 선·부드러운 그림자·굵은 고딕)에 차분한 인디고 포인트, 장면은 파스텔.
+     (09-26 인스타 원색 그라데이션이 과하다는 피드백으로 톤 다운)
      (09-26 파피루스 톤에서 교체. 다크는 먹지 톤 그대로 — 아래 다크 블록이 모양 토큰까지 되돌린다)
      ⚠️ 모든 토큰은 반드시 여기 한 번 정의할 것 — 다크에만 있으면 라이트에서 통째로 비어 버린다. */
   --bg:#FAFAFA;
@@ -41,22 +42,22 @@
   --text-2:#737373;
   --text-3:#A8A8A8;
 
-  --jusa:#D62976;        /* 포인트(라이트에선 인스타 핑크) — 표제일·인용선·간지 */
+  --jusa:#5B5BD6;        /* 포인트(라이트에선 인디고) — 표제일·인용선·간지 */
   --jusa-on:#fff;
-  --err:#ED4956;
-  --sun:#ED4956;
+  --err:#E5484D;
+  --sun:#E5484D;
   --daycell-on:#F2F2F2;
   --glow:transparent;
   color-scheme:light;
 
-  --d-business:#F77737;
-  --d-language:#4F5BD5;
-  --d-humanities:#D62976;
-  --d-life:#20A86B;
-  --d-psychology:#962FBF;
-  --d-science:#0095F6;
-  --d-arts:#E8A317;
-  --d-society:#8E8E93;
+  --d-business:#E08A3C;
+  --d-language:#5B5BD6;
+  --d-humanities:#D0607A;
+  --d-life:#3BA57A;
+  --d-psychology:#8E6CD8;
+  --d-science:#3B8FD9;
+  --d-arts:#D9A233;
+  --d-society:#8A8F9A;
 
   /* 모양·글꼴 토큰 — 라이트/다크가 여기서 갈린다 */
   --serif:'Pretendard',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;  /* 제목·숫자·캡션용 표시 글꼴 */
@@ -65,14 +66,18 @@
   --r-ctl:999px;         /* 버튼·탭·칩 — 알약 */
   --r-cell:14px;         /* 날짜 칸 */
   --shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.05);
-  --grad:linear-gradient(45deg,#FEDA75 0%,#FA7E1E 25%,#D62976 50%,#962FBF 75%,#4F5BD5 100%);
+  --grad:linear-gradient(135deg,#5B5BD6 0%,#8E7CE6 100%);
   --primary-bg:var(--grad);
   --seg-on-bg:#262626;  --seg-on-fg:#fff;
   --cell-on-bg:#262626; --cell-on-fg:#fff; --cell-on-sub:#BDBDBD; --cell-on-bd:transparent;
   --seal-bg:var(--grad); --seal-fg:#fff; --seal-bd:transparent; --seal-r:50%;
-  --numeral-bg:var(--grad); --numeral-fg:transparent;
-  --tile:linear-gradient(135deg,#FEDA75 0%,#FA7E1E 22%,#D62976 50%,#962FBF 78%,#4F5BD5 100%);
-  --tile-fg:#fff;
+  --numeral-bg:linear-gradient(120deg,#23254A 0%,#4B4DB8 55%,#9B8CE8 100%); --numeral-fg:transparent;
+  /* 글만 있는 장면 타일 — 네 가지 파스텔을 번갈아 쓴다 */
+  --tile-1:linear-gradient(135deg,#FDE4D6 0%,#F8CFDC 100%);
+  --tile-2:linear-gradient(135deg,#DDE7FF 0%,#E7DDFF 100%);
+  --tile-3:linear-gradient(135deg,#D9F2E6 0%,#D7EAFA 100%);
+  --tile-4:linear-gradient(135deg,#FFF1CC 0%,#FCDCC8 100%);
+  --tile-fg:#2A2A33; --tile-sub:#6B6B7A;
   --scene-ratio:1/1;
   --title-weight:800;
 
@@ -116,7 +121,8 @@
     --cell-on-bg:var(--daycell-on); --cell-on-fg:var(--text-1); --cell-on-sub:var(--text-3); --cell-on-bd:var(--border);
     --seal-bg:transparent; --seal-fg:var(--jusa); --seal-bd:var(--jusa); --seal-r:2px;
     --numeral-bg:none; --numeral-fg:var(--text-1);
-    --tile:linear-gradient(135deg,#1B2430,#27354A); --tile-fg:var(--text-1);
+    --tile-1:linear-gradient(135deg,#1B2430,#27354A); --tile-2:var(--tile-1); --tile-3:var(--tile-1); --tile-4:var(--tile-1);
+    --tile-fg:var(--text-1); --tile-sub:var(--text-2);
     --scene-ratio:4/3;
     --title-weight:700;
   }
@@ -157,7 +163,8 @@
   --cell-on-bg:var(--daycell-on); --cell-on-fg:var(--text-1); --cell-on-sub:var(--text-3); --cell-on-bd:var(--border);
   --seal-bg:transparent; --seal-fg:var(--jusa); --seal-bd:var(--jusa); --seal-r:2px;
   --numeral-bg:none; --numeral-fg:var(--text-1);
-  --tile:linear-gradient(135deg,#1B2430,#27354A); --tile-fg:var(--text-1);
+  --tile-1:linear-gradient(135deg,#1B2430,#27354A); --tile-2:var(--tile-1); --tile-3:var(--tile-1); --tile-4:var(--tile-1);
+  --tile-fg:var(--text-1); --tile-sub:var(--text-2);
   --scene-ratio:4/3;
   --title-weight:700;
 }
@@ -394,8 +401,11 @@ a{color:inherit}
 .scene:not(.scene--text) .scene__date{opacity:.85; font-weight:600}
 .scene:not(.scene--text) .scene__line{padding:0; margin:3px 12px 12px; font-weight:600; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
 /* 사진이 없는 장면 — 인스타의 "텍스트 게시물"처럼 그라데이션 위에 내 한 줄을 크게 */
-.scene--text{position:relative; aspect-ratio:var(--scene-ratio); background:var(--tile); background-origin:border-box; border-color:transparent; justify-content:center}
-.scene--text .scene__date{position:absolute; top:10px; left:12px; padding:0; color:var(--tile-fg); opacity:.85; font-weight:600}
+.scene--text{position:relative; aspect-ratio:var(--scene-ratio); background:var(--tile-1); background-origin:border-box; border-color:transparent; justify-content:center}
+.scene--text:nth-child(4n+2){background:var(--tile-2)}
+.scene--text:nth-child(4n+3){background:var(--tile-3)}
+.scene--text:nth-child(4n+4){background:var(--tile-4)}
+.scene--text .scene__date{position:absolute; top:10px; left:12px; padding:0; color:var(--tile-sub); font-weight:600}
 .scene--text .scene__line{padding:0 14px; text-align:center; color:var(--tile-fg); font-size:clamp(13px,3.6vw,16px); font-weight:700; line-height:1.45; text-wrap:balance}
 
 /* 월별 서술 */

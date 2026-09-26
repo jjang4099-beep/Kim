@@ -131,9 +131,28 @@
        '전체'는 연대기 전용(직장인+수험생을 한 타임라인에 얹기 위함) — 이때만 생략. */
     const q = state.mode ? `?mode=${encodeURIComponent(state.mode)}&limit=2000` : '?limit=2000';
     const data = await api('/api/items' + q);
-    state.raw = Array.isArray(data.items) ? data.items : [];
+    state.raw = (Array.isArray(data.items) ? data.items : []).map(fixDomain);
     regroup();
   }
+
+  /* 저장 경로에 따라 domain이 기본값 'business'로 들어간 기록이 있다(수험생 단어·한국사·오답, 저장한 고전).
+     그대로 두면 연대기의 색·비율이 "비즈니스·경제"로 쏠리므로 내용으로 다시 판단한다. 원본은 건드리지 않는다. */
+  const WA_DOMAIN = { math: 'science', science: 'science', physics: 'science', chemistry: 'science',
+                      biology: 'science', earth: 'science', english: 'language', korean: 'language',
+                      history: 'humanities', korean_history: 'humanities', social: 'society', ethics: 'psychology' };
+  const FD_DOMAIN = { liber: 'psychology', quote: 'psychology', idiom: 'humanities', history: 'humanities' };
+  function fixDomain(it) {
+    let d = null;
+    if (it.examWord) d = 'language';
+    else if (it.examHistory) d = 'humanities';
+    else if (it.wrongAnswer) d = WA_DOMAIN[it.wrongAnswer.subject] || 'science';
+    else if (it.feedData && FD_DOMAIN[it.feedData.subType]) d = FD_DOMAIN[it.feedData.subType];
+    return d && d !== it.domain ? { ...it, domain: d } : it;
+  }
+
+  /* 글 없이 저장한 자취는 서버가 제목을 '라이프 기록'으로 채운다 — 유저가 쓴 글이 아니므로 캡션으로 쓰지 않는다 */
+  const DEFAULT_LIFE_TITLE = '라이프 기록';
+  const lifeCaption = it => (it.text || (it.title !== DEFAULT_LIFE_TITLE ? it.title : '') || '').trim();
 
   function regroup() {
     const map = {};
@@ -339,7 +358,7 @@
   function photoCard(it) {
     const photos = (it.life?.photos || []).filter(Boolean);
     const meta = [it.life?.mood, it.life?.location, it.life?.weather].filter(Boolean).join(' · ');
-    const caption = it.text || it.title || '';
+    const caption = lifeCaption(it);
     /* lazy 로딩을 쓰지 않는다 — 하루치 사진은 몇 장 안 되고, 지연되면 404 대체 표시가
        화면에 들어올 때까지 안 걸려서 빈 칸으로 보인다(재배포 전 업로드분은 전부 유실 상태). */
     const shots = photos.length
@@ -607,7 +626,7 @@
   /* 올해의 장면 — 글을 붙여 남긴 자취 가운데 최근 것부터. 누르면 그날로 간다 */
   function renderScenes() {
     const lifes = yearRaw().filter(isLife)
-      .filter(it => (it.text || it.title || '').trim() || (it.life?.photos || []).length)
+      .filter(it => lifeCaption(it) || (it.life?.photos || []).length)
       .sort((a, b) => dateKey(b).localeCompare(dateKey(a)))
       .slice(0, 8);
     const box = $('scenes');
@@ -618,7 +637,10 @@
     box.innerHTML = lifes.map(it => {
       const k = dateKey(it);
       const photo = (it.life?.photos || []).find(Boolean);
-      const line = (it.text || it.title || '').trim().split('\n')[0];
+      /* 글이 없으면 기분·사진 수로 대신한다 — 빈 카드보다 "그날 뭔가 남겼다"는 흔적이 낫다 */
+      const n = (it.life?.photos || []).length;
+      const line = lifeCaption(it).split('\n')[0]
+        || [it.life?.mood, n ? `사진 ${n}장` : ''].filter(Boolean).join(' ');
       return `<button class="scene" data-key="${k}">
         ${photo ? `<img src="${esc(photo)}" alt="" loading="lazy" onerror="this.remove()"/>` : ''}
         <span class="scene__date">${Number(k.slice(5, 7))}월 ${Number(k.slice(8, 10))}일</span>

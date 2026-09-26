@@ -5583,6 +5583,7 @@ function _chronicleLearnedLine(it) {
     return ['오답노트', `${w.subjectName || ''} ${w.unit || it.title || ''}${w.keyConceptName ? ` (놓친 개념: ${w.keyConceptName})` : ''}`.trim()];
   }
   const t = it.analysis?.title || it.title || '';
+  if (it.type === 'youtube') return t ? ['영상', t] : null;
   return t && !/^https?:\/\//.test(t) ? ['메모·기사', t] : null;
 }
 
@@ -5603,8 +5604,6 @@ app.get('/api/chronicle/review/:year', async (req, res) => {
       return t > m ? t : m;
     }, '');
     const period = `${year}@${fp}`;
-    const cached = SummariesDB.getCachedSummary(req.userId, mode, 'chronicle', period);
-    if (cached && req.query.force !== '1') return res.json(cached);
 
     const lifes = items.filter(i => i.contentType === 'life')
       .sort((a, b) => String(a.date || a.createdAt).localeCompare(String(b.date || b.createdAt)));
@@ -5616,17 +5615,28 @@ app.get('/api/chronicle/review/:year', async (req, res) => {
     const days = new Set(items.map(i => String(i.date || i.createdAt).slice(0, 10))).size;
     const photos = lifes.reduce((s, i) => s + ((i.life && i.life.photos) || []).length, 0);
 
-    /* 키워드는 태그 칩용 — 모델 입력과 별개로 로컬에서 센다 */
+    /* 키워드는 태그 칩용 — 모델 입력과 별개로 로컬에서 센다.
+       배달 저장분의 keywords에는 내부 태그(cafe_restaurant_en)·날짜·영어 문장 통째가 섞여 있어서
+       사람이 붙일 법한 짧은 낱말만 남긴다. */
+    const isChipWord = k => typeof k === 'string'
+      && k.length >= 2 && k.length <= 14
+      && !/[_/?!.]/.test(k)
+      && !/\d{4}-\d{2}/.test(k)
+      && k.trim().split(/\s+/).length <= 2;
     const kw = {};
     items.forEach(i => ((i.analysis && i.analysis.keywords) || i.keywords || [])
-      .forEach(k => { if (k && k.length > 1) kw[k] = (kw[k] || 0) + 1; }));
+      .forEach(k => { if (isChipWord(k)) kw[k] = (kw[k] || 0) + 1; }));
     const threads = [
       ...Object.entries(learned).sort((a, b) => b[1].length - a[1].length).map(([k, v]) => `${k} ${v.length}`),
       ...Object.entries(kw).sort((a, b) => b[1] - a[1]).slice(0, 8).map(([k]) => k),
     ];
+    const counts = Object.fromEntries(Object.entries(learned).map(([k, v]) => [k, v.length]));
 
-    const base = { success: true, year, mode, days, photos, threads,
-                   counts: Object.fromEntries(Object.entries(learned).map(([k, v]) => [k, v.length])),
+    /* 캐시는 AI 글만 재사용한다 — 칩·집계는 규칙이 바뀌어도 바로 반영되도록 매번 새로 계산 */
+    const cached = SummariesDB.getCachedSummary(req.userId, mode, 'chronicle', period);
+    if (cached && req.query.force !== '1') return res.json({ ...cached, threads, counts });
+
+    const base = { success: true, year, mode, days, photos, threads, counts,
                    lifeCount: lifes.length, generatedAt: new Date().toISOString() };
 
     if (!items.length) return res.json({ ...base, aiReview: '' });
@@ -5635,7 +5645,9 @@ app.get('/api/chronicle/review/:year', async (req, res) => {
     const lifeLines = lifes.slice(-60).map(i => {
       const d = String(i.date || i.createdAt).slice(5, 10);
       const meta = [i.life && i.life.location, i.life && i.life.mood].filter(Boolean).join(', ');
-      const text = String(i.text || i.title || '').replace(/\s+/g, ' ').slice(0, 140);
+      /* '라이프 기록'은 글 없이 저장했을 때 서버가 넣는 기본 제목이라 유저의 글로 취급하지 않는다 */
+      const own = i.text || (i.title !== '라이프 기록' ? i.title : '') || '';
+      const text = String(own).replace(/\s+/g, ' ').slice(0, 140);
       const n = ((i.life && i.life.photos) || []).length;
       return `- ${d}${meta ? ` (${meta})` : ''}${n ? ` [사진 ${n}]` : ''} ${text}`;
     }).join('\n');

@@ -279,6 +279,8 @@ a{color:inherit}
 .entry .shots{display:grid; grid-template-columns:1fr 1fr; gap:2px}
 .entry .shots img{aspect-ratio:1/1; object-fit:cover}
 .entry .shots img:only-child{grid-column:1/-1; aspect-ratio:4/3}
+/* 사진 파일이 없어 대체 문구로 바뀐 칸도 혼자면 한 줄을 다 쓴다(img가 아니라 div라 위 규칙이 안 걸린다) */
+.entry .shots > .shot-missing:only-child{grid-column:1/-1; aspect-ratio:auto; padding:28px 12px}
 /* 사진 아래 내가 쓴 한 줄이 이 카드의 주인공이다 — 메타보다 크게, 본문 글씨체로 */
 .entry figcaption{padding:13px 16px 16px; font-family:var(--serif); font-size:16px; line-height:1.65; color:var(--text-1); white-space:pre-wrap; word-break:break-word}
 .entry figcaption .entry__meta{font-family:inherit; font-size:12px}
@@ -489,6 +491,6 @@ a{color:inherit}
 
 <div class="loading" id="loading">불러오는 중…</div>
 
-<script src="js/chronicle.js?v=10"></script>
+<script src="js/chronicle.js?v=11"></script>
 </body>
 </html>

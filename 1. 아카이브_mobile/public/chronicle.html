@@ -80,6 +80,7 @@
   --tile-fg:#2A2A33; --tile-sub:#6B6B7A;
   --scene-ratio:1/1;
   --title-weight:800;
+  --map-sea:#F4F5FA; --map-land:#E3E5EE; --map-line:#FFFFFF; --map-visit:#B8B4F0; --map-visit-hot:#8E88E6;
 
   --gutter:clamp(20px,4vw,56px);
 }
@@ -125,6 +126,7 @@
     --tile-fg:var(--text-1); --tile-sub:var(--text-2);
     --scene-ratio:4/3;
     --title-weight:700;
+    --map-sea:#10161E; --map-land:#222C3A; --map-line:#10161E; --map-visit:#56659E; --map-visit-hot:#7C8CD0;
   }
 }
 /* 사용자가 직접 고른 다크 — 시스템이 라이트여도 이긴다 */
@@ -167,6 +169,7 @@
   --tile-fg:var(--text-1); --tile-sub:var(--text-2);
   --scene-ratio:4/3;
   --title-weight:700;
+  --map-sea:#10161E; --map-land:#222C3A; --map-line:#10161E; --map-visit:#56659E; --map-visit-hot:#7C8CD0;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -524,6 +527,33 @@ html.modal-open, html.modal-open body{overflow:hidden}
 .scene--text .scene__date{position:absolute; top:10px; left:12px; padding:0; color:var(--tile-sub); font-weight:600}
 .scene--text .scene__line{padding:0 14px; text-align:center; color:var(--tile-fg); font-size:clamp(13px,3.6vw,16px); font-weight:700; line-height:1.45; text-wrap:balance}
 
+/* ── 올해 다녀온 곳 ── */
+.travel{border:1px solid var(--border-soft); border-radius:var(--r-card); background:var(--surface); box-shadow:var(--shadow); overflow:hidden}
+.travel__map{position:relative; aspect-ratio:2/1; background:var(--map-sea)}
+.travel__map svg{display:block; width:100%; height:100%}
+.travel__map .land{fill:var(--map-land); stroke:var(--map-line); stroke-width:.5}
+.travel__map .land.visited{fill:var(--map-visit); cursor:pointer}
+.travel__map .land.visited:hover{fill:var(--map-visit-hot)}
+.travel__map .pin circle{fill:var(--jusa); stroke:var(--surface); stroke-width:2}
+.travel__map .pin text{font:600 11px var(--sans); fill:var(--text-1); paint-order:stroke; stroke:var(--surface); stroke-width:3px}
+.travel__map .pin{cursor:pointer}
+.travel__map .muted{position:absolute; inset:0; display:flex; align-items:center; justify-content:center}
+.travel__trips{display:flex; flex-wrap:wrap; gap:8px; padding:14px 16px 16px; border-top:1px solid var(--border-soft)}
+.trip{display:flex; align-items:center; gap:8px; padding:8px 14px; border:1px solid var(--border); border-radius:var(--r-ctl);
+  background:var(--surface); font-size:13px; color:var(--text-1); transition:border-color .18s, transform .18s}
+.trip:hover{border-color:var(--jusa); transform:translateY(-1px)}
+.trip small{color:var(--text-3); font-size:12px}
+.trip .flag{font-size:16px; line-height:1}
+/* 여행 앨범(팝업 안) */
+.album__day{margin-top:20px}
+.album__day h4{margin:0 0 8px; font-size:13px; font-weight:700; color:var(--text-2)}
+.album__grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:6px}
+.album__grid button{padding:0; border-radius:calc(var(--r-card) * .5); overflow:hidden; aspect-ratio:1/1; background:var(--bg)}
+.album__grid img{display:block; width:100%; height:100%; object-fit:cover; transition:transform .25s}
+.album__grid button:hover img{transform:scale(1.04)}
+.album__note{margin:8px 0 0; font-family:var(--serif); font-size:14.5px; line-height:1.7; color:var(--text-1)}
+.album__note small{display:block; font-family:var(--sans); font-size:12px; color:var(--text-3)}
+
 /* 월별 서술 */
 .months-review{margin-top:52px; display:grid; gap:2px}
 .mrow{display:grid; grid-template-columns:56px minmax(0,1fr) 62px; gap:14px; align-items:center; padding:9px 0; border-bottom:1px solid var(--border-soft)}
@@ -669,6 +699,15 @@ html.modal-open, html.modal-open body{overflow:hidden}
     <div class="subhead"><h3>올해의 장면</h3><span class="muted">누르면 그날로 갑니다</span></div>
     <div class="scenes" id="scenes"></div>
 
+    <!-- 올해 다녀온 곳 — 사진의 위치(life.place)로 나라를 칠하고, 여행을 누르면 앨범 -->
+    <div id="travelBox" hidden>
+      <div class="subhead"><h3>올해 다녀온 곳</h3><span class="muted" id="travelSum"></span></div>
+      <div class="travel">
+        <div class="travel__map" id="travelMap" aria-label="세계 지도"></div>
+        <div class="travel__trips" id="travelTrips"></div>
+      </div>
+    </div>
+
     <div class="months-review" id="monthsReview"></div>
 
     <div class="aireview">
@@ -693,6 +732,6 @@ html.modal-open, html.modal-open body{overflow:hidden}
   </article>
 </div>
 
-<script src="js/chronicle.js?v=15"></script>
+<script src="js/chronicle.js?v=17"></script>
 </body>
 </html>

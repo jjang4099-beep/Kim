@@ -41,6 +41,30 @@
       <path d="M278 120 q8 -12 0 -24 M292 124 q8 -12 0 -24" stroke="#FFFFFF" stroke-width="3" fill="none" opacity=".8"/>`),
   };
 
+  /* 여행 사진용 풍경 — 나라 분위기만 살짝 */
+  Object.assign(PHOTO, {
+    torii: svg(`<rect width="400" height="300" fill="#F6E3D8"/><circle cx="300" cy="80" r="30" fill="#F2B9A6"/>
+      <path d="M0 240 Q200 200 400 240 V300 H0Z" fill="#B9C9A7"/>
+      <rect x="120" y="110" width="160" height="16" rx="3" fill="#C8412E"/><rect x="110" y="96" width="180" height="14" rx="4" fill="#A83424"/>
+      <rect x="140" y="126" width="14" height="120" fill="#C8412E"/><rect x="246" y="126" width="14" height="120" fill="#C8412E"/>
+      <rect x="135" y="150" width="130" height="10" fill="#A83424"/>`),
+    kyotoStreet: svg(`<rect width="400" height="300" fill="#E9E2D6"/><rect y="210" width="400" height="90" fill="#9C8F7E"/>
+      <rect x="30" y="110" width="120" height="100" fill="#6E4F3A"/><path d="M20 115 L90 70 L160 115Z" fill="#3E3A39"/>
+      <rect x="220" y="120" width="140" height="90" fill="#7A5A44"/><path d="M210 125 L290 80 L370 125Z" fill="#3E3A39"/>
+      <circle cx="90" cy="150" r="10" fill="#F2C14E"/><circle cx="290" cy="160" r="10" fill="#F2C14E"/>`),
+    beach: svg(`<rect width="400" height="300" fill="#CDEBF5"/><rect y="150" width="400" height="80" fill="#57B5CF"/>
+      <rect y="150" width="400" height="6" fill="#E7F7FB" opacity=".7"/><path d="M0 230 Q200 210 400 230 V300 H0Z" fill="#F3DFB5"/>
+      <path d="M300 230 q-6 -70 10 -110" stroke="#7A5A3A" stroke-width="8" fill="none"/>
+      <path d="M310 120 q-40 -10 -60 10 M310 120 q30 -20 60 0 M310 120 q-20 -30 -50 -30 M310 120 q20 -30 45 -25" stroke="#4E9A5B" stroke-width="10" fill="none" stroke-linecap="round"/>`),
+    eiffel: svg(`<rect width="400" height="300" fill="#DCE3F2"/><circle cx="90" cy="70" r="24" fill="#F7E7C6"/>
+      <path d="M0 250 H400 V300 H0Z" fill="#B7BFA8"/>
+      <path d="M200 40 L186 130 L170 200 L150 250 H175 Q200 215 225 250 H250 L230 200 L214 130Z" fill="#6B6F7A"/>
+      <rect x="176" y="128" width="48" height="8" fill="#555A64"/><rect x="164" y="196" width="72" height="9" fill="#555A64"/>`),
+    hallasan: svg(`<rect width="400" height="300" fill="#D9EEF7"/><path d="M0 220 Q140 110 200 110 T400 220 V300 H0Z" fill="#7BA88A"/>
+      <path d="M170 116 Q200 104 230 116 L220 124 Q200 118 180 124Z" fill="#EEF4F1"/>
+      <path d="M0 250 Q120 230 240 250 T400 245 V300 H0Z" fill="#E7C66B"/>`),
+  });
+
   const life = (id, offset, hh, text, photos, extra = {}) => ({
     id, contentType: 'life', domain: 'life', mode: 'PROFESSIONAL', ...at(offset, hh),
     title: text || '라이프 기록', text, life: { photos, ...extra },
@@ -55,7 +79,35 @@
     id, type: 'humanities', domain, mode, ...at(offset, hh), title: feedData.title || '', feedData,
   });
 
+  /* 여행 — life.place는 GPS 파이프라인이 채울 자리(나라 코드는 world-atlas의 ISO 숫자 id) */
+  const PLACE = {
+    JP: { iso: '392', code: 'JP', name: '일본', flag: '🇯🇵' },
+    VN: { iso: '704', code: 'VN', name: '베트남', flag: '🇻🇳' },
+    FR: { iso: '250', code: 'FR', name: '프랑스', flag: '🇫🇷' },
+    KR: { iso: '410', code: 'KR', name: '대한민국', flag: '🇰🇷' },
+  };
+  const trip = (id, offset, hh, text, photos, place, city, extra = {}) =>
+    life(id, offset, hh, text, photos, { place: { ...PLACE[place], city }, location: city, ...extra });
+
+  const TRIPS = [
+    /* 파리 — 약 다섯 달 전 */
+    trip('t-fr1', 160, 11, '에펠탑은 사진보다 훨씬 컸다. 올라가는 줄만 한 시간.', [PHOTO.eiffel], 'FR', '파리', { mood: '🤩' }),
+    trip('t-fr2', 159, 15, '오르세 미술관. 고흐 방 앞에서 한참 서 있었다.', [PHOTO.morningHill], 'FR', '파리', { mood: '🎨' }),
+    trip('t-fr3', 157, 20, '마지막 밤, 센강 산책. 또 오자.', [PHOTO.riverSunset], 'FR', '파리', { mood: '🥲' }),
+    /* 교토 — 약 석 달 전 */
+    trip('t-jp1', 86, 9, '후시미 이나리. 새벽에 오니까 사람이 거의 없다.', [PHOTO.torii, PHOTO.morningHill], 'JP', '교토', { mood: '⛩️', weather: '맑음 · 27°' }),
+    trip('t-jp2', 85, 18, '기온 거리 저녁. 등불 켜지는 시간이 제일 예쁘다.', [PHOTO.kyotoStreet], 'JP', '교토', { mood: '🏮' }),
+    trip('t-jp3', 83, 13, '오사카로 넘어와서 타코야키 세 접시.', [PHOTO.pasta], 'JP', '오사카', { mood: '😋' }),
+    /* 다낭 — 약 한 달 반 전 */
+    trip('t-vn1', 45, 16, '미케 비치. 물 색이 말도 안 된다.', [PHOTO.beach], 'VN', '다낭', { mood: '🏖️', weather: '맑음 · 31°' }),
+    trip('t-vn2', 44, 10, '호이안 올드타운 등불 거리.', [PHOTO.kyotoStreet, PHOTO.riverSunset], 'VN', '호이안', { mood: '✨' }),
+    /* 제주 — 약 3주 전 */
+    trip('t-kr1', 24, 12, '한라산 윗세오름까지. 다리가 후들후들.', [PHOTO.hallasan], 'KR', '제주', { mood: '⛰️' }),
+    trip('t-kr2', 23, 17, '협재 바다 보면서 귤 까먹기.', [PHOTO.beach], 'KR', '제주', { mood: '🍊' }),
+  ];
+
   window.CHRONICLE_DEMO_ITEMS = [
+    ...TRIPS,
     /* ── 오늘 ── */
     life('d-l1', 0, 19, '퇴근길 한강. 하늘이 이렇게 분홍색인 건 오랜만이다.\n\n요즘 계속 야근이라 해 지는 걸 본 게 한 달 만인 것 같다. 벤치에 앉아서 20분쯤 그냥 멍하니 있었는데, 그게 오늘 제일 좋았던 시간. 내일은 조금 일찍 나와서 걸어야지.',
       [PHOTO.riverSunset, PHOTO.morningHill], { location: '여의도 한강공원', mood: '🙂', weather: '맑음 · 21°' }),

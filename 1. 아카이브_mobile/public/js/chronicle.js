@@ -125,7 +125,7 @@
       /* 데모 데이터 스크립트는 이때만 불러온다 — 평소에는 한 바이트도 받지 않게 */
       await new Promise((ok, bad) => {
         const s = document.createElement('script');
-        s.src = 'js/chronicle_demo.js?v=2'; s.onload = ok; s.onerror = () => bad(new Error('샘플 데이터를 불러오지 못했어요'));
+        s.src = 'js/chronicle_demo.js?v=3'; s.onload = ok; s.onerror = () => bad(new Error('샘플 데이터를 불러오지 못했어요'));
         document.head.appendChild(s);
       }).catch(e => fail(e.message));
       $('demoBanner').hidden = false;
@@ -742,14 +742,17 @@
   }
 
   let _lastFocus = null;
-  function openDetail(id) {
-    const it = state.raw.find(x => String(x.id) === String(id));
-    if (!it) return;
-    _lastFocus = document.activeElement;
-    $('modalBody').innerHTML = detailHTML(it);
+  function showModal(html) {
+    if ($('modal').hidden) _lastFocus = document.activeElement;
+    $('modalBody').innerHTML = html;
     $('modal').hidden = false;
     document.documentElement.classList.add('modal-open');
     $('modalBody').scrollTop = 0;
+  }
+  function openDetail(id) {
+    const it = state.raw.find(x => String(x.id) === String(id));
+    if (!it) return;
+    showModal(detailHTML(it));
     /* 사진 넘기기 */
     const g = $('modalBody').querySelector('.md__gallery');
     if (g && Number(g.dataset.n) > 1) {
@@ -943,6 +946,7 @@
 
     renderTally();
     renderScenes();
+    renderTravel();
 
     /* 월별 줄 */
     const maxM = Math.max(1, ...byMonth);
@@ -1017,6 +1021,119 @@
       select(b.dataset.key);
       $('day').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }));
+  }
+
+  /* ── 올해 다녀온 곳 ──────────────────────────
+     추억 기록의 life.place(나라·도시 — 공유할 때 사진 GPS로 채울 자리)를 모아 여행 단위로 묶고,
+     세계 지도에 칠한다. 지도 데이터(world-atlas 110m)와 d3-geo는 여행이 있을 때만 불러온다. */
+  const shortMD = k => `${Number(k.slice(5, 7))}/${Number(k.slice(8, 10))}`;
+  function tripsOf() {
+    const lifes = yearRaw().filter(it => isLife(it) && it.life?.place?.code)
+      .sort((a, b) => dateKey(a).localeCompare(dateKey(b)) || String(a.createdAt).localeCompare(String(b.createdAt)));
+    const trips = [];
+    for (const it of lifes) {
+      const k = dateKey(it), p = it.life.place, last = trips[trips.length - 1];
+      const gap = last ? (new Date(k) - new Date(last.to)) / 86400000 : Infinity;
+      if (last && last.place.code === p.code && gap <= 2) {   // 같은 나라, 이틀 이내면 같은 여행
+        last.items.push(it); last.to = k; if (p.city) last.cities.add(p.city);
+      } else {
+        trips.push({ place: p, from: k, to: k, items: [it], cities: new Set(p.city ? [p.city] : []) });
+      }
+    }
+    trips.forEach(t => {
+      t.days = Math.round((new Date(t.to) - new Date(t.from)) / 86400000) + 1;
+      t.photos = t.items.reduce((n, it) => n + (it.life.photos || []).length, 0);
+      t.label = t.from === t.to ? shortMD(t.from) : `${shortMD(t.from)}–${shortMD(t.to)}`;
+    });
+    return trips;
+  }
+
+  let _geo = null;   // 지도 라이브러리·데이터는 한 번만
+  function loadGeo() {
+    if (_geo) return _geo;
+    const js = src => new Promise((ok, bad) => { const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = bad; document.head.appendChild(s); });
+    const CDN = 'https://cdn.jsdelivr.net/npm/';
+    _geo = js(CDN + 'd3-array@3.2.4/dist/d3-array.min.js')
+      .then(() => js(CDN + 'd3-geo@3.1.1/dist/d3-geo.min.js'))
+      .then(() => js(CDN + 'topojson-client@3.1.0/dist/topojson-client.min.js'))
+      .then(() => fetch(CDN + 'world-atlas@2.0.2/countries-110m.json'))
+      .then(r => r.json())
+      .then(topo => window.topojson.feature(topo, topo.objects.countries).features.filter(f => f.id !== '010'))  // 남극 제외
+      .catch(e => { _geo = null; throw e; });
+    return _geo;
+  }
+
+  function renderTravel() {
+    const trips = tripsOf();
+    $('travelBox').hidden = !trips.length;
+    if (!trips.length) return;
+    const countries = new Set(trips.map(t => t.place.code));
+    const days = new Set(trips.flatMap(t => t.items.map(dateKey)));
+    $('travelSum').textContent = `${countries.size}개국 · 여행 ${trips.length}번 · 기록한 날 ${days.size}일`;
+
+    $('travelTrips').innerHTML = trips.slice().reverse().map((t, i) => `<button type="button" class="trip" data-t="${trips.length - 1 - i}">
+        <span class="flag">${esc(t.place.flag || '📍')}</span>
+        <span><b>${esc(t.place.name)}</b>${t.cities.size ? ` · ${esc([...t.cities].join('·'))}` : ''}</span>
+        <small>${t.label} · 사진 ${t.photos}장</small></button>`).join('');
+    $('travelTrips').querySelectorAll('.trip').forEach(b => b.addEventListener('click', () => openAlbum(trips[b.dataset.t])));
+
+    $('travelMap').innerHTML = '<span class="muted">지도를 불러오는 중…</span>';
+    loadGeo().then(features => drawMap(features, trips))
+      .catch(() => { $('travelMap').innerHTML = '<span class="muted">지도를 불러오지 못했어요 — 아래 여행 목록은 그대로 볼 수 있어요.</span>'; });
+  }
+
+  function drawMap(features, trips) {
+    const d3 = window.d3, W = 960, H = 480;
+    const proj = d3.geoNaturalEarth1().fitExtent([[8, 8], [W - 8, H - 8]], { type: 'FeatureCollection', features });
+    const path = d3.geoPath(proj);
+    const byIso = {}; trips.forEach(t => (byIso[t.place.iso] = byIso[t.place.iso] || []).push(t));
+    const lands = features.map(f => `<path class="land${byIso[f.id] ? ' visited' : ''}" data-iso="${f.id}" d="${path(f)}"><title>${byIso[f.id] ? esc(byIso[f.id][0].place.name) : ''}</title></path>`).join('');
+    /* 핀 — 나라 무게중심. 같은 나라를 여러 번 갔으면 날짜 라벨을 아래로 쌓는다.
+       한국·일본처럼 가까운 나라는 라벨이 겹치므로, 이미 놓인 라벨과 겹치면 아래로 한 줄씩 민다.
+       국기 이모지는 윈도우에서 글자(KR)로 보여 지도에선 빼고 날짜만(국기는 아래 여행 칩에). */
+    const placed = [];
+    const LINE = 13, CH = 6.4;
+    const spot = (x, y, text) => {
+      const w = text.length * CH;
+      let yy = y;
+      while (placed.some(r => x < r.x + r.w && x + w > r.x && Math.abs(yy - r.y) < LINE)) yy += LINE;
+      placed.push({ x, y: yy, w });
+      return yy;
+    };
+    const pinList = Object.entries(byIso).map(([iso, ts]) => {
+      const f = features.find(x => x.id === iso); if (!f) return null;
+      const [x, y] = proj(d3.geoCentroid(f));
+      return { iso, ts, x, y };
+    }).filter(Boolean).sort((a, b) => a.y - b.y);
+    const pins = pinList.map(({ iso, ts, x, y }) => {
+      const labels = ts.map(t => { const yy = spot(x + 9, y + 4, t.label); return `<text x="${x + 9}" y="${yy}">${t.label}</text>`; }).join('');
+      return `<g class="pin" data-iso="${iso}"><circle cx="${x}" cy="${y}" r="5.5"/>${labels}</g>`;
+    }).join('');
+    $('travelMap').innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="올해 다녀온 나라 지도">${lands}${pins}</svg>`;
+    const openIso = iso => { const ts = byIso[iso]; if (ts) openAlbum(ts[ts.length - 1]); };   // 여러 번이면 가장 최근 여행
+    $('travelMap').querySelectorAll('.land.visited, .pin').forEach(el2 => el2.addEventListener('click', () => openIso(el2.dataset.iso)));
+  }
+
+  /* 여행 앨범 — 날짜별 사진 격자 + 그날의 글. 사진을 누르면 그 기록의 상세(크게 넘겨 보기) */
+  function openAlbum(t) {
+    const byDay = {};
+    t.items.forEach(it => (byDay[dateKey(it)] = byDay[dateKey(it)] || []).push(it));
+    const html = `<header class="md__head">
+        <div class="md__kind">${esc(t.place.flag || '📍')} 여행</div>
+        <h3 class="md__title">${esc(t.place.name)}${t.cities.size ? ` · ${esc([...t.cities].join(' · '))}` : ''}</h3>
+        <p class="md__sub">${shortDate(t.from)}${t.from !== t.to ? ` – ${shortDate(t.to)}` : ''} · ${t.days}일 · 사진 ${t.photos}장</p>
+      </header>` + Object.keys(byDay).sort().map(k => {
+        const dd = new Date(k + 'T00:00:00');
+        const list = byDay[k];
+        return `<div class="album__day"><h4>${shortDate(k)} ${DOW[dd.getDay()]}요일</h4>
+            <div class="album__grid">${list.flatMap(it => (it.life.photos || []).map(p =>
+              `<button type="button" data-id="${esc(it.id)}"><img src="${esc(p)}" alt="" loading="lazy" onerror="this.parentNode.remove()"/></button>`)).join('')}</div>
+            ${list.filter(lifeCaption).map(it => `<p class="album__note">${esc(lifeCaption(it))}<small>${esc([it.life.place?.city, it.life.mood].filter(Boolean).join(' · '))}</small></p>`).join('')}
+          </div>`;
+      }).join('');
+    showModal(html);
+    $('modalBody').querySelectorAll('.album__grid button').forEach(b => b.addEventListener('click', () => openDetail(b.dataset.id)));
+    $('modalClose').focus();
   }
 
   /* ── AI 총평 ─────────────────────────────── */

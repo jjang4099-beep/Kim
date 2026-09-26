@@ -96,7 +96,8 @@
    "theme": "american_tv",
    "example": "You got the job at Google? Get out of here — that's incredible!",
    "dialogue": "A: I ran into the CEO at the coffee shop and we ended up talking for 45 minutes. He wants to schedule a proper meeting.\nB: Get out of here! How did that even happen?\nA: I was sitting next to him and recognized him from a podcast interview.\nB: That's unbelievable. What did you talk about?",
-   "nuance": "직역하면 \"여기서 나가\"지만 실제로 나가라는 뜻으로 쓰이는 일은 거의 없습니다. 눈을 크게 뜨고 웃으면서 말하면 \"말도 안 돼\", 낮고 단호하게 말하면 진짜로 나가라는 뜻이 됩니다. 톤이 전부인 표현이라 친한 사이에서만 쓰세요. 처음 만난 사람이나 상사에게 쓰면 오해받기 쉽습니다."
+   "nuance": "직역하면 \"여기서 나가\"지만 실제로 나가라는 뜻으로 쓰이는 일은 거의 없습니다. 눈을 크게 뜨고 웃으면서 말하면 \"말도 안 돼\", 낮고 단호하게 말하면 진짜로 나가라는 뜻이 됩니다. 톤이 전부인 표현이라 친한 사이에서만 쓰세요. 처음 만난 사람이나 상사에게 쓰면 오해받기 쉽습니다.",
+   "example_ko": "구글에 붙었다고? 말도 안 돼 — 대단하다!"
   },
   {
    "id": "EN_417",
@@ -106,7 +107,8 @@
    "theme": "american_tv",
    "example": "Come on, you can do this — you've prepared for this presentation for two weeks.",
    "dialogue": "A: I don't think I should apply. I'm probably not qualified enough.\nB: Come on! You have five years of experience and you know this industry better than most. Just apply.\nA: But the job description says—\nB: Job descriptions are wishlists. Come on. Apply.",
-   "nuance": "억양 하나로 뜻이 갈립니다. 끝을 올리면 재촉(\"어서요!\"), 길게 늘이면 불신(\"에이 설마\"), 짧고 세게 끊으면 짜증(\"아 진짜\")입니다. 그래서 미드에서 가장 자주 들리는 두 단어이기도 합니다. 문장만 외우지 말고 어떤 톤이었는지 같이 기억해두면 훨씬 잘 쓰게 됩니다."
+   "nuance": "억양 하나로 뜻이 갈립니다. 끝을 올리면 재촉(\"어서요!\"), 길게 늘이면 불신(\"에이 설마\"), 짧고 세게 끊으면 짜증(\"아 진짜\")입니다. 그래서 미드에서 가장 자주 들리는 두 단어이기도 합니다. 문장만 외우지 말고 어떤 톤이었는지 같이 기억해두면 훨씬 잘 쓰게 됩니다.",
+   "example_ko": "에이, 넌 할 수 있어 — 이 발표 2주나 준비했잖아."
   },
   {
    "id": "EN_418",
@@ -116,7 +118,8 @@
    "theme": "american_tv",
    "example": "A: I'm so sorry I sent the wrong file.\nB: Honestly, it's not a big deal — I hadn't opened it yet.",
    "dialogue": "A: I feel terrible about missing the team dinner.\nB: It's really not a big deal. These things happen. We'll do another one next month.\nA: I should have let you know earlier.\nB: You sent a message as soon as you knew. That's all anyone can ask.",
-   "nuance": "상대가 미안해하거나 과하게 걱정할 때 풀어주는 말입니다. 주의할 점은 **내 잘못을 두고 내가 쓰면** 안 된다는 것 — \"It's not a big deal\"이라고 하면 책임을 가볍게 넘긴다는 인상을 줍니다. 남의 부담은 덜어주고, 내 실수는 인정하는 쪽이 안전합니다."
+   "nuance": "상대가 미안해하거나 과하게 걱정할 때 풀어주는 말입니다. 주의할 점은 **내 잘못을 두고 내가 쓰면** 안 된다는 것 — \"It's not a big deal\"이라고 하면 책임을 가볍게 넘긴다는 인상을 줍니다. 남의 부담은 덜어주고, 내 실수는 인정하는 쪽이 안전합니다.",
+   "example_ko": "A: 파일을 잘못 보내서 정말 죄송해요. B: 솔직히 별일 아니에요 — 아직 열어 보지도 않았어요."
   },
   {
    "id": "EN_419",
@@ -126,7 +129,8 @@
    "theme": "american_tv",
    "example": "They finally promoted her to director? It's about time — she's been doing director-level work for two years.",
    "dialogue": "A: We finally got approval for the budget increase.\nB: It's about time! We submitted that request four months ago.\nA: I know. Better late than never.\nB: Now let's actually use it before they change their minds.",
-   "nuance": "순수한 축하가 아니라 **기다림에 대한 가벼운 불평**이 섞여 있습니다. \"드디어 오셨네요\"에 \"왜 이제 와요\"가 묻어 있는 느낌이라, 웃으며 말하면 농담이고 무표정하게 말하면 진짜 타박이 됩니다. 정말 축하만 하고 싶다면 \"Finally!\"나 \"Congratulations\"가 안전합니다."
+   "nuance": "순수한 축하가 아니라 **기다림에 대한 가벼운 불평**이 섞여 있습니다. \"드디어 오셨네요\"에 \"왜 이제 와요\"가 묻어 있는 느낌이라, 웃으며 말하면 농담이고 무표정하게 말하면 진짜 타박이 됩니다. 정말 축하만 하고 싶다면 \"Finally!\"나 \"Congratulations\"가 안전합니다.",
+   "example_ko": "드디어 그녀를 이사로 승진시켰다고? 진작 그랬어야지 — 2년째 이사급 일을 해 왔는데."
   },
   {
    "id": "EN_420",
@@ -136,7 +140,8 @@
    "theme": "american_tv",
    "example": "You're thinking about starting your own business? Go for it — you've been talking about this for years.",
    "dialogue": "A: I want to ask for a raise but I'm not sure if the timing is right.\nB: You've crushed every target for three quarters straight. If not now, when? Go for it.\nA: What if they say no?\nB: Then you ask what it would take, and you have a clear target. You win either way.",
-   "nuance": "짧지만 강한 응원입니다. 동료 사이에서는 \"한번 해봐\", 상사가 부하에게 쓰면 **\"진행해도 좋다\"는 승인**의 뜻이 됩니다. 회의에서 아이디어를 낸 뒤 상사가 \"Go for it\"이라고 하면 허락이 떨어진 것이니 바로 움직이면 됩니다."
+   "nuance": "짧지만 강한 응원입니다. 동료 사이에서는 \"한번 해봐\", 상사가 부하에게 쓰면 **\"진행해도 좋다\"는 승인**의 뜻이 됩니다. 회의에서 아이디어를 낸 뒤 상사가 \"Go for it\"이라고 하면 허락이 떨어진 것이니 바로 움직이면 됩니다.",
+   "example_ko": "창업을 고민 중이라고? 해 봐 — 몇 년째 그 얘기만 했잖아."
   },
   {
    "id": "EN_422",
@@ -146,7 +151,8 @@
    "theme": "american_tv",
    "example": "A: They moved the deadline up by a week. Again.\nB: Seriously?",
    "dialogue": "A: The client wants us to redo the entire branding direction two days before the final presentation.\nB: Seriously? After we incorporated all their previous feedback?\nA: I know.\nB: Okay. Seriously, though — we need to get on a call with them today and manage this before it becomes a full rewrite.",
-   "nuance": "끝을 올리면 순수한 놀람, 평평하게 내리면 \"어이없다\"는 짜증입니다. 특히 같은 대화에서 두 번 이상 반복하면 상대를 몰아붙이는 인상을 주니 조심하세요. 놀람만 전하고 싶을 때는 \"Really?\"가 더 중립적입니다."
+   "nuance": "끝을 올리면 순수한 놀람, 평평하게 내리면 \"어이없다\"는 짜증입니다. 특히 같은 대화에서 두 번 이상 반복하면 상대를 몰아붙이는 인상을 주니 조심하세요. 놀람만 전하고 싶을 때는 \"Really?\"가 더 중립적입니다.",
+   "example_ko": "A: 마감을 일주일 또 당겼대요. 또요. B: 진짜요?"
   },
   {
    "id": "EN_423",
@@ -156,7 +162,8 @@
    "theme": "american_tv",
    "example": "A: I can't stay late tonight — I have a commitment I can't cancel.\nB: Fair enough. Can you get me the draft first thing tomorrow?",
    "dialogue": "A: I think we should push back on the deadline. We can't do quality work under this timeline.\nB: Fair enough — let me take it to the client and see what flexibility they have.\nA: If they say no, we can still discuss what scope to cut.\nB: Good thinking. I'll frame it as a quality conversation, not a capacity problem.",
-   "nuance": "완전한 동의가 아니라 **\"더 따지지 않겠다\"**에 가깝습니다. 속으로는 동의하지 않아도 상대 논리에 빈틈이 없을 때 물러서는 말이라, 협상이나 토론에서 이 말이 나오면 그 주제는 거기서 접힌 것으로 보면 됩니다. 진짜 동의는 \"I agree\"입니다."
+   "nuance": "완전한 동의가 아니라 **\"더 따지지 않겠다\"**에 가깝습니다. 속으로는 동의하지 않아도 상대 논리에 빈틈이 없을 때 물러서는 말이라, 협상이나 토론에서 이 말이 나오면 그 주제는 거기서 접힌 것으로 보면 됩니다. 진짜 동의는 \"I agree\"입니다.",
+   "example_ko": "A: 오늘은 늦게까지 못 있어요 — 취소할 수 없는 약속이 있어서요. B: 그럴 만하네요. 내일 아침 일찍 초안만 먼저 줄 수 있어요?"
   },
   {
    "id": "EN_424",
@@ -166,7 +173,8 @@
    "theme": "american_tv",
    "example": "Cut it out — we've been going back and forth on this for an hour. Let's just make a decision.",
    "dialogue": "A: Oh come on, you always do this — you never commit to a direction.\nB: Cut it out. That's not fair and you know it. Let's focus on the actual problem.\nA: You're right. I'm sorry. I'm just frustrated.\nB: So am I. Let's channel that into solving this.",
-   "nuance": "친한 사이나 가족·아이에게 쓰는 말입니다. 직장에서 동료에게 쓰면 꽤 세게 들리니, 회의에서는 \"Let's move on\"이나 \"Can we park that?\"으로 돌려 말하는 편이 낫습니다. 장난을 말릴 때가 가장 자연스러운 자리입니다."
+   "nuance": "친한 사이나 가족·아이에게 쓰는 말입니다. 직장에서 동료에게 쓰면 꽤 세게 들리니, 회의에서는 \"Let's move on\"이나 \"Can we park that?\"으로 돌려 말하는 편이 낫습니다. 장난을 말릴 때가 가장 자연스러운 자리입니다.",
+   "example_ko": "그만 좀 해요 — 이걸로 한 시간째 왔다 갔다 하고 있잖아요. 그냥 결정합시다."
   },
   {
    "id": "EN_425",
@@ -176,7 +184,8 @@
    "theme": "american_tv",
    "example": "You look stressed — what's going on?",
    "dialogue": "A: Hey, what's going on? I heard there was some tension in the team meeting.\nB: It got a bit heated. Two people have completely different visions for where the product should go.\nA: Has it been building for a while?\nB: Yeah, this was the first time it came out in the open though.",
-   "nuance": "같은 문장이 상황에 따라 인사도 되고 추궁도 됩니다. 밝게 던지면 \"무슨 일 있어?\"라는 안부이고, 어수선한 상황에 들어서며 낮게 말하면 \"이게 무슨 일이야\"라는 문책이 됩니다. 친구끼리는 \"What's up?\"이 더 가볍습니다."
+   "nuance": "같은 문장이 상황에 따라 인사도 되고 추궁도 됩니다. 밝게 던지면 \"무슨 일 있어?\"라는 안부이고, 어수선한 상황에 들어서며 낮게 말하면 \"이게 무슨 일이야\"라는 문책이 됩니다. 친구끼리는 \"What's up?\"이 더 가볍습니다.",
+   "example_ko": "스트레스받아 보이네 — 무슨 일 있어?"
   },
   {
    "id": "EN_426",
@@ -186,7 +195,8 @@
    "theme": "american_tv",
    "example": "You negotiated the contract down by 20%? Way to go!",
    "dialogue": "A: I finally finished the certification exam. I passed.\nB: Way to go! How long did you study for that?\nA: Three months, every weekend.\nB: It shows. You should be really proud.",
-   "nuance": "진심 어린 칭찬이지만 **반어로도 자주 씁니다.** 누가 실수했을 때 \"Way to go...\"라고 늘여 말하면 \"잘~한다\"는 비꼼이 됩니다. 칭찬으로 쓸 때는 짧고 밝게, 끝을 올려서 말하세요."
+   "nuance": "진심 어린 칭찬이지만 **반어로도 자주 씁니다.** 누가 실수했을 때 \"Way to go...\"라고 늘여 말하면 \"잘~한다\"는 비꼼이 됩니다. 칭찬으로 쓸 때는 짧고 밝게, 끝을 올려서 말하세요.",
+   "example_ko": "계약 금액을 20%나 깎았다고? 잘했어!"
   },
   {
    "id": "EN_427",
@@ -196,7 +206,8 @@
    "theme": "american_tv",
    "example": "Three all-nighters in a row and they've just added more scope. I'm done.",
    "dialogue": "A: They just pushed back the launch date and doubled the deliverables.\nB: I'm done. I genuinely cannot keep doing this.\nA: I hear you. Let's write down everything that's piled up and bring it to management tomorrow.\nB: If nothing changes, I'm seriously considering my options.\nA: That's fair. But let's have the conversation first.",
-   "nuance": "문맥에 따라 정반대가 됩니다. 일을 마치고 \"I'm done\"이면 \"다 끝냈어요\", 지친 상태로 말하면 \"더는 못 하겠어요\"입니다. 오해를 줄이려면 앞에 목적어를 붙여 \"I'm done with the report\"처럼 말하는 습관을 들이면 좋습니다."
+   "nuance": "문맥에 따라 정반대가 됩니다. 일을 마치고 \"I'm done\"이면 \"다 끝냈어요\", 지친 상태로 말하면 \"더는 못 하겠어요\"입니다. 오해를 줄이려면 앞에 목적어를 붙여 \"I'm done with the report\"처럼 말하는 습관을 들이면 좋습니다.",
+   "example_ko": "사흘 연속 밤샘에 이제 범위까지 더 늘렸대. 나 이제 못 해."
   },
   {
    "id": "EN_428",
@@ -206,7 +217,8 @@
    "theme": "american_tv",
    "example": "You said you had news about the merger — spill it!",
    "dialogue": "A: Okay, I have to tell you something but you cannot repeat it.\nB: Oh my god. Spill.\nA: Apparently they're restructuring the whole product team.\nB: Are you serious? Where did you hear this?\nA: Direct from someone on the exec team.",
-   "nuance": "비교적 최근에 퍼진 캐주얼 슬랭입니다. 또래나 친한 사이에서 가십을 재촉할 때 쓰고, 나이 차가 있거나 업무 관계에서 쓰면 가볍게 보일 수 있습니다. 직장에서 같은 뜻으로는 \"What happened?\" 정도가 무난합니다."
+   "nuance": "비교적 최근에 퍼진 캐주얼 슬랭입니다. 또래나 친한 사이에서 가십을 재촉할 때 쓰고, 나이 차가 있거나 업무 관계에서 쓰면 가볍게 보일 수 있습니다. 직장에서 같은 뜻으로는 \"What happened?\" 정도가 무난합니다.",
+   "example_ko": "합병 관련 소식 있다며 — 빨리 털어놔!"
   },
   {
    "id": "EN_429",
@@ -216,7 +228,8 @@
    "theme": "american_tv",
    "example": "Give me a break — you can't expect the entire report rewritten by tomorrow morning.",
    "dialogue": "A: They want you to work through the weekend again.\nB: Give me a break. This is the fourth weekend in a row.\nA: I know. Is there any part of it you can push back on?\nB: I'll tell them I can do half of it and we need to discuss timelines properly.",
-   "nuance": "두 가지로 쓰입니다. 부탁할 때는 \"한 번만 봐주세요\", 어이없을 때는 \"말도 안 되는 소리 하지 마세요\"입니다. 후자가 훨씬 흔하고 꽤 날이 서 있으니, 상대의 주장에 대고 쓸 때는 관계를 생각하고 쓰세요."
+   "nuance": "두 가지로 쓰입니다. 부탁할 때는 \"한 번만 봐주세요\", 어이없을 때는 \"말도 안 되는 소리 하지 마세요\"입니다. 후자가 훨씬 흔하고 꽤 날이 서 있으니, 상대의 주장에 대고 쓸 때는 관계를 생각하고 쓰세요.",
+   "example_ko": "좀 봐줘요 — 보고서 전체를 내일 아침까지 다시 쓰라는 건 말이 안 되잖아요."
   },
   {
    "id": "EN_430",
@@ -226,7 +239,8 @@
    "theme": "american_tv",
    "example": "A: You said we should always prioritize data over intuition, but you just made that call on gut feeling.\nB: Touché.",
    "dialogue": "A: You keep saying we should do more with less, but every new initiative you introduce adds workload.\nB: Touché. That's a legitimate point. I need to be more deliberate about what we stop doing before I propose what to start.\nA: I wasn't trying to be critical.\nB: No, it's a fair observation. Let's actually make a 'stop doing' list.",
-   "nuance": "펜싱에서 상대의 칼이 닿았을 때 외치던 프랑스어가 그대로 영어에 들어온 말입니다. 그래서 \"한 방 먹었다\"는 뉘앙스가 남아 있고, 논쟁 중 상대의 반박이 정확할 때 웃으며 인정하는 자리에 씁니다. 지는 말인데도 쓰는 쪽이 여유 있어 보이는 게 이 표현의 매력입니다."
+   "nuance": "펜싱에서 상대의 칼이 닿았을 때 외치던 프랑스어가 그대로 영어에 들어온 말입니다. 그래서 \"한 방 먹었다\"는 뉘앙스가 남아 있고, 논쟁 중 상대의 반박이 정확할 때 웃으며 인정하는 자리에 씁니다. 지는 말인데도 쓰는 쪽이 여유 있어 보이는 게 이 표현의 매력입니다.",
+   "example_ko": "A: 항상 직감보다 데이터를 우선해야 한다더니, 방금은 감으로 결정하셨네요. B: 한 방 먹었네요."
   },
   {
    "id": "EN_431",
@@ -236,7 +250,8 @@
    "theme": "american_tv",
    "example": "They changed the requirements the week before launch? That figures.",
    "dialogue": "A: The vendor's raising their rates again.\nB: That figures. They do this every time we get locked into a multi-year contract.\nA: So what's the play?\nB: We start exploring alternatives now, before renewal. Let's not be in this position again.",
-   "nuance": "체념 섞인 말입니다. 좋은 일에는 거의 쓰지 않고, **예상했던 나쁜 일**이 실제로 벌어졌을 때 한숨처럼 나옵니다. \"Of course\"도 비슷하게 쓰이지만 That figures 쪽이 더 담담하고 지쳐 있는 느낌입니다."
+   "nuance": "체념 섞인 말입니다. 좋은 일에는 거의 쓰지 않고, **예상했던 나쁜 일**이 실제로 벌어졌을 때 한숨처럼 나옵니다. \"Of course\"도 비슷하게 쓰이지만 That figures 쪽이 더 담담하고 지쳐 있는 느낌입니다.",
+   "example_ko": "출시 일주일 전에 요구 사항을 바꿨다고? 그럴 줄 알았어."
   },
   {
    "id": "EN_432",
@@ -246,7 +261,8 @@
    "theme": "american_tv",
    "example": "You've been short with everyone all morning — what's your deal?",
    "dialogue": "A: What's your deal today? You've been dismissing every idea before anyone finishes their sentence.\nB: Sorry, I got some bad news this morning and I'm letting it bleed into work.\nA: Do you need a few minutes?\nB: No, I'm okay. Let me reset. Go ahead with the proposal.",
-   "nuance": "궁금해서 묻는 것처럼 보이지만 실제로는 **꽤 공격적**입니다. \"너 왜 그러는 건데?\"에 가까워서 상대가 방어적으로 나오기 쉽습니다. 정말 걱정돼서 묻는 거라면 \"Is everything okay?\"가 훨씬 안전합니다."
+   "nuance": "궁금해서 묻는 것처럼 보이지만 실제로는 **꽤 공격적**입니다. \"너 왜 그러는 건데?\"에 가까워서 상대가 방어적으로 나오기 쉽습니다. 정말 걱정돼서 묻는 거라면 \"Is everything okay?\"가 훨씬 안전합니다.",
+   "example_ko": "오전 내내 모두한테 퉁명스럽던데 — 너 대체 왜 그래?"
   },
   {
    "id": "EN_433",
@@ -256,7 +272,8 @@
    "theme": "american_tv",
    "example": "A: He showed up to the all-hands in a full suit while everyone else was in hoodies.\nB: I'm dead.",
    "dialogue": "A: Did you see the email the CEO accidentally sent to the whole company instead of just his assistant?\nB: I'm dying — he literally described every board member by their worst habit.\nA: Apparently he's been working on it for months.\nB: That's the best accidental transparency I've ever seen.",
-   "nuance": "인터넷과 젊은 층에서 퍼진 과장 표현으로, 웃겨서 \"죽겠다\"는 뜻입니다. 문자·메신저에서 특히 많이 쓰고 말로도 씁니다. 업무 대화에서는 피하고, 나이 지긋한 상대에게는 뜻이 안 통할 수도 있습니다."
+   "nuance": "인터넷과 젊은 층에서 퍼진 과장 표현으로, 웃겨서 \"죽겠다\"는 뜻입니다. 문자·메신저에서 특히 많이 쓰고 말로도 씁니다. 업무 대화에서는 피하고, 나이 지긋한 상대에게는 뜻이 안 통할 수도 있습니다.",
+   "example_ko": "A: 다들 후드티 입고 왔는데 그 사람만 정장 풀세트로 전체 회의에 나타났어. B: 아 진짜 웃겨 죽겠다."
   },
   {
    "id": "EN_434",
@@ -266,7 +283,8 @@
    "theme": "american_tv",
    "example": "How did the client call go? I've been thinking about you all morning.",
    "dialogue": "A: How did the pitch go?\nB: Better than I expected, honestly. They asked a lot of tough questions but I think that means they're actually interested.\nA: What was the vibe at the end?\nB: They said they'd follow up by Thursday. When they give a specific day, that's usually a good sign.",
-   "nuance": "면접·발표·병원처럼 결과가 궁금한 일 뒤에 던지는 가장 무난한 질문입니다. 상대가 잘 안 됐을 수도 있으니 톤을 가볍게 유지하는 게 좋고, 이미 잘된 걸 아는 상황이라면 \"How'd it go?\"보다 \"Congrats!\"가 낫습니다."
+   "nuance": "면접·발표·병원처럼 결과가 궁금한 일 뒤에 던지는 가장 무난한 질문입니다. 상대가 잘 안 됐을 수도 있으니 톤을 가볍게 유지하는 게 좋고, 이미 잘된 걸 아는 상황이라면 \"How'd it go?\"보다 \"Congrats!\"가 낫습니다.",
+   "example_ko": "고객 통화 어떻게 됐어요? 아침 내내 신경 쓰였어요."
   },
   {
    "id": "EN_435",
@@ -276,7 +294,8 @@
    "theme": "american_tv",
    "example": "What's the deal with the new approval process? It used to take a day, now it takes two weeks.",
    "dialogue": "A: What's the deal with the new seating policy? Nobody's been told anything officially.\nB: From what I heard, they're trying to encourage cross-team collaboration by mixing departments.\nA: That would've been nice to know before everyone started getting territorial.\nB: Agree. The communication on this one has been poor.",
-   "nuance": "단순한 궁금증부터 불만까지 폭이 넓습니다. \"What's the deal with this printer?\"처럼 물건에 쓰면 가벼운 짜증이고, 사람에게 쓰면 따지는 느낌이 강해집니다. 사람을 주어로 쓸 때는 특히 조심하세요."
+   "nuance": "단순한 궁금증부터 불만까지 폭이 넓습니다. \"What's the deal with this printer?\"처럼 물건에 쓰면 가벼운 짜증이고, 사람에게 쓰면 따지는 느낌이 강해집니다. 사람을 주어로 쓸 때는 특히 조심하세요.",
+   "example_ko": "새 결재 절차는 대체 왜 그런 거예요? 예전엔 하루면 됐는데 이제 2주나 걸려요."
   },
   {
    "id": "EN_436",
@@ -286,7 +305,8 @@
    "theme": "american_tv",
    "example": "I'm completely with you on that — we've been spreading resources too thin for too long.",
    "dialogue": "A: I think we're overcomplicating this. The simplest solution is usually the right one.\nB: I'm with you on that a hundred percent. We keep adding layers trying to look thorough, but we're just creating confusion.\nA: Exactly. Let's strip this back to three core points.\nB: That's the deck I want to present.",
-   "nuance": "단순한 동의보다 **한 편에 서겠다**는 뉘앙스가 있습니다. 회의에서 누군가 소수 의견을 냈을 때 이 말을 해주면 상대에게 큰 힘이 됩니다. \"I agree\"가 내용에 대한 동의라면, 이쪽은 사람에 대한 지지에 가깝습니다."
+   "nuance": "단순한 동의보다 **한 편에 서겠다**는 뉘앙스가 있습니다. 회의에서 누군가 소수 의견을 냈을 때 이 말을 해주면 상대에게 큰 힘이 됩니다. \"I agree\"가 내용에 대한 동의라면, 이쪽은 사람에 대한 지지에 가깝습니다.",
+   "example_ko": "그 부분은 완전히 동의해요 — 너무 오랫동안 자원을 너무 얇게 나눠 썼어요."
   },
   {
    "id": "EN_437",
@@ -296,7 +316,8 @@
    "theme": "american_tv",
    "example": "I'll buy lunch, you handle the afternoon standup. What do you say?",
    "dialogue": "A: How about this — I draft the proposal, you handle the client relationship side, and we split the commission. What do you say?\nB: I'd want to see the scope of work first before I agree to a split.\nA: Fair. I can have a first draft to you by Wednesday.\nB: Then let's revisit Thursday. If the scope works, I'm in.",
-   "nuance": "제안을 다 말한 뒤 공을 상대에게 넘기는 마무리입니다. \"어때요?\"라고 가볍게 묻는 것 같지만 실제로는 **지금 답을 달라**는 압박이 들어 있습니다. 생각할 시간을 주고 싶다면 \"Let me know what you think\"가 낫습니다."
+   "nuance": "제안을 다 말한 뒤 공을 상대에게 넘기는 마무리입니다. \"어때요?\"라고 가볍게 묻는 것 같지만 실제로는 **지금 답을 달라**는 압박이 들어 있습니다. 생각할 시간을 주고 싶다면 \"Let me know what you think\"가 낫습니다.",
+   "example_ko": "점심은 내가 살게, 오후 스탠드업은 네가 맡아. 어때?"
   },
   {
    "id": "EN_438",
@@ -307,7 +328,8 @@
    "example": "You had me at 'four-day work week.'",
    "dialogue": "A: The new role comes with full flexibility — you set your own hours, fully remote, and you pick your own team.\nB: You had me at 'fully remote.' Tell me more.\nA: And the comp package is—\nB: Honestly, after remote and own hours, whatever it is, I'm listening.",
    "dialogue_note": "영화 Jerry Maguire(1996)의 'You had me at hello'에서 유래. 현재는 일상 대화에서 폭넓게 쓰임.",
-   "nuance": "영화 《제리 맥과이어》의 \"You had me at hello\" 대사로 널리 퍼진 표현입니다. 뒷말은 들을 것도 없이 그 한마디에 이미 마음이 넘어갔다는 뜻이라, 설득당했음을 유쾌하게 인정할 때 씁니다. 농담조가 기본이라 진지한 협상 자리에는 어울리지 않습니다."
+   "nuance": "영화 《제리 맥과이어》의 \"You had me at hello\" 대사로 널리 퍼진 표현입니다. 뒷말은 들을 것도 없이 그 한마디에 이미 마음이 넘어갔다는 뜻이라, 설득당했음을 유쾌하게 인정할 때 씁니다. 농담조가 기본이라 진지한 협상 자리에는 어울리지 않습니다.",
+   "example_ko": "\"주 4일 근무\"에서 이미 넘어갔어요."
   },
   {
    "id": "EN_439",
@@ -317,7 +339,8 @@
    "theme": "american_tv",
    "example": "Don't worry about the client call — I've got this.",
    "dialogue": "A: Are you sure you're ready to run this meeting solo?\nB: I've got this. I've been in every planning session and I know this material better than anyone.\nA: Okay. I'm here if you need backup.\nB: Appreciate it. But watch — I've got it covered.",
-   "nuance": "\"내가 맡을게\"라고 책임을 선언하는 말입니다. 도움을 사양할 때도 쓰는데, 이때는 톤이 중요합니다 — 밝게 말하면 \"괜찮아요, 제가 할게요\"지만 딱딱하게 말하면 \"손대지 마세요\"로 들립니다. 혼잣말로 스스로를 다잡을 때도 씁니다."
+   "nuance": "\"내가 맡을게\"라고 책임을 선언하는 말입니다. 도움을 사양할 때도 쓰는데, 이때는 톤이 중요합니다 — 밝게 말하면 \"괜찮아요, 제가 할게요\"지만 딱딱하게 말하면 \"손대지 마세요\"로 들립니다. 혼잣말로 스스로를 다잡을 때도 씁니다.",
+   "example_ko": "고객 통화는 걱정 마요 — 제가 알아서 할게요."
   },
   {
    "id": "EN_440",
@@ -327,7 +350,8 @@
    "theme": "american_tv",
    "example": "Hey, do me a solid and don't mention this to the director before I've had a chance to explain the context.",
    "dialogue": "A: Can you do me a solid?\nB: Depends what it is. Last time you said that you needed me to pretend I'd seen a report I hadn't.\nA: This is way simpler. Just cc me on the vendor emails so I'm in the loop.\nB: That I can do.",
-   "nuance": "\"Do me a favor\"보다 훨씬 캐주얼하고 친밀합니다. 친구 사이에서는 자연스럽지만 상사나 거래처에 쓰면 선을 넘은 것으로 보일 수 있습니다. 업무에서는 \"Could you do me a favor?\"로 격식을 올려 쓰세요."
+   "nuance": "\"Do me a favor\"보다 훨씬 캐주얼하고 친밀합니다. 친구 사이에서는 자연스럽지만 상사나 거래처에 쓰면 선을 넘은 것으로 보일 수 있습니다. 업무에서는 \"Could you do me a favor?\"로 격식을 올려 쓰세요.",
+   "example_ko": "야, 부탁 하나만 들어줘. 내가 맥락을 설명하기 전까지는 이사님한테 이 얘기 하지 마."
   },
   {
    "id": "EN_441",
@@ -337,7 +361,8 @@
    "theme": "american_tv",
    "example": "I'm dead serious — if we don't fix the onboarding flow this quarter, we're going to lose 40% of signups before they ever see the product.",
    "dialogue": "A: You think we should scrap the whole roadmap and start over?\nB: I'm dead serious. I know it sounds drastic but we've been building on a broken foundation for two years.\nA: That's going to be a hard sell to leadership.\nB: It'll be a harder sell when the product fails in eighteen months.",
-   "nuance": "농담으로 들릴까 봐 미리 못 박는 말입니다. 그래서 이 말이 나오면 앞의 내용이 진심이라는 신호이고, 듣는 쪽은 웃음을 거둬야 합니다. \"I'm serious\"보다 한 단계 더 강한 표현입니다."
+   "nuance": "농담으로 들릴까 봐 미리 못 박는 말입니다. 그래서 이 말이 나오면 앞의 내용이 진심이라는 신호이고, 듣는 쪽은 웃음을 거둬야 합니다. \"I'm serious\"보다 한 단계 더 강한 표현입니다.",
+   "example_ko": "진심이에요 — 이번 분기에 온보딩을 못 고치면 가입자의 40%가 제품을 써 보기도 전에 떠날 거예요."
   },
   {
    "id": "EN_442",
@@ -347,7 +372,8 @@
    "theme": "american_tv",
    "example": "A: Thank you so much for covering for me yesterday.\nB: No big deal — I was happy to help.",
    "dialogue": "A: You handled that client crisis completely on your own while I was traveling. That was impressive.\nB: No big deal — I just followed the playbook we built together and used some common sense.\nA: Don't undersell it. You made three good judgment calls under pressure.\nB: Okay, maybe a little big deal.",
-   "nuance": "칭찬이나 감사를 겸손하게 받아넘길 때 가장 많이 씁니다. \"It's not a big deal\"과 뜻은 같지만 이쪽이 더 짧고 가벼워서 툭 던지기 좋습니다. 상대가 크게 고마워할 때 \"No big deal\"로 받으면 자연스럽게 분위기가 풀립니다."
+   "nuance": "칭찬이나 감사를 겸손하게 받아넘길 때 가장 많이 씁니다. \"It's not a big deal\"과 뜻은 같지만 이쪽이 더 짧고 가벼워서 툭 던지기 좋습니다. 상대가 크게 고마워할 때 \"No big deal\"로 받으면 자연스럽게 분위기가 풀립니다.",
+   "example_ko": "A: 어제 대신 맡아 줘서 정말 고마워요. B: 별거 아니에요 — 도울 수 있어서 좋았어요."
   },
   {
    "id": "EN_443",
@@ -357,7 +383,8 @@
    "theme": "american_tv",
    "example": "A: The commute today was absolutely brutal.\nB: You're telling me — I was on the subway for an hour and a half.",
    "dialogue": "A: This client is impossible to please. Every time we make a change, they want something different.\nB: You're telling me. I've been on this account for six months and I don't think they've approved a single deliverable without requesting revisions.\nA: At some point someone needs to have a frank conversation with them.\nB: I think that point is now.",
-   "nuance": "의문문처럼 보이지만 질문이 아닙니다. \"나한테 그 말을 한다고? 내가 더 잘 알지\"라는 뜻으로, **강한 공감**을 표현합니다. 상대의 불평에 맞장구칠 때 쓰고, 억양은 평평하게 내려서 말합니다."
+   "nuance": "의문문처럼 보이지만 질문이 아닙니다. \"나한테 그 말을 한다고? 내가 더 잘 알지\"라는 뜻으로, **강한 공감**을 표현합니다. 상대의 불평에 맞장구칠 때 쓰고, 억양은 평평하게 내려서 말합니다.",
+   "example_ko": "A: 오늘 출근길 진짜 지옥이었어요. B: 누가 아니래요 — 저는 지하철에 한 시간 반 있었어요."
   },
   {
    "id": "EN_444",
@@ -367,7 +394,8 @@
    "theme": "american_tv",
    "example": "A: Can I bring two colleagues to the workshop?\nB: The more the merrier — the more perspectives, the better.",
    "dialogue": "A: Two more people from the data team want to join the brainstorm.\nB: The more the merrier. The problem we're solving touches their work directly anyway.\nA: I'll send them the brief so they come prepared.\nB: Good call. Prepared people make for better sessions.",
-   "nuance": "사람이 늘어나는 걸 반기는 관용구입니다. 초대 자리에서 \"한 명 더 데려가도 돼?\"라는 물음에 대한 정석 답변이라, 이 상황에서 바로 나오면 영어를 아는 사람처럼 들립니다. 음식이나 물건에는 잘 쓰지 않고 주로 사람에 씁니다."
+   "nuance": "사람이 늘어나는 걸 반기는 관용구입니다. 초대 자리에서 \"한 명 더 데려가도 돼?\"라는 물음에 대한 정석 답변이라, 이 상황에서 바로 나오면 영어를 아는 사람처럼 들립니다. 음식이나 물건에는 잘 쓰지 않고 주로 사람에 씁니다.",
+   "example_ko": "A: 워크숍에 동료 두 명 데려가도 돼요? B: 많을수록 좋죠 — 관점이 다양할수록 좋아요."
   },
   {
    "id": "EN_445",
@@ -377,7 +405,8 @@
    "theme": "american_tv",
    "example": "A: Hey, haven't seen you in a while — what are you up to these days?\nB: Mostly heads-down on the new product launch.",
    "dialogue": "A: What are you up to this weekend?\nB: Nothing major — I need to do some actual downtime. It's been a brutal month.\nA: Same. I was thinking of a short hike Saturday morning if you want to join.\nB: That sounds exactly like what I need.",
-   "nuance": "지금 하는 일과 요즘 지내는 일 **둘 다**를 물을 수 있습니다. 문맥이 없으면 근황을 묻는 가벼운 인사로 받아들이면 되고, 답은 \"Not much\"처럼 짧게 해도 무례하지 않습니다. 반대로 \"What are you up to?\"가 낮은 톤으로 오면 \"무슨 꿍꿍이야\"라는 의심이 될 수도 있습니다."
+   "nuance": "지금 하는 일과 요즘 지내는 일 **둘 다**를 물을 수 있습니다. 문맥이 없으면 근황을 묻는 가벼운 인사로 받아들이면 되고, 답은 \"Not much\"처럼 짧게 해도 무례하지 않습니다. 반대로 \"What are you up to?\"가 낮은 톤으로 오면 \"무슨 꿍꿍이야\"라는 의심이 될 수도 있습니다.",
+   "example_ko": "A: 오랜만이네요 — 요즘 뭐 하고 지내요? B: 주로 신제품 출시에 파묻혀 있어요."
   }
  ]
 }

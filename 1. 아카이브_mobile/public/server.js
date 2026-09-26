@@ -2522,7 +2522,13 @@ async function generateHumanitiesFeed(sub, user) {
     }
     if (pool.length > 0) {
       const recentIds = getRecentDeliveredIDs(_dedupKeys(sub), 60);
-      const [item]    = pickUnseenItems(pool, recentIds, 1);
+      /* era를 명시한 항목(09-13 이후 새로 쓴 "사람 이야기" — 한국사·세계사)은 배경→사건→결과 + 장면 구조로
+         다시 쓴 것이라 옛 항목(비즈니스 사례·교과서 중복)보다 읽을거리가 확실히 낫다.
+         10번 중 7번은 여기서 먼저 고르고, 아직 안 본 게 없으면 전체 풀로 넘어간다. */
+      const curated = pool.filter(i => i.era && !recentIds.includes(i.id));
+      const [item]  = (curated.length && Math.random() < 0.7)
+        ? pickUnseenItems(curated, recentIds, 1)
+        : pickUnseenItems(pool, recentIds, 1);
       if (item) {
         console.log(`[KnowledgeDB] 역사피드 DB 서빙 (${item.id})`);
         return {

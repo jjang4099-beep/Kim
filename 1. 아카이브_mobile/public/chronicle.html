@@ -422,6 +422,100 @@ html.modal-open, html.modal-open body{overflow:hidden}
 @media (prefers-reduced-motion:no-preference){
   .modal:not([hidden]) .modal__sheet{animation:rise .24s cubic-bezier(.2,.7,.3,1) both}
 }
+.modal__body{position:relative}
+.md__back{margin:-6px 0 12px; padding:4px 0; font-size:13px; color:var(--jusa); background:none; border:0; cursor:pointer}
+.md__back:hover{text-decoration:underline}
+
+/* ── 노트(노션처럼) ── 넓은 한 장: 커버 → 아이콘 → 큰 제목 → 속성 → 본문 블록 */
+.modal--note .modal__sheet{max-width:880px; height:min(90vh,1000px); max-height:none}
+.modal--note .modal__body{padding:0; height:100%}
+.modal--note .modal__close{z-index:6; top:7px; right:12px}
+@media (max-width:640px){ .modal--note .modal__sheet{height:94vh} }
+.note{min-height:100%; display:flex; flex-direction:column}
+.note__bar{position:sticky; top:0; z-index:3; display:flex; align-items:center; gap:12px; padding:12px 60px 12px 22px;
+  background:color-mix(in srgb, var(--surface) 88%, transparent); backdrop-filter:blur(8px); font-size:12.5px; color:var(--text-3)}
+.note__crumb{font-weight:600; color:var(--text-2)}
+.note__status{margin-left:auto; transition:opacity .2s}
+.note__del{padding:4px 10px; border-radius:var(--r-ctl); border:1px solid transparent; background:none; color:var(--text-3); font-size:12.5px; cursor:pointer}
+.note__del:hover{color:var(--err); border-color:var(--border-soft)}
+.note__cover{position:relative; height:150px; flex:none; background-size:cover}
+.note__cover.is-empty{height:56px}
+.note__cover-btn{position:absolute; right:22px; bottom:10px; padding:5px 11px; border-radius:var(--r-ctl); font-size:12px;
+  background:color-mix(in srgb, var(--surface) 80%, transparent); border:1px solid var(--border-soft); color:var(--text-2); cursor:pointer; opacity:0; transition:opacity .15s}
+.note__cover:hover .note__cover-btn, .note__cover.is-empty .note__cover-btn, .note__cover-btn:focus-visible{opacity:1}
+.note__page{position:relative; width:100%; max-width:700px; margin:0 auto; padding:0 44px 80px; flex:1}
+@media (max-width:640px){ .note__page{padding:0 20px 60px} .note__bar{padding-left:18px} }
+.note__icon{display:block; margin-top:-38px; width:76px; height:76px; font-size:56px; line-height:76px; text-align:center;
+  background:none; border:0; border-radius:14px; cursor:pointer; position:relative; z-index:1}
+.note__cover.is-empty + .note__page .note__icon{margin-top:-8px}
+.note__icon:hover{background:var(--hover)}
+.note__icons{position:absolute; z-index:5; top:44px; left:40px; display:grid; grid-template-columns:repeat(8,36px); gap:2px; padding:8px;
+  background:var(--surface); border:1px solid var(--border-soft); border-radius:12px; box-shadow:var(--shadow)}
+.note__icons[hidden]{display:none}
+.note__icons button{width:36px; height:36px; font-size:20px; background:none; border:0; border-radius:8px; cursor:pointer}
+.note__icons button:hover{background:var(--hover)}
+.note__title{display:block; width:100%; margin:10px 0 6px; padding:0; border:0; outline:0; background:none; color:var(--text-1);
+  font-family:var(--serif); font-size:34px; font-weight:700; letter-spacing:-.02em; line-height:1.25}
+.note__title::placeholder{color:var(--text-3); opacity:.6}
+.note__props{display:grid; gap:2px; padding:8px 0 14px; margin-bottom:18px; border-bottom:1px solid var(--border-soft); font-size:13.5px}
+.note__prop{display:grid; grid-template-columns:92px 1fr; align-items:center; min-height:32px}
+.note__prop > span{color:var(--text-3)}
+.note__prop b{font-weight:500; color:var(--text-2)}
+.note__tags, .note__links{display:flex; flex-wrap:wrap; align-items:center; gap:6px}
+.note-tag{display:inline-flex; align-items:center; gap:4px; padding:2px 9px; border-radius:6px; font-size:12.5px;
+  background:color-mix(in srgb, var(--jusa) 11%, transparent); color:var(--jusa)}
+.note-tag button{padding:0; border:0; background:none; color:inherit; opacity:.6; cursor:pointer; font-size:13px}
+.note-tag button:hover{opacity:1}
+.note__tag-input{flex:1; min-width:80px; border:0; outline:0; background:none; color:var(--text-1); font:inherit; font-size:13px; padding:4px 0}
+.note-link{padding:3px 10px; border-radius:6px; border:1px solid var(--border-soft); background:var(--surface); color:var(--text-2); font-size:12.5px; cursor:pointer}
+.note-link:hover{border-color:var(--jusa); color:var(--jusa)}
+.muted{color:var(--text-3); font-size:12.5px}
+
+.note__body{outline:0; min-height:240px; font-size:16px; line-height:1.8; color:var(--text-1); word-break:keep-all; overflow-wrap:anywhere}
+.note__body:empty::before{content:attr(data-placeholder); color:var(--text-3); pointer-events:none}
+.note__body > *{margin:2px 0}
+.note__body p, .note__body div{min-height:1.8em}
+.note__body h2{margin:26px 0 6px; font-size:25px; font-weight:700; letter-spacing:-.015em; line-height:1.35}
+.note__body h3{margin:18px 0 4px; font-size:19px; font-weight:700; line-height:1.4}
+.note__body ul, .note__body ol{padding-left:1.5em}
+.note__body li{padding-left:2px}
+.note__body ul.todo{list-style:none; padding-left:4px}
+.note__body ul.todo > li{position:relative; padding-left:28px}
+.note__body ul.todo > li::before{content:''; position:absolute; left:0; top:.42em; width:16px; height:16px; border-radius:4px;
+  border:1.5px solid var(--text-3); cursor:pointer; box-sizing:border-box}
+.note__body ul.todo > li.done{color:var(--text-3); text-decoration:line-through}
+.note__body ul.todo > li.done::before{background:var(--jusa); border-color:var(--jusa)}
+.note__body ul.todo > li.done::after{content:''; position:absolute; left:5px; top:calc(.42em + 2px); width:5px; height:9px;
+  border:solid var(--jusa-on); border-width:0 2px 2px 0; transform:rotate(45deg)}
+.note__body blockquote{margin:10px 0; padding:2px 0 2px 16px; border-left:3px solid var(--text-1); color:var(--text-1)}
+.note__body blockquote.callout{display:block; padding:14px 16px 14px 46px; border:0; border-radius:10px; background:var(--hover); position:relative}
+.note__body blockquote.callout::before{content:'💡'; position:absolute; left:16px; top:13px}
+.note__body hr{margin:18px 0; border:0; border-top:1px solid var(--border)}
+.note__body a.mention{display:inline-block; padding:0 7px; margin:0 1px; border-radius:6px; line-height:1.6; cursor:pointer;
+  background:color-mix(in srgb, var(--jusa) 10%, transparent); color:var(--jusa); font-weight:500; text-decoration:none; user-select:all}
+.note__body a.mention:hover{background:color-mix(in srgb, var(--jusa) 18%, transparent)}
+.note__body b, .note__body strong{font-weight:700}
+.note__menu{position:absolute; z-index:10; width:250px; max-height:320px; overflow-y:auto; padding:6px;
+  background:var(--surface); border:1px solid var(--border-soft); border-radius:12px; box-shadow:0 12px 36px rgba(0,0,0,.16)}
+.note__menu[hidden]{display:none}
+.note__menu-title{padding:6px 8px 4px; font-size:11.5px; color:var(--text-3); font-weight:600}
+.note__menu-empty{padding:10px; font-size:13px; color:var(--text-3)}
+.note__menu-item{display:flex; align-items:center; gap:10px; width:100%; padding:7px 8px; border:0; border-radius:8px;
+  background:none; color:var(--text-1); font-size:13.5px; text-align:left; cursor:pointer}
+.note__menu-item span:nth-child(2){flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.note__menu-item small{color:var(--text-3); font-size:11.5px}
+.note__menu-item.on, .note__menu-item:hover{background:var(--hover)}
+.note__menu-icon{display:inline-grid; place-items:center; width:28px; height:28px; flex:none; border-radius:6px;
+  border:1px solid var(--border-soft); background:var(--surface); font-size:13px; font-weight:700; color:var(--text-2)}
+
+/* 연대기의 노트 카드 */
+.entry--note{overflow:hidden}
+.note-card__cover{height:38px; margin:-1px -1px 0}
+.note-card__icon{font-size:26px; line-height:1; margin:-2px 0 6px}
+.entry--note .entry__title{font-size:16.5px; font-weight:700}
+.note-card__excerpt{display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden}
+.note-card__meta{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-top:10px}
+.note-btn{padding:8px 14px}
 
 .md__head{margin-bottom:14px; padding-right:40px}
 .md__kind{display:flex; align-items:center; gap:7px; font-size:12px; color:var(--text-3)}
@@ -665,6 +759,7 @@ html.modal-open, html.modal-open body{overflow:hidden}
     </label>
     <span class="muted" id="filterNote"></span>
     <button type="button" class="btn btn--primary compose-btn" id="composeBtn">＋ 기록하기</button>
+    <button type="button" class="btn note-btn" id="noteBtn">🗒 새 노트</button>
   </div>
   <!-- 분류 — 추억/공부를 나눠 보거나, 영어·역사처럼 한 갈래만 골라 복습 -->
   <div class="cats" id="cats" role="group" aria-label="분류"></div>
@@ -762,6 +857,6 @@ html.modal-open, html.modal-open body{overflow:hidden}
   </article>
 </div>
 
-<script src="js/chronicle.js?v=18"></script>
+<script src="js/chronicle.js?v=22"></script>
 </body>
 </html>

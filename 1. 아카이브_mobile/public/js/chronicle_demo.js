@@ -186,4 +186,31 @@
   /* 샘플 "내 생각" 하나 — 카드와 팝업에서 어떻게 보이는지 */
   const henry = window.CHRONICLE_DEMO_ITEMS.find(it => it.id === 'd-h1');
   if (henry) henry.myInsight = '결국 신앙이 아니라 정치가 판을 갈랐다. 명분(레위기)은 나중에 찾은 것 — 회사에서 "원칙"이라며 밀어붙이는 결정도 사실은 누군가의 필요에서 출발하는 경우가 많다.';
+
+  /* 샘플 노트 — 배달받은 카드를 @로 엮어 내 말로 정리한 긴 글 */
+  const m = (id, label) => `<a class="mention" contenteditable="false" data-id="${id}">${label}</a>`;
+  const note = (id, offset, hh, n) => ({ id, type: 'note', domain: 'humanities', mode: 'PROFESSIONAL', ...at(offset, hh), note: n });
+  window.CHRONICLE_DEMO_ITEMS.push(
+    note('d-n1', 0, 22, { icon: '🏰', cover: 'tile-2', title: '튜더 왕조 한 장 정리', tags: ['세계사', '영국'], html: [
+      `<p>오늘 배달받은 ${m('d-h1', '🏛 헨리 8세와 아라곤의 캐서린')} 이야기가 재밌어서 앞뒤를 이어 정리해 둔다.</p>`,
+      `<h2>한 줄 요약</h2>`,
+      `<blockquote class="callout">왕의 이혼 문제가 로마와의 결별 → 국교회 → 엘리자베스 시대까지 이어진다. <b>개인의 욕망이 제도를 바꾼 사례.</b></blockquote>`,
+      `<h2>흐름</h2>`,
+      `<ol><li>1509 헨리 8세 즉위, 형수였던 캐서린과 결혼</li><li>1527 아들이 없자 혼인 무효를 교황에게 청원</li><li>1534 수장령 — 영국 국왕이 교회의 수장</li><li>1558 엘리자베스 1세 즉위, 국교회 정착</li></ol>`,
+      `<h3>더 알아볼 것</h3>`,
+      `<ul class="todo"><li class="done">캐서린이 끝까지 이혼을 거부한 이유</li><li>토머스 모어는 왜 처형됐나</li><li>영화 「천일의 앤」 보기</li></ul>`,
+      `<hr>`,
+      `<blockquote>명분은 나중에 찾는 것이다.</blockquote>`,
+      `<p>회사에서도 비슷하다. 결정이 먼저고, 근거는 뒤따라온다.</p>`,
+    ].join('') }),
+    note('d-n2', 3, 21, { icon: '💬', cover: 'tile-3', title: '회의에서 바로 쓰는 영어 모음', tags: ['영어', '회의'], html: [
+      `<p>이번 주 배달받은 표현 중 실제 회의에서 쓸 만한 것만 골랐다.</p>`,
+      `<h2>미룰 때</h2>`,
+      `<ul><li>${m('d-e1', "🔤 Let's circle back on this next week.")} — 정중하게 다음으로</li><li>${m('d-e4', '🔤 Let me sleep on it.')} — 답을 하루 미룰 때</li></ul>`,
+      `<h2>책임질 때</h2>`,
+      `<ul><li>${m('d-e2', "🔤 That's on me.")} — 변명 없이 짧게</li></ul>`,
+      `<blockquote class="callout">다음 주 주간회의에서 적어도 하나는 직접 써 보기.</blockquote>`,
+      `<ul class="todo"><li>circle back 써 보기</li><li>sleep on it 써 보기</li></ul>`,
+    ].join('') }),
+  );
 })();

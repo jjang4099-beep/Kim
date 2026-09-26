@@ -57,6 +57,7 @@
   const CATS = [
     { key: '',        label: '전체' },
     { key: 'memory',  label: '추억' },
+    { key: 'note',    label: '노트' },
     { key: 'study',   label: '공부 전체' },
     { key: 'english', label: '영어' },
     { key: 'classic', label: '고전·명언' },
@@ -76,6 +77,7 @@
     if (_catCache.has(it)) return _catCache.get(it);
     let c = 'memo';
     if (isLife(it)) c = 'memory';
+    else if (it.type === 'note') c = 'note';
     else {
       const v = learnedView(it);
       if (v) c = (KIND_TO_CAT.find(([re]) => re.test(v.kind)) || [null, 'memo'])[1];
@@ -125,7 +127,7 @@
       /* 데모 데이터 스크립트는 이때만 불러온다 — 평소에는 한 바이트도 받지 않게 */
       await new Promise((ok, bad) => {
         const s = document.createElement('script');
-        s.src = 'js/chronicle_demo.js?v=4'; s.onload = ok; s.onerror = () => bad(new Error('샘플 데이터를 불러오지 못했어요'));
+        s.src = 'js/chronicle_demo.js?v=5'; s.onload = ok; s.onerror = () => bad(new Error('샘플 데이터를 불러오지 못했어요'));
         document.head.appendChild(s);
       }).catch(e => fail(e.message));
       $('demoBanner').hidden = false;
@@ -187,7 +189,10 @@
     if (DEMO) {
       /* 샘플 + 이 브라우저에서 추가한 기록, 그리고 적어 둔 생각을 합친다 */
       const st = demoStore.read();
-      const all = [...(window.CHRONICLE_DEMO_ITEMS || []), ...(st.added || [])]
+      /* 노트: 저장본(수정·새 노트)이 샘플을 덮고, 지운 샘플 노트는 뺀다 */
+      const notes = st.notes || [], gone = new Set(st.deletedNotes || []);
+      const noteIds = new Set(notes.map(n => n.id));
+      const all = [...(window.CHRONICLE_DEMO_ITEMS || []).filter(it => !noteIds.has(it.id) && !gone.has(it.id)), ...(st.added || []), ...notes]
         .map(it => (st.thoughts && st.thoughts[it.id] !== undefined ? { ...it, myInsight: st.thoughts[it.id] } : it));
       state.raw = all.filter(it => !state.mode || (it.mode || 'PROFESSIONAL') === state.mode).map(fixDomain);
       regroup();
@@ -895,9 +900,318 @@
     return item;
   }
 
+  /* ══ 노트 ══════════════════════════════════════
+     노션처럼 쓰는 긴 글. 날짜에 걸려 연대기의 "쓴 것" 구획에 남는다.
+     - 블록 단축키: "# " 큰 제목, "## " 작은 제목, "- " 목록, "1. " 번호, "[] " 체크, "> " 인용, "---"+Enter 구분선
+     - "/" 블록 메뉴, "@" 저장한 기록 연결(누르면 그 카드 상세, 돌아오기 가능)
+     - 자동 저장. 지금은 샘플 모드 전용 — localStorage(chronicle-demo-v1.notes). 서버 저장은 다음 단계. */
+  let _noteBack = null;          // 노트에서 연결 카드를 열었을 때 돌아올 노트 id
+  const NOTE_ICONS = ['📝','📚','🏰','💡','🧠','🎯','📈','🌏','✈️','🍳','🎬','🎧','🧭','🪴','⚙️','🧾','🗂️','🔖','💬','✨','🔥','🌙','☕','🏃'];
+  const NOTE_COVERS = ['tile-1', 'tile-2', 'tile-3', 'tile-4', ''];
+  const plainOf = html => { const d = document.createElement('div'); d.innerHTML = html || ''; return d.textContent.replace(/\s+/g, ' ').trim(); };
+  const mentionIds = html => [...new Set([...String(html || '').matchAll(/data-id="([^"]+)"/g)].map(m => m[1]))];
+
+  function noteCard(it) {
+    const n = it.note || {};
+    const text = plainOf(n.html);
+    const links = mentionIds(n.html).length;
+    return `<article class="entry entry--note">
+        ${n.cover ? `<div class="note-card__cover" style="background:var(--${n.cover})"></div>` : ''}
+        <div class="entry__body">
+          <div class="note-card__icon">${esc(n.icon || '📝')}</div>
+          <h3 class="entry__title">${esc(n.title || '제목 없음')}</h3>
+          ${text ? `<p class="entry__text note-card__excerpt">${esc(text.slice(0, 160))}</p>` : ''}
+          <div class="note-card__meta">
+            ${(n.tags || []).map(t => `<span class="note-tag">${esc(t)}</span>`).join('')}
+            ${links ? `<span class="muted">🔗 연결 ${links}</span>` : ''}
+          </div>
+        </div>
+      </article>`;
+  }
+
+  /* 샘플 저장소의 노트 읽기/쓰기 */
+  function saveNoteItem(it) {
+    const st = demoStore.read();
+    st.notes = (st.notes || []).filter(x => x.id !== it.id);
+    st.notes.push(it);
+    demoStore.write(st);
+  }
+  function deleteNoteItem(id) {
+    const st = demoStore.read();
+    st.notes = (st.notes || []).filter(x => x.id !== id);
+    st.deletedNotes = [...new Set([...(st.deletedNotes || []), id])];
+    demoStore.write(st);
+    state.raw = state.raw.filter(x => x.id !== id);
+  }
+
+  function newNote() {
+    if (!DEMO) {
+      showModal(`<header class="md__head"><div class="md__kind">🗒 노트</div>
+          <h3 class="md__title">노트는 샘플로 먼저 써 볼 수 있어요</h3>
+          <p class="md__sub">내 계정에 저장하는 노트는 준비 중이에요. 샘플에서 쓰는 느낌을 먼저 보고 의견을 주세요.</p></header>
+          <a class="btn btn--primary" href="chronicle.html?demo=1">샘플에서 노트 써 보기 →</a>`);
+      return;
+    }
+    const now = new Date();
+    const key = state.selected && state.scope === 'day' ? state.selected : isoOf(now);
+    const it = { id: 'note-' + now.getTime(), type: 'note', mode: state.mode || 'PROFESSIONAL', domain: 'psychology',
+                 date: key, createdAt: now.toISOString(), note: { icon: '📝', title: '', html: '', tags: [], cover: '' } };
+    state.raw.unshift(it);
+    saveNoteItem(it);
+    openNote(it.id, true);
+  }
+
+  function openNote(id, fresh) {
+    const it = state.raw.find(x => x.id === id);
+    if (!it) return;
+    const n = it.note;
+    const dd = new Date(dateKey(it) + 'T00:00:00');
+    showModal(`<div class="note">
+        <div class="note__bar">
+          <span class="note__crumb">🗒 노트 · ${dd.getMonth() + 1}월 ${dd.getDate()}일</span>
+          <span class="note__status" id="noteStatus">${fresh ? '새 노트' : '저장됨 ✓'}</span>
+          <button type="button" class="note__del" id="noteDel" title="노트 삭제">삭제</button>
+        </div>
+        <div class="note__cover${n.cover ? '' : ' is-empty'}" id="noteCover" ${n.cover ? `style="background:var(--${n.cover})"` : ''}>
+          <button type="button" class="note__cover-btn" id="noteCoverBtn">${n.cover ? '커버 바꾸기' : '＋ 커버'}</button>
+        </div>
+        <div class="note__page">
+          <button type="button" class="note__icon" id="noteIcon" title="아이콘 바꾸기">${esc(n.icon || '📝')}</button>
+          <div class="note__icons" id="noteIcons" hidden>${NOTE_ICONS.map(e => `<button type="button">${e}</button>`).join('')}</div>
+          <input class="note__title" id="noteTitle" placeholder="제목 없음" value="${esc(n.title || '')}" maxlength="120"/>
+          <div class="note__props">
+            <div class="note__prop"><span>📅 날짜</span><b>${dd.getFullYear()}년 ${dd.getMonth() + 1}월 ${dd.getDate()}일 ${DOW[dd.getDay()]}요일</b></div>
+            <div class="note__prop"><span>🏷 태그</span><div class="note__tags" id="noteTags"></div></div>
+            <div class="note__prop"><span>🔗 연결</span><div class="note__links" id="noteLinks"></div></div>
+          </div>
+          <div class="note__body" id="noteBody" contenteditable="true" spellcheck="false"
+               data-placeholder="'/'를 눌러 블록을 고르거나, '@'로 저장한 기록을 연결하세요. 그냥 쓰기 시작해도 좋아요.">${n.html || ''}</div>
+        </div>
+        <div class="note__menu" id="noteMenu" hidden></div>
+      </div>`, 'note');
+    bindNote(it);
+    (n.title ? $('noteBody') : $('noteTitle')).focus();
+  }
+
+  const BLOCKS = [
+    { k: 'h1',     icon: 'H1', label: '큰 제목',   hint: '#' },
+    { k: 'h2',     icon: 'H2', label: '작은 제목', hint: '##' },
+    { k: 'ul',     icon: '•',  label: '글머리 목록', hint: '-' },
+    { k: 'ol',     icon: '1.', label: '번호 목록', hint: '1.' },
+    { k: 'todo',   icon: '☑',  label: '체크리스트', hint: '[]' },
+    { k: 'quote',  icon: '❝',  label: '인용',      hint: '>' },
+    { k: 'callout',icon: '💡', label: '강조 박스', hint: '' },
+    { k: 'hr',     icon: '—',  label: '구분선',    hint: '---' },
+    { k: 'p',      icon: '¶',  label: '본문',      hint: '' },
+    { k: 'mention',icon: '@',  label: '기록 연결', hint: '@' },
+  ];
+
+  function bindNote(it) {
+    const n = it.note, body = $('noteBody'), menu = $('noteMenu');
+    let timer = null;
+    const status = t => { const s = $('noteStatus'); if (s) s.textContent = t; };
+    const save = () => {
+      clearTimeout(timer);
+      status('저장 중…');
+      timer = setTimeout(() => {
+        n.html = body.innerHTML.replace(/<br>$/, '');
+        n.title = $('noteTitle').value.trim();
+        saveNoteItem(it); renderLinks(); status('저장됨 ✓');
+      }, 500);
+    };
+    const flush = () => { if (timer) { clearTimeout(timer); n.html = body.innerHTML; n.title = $('noteTitle').value.trim(); saveNoteItem(it); } };
+
+    /* 속성: 태그 */
+    const renderTags = () => {
+      $('noteTags').innerHTML = (n.tags || []).map((t, i) => `<span class="note-tag">${esc(t)}<button type="button" data-i="${i}" aria-label="태그 지우기">×</button></span>`).join('')
+        + `<input class="note__tag-input" placeholder="${(n.tags || []).length ? '' : '태그 추가'}" maxlength="20"/>`;
+      $('noteTags').querySelectorAll('button').forEach(b => b.addEventListener('click', () => { n.tags.splice(Number(b.dataset.i), 1); renderTags(); save(); }));
+      const inp = $('noteTags').querySelector('input');
+      inp.addEventListener('keydown', e => {
+        if ((e.key === 'Enter' || e.key === ',') && inp.value.trim()) {
+          e.preventDefault(); n.tags = [...(n.tags || []), inp.value.trim().replace(/^#/, '')].slice(0, 8); renderTags(); save();
+          $('noteTags').querySelector('input').focus();
+        } else if (e.key === 'Backspace' && !inp.value && (n.tags || []).length) { n.tags.pop(); renderTags(); save(); $('noteTags').querySelector('input').focus(); }
+      });
+    };
+    /* 속성: 연결된 기록(본문의 @연결에서 자동) */
+    const renderLinks = () => {
+      const ids = mentionIds(body.innerHTML);
+      $('noteLinks').innerHTML = ids.length ? ids.map(id => {
+        const x = state.raw.find(r => String(r.id) === id); if (!x) return '';
+        return `<button type="button" class="note-link" data-id="${esc(id)}">${esc(mentionLabel(x))}</button>`;
+      }).join('') : '<span class="muted">본문에서 @로 저장한 기록을 연결하면 여기 모여요</span>';
+      $('noteLinks').querySelectorAll('.note-link').forEach(b => b.addEventListener('click', () => { flush(); _noteBack = it.id; openDetail(b.dataset.id); }));
+    };
+    renderTags(); renderLinks();
+
+    /* 아이콘·커버 */
+    $('noteIcon').addEventListener('click', () => { $('noteIcons').hidden = !$('noteIcons').hidden; });
+    $('noteIcons').querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+      n.icon = b.textContent; $('noteIcon').textContent = n.icon; $('noteIcons').hidden = true; save();
+    }));
+    $('noteCoverBtn').addEventListener('click', () => {
+      n.cover = NOTE_COVERS[(NOTE_COVERS.indexOf(n.cover || '') + 1) % NOTE_COVERS.length];
+      const c = $('noteCover');
+      c.classList.toggle('is-empty', !n.cover);
+      c.style.background = n.cover ? `var(--${n.cover})` : '';
+      $('noteCoverBtn').textContent = n.cover ? '커버 바꾸기' : '＋ 커버';
+      save();
+    });
+    $('noteTitle').addEventListener('input', save);
+    $('noteTitle').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); body.focus(); } });
+    $('noteDel').addEventListener('click', () => {
+      if (!confirm('이 노트를 지울까요?')) return;
+      clearTimeout(timer); deleteNoteItem(it.id); closeDetail(); regroup(); renderAll();
+    });
+    /* 모달이 닫힐 때 마지막 입력을 저장하고 연대기를 갱신 */
+    _onClose = () => { flush(); regroup(); renderAll(); };
+
+    /* ── 본문 편집 ── */
+    const sel = () => window.getSelection();
+    /* 캐럿이 있는 가장 가까운 블록(크롬이 div를 겹겹이 넣어도 가장 안쪽 줄을 잡는다) */
+    const blockOf = node => {
+      while (node && node !== body && !(node.nodeType === 1 && /^(P|DIV|H2|H3|LI|BLOCKQUOTE)$/.test(node.tagName))) node = node.parentNode;
+      return node === body ? null : node;
+    };
+    body.addEventListener('focus', () => { try { document.execCommand('defaultParagraphSeparator', false, 'p'); } catch { /* 구형 브라우저 */ } });
+    const textBeforeCaret = () => {
+      const s = sel(); if (!s.rangeCount) return '';
+      const r = s.getRangeAt(0).cloneRange(); const b = blockOf(r.startContainer);
+      const pre = document.createRange(); pre.selectNodeContents(b || body); pre.setEnd(r.startContainer, r.startOffset);
+      return pre.toString();
+    };
+    const deleteBack = n2 => { for (let i = 0; i < n2; i++) document.execCommand('delete'); };
+    const ensureBlock = () => { if (!body.firstChild) { document.execCommand('formatBlock', false, 'p'); } };
+
+    function apply(k) {
+      body.focus(); ensureBlock();
+      const cmd = (c, v) => document.execCommand(c, false, v);
+      if (k === 'h1') cmd('formatBlock', 'h2');
+      else if (k === 'h2') cmd('formatBlock', 'h3');
+      else if (k === 'p') cmd('formatBlock', 'p');
+      else if (k === 'quote') cmd('formatBlock', 'blockquote');
+      else if (k === 'callout') { cmd('formatBlock', 'blockquote'); const b = blockOf(sel().anchorNode); if (b) b.classList.add('callout'); }
+      else if (k === 'ul' || k === 'todo') {
+        cmd('insertUnorderedList');
+        const li = blockOf(sel().anchorNode); const ul = li && li.closest('ul');
+        if (ul) ul.classList.toggle('todo', k === 'todo');
+      } else if (k === 'ol') cmd('insertOrderedList');
+      else if (k === 'hr') { cmd('insertHorizontalRule'); cmd('formatBlock', 'p'); }
+      else if (k === 'mention') { cmd('insertText', '@'); openMention(); return; }
+      save();
+    }
+
+    /* 블록 메뉴·연결 메뉴 공용 팝오버 */
+    let mode = null, query = '', items = [], idx = 0, busy = false;
+    const placeMenu = () => {
+      const s = sel(); if (!s.rangeCount) return;
+      const rect = s.getRangeAt(0).getBoundingClientRect();
+      const box = $('modalBody').getBoundingClientRect();
+      menu.style.left = Math.max(8, (rect.left || box.left + 40) - box.left) + 'px';
+      menu.style.top = ((rect.bottom || box.top + 120) - box.top + $('modalBody').scrollTop + 6) + 'px';
+    };
+    const drawMenu = () => {
+      if (!items.length) { menu.innerHTML = `<div class="note__menu-empty">${mode === 'mention' ? '찾는 기록이 없어요' : '맞는 블록이 없어요'}</div>`; return; }
+      menu.innerHTML = `<div class="note__menu-title">${mode === 'mention' ? '저장한 기록 연결' : '블록'}</div>` + items.map((x, i) =>
+        `<button type="button" class="note__menu-item${i === idx ? ' on' : ''}" data-i="${i}">
+           <span class="note__menu-icon">${esc(x.icon)}</span><span>${esc(x.label)}</span>${x.hint ? `<small>${esc(x.hint)}</small>` : ''}</button>`).join('');
+      menu.querySelectorAll('.note__menu-item').forEach(b => b.addEventListener('mousedown', e => { e.preventDefault(); idx = Number(b.dataset.i); pick(); }));
+    };
+    const closeMenu = () => { mode = null; menu.hidden = true; };
+    const filterItems = () => {
+      const q = query.toLowerCase();
+      if (mode === 'slash') items = BLOCKS.filter(b => !q || b.label.includes(query) || b.k.includes(q) || (b.hint || '').includes(q));
+      else items = mentionCandidates(query);
+      idx = Math.min(idx, Math.max(0, items.length - 1));
+      drawMenu();
+    };
+    function openSlash() { mode = 'slash'; query = ''; idx = 0; filterItems(); menu.hidden = false; placeMenu(); }
+    function openMention() { mode = 'mention'; query = ''; idx = 0; filterItems(); menu.hidden = false; placeMenu(); }
+    function pick() {
+      const x = items[idx]; if (!x) return closeMenu();
+      const m = mode, len = query.length + 1; closeMenu();
+      busy = true; deleteBack(len); busy = false;      // "/질의" 또는 "@질의" 지우기(그 사이 input 처리는 멈춤)
+      if (m === 'slash') apply(x.k);
+      else {
+        /* insertHTML은 편집 불가 링크를 문단 밖으로 밀어내곤 해서, 캐럿 자리에 직접 끼운다 */
+        const s = sel(); const r = s.getRangeAt(0);
+        const a = document.createElement('a');
+        a.className = 'mention'; a.contentEditable = 'false'; a.dataset.id = x.id; a.textContent = x.icon + ' ' + x.label;
+        const sp = document.createTextNode(' ');
+        r.deleteContents(); r.insertNode(sp); r.insertNode(a);
+        r.setStartAfter(sp); r.collapse(true); s.removeAllRanges(); s.addRange(r);
+        save();
+      }
+    }
+
+    body.addEventListener('keydown', e => {
+      if (mode) {
+        if (e.key === 'ArrowDown') { e.preventDefault(); idx = (idx + 1) % Math.max(1, items.length); drawMenu(); return; }
+        if (e.key === 'ArrowUp') { e.preventDefault(); idx = (idx - 1 + items.length) % Math.max(1, items.length); drawMenu(); return; }
+        if (e.key === 'Enter' || e.key === 'Tab') { e.preventDefault(); pick(); return; }
+        if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); closeMenu(); return; }
+      }
+      if (e.key === 'Enter' && !mode && textBeforeCaret() === '---') { e.preventDefault(); busy = true; deleteBack(3); busy = false; apply('hr'); return; }
+      if (e.key === 'Enter' && !e.shiftKey) {
+        /* 빈 제목/인용 줄에서 Enter면 본문으로 빠져나오기 */
+        const b = blockOf(sel().anchorNode);
+        if (b && /^(H2|H3|BLOCKQUOTE)$/.test(b.tagName) && !b.textContent.trim()) { e.preventDefault(); document.execCommand('formatBlock', false, 'p'); }
+      }
+    });
+    /* 줄 맨 앞에 쓰는 마크다운 단축키 — 공백을 치는 순간 블록으로 바뀐다(IME·붙여넣기와 무관하게 input에서 판단) */
+    const SHORT = { '#': 'h1', '##': 'h2', '-': 'ul', '*': 'ul', '1.': 'ol', '[]': 'todo', '>': 'quote' };
+    body.addEventListener('input', e => {
+      if (busy) return;
+      const t = textBeforeCaret().replace(/ /g, ' ');
+      const typed = e.inputType === 'insertText';
+      const sc = !mode && typed && / $/.test(t) && SHORT[t.slice(0, -1)];
+      if (sc) { busy = true; deleteBack(t.length); busy = false; apply(sc); return; }
+      if (!mode && typed && /(^|\s)\/$/.test(t)) openSlash();
+      else if (!mode && typed && /(^|\s)@$/.test(t)) openMention();
+      else if (mode) {
+        const t = textBeforeCaret(); const trig = mode === 'slash' ? '/' : '@';
+        const at = t.lastIndexOf(trig);
+        if (at < 0 || /\s{2}/.test(t.slice(at))) closeMenu();
+        else { query = t.slice(at + 1); filterItems(); placeMenu(); }
+      }
+      save();
+    });
+    /* 체크리스트: 왼쪽 네모를 누르면 완료 표시 */
+    body.addEventListener('click', e => {
+      const a = e.target.closest('.mention');
+      if (a) { flush(); _noteBack = it.id; openDetail(a.dataset.id); return; }
+      const li = e.target.closest('ul.todo > li');
+      if (li && e.clientX - li.getBoundingClientRect().left < 26) { li.classList.toggle('done'); save(); }
+    });
+    body.addEventListener('blur', () => setTimeout(closeMenu, 150));
+  }
+
+  /* 연결 후보 — 저장한 기록 중 제목·내용이 질의와 맞는 것(최근 순 8개) */
+  function mentionLabel(x) {
+    const v = learnedView(x);
+    const kind = x.type === 'note' ? '🗒' : isLife(x) ? '📷' : v ? ({ english: '🔤', classic: '📜', history: '🏛', idiom: '📜', insight: '💡', wrong: '✏️' }[catOf(x)] || '📌') : '📌';
+    const title = x.type === 'note' ? (x.note?.title || '제목 없음')
+      : isLife(x) ? (lifeCaption(x).split('\n')[0] || '사진 기록')
+      : v ? (v.title || v.quote || v.kind) : ([x.analysis?.title, x.title].find(t => t && !isUrl(t)) || '기록');
+    return `${kind} ${String(title).slice(0, 36)}`;
+  }
+  function mentionCandidates(q) {
+    const s = q.trim().toLowerCase();
+    return state.raw.filter(x => !isAuto(x) && x.type !== 'note')
+      .map(x => ({ id: x.id, icon: '', label: mentionLabel(x), hay: (mentionLabel(x) + ' ' + (x.text || '') + ' ' + JSON.stringify(x.feedData || '')).toLowerCase(), t: x.createdAt || '' }))
+      .filter(x => !s || x.hay.includes(s))
+      .sort((a, b) => String(b.t).localeCompare(String(a.t)))
+      .slice(0, 8)
+      .map(x => ({ ...x, icon: x.label.split(' ')[0], label: x.label.split(' ').slice(1).join(' ') }));
+  }
+
+  let _onClose = null;
   let _lastFocus = null;
-  function showModal(html) {
+  function showModal(html, variant) {
     if ($('modal').hidden) _lastFocus = document.activeElement;
+    $('modal').classList.toggle('modal--note', variant === 'note');
+    if (variant !== 'note' && _onClose) { const f = _onClose; _onClose = null; f(); }
     $('modalBody').innerHTML = html;
     $('modal').hidden = false;
     document.documentElement.classList.add('modal-open');
@@ -906,7 +1220,10 @@
   function openDetail(id) {
     const it = state.raw.find(x => String(x.id) === String(id));
     if (!it) return;
-    showModal(detailHTML(it));
+    if (it.type === 'note') return openNote(it.id);
+    const back = _noteBack; _noteBack = null;
+    showModal((back ? `<button type="button" class="md__back" id="mdBack">← 노트로 돌아가기</button>` : '') + detailHTML(it));
+    if (back) $('mdBack').addEventListener('click', () => openNote(back));
     bindThought();
     /* 사진 넘기기 */
     const g = $('modalBody').querySelector('.md__gallery');
@@ -924,6 +1241,8 @@
     $('modalClose').focus();
   }
   function closeDetail() {
+    if (_onClose) { const f = _onClose; _onClose = null; f(); }
+    $('modal').classList.remove('modal--note');
     $('modal').hidden = true;
     document.documentElement.classList.remove('modal-open');
     _lastFocus?.focus?.();
@@ -940,7 +1259,8 @@
 
   function cardOf(it) {
     let html;
-    if (isLife(it)) html = photoCard(it);
+    if (it.type === 'note') html = noteCard(it);
+    else if (isLife(it)) html = photoCard(it);
     else if (it.type === 'youtube') html = youtubeCard(it);
     else { const v = learnedView(it); html = v ? learnedCard(it, v) : textCard(it); }
     /* 팝업을 열 수 있도록 카드에 id를 붙인다(모든 카드 템플릿이 <article class="entry…">로 시작) */
@@ -951,6 +1271,7 @@
      "무엇을 배웠나"는 다른 질문이다. 비어 있는 구획은 그리지 않는다. */
   const SECTIONS = [
     { key: 'memory', label: '추억',      note: '사진과 그날의 글',  test: it => catOf(it) === 'memory' },
+    { key: 'note',   label: '쓴 것',     note: '내가 정리한 노트',  test: it => catOf(it) === 'note' },
     { key: 'study',  label: '공부한 것', note: '영어·지식·오답',    test: it => STUDY_CATS.has(catOf(it)) },
     { key: 'memo',   label: '메모·링크', note: '영상·기사 등',      test: it => catOf(it) === 'memo' },
   ];
@@ -1369,6 +1690,7 @@
   });
 
   $('composeBtn').addEventListener('click', openCompose);
+  $('noteBtn').addEventListener('click', newNote);
 
   /* 데모에서는 AI 총평을 만들지 않는다(가짜 기록으로 실제 API를 부르지 않게) */
   if (DEMO) {

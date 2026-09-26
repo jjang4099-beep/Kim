@@ -114,7 +114,9 @@
    "dialogue": {
     "A": "I really think this initiative will work.",
     "B": "Then put your money where your mouth is — get us the budget and we'll deliver."
-   }
+   },
+   "nuance": "네 돈을 네 입이 있는 곳에 걸어라 = 말만 하지 말고 실제로 돈이나 자원을 걸어 증명하라는 뜻입니다. 상대의 확신을 시험하는 도발적인 말이라, 친한 사이의 농담이 아니면 공격적으로 들릴 수 있습니다. \"Walk the talk\"보다 금전적 책임이 강조됩니다.",
+   "example_ko": "이 프로젝트를 정말 믿는다면 말로만 하지 말고 자원을 투입하세요."
   },
   {
    "id": "EN_598",
@@ -126,55 +128,9 @@
    "dialogue": {
     "A": "Are we ready for the launch?",
     "B": "Almost — just need to get our ducks in a row on the legal side and we're good to go."
-   }
-  },
-  {
-   "id": "EN_601",
-   "expression": "Keep the ball rolling",
-   "meaning": "추진력을 유지하다, 계속 진행시키다",
-   "level": "beginner",
-   "theme": "Momentum & Continuity",
-   "example": "Great meeting — let's keep the ball rolling and reconvene next week.",
-   "dialogue": {
-    "A": "We made some real progress today.",
-    "B": "Good. Let's keep the ball rolling — I'll send out action items by EOD."
-   }
-  },
-  {
-   "id": "EN_602",
-   "expression": "In the same boat",
-   "meaning": "같은 처지에 있다, 함께 어려움을 겪고 있다",
-   "level": "beginner",
-   "theme": "Solidarity & Empathy",
-   "example": "We're all in the same boat on this budget crunch — no team is spared.",
-   "dialogue": {
-    "A": "My team is overwhelmed with the new workload.",
-    "B": "We're all in the same boat, honestly. Let's figure out how to prioritize together."
-   }
-  },
-  {
-   "id": "EN_604",
-   "expression": "Wear many hats",
-   "meaning": "여러 역할을 동시에 맡다",
-   "level": "beginner",
-   "theme": "Versatility & Startups",
-   "example": "At a startup, everyone wears many hats — you might be in sales and ops on the same day.",
-   "dialogue": {
-    "A": "What's your job title exactly?",
-    "B": "Hard to say — I wear many hats. Strategy, ops, sometimes even customer support."
-   }
-  },
-  {
-   "id": "EN_606",
-   "expression": "Have skin in the game",
-   "meaning": "직접적인 이해관계가 있다, 결과에 책임을 진다",
-   "level": "advanced",
-   "theme": "Accountability & Ownership",
-   "example": "Advisors give better advice when they have skin in the game.",
-   "dialogue": {
-    "A": "Why should we trust his recommendation?",
-    "B": "He has skin in the game — he invested his own money. That changes things."
-   }
+   },
+   "nuance": "오리 새끼들을 한 줄로 세운다 = 모든 준비를 빈틈없이 정리한다는 뜻입니다. 중요한 발표나 협상 전의 준비를 말할 때 씁니다. 반대로 \"He doesn't have his ducks in a row\"는 \"준비가 엉망이다\"라는 비판입니다. 가볍고 귀여운 이미지라 캐주얼한 업무 대화에 잘 어울립니다.",
+   "example_ko": "투자자에게 피칭하기 전에 모든 준비를 빈틈없이 합시다."
   },
   {
    "id": "EN_607",
@@ -186,7 +142,9 @@
    "dialogue": {
     "A": "I think the proposal is ready to send.",
     "B": "Let me dot the i's and cross the t's first — I want legal to sign off before it goes out."
-   }
+   },
+   "nuance": "손글씨 시절 i의 점과 t의 가로획까지 빠짐없이 챙긴다는 뜻으로, 마지막 세부까지 꼼꼼히 마무리한다는 말입니다. 계약서·법률 문서처럼 작은 실수가 큰 문제가 되는 일에 잘 어울립니다. 너무 강조하면 \"잔소리가 심하다\"는 인상을 줄 수 있습니다.",
+   "example_ko": "계약서에 서명하기 전에 세부 사항까지 빠짐없이 확인하세요."
   },
   {
    "id": "EN_608",
@@ -198,31 +156,9 @@
    "dialogue": {
     "A": "Which channel gives us the best results with this budget?",
     "B": "Email is consistently the most bang for the buck — 40x ROI on average."
-   }
-  },
-  {
-   "id": "EN_611",
-   "expression": "The bottom line",
-   "meaning": "핵심, 결론, 요점 (회계에서 '최종 손익'에서 유래)",
-   "level": "beginner",
-   "theme": "Communication & Clarity",
-   "example": "The bottom line is we need to cut costs by 15% this quarter.",
-   "dialogue": {
-    "A": "There are a lot of factors here.",
-    "B": "Sure — but the bottom line is: are we profitable or not? Everything else comes second."
-   }
-  },
-  {
-   "id": "EN_612",
-   "expression": "On the radar",
-   "meaning": "주목하고 있다, 인식하고 있다, 고려 대상이다",
-   "level": "beginner",
-   "theme": "Awareness & Priority",
-   "example": "That competitor has been on our radar for a while.",
-   "dialogue": {
-    "A": "Are you aware of the regulatory changes coming next year?",
-    "B": "Yes, it's been on our radar. We've started working with legal to prepare."
-   }
+   },
+   "nuance": "1달러(buck)로 얼마나 큰 폭발음(bang)을 얻느냐 = 비용 대비 효과라는 뜻입니다. 1950년대 미국 국방 정책에서 \"적은 비용으로 큰 억지력\"을 뜻하는 말로 쓰이며 퍼졌습니다. \"cost-effective\"의 구어적 표현이라 회의에서 가볍게 쓰기 좋습니다.",
+   "example_ko": "이 도구가 다른 대안들에 비해 비용 대비 효과가 가장 좋아요."
   },
   {
    "id": "EN_613",
@@ -234,7 +170,9 @@
    "dialogue": {
     "A": "We've covered the budget. What's next?",
     "B": "Let's change gears — I want to spend the next 20 minutes on team structure."
-   }
+   },
+   "nuance": "자동차 기어를 바꾸듯 주제나 방식을 전환하자는 뜻입니다. 회의에서 다음 안건으로 넘어갈 때 자연스러운 전환 멘트입니다. \"shift gears\"도 같은 뜻이며, 개인의 커리어 전환을 말할 때도 씁니다.",
+   "example_ko": "주제를 바꿔서 4분기 로드맵 얘기를 해 봅시다."
   },
   {
    "id": "EN_614",
@@ -246,19 +184,9 @@
    "dialogue": {
     "A": "What changes after the restructuring?",
     "B": "Going forward, each team will own their own P&L. More autonomy, more accountability."
-   }
-  },
-  {
-   "id": "EN_615",
-   "expression": "Back to basics",
-   "meaning": "기본으로 돌아가다, 근본에 집중하다",
-   "level": "beginner",
-   "theme": "Focus & Simplicity",
-   "example": "After a year of overcomplicating things, we went back to basics.",
-   "dialogue": {
-    "A": "Our process has gotten so complex no one knows what to do.",
-    "B": "Time to go back to basics — what's the one thing that actually drives results here?"
-   }
+   },
+   "nuance": "\"이제부터는\"이라는 뜻으로, 새로운 규칙이나 방향을 알릴 때 씁니다. 과거의 잘못을 따지지 않고 앞으로의 기준만 말하는 효과가 있어 공지문에 많이 쓰입니다. 원어민도 과하게 쓰는 회사 말투로 꼽기 때문에, 문장마다 붙이진 마세요.",
+   "example_ko": "앞으로는 1만 달러 이상의 모든 승인에 두 명의 결재가 필요합니다."
   }
  ],
  "chinese_expressions": [

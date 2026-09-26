@@ -252,7 +252,9 @@
    "level": "advanced",
    "theme": "strategy",
    "example": "The original plan assumed 20% growth, but we're at 8%. We need to recalibrate our targets and resource allocation.",
-   "dialogue": "A: Q2 results are in — we missed the forecast by 30%.\nB: We need to recalibrate. The assumptions we built the plan on have all changed. Where do we start?\nA: Let's begin with the revenue model and work backwards.\nB: Agreed. No point protecting numbers that no longer reflect reality."
+   "dialogue": "A: Q2 results are in — we missed the forecast by 30%.\nB: We need to recalibrate. The assumptions we built the plan on have all changed. Where do we start?\nA: Let's begin with the revenue model and work backwards.\nB: Agreed. No point protecting numbers that no longer reflect reality.",
+   "nuance": "기계의 눈금을 다시 맞추듯, 달라진 현실에 맞춰 목표나 방법을 재조정한다는 뜻입니다. \"change the plan\"보다 실패를 인정하는 느낌이 덜하고 \"미세 조정\"이라는 차분한 뉘앙스가 있어, 목표 미달을 보고할 때 자주 씁니다. 너무 자주 쓰면 계획이 흔들리는 조직처럼 보일 수 있습니다.",
+   "example_ko": "원래 계획은 20% 성장을 가정했는데 지금 8%예요. 목표와 자원 배분을 재조정해야 해요."
   },
   {
    "id": "EN_262",
@@ -261,7 +263,9 @@
    "level": "advanced",
    "theme": "strategy",
    "example": "Before we take this to the board, let's pressure-test every assumption in the financial model.",
-   "dialogue": "A: I think the new pricing strategy is solid.\nB: Let's pressure-test it before we commit. What happens if our top three customers negotiate a 20% discount?\nA: That would cut the margin from 42% to 31%.\nB: Still viable. But what if two of them churn entirely?"
+   "dialogue": "A: I think the new pricing strategy is solid.\nB: Let's pressure-test it before we commit. What happens if our top three customers negotiate a 20% discount?\nA: That would cut the margin from 42% to 31%.\nB: Still viable. But what if two of them churn entirely?",
+   "nuance": "배관이나 기계에 압력을 걸어 새는 곳을 찾듯, 계획의 가정을 일부러 강하게 흔들어 약점을 찾자는 뜻입니다. 계획을 비판하는 게 아니라 튼튼하게 만들려는 절차라는 점을 공유하면 제안자도 방어적이 되지 않습니다. 비슷한 \"stress-test\"도 같은 뜻입니다.",
+   "example_ko": "이사회에 가져가기 전에 재무 모델의 모든 가정을 강하게 검증해 봅시다."
   },
   {
    "id": "EN_263",
@@ -270,7 +274,9 @@
    "level": "intermediate",
    "theme": "strategy",
    "example": "Saying 'significant impact' isn't useful in a board deck — put a number on it.",
-   "dialogue": "A: The delay will have a major impact on our customer relationships.\nB: Can you put a number on that? How many accounts are at risk and what's the combined ARR?\nA: About 12 accounts — roughly $800K ARR.\nB: Okay, that's the number I need. Now we can prioritise accordingly."
+   "dialogue": "A: The delay will have a major impact on our customer relationships.\nB: Can you put a number on that? How many accounts are at risk and what's the combined ARR?\nA: About 12 accounts — roughly $800K ARR.\nB: Okay, that's the number I need. Now we can prioritise accordingly.",
+   "nuance": "막연한 표현 대신 숫자로 말해 달라는 요청입니다. 영어권 경영진 보고에서 \"significant\", \"a lot\" 같은 말은 신뢰를 얻지 못합니다. 상대를 몰아세우는 말로 들릴 수 있으니, 부드럽게는 \"Can we put a rough number on it?\"처럼 대략이라도 괜찮다는 여지를 주세요.",
+   "example_ko": "이사회 자료에서 \"상당한 영향\"이라는 말은 쓸모가 없어요 — 숫자로 말해 주세요."
   },
   {
    "id": "EN_264",
@@ -279,16 +285,9 @@
    "level": "advanced",
    "theme": "strategy",
    "example": "Before we design the product roadmap, we need to align on our north star — what does success look like in 12 months?",
-   "dialogue": "A: We're tracking 14 different KPIs and nobody agrees which ones matter most.\nB: What's your north star? If you had to pick one metric that defines whether this year was a success, what would it be?\nA: Monthly active users who've made at least three purchases.\nB: Then everything else is a leading indicator of that. Design the roadmap around it."
-  },
-  {
-   "id": "EN_265",
-   "expression": "We're not moving the needle.",
-   "meaning": "우리가 실질적인 변화를 만들지 못하고 있어요.",
-   "level": "intermediate",
-   "theme": "performance",
-   "example": "Six months of incremental feature updates, but engagement is flat — we're simply not moving the needle.",
-   "dialogue": "A: We shipped 23 features this quarter.\nB: Shipped features aren't the metric. Are we moving the needle on retention?\nA: It's basically flat.\nB: Then we need to stop optimising and start rethinking. What's the one thing that actually drives retention for our users?"
+   "dialogue": "A: We're tracking 14 different KPIs and nobody agrees which ones matter most.\nB: What's your north star? If you had to pick one metric that defines whether this year was a success, what would it be?\nA: Monthly active users who've made at least three purchases.\nB: Then everything else is a leading indicator of that. Design the roadmap around it.",
+   "nuance": "항해사가 북극성을 보고 방향을 잡듯, 모든 결정의 기준이 되는 단 하나의 핵심 목표를 뜻합니다. 스타트업에서는 \"north star metric(북극성 지표)\"이라는 용어로 자주 씁니다. 여러 개가 있으면 북극성이 아니라는 점, 즉 우선순위가 하나로 모여야 한다는 게 핵심입니다.",
+   "example_ko": "제품 로드맵을 짜기 전에 핵심 목표부터 맞춰야 해요 — 12개월 뒤의 성공은 어떤 모습인가요?"
   },
   {
    "id": "EN_266",
@@ -297,7 +296,9 @@
    "level": "intermediate",
    "theme": "communication",
    "example": "If anyone on the team sees a problem with the timeline, please raise a red flag early — don't wait until the week before launch.",
-   "dialogue": "A: I want to raise a red flag about the vendor's capacity.\nB: What's the concern?\nA: They've taken on two clients similar in scale to us. I don't think they can deliver all three by November.\nB: Good catch. Let's get that in writing and start identifying a backup vendor today."
+   "dialogue": "A: I want to raise a red flag about the vendor's capacity.\nB: What's the concern?\nA: They've taken on two clients similar in scale to us. I don't think they can deliver all three by November.\nB: Good catch. Let's get that in writing and start identifying a backup vendor today.",
+   "nuance": "위험을 알리는 빨간 깃발을 든다 = 문제의 조짐을 공식적으로 알린다는 뜻입니다. 조직에서 이 말은 \"나쁜 소식을 빨리 말해도 괜찮다\"는 문화와 함께 씁니다. 연애에서 \"red flag\"는 \"이 사람 위험하다는 신호\"로 아주 많이 쓰는 표현입니다.",
+   "example_ko": "일정에 문제가 보이면 누구든 일찍 경고해 주세요 — 출시 일주일 전까지 기다리지 말고요."
   },
   {
    "id": "EN_268",
@@ -306,7 +307,9 @@
    "level": "advanced",
    "theme": "negotiation",
    "example": "A fee structure where we absorb all the risk while they cap their liability is a non-starter.",
-   "dialogue": "A: The client wants a 90-day payment term and 15% performance-based fee.\nB: The 90-day term is a non-starter — our cash flow can't support that. The performance fee, we can discuss.\nA: So we counter with 30 days and open the performance conversation?\nB: Exactly. Pick your battles."
+   "dialogue": "A: The client wants a 90-day payment term and 15% performance-based fee.\nB: The 90-day term is a non-starter — our cash flow can't support that. The performance fee, we can discuss.\nA: So we counter with 30 days and open the performance conversation?\nB: Exactly. Pick your battles.",
+   "nuance": "출발조차 할 수 없는 것 = 논의할 가치도 없이 받아들일 수 없는 조건이라는 뜻입니다. 협상에서 \"이것만은 안 된다\"는 분명한 선을 긋는 강한 표현입니다. 모든 조건에 쓰면 협상이 막히니, 정말 양보할 수 없는 한 가지에만 쓰세요.",
+   "example_ko": "위험은 우리가 전부 지고 그쪽은 책임 한도를 두는 수수료 구조는 받아들일 수 없어요."
   },
   {
    "id": "EN_269",
@@ -315,7 +318,9 @@
    "level": "intermediate",
    "theme": "strategy",
    "example": "There are three open-source libraries that do exactly what we need — let's not reinvent the wheel.",
-   "dialogue": "A: I'm thinking we build our own authentication system from scratch.\nB: Let's not reinvent the wheel. OAuth is battle-tested and used by millions of apps. Use that and redirect the engineering time to our core product.\nA: You're right. It felt wrong to rely on external tools but that's actually just good engineering.\nB: Building what only we can build — that's the principle."
+   "dialogue": "A: I'm thinking we build our own authentication system from scratch.\nB: Let's not reinvent the wheel. OAuth is battle-tested and used by millions of apps. Use that and redirect the engineering time to our core product.\nA: You're right. It felt wrong to rely on external tools but that's actually just good engineering.\nB: Building what only we can build — that's the principle.",
+   "nuance": "이미 있는 바퀴를 처음부터 다시 발명하지 말자 = 검증된 해결책을 두고 굳이 새로 만들지 말자는 뜻입니다. 효율을 강조하는 말이지만, 새로운 시도를 막는 핑계로 쓰일 때도 있습니다. 개발자들 사이에서 오픈소스를 쓰자고 할 때 특히 자주 들립니다.",
+   "example_ko": "우리가 필요한 걸 정확히 하는 오픈소스 라이브러리가 세 개나 있어요 — 굳이 새로 만들지 맙시다."
   },
   {
    "id": "EN_270",
@@ -324,7 +329,9 @@
    "level": "intermediate",
    "theme": "performance",
    "example": "We've been running this campaign for six months — what's the actual ROI on this investment?",
-   "dialogue": "A: We're considering a $200K spend on the conference circuit this year.\nB: What's the ROI on this? Do we have data from last year's events?\nA: Three deals closed directly, worth about $900K combined.\nB: 4.5x return. That justifies the spend — let's do it."
+   "dialogue": "A: We're considering a $200K spend on the conference circuit this year.\nB: What's the ROI on this? Do we have data from last year's events?\nA: Three deals closed directly, worth about $900K combined.\nB: 4.5x return. That justifies the spend — let's do it.",
+   "nuance": "투자 대비 수익(Return on Investment)을 묻는 질문으로, 비즈니스 영어에서 \"알-오-아이\"라고 알파벳으로 읽습니다. 비용을 쓰기 전이나 성과를 평가할 때 가장 기본적인 질문입니다. 교육이나 브랜드처럼 수치화가 어려운 투자에 들이대면 논쟁이 되기도 합니다.",
+   "example_ko": "이 캠페인을 6개월째 하고 있는데 — 실제 투자 대비 수익이 어떻게 되나요?"
   },
   {
    "id": "EN_271",
@@ -333,7 +340,9 @@
    "level": "beginner",
    "theme": "leadership",
    "example": "Nobody else stepped forward so I said I'd take the lead on the onboarding redesign.",
-   "dialogue": "A: The vendor evaluation has been sitting without an owner for two weeks.\nB: I'll take the lead on this. I have the most context from the initial RFP process.\nA: Perfect. What do you need from the team?\nB: One engineer to assess technical fit and 30 minutes with you to align on evaluation criteria."
+   "dialogue": "A: The vendor evaluation has been sitting without an owner for two weeks.\nB: I'll take the lead on this. I have the most context from the initial RFP process.\nA: Perfect. What do you need from the team?\nB: One engineer to assess technical fit and 30 minutes with you to align on evaluation criteria.",
+   "nuance": "제가 앞장서서 이끌겠다는 자원의 표현입니다. \"I'll do it\"이 과제를 맡는 것이라면, take the lead는 사람과 과정을 이끄는 책임까지 지겠다는 뜻입니다. 아무도 나서지 않을 때 이 말을 하면 리더십을 보여줄 수 있습니다.",
+   "example_ko": "아무도 나서지 않아서 제가 온보딩 재설계를 이끌겠다고 했어요."
   },
   {
    "id": "EN_272",
@@ -342,7 +351,9 @@
    "level": "beginner",
    "theme": "collaboration",
    "example": "That's a solid foundation — let's build on it by adding the competitive pricing analysis.",
-   "dialogue": "A: What if we addressed the churn problem by improving the first-30-days experience?\nB: Let's build on that. Specifically, what if we added a human onboarding call in week one for all new enterprise accounts?\nA: And we could trigger it automatically when someone hasn't completed the setup flow.\nB: Now we have an idea we can actually spec and ship."
+   "dialogue": "A: What if we addressed the churn problem by improving the first-30-days experience?\nB: Let's build on that. Specifically, what if we added a human onboarding call in week one for all new enterprise accounts?\nA: And we could trigger it automatically when someone hasn't completed the setup flow.\nB: Now we have an idea we can actually spec and ship.",
+   "nuance": "상대의 아이디어를 기초 삼아 그 위에 쌓아 올리자는 뜻입니다. 상대 의견을 인정하면서 내 생각을 더하는 방식이라, 브레인스토밍에서 \"But\"으로 반박하는 대신 쓰면 분위기가 좋아집니다. 즉흥극의 \"Yes, and...\" 규칙과 같은 원리입니다.",
+   "example_ko": "좋은 토대네요 — 여기에 경쟁사 가격 분석을 더해서 발전시켜 봅시다."
   },
   {
    "id": "EN_274",
@@ -351,7 +362,9 @@
    "level": "beginner",
    "theme": "execution",
    "example": "It's not perfect, but it's good enough to learn from. Ship it.",
-   "dialogue": "A: I want to polish the UI for another two weeks before we launch.\nB: Ship it. At some point, you're optimising for your own comfort, not for the user. The feedback we'll get from real users in one week is worth more than two more weeks of internal polish.\nA: What if users hate something?\nB: Then you fix it in v1.1. That's the whole point."
+   "dialogue": "A: I want to polish the UI for another two weeks before we launch.\nB: Ship it. At some point, you're optimising for your own comfort, not for the user. The feedback we'll get from real users in one week is worth more than two more weeks of internal polish.\nA: What if users hate something?\nB: Then you fix it in v1.1. That's the whole point.",
+   "nuance": "배에 실어 보낸다 = 완성도보다 출시를 우선하라는 테크 업계의 구호입니다. \"완벽하지 않아도 내보내고 배우자\"는 태도를 담고 있습니다. 리더가 이 말을 하면 결정권을 행사하는 것이라, 동료가 쓰면 가벼운 재촉이, 책임자가 쓰면 최종 승인이 됩니다.",
+   "example_ko": "완벽하진 않지만 배우기엔 충분해요. 내보내요."
   },
   {
    "id": "EN_275",
@@ -360,7 +373,9 @@
    "level": "advanced",
    "theme": "strategy",
    "example": "The manual review process works now with 50 clients, but does it scale to 500?",
-   "dialogue": "A: We handle every enterprise onboarding with a dedicated 6-person team.\nB: Does that scale? What's the headcount cost when we're at 200 enterprise clients?\nA: It breaks. We'd need 24 people just for onboarding.\nB: So we need to build a self-serve path before we hit capacity. That's the real product priority."
+   "dialogue": "A: We handle every enterprise onboarding with a dedicated 6-person team.\nB: Does that scale? What's the headcount cost when we're at 200 enterprise clients?\nA: It breaks. We'd need 24 people just for onboarding.\nB: So we need to build a self-serve path before we hit capacity. That's the real product priority.",
+   "nuance": "규모가 커져도 같은 방식이 통하느냐는 질문으로, 스타트업과 투자 대화에서 가장 자주 나오는 질문 중 하나입니다. 사람 손이 많이 드는 방식은 대개 확장이 어렵습니다. 와이콤비네이터의 폴 그레이엄이 쓴 에세이 제목 \"Do things that don't scale(확장 안 되는 일부터 하라)\"은 이 질문을 뒤집은 유명한 조언입니다.",
+   "example_ko": "수동 검토는 지금 고객 50곳에선 되지만, 500곳이 돼도 통할까요?"
   }
  ],
  "chinese_expressions": [

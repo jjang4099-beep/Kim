@@ -114,19 +114,9 @@
    "dialogue": {
     "A": "How did the team react to the policy change?",
     "B": "There was quite a bit of pushback — especially from the senior staff."
-   }
-  },
-  {
-   "id": "EN_522",
-   "expression": "Drill down (into)",
-   "meaning": "깊이 파고들다, 세부 사항을 분석하다",
-   "level": "intermediate",
-   "theme": "Analysis & Detail",
-   "example": "Let's drill down into the customer churn data to find the root cause.",
-   "dialogue": {
-    "A": "The overall numbers look fine, but something feels off.",
-    "B": "Let's drill down into the regional data — there might be a hidden trend."
-   }
+   },
+   "nuance": "뒤로 밀어낸다(push back) = 제안이나 결정에 대한 반발이나 이의 제기를 뜻합니다. 적대적인 반대(opposition)보다 가벼운 저항이라 건강한 토론의 일부로 받아들여집니다. 동사로 \"I'd like to push back on that\"은 \"그 부분엔 이의를 좀 제기하고 싶어요\"라는 정중한 반대입니다.",
+   "example_ko": "새 마감일에 대해 엔지니어링팀에서 반발이 많았어요."
   },
   {
    "id": "EN_528",
@@ -138,7 +128,9 @@
    "dialogue": {
     "A": "We've tried everything and nothing is working.",
     "B": "Maybe we need to go back to basics and revisit our core value proposition."
-   }
+   },
+   "nuance": "일이 복잡해졌을 때 가장 기본적인 원칙으로 돌아가자는 뜻입니다. 실패나 슬럼프 뒤에 재정비할 때 자주 씁니다. 스포츠에서 부진한 선수가 기본기 훈련으로 돌아가는 것처럼, 단순함에서 해답을 찾는다는 긍정적인 뉘앙스가 있습니다.",
+   "example_ko": "일이 복잡해질 땐 기본으로 돌아가는 게 도움이 돼요."
   }
  ],
  "chinese_expressions": [

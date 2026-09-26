@@ -21,7 +21,9 @@
    "level": "intermediate",
    "theme": "혁신·전략",
    "example": "We want to disrupt the industry eventually — but think big, start small. Let's nail the first city before we scale.",
-   "dialogue": "A: Our vision is to be the go-to platform for every small business in Asia.\nB: I love the ambition, but think big, start small — let's own one category in one market first.\nA: Fair. Which market do you think we should anchor in?\nB: Seoul. We have the network and the product-market fit signal is already there."
+   "dialogue": "A: Our vision is to be the go-to platform for every small business in Asia.\nB: I love the ambition, but think big, start small — let's own one category in one market first.\nA: Fair. Which market do you think we should anchor in?\nB: Seoul. We have the network and the product-market fit signal is already there.",
+   "nuance": "비전은 크게 갖되 실행은 작게 시작하라는 스타트업의 대표 격언입니다. 큰 목표를 포기하라는 말이 아니라, 검증 가능한 작은 단위부터 증명하라는 뜻입니다. 뒤에 \"scale fast(빠르게 키워라)\"를 붙여 세 단계로 말하기도 합니다.",
+   "example_ko": "결국엔 업계를 뒤흔들고 싶지만 — 크게 생각하고 작게 시작합시다. 확장하기 전에 첫 도시부터 제대로 해내요."
   },
   {
    "id": "EN_242",
@@ -30,7 +32,9 @@
    "level": "intermediate",
    "theme": "혁신·전략",
    "example": "Our engineering culture is built on 'fail fast, learn faster' — we ship MVPs weekly and iterate based on real user data.",
-   "dialogue": "A: The A/B test flopped. Only 2% clicked the new CTA.\nB: Good data. Fail fast, learn faster — now we know emotional framing doesn't resonate with this segment.\nA: So what's the next hypothesis?\nB: Try social proof instead of urgency. 'Thousands of teams use this' instead of 'Limited offer.'"
+   "dialogue": "A: The A/B test flopped. Only 2% clicked the new CTA.\nB: Good data. Fail fast, learn faster — now we know emotional framing doesn't resonate with this segment.\nA: So what's the next hypothesis?\nB: Try social proof instead of urgency. 'Thousands of teams use this' instead of 'Limited offer.'",
+   "nuance": "실패를 두려워하지 말고 빨리 겪어서 빨리 배우라는 실리콘밸리식 구호입니다. 실패 자체가 목표가 아니라 학습 속도가 핵심이라는 점이 중요합니다. 의료·금융처럼 실패 비용이 큰 분야에서 쓰면 무책임하게 들릴 수 있습니다.",
+   "example_ko": "우리 엔지니어링 문화는 \"빨리 실패하고 더 빨리 배운다\"예요 — 매주 MVP를 내고 실제 사용자 데이터로 개선하죠."
   },
   {
    "id": "EN_243",
@@ -39,7 +43,9 @@
    "level": "advanced",
    "theme": "혁신·전략",
    "example": "Before we standardise on this stack, let's future-proof it — the regulatory environment is going to change significantly in two years.",
-   "dialogue": "A: Should we build the reporting module for the current tax structure or anticipate the 2028 changes?\nB: Let's future-proof this from the start. Building it twice costs more than building it right once.\nA: That adds six weeks to the timeline.\nB: Six weeks now versus six months of rework later. It's not a hard call."
+   "dialogue": "A: Should we build the reporting module for the current tax structure or anticipate the 2028 changes?\nB: Let's future-proof this from the start. Building it twice costs more than building it right once.\nA: That adds six weeks to the timeline.\nB: Six weeks now versus six months of rework later. It's not a hard call.",
+   "nuance": "미래의 변화에도 버틸 수 있도록 설계한다는 뜻으로, 기술·제도·시장의 변화를 미리 대비하는 것을 말합니다. -proof는 waterproof(방수)처럼 \"~에 견디는\"이라는 뜻입니다. 과도한 미래 대비는 지금의 속도를 늦출 수 있다는 반론도 자주 따라옵니다.",
+   "example_ko": "이 기술 스택을 표준으로 정하기 전에 앞으로도 통하게 설계합시다 — 2년 안에 규제 환경이 크게 바뀔 거예요."
   },
   {
    "id": "EN_244",
@@ -48,7 +54,9 @@
    "level": "intermediate",
    "theme": "혁신·전략",
    "example": "The media will find out about the policy change — we need to get ahead of this with a proactive statement before they ask.",
-   "dialogue": "A: Customers are starting to notice the service slowdowns. We've had ten complaints this week.\nB: We need to get ahead of this before it hits social media. Let's draft a transparent update and send it proactively.\nA: Admitting there's a problem doesn't worry you?\nB: Silence worries me more. Proactive communication always beats reactive damage control."
+   "dialogue": "A: Customers are starting to notice the service slowdowns. We've had ten complaints this week.\nB: We need to get ahead of this before it hits social media. Let's draft a transparent update and send it proactively.\nA: Admitting there's a problem doesn't worry you?\nB: Silence worries me more. Proactive communication always beats reactive damage control.",
+   "nuance": "문제가 터지기 전에 먼저 앞서 대응한다는 뜻입니다. 특히 홍보·위기관리에서 \"언론이 먼저 보도하기 전에 우리가 먼저 발표하자\"는 맥락으로 많이 씁니다. \"react(반응)\"가 아니라 \"proactive(선제)\"라는 점이 핵심입니다.",
+   "example_ko": "언론이 정책 변경을 알게 될 거예요 — 먼저 묻기 전에 우리가 선제적으로 발표해야 해요."
   },
   {
    "id": "EN_246",
@@ -57,7 +65,9 @@
    "level": "intermediate",
    "theme": "혁신·전략",
    "example": "Real-time translation built into the earbuds was a game-changer — it made global calls feel like local conversations.",
-   "dialogue": "A: The new AI scheduling feature automatically blocks focus time based on your workload patterns.\nB: That's a genuine game-changer for remote teams. Async coordination has always been the hidden cost of distributed work.\nA: We're seeing 40% fewer scheduling conflicts in the pilot.\nB: That's the kind of metric that sells itself."
+   "dialogue": "A: The new AI scheduling feature automatically blocks focus time based on your workload patterns.\nB: That's a genuine game-changer for remote teams. Async coordination has always been the hidden cost of distributed work.\nA: We're seeing 40% fewer scheduling conflicts in the pilot.\nB: That's the kind of metric that sells itself.",
+   "nuance": "게임의 규칙 자체를 바꾼다 = 판도를 완전히 뒤집는 혁신이라는 뜻입니다. 마케팅에서 워낙 남발돼서, 사소한 개선에 쓰면 과장 광고처럼 들립니다. 진짜 판도를 바꾼 사례를 말할 때 써야 무게가 실립니다.",
+   "example_ko": "이어폰에 내장된 실시간 번역은 판도를 바꿨어요 — 해외 통화가 동네 대화처럼 느껴졌거든요."
   },
   {
    "id": "EN_248",
@@ -66,16 +76,9 @@
    "level": "intermediate",
    "theme": "전략·판단",
    "example": "The projections look great, but we need a reality check — the assumptions are based on conditions that haven't existed since 2021.",
-   "dialogue": "A: The team is projecting 300% growth next quarter based on the new feature launch.\nB: Let's have a reality check. Our best quarter ever was 80%. What's changed that would make 300% realistic?\nA: The team is very optimistic about the partnership announcement.\nB: Optimism isn't a forecast. Build the base case and stress-test it."
-  },
-  {
-   "id": "EN_249",
-   "expression": "Step up to the plate.",
-   "meaning": "어려운 상황에서 자진해서 나서다.",
-   "level": "intermediate",
-   "theme": "리더십·책임",
-   "example": "When the lead engineer left mid-project, Ji-ho stepped up to the plate and led the technical delivery single-handedly.",
-   "dialogue": "A: The client is asking for someone to present the findings and none of the senior team is available.\nB: I can step up to the plate. I've been in every session and I know the data.\nA: Are you sure? The CMO will be in the room.\nB: Then it's good practice. I'd rather be challenged on my work than have no one represent it at all."
+   "dialogue": "A: The team is projecting 300% growth next quarter based on the new feature launch.\nB: Let's have a reality check. Our best quarter ever was 80%. What's changed that would make 300% realistic?\nA: The team is very optimistic about the partnership announcement.\nB: Optimism isn't a forecast. Build the base case and stress-test it.",
+   "nuance": "현실 점검 = 기대나 가정이 현실과 맞는지 냉정하게 확인하자는 뜻입니다. 들뜬 분위기를 가라앉히는 말이라, 제안자에게는 찬물을 끼얹는 것처럼 들릴 수 있습니다. \"Wake up and smell the coffee\"보다는 훨씬 정중해서 회의에서 쓰기 좋습니다.",
+   "example_ko": "전망은 좋아 보이지만 현실 점검이 필요해요 — 가정들이 2021년 이후로 존재하지 않는 조건에 기반하고 있어요."
   },
   {
    "id": "EN_250",
@@ -84,16 +87,9 @@
    "level": "advanced",
    "theme": "소통·판단",
    "example": "When the client said 'we'll think about it,' you have to read between the lines — that usually means the budget isn't there.",
-   "dialogue": "A: The investor said the business model was 'interesting and worth watching.'\nB: Read between the lines — 'worth watching' means they're not ready to commit. They want to see at least one more quarter of data.\nA: Should we reach out proactively in 90 days?\nB: Exactly. Give them what they said they needed and make the follow-up easy for them."
-  },
-  {
-   "id": "EN_251",
-   "expression": "I'm completely swamped.",
-   "meaning": "지금 완전히 업무에 파묻혀 있어요.",
-   "level": "beginner",
-   "theme": "시간·업무량",
-   "example": "I'd love to help, but I'm completely swamped with the quarterly close — can we pick this up next week?",
-   "dialogue": "A: Can you join the working group on the internal process redesign?\nB: I want to, but I'm completely swamped this month. Three client deliverables and a board presentation.\nA: What about just the kick-off session?\nB: Send me the agenda. If it's 90 minutes or less, I'll make it work."
+   "dialogue": "A: The investor said the business model was 'interesting and worth watching.'\nB: Read between the lines — 'worth watching' means they're not ready to commit. They want to see at least one more quarter of data.\nA: Should we reach out proactively in 90 days?\nB: Exactly. Give them what they said they needed and make the follow-up easy for them.",
+   "nuance": "행간을 읽는다 = 말이나 글에 드러나지 않은 진짜 뜻을 파악한다는 뜻입니다. 한국어 \"행간을 읽다\"와 완전히 같습니다. 영어권 비즈니스에서 \"We'll think about it\"이나 \"Interesting idea\"가 사실상 거절인 경우가 많아서 이 능력이 특히 중요합니다.",
+   "example_ko": "고객이 \"생각해 볼게요\"라고 하면 행간을 읽어야 해요 — 보통 예산이 없다는 뜻이거든요."
   },
   {
    "id": "EN_252",
@@ -102,7 +98,9 @@
    "level": "beginner",
    "theme": "소통·협업",
    "example": "After the alignment session, the two teams were finally in sync on the product roadmap and the release criteria.",
-   "dialogue": "A: Do we agree that the North Star metric should be monthly active users, not downloads?\nB: Completely. We're in sync on that. Downloads are a vanity metric.\nA: Good. Let's make sure everyone else on the team knows that shift.\nB: I'll update the OKR doc and send a brief summary to the full team."
+   "dialogue": "A: Do we agree that the North Star metric should be monthly active users, not downloads?\nB: Completely. We're in sync on that. Downloads are a vanity metric.\nA: Good. Let's make sure everyone else on the team knows that shift.\nB: I'll update the OKR doc and send a brief summary to the full team.",
+   "nuance": "동기화(synchronize)되어 있다 = 속도와 방향이 맞춰져 있다는 뜻입니다. \"aligned\"가 목표와 입장의 일치라면, in sync는 타이밍과 실행 리듬까지 맞는다는 느낌이 강합니다. 반대로 \"out of sync\"는 \"손발이 안 맞는다\"는 뜻입니다.",
+   "example_ko": "조율 회의 후에 두 팀은 마침내 제품 로드맵과 출시 기준에 대해 손발이 맞게 되었다."
   },
   {
    "id": "EN_253",
@@ -111,7 +109,9 @@
    "level": "beginner",
    "theme": "전략·판단",
    "example": "We can play it safe with a soft launch to existing users before opening it up to the public.",
-   "dialogue": "A: Should we roll out the new pricing to all users at once or phase it in?\nB: Let's play it safe — start with new sign-ups only. If conversion holds, expand to existing users in 30 days.\nA: What are we protecting against?\nB: Any negative reaction from the existing base. They're our most vocal users and we can't afford churn at this stage."
+   "dialogue": "A: Should we roll out the new pricing to all users at once or phase it in?\nB: Let's play it safe — start with new sign-ups only. If conversion holds, expand to existing users in 30 days.\nA: What are we protecting against?\nB: Any negative reaction from the existing base. They're our most vocal users and we can't afford churn at this stage.",
+   "nuance": "위험을 최소화하는 안전한 선택을 한다는 뜻입니다. 상황에 따라 현명한 신중함이 되기도 하고, 도전하지 않는 소극적인 태도로 비판받기도 합니다. 반대로 과감한 선택을 권할 땐 \"Take a calculated risk(계산된 위험을 감수하라)\"라고 합니다.",
+   "example_ko": "일반 공개 전에 기존 사용자 대상으로 조용히 출시해서 안전하게 갈 수 있어요."
   },
   {
    "id": "EN_254",
@@ -120,7 +120,9 @@
    "level": "intermediate",
    "theme": "팀워크·책임",
    "example": "On high-performing teams, everyone pulls their weight — there's no room for people who wait to be told what to do.",
-   "dialogue": "A: Honestly, two people on this team are doing 80% of the work.\nB: That's not sustainable, and it's not fair. Everyone needs to pull their weight — or we need to have a direct conversation about expectations.\nA: How do you raise that without it becoming personal?\nB: Focus on outputs, not personalities. 'We committed to X deliverables — here's where we are.' The gap speaks for itself."
+   "dialogue": "A: Honestly, two people on this team are doing 80% of the work.\nB: That's not sustainable, and it's not fair. Everyone needs to pull their weight — or we need to have a direct conversation about expectations.\nA: How do you raise that without it becoming personal?\nB: Focus on outputs, not personalities. 'We committed to X deliverables — here's where we are.' The gap speaks for itself.",
+   "nuance": "자기 몸무게만큼은 끌어라 = 팀에서 자기 몫을 제대로 한다는 뜻입니다. 조정 경기나 짐 끄는 동물 비유에서 온 말로 알려져 있습니다. 부정형 \"He's not pulling his weight\"는 \"무임승차하고 있다\"는 꽤 날카로운 비판이라, 본인 앞에서는 조심해서 써야 합니다.",
+   "example_ko": "성과가 높은 팀에서는 모두가 자기 몫을 해요 — 지시를 기다리는 사람이 설 자리는 없어요."
   },
   {
    "id": "EN_256",
@@ -129,7 +131,9 @@
    "level": "beginner",
    "theme": "팀워크·사기",
    "example": "The product launch flopped, but we're in this together — let's figure out what we can do in the next 30 days.",
-   "dialogue": "A: I feel like I'm carrying too much of this alone. The stakes are high and I'm anxious.\nB: You're not carrying it alone. We're in this together — whatever we need to figure out, we figure out as a team.\nA: I appreciate that. I think I just needed to say it out loud.\nB: That's exactly what you should do. The worst thing in high-pressure projects is people silently drowning."
+   "dialogue": "A: I feel like I'm carrying too much of this alone. The stakes are high and I'm anxious.\nB: You're not carrying it alone. We're in this together — whatever we need to figure out, we figure out as a team.\nA: I appreciate that. I think I just needed to say it out loud.\nB: That's exactly what you should do. The worst thing in high-pressure projects is people silently drowning.",
+   "nuance": "어려운 상황에서 \"혼자가 아니다\"라는 연대의 메시지입니다. 리더가 실패 직후에 쓰면 팀을 비난하지 않고 함께 책임지겠다는 신호가 됩니다. 코로나 시기 전 세계 광고에서 워낙 많이 쓰여, 형식적으로 쓰면 빈말처럼 들릴 수 있으니 구체적인 행동을 함께 제시하세요.",
+   "example_ko": "제품 출시가 망했지만 우린 함께예요 — 앞으로 30일 동안 뭘 할 수 있을지 같이 찾아봐요."
   },
   {
    "id": "EN_257",
@@ -138,7 +142,9 @@
    "level": "intermediate",
    "theme": "성장·효율",
    "example": "To get the most out of the conference, prepare three specific questions you want answered before you arrive.",
-   "dialogue": "A: We're sending four people to the industry summit. It's a significant expense.\nB: Then let's make sure we get the most out of it. Assign each person a specific track and have them debrief the team afterwards.\nA: Should we set a goal for how many leads we want?\nB: A quality goal is better than a quantity goal. Three meaningful conversations beat thirty business cards."
+   "dialogue": "A: We're sending four people to the industry summit. It's a significant expense.\nB: Then let's make sure we get the most out of it. Assign each person a specific track and have them debrief the team afterwards.\nA: Should we set a goal for how many leads we want?\nB: A quality goal is better than a quantity goal. Three meaningful conversations beat thirty business cards.",
+   "nuance": "어떤 기회나 자원에서 최대한의 가치를 뽑아낸다는 뜻입니다. 행사·교육·도구 사용에 대한 조언에서 자주 씁니다. 사람에게 쓸 때 \"get the most out of your team\"은 팀의 잠재력을 최대한 끌어낸다는 긍정적인 뜻이지만, 톤에 따라 \"쥐어짠다\"로 들릴 수도 있습니다.",
+   "example_ko": "컨퍼런스를 최대한 활용하려면, 가기 전에 답을 얻고 싶은 구체적인 질문 세 개를 준비하세요."
   },
   {
    "id": "EN_258",
@@ -147,7 +153,9 @@
    "level": "beginner",
    "theme": "소통·문제해결",
    "example": "Setting up the CRM correctly isn't rocket science — it just requires someone to commit two hours to reading the setup guide.",
-   "dialogue": "A: The team seems intimidated by the new analytics dashboard.\nB: It's not rocket science — the interface is intuitive once you've done it twice. Can we set up a 30-minute demo session?\nA: Would that actually help?\nB: Every tool feels complex until you've used it in front of someone else. Demos remove the fear."
+   "dialogue": "A: The team seems intimidated by the new analytics dashboard.\nB: It's not rocket science — the interface is intuitive once you've done it twice. Can we set up a 30-minute demo session?\nA: Would that actually help?\nB: Every tool feels complex until you've used it in front of someone else. Demos remove the fear.",
+   "nuance": "로켓 과학만큼 어려운 일은 아니다 = 생각보다 쉽다는 뜻입니다. 상대를 안심시킬 때 쓰지만, 이미 어려워하는 사람에게 말하면 \"이것도 못 해?\"라는 무시로 들릴 수 있습니다. 비슷한 \"It's not brain surgery\"도 같은 뜻입니다.",
+   "example_ko": "CRM을 제대로 세팅하는 건 그렇게 어려운 일이 아니에요 — 누군가 두 시간만 들여 설정 가이드를 읽으면 돼요."
   },
   {
    "id": "EN_259",
@@ -156,16 +164,9 @@
    "level": "beginner",
    "theme": "소통·의사결정",
    "example": "We can debate the approach all we want, but at the end of the day, the customer experience is what determines if we win or lose.",
-   "dialogue": "A: There are strong opinions on both sides about which framework to use.\nB: At the end of the day, both frameworks will work. The decision should come down to which one the team knows best.\nA: In that case, it's clearly the second option — that's what 80% of the team has experience with.\nB: Then that's the answer. Familiarity reduces delivery risk."
-  },
-  {
-   "id": "EN_260",
-   "expression": "Let's not drop the ball.",
-   "meaning": "이 중요한 일을 실수로 놓치지 맙시다.",
-   "level": "intermediate",
-   "theme": "실행·책임",
-   "example": "We've promised the client weekly updates — let's not drop the ball on that commitment, especially in the first month.",
-   "dialogue": "A: The follow-up email to the new partner has been sitting in drafts for three days.\nB: Let's not drop the ball on this one. A delayed follow-up on a new partnership sends the wrong signal.\nA: I'll send it today. Should I loop you in?\nB: CC me on the first one so I can see the tone, then you own it from there."
+   "dialogue": "A: There are strong opinions on both sides about which framework to use.\nB: At the end of the day, both frameworks will work. The decision should come down to which one the team knows best.\nA: In that case, it's clearly the second option — that's what 80% of the team has experience with.\nB: Then that's the answer. Familiarity reduces delivery risk.",
+   "nuance": "하루가 끝날 때 남는 것 = 결국 가장 중요한 것은이라는 뜻으로, 논의를 핵심으로 정리할 때 씁니다. 원어민도 너무 자주 쓰는 말버릇으로 꼽혀, 문장마다 붙이면 내용 없이 들립니다. 회의 끝에 한 번, 결론을 말할 때 쓰면 가장 효과적입니다.",
+   "example_ko": "방식은 얼마든지 토론할 수 있지만, 결국 이기느냐 지느냐를 정하는 건 고객 경험이에요."
   }
  ],
  "english_theme_packs": [

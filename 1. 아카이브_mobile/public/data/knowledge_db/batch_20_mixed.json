@@ -114,7 +114,9 @@
    "dialogue": {
     "A": "Can we speed up the process somehow?",
     "B": "We can streamline, but we shouldn't cut corners on quality."
-   }
+   },
+   "nuance": "모퉁이를 돌지 않고 가로질러 간다 = 절차나 품질을 건너뛰며 대충 한다는 부정적인 뜻입니다. 비용 절감과 혼동하기 쉬운데, cut costs는 중립적이지만 cut corners는 \"해서는 안 되는 생략\"을 뜻합니다. 안전·품질과 관련된 맥락에서 강한 경고가 됩니다.",
+   "example_ko": "안전 테스트에서 대충 넘어갈 여유는 없어요."
   },
   {
    "id": "EN_542",
@@ -126,7 +128,9 @@
    "dialogue": {
     "A": "What's coming up after this launch?",
     "B": "We have two major updates in the pipeline — expect announcements in Q3."
-   }
+   },
+   "nuance": "파이프라인 안에서 흘러오는 중이다 = 준비되어 곧 나올 예정이라는 뜻입니다. 신제품·채용 후보·영업 기회에 두루 씁니다. 영업에서 \"sales pipeline\"은 성사 가능성이 있는 거래 목록을 뜻합니다.",
+   "example_ko": "다음 분기에 나올 새 기능이 세 개 준비 중이에요."
   },
   {
    "id": "EN_543",
@@ -138,19 +142,9 @@
    "dialogue": {
     "A": "Should I raise this issue in the all-hands?",
     "B": "It might rock the boat, but someone needs to address it."
-   }
-  },
-  {
-   "id": "EN_544",
-   "expression": "No-brainer",
-   "meaning": "생각할 필요도 없는 선택, 너무 명확한 결정",
-   "level": "beginner",
-   "theme": "Decision-Making",
-   "example": "Given the cost savings, switching vendors is a no-brainer.",
-   "dialogue": {
-    "A": "Should we upgrade to the premium plan?",
-    "B": "It's a no-brainer — the ROI pays for itself within a month."
-   }
+   },
+   "nuance": "작은 배를 흔들면 모두가 물에 빠질 수 있다 = 괜히 분란을 일으키지 말라는 뜻입니다. 보통 부정형 \"don't want to rock the boat\"로 쓰이며, 문제를 알면서도 침묵하는 조직 문화를 비판할 때 자주 등장합니다. 변화를 원하는 사람에게는 오히려 필요한 행동일 때도 있습니다.",
+   "example_ko": "아무도 분란을 일으키고 싶어 하지 않아서, 문제는 그대로 방치됐어요."
   },
   {
    "id": "EN_547",
@@ -162,7 +156,9 @@
    "dialogue": {
     "A": "Let's send the proposal today.",
     "B": "Let's not jump the gun — we should finalize the numbers first."
-   }
+   },
+   "nuance": "달리기 시합에서 출발 총소리 전에 뛰어나간다 = 성급하게 행동한다는 뜻입니다. 준비가 덜 된 발표나 섣부른 결론에 씁니다. 스스로 \"I jumped the gun\"이라고 하면 앞서간 것을 인정하는 가벼운 사과가 됩니다.",
+   "example_ko": "제품이 준비되기도 전에 발표해 버렸어요, 너무 성급했죠."
   },
   {
    "id": "EN_552",
@@ -174,7 +170,9 @@
    "dialogue": {
     "A": "I have a bold idea for restructuring the team.",
     "B": "Run it up the flagpole with a few stakeholders first and see the reaction."
-   }
+   },
+   "nuance": "1950년대 광고업계 말로 \"깃발을 올려 누가 경례하는지 보자(run it up the flagpole and see who salutes)\"에서 온 표현입니다. 확정 전에 아이디어를 던져 반응을 떠보자는 뜻입니다. 약간 옛날식 회사 말투로 들리며, 요즘은 \"float the idea\"도 많이 씁니다.",
+   "example_ko": "확정하기 전에 그 아이디어로 반응부터 떠봅시다."
   },
   {
    "id": "EN_553",
@@ -186,7 +184,9 @@
    "dialogue": {
     "A": "Why do you think he keeps struggling?",
     "B": "Honestly? He's a square peg in a round hole — this role isn't the right fit."
-   }
+   },
+   "nuance": "둥근 구멍에 끼운 네모난 말뚝 = 자리에 맞지 않는 사람이나 것을 뜻합니다. 능력이 부족하다는 게 아니라 \"맞지 않는 자리에 있다\"는 뉘앙스라, 사람을 탓하기보다 배치의 문제를 말할 때 씁니다. 창의적인 사람이 틀에 박힌 조직에 있을 때 자주 쓰입니다.",
+   "example_ko": "그는 창의적인 사람인데 극도로 체계적인 역할을 맡고 있어요 — 맞지 않는 자리예요."
   },
   {
    "id": "EN_555",
@@ -198,7 +198,9 @@
    "dialogue": {
     "A": "How do smaller startups compete against tech giants?",
     "B": "The cloud has leveled the playing field — anyone can access the same infrastructure."
-   }
+   },
+   "nuance": "기울지 않은 평평한 경기장 = 모두에게 공정한 경쟁 조건을 뜻합니다. 규제·무역·교육 정책 논의에서 자주 쓰입니다. 반대로 한쪽에 유리한 조건을 \"an uneven playing field\"라고 하며, 불공정을 지적할 때 씁니다.",
+   "example_ko": "새 규제는 작은 기업들에게 공정한 경쟁 환경을 만들어 주려는 거예요."
   }
  ],
  "chinese_expressions": [

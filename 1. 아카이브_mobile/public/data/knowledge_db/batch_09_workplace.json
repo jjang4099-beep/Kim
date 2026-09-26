@@ -403,7 +403,9 @@
    "level": "intermediate",
    "theme": "communication",
    "example": "The client threw three unexpected questions at her, but she thought on her feet and handled all of them confidently.",
-   "dialogue": "A: How do you prepare for Q&A sessions where you don't know what's coming?\nB: You can't over-prepare for the unknown. You practice thinking on your feet — I do mock sessions where people throw curveball questions.\nA: And that actually helps?\nB: It builds the muscle. You get more comfortable with uncertainty."
+   "dialogue": "A: How do you prepare for Q&A sessions where you don't know what's coming?\nB: You can't over-prepare for the unknown. You practice thinking on your feet — I do mock sessions where people throw curveball questions.\nA: And that actually helps?\nB: It builds the muscle. You get more comfortable with uncertainty.",
+   "nuance": "의자에 앉아 있지 않고 서서 바로 생각한다 = 준비 없이 그 자리에서 빠르게 대응한다는 뜻입니다. 면접이나 협상에서 칭찬으로 자주 쓰이며, 채용 공고의 \"ability to think on your feet\"은 돌발 상황 대처 능력을 원한다는 뜻입니다. 한국어 \"순발력\"에 가장 가깝습니다.",
+   "example_ko": "고객이 예상 못 한 질문을 세 개나 던졌지만, 그녀는 순발력 있게 모두 자신 있게 받아냈다."
   },
   {
    "id": "EN_304",
@@ -412,16 +414,9 @@
    "level": "intermediate",
    "theme": "career",
    "example": "The internship wasn't glamorous, but it was a foot in the door at one of the best agencies in the country.",
-   "dialogue": "A: This project doesn't pay much and isn't exactly my area.\nB: Take it. It's a foot in the door with a client who buys ten times this annually.\nA: So the long game is to land their bigger budget next year?\nB: Exactly. Show them what you can do on the small project."
-  },
-  {
-   "id": "EN_305",
-   "expression": "Run it by someone",
-   "meaning": "~에게 검토·확인을 받다, 의견을 구하다.",
-   "level": "beginner",
-   "theme": "collaboration",
-   "example": "Before we finalize the contract, let's run it by legal.",
-   "dialogue": "A: I drafted the client response. Should I send it now?\nB: Run it by me first — I want to make sure the tone is right given the history.\nA: Give me five minutes to share my screen.\nB: Better safe than sorry on this one."
+   "dialogue": "A: This project doesn't pay much and isn't exactly my area.\nB: Take it. It's a foot in the door with a client who buys ten times this annually.\nA: So the long game is to land their bigger budget next year?\nB: Exactly. Show them what you can do on the small project.",
+   "nuance": "방문판매원이 닫히려는 문에 발을 끼워 넣던 데서 온 말로, 일단 작은 기회라도 들어가면 더 큰 기회로 이어진다는 뜻입니다. 인턴십이나 작은 첫 계약을 설명할 때 딱 맞습니다. 심리학에서는 작은 부탁을 먼저 들어주게 한 뒤 큰 부탁을 하는 설득 기법을 \"foot-in-the-door technique\"라고 부릅니다.",
+   "example_ko": "인턴십이 화려하진 않았지만, 국내 최고 에이전시 중 한 곳에 발을 들여놓는 기회였어요."
   },
   {
    "id": "EN_306",
@@ -430,16 +425,9 @@
    "level": "intermediate",
    "theme": "strategy",
    "example": "The framework looks solid, but the devil is in the details — let's go line by line through the implementation plan.",
-   "dialogue": "A: The high-level strategy makes sense to everyone in the room.\nB: Good. Now the devil is in the details. How exactly do we migrate 4 million records without downtime?\nA: That's where we need engineering in the conversation.\nB: Bring them in tomorrow. Strategy without execution detail is just a slide deck."
-  },
-  {
-   "id": "EN_307",
-   "expression": "Bite off more than you can chew",
-   "meaning": "감당할 수 있는 것 이상을 떠맡다.",
-   "level": "intermediate",
-   "theme": "project_management",
-   "example": "We bit off more than we could chew with this roadmap — four major features in one quarter was unrealistic.",
-   "dialogue": "A: I've committed to three new clients this month on top of the existing workload.\nB: Be honest — did you bite off more than you can chew?\nA: Probably. I was afraid to say no.\nB: Better to reset expectations now than to underdeliver later. Can we have an honest conversation about capacity?"
+   "dialogue": "A: The high-level strategy makes sense to everyone in the room.\nB: Good. Now the devil is in the details. How exactly do we migrate 4 million records without downtime?\nA: That's where we need engineering in the conversation.\nB: Bring them in tomorrow. Strategy without execution detail is just a slide deck.",
+   "nuance": "계획은 그럴듯해도 문제는 세부 사항에 숨어 있다는 경고입니다. 흥미롭게도 먼저 쓰인 것은 \"God is in the details(신은 디테일에 있다)\" — 세부에 정성을 들이라는 긍정적인 말이었다는 설이 있는데, 지금은 악마 버전이 훨씬 널리 쓰입니다. 계획을 검토하자는 신호로 회의에서 자주 씁니다.",
+   "example_ko": "프레임워크는 탄탄해 보이지만 함정은 디테일에 있죠 — 실행 계획을 한 줄씩 봅시다."
   },
   {
    "id": "EN_308",
@@ -448,7 +436,9 @@
    "level": "beginner",
    "theme": "collaboration",
    "example": "Before the partnership meeting, ask yourself: what do we bring to the table that the other company doesn't have?",
-   "dialogue": "A: Why should the venture capital firm invest in us over the other four startups?\nB: We bring to the table something no one else has — a distribution network of 300 independent pharmacies across Southeast Asia.\nA: That's a real moat.\nB: And it took us six years to build. That's not something they can replicate in 18 months."
+   "dialogue": "A: Why should the venture capital firm invest in us over the other four startups?\nB: We bring to the table something no one else has — a distribution network of 300 independent pharmacies across Southeast Asia.\nA: That's a real moat.\nB: And it took us six years to build. That's not something they can replicate in 18 months.",
+   "nuance": "협상 테이블에 무엇을 올려놓을 수 있느냐 = 내가 제공할 수 있는 가치나 역량이 무엇이냐는 뜻입니다. 면접에서 \"What would you bring to the table?\"은 \"당신이 우리 회사에 줄 수 있는 게 뭐냐\"는 핵심 질문입니다. 이 질문에는 경력 나열보다 구체적인 기여를 답해야 합니다.",
+   "example_ko": "파트너십 미팅 전에 스스로 물어보세요: 상대 회사에 없는 무엇을 우리가 줄 수 있는가?"
   },
   {
    "id": "EN_310",
@@ -457,7 +447,9 @@
    "level": "intermediate",
    "theme": "communication",
    "example": "With the acquisition rumours circulating, the CEO advised the team to keep a low profile at the industry event.",
-   "dialogue": "A: Should I post about the new partnership on LinkedIn before the official announcement?\nB: Keep a low profile until the press release goes out. We don't want to scoop our own announcement.\nA: Good point. I'll draft it and have it ready.\nB: Hit send 10 minutes after the official release."
+   "dialogue": "A: Should I post about the new partnership on LinkedIn before the official announcement?\nB: Keep a low profile until the press release goes out. We don't want to scoop our own announcement.\nA: Good point. I'll draft it and have it ready.\nB: Hit send 10 minutes after the official release.",
+   "nuance": "눈에 띄는 윤곽(profile)을 낮게 유지한다 = 조용히 지내며 주목받지 않는다는 뜻입니다. 민감한 시기에 신중하게 처신하라는 조언으로 씁니다. 반대로 \"high-profile\"은 \"세간의 주목을 받는\"이라는 뜻이라 \"high-profile case\"는 \"떠들썩한 사건\"입니다.",
+   "example_ko": "인수 소문이 돌자 CEO는 업계 행사에서 팀원들에게 조용히 처신하라고 당부했다."
   },
   {
    "id": "EN_311",
@@ -466,7 +458,9 @@
    "level": "intermediate",
    "theme": "communication",
    "example": "Responding to the negative review with a defensive tone only added fuel to the fire.",
-   "dialogue": "A: The client is already upset about the delay. Should I explain all the reasons it happened?\nB: Don't add fuel to the fire with a list of excuses. Acknowledge the impact, give them the new date, and tell them what's different this time.\nA: So lead with accountability, not explanation?\nB: Always. Explanations come after you've demonstrated you understand the impact."
+   "dialogue": "A: The client is already upset about the delay. Should I explain all the reasons it happened?\nB: Don't add fuel to the fire with a list of excuses. Acknowledge the impact, give them the new date, and tell them what's different this time.\nA: So lead with accountability, not explanation?\nB: Always. Explanations come after you've demonstrated you understand the impact.",
+   "nuance": "불에 연료를 붓는다 = 이미 나쁜 상황을 더 악화시킨다는 뜻으로, 한국어 \"불난 집에 부채질\"과 거의 같습니다. 주로 감정적인 대응이나 해명이 역효과를 냈을 때 씁니다. \"add fuel to the flames\"도 같은 뜻입니다.",
+   "example_ko": "부정적인 리뷰에 방어적인 톤으로 답하는 건 불에 기름을 부을 뿐이었어요."
   },
   {
    "id": "EN_312",
@@ -475,7 +469,9 @@
    "level": "intermediate",
    "theme": "leadership",
    "example": "She talked about work-life balance in every all-hands — and then logged off at 6 PM every day. She walked the talk.",
-   "dialogue": "A: Our values document says we prioritize employee wellbeing, but people are working 70-hour weeks.\nB: That's the gap between talking and walking the talk. Values on the wall mean nothing if the behavior doesn't match.\nA: How do we fix that?\nB: Start with leadership. Change what gets rewarded — if overwork is celebrated, that IS the culture."
+   "dialogue": "A: Our values document says we prioritize employee wellbeing, but people are working 70-hour weeks.\nB: That's the gap between talking and walking the talk. Values on the wall mean nothing if the behavior doesn't match.\nA: How do we fix that?\nB: Start with leadership. Change what gets rewarded — if overwork is celebrated, that IS the culture.",
+   "nuance": "말한 대로 걷는다 = 말과 행동이 일치한다는 뜻입니다. 리더십 평가에서 매우 중요한 칭찬입니다. 원래는 \"walk the walk and talk the talk\"에서 왔고, \"talk the talk\"만 하면 \"말만 번지르르하다\"는 비판이 됩니다.",
+   "example_ko": "그녀는 전체 회의마다 워라밸을 얘기했고, 실제로 매일 6시에 퇴근했다. 말한 대로 실천한 거다."
   },
   {
    "id": "EN_314",
@@ -484,7 +480,9 @@
    "level": "intermediate",
    "theme": "leadership",
    "example": "Before rolling out the new policy, spend two weeks getting buy-in from team leads — top-down rollouts without buy-in always fail.",
-   "dialogue": "A: I want to change the entire sprint process. Can I just announce it next Monday?\nB: If you do that without getting buy-in first, expect passive resistance for months.\nA: So I should consult the team first?\nB: Not consult — involve. Let them shape it. Then it's their idea too."
+   "dialogue": "A: I want to change the entire sprint process. Can I just announce it next Monday?\nB: If you do that without getting buy-in first, expect passive resistance for months.\nA: So I should consult the team first?\nB: Not consult — involve. Let them shape it. Then it's their idea too.",
+   "nuance": "단순한 동의가 아니라 \"사서(buy) 내 것으로 받아들인다\"는 뜻의 자발적인 지지입니다. 위에서 억지로 따르게 하는 compliance와 대비되는 말이라, 변화 관리에서 핵심 개념입니다. \"We need buy-in from sales\"는 \"영업팀이 진심으로 동의해야 한다\"는 뜻입니다.",
+   "example_ko": "새 정책을 도입하기 전에 2주 동안 팀장들의 지지를 얻으세요 — 지지 없는 하향식 도입은 늘 실패해요."
   },
   {
    "id": "EN_315",
@@ -493,7 +491,9 @@
    "level": "beginner",
    "theme": "project_management",
    "example": "The client rejected the entire concept, not just the execution — we're back to square one.",
-   "dialogue": "A: The regulatory review came back and invalidated our entire technical approach.\nB: So we're back to square one on the architecture?\nA: Essentially yes. Six weeks of work and we're starting over.\nB: Painful, but better to find it now than after launch. What's the earliest we can rescope?"
+   "dialogue": "A: The regulatory review came back and invalidated our entire technical approach.\nB: So we're back to square one on the architecture?\nA: Essentially yes. Six weeks of work and we're starting over.\nB: Painful, but better to find it now than after launch. What's the earliest we can rescope?",
+   "nuance": "보드게임에서 첫 칸으로 돌아간다는 이미지로, 원점에서 다시 시작해야 한다는 뜻입니다. \"back to the drawing board\"가 다시 설계하자는 의지라면, 이 표현은 지금까지의 진전이 사라졌다는 허탈함이 더 큽니다. 예문처럼 실행이 아니라 콘셉트 자체가 거부됐을 때 딱 맞습니다.",
+   "example_ko": "고객이 실행이 아니라 콘셉트 전체를 거절했어요 — 원점으로 돌아갔네요."
   },
   {
    "id": "EN_316",
@@ -502,7 +502,9 @@
    "level": "beginner",
    "theme": "leadership",
    "example": "I'm leaving the Tokyo office in good hands — Ji-ho has been preparing for this role for two years.",
-   "dialogue": "A: I'm nervous about handing this account over while I'm on leave.\nB: The client is in good hands. Min-jun has been shadowing you for months and the client already knows him.\nA: He handles the technical questions well?\nB: Better than I expected honestly. Trust him."
+   "dialogue": "A: I'm nervous about handing this account over while I'm on leave.\nB: The client is in good hands. Min-jun has been shadowing you for months and the client already knows him.\nA: He handles the technical questions well?\nB: Better than I expected honestly. Trust him.",
+   "nuance": "믿을 수 있는 손에 맡겨졌다는 안심의 말입니다. 인수인계할 때 후임자를 공개적으로 신뢰한다는 표현이라 후임자에게 힘이 됩니다. 병원에서 의사가 \"You're in good hands\"라고 하면 \"걱정 마세요, 잘 돌봐 드릴게요\"라는 뜻입니다.",
+   "example_ko": "도쿄 사무실은 믿을 만한 사람에게 맡기고 가요 — 지호가 2년 동안 이 역할을 준비해 왔거든요."
   },
   {
    "id": "EN_317",
@@ -511,7 +513,9 @@
    "level": "intermediate",
    "theme": "communication",
    "example": "Before diving into the specs, take five minutes to paint the big picture — the team needs to understand why before they understand how.",
-   "dialogue": "A: The engineers keep asking why this feature is being prioritized.\nB: That's a signal. Paint the big picture for them — connect the feature to the business outcome it drives.\nA: You think that will change how they build it?\nB: Absolutely. Context changes decisions. Without it, they optimize for the wrong things."
+   "dialogue": "A: The engineers keep asking why this feature is being prioritized.\nB: That's a signal. Paint the big picture for them — connect the feature to the business outcome it drives.\nA: You think that will change how they build it?\nB: Absolutely. Context changes decisions. Without it, they optimize for the wrong things.",
+   "nuance": "세부로 들어가기 전에 전체 그림을 먼저 보여준다는 뜻입니다. \"왜\"를 먼저 설명해야 \"어떻게\"가 이해된다는 소통 원칙과 맞닿아 있습니다. 반대로 \"You're missing the big picture\"는 \"지엽적인 것에 매몰돼 큰 흐름을 놓치고 있다\"는 지적입니다.",
+   "example_ko": "사양에 들어가기 전에 5분만 큰 그림을 설명해 주세요 — 팀은 어떻게보다 왜를 먼저 알아야 해요."
   },
   {
    "id": "EN_318",
@@ -520,16 +524,9 @@
    "level": "beginner",
    "theme": "strategy",
    "example": "The data was inconclusive, but her gut feeling said the market wasn't ready — and she was right.",
-   "dialogue": "A: The numbers say go, but I have a gut feeling something is off with this partner.\nB: What specifically?\nA: Every question I ask, they deflect. The enthusiasm feels performed.\nB: That gut feeling is data. Ask for reference calls with their last three clients before you sign."
-  },
-  {
-   "id": "EN_319",
-   "expression": "Take it offline.",
-   "meaning": "이 논의는 이 자리 말고 따로 하다, 별도로 논의하다.",
-   "level": "intermediate",
-   "theme": "meeting",
-   "example": "That's an important issue but not directly relevant to today's agenda — let's take it offline.",
-   "dialogue": "A: While we're here, I also want to discuss the contractor billing dispute—\nB: Let's take that offline. It affects only three people in this room and we have twelve other topics to cover today.\nA: Fair. Can we sync at 4 PM?\nB: I'll send you a calendar invite right now."
+   "dialogue": "A: The numbers say go, but I have a gut feeling something is off with this partner.\nB: What specifically?\nA: Every question I ask, they deflect. The enthusiasm feels performed.\nB: That gut feeling is data. Ask for reference calls with their last three clients before you sign.",
+   "nuance": "배(gut)에서 오는 느낌 = 논리적 근거는 없지만 확신이 드는 직감입니다. \"intuition\"보다 구어적이고 강렬합니다. 비즈니스에서 \"trust your gut\"은 데이터가 부족할 때 경험에서 나온 직감을 믿으라는 조언이지만, 데이터 중심 조직에서는 근거 없는 주장으로 들릴 수 있습니다.",
+   "example_ko": "데이터로는 결론이 안 났지만 그녀의 직감은 시장이 아직 준비되지 않았다고 했고, 그녀가 옳았다."
   },
   {
    "id": "EN_320",
@@ -538,7 +535,9 @@
    "level": "beginner",
    "theme": "career",
    "example": "She had every technical qualification on the job description, but what set her apart were her soft skills — especially in high-pressure client situations.",
-   "dialogue": "A: I'm investing all my development time in technical certifications.\nB: Those matter, but after a certain level, soft skills determine career progression more than technical skills.\nA: Things like communication and leadership?\nB: Exactly. The ability to influence without authority, to lead through ambiguity — those are the things that get you to senior roles."
+   "dialogue": "A: I'm investing all my development time in technical certifications.\nB: Those matter, but after a certain level, soft skills determine career progression more than technical skills.\nA: Things like communication and leadership?\nB: Exactly. The ability to influence without authority, to lead through ambiguity — those are the things that get you to senior roles.",
+   "nuance": "기술적 능력(hard skills)과 대비되는 대인 관계·소통 능력을 말합니다. 영어권 채용에서 매우 중시되는 개념으로, 면접에서 구체적인 사례로 증명해야 합니다. 최근에는 \"soft\"라는 단어가 덜 중요하다는 인상을 준다며 \"people skills\"나 \"power skills\"로 부르기도 합니다.",
+   "example_ko": "그녀는 채용 조건의 기술 자격을 모두 갖췄지만, 그녀를 돋보이게 한 건 소프트 스킬이었다 — 특히 압박이 심한 고객 상황에서."
   },
   {
    "id": "EN_321",
@@ -547,7 +546,9 @@
    "level": "beginner",
    "theme": "performance",
    "example": "The development team hit a wall when the third-party API couldn't handle the volume they needed.",
-   "dialogue": "A: We've been stuck on this problem for three days. I think we've hit a wall.\nB: What approaches have you tried?\nA: We've tried five different architectures and all of them run into the same database bottleneck.\nB: That means the bottleneck IS the problem to solve. Let's bring in the DB specialist."
+   "dialogue": "A: We've been stuck on this problem for three days. I think we've hit a wall.\nB: What approaches have you tried?\nA: We've tried five different architectures and all of them run into the same database bottleneck.\nB: That means the bottleneck IS the problem to solve. Let's bring in the DB specialist.",
+   "nuance": "마라톤에서 30킬로미터쯤 몸이 갑자기 멈추는 순간을 \"the wall\"이라 부르는 데서 온 표현입니다. 더 이상 진전이 없는 한계에 부딪혔다는 뜻으로, 기술적 문제에도 개인의 체력·의욕에도 씁니다. \"I've hit a wall\"은 \"더는 못 하겠다\"는 번아웃의 신호이기도 합니다.",
+   "example_ko": "API가 필요한 처리량을 감당하지 못하자 개발팀은 벽에 부딪혔다."
   },
   {
    "id": "EN_322",
@@ -556,7 +557,9 @@
    "level": "intermediate",
    "theme": "performance",
    "example": "When the lead presenter got sick 30 minutes before the pitch, her junior colleague rose to the occasion and delivered flawlessly.",
-   "dialogue": "A: This is the most important client we've ever pitched and two key people are out sick.\nB: Then the rest of us rise to the occasion. Who knows the material well enough to cover?\nA: Probably Seo-jin — she's been in every prep session.\nB: Brief her for 20 minutes. She's ready, she just doesn't know it yet."
+   "dialogue": "A: This is the most important client we've ever pitched and two key people are out sick.\nB: Then the rest of us rise to the occasion. Who knows the material well enough to cover?\nA: Probably Seo-jin — she's been in every prep session.\nB: Brief her for 20 minutes. She's ready, she just doesn't know it yet.",
+   "nuance": "어려운 순간이 오자 그 상황의 높이만큼 스스로를 끌어올렸다는 뜻입니다. 예상치 못한 위기에서 기대 이상의 능력을 보여준 사람에 대한 칭찬입니다. 평소 실력보다 \"그 순간\"을 강조하는 말이라 대타나 신입의 활약을 칭찬할 때 특히 잘 어울립니다.",
+   "example_ko": "발표 30분 전에 메인 발표자가 아프자, 후배 동료가 멋지게 나서서 완벽하게 발표해 냈다."
   },
   {
    "id": "EN_323",
@@ -565,7 +568,9 @@
    "level": "intermediate",
    "theme": "strategy",
    "example": "Before we commit $2M to this campaign, let's do a gut check — does everyone truly believe in this strategy?",
-   "dialogue": "A: Gut check before we present tomorrow: are we genuinely confident in these projections?\nB: Honestly? The top-line number feels stretched. We're assuming 20% conversion when our historical best is 14%.\nA: Good — let's use 14% as the base and present the 20% as the upside scenario.\nB: That's much more defensible."
+   "dialogue": "A: Gut check before we present tomorrow: are we genuinely confident in these projections?\nB: Honestly? The top-line number feels stretched. We're assuming 20% conversion when our historical best is 14%.\nA: Good — let's use 14% as the base and present the 20% as the upside scenario.\nB: That's much more defensible.",
+   "nuance": "배에 손을 대고 속마음을 확인하듯, 결정 전에 다들 진짜로 확신하는지 솔직하게 점검하자는 뜻입니다. gut feeling이 개인의 직감이라면, gut check는 그 직감을 의도적으로 확인하는 절차입니다. 큰 결정 직전의 마지막 확인에 쓰기 좋습니다.",
+   "example_ko": "이 캠페인에 200만 달러를 걸기 전에 솔직하게 점검해 봅시다 — 다들 정말로 이 전략을 믿나요?"
   },
   {
    "id": "EN_324",
@@ -574,7 +579,9 @@
    "level": "beginner",
    "theme": "communication",
    "example": "She's definitely a glass-half-full person — even after a rough quarter, she came back with three new opportunities.",
-   "dialogue": "A: The pilot only converted 8% of users. Is that good or bad?\nB: Depends if you're glass half full or glass half empty. Half empty: we expected 15%. Half full: we have 8% who love it enough to pay, and we haven't started optimizing yet.\nA: Which are you?\nB: Both. I take the bad news seriously and use the good news as fuel."
+   "dialogue": "A: The pilot only converted 8% of users. Is that good or bad?\nB: Depends if you're glass half full or glass half empty. Half empty: we expected 15%. Half full: we have 8% who love it enough to pay, and we haven't started optimizing yet.\nA: Which are you?\nB: Both. I take the bad news seriously and use the good news as fuel.",
+   "nuance": "물이 반 \"남았다\"고 보면 낙관, 반 \"비었다\"고 보면 비관이라는 유명한 비유입니다. 사람의 성향을 가볍게 묘사할 때 \"a glass-half-full person\"처럼 형용사로 씁니다. 엔지니어들은 농담으로 \"잔이 필요한 것보다 두 배 크다\"고 답하기도 합니다.",
+   "example_ko": "그녀는 확실히 낙관적인 사람이에요 — 힘든 분기를 보내고도 새로운 기회를 세 개나 들고 왔거든요."
   },
   {
    "id": "EN_325",
@@ -583,7 +590,9 @@
    "level": "beginner",
    "theme": "communication",
    "example": "At the start of every workshop, she'd say 'there's no such thing as a stupid question' — and she meant it. The best insights came from the most basic ones.",
-   "dialogue": "A: This might be a stupid question, but why do we need two databases instead of one?\nB: There's no such thing as a stupid question — and that's actually a great one. The answer is latency: one serves Asia-Pacific, one serves Europe.\nA: Oh, that makes sense. I'd been wondering about the cost.\nB: Ask more questions like that. The basics are where the real constraints live."
+   "dialogue": "A: This might be a stupid question, but why do we need two databases instead of one?\nB: There's no such thing as a stupid question — and that's actually a great one. The answer is latency: one serves Asia-Pacific, one serves Europe.\nA: Oh, that makes sense. I'd been wondering about the cost.\nB: Ask more questions like that. The basics are where the real constraints live.",
+   "nuance": "질문을 망설이는 사람을 안심시키는 말로, 워크숍이나 교육 첫머리에 자주 씁니다. 다만 말로만 하고 실제로 질문을 무시하면 신뢰를 잃습니다. 농담 섞인 반박으로 \"There are no stupid questions, only stupid answers\"라고 덧붙이기도 합니다.",
+   "example_ko": "그녀는 워크숍을 시작할 때마다 \"멍청한 질문은 없다\"고 말했고, 진심이었다. 가장 좋은 통찰은 가장 기초적인 질문에서 나왔다."
   }
  ],
  "chinese_expressions": [],

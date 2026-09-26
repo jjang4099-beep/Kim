@@ -12,7 +12,9 @@
    "level": "intermediate",
    "theme": "건강·회복",
    "example": "After the intense project sprint, I need some time to decompress this weekend.",
-   "dialogue": "A: The product launch finally wrapped up. How are you feeling?\nB: Exhausted, honestly. I need some time to decompress before jumping into the next thing.\nA: Totally understandable. Don't check your emails this weekend.\nB: Agreed. Recovery isn't laziness — it's maintenance."
+   "dialogue": "A: The product launch finally wrapped up. How are you feeling?\nB: Exhausted, honestly. I need some time to decompress before jumping into the next thing.\nA: Totally understandable. Don't check your emails this weekend.\nB: Agreed. Recovery isn't laziness — it's maintenance.",
+   "nuance": "잠수부가 천천히 압력을 빼듯 긴장을 풀고 회복한다는 뜻입니다. 단순한 휴식(rest)보다 \"쌓인 스트레스를 빼낸다\"는 느낌이 강해서, 힘든 일을 끝낸 직후에 잘 어울립니다. 퇴근 후 혼자만의 시간이 필요하다는 뜻으로도 자주 씁니다.",
+   "example_ko": "강도 높은 프로젝트를 끝냈으니 이번 주말엔 좀 긴장을 풀 시간이 필요해요."
   },
   {
    "id": "EN_222",
@@ -21,7 +23,9 @@
    "level": "intermediate",
    "theme": "소통",
    "example": "It's not healthy to bottle up your feelings — find a way to express them.",
-   "dialogue": "A: You seem tense lately. Is everything okay?\nB: I've just been bottling up my feelings about the team dynamics.\nA: You should talk to the manager. Keeping it inside won't help.\nB: You're right. I'll schedule a one-on-one tomorrow."
+   "dialogue": "A: You seem tense lately. Is everything okay?\nB: I've just been bottling up my feelings about the team dynamics.\nA: You should talk to the manager. Keeping it inside won't help.\nB: You're right. I'll schedule a one-on-one tomorrow.",
+   "nuance": "병에 담아 뚜껑을 닫는다 = 감정을 속에 꾹꾹 눌러 담는다는 뜻입니다. 결국 한꺼번에 터진다는 뉘앙스가 담겨 있어 걱정의 표현으로 씁니다. 감정 표현을 절제하는 문화에서 자란 사람에게는 부담스러운 조언일 수 있으니 따뜻한 톤이 중요합니다.",
+   "example_ko": "감정을 속에만 담아 두는 건 건강하지 않아요 — 표현할 방법을 찾아보세요."
   },
   {
    "id": "EN_223",
@@ -30,7 +34,9 @@
    "level": "intermediate",
    "theme": "건강·번아웃",
    "example": "After three all-nighters in a row, I'm completely running on empty.",
-   "dialogue": "A: Can you join the 7 PM strategy session tonight?\nB: I really can't — I'm running on empty. I haven't slept properly in days.\nA: Take the night off. A burned-out team member is worse than an absent one.\nB: Thank you for understanding. I'll be sharper tomorrow."
+   "dialogue": "A: Can you join the 7 PM strategy session tonight?\nB: I really can't — I'm running on empty. I haven't slept properly in days.\nA: Take the night off. A burned-out team member is worse than an absent one.\nB: Thank you for understanding. I'll be sharper tomorrow.",
+   "nuance": "연료 게이지가 바닥인데도 달리고 있다 = 에너지가 다 떨어졌는데 버티고 있다는 뜻입니다. \"I'm tired\"보다 훨씬 심각한 고갈 상태로, 번아웃 직전의 신호입니다. 이 말을 들으면 상대의 업무량을 조정해 줘야 한다는 신호로 받아들이세요.",
+   "example_ko": "사흘 연속 밤을 새웠더니 완전히 방전됐어요."
   },
   {
    "id": "EN_224",
@@ -39,7 +45,9 @@
    "level": "intermediate",
    "theme": "소통·관계",
    "example": "There's been tension between us — can we meet and clear the air?",
-   "dialogue": "A: Things have been awkward between us since the meeting last week.\nB: I know. Can we grab coffee and clear the air?\nA: I'd really appreciate that. I think we both said things we didn't mean.\nB: Exactly. I'd rather address it directly than let it fester."
+   "dialogue": "A: Things have been awkward between us since the meeting last week.\nB: I know. Can we grab coffee and clear the air?\nA: I'd really appreciate that. I think we both said things we didn't mean.\nB: Exactly. I'd rather address it directly than let it fester.",
+   "nuance": "탁한 공기를 맑게 한다 = 쌓인 오해나 긴장을 솔직한 대화로 풀자는 뜻입니다. 갈등을 피하지 않고 정면으로 다루자는 성숙한 제안이라, 관계 회복의 첫걸음으로 좋습니다. 상대를 비난하는 자리가 아니라는 신호를 함께 주면 더 효과적입니다.",
+   "example_ko": "우리 사이에 긴장이 좀 있었잖아요 — 만나서 오해를 풀 수 있을까요?"
   },
   {
    "id": "EN_225",
@@ -48,7 +56,9 @@
    "level": "intermediate",
    "theme": "건강·감정",
    "example": "I appreciate the invitation, but I'm not in a good headspace for a party right now.",
-   "dialogue": "A: Want to join us for drinks tonight?\nB: Honestly, I'm not in a good headspace right now. I need some quiet time.\nA: Of course. Is there anything I can do?\nB: Just knowing you asked helps. I'll reach out when I'm feeling better."
+   "dialogue": "A: Want to join us for drinks tonight?\nB: Honestly, I'm not in a good headspace right now. I need some quiet time.\nA: Of course. Is there anything I can do?\nB: Just knowing you asked helps. I'll reach out when I'm feeling better.",
+   "nuance": "headspace는 \"마음의 상태\"라는 뜻으로, 최근 정신 건강 대화에서 자주 쓰이는 단어입니다. 이유를 자세히 말하지 않고도 거절할 수 있는 정중한 방법입니다. 긍정형 \"I'm in a good headspace\"는 \"요즘 마음이 편안하다\"는 뜻입니다.",
+   "example_ko": "초대는 고맙지만 지금은 파티에 갈 마음 상태가 아니에요."
   },
   {
    "id": "EN_226",
@@ -57,7 +67,9 @@
    "level": "intermediate",
    "theme": "인간관계",
    "example": "You need a thick skin to survive in the world of public speaking and constant feedback.",
-   "dialogue": "A: How does she handle all the negative comments on her work?\nB: She has a thick skin — she takes the useful feedback and ignores the noise.\nA: I wish I could do that. Criticism really gets to me.\nB: It's a skill you can build. Start by separating the message from the emotions."
+   "dialogue": "A: How does she handle all the negative comments on her work?\nB: She has a thick skin — she takes the useful feedback and ignores the noise.\nA: I wish I could do that. Criticism really gets to me.\nB: It's a skill you can build. Start by separating the message from the emotions.",
+   "nuance": "피부가 두껍다 = 비판에 쉽게 상처받지 않는다는 칭찬입니다. 한국어 \"낯가죽이 두껍다(뻔뻔하다)\"와 헷갈리기 쉬운데, 영어는 긍정적인 회복력을 말합니다. 반대로 \"thin-skinned\"는 \"작은 비판에도 쉽게 상처받는\"이라는 뜻입니다.",
+   "example_ko": "끊임없는 피드백을 받는 대중 연설의 세계에서 살아남으려면 비판에 강해야 해요."
   },
   {
    "id": "EN_227",
@@ -66,16 +78,9 @@
    "level": "intermediate",
    "theme": "인간관계",
    "example": "As a manager, wearing your heart on your sleeve can build trust but also vulnerability.",
-   "dialogue": "A: Does he ever hide how he's feeling in meetings?\nB: Never — he wears his heart on his sleeve. You always know exactly where you stand with him.\nA: Some people find that refreshing.\nB: It is. Though in tough negotiations, it can work against him."
-  },
-  {
-   "id": "EN_228",
-   "expression": "Let's touch base soon.",
-   "meaning": "곧 연락해서 서로 근황이나 상황을 나눠요.",
-   "level": "beginner",
-   "theme": "소통",
-   "example": "I haven't seen you in weeks — let's touch base over coffee soon.",
-   "dialogue": "A: I heard you've been working on a new project.\nB: Yes, it's been intense. Let's touch base soon — I'd love your perspective.\nA: Absolutely. How's Thursday afternoon?\nB: Perfect. I'll send a calendar invite."
+   "dialogue": "A: Does he ever hide how he's feeling in meetings?\nB: Never — he wears his heart on his sleeve. You always know exactly where you stand with him.\nA: Some people find that refreshing.\nB: It is. Though in tough negotiations, it can work against him.",
+   "nuance": "중세 기사가 사랑하는 여인의 표식을 소매에 달고 시합에 나섰다는 데서 왔다는 설이 있습니다. 감정을 숨기지 못하고 그대로 드러낸다는 뜻으로, 솔직함이라는 장점과 속내가 다 보인다는 약점을 함께 담습니다. 칭찬도 비판도 될 수 있으니 맥락을 보세요.",
+   "example_ko": "관리자로서 감정을 드러내면 신뢰를 쌓을 수도 있지만 약점이 될 수도 있어요."
   },
   {
    "id": "EN_230",
@@ -84,7 +89,9 @@
    "level": "intermediate",
    "theme": "인간관계·성장",
    "example": "After everything she went through, she really has her act together now.",
-   "dialogue": "A: I haven't seen Mirae in two years — is she still juggling everything?\nB: She really has her act together now — new role, healthy habits, much clearer about her priorities.\nA: What changed?\nB: She said she stopped trying to do everything and started doing the right things."
+   "dialogue": "A: I haven't seen Mirae in two years — is she still juggling everything?\nB: She really has her act together now — new role, healthy habits, much clearer about her priorities.\nA: What changed?\nB: She said she stopped trying to do everything and started doing the right things.",
+   "nuance": "자기 삶을 잘 정돈하고 관리하고 있다는 칭찬입니다. 원래 무대의 공연(act)을 제대로 준비했다는 이미지입니다. 반대로 \"Get your act together!\"는 \"정신 좀 차려!\"라는 꽤 강한 질책이라, 같은 표현이 칭찬과 꾸지람으로 모두 쓰입니다.",
+   "example_ko": "그 모든 일을 겪고 나서, 그녀는 이제 정말 삶을 잘 추스르고 있어요."
   },
   {
    "id": "EN_231",
@@ -93,7 +100,9 @@
    "level": "intermediate",
    "theme": "건강·소통",
    "example": "If I don't set some boundaries at work, I'll never be able to protect my personal time.",
-   "dialogue": "A: Your boss calls you on weekends again?\nB: Yes. I need to set some boundaries — it's affecting my health.\nA: Have you talked to him directly about it?\nB: Not yet. But saying nothing is the same as saying it's okay."
+   "dialogue": "A: Your boss calls you on weekends again?\nB: Yes. I need to set some boundaries — it's affecting my health.\nA: Have you talked to him directly about it?\nB: Not yet. But saying nothing is the same as saying it's okay.",
+   "nuance": "경계선을 긋는다 = 내가 허용할 수 있는 것과 없는 것을 분명히 한다는 뜻입니다. 최근 영어권에서 정신 건강과 일·삶 균형을 말할 때 핵심 단어가 되었습니다. 상대를 밀어내는 게 아니라 나를 지키는 것이라는 뉘앙스라 이기적으로 들리지 않습니다.",
+   "example_ko": "직장에서 경계선을 긋지 않으면 개인 시간을 절대 지킬 수 없을 거예요."
   },
   {
    "id": "EN_232",
@@ -102,7 +111,9 @@
    "level": "intermediate",
    "theme": "인간관계",
    "example": "The new client is a tough nut to crack, but once you earn his trust, he's loyal.",
-   "dialogue": "A: How's the relationship with the new stakeholder going?\nB: He's a tough nut to crack — very guarded, doesn't share much.\nA: What's your approach?\nB: Patience and consistency. People like that usually respect earned trust over time."
+   "dialogue": "A: How's the relationship with the new stakeholder going?\nB: He's a tough nut to crack — very guarded, doesn't share much.\nA: What's your approach?\nB: Patience and consistency. People like that usually respect earned trust over time.",
+   "nuance": "깨기 어려운 단단한 견과 = 마음을 열거나 설득하기 어려운 사람, 또는 풀기 어려운 문제라는 뜻입니다. 사람에게 쓸 때는 비난이 아니라 \"쉽지 않지만 도전할 만하다\"는 뉘앙스가 있습니다. 예문처럼 한번 열리면 충성스럽다는 말과 자주 짝을 이룹니다.",
+   "example_ko": "새 고객은 마음을 열기가 어렵지만, 한번 신뢰를 얻으면 의리가 있어요."
   },
   {
    "id": "EN_234",
@@ -111,7 +122,9 @@
    "level": "beginner",
    "theme": "건강·회복",
    "example": "Recovery is slow, but I'm taking this one day at a time and making steady progress.",
-   "dialogue": "A: How are you coping with the transition to a new city?\nB: Honestly, I'm just taking it one day at a time. Some days are great, some are hard.\nA: That's a healthy approach. No pressure to figure it all out immediately.\nB: Exactly. Small wins each day add up to something bigger."
+   "dialogue": "A: How are you coping with the transition to a new city?\nB: Honestly, I'm just taking it one day at a time. Some days are great, some are hard.\nA: That's a healthy approach. No pressure to figure it all out immediately.\nB: Exactly. Small wins each day add up to something bigger.",
+   "nuance": "금주 모임(AA)에서 쓰던 회복의 구호로 널리 퍼진 표현입니다. 먼 미래를 걱정하지 않고 오늘 하루에만 집중하겠다는 태도라, 병이나 슬픔에서 회복 중인 사람이 자주 씁니다. 이 말을 하는 사람에게 앞날의 계획을 캐묻는 건 피하는 게 좋습니다.",
+   "example_ko": "회복은 느리지만 하루하루 차근차근 해나가면서 꾸준히 나아지고 있어요."
   },
   {
    "id": "EN_235",
@@ -120,16 +133,9 @@
    "level": "intermediate",
    "theme": "인간관계",
    "example": "Even if you're leaving on bad terms, try not to burn bridges — industries are small.",
-   "dialogue": "A: I'm so done with this company. I want to quit without giving notice.\nB: Don't burn bridges — you'll likely cross paths with these people again.\nA: I know, but I'm so frustrated.\nB: Write the angry email, then delete it. Quit gracefully."
-  },
-  {
-   "id": "EN_236",
-   "expression": "She reached out to me out of the blue.",
-   "meaning": "그녀가 아무 예고 없이 갑자기 연락해왔어요.",
-   "level": "beginner",
-   "theme": "인간관계",
-   "example": "My old mentor reached out to me out of the blue with an incredible opportunity.",
-   "dialogue": "A: How did you land that consulting gig?\nB: An old colleague reached out to me out of the blue — apparently she'd been following my work.\nA: That's a perfect example of why maintaining weak ties matters.\nB: Absolutely. You never know who's watching and remembering."
+   "dialogue": "A: I'm so done with this company. I want to quit without giving notice.\nB: Don't burn bridges — you'll likely cross paths with these people again.\nA: I know, but I'm so frustrated.\nB: Write the angry email, then delete it. Quit gracefully.",
+   "nuance": "건너온 다리를 불태운다 = 돌아갈 길을 스스로 끊는다는 뜻으로, 관계를 완전히 망가뜨리지 말라는 조언입니다. 퇴사할 때 가장 많이 듣는 말로, 업계가 좁아서 언젠가 다시 만난다는 현실적인 이유가 깔려 있습니다. 반대로 \"burn the boats\"는 퇴로를 끊고 전진한다는 결의입니다.",
+   "example_ko": "안 좋게 떠나더라도 관계를 끊어 버리진 마세요 — 업계는 좁아요."
   },
   {
    "id": "EN_237",
@@ -138,7 +144,9 @@
    "level": "intermediate",
    "theme": "인간관계·성장",
    "example": "It was hard, but I had to swallow my pride and ask for help.",
-   "dialogue": "A: Did you ask the junior developer for help in the end?\nB: I did. I had to swallow my pride, but he solved it in ten minutes.\nA: That takes maturity.\nB: Protecting your ego at the cost of results isn't strength — it's just stubbornness."
+   "dialogue": "A: Did you ask the junior developer for help in the end?\nB: I did. I had to swallow my pride, but he solved it in ten minutes.\nA: That takes maturity.\nB: Protecting your ego at the cost of results isn't strength — it's just stubbornness.",
+   "nuance": "자존심을 삼킨다 = 자존심을 굽히고 도움을 청하거나 잘못을 인정한다는 뜻입니다. 그 행동이 쉽지 않았다는 고백이 담겨 있어 듣는 사람에게 진정성이 전해집니다. 남에게 \"Swallow your pride\"라고 하면 \"자존심 좀 내려놔\"라는 충고가 됩니다.",
+   "example_ko": "힘들었지만 자존심을 굽히고 도움을 청해야 했어요."
   },
   {
    "id": "EN_238",
@@ -147,7 +155,9 @@
    "level": "intermediate",
    "theme": "소통",
    "example": "We've debated this for an hour — let's agree to disagree and move forward.",
-   "dialogue": "A: I still think the blue version of the design is better.\nB: And I still prefer the green. Let's agree to disagree and show both options to the client.\nA: Fair enough. Let them decide.\nB: Sometimes the best resolution is accepting that neither side needs to win."
+   "dialogue": "A: I still think the blue version of the design is better.\nB: And I still prefer the green. Let's agree to disagree and show both options to the client.\nA: Fair enough. Let them decide.\nB: Sometimes the best resolution is accepting that neither side needs to win.",
+   "nuance": "서로 생각이 다르다는 데 동의하자 = 설득을 멈추고 차이를 인정하자는 뜻입니다. 끝나지 않는 논쟁을 평화롭게 마무리하는 좋은 방법이지만, 한쪽이 대화를 끊고 싶을 때 쓰면 \"더는 얘기하기 싫다\"로 들릴 수 있습니다. 결정이 필요한 업무 문제에는 맞지 않습니다.",
+   "example_ko": "한 시간 동안 토론했잖아요 — 서로 생각이 다르다는 걸 인정하고 넘어갑시다."
   },
   {
    "id": "EN_239",
@@ -156,7 +166,9 @@
    "level": "intermediate",
    "theme": "소통·공감",
    "example": "Be patient with him — he's been carrying a lot on his shoulders since his father got sick.",
-   "dialogue": "A: He seems distant and less engaged lately.\nB: He's been carrying a lot on his shoulders — family issues on top of work pressure.\nA: I didn't know. I should have checked in.\nB: Sometimes the best support is just asking: 'How are you, really?'"
+   "dialogue": "A: He seems distant and less engaged lately.\nB: He's been carrying a lot on his shoulders — family issues on top of work pressure.\nA: I didn't know. I should have checked in.\nB: Sometimes the best support is just asking: 'How are you, really?'",
+   "nuance": "어깨에 많은 짐을 지고 있다 = 책임이나 걱정이 무겁다는 뜻입니다. 상대의 사정을 헤아려 달라고 부탁할 때 쓰기 좋은 공감의 표현입니다. 비슷한 \"have a lot on one's plate\"가 할 일이 많다는 것이라면, 이 표현은 감정적 부담까지 포함합니다.",
+   "example_ko": "그 사람한테 조금만 너그러워 주세요 — 아버지가 편찮으신 뒤로 많은 짐을 지고 있어요."
   },
   {
    "id": "EN_240",
@@ -165,7 +177,9 @@
    "level": "intermediate",
    "theme": "소통",
    "example": "I dropped the ball on the client follow-up — I completely forgot to send the report.",
-   "dialogue": "A: The client called asking about the proposal we promised last week.\nB: I really dropped the ball on that one — I lost track of the deadline.\nA: Let's send it today with an apology note.\nB: Already drafting it. Owning the mistake quickly is the only way forward."
+   "dialogue": "A: The client called asking about the proposal we promised last week.\nB: I really dropped the ball on that one — I lost track of the deadline.\nA: Let's send it today with an apology note.\nB: Already drafting it. Owning the mistake quickly is the only way forward.",
+   "nuance": "경기 중 공을 떨어뜨린다 = 맡은 일을 놓치거나 실수했다는 뜻입니다. 스스로 \"I dropped the ball\"이라고 하면 변명 없는 깔끔한 인정이라 신뢰를 얻습니다. 남에게 \"You dropped the ball\"이라고 하면 꽤 직접적인 지적이 되니 톤에 주의하세요.",
+   "example_ko": "고객 후속 연락을 제가 완전히 놓쳤어요 — 보고서 보내는 걸 까맣게 잊었어요."
   }
  ],
  "english_theme_packs": [

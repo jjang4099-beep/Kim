@@ -103,56 +103,7 @@
    }
   }
  ],
- "english_expressions": [
-  {
-   "id": "EN_639",
-   "expression": "loop someone in",
-   "meaning": "누구를 대화·정보에 포함시키다",
-   "level": "intermediate",
-   "theme": "communication",
-   "example": "Can you loop in the legal team before we finalize the contract terms?",
-   "dialogue": {
-    "A": "Should I send this directly to the client?",
-    "B": "Not yet — loop in Sarah first so she's aware of what we're sending."
-   }
-  },
-  {
-   "id": "EN_643",
-   "expression": "drill down into",
-   "meaning": "깊이 분석하다, 세부 사항을 집중적으로 살펴보다",
-   "level": "intermediate",
-   "theme": "analysis",
-   "example": "Let's drill down into the data to understand why conversion dropped last month.",
-   "dialogue": {
-    "A": "The numbers look off but I'm not sure why.",
-    "B": "We need to drill down into each segment to find where the drop is coming from."
-   }
-  },
-  {
-   "id": "EN_645",
-   "expression": "put it on the back burner",
-   "meaning": "나중으로 미루다, 우선순위를 낮추다",
-   "level": "intermediate",
-   "theme": "prioritization",
-   "example": "We've decided to put the new feature on the back burner until we stabilize the core product.",
-   "dialogue": {
-    "A": "What happened to the international expansion plan?",
-    "B": "We put it on the back burner — we need to nail the domestic market first."
-   }
-  },
-  {
-   "id": "EN_650",
-   "expression": "above and beyond",
-   "meaning": "기대 이상으로, 추가적으로 노력하다",
-   "level": "intermediate",
-   "theme": "performance_recognition",
-   "example": "She consistently goes above and beyond — her commitment to the team is remarkable.",
-   "dialogue": {
-    "A": "Did you see what the team pulled off over the weekend?",
-    "B": "Absolutely — they went above and beyond, and I want to make sure we recognize that."
-   }
-  }
- ],
+ "english_expressions": [],
  "chinese_expressions": [
   {
    "id": "ZH_208",

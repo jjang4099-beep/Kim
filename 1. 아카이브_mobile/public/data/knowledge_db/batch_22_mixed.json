@@ -105,30 +105,6 @@
  ],
  "english_expressions": [
   {
-   "id": "EN_576",
-   "expression": "Easier said than done",
-   "meaning": "말은 쉽지만 실행은 어렵다",
-   "level": "beginner",
-   "theme": "Reality Check",
-   "example": "Changing company culture is easier said than done.",
-   "dialogue": {
-    "A": "We should just be more creative and think differently.",
-    "B": "Easier said than done — creativity needs structure and the right conditions."
-   }
-  },
-  {
-   "id": "EN_579",
-   "expression": "A win-win (situation)",
-   "meaning": "모두에게 이득인 상황, 상호 이익",
-   "level": "beginner",
-   "theme": "Negotiation & Collaboration",
-   "example": "Partnering with them would be a win-win for both companies.",
-   "dialogue": {
-    "A": "What do we get out of this collaboration?",
-    "B": "Their distribution, our product — it's a win-win. Both sides scale faster."
-   }
-  },
-  {
    "id": "EN_580",
    "expression": "Take the bull by the horns",
    "meaning": "어려운 문제를 정면으로 맞서다, 용감하게 도전하다",
@@ -138,67 +114,9 @@
    "dialogue": {
     "A": "Nobody wants to deal with this issue.",
     "B": "Someone has to take the bull by the horns — I'll set up the difficult conversation."
-   }
-  },
-  {
-   "id": "EN_581",
-   "expression": "Burn the midnight oil",
-   "meaning": "밤새 일하다, 늦게까지 열심히 하다",
-   "level": "beginner",
-   "theme": "Effort & Dedication",
-   "example": "The team burned the midnight oil to hit the launch deadline.",
-   "dialogue": {
-    "A": "How did you finish the report so fast?",
-    "B": "Burned the midnight oil for three nights — it paid off."
-   }
-  },
-  {
-   "id": "EN_582",
-   "expression": "On thin ice",
-   "meaning": "위험한 상황에 처해 있다, 조심해야 한다",
-   "level": "intermediate",
-   "theme": "Risk & Warning",
-   "example": "After missing two deadlines, the contractor is on thin ice.",
-   "dialogue": {
-    "A": "Should we push back on the client again?",
-    "B": "We're already on thin ice with them — let's just deliver first."
-   }
-  },
-  {
-   "id": "EN_584",
-   "expression": "The big picture",
-   "meaning": "큰 그림, 전체적인 맥락, 장기적 관점",
-   "level": "beginner",
-   "theme": "Strategy & Perspective",
-   "example": "Don't get lost in the numbers — keep an eye on the big picture.",
-   "dialogue": {
-    "A": "This quarter's numbers look rough.",
-    "B": "True, but the big picture shows steady growth — this is a normal dip."
-   }
-  },
-  {
-   "id": "EN_587",
-   "expression": "Reinvent the wheel",
-   "meaning": "이미 있는 것을 처음부터 다시 만들다 (비효율적인)",
-   "level": "intermediate",
-   "theme": "Efficiency & Reuse",
-   "example": "Use the existing framework instead of reinventing the wheel.",
-   "dialogue": {
-    "A": "I'm building a custom analytics tool from scratch.",
-    "B": "Why reinvent the wheel? There are five solid open-source options already."
-   }
-  },
-  {
-   "id": "EN_588",
-   "expression": "A blessing in disguise",
-   "meaning": "겉으로는 불행처럼 보이지만 실은 더 좋은 결과를 가져오는 것",
-   "level": "intermediate",
-   "theme": "Resilience & Perspective",
-   "example": "Losing that client turned out to be a blessing in disguise — it forced us to diversify.",
-   "dialogue": {
-    "A": "We lost the bid. I'm devastated.",
-    "B": "It might be a blessing in disguise — that scope was going to consume the whole team."
-   }
+   },
+   "nuance": "투우사처럼 황소의 뿔을 직접 잡는다 = 어렵고 두려운 문제를 피하지 않고 정면으로 맞선다는 뜻입니다. 미뤄 온 불편한 대화나 결정을 시작할 때 자기 다짐으로 자주 씁니다. 용기를 강조하는 말이라, 무모함이 아니라 필요한 결단일 때 어울립니다.",
+   "example_ko": "이 대화를 계속 피해 왔잖아요. 이제 정면으로 부딪칠 때예요."
   },
   {
    "id": "EN_590",
@@ -210,7 +128,9 @@
    "dialogue": {
     "A": "The project failed because the other team didn't deliver.",
     "B": "Let's not pass the buck — we should have caught that dependency earlier."
-   }
+   },
+   "nuance": "포커에서 다음 딜러를 표시하던 칼자루(buck)를 넘기던 데서 온 말로, 책임을 다른 사람에게 떠넘긴다는 뜻입니다. 트루먼 대통령이 책상에 둔 명패 \"The buck stops here(책임은 여기서 멈춘다)\"가 이 표현의 반대말로 유명합니다.",
+   "example_ko": "훌륭한 리더는 책임을 떠넘기지 않아요 — 결과를 스스로 짊어지죠."
   },
   {
    "id": "EN_591",
@@ -222,7 +142,9 @@
    "dialogue": {
     "A": "The new hire is struggling with the codebase.",
     "B": "Expected — there's a steep learning curve here. Let's pair them with a senior for two weeks."
-   }
+   },
+   "nuance": "원래 학습 곡선이 가파르다는 건 \"짧은 시간에 많이 배운다\"는 뜻이었지만, 일상에서는 \"배우기 어렵다\"는 뜻으로 굳었습니다. 새 직무나 도구가 어렵지만 가치 있다는 맥락에서 많이 씁니다. 면접에서 \"I enjoy a steep learning curve\"는 도전을 즐긴다는 어필이 됩니다.",
+   "example_ko": "새 플랫폼은 배우기 꽤 어렵지만 그만한 가치가 있어요."
   },
   {
    "id": "EN_592",
@@ -234,7 +156,9 @@
    "dialogue": {
     "A": "What do you think of the technical architecture?",
     "B": "Honestly, it's a bit over my head — can we bring in the senior engineer?"
-   }
+   },
+   "nuance": "머리 위로 지나간다 = 이해하기엔 너무 어렵다는 뜻입니다. \"in over my head(감당이 안 된다)\"와 헷갈리기 쉬운데, over my head는 이해의 문제, in over my head는 감당의 문제입니다. 농담이 이해가 안 됐을 때 \"That went right over my head\"라고 합니다.",
+   "example_ko": "이 계약서의 법률 용어는 제 이해를 좀 넘어서네요."
   },
   {
    "id": "EN_593",
@@ -246,7 +170,9 @@
    "dialogue": {
     "A": "We had to postpone the roadmap meeting twice.",
     "B": "I know — let's pick up where we left off. I kept the notes."
-   }
+   },
+   "nuance": "지난번에 멈춘 지점에서 다시 이어 가자는 뜻으로, 회의·수업·대화를 재개할 때 자연스럽습니다. 오랜만에 만난 친구와 \"We picked up right where we left off\"라고 하면 \"어제 만난 것처럼 편했다\"는 따뜻한 표현이 됩니다.",
+   "example_ko": "지난주 세션에서 멈춘 데서부터 다시 시작해요."
   },
   {
    "id": "EN_594",
@@ -258,7 +184,9 @@
    "dialogue": {
     "A": "How did you get that introduction so fast?",
     "B": "I pulled a few strings — an old colleague knew someone on their board."
-   }
+   },
+   "nuance": "인형극에서 줄을 당겨 인형을 움직이듯, 뒤에서 인맥이나 영향력을 써서 일을 성사시킨다는 뜻입니다. 도와준 사람에게는 감사의 표현이 되지만, 제3자가 들으면 \"특혜\"나 \"빽\"처럼 부정적으로 들릴 수 있습니다. 공정성이 중요한 자리에선 조심해서 쓰세요.",
+   "example_ko": "그가 인맥을 좀 써서 CEO와의 미팅을 잡아 줬어요."
   },
   {
    "id": "EN_595",
@@ -270,7 +198,9 @@
    "dialogue": {
     "A": "We fixed the customer complaints.",
     "B": "Those were just the tip of the iceberg — the underlying system needs a full audit."
-   }
+   },
+   "nuance": "빙산은 전체의 약 90%가 물속에 잠겨 있다는 데서 온 말로, 한국어 \"빙산의 일각\"과 같습니다. 드러난 문제 뒤에 훨씬 큰 문제가 숨어 있다는 경고라, 보고에서 쓰면 심각성을 크게 높입니다. 근거 없이 쓰면 과장된 불안 조성으로 보일 수 있습니다.",
+   "example_ko": "테스트에서 찾은 버그는 빙산의 일각에 불과했어요."
   }
  ],
  "chinese_expressions": [

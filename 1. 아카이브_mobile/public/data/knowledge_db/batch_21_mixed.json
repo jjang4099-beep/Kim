@@ -114,7 +114,9 @@
    "dialogue": {
     "A": "Should I commit to the first offer?",
     "B": "Not yet — keep your options open. Other interviews are still in progress."
-   }
+   },
+   "nuance": "아직 결정하지 않고 여러 가능성을 남겨 둔다는 뜻입니다. 신중하다는 긍정적인 뉘앙스지만, 상대에게는 \"나 말고 다른 곳도 알아보고 있다\"는 신호가 되어 협상에서 압박 수단이 되기도 합니다. 연애에서 쓰면 \"아직 한 사람에게 정착하지 않겠다\"는 뜻이 됩니다.",
+   "example_ko": "아직 아무것도 서명하지 마세요 — 다른 업체 답을 들을 때까지 선택지를 열어 둬요."
   },
   {
    "id": "EN_562",
@@ -126,7 +128,9 @@
    "dialogue": {
     "A": "We don't have a formal quote yet.",
     "B": "That's fine — just a ballpark figure is enough to start the budget conversation."
-   }
+   },
+   "nuance": "야구장(ballpark) 안에만 들어오면 된다 = 정확하진 않아도 대략적인 범위의 숫자라는 뜻입니다. 정확한 견적 전에 감을 잡으려고 물을 때 씁니다. 답하는 사람은 \"나중에 정확한 숫자가 다를 수 있다\"는 면책을 얻습니다. \"in the ballpark\"는 \"대략 맞는 범위 안\"이라는 뜻입니다.",
+   "example_ko": "전체 비용이 대략 얼마쯤 될지 말씀해 주실 수 있어요?"
   },
   {
    "id": "EN_563",
@@ -138,7 +142,9 @@
    "dialogue": {
     "A": "Are we approved to launch?",
     "B": "Just got the green light from the exec team this morning."
-   }
+   },
+   "nuance": "신호등의 초록불 = 진행해도 좋다는 공식 승인입니다. \"get approval\"보다 생생하고 가벼운 표현이라 업무 대화에서 매우 흔합니다. 반대로 \"give the green light\"는 승인을 내주는 쪽이고, \"red light\"는 중단 결정입니다.",
+   "example_ko": "법무팀 승인이 떨어졌어요 — 진행해도 돼요."
   },
   {
    "id": "EN_566",
@@ -150,7 +156,9 @@
    "dialogue": {
     "A": "Who started the documentation project?",
     "B": "No one assigned it — he just took the initiative when he saw the gap."
-   }
+   },
+   "nuance": "누가 시키기 전에 먼저 나선다는 뜻으로, 영어권 직장에서 가장 높이 평가받는 태도 중 하나입니다. 인사 평가나 추천서에 \"She takes initiative\"라고 쓰면 강한 칭찬입니다. 다만 권한 밖의 일을 상의 없이 벌이면 \"월권\"으로 받아들여질 수 있으니 공유는 필수입니다.",
+   "example_ko": "그녀는 누가 요청하기도 전에 먼저 나서서 온보딩을 재구성했어요."
   },
   {
    "id": "EN_569",
@@ -162,7 +170,9 @@
    "dialogue": {
     "A": "Have we thought of everything?",
     "B": "I think we've covered all the bases, but let's do one final review."
-   }
+   },
+   "nuance": "야구에서 모든 베이스를 지키듯, 일어날 수 있는 모든 경우에 빠짐없이 대비한다는 뜻입니다. 계획의 완성도를 칭찬할 때나, 준비를 점검할 때 씁니다. \"dot the i's and cross the t's\"가 세부 마무리라면, cover all the bases는 가능한 시나리오를 모두 챙기는 쪽입니다.",
+   "example_ko": "제안서가 법무, 기술, 재무까지 모든 경우를 빠짐없이 다루고 있어요."
   },
   {
    "id": "EN_570",
@@ -174,7 +184,9 @@
    "dialogue": {
     "A": "What's the plan for Q4?",
     "B": "Still up in the air — we're waiting for the board's decision."
-   }
+   },
+   "nuance": "공중에 떠 있어 어디에 떨어질지 모른다 = 아직 결정되지 않아 불확실하다는 뜻입니다. 계획이 확정되지 않았을 때 가장 흔하게 쓰는 표현입니다. \"undecided\"보다 불안정한 느낌이 있어서, 상대가 기다리고 있는 일에 대해 말할 땐 언제쯤 정해질지를 함께 알려 주는 게 좋습니다.",
+   "example_ko": "합병은 아직 불확실해요 — 서명된 게 하나도 없어요."
   },
   {
    "id": "EN_571",
@@ -186,7 +198,9 @@
    "dialogue": {
     "A": "Why is it taking so long?",
     "B": "Red tape — five departments have to sign off before anything moves."
-   }
+   },
+   "nuance": "옛 영국 관청에서 공문서를 빨간 끈으로 묶던 관습에서 온 말로, 불필요하게 복잡한 행정 절차를 비판할 때 씁니다. 부정적인 뉘앙스가 강해서 규정 자체의 필요성을 말할 땐 \"procedures\"나 \"compliance\"를 씁니다. \"cut through the red tape\"는 \"번거로운 절차를 뚫는다\"는 뜻입니다.",
+   "example_ko": "여기선 뭐 하나 빨리 승인받기엔 행정 절차가 너무 많아요."
   },
   {
    "id": "EN_572",
@@ -198,7 +212,9 @@
    "dialogue": {
     "A": "Can we skip the formal approval process this once?",
     "B": "Not on this one — we need to do it by the book with this client."
-   }
+   },
+   "nuance": "규칙서(the book)에 적힌 그대로 = 원칙과 절차를 정확히 따른다는 뜻입니다. 감사나 안전처럼 원칙이 중요한 상황에선 칭찬이지만, 사람을 두고 \"He does everything by the book\"이라고 하면 융통성이 없다는 뉘앙스가 될 수 있습니다.",
+   "example_ko": "이 프로젝트는 철저히 규정대로 해야 해요 — 지름길은 없어요."
   },
   {
    "id": "EN_573",
@@ -210,7 +226,9 @@
    "dialogue": {
     "A": "We've been debating font choices for two hours.",
     "B": "Let's not miss the forest for the trees — font won't determine launch success."
-   }
+   },
+   "nuance": "나무 하나하나를 보느라 숲 전체를 못 본다는 뜻으로, 한국어 \"나무만 보고 숲을 못 본다\"와 같습니다. 영국에서는 forest 대신 \"can't see the wood for the trees\"라고 말합니다. 세부에 빠진 회의를 되돌릴 때 쓰기 좋지만, 특정인을 지목하면 비판이 되니 \"we\"를 주어로 쓰세요.",
+   "example_ko": "로고 디자인에 너무 오래 매달리다 보니 나무만 보고 숲을 못 보고 있어요."
   },
   {
    "id": "EN_574",
@@ -222,7 +240,9 @@
    "dialogue": {
     "A": "How should we define success for this campaign?",
     "B": "Let's set the bar at a 20% conversion rate and work backwards from there."
-   }
+   },
+   "nuance": "높이뛰기의 가로대를 어디에 둘지 정한다 = 다른 사람들이 따라야 할 기준을 세운다는 뜻입니다. \"raise the bar\"가 기준을 높이는 것이라면, set the bar는 기준 자체를 만드는 쪽이라 선두 주자에 대한 칭찬으로 씁니다. \"set the bar high/low\"처럼 높낮이를 붙이기도 합니다.",
+   "example_ko": "그 회사의 고객 지원은 업계 전체의 기준이 돼요."
   },
   {
    "id": "EN_575",
@@ -234,7 +254,9 @@
    "dialogue": {
     "A": "Is it okay to build on existing frameworks instead of creating from scratch?",
     "B": "Absolutely — we stand on the shoulders of giants. Reinventing the wheel wastes time."
-   }
+   },
+   "nuance": "뉴턴이 1675년 경쟁자 로버트 훅에게 보낸 편지의 \"내가 더 멀리 보았다면 거인들의 어깨 위에 섰기 때문\"으로 유명해졌지만, 이 비유는 12세기 샤르트르의 베르나르까지 거슬러 올라갑니다. 앞선 사람들의 업적을 인정하는 겸손의 말이라, 성과를 자랑할 때 곁들이면 품위가 있습니다.",
+   "example_ko": "우리는 거인의 어깨 위에 서 있는 거예요 — 바퀴를 발명한 게 아니라 더 좋게 만든 거죠."
   }
  ],
  "chinese_expressions": [

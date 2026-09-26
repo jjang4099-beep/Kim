@@ -12,7 +12,9 @@
    "level": "intermediate",
    "theme": "리더십",
    "example": "Before we move forward with the new strategy, let's get everyone on board.",
-   "dialogue": "A: I think we're ready to launch the new initiative.\nB: Not yet. Let's get everyone on board first — especially the ops team.\nA: You're right. They raised concerns last time.\nB: Exactly. Their buy-in is crucial for this to work."
+   "dialogue": "A: I think we're ready to launch the new initiative.\nB: Not yet. Let's get everyone on board first — especially the ops team.\nA: You're right. They raised concerns last time.\nB: Exactly. Their buy-in is crucial for this to work.",
+   "nuance": "배(board)에 모두 태운다 = 모두가 동의하고 함께 가게 만든다는 뜻입니다. 결정을 통보하는 게 아니라 설득해서 참여시키는 과정을 강조합니다. 새로 합류한 사람에게 \"Welcome on board!\"라고 하면 \"합류를 환영해요\"라는 인사가 되고, \"I'm on board\"는 \"저도 찬성이에요\"입니다.",
+   "example_ko": "새 전략을 진행하기 전에 모두가 동의하고 함께하도록 합시다."
   },
   {
    "id": "EN_202",
@@ -21,7 +23,9 @@
    "level": "intermediate",
    "theme": "리더십",
    "example": "I want to give you some candid feedback on your presentation skills.",
-   "dialogue": "A: Do you have a moment after the meeting?\nB: Sure. Is everything okay?\nA: I want to give you some candid feedback — your report was thorough, but the delivery was rushed.\nB: Thank you for telling me directly. I'll work on that."
+   "dialogue": "A: Do you have a moment after the meeting?\nB: Sure. Is everything okay?\nA: I want to give you some candid feedback — your report was thorough, but the delivery was rushed.\nB: Thank you for telling me directly. I'll work on that.",
+   "nuance": "candid는 \"솔직한\"이지만 honest보다 \"꾸밈없이 있는 그대로\"라는 느낌이 강합니다. 이 말을 먼저 꺼내면 상대는 쓴소리가 올 것을 예상하고 마음의 준비를 합니다. 부정적 피드백 앞에 쿠션으로 쓰기 좋지만, 긍정적인 내용에 쓰면 오히려 긴장만 줍니다.",
+   "example_ko": "발표 능력에 대해 솔직한 피드백을 드리고 싶어요."
   },
   {
    "id": "EN_203",
@@ -30,7 +34,9 @@
    "level": "intermediate",
    "theme": "커리어",
    "example": "When the manager left suddenly, she really stepped up to the plate.",
-   "dialogue": "A: How did the project go without a project lead?\nB: Sarah really stepped up to the plate. She coordinated everything.\nA: Impressive. That's real leadership.\nB: Absolutely. She's definitely ready for a promotion."
+   "dialogue": "A: How did the project go without a project lead?\nB: Sarah really stepped up to the plate. She coordinated everything.\nA: Impressive. That's real leadership.\nB: Absolutely. She's definitely ready for a promotion.",
+   "nuance": "야구에서 타자가 타석(plate)에 들어서는 데서 온 말로, 누군가 해야 할 때 자진해서 책임을 맡고 나섰다는 칭찬입니다. 단순히 잘했다는 것이 아니라 \"빈자리를 스스로 채웠다\"는 주도성이 핵심입니다. 누군가에게 나서라고 할 때는 \"Someone needs to step up\"이라고 합니다.",
+   "example_ko": "매니저가 갑자기 떠났을 때, 그녀가 정말 자진해서 그 역할을 해냈어요."
   },
   {
    "id": "EN_204",
@@ -39,7 +45,9 @@
    "level": "intermediate",
    "theme": "리더십",
    "example": "The client is expecting results by Friday, but we need to manage expectations here.",
-   "dialogue": "A: The client thinks we'll deliver the full product by end of month.\nB: We need to manage expectations here — that's simply not realistic.\nA: I was afraid to disappoint them.\nB: Underpromising and overdelivering is always the better strategy."
+   "dialogue": "A: The client thinks we'll deliver the full product by end of month.\nB: We need to manage expectations here — that's simply not realistic.\nA: I was afraid to disappoint them.\nB: Underpromising and overdelivering is always the better strategy.",
+   "nuance": "상대의 기대치를 현실에 맞게 미리 조율한다는 뜻입니다. 나쁜 소식을 전하기 전에 \"기대를 낮춰 두는\" 작업이라 고객·상사 관리에서 매우 중요합니다. 다만 핑계처럼 들리지 않으려면 무엇이 가능하고 무엇이 어려운지 구체적으로 말해야 합니다.",
+   "example_ko": "고객은 금요일까지 결과를 기대하는데, 여기서 기대치를 현실적으로 조율해야 해요."
   },
   {
    "id": "EN_205",
@@ -48,7 +56,9 @@
    "level": "intermediate",
    "theme": "리더십",
    "example": "Instead of blaming the circumstances, let's take ownership of this situation.",
-   "dialogue": "A: The client complaints are piling up. What do we do?\nB: Let's take ownership of this and reach out proactively.\nA: Agreed. No more pointing fingers internally.\nB: Exactly — accountability starts with us."
+   "dialogue": "A: The client complaints are piling up. What do we do?\nB: Let's take ownership of this and reach out proactively.\nA: Agreed. No more pointing fingers internally.\nB: Exactly — accountability starts with us.",
+   "nuance": "단순히 책임(responsibility)을 지는 것이 아니라 \"내 일처럼 주인의식을 갖는다\"는 뜻입니다. 아마존 등 영어권 기업의 리더십 원칙에 자주 등장하는 핵심 단어입니다. 실수를 인정하는 맥락에서는 \"I take full ownership of this mistake\"라고 씁니다.",
+   "example_ko": "상황을 탓하는 대신, 이 일을 우리 일로 받아들이고 책임집시다."
   },
   {
    "id": "EN_206",
@@ -57,16 +67,9 @@
    "level": "intermediate",
    "theme": "커리어",
    "example": "After losing two key clients, the company is at a crossroads right now.",
-   "dialogue": "A: Should we expand to new markets or consolidate what we have?\nB: Honestly, we're at a crossroads right now. Either path has major implications.\nA: I agree. This decision will define the next five years.\nB: Let's get the leadership team together for a full strategy session."
-  },
-  {
-   "id": "EN_207",
-   "expression": "He knows how to read the room.",
-   "meaning": "그는 분위기를 잘 파악할 줄 알아요.",
-   "level": "intermediate",
-   "theme": "리더십",
-   "example": "Even in tense negotiations, he always knows how to read the room.",
-   "dialogue": "A: The CEO pivoted his entire presentation when he saw the investors were unimpressed.\nB: He always knows how to read the room — that's what makes him effective.\nA: I wish I had that skill.\nB: You can develop it. Start by observing people's body language and energy shifts."
+   "dialogue": "A: Should we expand to new markets or consolidate what we have?\nB: Honestly, we're at a crossroads right now. Either path has major implications.\nA: I agree. This decision will define the next five years.\nB: Let's get the leadership team together for a full strategy session.",
+   "nuance": "갈림길에 섰다 = 어느 길을 택하느냐에 따라 앞날이 크게 달라지는 중요한 순간이라는 뜻입니다. 위기라기보다 선택의 순간을 강조하는 말이라, 조직이나 개인의 전환점을 무게 있게 표현할 때 좋습니다. \"turning point\"는 이미 방향이 바뀐 시점을 가리킵니다.",
+   "example_ko": "핵심 고객 둘을 잃은 뒤, 회사는 지금 중요한 갈림길에 서 있어요."
   },
   {
    "id": "EN_208",
@@ -75,7 +78,9 @@
    "level": "intermediate",
    "theme": "커리어",
    "example": "The board presentation tomorrow is a make-or-break moment for our funding.",
-   "dialogue": "A: I'm nervous about the pitch to the investors tomorrow.\nB: You should be focused — this is a make-or-break moment for the company.\nA: No pressure at all.\nB: Channel that nervous energy into preparation. You've got this."
+   "dialogue": "A: I'm nervous about the pitch to the investors tomorrow.\nB: You should be focused — this is a make-or-break moment for the company.\nA: No pressure at all.\nB: Channel that nervous energy into preparation. You've got this.",
+   "nuance": "만들거나(make) 부수거나(break) = 성공 아니면 실패가 갈리는 결정적 순간이라는 뜻입니다. 긴장감을 크게 높이는 말이라 팀에 동기를 줄 수도, 압박을 줄 수도 있습니다. 모든 일에 쓰면 양치기 소년처럼 들리니 정말 중요한 순간에만 쓰세요.",
+   "example_ko": "내일 이사회 발표가 우리 투자 유치의 성패를 가르는 순간이에요."
   },
   {
    "id": "EN_209",
@@ -84,7 +89,9 @@
    "level": "intermediate",
    "theme": "리더십",
    "example": "We're getting too caught up in minor details — let's not lose sight of the big picture.",
-   "dialogue": "A: We've been debating the color scheme for the app for three days now.\nB: Let's not lose sight of the big picture — does the product actually solve the user's problem?\nA: Fair point. We've been stuck on aesthetics.\nB: Details matter, but only after the core value is clear."
+   "dialogue": "A: We've been debating the color scheme for the app for three days now.\nB: Let's not lose sight of the big picture — does the product actually solve the user's problem?\nA: Fair point. We've been stuck on aesthetics.\nB: Details matter, but only after the core value is clear.",
+   "nuance": "큰 그림을 시야에서 놓치지 말자는 뜻으로, 세부 논의에 빠진 회의를 목표로 되돌릴 때 씁니다. \"Don't get into the weeds\"가 세부로 들어가지 말자는 예방이라면, 이 표현은 이미 빠져든 상황에서 다시 시선을 들자는 쪽입니다.",
+   "example_ko": "사소한 디테일에 너무 빠져 있어요 — 큰 그림을 놓치지 맙시다."
   },
   {
    "id": "EN_210",
@@ -93,16 +100,9 @@
    "level": "intermediate",
    "theme": "커리어",
    "example": "Once we finalize the plan, I'll loop you in on next steps.",
-   "dialogue": "A: Am I needed for the follow-up meeting with legal?\nB: Not immediately, but I'll loop you in on next steps once we have direction.\nA: Perfect. Just let me know when you need my input.\nB: Will do. I'll send an update by Thursday."
-  },
-  {
-   "id": "EN_212",
-   "expression": "Let's walk the talk.",
-   "meaning": "말만 하지 말고 행동으로 보여줍시다.",
-   "level": "intermediate",
-   "theme": "리더십",
-   "example": "If we claim to value work-life balance, we need to walk the talk as managers.",
-   "dialogue": "A: We say we support employee wellbeing, but people are still working weekends.\nB: You're right. We need to walk the talk, starting with leadership behavior.\nA: That means no more late-night emails to staff.\nB: Exactly. Culture change starts at the top."
+   "dialogue": "A: Am I needed for the follow-up meeting with legal?\nB: Not immediately, but I'll loop you in on next steps once we have direction.\nA: Perfect. Just let me know when you need my input.\nB: Will do. I'll send an update by Thursday.",
+   "nuance": "이메일의 참조(CC)나 대화에 끼워 넣는다는 뜻으로, \"진행 상황을 공유해 주겠다\"는 약속입니다. \"keep you in the loop\"가 계속 알려주겠다는 것이라면, loop you in은 지금부터 논의에 포함시키겠다는 쪽입니다. 슬랙에서 \"Looping in @Mina\"는 \"미나 님도 이 대화에 부를게요\"라는 뜻입니다.",
+   "example_ko": "계획이 확정되면 다음 단계에 대해 공유해 드릴게요."
   },
   {
    "id": "EN_213",
@@ -111,7 +111,9 @@
    "level": "intermediate",
    "theme": "리더십",
    "example": "The team's morale is low because the director tends to micromanage everything.",
-   "dialogue": "A: Why does the design team seem so disengaged lately?\nB: Honestly, their manager tends to micromanage every detail — no autonomy.\nA: That kills creativity and ownership.\nB: He means well, but trust is what drives real performance."
+   "dialogue": "A: Why does the design team seem so disengaged lately?\nB: Honestly, their manager tends to micromanage every detail — no autonomy.\nA: That kills creativity and ownership.\nB: He means well, but trust is what drives real performance.",
+   "nuance": "팀원의 일을 세세한 부분까지 통제하고 간섭한다는 부정적인 뜻입니다. 영어권 직장에서 가장 싫어하는 관리자 유형이라 \"micromanager\"는 꽤 강한 비판입니다. 스스로 \"I don't want to micromanage, but...\"이라고 하면 간섭처럼 보일까 조심하는 표현이 됩니다.",
+   "example_ko": "임원이 모든 걸 세세하게 통제하려 해서 팀 사기가 낮아요."
   },
   {
    "id": "EN_214",
@@ -120,7 +122,9 @@
    "level": "beginner",
    "theme": "커리어",
    "example": "Don't add another project to her workload — she already has a lot on her plate.",
-   "dialogue": "A: Can we ask Jiyeon to lead the new onboarding program?\nB: She has a lot on her plate right now — two product launches and a team restructure.\nA: Right. Maybe we should hire a dedicated coordinator.\nB: That would actually make everyone's lives easier."
+   "dialogue": "A: Can we ask Jiyeon to lead the new onboarding program?\nB: She has a lot on her plate right now — two product launches and a team restructure.\nA: Right. Maybe we should hire a dedicated coordinator.\nB: That would actually make everyone's lives easier.",
+   "nuance": "접시(plate)에 음식이 가득 담겼다 = 해야 할 일이 이미 많다는 뜻입니다. \"busy\"보다 구체적으로 \"이미 맡은 게 많다\"는 뉘앙스라, 일을 더 주지 말자는 배려에 딱 맞습니다. 스스로 \"I have a lot on my plate\"라고 하면 부드러운 거절이 됩니다.",
+   "example_ko": "그녀에게 프로젝트 더 주지 마세요 — 이미 할 일이 너무 많아요."
   },
   {
    "id": "EN_216",
@@ -129,7 +133,9 @@
    "level": "intermediate",
    "theme": "커리어",
    "example": "I appreciate your input, but that's not your call to make — it's the CEO's decision.",
-   "dialogue": "A: I've already told the client we can do it by next week.\nB: That's not your call to make — pricing decisions go through the director.\nA: I was just trying to close the deal.\nB: I get it, but we need to follow the proper process. Let's loop in the director now."
+   "dialogue": "A: I've already told the client we can do it by next week.\nB: That's not your call to make — pricing decisions go through the director.\nA: I was just trying to close the deal.\nB: I get it, but we need to follow the proper process. Let's loop in the director now.",
+   "nuance": "call은 \"판정, 결정\"이라는 뜻으로, 결정 권한이 상대에게 없다고 선을 긋는 말입니다. 꽤 단호하게 들려서 윗사람이 아랫사람에게 쓰면 권위적으로 느껴질 수 있습니다. 반대로 \"It's your call\"은 \"당신이 정하세요\"라는 신뢰의 표현입니다.",
+   "example_ko": "의견은 고맙지만 그건 당신이 결정할 일이 아니에요 — CEO의 결정이에요."
   },
   {
    "id": "EN_217",
@@ -138,7 +144,9 @@
    "level": "advanced",
    "theme": "리더십",
    "example": "As head of strategy, she always has her finger on the pulse of industry trends.",
-   "dialogue": "A: How does the VP always seem to know what competitors are doing?\nB: She really has her finger on the pulse — she reads everything and talks to everyone.\nA: That kind of awareness is invaluable.\nB: Absolutely. Strategic leaders don't wait for reports; they sense shifts first."
+   "dialogue": "A: How does the VP always seem to know what competitors are doing?\nB: She really has her finger on the pulse — she reads everything and talks to everyone.\nA: That kind of awareness is invaluable.\nB: Absolutely. Strategic leaders don't wait for reports; they sense shifts first.",
+   "nuance": "맥박 위에 손가락을 얹고 있다 = 흐름과 변화를 실시간으로 정확히 감지한다는 뜻입니다. 트렌드나 조직 분위기를 잘 아는 사람에 대한 칭찬입니다. \"She knows a lot\"과 달리 지금 이 순간의 변화를 놓치지 않는다는 점이 핵심입니다.",
+   "example_ko": "전략 책임자로서 그녀는 늘 업계 트렌드의 흐름을 정확히 파악하고 있어요."
   },
   {
    "id": "EN_218",
@@ -147,16 +155,9 @@
    "level": "beginner",
    "theme": "커리어",
    "example": "The restructuring isn't public yet, so let's keep this between us for now.",
-   "dialogue": "A: I heard the merger might fall through. Is that true?\nB: I've heard the same, but let's keep this between us — nothing's confirmed yet.\nA: Of course. Premature leaks would cause real damage.\nB: Exactly. We'll know more after the board meeting next week."
-  },
-  {
-   "id": "EN_219",
-   "expression": "I want to make sure we're aligned on this.",
-   "meaning": "이 부분에서 우리가 같은 방향인지 확인하고 싶어요.",
-   "level": "intermediate",
-   "theme": "리더십",
-   "example": "Before we present to the client, I want to make sure we're aligned on the key message.",
-   "dialogue": "A: Before the townhall, I want to make sure we're aligned on this — what's the core narrative?\nB: Growth and stability. We acknowledge challenges, but emphasize resilience.\nA: Good. Let's make sure all department heads say the same thing.\nB: I'll send a briefing document this afternoon."
+   "dialogue": "A: I heard the merger might fall through. Is that true?\nB: I've heard the same, but let's keep this between us — nothing's confirmed yet.\nA: Of course. Premature leaks would cause real damage.\nB: Exactly. We'll know more after the board meeting next week.",
+   "nuance": "\"비밀로 해 주세요\"를 부드럽게 말하는 표현입니다. 공식적인 기밀(confidential)보다 개인적인 신뢰에 기대는 말이라, 비공식적인 정보를 나눌 때 씁니다. 회사의 중요한 정보라면 이 말만으로는 부족하니 공식 절차를 따르는 게 안전합니다.",
+   "example_ko": "구조조정은 아직 공개되지 않았으니, 당분간은 우리끼리만 알고 있어요."
   },
   {
    "id": "EN_220",
@@ -165,7 +166,9 @@
    "level": "advanced",
    "theme": "커리어",
    "example": "When the project failed, he threw his colleague under the bus instead of sharing responsibility.",
-   "dialogue": "A: Did you hear what happened in the client review?\nB: Yes — when the client complained, he threw his colleague under the bus in front of everyone.\nA: That's a serious trust issue. The team won't forget that.\nB: Leaders who protect their teams rise. Leaders who sacrifice them fall."
+   "dialogue": "A: Did you hear what happened in the client review?\nB: Yes — when the client complained, he threw his colleague under the bus in front of everyone.\nA: That's a serious trust issue. The team won't forget that.\nB: Leaders who protect their teams rise. Leaders who sacrifice them fall.",
+   "nuance": "동료를 버스 밑으로 던진다 = 자기가 살기 위해 남을 희생양으로 삼는다는 뜻입니다. 영어권 직장에서 가장 비열한 행동으로 꼽히는 배신을 가리키므로, 누군가에게 이 말을 쓰면 인격에 대한 강한 비판이 됩니다. \"I'm not going to throw anyone under the bus\"는 \"누구 탓도 하지 않겠다\"는 선언입니다.",
+   "example_ko": "프로젝트가 실패하자 그는 책임을 나누는 대신 동료를 희생양으로 삼았어요."
   }
  ],
  "english_theme_packs": [

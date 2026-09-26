@@ -90,40 +90,15 @@
  ],
  "english_expressions": [
   {
-   "id": "EN_347",
-   "expression": "On the fence",
-   "meaning": "결정을 못 내리고 있다, 어느 쪽도 선택하지 못한 상태.",
-   "level": "beginner",
-   "theme": "communication",
-   "example": "The board is still on the fence about the acquisition — they want more due diligence before committing.",
-   "dialogue": "A: Have you decided whether to accept the offer?\nB: I'm still on the fence. The role is exciting but the commute would be brutal.\nA: What would help you decide?\nB: Honestly, knowing if remote work is an option two or three days a week would probably tip it for me."
-  },
-  {
-   "id": "EN_348",
-   "expression": "Throw someone under the bus",
-   "meaning": "남을 희생양으로 삼다, 책임을 다른 사람에게 전가하다.",
-   "level": "intermediate",
-   "theme": "workplace",
-   "example": "When the project failed, the director threw the project manager under the bus in front of the client — which destroyed team morale completely.",
-   "dialogue": "A: Did you hear how the VP handled the client complaint? He blamed the design team.\nB: He threw them under the bus. That's going to create a lot of resentment.\nA: The design team didn't even have the final say on those decisions.\nB: Exactly. When things go wrong, leaders protect their team — they don't use them as shields."
-  },
-  {
-   "id": "EN_349",
-   "expression": "Connect the dots",
-   "meaning": "점들을 연결하다, 흩어진 정보를 종합해 큰 그림을 파악하다.",
-   "level": "intermediate",
-   "theme": "communication",
-   "example": "When you connect the dots — falling retention, increasing support tickets, and declining NPS — it's clear the onboarding experience is broken.",
-   "dialogue": "A: We have three different reports showing three different problems. What's the story?\nB: Let me connect the dots. Low DAU, high churn in week two, and poor review scores all point to the same thing: users don't reach the 'aha moment' before they give up.\nA: So the fix isn't marketing, it's activation.\nB: Exactly. More users at the top of the funnel doesn't help if the funnel has a hole."
-  },
-  {
    "id": "EN_350",
    "expression": "Pick someone's brain",
    "meaning": "조언이나 아이디어를 얻기 위해 이야기를 나누다.",
    "level": "beginner",
    "theme": "workplace",
    "example": "Could I pick your brain about the new sales process? You've run this type of playbook before and I want to learn from your experience.",
-   "dialogue": "A: Hey, I know you're busy, but could I pick your brain for 15 minutes about pricing strategy?\nB: Of course. What's the context?\nA: We're launching a B2B tier and I'm not sure whether to go usage-based or seat-based.\nB: Happy to share what we've learned. Let's grab coffee Thursday."
+   "dialogue": "A: Hey, I know you're busy, but could I pick your brain for 15 minutes about pricing strategy?\nB: Of course. What's the context?\nA: We're launching a B2B tier and I'm not sure whether to go usage-based or seat-based.\nB: Happy to share what we've learned. Let's grab coffee Thursday.",
+   "nuance": "상대의 뇌에서 지식을 조금 뽑아 간다 = 전문가에게 조언을 구한다는 뜻입니다. 이메일이나 링크드인에서 \"Can I pick your brain over coffee?\"처럼 자주 쓰는데, 상대의 시간과 지식을 공짜로 요구하는 느낌이 있어서 전문가들은 부담스러워하기도 합니다. 구체적인 질문과 시간을 함께 제시하면 좋습니다.",
+   "example_ko": "새 영업 프로세스에 대해 조언 좀 구해도 될까요? 이런 방식을 운영해 보셨으니 경험에서 배우고 싶어요."
   },
   {
    "id": "EN_352",
@@ -132,25 +107,9 @@
    "level": "beginner",
    "theme": "communication",
    "example": "We don't always see eye to eye on strategy, but we respect each other's reasoning and that makes the disagreement productive.",
-   "dialogue": "A: It seems like you and the CTO don't see eye to eye on the tech stack decision.\nB: We don't on this one. He wants stability, I want flexibility. Both are valid priorities.\nA: How do you resolve it?\nB: We find the one dimension we do agree on — security — and use that as the deciding factor."
-  },
-  {
-   "id": "EN_353",
-   "expression": "Back to the drawing board",
-   "meaning": "처음부터 다시 시작하다, 계획을 완전히 새로 짜다.",
-   "level": "beginner",
-   "theme": "workplace",
-   "example": "After testing with real users, the prototype failed on the core task — it's back to the drawing board on the UX.",
-   "dialogue": "A: The client rejected the entire proposal.\nB: All of it?\nA: They said the concept doesn't fit their brand direction.\nB: Then it's back to the drawing board. That's not a bad thing — better now than after launch. What specifically didn't resonate?"
-  },
-  {
-   "id": "EN_354",
-   "expression": "A game changer",
-   "meaning": "판도를 바꾸는 것, 게임의 규칙을 바꾸는 혁신적인 것.",
-   "level": "intermediate",
-   "theme": "innovation",
-   "example": "Integrating AI into the recommendation engine was a game changer — session time increased 40% in the first week.",
-   "dialogue": "A: What do you think makes this product different from everything else out there?\nB: The real-time personalization. That's the game changer. Other products show you what's popular — this one shows you what's right for you, at this moment.\nA: Do users actually notice the difference?\nB: The retention numbers don't lie. Day-7 retention went from 23% to 41%."
+   "dialogue": "A: It seems like you and the CTO don't see eye to eye on the tech stack decision.\nB: We don't on this one. He wants stability, I want flexibility. Both are valid priorities.\nA: How do you resolve it?\nB: We find the one dimension we do agree on — security — and use that as the deciding factor.",
+   "nuance": "눈높이가 같다 = 의견이 일치한다는 뜻인데, 부정형 \"We don't see eye to eye\"로 훨씬 자주 씁니다. 부정형은 \"의견이 안 맞는다\"를 부드럽게 표현해서, 갈등을 인정하면서도 관계는 괜찮다는 인상을 줍니다. \"disagree\"보다 덜 대립적입니다.",
+   "example_ko": "전략에서 늘 의견이 같지는 않지만, 서로의 논리를 존중해서 이견이 생산적이에요."
   },
   {
    "id": "EN_355",
@@ -159,7 +118,9 @@
    "level": "beginner",
    "theme": "communication",
    "example": "The initial data looks fine, but let's dig deeper into the segment breakdown — the overall number might be hiding a problem.",
-   "dialogue": "A: Revenue is up 12% this quarter.\nB: Let's dig deeper before we celebrate. What's the channel mix? New vs. returning customers?\nA: Mostly new customers and one big enterprise deal.\nB: Then recurring revenue might actually be flat or declining. That's the story we need to understand."
+   "dialogue": "A: Revenue is up 12% this quarter.\nB: Let's dig deeper before we celebrate. What's the channel mix? New vs. returning customers?\nA: Mostly new customers and one big enterprise deal.\nB: Then recurring revenue might actually be flat or declining. That's the story we need to understand.",
+   "nuance": "표면 아래로 더 파고들자는 뜻입니다. drill down이 데이터를 단계적으로 쪼개 들어가는 분석이라면, dig deeper는 원인·동기·숨은 문제까지 넓게 탐구하는 느낌입니다. 면접관이 \"Let's dig deeper into that\"이라고 하면 방금 한 답에 대해 더 구체적으로 묻겠다는 신호입니다.",
+   "example_ko": "초기 데이터는 괜찮아 보이지만 세그먼트별로 더 파고들어 봐요 — 전체 숫자가 문제를 숨기고 있을 수 있어요."
   },
   {
    "id": "EN_356",
@@ -168,7 +129,9 @@
    "level": "advanced",
    "theme": "innovation",
    "example": "The brief asked for a 10% improvement in load time. The engineering team pushed the envelope and delivered 60%.",
-   "dialogue": "A: The client wants something 'edgy but safe.' What does that even mean?\nB: It means they want us to push the envelope — but not so far that they're uncomfortable approving it.\nA: That's a very narrow target.\nB: It is. But that's the creative challenge. Find the edge they didn't know they could go to, and bring them there gently."
+   "dialogue": "A: The client wants something 'edgy but safe.' What does that even mean?\nB: It means they want us to push the envelope — but not so far that they're uncomfortable approving it.\nA: That's a very narrow target.\nB: It is. But that's the creative challenge. Find the edge they didn't know they could go to, and bring them there gently.",
+   "nuance": "항공공학의 \"비행 한계 범위(flight envelope)\"를 넘나드는 시험 비행에서 온 말로, 1950~60년대 시험 비행사들 사이에서 퍼졌습니다. 기존의 한계를 넘어서는 시도를 한다는 뜻이라, 기술·예술·디자인에서 칭찬으로 씁니다. 규칙을 어기는 행동에 쓰면 \"선을 넘는다\"는 비판이 됩니다.",
+   "example_ko": "요구 사항은 로딩 속도 10% 개선이었는데, 엔지니어링 팀은 한계를 넘어 60%를 달성했어요."
   },
   {
    "id": "EN_357",
@@ -177,25 +140,9 @@
    "level": "beginner",
    "theme": "communication",
    "example": "We've submitted the proposal, addressed all their concerns, and offered a flexible payment plan. The ball is in their court now.",
-   "dialogue": "A: I've sent them the revised contract with all the changes they requested. What do we do now?\nB: The ball is in their court. Don't follow up for at least 48 hours — you've done your part.\nA: What if they don't respond?\nB: After 48 hours, one short check-in is fine. But never show urgency before they do."
-  },
-  {
-   "id": "EN_358",
-   "expression": "Food for thought",
-   "meaning": "생각해볼 거리, 깊이 생각해볼 만한 관점.",
-   "level": "intermediate",
-   "theme": "communication",
-   "example": "I'm not saying we should pivot completely, but the customer interviews gave me some food for thought about whether we're solving the right problem.",
-   "dialogue": "A: I wanted to share something before the strategy meeting — maybe just as food for thought.\nB: Go ahead.\nA: What if our real competition isn't other apps, but the habit of not tracking at all? We're trying to beat competitors, but maybe the battle is against inertia.\nB: That's a genuinely different way to frame the problem. I want to sit with that."
-  },
-  {
-   "id": "EN_359",
-   "expression": "Wrap up",
-   "meaning": "마무리하다, 끝내다.",
-   "level": "beginner",
-   "theme": "workplace",
-   "example": "Let's wrap up the meeting in the next five minutes — I'll send action items to everyone by end of day.",
-   "dialogue": "A: We're about to go over time. Can we wrap up?\nB: Sure. Real quick — we have three open items: the budget approval, the vendor selection, and the timeline for phase two. Who owns each?\nA: I'll take budget. You take vendor. Timeline goes to the PM.\nB: Done. Meeting adjourned."
+   "dialogue": "A: I've sent them the revised contract with all the changes they requested. What do we do now?\nB: The ball is in their court. Don't follow up for at least 48 hours — you've done your part.\nA: What if they don't respond?\nB: After 48 hours, one short check-in is fine. But never show urgency before they do.",
+   "nuance": "테니스에서 공이 상대 코트로 넘어갔다 = 이제 상대가 결정하거나 행동할 차례라는 뜻입니다. 협상에서 우리가 할 일은 다 했다는 신호로 씁니다. 상대에게 직접 \"The ball is in your court\"라고 하면 결정을 재촉하는 압박이 될 수 있습니다.",
+   "example_ko": "제안서를 냈고, 우려를 모두 해소했고, 유연한 결제 조건까지 제시했어요. 이제 그쪽 차례예요."
   },
   {
    "id": "EN_360",
@@ -204,7 +151,9 @@
    "level": "intermediate",
    "theme": "workplace",
    "example": "They've been running a quiet pilot in two stores, completely under the radar, before deciding whether to roll it out nationally.",
-   "dialogue": "A: Has leadership heard about the initiative we're running?\nB: Not yet. We're keeping it under the radar until we have results to show. If we announce it too early and it doesn't work, it becomes a failed project on the record.\nA: Smart. When do we surface it?\nB: When we have 30 days of data. Then we present it as 'here's what we already learned' rather than 'here's what we want to try.'"
+   "dialogue": "A: Has leadership heard about the initiative we're running?\nB: Not yet. We're keeping it under the radar until we have results to show. If we announce it too early and it doesn't work, it becomes a failed project on the record.\nA: Smart. When do we surface it?\nB: When we have 30 days of data. Then we present it as 'here's what we already learned' rather than 'here's what we want to try.'",
+   "nuance": "레이더에 잡히지 않을 만큼 낮게 난다 = 주목받지 않고 조용히 진행한다는 뜻입니다. 전략적인 비공개 시범 운영처럼 긍정적으로도, 규제를 피하는 행동처럼 부정적으로도 쓰입니다. \"keep a low profile\"이 사람의 처신이라면, under the radar는 일이 진행되는 방식에 더 자주 씁니다.",
+   "example_ko": "그들은 전국 확대 여부를 정하기 전에 두 매장에서 조용히, 전혀 드러나지 않게 시범 운영을 해 왔어요."
   },
   {
    "id": "EN_361",
@@ -213,7 +162,9 @@
    "level": "intermediate",
    "theme": "workplace",
    "example": "Before making any recommendations, she spent two weeks interviewing every team to get the lay of the land.",
-   "dialogue": "A: You've been here a month now. How are you finding it?\nB: Still getting the lay of the land, honestly. The org chart doesn't reflect how decisions actually get made — I'm trying to understand the informal power structure.\nA: That's exactly the right thing to be learning at this stage.\nB: Once I have that map, I'll have a much clearer view of what's actually possible here."
+   "dialogue": "A: You've been here a month now. How are you finding it?\nB: Still getting the lay of the land, honestly. The org chart doesn't reflect how decisions actually get made — I'm trying to understand the informal power structure.\nA: That's exactly the right thing to be learning at this stage.\nB: Once I have that map, I'll have a much clearer view of what's actually possible here.",
+   "nuance": "땅의 생김새(lay)를 파악한다 = 새로운 환경의 전반적인 상황과 분위기를 이해한다는 뜻입니다. 새 직장이나 조직에 합류했을 때 섣불리 판단하지 않고 먼저 관찰하겠다는 겸손한 태도를 보여줍니다. 입사 초기에 \"I'm still getting the lay of the land\"라고 하면 자연스럽습니다.",
+   "example_ko": "어떤 제안을 하기 전에 그녀는 2주 동안 모든 팀을 인터뷰하며 현황을 파악했어요."
   },
   {
    "id": "EN_362",
@@ -222,7 +173,9 @@
    "level": "beginner",
    "theme": "workplace",
    "example": "Let's shoot for the moon with this campaign. Even if we hit 70% of the goal, that's still a record quarter.",
-   "dialogue": "A: What should our target be for this campaign?\nB: Shoot for the moon. Set a number that feels uncomfortable — not impossible, but genuinely challenging.\nA: Won't that demoralize the team if we miss it?\nB: Only if they don't understand why you set it there. Ambitious targets focus attention. Safe targets produce mediocre results."
+   "dialogue": "A: What should our target be for this campaign?\nB: Shoot for the moon. Set a number that feels uncomfortable — not impossible, but genuinely challenging.\nA: Won't that demoralize the team if we miss it?\nB: Only if they don't understand why you set it there. Ambitious targets focus attention. Safe targets produce mediocre results.",
+   "nuance": "달을 향해 쏘라 = 불가능해 보여도 최고의 목표를 잡으라는 뜻입니다. \"달을 겨냥하면 빗나가도 별 사이에 떨어진다\"는 격언이 짝처럼 따라다닙니다. 동기 부여에는 좋지만, 비현실적인 목표로 팀을 지치게 하는 말로 받아들여질 수도 있습니다.",
+   "example_ko": "이번 캠페인은 최고를 목표로 합시다. 목표의 70%만 달성해도 역대 최고 분기예요."
   },
   {
    "id": "EN_363",
@@ -231,7 +184,9 @@
    "level": "beginner",
    "theme": "workplace",
    "example": "The first quarter is always the hardest for a new business — hang in there, the traction usually comes in month four or five.",
-   "dialogue": "A: We've been working on this for eight months and I'm not sure anything is working.\nB: Hang in there. This stage — where nothing feels like it's landing — is exactly when most people quit. And it's usually right before something clicks.\nA: Is that just something people say to make you feel better?\nB: Check the pattern of our own growth. Month seven looked exactly like this. Then month nine happened."
+   "dialogue": "A: We've been working on this for eight months and I'm not sure anything is working.\nB: Hang in there. This stage — where nothing feels like it's landing — is exactly when most people quit. And it's usually right before something clicks.\nA: Is that just something people say to make you feel better?\nB: Check the pattern of our own growth. Month seven looked exactly like this. Then month nine happened.",
+   "nuance": "거기 매달려 버텨라 = 힘든 시기를 포기하지 말고 견디라는 따뜻한 격려입니다. 1970년대 나뭇가지에 매달린 고양이 사진에 이 문구를 넣은 포스터가 크게 유행하면서 더 친숙해졌습니다. 해결책을 주는 말이 아니라 곁에 있다는 위로라, 진지한 문제에는 구체적인 도움을 함께 건네는 게 좋습니다.",
+   "example_ko": "새 사업은 첫 분기가 늘 제일 힘들어요 — 조금만 버텨요, 보통 넉 달이나 다섯 달째에 반응이 와요."
   },
   {
    "id": "EN_364",
@@ -240,7 +195,9 @@
    "level": "beginner",
    "theme": "workplace",
    "example": "None of us has the full answer alone — let's put our heads together and see what we come up with.",
-   "dialogue": "A: I've been stuck on this problem for a week.\nB: Let's put our heads together. Talk me through what you've tried so far.\nA: I've tried three different approaches. Each one solves part of the problem but creates another one.\nB: Okay. What if the constraint isn't the approach — what if it's the definition of the problem itself?"
+   "dialogue": "A: I've been stuck on this problem for a week.\nB: Let's put our heads together. Talk me through what you've tried so far.\nA: I've tried three different approaches. Each one solves part of the problem but creates another one.\nB: Okay. What if the constraint isn't the approach — what if it's the definition of the problem itself?",
+   "nuance": "머리를 맞대자는 뜻으로, 한국어 \"머리를 맞대다\"와 거의 같습니다. 혼자서는 답이 없으니 함께 생각하자는 협력의 제안이라 위계를 낮추는 효과가 있습니다. 리더가 먼저 이 말을 하면 팀원들이 의견을 내기 편해집니다.",
+   "example_ko": "우리 중 누구도 혼자서는 답을 다 갖고 있지 않아요 — 머리를 맞대고 뭐가 나오는지 봅시다."
   },
   {
    "id": "EN_365",
@@ -249,7 +206,9 @@
    "level": "beginner",
    "theme": "workplace",
    "example": "Keep the client in the loop on any delays — they'd rather know early than be surprised at the deadline.",
-   "dialogue": "A: Should I cc the stakeholders on every email?\nB: Not every email — but keep them in the loop on key decisions, changes in scope, and anything that affects the timeline.\nA: How do you recommend doing that without overwhelming them?\nB: A weekly three-line summary email. Date, status, next milestone. That's it. They'll actually read it because it respects their time."
+   "dialogue": "A: Should I cc the stakeholders on every email?\nB: Not every email — but keep them in the loop on key decisions, changes in scope, and anything that affects the timeline.\nA: How do you recommend doing that without overwhelming them?\nB: A weekly three-line summary email. Date, status, next milestone. That's it. They'll actually read it because it respects their time.",
+   "nuance": "고리(loop) 안에 계속 둔다 = 진행 상황을 계속 공유한다는 뜻입니다. \"loop in\"이 지금 대화에 새로 끌어들이는 것이라면, keep in the loop는 이미 관련된 사람에게 꾸준히 업데이트하는 것입니다. 반대로 \"I was out of the loop\"는 \"나만 몰랐다\"는 서운함을 담습니다.",
+   "example_ko": "지연이 생기면 고객에게 계속 공유하세요 — 마감에 놀라느니 일찍 아는 걸 더 좋아해요."
   }
  ],
  "chinese_expressions": [

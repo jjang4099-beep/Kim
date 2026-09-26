@@ -90,22 +90,15 @@
   ],
   "english_expressions": [
     {
-      "id": "EN_476",
-      "expression": "Loop [someone] in",
-      "meaning": "누군가를 정보 공유 고리에 포함시키다, CC에 넣다, 상황을 공유하다.",
-      "level": "intermediate",
-      "theme": "workplace_jargon",
-      "example": "Can you loop in the design team on this thread? They'll need to see the feedback before they start revisions.",
-      "dialogue": "A: The client just approved the new direction.\nB: Great — let's loop in the dev team now. They've been waiting on this decision before they can start sprint planning.\nA: Done. I've added them to the email chain.\nB: Perfect. Let's get a kickoff call scheduled."
-    },
-    {
       "id": "EN_477",
       "expression": "Flag (something)",
       "meaning": "주의를 환기시키다, 중요한 것을 짚어두다. 문제나 중요한 사항을 표시해서 알려주는 것.",
       "level": "intermediate",
       "theme": "workplace_jargon",
       "example": "I just wanted to flag that the deadline on the contract is actually next Friday, not the 30th.",
-      "dialogue": "A: Before we wrap up — I want to flag something we haven't addressed.\nB: Go ahead.\nA: The vendor contract renews automatically in 30 days. If we want to renegotiate, we need to send notice this week.\nB: Good catch. Let's get legal on that today."
+      "dialogue": "A: Before we wrap up — I want to flag something we haven't addressed.\nB: Go ahead.\nA: The vendor contract renews automatically in 30 days. If we want to renegotiate, we need to send notice this week.\nB: Good catch. Let's get legal on that today.",
+      "nuance": "깃발을 꽂아 표시해 두듯 주의가 필요한 것을 짚어 알린다는 뜻입니다. \"I want to flag...\"는 문제를 지적하면서도 비난 없이 사실만 알리는 중립적인 표현이라, 윗사람이나 다른 팀에게 쓰기 좋습니다. 명사 \"red flag\"가 위험 신호라면 동사 flag는 단순히 주의를 요청하는 쪽입니다.",
+      "example_ko": "계약서 마감일이 30일이 아니라 사실 다음 주 금요일이라는 점만 짚어 두고 싶었어요."
     },
     {
       "id": "EN_478",
@@ -114,7 +107,9 @@
       "level": "beginner",
       "theme": "workplace_jargon",
       "example": "When you're ready to go over the numbers, just ping me and I'll come to your desk.",
-      "dialogue": "A: I don't want to interrupt your flow — when's a good time to review this together?\nB: I'm heads-down until around 3. Ping me on Slack after that and we can walk through it.\nA: Will do.\nB: And if it's urgent before then, just ping me — I check messages between tasks."
+      "dialogue": "A: I don't want to interrupt your flow — when's a good time to review this together?\nB: I'm heads-down until around 3. Ping me on Slack after that and we can walk through it.\nA: Will do.\nB: And if it's urgent before then, just ping me — I check messages between tasks.",
+      "nuance": "네트워크 연결을 확인하는 명령어 ping에서 온 말로, 짧은 메시지로 가볍게 연락하라는 뜻입니다. 전화나 이메일보다 가볍고 빠른 연락이라 슬랙 같은 메신저 문화에 딱 맞습니다. 격식 있는 상대나 외부 고객에게는 \"Feel free to reach out\"이 더 무난합니다.",
+      "example_ko": "숫자 같이 볼 준비 되면 그냥 메시지 주세요, 제가 자리로 갈게요."
     },
     {
       "id": "EN_479",
@@ -123,7 +118,9 @@
       "level": "beginner",
       "theme": "workplace_jargon",
       "example": "Let's close with action items — who's doing what by when?",
-      "dialogue": "A: Okay, let's wrap up. What are the action items coming out of this?\nB: I'll send the revised brief by Wednesday. You're reviewing the budget by Thursday. And we both need to be ready to present Friday.\nA: I'll add these to the project tracker.\nB: Good. Send me the link so I can update my progress."
+      "dialogue": "A: Okay, let's wrap up. What are the action items coming out of this?\nB: I'll send the revised brief by Wednesday. You're reviewing the budget by Thursday. And we both need to be ready to present Friday.\nA: I'll add these to the project tracker.\nB: Good. Send me the link so I can update my progress.",
+      "nuance": "회의에서 나온 결정 가운데 누가, 무엇을, 언제까지 할지로 정리된 실행 항목입니다. 영어권 회의는 거의 항상 이 목록으로 끝나며, 담당자(owner)와 기한(due date)이 없으면 action item이 아니라고 봅니다. 회의록 이메일 제목에도 자주 쓰입니다.",
+      "example_ko": "실행 항목으로 마무리합시다 — 누가, 무엇을, 언제까지 하나요?"
     },
     {
       "id": "EN_480",
@@ -132,7 +129,9 @@
       "level": "intermediate",
       "theme": "workplace_jargon",
       "example": "Can you sign off on the budget before I submit it? It just needs your approval.",
-      "dialogue": "A: The campaign brief is ready. We just need the director to sign off on it before we brief the creative team.\nB: I'll send it to her now. How long do you think she'll need?\nA: She's usually quick on these — probably by end of day.\nB: Good. I'll brief creative first thing tomorrow then."
+      "dialogue": "A: The campaign brief is ready. We just need the director to sign off on it before we brief the creative team.\nB: I'll send it to her now. How long do you think she'll need?\nA: She's usually quick on these — probably by end of day.\nB: Good. I'll brief creative first thing tomorrow then.",
+      "nuance": "서류에 서명(sign)하고 끝낸다 = 최종 승인한다는 뜻입니다. approve보다 구어적이고, 책임자로서 \"이대로 가도 좋다\"고 확인하는 느낌이 강합니다. \"Who needs to sign off on this?\"는 \"이건 누구 결재가 필요해요?\"라는 실무 질문입니다.",
+      "example_ko": "제출하기 전에 예산 좀 최종 승인해 주실래요? 승인만 받으면 돼요."
     },
     {
       "id": "EN_481",
@@ -141,7 +140,9 @@
       "level": "beginner",
       "theme": "workplace_jargon",
       "example": "I'll check in with the client on Friday to make sure they're happy with the progress.",
-      "dialogue": "A: Have you heard anything from the data team this week?\nB: Not yet — let me check in with them now. They were waiting on access permissions.\nA: Right. If the permissions aren't sorted, that's going to block the whole analysis.\nB: On it. I'll report back in twenty minutes."
+      "dialogue": "A: Have you heard anything from the data team this week?\nB: Not yet — let me check in with them now. They were waiting on access permissions.\nA: Right. If the permissions aren't sorted, that's going to block the whole analysis.\nB: On it. I'll report back in twenty minutes.",
+      "nuance": "상대의 상황이나 기분을 가볍게 확인한다는 뜻입니다. 감독이나 점검처럼 들리지 않는 부드러운 표현이라 매니저가 팀원에게, 친구끼리 안부를 물을 때 모두 씁니다. 호텔에서의 check in(투숙 수속)과는 전혀 다른 뜻이니 맥락으로 구분하세요.",
+      "example_ko": "금요일에 고객에게 진행 상황이 만족스러운지 확인해 볼게요."
     },
     {
       "id": "EN_482",
@@ -150,7 +151,9 @@
       "level": "intermediate",
       "theme": "workplace_jargon",
       "example": "The key deliverables for this sprint are: the login flow, the dashboard, and the API documentation.",
-      "dialogue": "A: What are the deliverables for Phase 1?\nB: Three things: a competitive analysis, the user research summary, and a set of wireframes. All due by the 15th.\nA: And Phase 2?\nB: That's where the actual build starts. We can define those deliverables after Phase 1 is reviewed."
+      "dialogue": "A: What are the deliverables for Phase 1?\nB: Three things: a competitive analysis, the user research summary, and a set of wireframes. All due by the 15th.\nA: And Phase 2?\nB: That's where the actual build starts. We can define those deliverables after Phase 1 is reviewed.",
+      "nuance": "프로젝트나 계약에서 \"전달해야 하는 결과물\"로, 보고서·코드·디자인 등 구체적인 산출물을 가리킵니다. 계약서에서는 무엇이 deliverable인지 명확히 적지 않으면 나중에 분쟁이 생깁니다. 회사 말투로 느껴지는 단어라 일상 대화에서는 거의 쓰지 않습니다.",
+      "example_ko": "이번 스프린트의 핵심 산출물은 로그인 흐름, 대시보드, API 문서예요."
     },
     {
       "id": "EN_483",
@@ -159,7 +162,9 @@
       "level": "intermediate",
       "theme": "workplace_jargon",
       "example": "Before we finalize the roadmap, we need stakeholder alignment — especially from sales and legal.",
-      "dialogue": "A: Why is this decision taking so long?\nB: There are too many stakeholders involved and they all have slightly different priorities. Legal wants one thing, product wants another, and the CEO has a third view.\nA: Sounds like someone needs to make the call and move forward.\nB: That's exactly the conversation I'm trying to have."
+      "dialogue": "A: Why is this decision taking so long?\nB: There are too many stakeholders involved and they all have slightly different priorities. Legal wants one thing, product wants another, and the CEO has a third view.\nA: Sounds like someone needs to make the call and move forward.\nB: That's exactly the conversation I'm trying to have.",
+      "nuance": "원래 도박에서 판돈을 맡아 두던 사람을 가리키던 말이 \"이해관계가 걸린 사람\"으로 넓어졌습니다. 직원·고객·주주·지역사회까지 모두 포함하는 넓은 개념입니다. 회의에서 \"key stakeholders\"는 \"반드시 동의를 받아야 하는 핵심 관계자\"라는 뜻입니다.",
+      "example_ko": "로드맵을 확정하기 전에 이해관계자들의 합의가 필요해요 — 특히 영업팀과 법무팀이요."
     },
     {
       "id": "EN_484",
@@ -168,7 +173,9 @@
       "level": "beginner",
       "theme": "workplace_jargon",
       "example": "Let's sync up before the client call so we're aligned on the message.",
-      "dialogue": "A: Can we sync up before end of day? I want to make sure we're telling the same story to the board.\nB: Yes — 4pm work for you?\nA: Perfect. Fifteen minutes should be enough.\nB: Agreed. I'll send a quick agenda so we stay focused."
+      "dialogue": "A: Can we sync up before end of day? I want to make sure we're telling the same story to the board.\nB: Yes — 4pm work for you?\nA: Perfect. Fifteen minutes should be enough.\nB: Agreed. I'll send a quick agenda so we stay focused.",
+      "nuance": "시계를 맞추듯 짧게 만나 정보와 입장을 맞춘다는 뜻입니다. 정식 회의보다 가볍고 짧은 느낌이라 \"Let's sync up for 10 minutes\"처럼 씁니다. 형용사 \"in sync\"가 이미 맞춰진 상태라면, sync up은 맞추기 위한 행동입니다.",
+      "example_ko": "고객 통화 전에 잠깐 맞춰 봅시다, 같은 메시지로 가야 하니까요."
     },
     {
       "id": "EN_485",
@@ -177,16 +184,9 @@
       "level": "intermediate",
       "theme": "workplace_jargon",
       "example": "We did a deep dive into the churn data and found that 60% of cancellations happen in the first 14 days.",
-      "dialogue": "A: Do you have time this week to do a deep dive on the conversion funnel?\nB: I can block Thursday afternoon for it. What are we specifically trying to answer?\nA: Why drop-off at checkout went from 18% to 34% last month.\nB: That's a big jump. I'll pull the session recordings and heatmaps before we meet."
-    },
-    {
-      "id": "EN_486",
-      "expression": "Buy-in",
-      "meaning": "동의, 지지, 승인. 특히 변화나 새 아이디어에 대해 관련자들의 동의를 얻는 것.",
-      "level": "intermediate",
-      "theme": "workplace_jargon",
-      "example": "We have a strong proposal but we haven't gotten buy-in from the ops team yet — and they'll be the ones implementing it.",
-      "dialogue": "A: The strategy is solid, but why is it stalling?\nB: We didn't get buy-in early enough. We built the plan in isolation and now everyone affected has objections they feel weren't considered.\nA: Classic. So what now?\nB: We go back, involve the key people in the revision, and let them feel ownership over the final version. It takes longer but it actually gets implemented."
+      "dialogue": "A: Do you have time this week to do a deep dive on the conversion funnel?\nB: I can block Thursday afternoon for it. What are we specifically trying to answer?\nA: Why drop-off at checkout went from 18% to 34% last month.\nB: That's a big jump. I'll pull the session recordings and heatmaps before we meet.",
+      "nuance": "잠수하듯 한 주제를 깊이 파고드는 심층 분석을 뜻합니다. 명사로 \"do a deep dive\"처럼 쓰는 게 일반적이고, 회의에서 \"Let's do a deep dive next week\"는 따로 시간을 잡아 제대로 보자는 제안입니다. 너무 자주 쓰면 회사 말투로 들립니다.",
+      "example_ko": "이탈 데이터를 심층 분석했더니 해지의 60%가 가입 후 14일 안에 일어나더라고요."
     },
     {
       "id": "EN_487",
@@ -195,7 +195,9 @@
       "level": "intermediate",
       "theme": "workplace_jargon",
       "example": "The approval process is the main bottleneck — everything waits for one person to sign off.",
-      "dialogue": "A: Why is the pipeline moving so slowly?\nB: The bottleneck is the QA step. We have five engineers shipping but only two QA reviewers, and they can't keep up.\nA: So the solution isn't to ship faster — it's to add QA capacity.\nB: Exactly. Or we automate the lower-risk checks and free up human QA for the complex stuff."
+      "dialogue": "A: Why is the pipeline moving so slowly?\nB: The bottleneck is the QA step. We have five engineers shipping but only two QA reviewers, and they can't keep up.\nA: So the solution isn't to ship faster — it's to add QA capacity.\nB: Exactly. Or we automate the lower-risk checks and free up human QA for the complex stuff.",
+      "nuance": "병의 목(neck)이 좁아 내용물이 천천히 나오는 데서 온 말로, 전체 흐름을 막는 한 지점을 가리킵니다. 사람에게 쓰면 \"그 사람 때문에 일이 막힌다\"는 뜻이 되어 민감할 수 있으니, 사람보다 프로세스를 주어로 말하는 게 좋습니다.",
+      "example_ko": "승인 절차가 주요 병목이에요 — 모든 게 한 사람의 결재를 기다려요."
     },
     {
       "id": "EN_488",
@@ -204,7 +206,9 @@
       "level": "intermediate",
       "theme": "workplace_jargon",
       "example": "We can leverage our existing customer base as early adopters for the new feature.",
-      "dialogue": "A: How do we compete with a company ten times our size?\nB: We leverage what they can't: speed and relationships. We can make a decision in a day that takes them a month. And we know our customers personally in a way they never will.\nA: So our size is actually an advantage in some ways.\nB: In the right markets, absolutely."
+      "dialogue": "A: How do we compete with a company ten times our size?\nB: We leverage what they can't: speed and relationships. We can make a decision in a day that takes them a month. And we know our customers personally in a way they never will.\nA: So our size is actually an advantage in some ways.\nB: In the right markets, absolutely.",
+      "nuance": "지렛대(lever)처럼 작은 힘으로 큰 효과를 낸다는 뜻에서, 가진 자원이나 강점을 전략적으로 활용한다는 동사가 되었습니다. 비즈니스 영어에서 너무 남발돼 \"use\"로 충분한 곳에 쓰면 허세처럼 들립니다. 금융에서 leverage는 \"빚을 이용한 투자\"라는 전혀 다른 뜻입니다.",
+      "example_ko": "기존 고객층을 새 기능의 얼리어답터로 활용할 수 있어요."
     },
     {
       "id": "EN_489",
@@ -213,7 +217,9 @@
       "level": "intermediate",
       "theme": "workplace_jargon",
       "example": "After six months of poor traction, we pivoted from B2C to B2B and saw immediate results.",
-      "dialogue": "A: The original plan isn't working. Customer acquisition cost is too high and retention is weak.\nB: So it's time to pivot. The question is whether we pivot the product, the market, or the business model.\nA: I think the product is right — it's the target customer that's wrong.\nB: Then let's test a different segment. Two weeks, a small experiment, see if the unit economics look different."
+      "dialogue": "A: The original plan isn't working. Customer acquisition cost is too high and retention is weak.\nB: So it's time to pivot. The question is whether we pivot the product, the market, or the business model.\nA: I think the product is right — it's the target customer that's wrong.\nB: Then let's test a different segment. Two weeks, a small experiment, see if the unit economics look different.",
+      "nuance": "농구에서 한 발을 축으로 고정하고 몸을 돌리는 동작에서 온 말입니다. 그래서 완전히 새로 시작하는 게 아니라 핵심(축)은 유지한 채 방향을 트는 것이 본래 뜻입니다. 스타트업에서 흔한 말이지만, 실패를 포장하는 말로 남용된다는 농담도 따라다닙니다.",
+      "example_ko": "반년 동안 반응이 없자 B2C에서 B2B로 방향을 틀었고, 바로 결과가 나왔어요."
     },
     {
       "id": "EN_490",
@@ -222,7 +228,9 @@
       "level": "advanced",
       "theme": "workplace_jargon",
       "example": "We run a weekly cadence with the client — every Monday morning, 30-minute status call.",
-      "dialogue": "A: The team feels out of sync. Everyone's working hard but nobody knows what anyone else is doing.\nB: You need a better cadence. A short daily standup and a weekly retrospective — just those two meetings creates enough shared context.\nA: Won't that be more meetings?\nB: Less, actually. Right now you're having five ad hoc catch-up calls a day because there's no structured rhythm."
+      "dialogue": "A: The team feels out of sync. Everyone's working hard but nobody knows what anyone else is doing.\nB: You need a better cadence. A short daily standup and a weekly retrospective — just those two meetings creates enough shared context.\nA: Won't that be more meetings?\nB: Less, actually. Right now you're having five ad hoc catch-up calls a day because there's no structured rhythm.",
+      "nuance": "원래 음악이나 걸음의 규칙적인 박자를 뜻하는 말로, 회의나 보고의 정기적인 주기를 가리킵니다. \"schedule\"이 구체적인 일정표라면 cadence는 반복되는 리듬입니다. \"What's the right cadence for updates?\"는 \"업데이트를 얼마나 자주 하면 좋을까요?\"라는 뜻입니다.",
+      "example_ko": "고객과 주간 주기로 소통해요 — 매주 월요일 아침 30분 현황 통화요."
     },
     {
       "id": "EN_491",
@@ -231,7 +239,9 @@
       "level": "advanced",
       "theme": "workplace_jargon",
       "example": "With our current burn rate, we have about eight months of runway — enough to hit the metrics we need for the next round.",
-      "dialogue": "A: How does the fundraising look?\nB: Slower than we hoped. We have six months of runway left which means we need a term sheet in the next two months to close comfortably.\nA: What's the contingency if it doesn't close in time?\nB: Cut burn rate by 40%. We've modeled it out — painful but survivable for another four months."
+      "dialogue": "A: How does the fundraising look?\nB: Slower than we hoped. We have six months of runway left which means we need a term sheet in the next two months to close comfortably.\nA: What's the contingency if it doesn't close in time?\nB: Cut burn rate by 40%. We've modeled it out — painful but survivable for another four months.",
+      "nuance": "비행기가 이륙하기 전까지 달릴 수 있는 활주로의 남은 길이에서 온 말로, 수익 없이 버틸 수 있는 남은 기간을 뜻합니다. 스타트업과 투자자 대화의 핵심 단어이며, 보통 \"months of runway\"처럼 개월 수로 말합니다. 개인의 재정 여유를 말할 때도 쓰입니다.",
+      "example_ko": "지금 소진 속도로는 약 8개월 버틸 수 있어요 — 다음 투자 라운드에 필요한 지표를 달성하기엔 충분해요."
     },
     {
       "id": "EN_492",
@@ -240,7 +250,9 @@
       "level": "intermediate",
       "theme": "workplace_jargon",
       "example": "We need a better onboarding flow — new users are churning before they experience the core value of the product.",
-      "dialogue": "A: The new hire starts Monday. Is everything ready?\nB: Almost. IT needs to finish setting up her accounts, and someone from the product team needs to walk her through our internal tools. The first week onboarding schedule is done though.\nA: Good. The faster we onboard her properly, the faster she's contributing.\nB: That's the whole point of investing in onboarding."
+      "dialogue": "A: The new hire starts Monday. Is everything ready?\nB: Almost. IT needs to finish setting up her accounts, and someone from the product team needs to walk her through our internal tools. The first week onboarding schedule is done though.\nA: Good. The faster we onboard her properly, the faster she's contributing.\nB: That's the whole point of investing in onboarding.",
+      "nuance": "배에 태운다(on board)는 뜻에서, 새 직원이나 사용자가 조직과 제품에 적응하도록 돕는 과정 전체를 말합니다. 단순한 교육이 아니라 첫인상과 정착까지 포함합니다. 반대로 offboarding은 퇴사자의 인수인계·계정 정리 절차로, 최근에는 이것도 관계 관리로 중시합니다.",
+      "example_ko": "온보딩 흐름을 개선해야 해요 — 새 사용자들이 제품의 핵심 가치를 경험하기도 전에 떠나고 있어요."
     },
     {
       "id": "EN_493",
@@ -249,16 +261,9 @@
       "level": "intermediate",
       "theme": "workplace_jargon",
       "example": "The biggest pain point for our users is the time it takes to get data out of the system — sometimes over 20 minutes.",
-      "dialogue": "A: What's the first thing we should build?\nB: Whatever addresses the biggest pain point. Not the most interesting feature — the most painful problem that nobody else is solving well.\nA: How do we figure out what that is?\nB: Talk to 20 customers this week. Don't ask what they want. Ask what costs them the most time or money. The answer is almost always there."
-    },
-    {
-      "id": "EN_494",
-      "expression": "North Star (metric)",
-      "meaning": "북극성 지표. 회사나 팀이 가장 중요하게 추적하는 단 하나의 핵심 성과 지표.",
-      "level": "advanced",
-      "theme": "workplace_jargon",
-      "example": "Our North Star metric is weekly active users who've completed at least three learning sessions — that's what predicts long-term retention.",
-      "dialogue": "A: We track 40 different metrics. Nobody agrees on what matters.\nB: You need a North Star — one number that, if it goes up, means the business is genuinely getting healthier. Everything else feeds into it or is a warning signal.\nA: How do you choose the right one?\nB: It should reflect real value delivered to the customer, not just business activity. Revenue can be gamed. Real engagement usually can't."
+      "dialogue": "A: What's the first thing we should build?\nB: Whatever addresses the biggest pain point. Not the most interesting feature — the most painful problem that nobody else is solving well.\nA: How do we figure out what that is?\nB: Talk to 20 customers this week. Don't ask what they want. Ask what costs them the most time or money. The answer is almost always there.",
+      "nuance": "고객이 실제로 아파하는 지점 = 해결하면 돈을 낼 만한 불편함이라는 뜻입니다. 제품 기획과 영업에서 가장 많이 쓰는 개념으로, \"What's your biggest pain point?\"는 고객 인터뷰의 단골 질문입니다. 단순한 불만(complaint)보다 해결할 가치가 있는 문제라는 뉘앙스가 있습니다.",
+      "example_ko": "사용자들이 가장 불편해하는 건 시스템에서 데이터를 꺼내는 데 걸리는 시간이에요 — 가끔 20분이 넘어요."
     },
     {
       "id": "EN_495",
@@ -267,7 +272,9 @@
       "level": "advanced",
       "theme": "workplace_jargon",
       "example": "We're three weeks in and the project is already twice the original scope — classic scope creep.",
-      "dialogue": "A: The client keeps adding small requests. Each one seems reasonable on its own, but collectively they've added 40% more work.\nB: That's scope creep in action. The solution is to document every addition separately, price it, and make the client consciously decide to add it — rather than treating it as 'just a small change.'\nA: How do I bring this up without damaging the relationship?\nB: You're not protecting yourself — you're protecting the timeline they care about. Frame it that way."
+      "dialogue": "A: The client keeps adding small requests. Each one seems reasonable on its own, but collectively they've added 40% more work.\nB: That's scope creep in action. The solution is to document every addition separately, price it, and make the client consciously decide to add it — rather than treating it as 'just a small change.'\nA: How do I bring this up without damaging the relationship?\nB: You're not protecting yourself — you're protecting the timeline they care about. Frame it that way.",
+      "nuance": "범위(scope)가 슬금슬금 기어(creep) 늘어난다는 뜻으로, 작은 요청이 하나씩 추가되며 프로젝트가 처음 합의보다 커지는 현상입니다. 일정 지연과 예산 초과의 대표적인 원인이라, 계약서에 변경 절차를 명시해 막습니다. 클라이언트 앞에서 쓰면 비난처럼 들릴 수 있습니다.",
+      "example_ko": "시작한 지 3주인데 벌써 원래 범위의 두 배예요 — 전형적인 범위 확장이죠."
     }
   ],
   "chinese_expressions": [

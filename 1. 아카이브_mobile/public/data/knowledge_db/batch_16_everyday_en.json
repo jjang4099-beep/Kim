@@ -239,16 +239,6 @@
    "nuance": "위로가 될 수도, 무시가 될 수도 있습니다. 상대가 진짜 걱정이 많을 때 툭 던지면 \"별것도 아닌 걸로 왜 그래\"로 들립니다. 먼저 걱정을 인정한 뒤 (\"That makes sense, but…\") 쓰면 훨씬 부드럽습니다."
   },
   {
-   "id": "EN_461",
-   "expression": "Bottom line",
-   "meaning": "결론은요, 핵심은요. 긴 설명 끝에 핵심 요점을 정리할 때.",
-   "level": "beginner",
-   "theme": "workplace_daily",
-   "example": "I know there are a lot of moving parts here, but bottom line: we need a decision by Friday.",
-   "dialogue": "A: There are a lot of factors to consider — the market timing, the competitor landscape, the budget cycle—\nB: Okay, bottom line: are we recommending we move forward or not?\nA: Bottom line — yes, but only if we can lock down the partnership in the next thirty days.\nB: That's the recommendation. Let's get it in writing.",
-   "nuance": "손익계산서 맨 아랫줄(최종 손익)에서 온 말이라 **\"결국 중요한 건 이것\"**이라는 무게가 있습니다. 긴 설명 뒤 요점을 못 박을 때 쓰고, 문장 앞에 \"Bottom line,\"으로 붙이면 자연스럽습니다."
-  },
-  {
    "id": "EN_462",
    "expression": "Out of the blue",
    "meaning": "갑자기, 뜬금없이, 예상치 못하게. 아무런 예고 없이 갑자기 일어난 일을 설명할 때.",
@@ -289,16 +279,6 @@
    "nuance": "\"I've been better\"의 줄임말로, **\"안 좋다\"를 완곡하게** 말하는 방식입니다. 영어권에서는 \"How are you?\"에 곧이곧대로 힘들다고 답하지 않는 편이라 이 표현이 자주 쓰입니다. 듣는 쪽이 더 물어봐주길 바라는 신호이기도 합니다."
   },
   {
-   "id": "EN_466",
-   "expression": "We'll cross that bridge when we come to it",
-   "meaning": "그건 그때 가서 생각해요. 아직 오지 않은 문제를 미리 걱정하지 말자는 표현.",
-   "level": "intermediate",
-   "theme": "everyday_life",
-   "example": "A: What if the partnership falls through?\nB: We'll cross that bridge when we come to it. Right now, let's focus on making it work.",
-   "dialogue": "A: What's the contingency plan if we don't hit the growth target?\nB: We'll cross that bridge when we come to it — but it's not a bridge we're heading toward. The indicators for this quarter are all pointing positive.\nA: Fair. But should we at least have a plan B outlined?\nB: A light version — yes. I'll put a 'what if' slide in the deck just to cover it.",
-   "nuance": "아직 오지 않은 문제를 미리 걱정하지 말자는 위로입니다. 다만 책임 있는 사람이 계획을 묻는 자리에서 쓰면 **미루기의 핑계**로 들릴 수 있으니, 지금 할 수 있는 일을 함께 제시하는 편이 좋습니다."
-  },
-  {
    "id": "EN_467",
    "expression": "It comes with the territory",
    "meaning": "그건 당연히 따라오는 거예요, 어쩔 수 없이 함께 오는 것이에요.",
@@ -317,17 +297,6 @@
    "example": "Don't feel alone on this — I'm in the same boat. We're all trying to figure out the new system.",
    "dialogue": "A: I feel like I'm drowning in tasks and can't get ahead of anything.\nB: I'm in the same boat. My task list has been growing faster than I can complete it for three weeks.\nA: What are you doing about it?\nB: I had to accept that not everything is equally urgent. I picked my top three for the week and decided the rest could wait.",
    "nuance": "단순한 공감이 아니라 **나도 똑같이 겪고 있다**는 동병상련입니다. 그래서 이미 지나간 일에는 잘 안 쓰고 지금 함께 처한 상황에 씁니다. 과거 경험이면 \"I've been there\"가 맞습니다."
-  },
-  {
-   "id": "EN_469",
-   "expression": "On the same page",
-   "meaning": "같은 이해를 공유하고 있는, 서로 같은 내용을 알고 있는.",
-   "level": "beginner",
-   "theme": "workplace_daily",
-   "example": "Before we go into the meeting, let's make sure we're on the same page about what we're asking for.",
-   "dialogue": "A: I just want to confirm we're on the same page before we start — we're presenting options today, not making a final recommendation. Agreed?\nB: Agreed. We gather their input today, synthesize it, and come back with a recommendation next week.\nA: Perfect. We're aligned.",
-   "dialogue_note": "on the same wavelength와 비슷하지만 'on the same page'는 특히 정보·이해·기대에 대한 일치를 강조함.",
-   "nuance": "회의에서 인식을 맞출 때 가장 많이 쓰는 표현입니다. \"Are we on the same page?\"는 동의를 구하는 게 아니라 **같은 내용을 이해했는지** 확인하는 질문이라, 여기에 \"Yes\"라고 답하면 내용을 안다는 뜻이지 찬성한다는 뜻이 아닙니다."
   },
   {
    "id": "EN_470",

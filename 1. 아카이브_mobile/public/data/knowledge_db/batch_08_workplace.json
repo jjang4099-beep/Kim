@@ -403,34 +403,9 @@
    "level": "intermediate",
    "theme": "communication",
    "example": "Before jumping into the agenda, she paused to read the room — the team was clearly exhausted from the previous session.",
-   "dialogue": "A: Why did you change your presentation style halfway through?\nB: I had to read the room. They weren't responding to data — they needed a story.\nA: Smart. The energy shifted completely after that.\nB: Always watch the audience more than your own slides."
-  },
-  {
-   "id": "EN_279",
-   "expression": "Devil's advocate",
-   "meaning": "반론을 제기하는 역할 (의도적으로 반대 입장을 취하다)",
-   "level": "advanced",
-   "theme": "strategy",
-   "example": "Let me play devil's advocate — what if our assumptions about user behavior are completely wrong?",
-   "dialogue": "A: Everyone seems to agree the new pricing model is the right move.\nB: Can I play devil's advocate for a moment?\nA: Please do.\nB: What if our premium users are price-sensitive in ways we haven't measured yet? We might be solving the wrong problem."
-  },
-  {
-   "id": "EN_282",
-   "expression": "In the weeds",
-   "meaning": "세부 사항에 너무 깊이 빠져 있다, 큰 그림을 못 보고 있다",
-   "level": "intermediate",
-   "theme": "leadership",
-   "example": "We've been in the weeds on the technical specs for an hour — let's step back and realign on the business goal.",
-   "dialogue": "A: I think we're getting in the weeds here. The exec team doesn't need to know how the algorithm works — they need to know what problem it solves.\nB: You're right. I keep defaulting to technical details.\nA: Start with the outcome, then offer the details only if they ask.\nB: Good reminder. Let me reframe the whole thing."
-  },
-  {
-   "id": "EN_283",
-   "expression": "Skin in the game",
-   "meaning": "직접적인 이해관계가 있다, 자기 자신도 위험을 감수하다",
-   "level": "advanced",
-   "theme": "negotiation",
-   "example": "The vendor was more cooperative once they had skin in the game — we tied 20% of their fee to delivery outcomes.",
-   "dialogue": "A: How do we make sure the consulting firm is actually invested in the outcome, not just billing hours?\nB: Give them skin in the game. Structure the contract so part of their fee depends on measurable results.\nA: They'll push back on that.\nB: That's fine. The ones who push back don't believe in their own work."
+   "dialogue": "A: Why did you change your presentation style halfway through?\nB: I had to read the room. They weren't responding to data — they needed a story.\nA: Smart. The energy shifted completely after that.\nB: Always watch the audience more than your own slides.",
+   "nuance": "방 안의 공기를 \"읽는다\"는 뜻으로, 한국어 \"눈치를 보다\"와 가장 가까운 영어입니다. 다만 한국어의 눈치가 남을 의식해 몸을 사리는 느낌이라면, 이 표현은 분위기를 파악해 적절히 행동을 조절하는 능력이라 긍정적입니다. 부정형 \"He can't read the room\"은 \"분위기 파악 못 하는 사람\"이라는 꽤 날카로운 비판입니다.",
+   "example_ko": "안건으로 들어가기 전에 그녀는 잠시 분위기를 살폈다 — 팀이 앞 세션 때문에 확실히 지쳐 있었다."
   },
   {
    "id": "EN_284",
@@ -439,7 +414,9 @@
    "level": "intermediate",
    "theme": "communication",
    "example": "I don't need a decision now, but I wanted to put the budget overrun on your radar before the board meeting.",
-   "dialogue": "A: I just wanted to put something on your radar — the API migration is taking longer than expected.\nB: Are we at risk of missing the Q3 deadline?\nA: Not yet, but we might be in two weeks if we don't add a resource.\nB: Thanks for flagging it early. Let's revisit Thursday."
+   "dialogue": "A: I just wanted to put something on your radar — the API migration is taking longer than expected.\nB: Are we at risk of missing the Q3 deadline?\nA: Not yet, but we might be in two weeks if we don't add a resource.\nB: Thanks for flagging it early. Let's revisit Thursday.",
+   "nuance": "레이더 화면에 점 하나를 띄워 두듯, 지금 당장 결정할 필요는 없지만 알고는 있어 달라는 뜻입니다. 윗사람에게 나쁜 소식을 미리 부드럽게 알리는 데 아주 유용합니다. 반대로 \"It's not on my radar\"는 \"그건 신경 쓰고 있지 않았다\"는 뜻입니다.",
+   "example_ko": "지금 결정해 주실 필요는 없고, 이사회 전에 예산 초과 건을 알고 계셨으면 해서요."
   },
   {
    "id": "EN_286",
@@ -448,7 +425,9 @@
    "level": "advanced",
    "theme": "career",
    "example": "Learning to manage up is one of the most underrated career skills — understanding what your boss needs before they ask.",
-   "dialogue": "A: My manager keeps asking for things at the last minute and it's stressing me out.\nB: Have you tried managing up? Proactively sharing your weekly priorities on Monday can set expectations before they become surprises.\nA: I never thought of it that way. So I'm shaping their expectations?\nB: Exactly. It makes you more predictable and it puts you in control."
+   "dialogue": "A: My manager keeps asking for things at the last minute and it's stressing me out.\nB: Have you tried managing up? Proactively sharing your weekly priorities on Monday can set expectations before they become surprises.\nA: I never thought of it that way. So I'm shaping their expectations?\nB: Exactly. It makes you more predictable and it puts you in control.",
+   "nuance": "아래로 관리(manage down)하는 것이 아니라 상사를 향해 관계를 관리한다는 뜻입니다. 아부와는 다릅니다 — 상사가 무엇을 걱정하는지 먼저 알고, 필요한 정보를 적절한 때 주는 능동적인 소통을 말합니다. 한국어로는 딱 맞는 말이 없어 \"상향 관리\"라고 옮기기도 합니다.",
+   "example_ko": "상사를 관리하는 법을 배우는 건 가장 과소평가된 커리어 기술 중 하나예요 — 상사가 묻기 전에 무엇이 필요한지 아는 거죠."
   },
   {
    "id": "EN_289",
@@ -457,7 +436,9 @@
    "level": "intermediate",
    "theme": "execution",
    "example": "We need to spin up a task force this week to address the security vulnerability.",
-   "dialogue": "A: The client needs a proof of concept by the end of the month.\nB: That's tight but doable. I can spin up a small team — two engineers and a designer.\nA: What do you need from me?\nB: Executive sponsorship so I can pull people off their current sprints."
+   "dialogue": "A: The client needs a proof of concept by the end of the month.\nB: That's tight but doable. I can spin up a small team — two engineers and a designer.\nA: What do you need from me?\nB: Executive sponsorship so I can pull people off their current sprints.",
+   "nuance": "원래 서버나 가상 머신을 \"띄운다\"는 IT 용어였는데, 팀이나 프로젝트를 빠르게 꾸리는 뜻으로 넓어졌습니다. \"set up\"보다 빠르고 가벼운 느낌이라 스타트업과 테크 회사에서 특히 많이 씁니다. 전통적인 업계에서는 전문용어처럼 들릴 수 있습니다.",
+   "example_ko": "보안 취약점에 대응하려면 이번 주에 태스크포스를 빨리 꾸려야 해요."
   },
   {
    "id": "EN_290",
@@ -466,7 +447,9 @@
    "level": "intermediate",
    "theme": "execution",
    "example": "The early-stage startup culture was 'move fast and break things' — iteration speed was everything.",
-   "dialogue": "A: We keep waiting for the perfect version. When do we actually ship?\nB: Move fast and break things. Ship the 80% version, learn from real users, fix what breaks. You'll never hit 100% in the lab.\nA: What if something breaks in production?\nB: Fix it faster than a competitor would have launched."
+   "dialogue": "A: We keep waiting for the perfect version. When do we actually ship?\nB: Move fast and break things. Ship the 80% version, learn from real users, fix what breaks. You'll never hit 100% in the lab.\nA: What if something breaks in production?\nB: Fix it faster than a competitor would have launched.",
+   "nuance": "페이스북 초창기의 사내 모토로 유명해진 말입니다. 속도를 위해 실수를 감수하라는 뜻이지만, 개인정보 문제 등을 겪은 뒤 페이스북 스스로 2014년 이 모토를 \"안정적인 인프라와 함께 빠르게 움직여라\"로 바꿨습니다. 지금은 무책임한 속도 지상주의를 비꼬는 맥락에서도 자주 쓰입니다.",
+   "example_ko": "초기 스타트업 문화는 \"빠르게 움직이고 부숴라\"였어요 — 반복 속도가 전부였죠."
   },
   {
    "id": "EN_291",
@@ -475,7 +458,9 @@
    "level": "intermediate",
    "theme": "strategy",
    "example": "The headline number looks good, but we need to drill down into the regional breakdown.",
-   "dialogue": "A: Revenue is up 18% overall.\nB: Let's drill down — which segments are driving that? Because I suspect it's masking weakness in the core product.\nA: You're right. When we break it down, new product lines are up 60% and core is actually flat.\nB: That's a completely different story."
+   "dialogue": "A: Revenue is up 18% overall.\nB: Let's drill down — which segments are driving that? Because I suspect it's masking weakness in the core product.\nA: You're right. When we break it down, new product lines are up 60% and core is actually flat.\nB: That's a completely different story.",
+   "nuance": "땅을 뚫고 내려가듯 요약 숫자 아래의 세부 데이터로 파고든다는 뜻입니다. 데이터 분석과 보고에서 매우 흔합니다. 비슷한 \"dig into\"는 일반적으로 깊이 살펴보는 것이고, drill down은 전체 → 부문 → 세부처럼 단계적으로 쪼개 들어가는 느낌이 강합니다.",
+   "example_ko": "전체 숫자는 좋아 보이지만, 지역별로 쪼개서 더 파고들어 봐야 해요."
   },
   {
    "id": "EN_292",
@@ -484,16 +469,9 @@
    "level": "intermediate",
    "theme": "communication",
    "example": "I can give you my recommendation, but final approval on that budget is above my pay grade.",
-   "dialogue": "A: Can you approve the additional $200K directly?\nB: That's above my pay grade — anything over $100K needs CFO sign-off. But I can put together the business case and walk it through myself.\nA: That would help a lot. When could you do that?\nB: By Thursday."
-  },
-  {
-   "id": "EN_294",
-   "expression": "The elephant in the room",
-   "meaning": "모두가 알지만 아무도 말하지 않는 불편한 문제",
-   "level": "intermediate",
-   "theme": "communication",
-   "example": "We can talk about channel strategy all day, but the elephant in the room is that our core product hasn't improved in two years.",
-   "dialogue": "A: Can we talk about the elephant in the room? Revenue has been flat for three quarters and we keep discussing tactics instead of strategy.\nB: I'm glad you said it. I think everyone's been waiting for someone to raise it.\nA: So what's the real problem?\nB: Honestly? We're solving for the wrong customer."
+   "dialogue": "A: Can you approve the additional $200K directly?\nB: That's above my pay grade — anything over $100K needs CFO sign-off. But I can put together the business case and walk it through myself.\nA: That would help a lot. When could you do that?\nB: By Thursday.",
+   "nuance": "내 급여 등급보다 위의 일 = 내 권한이나 책임 범위를 넘는 결정이라는 뜻입니다. 결정을 윗선으로 넘기면서도 유머러스해서 분위기를 부드럽게 합니다. 다만 책임을 피하는 말로 반복해서 쓰면 무책임해 보이니, 이 예문처럼 내 의견은 먼저 주는 게 좋습니다.",
+   "example_ko": "제 추천은 드릴 수 있지만, 그 예산의 최종 승인은 제 권한 밖이에요."
   },
   {
    "id": "EN_295",
@@ -502,16 +480,9 @@
    "level": "beginner",
    "theme": "communication",
    "example": "That's a fair point — I hadn't considered the impact on the downstream teams.",
-   "dialogue": "A: If we reduce the review time to 24 hours, quality control might suffer.\nB: That's a fair point. What if we add a lightweight checklist to maintain the quality bar without the full review cycle?\nA: That could work.\nB: Let's pilot it on the next three projects and see."
-  },
-  {
-   "id": "EN_296",
-   "expression": "Boil the ocean",
-   "meaning": "불가능하거나 비효율적으로 너무 많은 것을 한 번에 하려 하다",
-   "level": "advanced",
-   "theme": "strategy",
-   "example": "Trying to fix every broken process at once is boiling the ocean — pick the one with the highest ROI.",
-   "dialogue": "A: We want to overhaul the entire customer journey — from awareness to retention.\nB: That's boiling the ocean. You'll spend six months and change nothing. Pick the one stage with the most friction and fix that.\nA: Probably the onboarding.\nB: Then go deep there. Master one thing before you expand."
+   "dialogue": "A: If we reduce the review time to 24 hours, quality control might suffer.\nB: That's a fair point. What if we add a lightweight checklist to maintain the quality bar without the full review cycle?\nA: That could work.\nB: Let's pilot it on the next three projects and see.",
+   "nuance": "\"That's a good point\"보다 한 톤 낮은 인정으로, \"당신 말이 일리가 있다\"는 뜻입니다. 전적으로 동의하진 않지만 논리는 인정할 때 특히 자연스럽습니다. 논쟁 중에 이 말을 하면 방어적이지 않은 사람으로 보여 대화가 부드러워집니다.",
+   "example_ko": "일리 있는 지적이에요 — 후속 팀들에 미치는 영향은 생각을 못 했네요."
   },
   {
    "id": "EN_297",
@@ -520,7 +491,9 @@
    "level": "advanced",
    "theme": "strategy",
    "example": "Instead of competing internally for budget, we reminded the leadership team that a rising tide lifts all boats.",
-   "dialogue": "A: Why should we share our customer research with the other product teams?\nB: A rising tide lifts all boats. If the other teams improve their products, it makes the whole platform stronger — and that brings more customers to our product too.\nA: That's a more collaborative way to think about it.\nB: In a platform business, internal competition is almost always self-defeating."
+   "dialogue": "A: Why should we share our customer research with the other product teams?\nB: A rising tide lifts all boats. If the other teams improve their products, it makes the whole platform stronger — and that brings more customers to our product too.\nA: That's a more collaborative way to think about it.\nB: In a platform business, internal competition is almost always self-defeating.",
+   "nuance": "밀물이 들어오면 모든 배가 함께 떠오른다는 뜻으로, 존 F. 케네디가 경제 정책을 설명하며 즐겨 써서 유명해졌습니다. 전체 파이를 키우면 모두 이득이라는 협력의 논리지만, 경제 논쟁에서는 \"성장 혜택이 모두에게 돌아가진 않는다\"는 반박과 함께 비판적으로 인용되기도 합니다.",
+   "example_ko": "예산을 두고 내부에서 경쟁하는 대신, 전체가 잘 되면 모두가 좋다는 점을 경영진에게 상기시켰어요."
   },
   {
    "id": "EN_298",
@@ -529,7 +502,9 @@
    "level": "beginner",
    "theme": "collaboration",
    "example": "Before the client meeting, confirm that we're aligned on this — there can't be conflicting messages in the room.",
-   "dialogue": "A: So everyone agrees the priority for Q4 is retention, not acquisition?\nB: We're aligned on this. All three teams have confirmed retention is the north star.\nA: Good. Let's make sure that message is consistent in every external conversation.\nB: Agreed. I'll put it in writing in the meeting notes."
+   "dialogue": "A: So everyone agrees the priority for Q4 is retention, not acquisition?\nB: We're aligned on this. All three teams have confirmed retention is the north star.\nA: Good. Let's make sure that message is consistent in every external conversation.\nB: Agreed. I'll put it in writing in the meeting notes.",
+   "nuance": "\"동의한다(agree)\"보다 한 단계 더 나아가, 방향과 메시지까지 맞춰져 있다는 뜻입니다. 회의 전 사전 조율에서 가장 많이 쓰는 단어가 align입니다. 너무 자주 쓰면 전형적인 회사 말투로 들리지만, 외부 미팅 전 내부 입장을 맞출 때는 이만큼 정확한 말이 없습니다.",
+   "example_ko": "고객 미팅 전에 이 부분에 입장이 맞춰져 있는지 확인하세요 — 그 자리에서 다른 메시지가 나오면 안 돼요."
   },
   {
    "id": "EN_299",
@@ -538,7 +513,9 @@
    "level": "intermediate",
    "theme": "communication",
    "example": "Before we react, can we unpack this a bit more — specifically what the customer actually said versus what we interpreted?",
-   "dialogue": "A: The survey results show that customers find us 'confusing.'\nB: Can we unpack that a bit more? Confusing how — the product, the pricing, the messaging?\nA: From the open-ended responses, it seems to be the pricing structure.\nB: Okay, that's a much more actionable insight. That we can fix."
+   "dialogue": "A: The survey results show that customers find us 'confusing.'\nB: Can we unpack that a bit more? Confusing how — the product, the pricing, the messaging?\nA: From the open-ended responses, it seems to be the pricing structure.\nB: Okay, that's a much more actionable insight. That we can fix.",
+   "nuance": "짐 가방을 풀듯 뭉쳐 있는 내용을 하나씩 꺼내 살펴보자는 뜻입니다. \"Explain more\"보다 함께 분석하자는 협력적인 느낌이 있어서, 감정적인 피드백이나 복잡한 문제를 차분히 다룰 때 좋습니다. 상담·코칭에서도 많이 쓰는 표현입니다.",
+   "example_ko": "반응하기 전에 이걸 좀 더 풀어서 볼 수 있을까요 — 특히 고객이 실제로 한 말과 우리가 해석한 걸 구분해서요."
   },
   {
    "id": "EN_300",
@@ -547,7 +524,9 @@
    "level": "intermediate",
    "theme": "performance",
    "example": "We can debate the strategy all we want, but the proof is in the pudding — let's look at the pilot results.",
-   "dialogue": "A: The team is skeptical about the new framework. They think it's just another process that adds overhead.\nB: The proof is in the pudding. Run it for one sprint and let the velocity numbers speak.\nA: And if it doesn't improve things?\nB: Then we have our answer. But I've seen it work in four other teams."
+   "dialogue": "A: The team is skeptical about the new framework. They think it's just another process that adds overhead.\nB: The proof is in the pudding. Run it for one sprint and let the velocity numbers speak.\nA: And if it doesn't improve things?\nB: Then we have our answer. But I've seen it work in four other teams.",
+   "nuance": "원래 \"The proof of the pudding is in the eating(푸딩은 먹어 봐야 안다)\"이 줄어든 말입니다. 그래서 문법적으로는 어색하지만 원어민 대부분이 이 짧은 형태로 씁니다. 이론이나 말보다 실제 결과로 판단하자는 뜻이라, 논쟁을 끝내고 데이터를 보자고 할 때 좋습니다.",
+   "example_ko": "전략은 얼마든지 토론할 수 있지만 결과가 모든 걸 말해 주죠 — 시범 운영 결과를 봅시다."
   }
  ],
  "chinese_expressions": [],

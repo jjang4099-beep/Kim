@@ -114,31 +114,9 @@
    "dialogue": {
     "A": "Did you expect the layoffs?",
     "B": "I saw the writing on the wall six months ago — the numbers just weren't adding up."
-   }
-  },
-  {
-   "id": "EN_621",
-   "expression": "Stay in the loop",
-   "meaning": "계속 최신 상황을 파악하다, 정보 흐름에서 소외되지 않다",
-   "level": "intermediate",
-   "theme": "communication",
-   "example": "Please keep me in the loop on any changes to the timeline — I need to update the client.",
-   "dialogue": {
-    "A": "You weren't at the meeting — did someone fill you in?",
-    "B": "Yeah, Jake kept me in the loop via Slack. Thanks for asking."
-   }
-  },
-  {
-   "id": "EN_623",
-   "expression": "Run something by someone",
-   "meaning": "누군가에게 의견이나 승인을 구하다, 검토해달라고 하다",
-   "level": "intermediate",
-   "theme": "collaboration",
-   "example": "Before we send this proposal to the client, I want to run it by our legal team first.",
-   "dialogue": {
-    "A": "Did you finalize the contract terms?",
-    "B": "Not yet — I need to run it by Sarah before we commit to anything."
-   }
+   },
+   "nuance": "구약 다니엘서에서 바빌론 왕의 연회장 벽에 손가락이 나타나 멸망을 예고하는 글을 썼다는 이야기에서 온 말입니다. 곧 닥칠 불운이나 변화의 뚜렷한 조짐을 알아챈다는 뜻이라, 회사의 위기나 퇴사 결심을 말할 때 자주 씁니다.",
+   "example_ko": "노련한 매니저는 변화의 조짐을 알아채고, 시장이 바뀌기 전에 팀의 역량을 키우기 시작했어요."
   },
   {
    "id": "EN_624",
@@ -150,7 +128,9 @@
    "dialogue": {
     "A": "The other team keeps refusing to meet.",
     "B": "They'll come to the table eventually — they need this deal as much as we do."
-   }
+   },
+   "nuance": "협상 테이블로 나온다 = 문제를 풀 의지를 갖고 대화에 참여한다는 뜻입니다. 외교와 노사 협상에서 자주 쓰이며, \"bring to the table(기여할 것을 가져오다)\"과는 다른 표현입니다. 상대가 대화를 거부할 때 \"We need them to come to the table\"이라고 합니다.",
+   "example_ko": "양측 모두 진정으로 타협할 의지를 갖고 협상에 나와야 해요."
   },
   {
    "id": "EN_625",
@@ -162,31 +142,9 @@
    "dialogue": {
     "A": "There's still a big disconnect between what sales promised and what we can deliver.",
     "B": "That's exactly why I set up this meeting — to bridge the gap before it becomes a crisis."
-   }
-  },
-  {
-   "id": "EN_628",
-   "expression": "Get on the same page",
-   "meaning": "서로 이해를 맞추다, 같은 인식을 공유하다",
-   "level": "intermediate",
-   "theme": "alignment",
-   "example": "Before the client presentation, let's have a quick sync to make sure we're all on the same page.",
-   "dialogue": {
-    "A": "I thought the deadline was Friday, but the team thinks it's next Monday.",
-    "B": "We need to get on the same page — let me clarify with the project manager now."
-   }
-  },
-  {
-   "id": "EN_629",
-   "expression": "Hit the nail on the head",
-   "meaning": "핵심을 정확히 짚다, 딱 맞는 말을 하다",
-   "level": "intermediate",
-   "theme": "precision",
-   "example": "You hit the nail on the head — that's exactly the disconnect we've been struggling to articulate.",
-   "dialogue": {
-    "A": "Is the problem the process itself, or how it's being communicated?",
-    "B": "Both, but you really hit the nail on the head with the communication part."
-   }
+   },
+   "nuance": "두 쪽 사이에 다리를 놓는다 = 격차나 차이를 메운다는 뜻입니다. 부서 간 소통, 세대 차이, 기술 격차 등에 두루 씁니다. 긍정적인 역할을 강조하는 말이라, 자기소개에서 \"I bridge the gap between design and engineering\"처럼 쓰면 좋은 어필이 됩니다.",
+   "example_ko": "그 워크숍은 엔지니어링팀과 마케팅팀 사이의 간극을 좁히려고 기획됐어요."
   },
   {
    "id": "EN_630",
@@ -198,7 +156,9 @@
    "dialogue": {
     "A": "She didn't say anything in the meeting.",
     "B": "Her silence spoke volumes. She clearly disagrees but doesn't feel safe saying so."
-   }
+   },
+   "nuance": "책 여러 권(volumes)만큼 말한다 = 말없이도 많은 것을 드러낸다는 뜻입니다. 행동이나 사실이 사람의 성격이나 의도를 보여줄 때 씁니다. 칭찬(\"It speaks volumes about her dedication\")에도 비판(\"His silence speaks volumes\")에도 쓰입니다.",
+   "example_ko": "그들이 30분 일찍 왔다는 사실만으로도 그들의 의지가 충분히 드러나요."
   },
   {
    "id": "EN_631",
@@ -210,19 +170,9 @@
    "dialogue": {
     "A": "How confident are you in the findings?",
     "B": "Very. We left no stone unturned — three teams reviewed the results independently."
-   }
-  },
-  {
-   "id": "EN_632",
-   "expression": "A double-edged sword",
-   "meaning": "양날의 검, 이점과 단점을 동시에 가진 것",
-   "level": "advanced",
-   "theme": "tradeoff",
-   "example": "Rapid growth can be a double-edged sword — it brings revenue but also strains the team and processes.",
-   "dialogue": {
-    "A": "Should we go fully remote?",
-    "B": "It's a double-edged sword — flexibility goes up, but spontaneous collaboration suffers."
-   }
+   },
+   "nuance": "고대 그리스 이야기에서, 전쟁 후 숨겨진 보물을 찾던 사람에게 신탁이 \"모든 돌을 뒤집어 보라\"고 했다는 데서 왔다고 전해집니다. 가능한 모든 방법을 다 동원했다는 뜻이라, 조사나 수색의 철저함을 강조할 때 씁니다. 약속으로 쓰면 \"최선을 다하겠다\"보다 강한 다짐이 됩니다.",
+   "example_ko": "데이터 유출 조사에서 가능한 모든 방법을 다 동원했어요."
   },
   {
    "id": "EN_633",
@@ -234,7 +184,9 @@
    "dialogue": {
     "A": "Everyone seems to be launching a subscription model now.",
     "B": "Let's not just jump on the bandwagon — we need to make sure it actually fits our customers."
-   }
+   },
+   "nuance": "19세기 미국 서커스 행렬의 악대 마차(bandwagon)에 사람들이 올라타던 데서 온 말로, 정치인들이 인기 있는 후보의 마차에 올라타며 퍼졌습니다. 주관 없이 유행을 따른다는 비판적인 뉘앙스가 강합니다. 심리학의 \"밴드왜건 효과\"도 여기서 나왔습니다.",
+   "example_ko": "많은 기업이 AI를 어떻게 쓸지 뚜렷한 전략도 없이 유행에 편승했어요."
   },
   {
    "id": "EN_635",
@@ -246,7 +198,9 @@
    "dialogue": {
     "A": "We have hundreds of customer feedback entries — where do we even start?",
     "B": "We need to separate the wheat from the chaff first. Let's cluster the most common themes."
-   }
+   },
+   "nuance": "곡식을 까불러 알곡(wheat)과 쭉정이(chaff)를 가려내는 옛 농사일에서 온 표현으로, 성경에도 여러 번 나옵니다. 넘쳐나는 정보나 지원자 속에서 진짜 가치 있는 것을 골라낸다는 뜻입니다. 사람에게 쓰면 누군가를 \"쭉정이\"로 부르는 셈이니 주의하세요.",
+   "example_ko": "데이터가 워낙 많아서, 분석가의 일은 알맹이와 쭉정이를 가려내 진짜 인사이트를 찾는 것이었어요."
   }
  ],
  "chinese_expressions": [

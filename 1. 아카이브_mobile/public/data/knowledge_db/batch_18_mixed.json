@@ -97,7 +97,9 @@
       "level": "intermediate",
       "theme": "negotiation",
       "example": "A: We can do 15% off instead of 20%. B: I can work with that — let's finalize the contract.",
-      "dialogue": "A: What if we moved the deadline to the 25th?\nB: I can work with that. I'll adjust the sprint plan this afternoon.\nA: Great. Thanks for being flexible.\nB: It's the right call — rushing it wasn't going to help either of us."
+      "dialogue": "A: What if we moved the deadline to the 25th?\nB: I can work with that. I'll adjust the sprint plan this afternoon.\nA: Great. Thanks for being flexible.\nB: It's the right call — rushing it wasn't going to help either of us.",
+      "nuance": "\"완벽하진 않지만 이 정도면 받아들일 수 있다\"는 유연한 수용입니다. 협상에서 원하는 걸 다 얻지 못했지만 합의로 가겠다는 신호라 분위기를 부드럽게 만듭니다. 열정적인 동의가 아니라 담담한 수용이라서, 기쁜 제안에 쓰면 시큰둥하게 들릴 수 있습니다.",
+      "example_ko": "A: 20% 대신 15% 할인은 가능해요. B: 그 정도면 괜찮아요 — 계약 마무리합시다."
     },
     {
       "id": "EN_497",
@@ -106,16 +108,9 @@
       "level": "intermediate",
       "theme": "negotiation",
       "example": "Removing the warranty entirely is a deal-breaker for me. Let's find another way.",
-      "dialogue": "A: We'd need you to sign a non-compete for 5 years.\nB: That's a deal-breaker. Three years is the furthest I can go, and only within this specific industry.\nA: Let me check with legal and come back to you.\nB: Happy to wait — but that's a firm line for me."
-    },
-    {
-      "id": "EN_498",
-      "expression": "Let's find a middle ground",
-      "meaning": "중간 지점을 찾읍시다. 양쪽 모두 받아들일 수 있는 타협안을 함께 찾자는 제안.",
-      "level": "beginner",
-      "theme": "negotiation",
-      "example": "We're far apart on price. Let's find a middle ground before we walk away from the table.",
-      "dialogue": "A: I need 8 weeks. You're offering 4.\nB: Let's find a middle ground — what if we split the project in two and deliver the critical path in 5 weeks?\nA: I could live with that if the quality doesn't suffer.\nB: It won't. The 4-week pressure was the problem — 5 is achievable."
+      "dialogue": "A: We'd need you to sign a non-compete for 5 years.\nB: That's a deal-breaker. Three years is the furthest I can go, and only within this specific industry.\nA: Let me check with legal and come back to you.\nB: Happy to wait — but that's a firm line for me.",
+      "nuance": "이것 하나 때문에 거래(deal) 전체가 깨질 수 있는 결정적인 조건이라는 뜻입니다. \"non-starter\"가 처음부터 논의조차 안 되는 제안이라면, deal-breaker는 다른 조건이 다 좋아도 이것 때문에 무산되는 조건입니다. 연애에서도 \"그건 나한테 절대 안 되는 조건\"이라는 뜻으로 많이 씁니다.",
+      "example_ko": "보증을 아예 빼는 건 저한테는 수용 불가예요. 다른 방법을 찾아봐요."
     },
     {
       "id": "EN_499",
@@ -124,7 +119,9 @@
       "level": "beginner",
       "theme": "negotiation",
       "example": "The start date I'm flexible on — it's the scope that can't change.",
-      "dialogue": "A: We'd ideally like a 60-day payment term.\nB: I'm flexible on the exact number of days, though 30 is our standard. What does 45 look like for your side?\nA: 45 works. We just needed some breathing room.\nB: Done. Let's write that in."
+      "dialogue": "A: We'd ideally like a 60-day payment term.\nB: I'm flexible on the exact number of days, though 30 is our standard. What does 45 look like for your side?\nA: 45 works. We just needed some breathing room.\nB: Done. Let's write that in.",
+      "nuance": "협상에서 어떤 조건에 양보할 여지가 있다는 신호를 줍니다. 무엇에 유연하고 무엇은 안 되는지를 함께 말하면(예문처럼) 상대가 협상의 윤곽을 잡기 쉬워집니다. 모든 것에 flexible하다고 하면 협상력을 잃으니 주의하세요.",
+      "example_ko": "시작일은 유연하게 할 수 있어요 — 바뀔 수 없는 건 범위예요."
     },
     {
       "id": "EN_500",
@@ -133,16 +130,9 @@
       "level": "intermediate",
       "theme": "negotiation",
       "example": "We've been going back and forth. What's your bottom line on price?",
-      "dialogue": "A: We keep dancing around this. What's your bottom line?\nB: Honestly? $80,000 and 90 days. Below that we can't make the numbers work.\nA: Okay. That's close enough. Let's move forward at $82,000 and 90 days.\nB: We have a deal."
-    },
-    {
-      "id": "EN_501",
-      "expression": "I'll need to run this by my team",
-      "meaning": "팀에 먼저 확인해봐야 해요. 즉시 결정하기 어려울 때 시간을 버는 표현.",
-      "level": "beginner",
-      "theme": "negotiation",
-      "example": "That's an interesting proposal — I'll need to run this by my team before I can commit.",
-      "dialogue": "A: Can you give us an answer by end of day?\nB: I'll need to run this by my team first. The scope change is significant enough that I can't sign off alone.\nA: Understood. Tomorrow morning work?\nB: Absolutely. I'll have something for you by 9am."
+      "dialogue": "A: We keep dancing around this. What's your bottom line?\nB: Honestly? $80,000 and 90 days. Below that we can't make the numbers work.\nA: Okay. That's close enough. Let's move forward at $82,000 and 90 days.\nB: We have a deal.",
+      "nuance": "협상에서 \"당신이 받아들일 수 있는 최저선이 뭐냐\"는 직설적인 질문입니다. 회계의 맨 아래 줄에서 온 bottom line이 여기서는 \"마지노선\"이라는 뜻이 됩니다. 협상 초반에 물으면 무례하거나 조급해 보이니, 서로 몇 차례 주고받은 뒤에 쓰는 게 자연스럽습니다.",
+      "example_ko": "계속 주고받기만 했네요. 가격에서 최저선이 어디예요?"
     },
     {
       "id": "EN_502",
@@ -151,7 +141,9 @@
       "level": "intermediate",
       "theme": "negotiation",
       "example": "Look — we're not that far apart. Ten thousand dollars isn't worth losing the deal over.",
-      "dialogue": "A: I don't think we can bridge this gap.\nB: Actually, we're not that far apart. You need security reviews, I need speed — both of those are solvable with parallel workstreams. The gap is smaller than it looks.\nA: You might be right. Walk me through what that would look like.\nB: Gladly."
+      "dialogue": "A: I don't think we can bridge this gap.\nB: Actually, we're not that far apart. You need security reviews, I need speed — both of those are solvable with parallel workstreams. The gap is smaller than it looks.\nA: You might be right. Walk me through what that would look like.\nB: Gladly.",
+      "nuance": "교착 상태처럼 보여도 실제 차이는 크지 않으니 합의하자는 설득입니다. 차이를 작게 만드는 프레이밍이라 협상 막바지에 효과적입니다. 다만 상대가 그 차이를 중요하게 여긴다면 \"당신의 우려를 가볍게 본다\"는 인상을 줄 수 있습니다.",
+      "example_ko": "보세요 — 우리 생각보다 차이가 크지 않아요. 만 달러 때문에 거래를 놓칠 순 없죠."
     },
     {
       "id": "EN_503",
@@ -160,7 +152,9 @@
       "level": "beginner",
       "theme": "negotiation",
       "example": "I hear you, but the timeline you're proposing puts the whole project at risk.",
-      "dialogue": "A: We've invested too much to change direction now.\nB: I hear you, but sunk cost isn't a reason to continue on a path that isn't working. The question is: what's the best use of resources from here?\nA: That's a fair point. What do you recommend?\nB: Let's look at the data together before deciding."
+      "dialogue": "A: We've invested too much to change direction now.\nB: I hear you, but sunk cost isn't a reason to continue on a path that isn't working. The question is: what's the best use of resources from here?\nA: That's a fair point. What do you recommend?\nB: Let's look at the data together before deciding.",
+      "nuance": "\"듣고 있다, 이해한다\"로 상대의 말을 먼저 인정한 뒤 반론을 펴는 구조입니다. \"I understand, but...\"보다 구어적이고 공감의 느낌이 강합니다. 다만 너무 기계적으로 쓰면 \"듣는 척만 하고 결국 자기 말만 한다\"는 인상을 줄 수 있으니, 상대 말을 한 번 요약해 주면 좋습니다.",
+      "example_ko": "무슨 말씀인지는 알겠는데, 제안하신 일정은 프로젝트 전체를 위험하게 만들어요."
     },
     {
       "id": "EN_504",
@@ -169,16 +163,9 @@
       "level": "intermediate",
       "theme": "negotiation",
       "example": "Fine — I'll include the extra month of support. You drive a hard bargain.",
-      "dialogue": "A: And we'd need the on-site training included at no extra cost.\nB: You drive a hard bargain. Alright — I'll include two days of on-site training if we can lock in the contract by Friday.\nA: Deal. I'll have legal review it tonight.\nB: Perfect. Looking forward to working together."
-    },
-    {
-      "id": "EN_505",
-      "expression": "Let me get back to you on that",
-      "meaning": "확인 후 연락드리겠습니다. 즉답 대신 시간을 갖겠다는 표현.",
-      "level": "beginner",
-      "theme": "negotiation",
-      "example": "That's a new condition — let me get back to you on that by Wednesday.",
-      "dialogue": "A: Can you guarantee delivery by the 15th?\nB: Let me get back to you on that. I want to check with the production team before making a commitment I can't keep.\nA: Appreciate the honesty.\nB: I'd rather confirm than promise and disappoint. I'll message you by noon tomorrow."
+      "dialogue": "A: And we'd need the on-site training included at no extra cost.\nB: You drive a hard bargain. Alright — I'll include two days of on-site training if we can lock in the contract by Friday.\nA: Deal. I'll have legal review it tonight.\nB: Perfect. Looking forward to working together.",
+      "nuance": "흥정(bargain)을 세게 몰아붙인다 = 협상을 참 잘한다는 뜻으로, 상대가 좋은 조건을 얻어냈음을 웃으며 인정하는 말입니다. 약간의 칭찬과 투정이 섞인 가벼운 표현이라 협상이 끝나고 분위기를 풀 때 좋습니다. 협상 중간에 쓰면 \"이제 그만 좀 해\"로 들릴 수 있습니다.",
+      "example_ko": "좋아요 — 한 달 추가 지원 넣어 드릴게요. 협상 정말 세게 하시네요."
     },
     {
       "id": "EN_506",
@@ -187,7 +174,9 @@
       "level": "beginner",
       "theme": "appreciation",
       "example": "Kudos to the design team — that presentation was stunning.",
-      "dialogue": "A: The client loved the pitch.\nB: Kudos to Jiyeon — she rewrote the entire deck the night before and it made all the difference.\nA: I noticed. I'm going to mention her specifically in the debrief.\nB: She'll appreciate that. It was a huge effort."
+      "dialogue": "A: The client loved the pitch.\nB: Kudos to Jiyeon — she rewrote the entire deck the night before and it made all the difference.\nA: I noticed. I'm going to mention her specifically in the debrief.\nB: She'll appreciate that. It was a huge effort.",
+      "nuance": "그리스어 kudos(영광, 명성)에서 온 말로, 공로를 공개적으로 칭찬할 때 씁니다. 회의나 슬랙에서 팀을 칭찬하는 표현으로 아주 흔합니다. 원래 단수 명사라서 \"a kudo\"는 틀린 표현이지만, 원어민 사이에서도 종종 이런 실수가 보입니다.",
+      "example_ko": "디자인팀에 박수를 — 그 발표 정말 멋졌어요."
     },
     {
       "id": "EN_507",
@@ -196,7 +185,9 @@
       "level": "intermediate",
       "theme": "appreciation",
       "example": "The server was down at 2am and you fixed it in an hour. You really came through.",
-      "dialogue": "A: I honestly wasn't sure we'd make the deadline.\nB: You really came through when it counted. Staying until midnight to finish the integration — that's not nothing.\nA: The team pulled together. It wasn't just me.\nB: Take the credit. You organized it."
+      "dialogue": "A: I honestly wasn't sure we'd make the deadline.\nB: You really came through when it counted. Staying until midnight to finish the integration — that's not nothing.\nA: The team pulled together. It wasn't just me.\nB: Take the credit. You organized it.",
+      "nuance": "어려운 상황에서 기대를 저버리지 않고 끝까지 해냈다는 칭찬입니다. 단순한 \"잘했어요\"보다 \"당신 덕분에 살았다\"는 신뢰가 담겨 있습니다. \"came through for me\"처럼 쓰면 \"나를 위해 해 줬다\"는 개인적인 감사가 더해집니다.",
+      "example_ko": "새벽 2시에 서버가 죽었는데 한 시간 만에 고쳤잖아요. 정말 해냈어요."
     },
     {
       "id": "EN_508",
@@ -205,7 +196,9 @@
       "level": "beginner",
       "theme": "appreciation",
       "example": "Hearing that from you — honestly, that means a lot to me.",
-      "dialogue": "A: I want you to know — the way you handled that client situation was genuinely impressive.\nB: That means a lot to me, especially coming from you. I wasn't sure I'd handled it right.\nA: You did. The client asked me specifically to thank you.\nB: I'm glad it worked out."
+      "dialogue": "A: I want you to know — the way you handled that client situation was genuinely impressive.\nB: That means a lot to me, especially coming from you. I wasn't sure I'd handled it right.\nA: You did. The client asked me specifically to thank you.\nB: I'm glad it worked out.",
+      "nuance": "칭찬이나 도움에 대해 진심으로 고마워하는 표현입니다. \"Thank you\"보다 감정이 깊게 전달되어, 상대가 준 말이나 행동이 나에게 특별했다는 것을 보여줍니다. 사소한 일에 쓰면 과해 보이니 진심이 담긴 순간에 아껴 쓰세요.",
+      "example_ko": "당신한테 그 말을 들으니 — 솔직히 정말 의미가 커요."
     },
     {
       "id": "EN_509",
@@ -214,7 +207,9 @@
       "level": "beginner",
       "theme": "appreciation",
       "example": "This launch wouldn't have happened. I couldn't have done it without you.",
-      "dialogue": "A: Congrats on the successful launch.\nB: Thank you — but honestly, I couldn't have done it without you. You caught the security issue in the last review. That would've been a disaster.\nA: That's what the review process is for.\nB: Still. It mattered."
+      "dialogue": "A: Congrats on the successful launch.\nB: Thank you — but honestly, I couldn't have done it without you. You caught the security issue in the last review. That would've been a disaster.\nA: That's what the review process is for.\nB: Still. It mattered.",
+      "nuance": "상대의 기여를 가장 크게 인정하는 감사 표현입니다. 수상 소감이나 프로젝트 마무리에서 자주 쓰입니다. 여러 사람에게 똑같이 쓰면 빈말이 되니, 무엇에 기여했는지 구체적으로 덧붙이면 훨씬 진심으로 들립니다.",
+      "example_ko": "이번 출시는 당신 없었으면 불가능했어요. 당신 없이는 못 했을 거예요."
     },
     {
       "id": "EN_510",
@@ -223,7 +218,9 @@
       "level": "intermediate",
       "theme": "appreciation",
       "example": "Before we wrap up — I want to give credit where it's due. This strategy was Hyunwoo's idea.",
-      "dialogue": "A: Great work on the proposal — the client was very impressed.\nB: I want to give credit where it's due — the key insight came from a conversation with Sujin. She noticed the pattern in the data first.\nA: I'll make sure that's reflected in the team update.\nB: She'll appreciate that."
+      "dialogue": "A: Great work on the proposal — the client was very impressed.\nB: I want to give credit where it's due — the key insight came from a conversation with Sujin. She noticed the pattern in the data first.\nA: I'll make sure that's reflected in the team update.\nB: She'll appreciate that.",
+      "nuance": "공을 받을 자격이 있는 사람에게 돌리자는 뜻으로, 다른 사람의 기여를 공개적으로 인정할 때 씁니다. 회의에서 리더가 팀원의 아이디어를 이렇게 밝히면 신뢰가 크게 쌓입니다. 반대로 남의 공을 가로채는 것을 \"take credit for someone else's work\"라고 합니다.",
+      "example_ko": "마무리하기 전에 공을 제대로 밝히고 싶어요. 이 전략은 현우 씨 아이디어였어요."
     },
     {
       "id": "EN_511",
@@ -232,7 +229,9 @@
       "level": "beginner",
       "theme": "collaboration",
       "example": "You're doing a team lunch on Friday? Count me in.",
-      "dialogue": "A: We're putting together a small task force to fix the onboarding flow. Interested?\nB: Count me in. I've had three conversations this month where new users were confused about the same step.\nA: Perfect — you'll have the context we need.\nB: When do we kick off?"
+      "dialogue": "A: We're putting together a small task force to fix the onboarding flow. Interested?\nB: Count me in. I've had three conversations this month where new users were confused about the same step.\nA: Perfect — you'll have the context we need.\nB: When do we kick off?",
+      "nuance": "\"나를 숫자에 넣어 줘\" = 나도 참여하겠다는 적극적인 의사 표시입니다. \"I'm in\"과 같은 뜻이고, 거절은 \"Count me out\"입니다. 모임·내기·프로젝트 참여 등에 두루 쓰이며, 망설임 없이 즐겁게 참여한다는 느낌이 있습니다.",
+      "example_ko": "금요일에 팀 점심 한다고요? 저도 낄게요."
     },
     {
       "id": "EN_512",
@@ -241,7 +240,9 @@
       "level": "beginner",
       "theme": "collaboration",
       "example": "You've set it all up. I'll take it from here.",
-      "dialogue": "A: I've drafted the initial contract and flagged the three clauses I'm not sure about.\nB: Great work — I'll take it from here. I'll run it by legal and get you the final version by Thursday.\nA: That works. Let me know if you need any context on the flagged items.\nB: Will do."
+      "dialogue": "A: I've drafted the initial contract and flagged the three clauses I'm not sure about.\nB: Great work — I'll take it from here. I'll run it by legal and get you the final version by Thursday.\nA: That works. Let me know if you need any context on the flagged items.\nB: Will do.",
+      "nuance": "여기서부터는 내가 맡겠다는 인수인계의 말입니다. 상대의 수고를 인정하면서 자연스럽게 바통을 넘겨받는 느낌이 있습니다. 다만 상대가 아직 끝내고 싶어 하는 일에 쓰면 \"이제 빠져\"라는 뜻으로 들릴 수 있으니 타이밍이 중요합니다.",
+      "example_ko": "준비는 다 해 주셨네요. 여기서부터는 제가 할게요."
     },
     {
       "id": "EN_513",
@@ -250,7 +251,9 @@
       "level": "beginner",
       "theme": "appreciation",
       "example": "The interview is tomorrow? I'm rooting for you.",
-      "dialogue": "A: Final round interview is next week. I'm pretty nervous.\nB: I'm rooting for you — you've prepared more than anyone I know for this.\nA: That means a lot. Thank you.\nB: Let me know how it goes. Whatever happens, you should be proud of getting this far."
+      "dialogue": "A: Final round interview is next week. I'm pretty nervous.\nB: I'm rooting for you — you've prepared more than anyone I know for this.\nA: That means a lot. Thank you.\nB: Let me know how it goes. Whatever happens, you should be proud of getting this far.",
+      "nuance": "스포츠에서 응원하는 팀을 root(응원하다)한다는 뜻에서 온 따뜻한 지지 표현입니다. \"Good luck\"보다 \"나는 네 편이다\"라는 개인적인 응원이 담깁니다. 호주에서는 root가 속어로 성적인 뜻이 있어서, 호주 사람에게는 \"I'm barracking for you\"를 쓰기도 합니다.",
+      "example_ko": "내일 면접이라고요? 응원할게요."
     },
     {
       "id": "EN_514",
@@ -259,7 +262,9 @@
       "level": "intermediate",
       "theme": "collaboration",
       "example": "This is the right call. You've got my full support — whatever you need.",
-      "dialogue": "A: I've decided to push back on the client and tell them the original scope isn't realistic.\nB: You've got my full support on that. I'll back you up in the call if it gets difficult.\nA: That helps. I wasn't sure how leadership would react.\nB: The right decision is the right decision. We'll present it as a team."
+      "dialogue": "A: I've decided to push back on the client and tell them the original scope isn't realistic.\nB: You've got my full support on that. I'll back you up in the call if it gets difficult.\nA: That helps. I wasn't sure how leadership would react.\nB: The right decision is the right decision. We'll present it as a team.",
+      "nuance": "상대의 결정에 전적인 지지를 보낸다는 강한 표현입니다. 리더가 팀원에게 하면 \"책임은 내가 함께 지겠다\"는 든든한 신호가 됩니다. 말로만 끝나지 않게 예문처럼 \"whatever you need\"를 붙여 실제 도움을 약속하면 더 믿음이 갑니다.",
+      "example_ko": "옳은 결정이에요. 전적으로 지지해요 — 필요한 건 뭐든지 말해요."
     },
     {
       "id": "EN_515",
@@ -268,7 +273,9 @@
       "level": "beginner",
       "theme": "negotiation",
       "example": "A: $95,000, Net 45, and two months of support. B: You've got yourself a deal.",
-      "dialogue": "A: One last thing — include the quarterly review call at no extra charge and we're done.\nB: Done. You've got yourself a deal.\nA: Perfect. I'll have the contract drawn up by Monday.\nB: We'll sign by Wednesday. Looking forward to working together."
+      "dialogue": "A: One last thing — include the quarterly review call at no extra charge and we're done.\nB: Done. You've got yourself a deal.\nA: Perfect. I'll have the contract drawn up by Monday.\nB: We'll sign by Wednesday. Looking forward to working together.",
+      "nuance": "\"거래 성사\"를 공식적으로 선언하는 표현으로, 영화나 드라마의 협상 장면에서 자주 들립니다. 조건을 다시 한번 요약한 뒤 이 말로 마무리하면 깔끔합니다. 캐주얼하게는 \"Deal!\" 한 단어로도 충분합니다.",
+      "example_ko": "A: 9만 5천 달러, 45일 후 결제, 지원 두 달이요. B: 좋아요, 거래 성사입니다."
     }
   ],
   "chinese_expressions": [

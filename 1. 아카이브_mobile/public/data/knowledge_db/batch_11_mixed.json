@@ -10,94 +10,15 @@
  },
  "english_expressions": [
   {
-   "id": "EN_326",
-   "expression": "Hit the ground running",
-   "meaning": "즉시 업무에 착수하다, 빠르게 시동을 걸다.",
-   "level": "intermediate",
-   "theme": "workplace",
-   "example": "She hit the ground running on her first day — by 10am she'd already introduced herself to the whole team and set up her first client call.",
-   "dialogue": "A: New hire starts Monday. Think she'll need much onboarding time?\nB: Honestly, with her background I think she'll hit the ground running. She's done this exact role before.\nA: That's what we're hoping for.\nB: Just make sure she has access to all the systems on day one."
-  },
-  {
-   "id": "EN_327",
-   "expression": "Have a lot on one's plate",
-   "meaning": "할 일이 너무 많다, 매우 바쁘다.",
-   "level": "intermediate",
-   "theme": "workplace",
-   "example": "I can see you have a lot on your plate right now — let me take the client report off your hands this week.",
-   "dialogue": "A: Can you take on one more project?\nB: I want to help, but I have a lot on my plate already. The Q3 review, the product launch, and onboarding two new hires.\nA: Understood. What if we push the product launch brief to Jamie?\nB: That would actually make a real difference. Thanks."
-  },
-  {
-   "id": "EN_328",
-   "expression": "Get the ball rolling",
-   "meaning": "일을 시작하다, 첫발을 내딛다.",
-   "level": "intermediate",
-   "theme": "workplace",
-   "example": "We've been talking about this initiative for three months — it's time to get the ball rolling and set a launch date.",
-   "dialogue": "A: Everyone agrees the new system is needed. When do we start?\nB: Let's get the ball rolling with a kickoff meeting Thursday. Just an hour — define scope, assign owners, set milestones.\nA: Perfect. Should I send the calendar invite?\nB: Please do. Copy the whole core team."
-  },
-  {
-   "id": "EN_329",
-   "expression": "Circle back",
-   "meaning": "나중에 다시 돌아오다, 재논의하다.",
-   "level": "intermediate",
-   "theme": "workplace",
-   "example": "We don't have enough data to decide today — let's circle back on this after the market research is complete.",
-   "dialogue": "A: Should we finalize the pricing in today's meeting?\nB: I don't think we're ready yet. Can we circle back on that next Tuesday once we have the competitor analysis?\nA: Works for me. I'll add it as agenda item one for next week.\nB: And send the research doc beforehand so everyone can review."
-  },
-  {
-   "id": "EN_330",
-   "expression": "Touch base",
-   "meaning": "잠깐 연락하다, 진행 상황을 확인하다.",
-   "level": "beginner",
-   "theme": "workplace",
-   "example": "I just wanted to touch base before the presentation — any last-minute changes to the deck?",
-   "dialogue": "A: Hey, do you have five minutes? I just wanted to touch base on the Wilson account.\nB: Sure. Where are we?\nA: Contract is signed, kickoff is next Monday. I just need to know if legal has reviewed the SLA.\nB: I'll check right now and send you a message within the hour."
-  },
-  {
-   "id": "EN_331",
-   "expression": "Drop the ball",
-   "meaning": "실수를 저지르다, 책임을 다하지 못하다.",
-   "level": "intermediate",
-   "theme": "workplace",
-   "example": "We really dropped the ball on the client's deadline — they expected the report Friday and received it Monday.",
-   "dialogue": "A: The client just called. They didn't receive the proposal.\nB: What? I thought you sent it.\nA: I thought you were handling it. We both dropped the ball.\nB: Okay — I'll send it now with an apology and offer a 30-minute call to walk them through it personally."
-  },
-  {
    "id": "EN_332",
    "expression": "Go the extra mile",
    "meaning": "기대 이상으로 노력하다, 한 발 더 나아가다.",
    "level": "intermediate",
    "theme": "workplace",
    "example": "He always goes the extra mile for clients — last week he stayed until 9pm to fix an issue that wasn't even in his job description.",
-   "dialogue": "A: The client gave us a perfect satisfaction score. What did you do differently?\nB: Honestly, I just tried to go the extra mile. I sent them a weekly update email even though they didn't ask for it, and prepped a FAQ before the launch.\nA: That's exactly the kind of thing that builds long-term relationships.\nB: It takes an extra 30 minutes but the trust it builds is worth it."
-  },
-  {
-   "id": "EN_333",
-   "expression": "Burn bridges",
-   "meaning": "관계를 완전히 끊다, 돌이킬 수 없게 만들다.",
-   "level": "intermediate",
-   "theme": "workplace",
-   "example": "I know you're frustrated, but quitting without notice will burn bridges — this industry is smaller than you think.",
-   "dialogue": "A: I'm so done with this company. I'm going to send an honest farewell email to everyone.\nB: I'd be careful. You don't want to burn bridges — you'll run into these people again.\nA: But I have so much to say.\nB: Write it all down for yourself. But send a professional two-line farewell. Your reputation follows you."
-  },
-  {
-   "id": "EN_334",
-   "expression": "Bite off more than one can chew",
-   "meaning": "감당할 수 있는 것 이상을 벌이다, 무리하게 떠맡다.",
-   "level": "intermediate",
-   "theme": "workplace",
-   "example": "We bit off more than we could chew by promising three major deliverables in six weeks — now the quality is suffering.",
-   "dialogue": "A: The new business proposal promises delivery in four weeks. Is that realistic?\nB: Not with our current team size. I think we're biting off more than we can chew.\nA: But we don't want to lose the deal.\nB: Better to negotiate six weeks upfront than to miss the deadline and damage the relationship."
-  },
-  {
-   "id": "EN_337",
-   "expression": "Give someone the benefit of the doubt",
-   "meaning": "일단 믿어주다, 의심보다 신뢰를 선택하다.",
-   "level": "intermediate",
-   "theme": "communication",
-   "example": "He's been late twice, but this is only his second month — I'll give him the benefit of the doubt and check in first before escalating.",
-   "dialogue": "A: The contractor submitted the deliverable late again. Should I flag it to management?\nB: Let's give her the benefit of the doubt for now. She mentioned a family situation last week.\nA: Fair enough. But if it happens again?\nB: Then we document it. One instance with context isn't a pattern yet."
+   "dialogue": "A: The client gave us a perfect satisfaction score. What did you do differently?\nB: Honestly, I just tried to go the extra mile. I sent them a weekly update email even though they didn't ask for it, and prepped a FAQ before the launch.\nA: That's exactly the kind of thing that builds long-term relationships.\nB: It takes an extra 30 minutes but the trust it builds is worth it.",
+   "nuance": "1마일을 더 간다 = 요구받은 것 이상으로 노력한다는 뜻으로, 성경의 \"누가 억지로 오 리를 가게 하면 십 리를 동행하라\"는 구절에서 왔다고 알려져 있습니다. 추천서나 고객 서비스 칭찬에 자주 쓰입니다. \"go above and beyond\"와 거의 같은 뜻입니다.",
+   "example_ko": "그는 늘 고객을 위해 한 발 더 나아가요 — 지난주엔 업무 범위도 아닌 문제를 고치느라 밤 9시까지 남았어요."
   },
   {
    "id": "EN_338",
@@ -106,7 +27,9 @@
    "level": "intermediate",
    "theme": "workplace",
    "example": "The new feature request is great, but let's put it on the back burner until after the product launch in September.",
-   "dialogue": "A: Should we include the analytics dashboard in this sprint?\nB: I want to, but let's put it on the back burner. If we try to include everything, we'll ship nothing.\nA: Agreed. Next sprint?\nB: Exactly — backlog it with high priority and we'll pick it up the moment v1 is out."
+   "dialogue": "A: Should we include the analytics dashboard in this sprint?\nB: I want to, but let's put it on the back burner. If we try to include everything, we'll ship nothing.\nA: Agreed. Next sprint?\nB: Exactly — backlog it with high priority and we'll pick it up the moment v1 is out.",
+   "nuance": "가스레인지의 뒤쪽 불(약불)로 옮겨 둔다 = 버리진 않지만 우선순위를 낮춰 나중에 다룬다는 뜻입니다. \"put a pin in it\"이 회의 중 주제를 잠시 멈추는 것이라면, 이 표현은 프로젝트나 계획 단위로 한동안 미뤄 두는 쪽입니다. 반대로 급한 일은 \"front burner\"에 있다고 합니다.",
+   "example_ko": "새 기능 요청은 좋지만, 9월 출시 이후까지는 뒤로 미뤄 둡시다."
   },
   {
    "id": "EN_339",
@@ -115,7 +38,9 @@
    "level": "advanced",
    "theme": "innovation",
    "example": "By adopting AI tools two years ago, the company was ahead of the curve — now their productivity per person is 40% above the industry average.",
-   "dialogue": "A: Do we really need to invest in this technology now? It feels early.\nB: That's exactly why we should. Being ahead of the curve means we build capability before it becomes essential — not after.\nA: But what if the technology doesn't take off?\nB: Then we've learned something no one else has. The cost of learning early is almost always less than the cost of catching up late."
+   "dialogue": "A: Do we really need to invest in this technology now? It feels early.\nB: That's exactly why we should. Being ahead of the curve means we build capability before it becomes essential — not after.\nA: But what if the technology doesn't take off?\nB: Then we've learned something no one else has. The cost of learning early is almost always less than the cost of catching up late.",
+   "nuance": "곡선(추세선)보다 앞서 있다 = 남들보다 먼저 흐름을 읽고 준비했다는 칭찬입니다. 반대로 \"behind the curve\"는 흐름에 뒤처졌다는 비판입니다. 여기서 curve는 원래 기술 확산이나 학습 곡선을 뜻합니다.",
+   "example_ko": "2년 전 AI 도구를 도입한 덕에 그 회사는 시대를 앞서갔어요 — 지금 인당 생산성이 업계 평균보다 40% 높아요."
   },
   {
    "id": "EN_340",
@@ -124,16 +49,9 @@
    "level": "beginner",
    "theme": "communication",
    "example": "We only have 10 minutes — let me cut to the chase. We need a 15% budget increase to hit the Q4 targets.",
-   "dialogue": "A: I want to give you some context before I explain the issue—\nB: Please, just cut to the chase. What's the problem and what do you need from me?\nA: The supplier raised prices by 12%. We need to either increase product price or cut margin.\nB: Good. Now I know what we're deciding. Let's look at the numbers."
-  },
-  {
-   "id": "EN_341",
-   "expression": "Get on board",
-   "meaning": "동참하다, 합류하다, 찬성하다.",
-   "level": "beginner",
-   "theme": "workplace",
-   "example": "We need everyone to get on board with the new process — if even one team resists, the whole system breaks down.",
-   "dialogue": "A: Not everyone on the team seems excited about the new workflow.\nB: We need them to get on board. Can you set up a session where they can ask questions directly?\nA: I think part of it is they feel like the decision was made without them.\nB: You're right. Let's run a retrospective on the old process first — let them see the data that drove the change."
+   "dialogue": "A: I want to give you some context before I explain the issue—\nB: Please, just cut to the chase. What's the problem and what do you need from me?\nA: The supplier raised prices by 12%. We need to either increase product price or cut margin.\nB: Good. Now I know what we're deciding. Let's look at the numbers.",
+   "nuance": "초창기 무성 영화에서 지루한 대사 장면을 건너뛰고 곧장 추격(chase) 장면으로 가라던 데서 온 말로 알려져 있습니다. 서론 없이 바로 본론으로 가겠다는 뜻이라 시간이 없을 때 좋습니다. 남에게 \"Cut to the chase\"라고 하면 \"요점만 말해\"라는 재촉이 되어 무례할 수 있습니다.",
+   "example_ko": "10분밖에 없으니 바로 본론으로 갈게요. 4분기 목표를 달성하려면 예산을 15% 늘려야 해요."
   },
   {
    "id": "EN_342",
@@ -142,7 +60,9 @@
    "level": "advanced",
    "theme": "innovation",
    "example": "The research team is breaking new ground with their AI-assisted diagnostic tool — nothing like it exists in the market yet.",
-   "dialogue": "A: We're about to launch something with no direct competitor. That's exciting but also scary.\nB: That's what it feels like to break new ground. There's no playbook because no one's done it yet.\nA: How do we validate the approach then?\nB: Small pilots. Fast iteration. Treat the first six months as a series of experiments, not a rollout."
+   "dialogue": "A: We're about to launch something with no direct competitor. That's exciting but also scary.\nB: That's what it feels like to break new ground. There's no playbook because no one's done it yet.\nA: How do we validate the approach then?\nB: Small pilots. Fast iteration. Treat the first six months as a series of experiments, not a rollout.",
+   "nuance": "아무도 파 본 적 없는 땅을 처음 판다 = 새로운 분야를 개척한다는 뜻입니다. \"innovate\"보다 선구자라는 느낌이 강해서, 연구나 신사업의 최초 시도에 잘 어울립니다. 건물 착공식을 \"groundbreaking ceremony\"라고 부르는 것도 같은 이미지입니다.",
+   "example_ko": "연구팀은 AI 진단 도구로 새로운 영역을 개척하고 있어요 — 시장에 이런 건 아직 없어요."
   },
   {
    "id": "EN_343",
@@ -151,25 +71,9 @@
    "level": "beginner",
    "theme": "communication",
    "example": "In a nutshell, the project is on track, the team is aligned, and we'll hit the deadline — but we need a budget approval by Friday.",
-   "dialogue": "A: Can you summarize where we are before the meeting starts?\nB: Sure. In a nutshell: phase one is done, phase two is 70% complete, and we have one blocker — IT hasn't provisioned the server yet.\nA: Perfect. That's all I needed to frame the conversation.\nB: I'll have the full breakdown ready if anyone wants to dig into specifics."
-  },
-  {
-   "id": "EN_344",
-   "expression": "Raise the bar",
-   "meaning": "기준을 높이다, 수준을 한 단계 끌어올리다.",
-   "level": "intermediate",
-   "theme": "workplace",
-   "example": "The competitor's new product launch has raised the bar across the industry — our current offering won't be enough anymore.",
-   "dialogue": "A: The client loved the last campaign and now they want 'something even better.'\nB: They want us to raise the bar. What specifically impressed them last time?\nA: The personalization. Each segment got a different message.\nB: Then let's go one level deeper — personalize by individual behavior, not just segment."
-  },
-  {
-   "id": "EN_345",
-   "expression": "Move the needle",
-   "meaning": "의미 있는 변화를 만들다, 실질적인 영향을 미치다.",
-   "level": "advanced",
-   "theme": "workplace",
-   "example": "We've tried five different tactics but nothing has moved the needle on customer retention — we need to rethink our approach.",
-   "dialogue": "A: The team worked hard this quarter, but the metrics didn't improve much.\nB: That's the tough truth — effort doesn't always move the needle. What actually changed for customers?\nA: That's the question. Maybe we were optimizing the wrong things.\nB: Let's map every initiative to a specific customer behavior change. If we can't draw that line, we cut it."
+   "dialogue": "A: Can you summarize where we are before the meeting starts?\nB: Sure. In a nutshell: phase one is done, phase two is 70% complete, and we have one blocker — IT hasn't provisioned the server yet.\nA: Perfect. That's all I needed to frame the conversation.\nB: I'll have the full breakdown ready if anyone wants to dig into specifics.",
+   "nuance": "견과 껍질 하나에 다 들어갈 만큼 짧게 = 한마디로 요약하면이라는 뜻입니다. 긴 설명 뒤의 정리나, 바쁜 사람에게 요점을 전달할 때 좋습니다. \"Long story short\"가 배경을 건너뛰는 것이라면, in a nutshell은 핵심만 압축해 전달하는 쪽입니다.",
+   "example_ko": "한마디로 말하면, 프로젝트는 순조롭고 팀도 합의됐고 마감도 맞출 거예요 — 다만 금요일까지 예산 승인이 필요해요."
   }
  ],
  "chinese_expressions": [

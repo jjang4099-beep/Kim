@@ -553,3 +553,24 @@ html[data-theme="dark"] {
 .scholar-dday-num[data-dday-tier="near"]  .exam-dday-num,
 .scholar-dday-num[data-dday-tier="close"] .exam-dday-num,
 .scholar-dday-num[data-dday-tier="dday"]  .exam-dday-num { text-shadow: none; }
+
+
+/* ══ LIGHT-INDIGO-OVERRIDES ══ */
+/* 라이트 테마를 연대기와 같은 톤(흰 바탕·인디고 포인트)으로 — 파피루스·골드 하드코딩 색의 라이트 전용 덮어쓰기.
+   scripts: scratchpad/gen_light_overrides.py 로 생성. 원본 규칙은 그대로 두어 다크에 영향 없음. */
+html[data-theme="light"] .mob-mode-btn.work { border-color:#8E7CE6; }
+html[data-theme="light"] .exam-dday-num { color:#FAFAFA; }
+html[data-theme="light"] .exam-dday-block[data-dday-tier="near"] { border-color:rgba(142,124,230,.45); }
+html[data-theme="light"] .exam-dday-block[data-dday-tier="close"] { border-color:#8E7CE6; box-shadow:0 0 0 1px rgba(142,124,230,.35), 0 4px 16px rgba(142,124,230,.22); }
+html[data-theme="light"] .exam-dday-block[data-dday-tier="close"] .exam-dday-label { color:rgba(142,124,230,.9); }
+html[data-theme="light"] .exam-dday-block[data-dday-tier="dday"] { box-shadow:0 0 0 1px rgba(142,124,230,.5), 0 6px 22px rgba(142,124,230,.3); }
+html[data-theme="light"] .mvw-wrong-subjchip.active { color:#FAFAFA; }
+html[data-theme="light"] .mvw-wrong-status.reviewing { color:#5B5BD6; }
+html[data-theme="light"] .mvw-tutor-analyze-now { color:#FAFAFA; }
+html[data-theme="light"] .mvw-tutor-steps li::before { color:#FAFAFA; }
+html[data-theme="light"] .mvw-tutor-memo-save { color:#FAFAFA; }
+html[data-theme="light"] .mvw-review-eval-btn:nth-child(2):active { border-color:#5B5BD6; color:#5B5BD6; }
+html[data-theme="light"] .mvw-exam-save-btn { color:#FAFAFA; }
+html[data-theme="light"] {
+  --exam-serif: 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+}

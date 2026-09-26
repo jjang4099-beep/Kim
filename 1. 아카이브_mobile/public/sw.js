@@ -14,10 +14,10 @@
    — 이 파일이 바뀌어야 브라우저가 새 SW를 설치하고 구 캐시를 비움
    (07-26: 로그인/멀티유저 배포 때 이 버전을 못 올려서 이미 설치된 PWA들이
     구 서비스워커+구 페이지 상태로 남아 로그인 없이 API를 호출 → 전부 401 나던 버그 발생) */
-const CACHE_NAME    = 'sj-library-v41';
+const CACHE_NAME    = 'sj-library-v42';
 const STATIC_ASSETS = [
   '/index_mobile.html',
-  '/css/style_mobile.css?v=92',
+  '/css/style_mobile.css?v=93',
   '/js/core.js?v=13',
   '/js/pwa.js?v=3',
   '/manifest.json',
@@ -26,7 +26,8 @@ const STATIC_ASSETS = [
   '/icons/icon-512.png',
   '/icons/apple-touch-icon.png',
   'https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap',
-  'https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css'
+  'https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css',
+  'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css'
 ];
 
 // ── Install: 핵심 자산 사전 캐시 ──

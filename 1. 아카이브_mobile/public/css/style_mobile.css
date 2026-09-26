@@ -6170,3 +6170,91 @@ html[data-theme="dark"] .mob-life-note-input { background: var(--bg); }
   background: var(--bg); font-size: 13px; color: var(--text-1); line-height: 1.6;
 }
 .mob-wd-ex-ko { display: block; margin-top: 4px; font-size: 12.5px; color: var(--text-3); }
+
+
+/* ══ LIGHT-INDIGO-OVERRIDES ══ */
+/* 라이트 테마를 연대기와 같은 톤(흰 바탕·인디고 포인트)으로 — 파피루스·골드 하드코딩 색의 라이트 전용 덮어쓰기.
+   scripts: scratchpad/gen_light_overrides.py 로 생성. 원본 규칙은 그대로 두어 다크에 영향 없음. */
+html[data-theme="light"] { --mob-gold:#5B5BD6; --mob-card:#FFFFFF; --mob-section:#F3F3FA; --mob-border:#E6E6EE; --bg-card-expanded:#FAFAFC; --bg-highlight-box:#F4F3FB; --accent-color:#5B5BD6; --kmc-bg:#FFFFFF; --kmc-border:rgba(91,91,214,.22); }
+html[data-theme="light"] .mob-section-hd { color:#8E7CE6; border-top:2px solid #8E7CE6; }
+html[data-theme="light"] .mob-section-hd::after { background:rgba(142,124,230,.2); }
+html[data-theme="light"] .mob-section-hd.today .mob-section-badge { background:rgba(142,124,230,.12); color:#8E7CE6; border:1px solid rgba(142,124,230,.35); }
+html[data-theme="light"] .mvw-mode-btn.exam.active { background:rgba(142,124,230,.1); }
+html[data-theme="light"] .mob-img-btn-analyze { color:#FAFAFA; }
+html[data-theme="light"] .mob-card-feed { border-left:3px solid #8E7CE6; }
+html[data-theme="light"] .mob-feed-badge { color:#5B5BD6; background:#F3F3FA; border:1px solid rgba(91,91,214,.22); }
+html[data-theme="light"] .mob-feed-badge-lang { color:#5B5BD6; background:#F3F3FA; }
+html[data-theme="light"] .mob-feed-badge-market { color:#5B5BD6; background:#F3F3FA; }
+html[data-theme="light"] .mob-card-feed-market { border-left-color:#8E7CE6; }
+html[data-theme="light"] .mob-dlv-badge { color:#5B5BD6; background:#F3F3FA; border:1px solid rgba(91,91,214,.22); }
+html[data-theme="light"] .mob-dlv-save-btn { background:#F3F3FA; color:#5B5BD6; }
+html[data-theme="light"] .mob-dlv-save-btn:active { background:#5B5BD6; }
+html[data-theme="light"] .mob-hum-card { border-left:3px solid #8E7CE6; }
+html[data-theme="light"] .mob-hum-save-btn { border:1.5px solid rgba(91,91,214,.3); color:#5B5BD6; }
+html[data-theme="light"] .mob-hum-save-btn:hover { background:#F3F3FA; }
+html[data-theme="light"] .mob-hum-save-btn.saved, html[data-theme="light"] .mob-hum-save-btn:disabled { color:#5B5BD6; border-color:#5B5BD6; background:#F3F3FA; }
+html[data-theme="light"] .mob-feed-card-save-btn.saved, html[data-theme="light"] .mob-feed-card-save-btn:disabled { color:#5B5BD6; border-color:#5B5BD6; background:#F3F3FA; }
+html[data-theme="light"] .mob-hum-badge { color:#5B5BD6; background:#F3F3FA; border:1px solid rgba(91,91,214,.22); }
+html[data-theme="light"] .mob-feed-preview-list { box-shadow:0 2px 10px rgba(91,91,214,.08); }
+html[data-theme="light"] .mob-fpc-code { color:#8E7CE6; }
+html[data-theme="light"] .mob-fpc-rule { background:rgba(142,124,230,.4); }
+html[data-theme="light"] .mob-fpc-cat { color:#8E7CE6; }
+html[data-theme="light"] .mob-fpc-arrow { color:rgba(142,124,230,.5); }
+html[data-theme="light"] .km-filter-tab.active { background:rgba(142,124,230,.08); }
+html[data-theme="light"] .knowledge-magazine-card { border:1px solid var(--kmc-border, rgba(142,124,230,.14)); }
+html[data-theme="light"] .kmc-badge { background:rgba(142,124,230,.1); }
+html[data-theme="light"] .alc-tag { background:rgba(91,91,214,.10); }
+html[data-theme="light"] .alc-preview-ex { background:rgba(91,91,214, 0.07); }
+html[data-theme="light"] .mob-fv-save:active { background:rgba(91,91,214,.10); }
+html[data-theme="light"] { --surface:#FFFFFF; --bg:#FAFAFA; --bg-2:#FFFFFF; --text-1:#262626; --text-2:#737373; --text-3:#A8A8A8; --border:#EFEFEF; --mob-gold:#5B5BD6; --mob-card:#FFFFFF; --mob-section:#F3F3FA; --mob-border:#E6E6EE; --bg-card-expanded:#FFFFFF; --bg-highlight-box:#F4F3FB; --kmc-bg:#FFFFFF; --kmc-border:rgba(91,91,214,.22); }
+html[data-theme="light"] .mob-card { background:#FFFFFF; border-color:#E6E6EE; }
+html[data-theme="light"] .mob-card-v { background:#FFFFFF; border-color:#E6E6EE; }
+html[data-theme="light"] .alc-expand-btn { background:#F3F3FA; border-color:#E6E6EE; color:#737373; }
+html[data-theme="light"] .alc-section { border-color:#E6E6EE; }
+html[data-theme="light"] .mob-fv-item { border-color:#E6E6EE; }
+html[data-theme="light"] .mob-fv-front { background:#FFFFFF; }
+html[data-theme="light"] .mob-mkt-ind-chip { background:#FFFFFF; border-color:#E6E6EE; }
+html[data-theme="light"] .mob-mkt-expand-body { border-color:#E6E6EE; }
+html[data-theme="light"] .mob-fv-theme-band { border-color:#E6E6EE; }
+html[data-theme="light"] .mob-master-para { border-color:#E6E6EE; }
+html[data-theme="light"] .mob-mpa-tr { border-color:#E6E6EE; }
+html[data-theme="light"] .mob-mpa-toggle, html[data-theme="light"] .mob-hum-behind-btn, html[data-theme="light"] .mob-mkt-expand-btn { background:#FFFFFF; }
+html[data-theme="light"] .mob-mpa-toggle:active, html[data-theme="light"] .mob-hum-behind-btn:active, html[data-theme="light"] .mob-hum-behind-btn.open, html[data-theme="light"] .mob-mkt-expand-btn:active { background:#F3F3FA; }
+html[data-theme="light"] .mob-hum-acc-sect, html[data-theme="light"] .mob-hum-acc-lesson { border-color:#E6E6EE; }
+html[data-theme="light"] .blind-inscription { box-shadow:inset 0 0 0 1px rgba(91,91,214,.12); }
+
+/* ── 라이트 기본 토큰 — 연대기(chronicle.html) 라이트와 같은 값 ──
+   흰 카드·#FAFAFA 바탕·가는 선·부드러운 그림자, 포인트는 인디고(#5B5BD6→#8E7CE6). 다크는 위 html[data-theme="dark"] 그대로. */
+html[data-theme="light"] {
+  --accent  : #5B5BD6;
+  --accent2 : #8E7CE6;
+  --accent-g: linear-gradient(135deg, #5B5BD6 0%, #8E7CE6 100%);
+  --surface : #FFFFFF;
+  --bg      : #FAFAFA;
+  --bg-2    : #FFFFFF;
+  --text-1  : #262626;
+  --text-2  : #737373;
+  --text-3  : #A8A8A8;
+  --title-ink: #1F1F2E;
+  --border  : #EFEFEF;
+  --shadow  : 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.05);
+  --mob-gold   : #5B5BD6;
+  --mob-card   : #FFFFFF;
+  --mob-section: #F3F3FA;
+  --mob-border : #E6E6EE;
+  --bg-card-main    : #FFFFFF;
+  --bg-card-expanded: #FAFAFC;
+  --bg-highlight-box: #F4F3FB;
+  --text-primary    : #262626;
+  --text-muted      : #737373;
+  --accent-color    : #5B5BD6;
+  --kmc-bg     : #FFFFFF;
+  --kmc-border : #EFEFEF;
+  --kmc-title  : #262626;
+  --kmc-sub    : #737373;
+}
+/* 라이트 글꼴 — 명조·Cinzel·Georgia 대신 굵은 고딕(Pretendard). 코드·Tabler 아이콘 폰트(.ti)·진입 스플래시(브랜드 화면)는 제외 */
+html[data-theme="light"] body,
+html[data-theme="light"] body *:not(code, pre, kbd, .ti, [class*="ti-"], .app-entrance, .app-entrance *) {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif !important;
+}

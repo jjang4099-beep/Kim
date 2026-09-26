@@ -42,7 +42,52 @@
     raw: [],             // API 원본
     byDate: {},          // 'YYYY-MM-DD' → items[]
     aiCache: {},         // year|mode → summary
+    cat: '',             // 분류 필터 — '' 전체 / 'memory' 추억 / 'study' 공부 전체 / 'english' 등 (CATS 참고)
+    scope: 'day',        // 하루 보기 범위 — 'day' 그날 / 'week' 그 주 / 'month' 그 달 (복습용)
+    quiz: false,         // 답 가리기 — 공부한 카드의 뜻·설명을 가려서 스스로 떠올려 보게
   };
+
+  /* 샘플 미리보기 — chronicle.html?demo=1. 로그인·DB 없이 js/chronicle_demo.js의 가짜 기록으로 화면을 그린다.
+     실제 계정에 기록을 넣지 않고 화면을 확인하기 위한 모드라 서버에 아무것도 쓰지 않는다. */
+  const DEMO = new URLSearchParams(location.search).has('demo');
+
+  /* ── 분류(추억 vs 공부) ─────────────────────
+     추억 = 사진·일상 기록, 공부 = 배달·저장한 지식(영어·고전·역사…), 메모 = 영상·링크 등 그 밖의 것.
+     복습할 때 "영어만, 이번 주만"처럼 좁혀 보기 위한 분류다. */
+  const CATS = [
+    { key: '',        label: '전체' },
+    { key: 'memory',  label: '추억' },
+    { key: 'study',   label: '공부 전체' },
+    { key: 'english', label: '영어' },
+    { key: 'classic', label: '고전·명언' },
+    { key: 'history', label: '역사' },
+    { key: 'idiom',   label: '고사성어' },
+    { key: 'insight', label: '인사이트' },
+    { key: 'wrong',   label: '오답노트' },
+    { key: 'memo',    label: '메모·링크' },
+  ];
+  const STUDY_CATS = new Set(['english', 'classic', 'history', 'idiom', 'insight', 'wrong']);
+  const KIND_TO_CAT = [
+    [/^영어|^수능 영단어/, 'english'], [/^고전|^명언/, 'classic'], [/^역사|^한국사/, 'history'],
+    [/^고사성어/, 'idiom'], [/^인사이트/, 'insight'], [/^오답노트/, 'wrong'],
+  ];
+  const _catCache = new WeakMap();
+  function catOf(it) {
+    if (_catCache.has(it)) return _catCache.get(it);
+    let c = 'memo';
+    if (isLife(it)) c = 'memory';
+    else {
+      const v = learnedView(it);
+      if (v) c = (KIND_TO_CAT.find(([re]) => re.test(v.kind)) || [null, 'memo'])[1];
+    }
+    _catCache.set(it, c);
+    return c;
+  }
+  function matchesCat(it) {
+    if (!state.cat) return true;
+    const c = catOf(it);
+    return state.cat === 'study' ? STUDY_CATS.has(c) : c === state.cat;
+  }
 
   const $ = id => document.getElementById(id);
   const esc = s => String(s == null ? '' : s)
@@ -76,6 +121,16 @@
   /* ── 부팅 ───────────────────────────────── */
   async function boot() {
     $('gateGanji').textContent = ganji(state.year);
+    if (DEMO) {
+      /* 데모 데이터 스크립트는 이때만 불러온다 — 평소에는 한 바이트도 받지 않게 */
+      await new Promise((ok, bad) => {
+        const s = document.createElement('script');
+        s.src = 'js/chronicle_demo.js?v=1'; s.onload = ok; s.onerror = () => bad(new Error('샘플 데이터를 불러오지 못했어요'));
+        document.head.appendChild(s);
+      }).catch(e => fail(e.message));
+      $('demoBanner').hidden = false;
+      return enter();
+    }
     try {
       await api('/api/auth/me');
       await enter();
@@ -129,6 +184,12 @@
   async function loadItems() {
     /* 모드 격리 규칙에 따라 모드를 지정할 땐 반드시 파라미터로 명시.
        '전체'는 연대기 전용(직장인+수험생을 한 타임라인에 얹기 위함) — 이때만 생략. */
+    if (DEMO) {
+      const all = (window.CHRONICLE_DEMO_ITEMS || []);
+      state.raw = all.filter(it => !state.mode || (it.mode || 'PROFESSIONAL') === state.mode).map(fixDomain);
+      regroup();
+      return;
+    }
     const q = state.mode ? `?mode=${encodeURIComponent(state.mode)}&limit=2000` : '?limit=2000';
     const data = await api('/api/items' + q);
     state.raw = (Array.isArray(data.items) ? data.items : []).map(fixDomain);
@@ -158,6 +219,7 @@
     const map = {};
     for (const it of state.raw) {
       if (!state.includeAuto && isAuto(it)) continue;
+      if (!matchesCat(it)) continue;      // 분류 필터 — 달력 점·파형·통계·하루 보기가 모두 같은 기준을 따른다
       const k = dateKey(it);
       if (!k) continue;
       (map[k] || (map[k] = [])).push(it);
@@ -187,11 +249,37 @@
     }
 
     renderStats();
+    renderCats();
     renderMonth();
     renderWave();
     renderDay();
     renderReview();
     renderFilterNote();
+  }
+
+  /* 분류 칩 — 올해 실제로 있는 분류만 보인다(없는 분류 칩은 누를 이유가 없다) */
+  function renderCats() {
+    const counts = {};
+    yearRaw().forEach(it => {
+      if (!state.includeAuto && isAuto(it)) return;
+      const c = catOf(it);
+      counts[c] = (counts[c] || 0) + 1;
+      if (STUDY_CATS.has(c)) counts.study = (counts.study || 0) + 1;
+    });
+    $('cats').innerHTML = CATS
+      .filter(c => !c.key || counts[c.key] || c.key === state.cat)
+      .map(c => `<button type="button" data-cat="${c.key}" aria-pressed="${c.key === state.cat}">
+          ${esc(c.label)}${c.key && counts[c.key] ? `<small>${counts[c.key]}</small>` : ''}</button>`)
+      .join('');
+    $('cats').querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+      state.cat = b.dataset.cat;
+      /* 공부 분류를 고르면 복습이 목적이므로 범위를 한 주로 넓혀 준다. 전체·추억으로 돌아오면 그날로 */
+      state.scope = (state.cat && state.cat !== 'memory') ? (state.scope === 'day' ? 'week' : state.scope) : 'day';
+      regroup();
+      const keep = state.selected;
+      renderAll();
+      if (keep && keep.startsWith(state.year + '-')) select(keep);
+    }));
   }
 
   function renderFilterNote() {
@@ -514,29 +602,104 @@
     </article>`;
   }
 
+  function cardOf(it) {
+    if (isLife(it)) return photoCard(it);
+    if (it.type === 'youtube') return youtubeCard(it);
+    const v = learnedView(it);
+    return v ? learnedCard(it, v) : textCard(it);
+  }
+
+  /* 추억(사진·일상)과 공부한 것을 섞지 않고 구획을 나눈다 — 한 날 안에서도 "무엇을 했나"와
+     "무엇을 배웠나"는 다른 질문이다. 비어 있는 구획은 그리지 않는다. */
+  const SECTIONS = [
+    { key: 'memory', label: '추억',      note: '사진과 그날의 글',  test: it => catOf(it) === 'memory' },
+    { key: 'study',  label: '공부한 것', note: '영어·지식·오답',    test: it => STUDY_CATS.has(catOf(it)) },
+    { key: 'memo',   label: '메모·링크', note: '영상·기사 등',      test: it => catOf(it) === 'memo' },
+  ];
+  function sectionsHTML(items) {
+    return SECTIONS.map(s => {
+      const list = items.filter(s.test);
+      if (!list.length) return '';
+      return `<section class="dsec dsec--${s.key}">
+          <h3 class="dsec__head">${s.label}<small>${list.length}</small><span>${s.note}</span></h3>
+          <div class="entries enter">${list.map(cardOf).join('')}</div>
+        </section>`;
+    }).join('');
+  }
+
+  /* 선택한 날을 기준으로 범위의 날짜 키 목록 — 주는 월요일 시작 */
+  function scopeKeys(key) {
+    const [y, m, d] = key.split('-').map(Number);
+    if (state.scope === 'month') {
+      return Array.from({ length: daysInMonth(y, m - 1) }, (_, i) => `${y}-${pad2(m)}-${pad2(i + 1)}`);
+    }
+    if (state.scope === 'week') {
+      const base = new Date(y, m - 1, d);
+      const mon = new Date(base); mon.setDate(base.getDate() - ((base.getDay() + 6) % 7));
+      return Array.from({ length: 7 }, (_, i) => { const t = new Date(mon); t.setDate(mon.getDate() + i); return isoOf(t); });
+    }
+    return [key];
+  }
+  const shortDate = k => `${Number(k.slice(5, 7))}월 ${Number(k.slice(8, 10))}일`;
+
   function renderDay() {
     const key = state.selected;
     const [y, m, d] = key.split('-').map(Number);
     const date = new Date(y, m - 1, d);
-    const items = state.byDate[key] || [];
+    const keys = scopeKeys(key);
+    const filled = keys.filter(k => (state.byDate[k] || []).length);
+    const studyCount = filled.reduce((n, k) => n + state.byDate[k].filter(it => STUDY_CATS.has(catOf(it))).length, 0);
+
+    const title = state.scope === 'day' ? `${m}월 ${d}일`
+      : state.scope === 'week' ? `${shortDate(keys[0])} – ${shortDate(keys[6])}`
+      : `${m}월 한 달`;
+    const catLabel = state.cat ? (CATS.find(c => c.key === state.cat) || {}).label : '';
 
     const head = `<div class="day__head">
-        <h2 class="day__date">${m}월 ${d}일</h2>
-        <span class="day__dow">${DOW[date.getDay()]}요일</span>
-        ${isSeal(key) ? `<span class="day__seal"><i class="seal">記</i>자취를 남긴 날</span>` : ''}
+        <h2 class="day__date">${title}</h2>
+        <span class="day__dow">${state.scope === 'day' ? DOW[date.getDay()] + '요일' : ''}${catLabel ? ` · ${esc(catLabel)}만` : ''}</span>
+        ${state.scope === 'day' && isSeal(key) ? `<span class="day__seal"><i class="seal">記</i>자취를 남긴 날</span>` : ''}
+      </div>
+      <div class="day__tools">
+        <div class="seg seg--sm" role="group" aria-label="보기 범위">
+          ${[['day', '그날'], ['week', '그 주'], ['month', '그 달']].map(([k, l]) =>
+            `<button type="button" data-scope="${k}" aria-pressed="${state.scope === k}">${l}</button>`).join('')}
+        </div>
+        ${studyCount ? `<label class="check"><input type="checkbox" id="quizToggle" ${state.quiz ? 'checked' : ''}/>
+          <span>답 가리기 <em class="muted">— 카드를 누르면 보여요</em></span></label>` : ''}
       </div>`;
 
-    if (!items.length) {
-      $('day').innerHTML = head + `<div class="empty">이날은 비워 두었습니다.</div>`;
-      return;
+    let body;
+    if (!filled.length) {
+      body = `<div class="empty">${state.scope === 'day' ? '이날은' : '이 기간에는'} ${catLabel ? `${esc(catLabel)} 기록이 없어요.` : '비워 두었습니다.'}</div>`;
+    } else if (state.scope === 'day') {
+      body = sectionsHTML(state.byDate[key]);
+    } else {
+      /* 범위 보기 — 최근 날짜부터, 날짜마다 같은 구획 */
+      body = filled.slice().reverse().map(k => {
+        const dd = new Date(k + 'T00:00:00');
+        return `<div class="dgroup">
+            <button type="button" class="dgroup__date" data-key="${k}">${shortDate(k)} <span>${DOW[dd.getDay()]}</span></button>
+            ${sectionsHTML(state.byDate[k])}
+          </div>`;
+      }).join('');
     }
-    const cards = items.map(it => {
-      if (isLife(it)) return photoCard(it);
-      if (it.type === 'youtube') return youtubeCard(it);
-      const v = learnedView(it);
-      return v ? learnedCard(it, v) : textCard(it);
-    }).join('');
-    $('day').innerHTML = head + `<div class="entries enter">${cards}</div>`;
+
+    const box = $('day');
+    box.classList.toggle('quiz', state.quiz && !!studyCount);
+    box.innerHTML = head + body;
+
+    box.querySelectorAll('[data-scope]').forEach(b => b.addEventListener('click', () => {
+      state.scope = b.dataset.scope; renderDay();
+    }));
+    box.querySelector('#quizToggle')?.addEventListener('change', e => { state.quiz = e.target.checked; renderDay(); });
+    box.querySelectorAll('.dgroup__date').forEach(b => b.addEventListener('click', () => {
+      state.scope = 'day'; state.month = Number(b.dataset.key.slice(5, 7)) - 1; select(b.dataset.key);
+    }));
+    /* 답 가리기 중에는 카드를 눌러 한 장씩 확인 */
+    box.querySelectorAll('.entry--learned').forEach(c => c.addEventListener('click', () => {
+      if (box.classList.contains('quiz')) c.classList.toggle('revealed');
+    }));
   }
 
   /* ── 렌더: 올해의 결 ─────────────────────── */
@@ -731,6 +894,12 @@
       renderAll();
     });
   });
+
+  /* 데모에서는 AI 총평을 만들지 않는다(가짜 기록으로 실제 API를 부르지 않게) */
+  if (DEMO) {
+    $('aiBtn').disabled = true;
+    $('aiBody').innerHTML = '<span class="muted">샘플 미리보기에서는 AI 총평을 만들지 않아요. 내 연대기에서 눌러 보세요.</span>';
+  }
 
   $('includeAuto').addEventListener('change', e => {
     state.includeAuto = e.target.checked;

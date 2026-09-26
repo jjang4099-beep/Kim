@@ -250,6 +250,21 @@ a{color:inherit}
 .seg button{padding:6px 14px; font-size:12.5px; color:var(--text-3); transition:color .18s,background .18s}
 .seg button[aria-pressed="true"]{background:var(--seg-on-bg); color:var(--seg-on-fg)}
 .check{display:flex; align-items:center; gap:7px; cursor:pointer; user-select:none}
+
+/* 분류 칩 — 추억/공부/갈래별 */
+.cats{display:flex; flex-wrap:wrap; gap:8px; padding:0 0 22px; margin-top:-8px}
+.cats button{display:inline-flex; align-items:center; gap:6px; padding:7px 14px; border:1px solid var(--border);
+  border-radius:var(--r-ctl); font-size:13px; color:var(--text-2); background:var(--surface); transition:color .18s,background .18s,border-color .18s}
+.cats button small{font-size:11px; color:var(--text-3)}
+.cats button:hover{border-color:var(--text-3); color:var(--text-1)}
+.cats button[aria-pressed="true"]{background:var(--seg-on-bg); color:var(--seg-on-fg); border-color:transparent}
+.cats button[aria-pressed="true"] small{color:inherit; opacity:.7}
+
+/* 샘플 미리보기 안내 */
+.demo-banner{margin:18px 0 0; padding:11px 16px; border-radius:var(--r-card); background:var(--surface);
+  border:1px dashed var(--jusa); font-size:13px; color:var(--text-2)}
+.demo-banner b{color:var(--jusa)}
+.demo-banner a{margin-left:6px; color:var(--jusa); text-decoration:none; font-weight:600}
 .check input{accent-color:var(--jusa); width:14px; height:14px; cursor:pointer}
 
 /* ── 달력 ─────────────────────────────────── */
@@ -354,6 +369,34 @@ a{color:inherit}
   display:flex; align-items:center; justify-content:center; aspect-ratio:4/3;
   background:var(--bg); color:var(--text-3); font-size:12px; text-align:center; padding:12px;
 }
+/* 하루 보기 도구 — 범위(그날/그 주/그 달)·답 가리기 */
+.day__tools{display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px; margin-top:14px; font-size:12.5px; color:var(--text-2)}
+.seg--sm button{padding:5px 13px; font-size:12.5px}
+.day__tools em{font-style:normal}
+
+/* 추억 / 공부한 것 / 메모 구획 */
+.dsec{margin-top:26px}
+.dsec__head{display:flex; align-items:baseline; gap:8px; margin:0; font-family:var(--serif); font-size:17px; font-weight:var(--title-weight)}
+.dsec__head small{font-family:var(--sans); font-size:12px; font-weight:600; color:var(--jusa)}
+.dsec__head span{font-family:var(--sans); font-size:12px; font-weight:400; color:var(--text-3)}
+.dsec .entries{margin-top:12px}
+/* 추억 구획은 사진이 주인공이라 칸을 조금 넓게 */
+.dsec--memory .entries{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+
+/* 범위 보기의 날짜 묶음 */
+.dgroup{margin-top:34px; padding-top:18px; border-top:1px solid var(--border-soft)}
+.dgroup:first-of-type{border-top:none; padding-top:0}
+.dgroup__date{font-family:var(--serif); font-size:19px; font-weight:var(--title-weight); color:var(--text-1)}
+.dgroup__date span{margin-left:4px; font-family:var(--sans); font-size:13px; font-weight:400; color:var(--text-3)}
+.dgroup__date:hover{color:var(--jusa)}
+.dgroup .dsec{margin-top:14px}
+
+/* 답 가리기 — 공부 카드의 뜻·설명·목록 답을 흐리게. 카드를 누르면(.revealed) 보인다 */
+.quiz .entry--learned{cursor:pointer}
+.quiz .entry--learned:not(.revealed) :is(.entry__sub, .entry__text, .entry__list dd, .entry__note){
+  filter:blur(6px); user-select:none; transition:filter .2s}
+.quiz .entry--learned:not(.revealed)::after{content:'눌러서 확인'; display:block; padding:0 14px 12px; font-size:11.5px; color:var(--jusa)}
+
 .empty{margin-top:22px; padding:32px 0; border:1px dashed var(--border); border-radius:var(--r-card); text-align:center; color:var(--text-3); font-size:13.5px}
 
 @media (prefers-reduced-motion:no-preference){
@@ -448,6 +491,11 @@ a{color:inherit}
 
 <div class="wrap" id="wrap" hidden>
 
+  <div class="demo-banner" id="demoBanner" hidden>
+    <b>샘플 미리보기</b> — 화면 확인용 가짜 기록이에요. 실제 계정에는 아무것도 저장되지 않습니다.
+    <a href="chronicle.html">내 연대기로 →</a>
+  </div>
+
   <header class="masthead">
     <div>
       <h1 class="masthead__title">
@@ -485,6 +533,8 @@ a{color:inherit}
     </label>
     <span class="muted" id="filterNote"></span>
   </div>
+  <!-- 분류 — 추억/공부를 나눠 보거나, 영어·역사처럼 한 갈래만 골라 복습 -->
+  <div class="cats" id="cats" role="group" aria-label="분류"></div>
 
   <section class="calendar" aria-label="달력">
     <div class="calendar__bar">
@@ -562,6 +612,6 @@ a{color:inherit}
 
 <div class="loading" id="loading">불러오는 중…</div>
 
-<script src="js/chronicle.js?v=12"></script>
+<script src="js/chronicle.js?v=13"></script>
 </body>
 </html>

@@ -110,7 +110,18 @@
     "category": "history",
     "topic": "역사 · 고사성어 · 고전 · 인사이트",
     "enabled": true,
-    "desc": "하루 한 갈래씩 — 사건과 그 배경까지 같이 읽는 일반상식 한 조각",
+    "desc": "매일 역사 이야기 한 편 + 오늘의 지혜 한 장(고사성어·고전·인사이트가 하루씩 돌아가며)",
     "icon": "🧠"
+  },
+  {
+    "id": "daily_wisdom",
+    "type": "humanities",
+    "subType": "wisdom",
+    "label": "오늘의 지혜",
+    "category": "inbox",
+    "topic": "고사성어 · 고전 · 인사이트",
+    "enabled": true,
+    "desc": "지식 한줌의 두 번째 카드 — 지식 한줌이 켜져 있으면 함께 배달된다",
+    "icon": "📜"
   }
 ]

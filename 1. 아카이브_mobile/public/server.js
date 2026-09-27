@@ -1331,6 +1331,8 @@ function getEnabledSubscriptions(user) {
   if (!user.enabled_feeds || user.enabled_feeds.length === 0) {
     return subs.filter(s => s.enabled);
   }
+  /* 오늘의 지혜는 지식 한줌의 두 번째 카드 — 지식 한줌이 켜져 있으면 함께 배달한다 */
+  if (enabled.has('daily_knowledge')) enabled.add('daily_wisdom');
   return subs.filter(s => enabled.has(s.id));
 }
 
@@ -2506,7 +2508,13 @@ function loadWorkDB() {
 function generateLiberFeed(sub) {
   const pool = loadWorkDB().classic_quotes;
   if (!pool.length) return null;
-  const [q] = pickUnseenItems(pool, getRecentDeliveredIDs(_dedupKeys(sub), 90), 1);
+  const recentIds = getRecentDeliveredIDs(_dedupKeys(sub), 90);
+  /* 같은 책이 연달아 나오지 않게 — 논어 13·명상록 11·채근담 10구절이라 구절 단위 중복만 막으면
+     09-24·09-28처럼 손자병법이 두 번 연속 나왔다. 최근 90일에 나온 책은 다른 책이 남아 있는 한 건너뛴다. */
+  const bookKey = q => String(q.book || '').split('(')[0].trim();
+  const recentBooks = new Set(pool.filter(q => recentIds.includes(q.id)).map(bookKey));
+  const freshBooks  = pool.filter(q => !recentBooks.has(bookKey(q)) && !recentIds.includes(q.id));
+  const [q] = freshBooks.length ? pickUnseenItems(freshBooks, recentIds, 1) : pickUnseenItems(pool, recentIds, 1);
   if (!q) return null;
   console.log(`[WorkDB] LIBER 서빙 (${q.id} · ${q.book})`);
   return {
@@ -2524,7 +2532,8 @@ function generateLiberFeed(sub) {
 function generateInsightFeed(sub) {
   const all = loadWorkDB().daily_insights;
   if (!all.length) return null;
-  const dow  = new Date().getDay();
+  /* 시드의 dayOfWeek는 월=1…일=7인데 getDay()는 일=0이라 일요일 항목(14개)이 일요일에 한 번도 안 골라졌다 */
+  const dow  = new Date().getDay() || 7;
   const seen = getRecentDeliveredIDs(_dedupKeys(sub), 60);
   let pool = all.filter(i => i.dayOfWeek === dow);
   if (!pool.length) pool = all;
@@ -2579,16 +2588,23 @@ const KNOWLEDGE_POOLS = [
   { id: 'liber_classic', subType: 'liber',   label: '오늘의 고전' },
 ];
 
+/* 09-28 개편 — 지식 한줌은 하루 두 장이다(사용자 결정: "역사 매일 + 지혜 1개").
+   ① daily_knowledge = 역사 이야기, 매일. 어제 역사를 읽다가 오늘 갑자기 고사성어로 바뀌면 흐름이 끊긴다는 피드백.
+   ② daily_wisdom    = 오늘의 지혜 — 고사성어·고전·인사이트가 하루씩 돌아가며 곁들여진다.
+   daily_wisdom은 설정 토글이 따로 없고, 지식 한줌이 켜져 있으면 함께 배달된다(getEnabledSubscriptions). */
+const WISDOM_POOLS = KNOWLEDGE_POOLS.filter(p => p.subType !== 'history');
 function _pickKnowledgePool(sub) {
-  const pool = KNOWLEDGE_POOLS[dayOfYearIndex() % KNOWLEDGE_POOLS.length];
-  console.log(`[지식 한줌] 오늘의 갈래 — ${pool.label} (${pool.subType})`);
+  const pool = sub.id === 'daily_wisdom'
+    ? WISDOM_POOLS[dayOfYearIndex() % WISDOM_POOLS.length]
+    : KNOWLEDGE_POOLS[0];
+  console.log(`[지식 한줌] ${sub.id} — ${pool.label} (${pool.subType})`);
   return {
     ...sub,
     id:        pool.id,
     subType:   pool.subType,
     label:     pool.label,
-    /* 합치기 전 옛 키까지 훑어야 최근 배달분이 다시 나오지 않는다 */
-    dedupKeys: [sub.id, pool.id],
+    /* 합치기 전 옛 키와, 개편 전 daily_knowledge에 섞여 나간 배달분까지 훑어야 다시 나오지 않는다 */
+    dedupKeys: [...new Set([sub.id, 'daily_knowledge', pool.id])],
   };
 }
 
@@ -2599,7 +2615,7 @@ async function generateHumanitiesFeed(sub, user) {
   /* ── 지식 한줌(통합) ── 역사·고사성어·고전·인사이트를 하루 하나씩 돌려 배달한다.
      피드 수를 6개에서 3개로 줄이면서 네 갈래를 한 슬롯에 합친 것 —
      기존 생성기를 그대로 재사용하고 subId만 daily_knowledge로 통일한다. */
-  if (subType === 'mixed' || sub.id === 'daily_knowledge') {
+  if (subType === 'mixed' || subType === 'wisdom' || sub.id === 'daily_knowledge' || sub.id === 'daily_wisdom') {
     const shim = _pickKnowledgePool(sub);
     const feed = await generateHumanitiesFeed(shim, user);
     return feed ? { ...feed, subId: sub.id } : feed;
@@ -2632,12 +2648,17 @@ async function generateHumanitiesFeed(sub, user) {
       if (filtered.length > 0) pool = filtered;
     }
     if (pool.length > 0) {
-      const recentIds = getRecentDeliveredIDs(_dedupKeys(sub), 60);
+      /* 09-28~ 역사는 매일 나간다(전에는 4일에 한 번). 60일 창이면 두 달 만에 같은 이야기가 돌아오므로 180일로.
+         era 항목이 196개라 180일 창에서도 늘 새 이야기가 남아 옛 항목으로 떨어지지 않는다 — 계속 채워야 한다. */
+      const recentIds = getRecentDeliveredIDs(_dedupKeys(sub), 180);
       /* era를 명시한 항목(09-13 이후 새로 쓴 "사람 이야기" — 한국사·세계사)은 배경→사건→결과 + 장면 구조로
          다시 쓴 것이라 옛 항목(비즈니스 사례·교과서 중복)보다 읽을거리가 확실히 낫다.
          10번 중 7번은 여기서 먼저 고르고, 아직 안 본 게 없으면 전체 풀로 넘어간다. */
+      /* 09-28 점검: 70% 확률로는 부족했다 — 실제 배달 4번 중 3번이 옛 항목(베트남 전쟁·서로마·ITT)이었다.
+         옛 147개는 비즈니스 사례가 67개이고 같은 사건이 2~3번씩 겹친다(프랑스 혁명·산업혁명·러시아 혁명 각 3개).
+         이제 era 항목을 항상 먼저 쓰고, 다 본 뒤에만 옛 항목으로 넘어간다. */
       const curated = pool.filter(i => i.era && !recentIds.includes(i.id));
-      const [item]  = (curated.length && Math.random() < 0.7)
+      const [item]  = curated.length
         ? pickUnseenItems(curated, recentIds, 1)
         : pickUnseenItems(pool, recentIds, 1);
       if (item) {

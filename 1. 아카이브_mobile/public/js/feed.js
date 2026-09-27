@@ -1020,13 +1020,29 @@ Object.assign(Mob, {
     };
   },
 
+  /* 지식 한줌은 두 장(역사 + 오늘의 지혜)이지만 칩·필터에서는 한 묶음으로 본다 */
+  _feedGroupOf(item) {
+    const subId = item.subId || '';
+    return subId === 'daily_wisdom' ? 'daily_knowledge' : subId;
+  },
+
+  /* 배달 카드 순서 — 오늘의 지혜는 항상 역사 바로 뒤에 온다(서버 캐시는 생성 완료 순서라 뒤섞일 수 있음) */
+  _orderFeeds(items) {
+    const out = items.filter(i => i.subId !== 'daily_wisdom');
+    const wisdom = items.filter(i => i.subId === 'daily_wisdom');
+    if (!wisdom.length) return out;
+    const at = out.findIndex(i => i.subId === 'daily_knowledge');
+    out.splice(at < 0 ? out.length : at + 1, 0, ...wisdom);
+    return out;
+  },
+
   /* 배달탭 필터 칩 HTML 빌드 */
   _buildFeedFilterBar(items) {
     const seen  = new Set();
     const chips = [];
 
     items.forEach(item => {
-      const subId = item.subId || '';
+      const subId = this._feedGroupOf(item);
       if (subId && !seen.has(subId)) {
         seen.add(subId);
         const c = FEED_CHIP_MAP[subId] || { icon: '📚', label: item.label || subId };
@@ -1067,10 +1083,10 @@ Object.assign(Mob, {
     const content = el('mobFeedViewContent');
     if (!content) return;
 
-    const items  = state.feedItems || [];
+    const items  = this._orderFeeds(state.feedItems || []);
     const filtered = filter === 'all'
       ? items
-      : items.filter(item => (item.subId || '') === filter);
+      : items.filter(item => this._feedGroupOf(item) === filter);
 
     if (filtered.length === 0) {
       content.innerHTML = `<div class="mob-loading">

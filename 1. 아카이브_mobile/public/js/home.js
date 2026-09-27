@@ -574,7 +574,7 @@ Object.assign(Mob, {
     if (hasFeedPreview) {
       /* subId 기준 중복 제거 — 카테고리별 딱 1개만 보장 */
       const seenSubs = new Set();
-      const previews = state.feedItems.filter(item => {
+      const previews = this._orderFeeds(state.feedItems).filter(item => {
         const key = item.subId || item.label || JSON.stringify(item).slice(0, 40);
         if (seenSubs.has(key)) return false;
         seenSubs.add(key);

@@ -114,6 +114,8 @@ const FEED_CHIP_MAP = {
   insight_daily: { icon: '💡', label: '인사이트', color: '#7c3aed' },
   /* 역사·고사성어·고전·인사이트 통합 피드 (위 네 개는 과거 배달분 표시용으로 남겨둔다) */
   daily_knowledge: { icon: '🧠', label: '지식 한줌', color: '#92400e' },
+  /* 지식 한줌의 두 번째 카드(09-28~) — 필터 칩은 지식 한줌 하나로 묶인다 */
+  daily_wisdom:    { icon: '📜', label: '오늘의 지혜', color: '#92400e' },
 };
 
 /* Archive Row 모노그램 맵 (subId → 약어 코드 + 영문 전칭) */

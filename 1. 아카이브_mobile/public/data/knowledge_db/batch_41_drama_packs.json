@@ -1,0 +1,475 @@
+{
+  "meta": {
+    "label": "미드 구어체 영어 테마팩 41차 (drama_spoken × 6 — 초급 2 · 중급 2 · 고급 2)",
+    "mode": "work",
+    "updated": "2026-09-27",
+    "note": "drama_spoken이 3개뿐이고 고급은 0개였다. 미드 표현은 톤과 관계가 뜻을 바꾸므로 nuance에 '누구에게, 어떤 말투로'를 꼭 적는다.",
+    "count": {
+      "english_theme_packs": 6
+    }
+  },
+  "english_theme_packs": [
+    {
+      "id": "PACK_EN_052",
+      "theme_key": "making_plans_friends_en",
+      "theme_category": "drama_spoken",
+      "theme_title": "친구랑 약속 잡을 때",
+      "theme_title_en": "Making Plans with Friends",
+      "level": "beginner",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_052_01",
+          "order": 1,
+          "expression": "Are you free this weekend?",
+          "meaning": "이번 주말에 시간 돼?",
+          "nuance": "약속을 잡기 전 상대 일정을 묻는 가장 기본 문장이다. free는 '공짜'가 아니라 '한가한'이라는 뜻. 'Do you have time?'도 되지만 친구 사이에선 이쪽이 훨씬 가볍고 자연스럽다.",
+          "dialogue": "Jess: Hey, are you free this weekend?\nMin: Saturday I'm busy, but Sunday works. Why?\nJess: There's a food festival downtown.\nMin: Oh, nice. Count me in.",
+          "example": "Are you free this weekend? I want to try that new brunch place.",
+          "example_ko": "이번 주말에 시간 돼? 그 새로 생긴 브런치집 가 보고 싶어서.",
+          "practice": "Are you free after work on Thursday?"
+        },
+        {
+          "id": "PACK_EN_052_02",
+          "order": 2,
+          "expression": "I'm down.",
+          "meaning": "나 콜! 좋아, 할래.",
+          "nuance": "down이 '우울하다'가 아니라 '찬성, 참여할게'라는 뜻으로 쓰이는 구어체다. 'I'm down for pizza'처럼 for를 붙여 무엇에 찬성하는지 말할 수 있다. 친구끼리만 쓰는 말이라 회사 상사에게는 'Sounds good'이 안전하다.",
+          "dialogue": "Tom: We're getting tacos after the movie. You in?\nAmy: I'm down.\nTom: Cool. I'll text the others.\nAmy: Tell them to hurry, I'm starving.",
+          "example": "Karaoke tonight? I'm totally down.",
+          "example_ko": "오늘 밤 노래방? 완전 콜이지.",
+          "practice": "If you're driving, I'm down for a road trip."
+        },
+        {
+          "id": "PACK_EN_052_03",
+          "order": 3,
+          "expression": "Can we push it to next week?",
+          "meaning": "다음 주로 미룰 수 있을까?",
+          "nuance": "push는 약속을 '뒤로 밀다'라는 뜻이라 postpone보다 훨씬 구어적이다. 앞당길 때는 'move it up'이라고 한다. 취소가 아니라 날짜만 바꾸자는 말이라 상대를 덜 서운하게 한다.",
+          "dialogue": "Leo: Still on for dinner Friday?\nSara: About that… can we push it to next week? Work is crazy.\nLeo: Sure. Wednesday?\nSara: Wednesday's perfect. Thanks for understanding.",
+          "example": "I'm swamped this week. Can we push it to next week?",
+          "example_ko": "이번 주에 일이 너무 많아. 다음 주로 미룰 수 있을까?",
+          "practice": "Can we move our meeting up to ten instead?"
+        },
+        {
+          "id": "PACK_EN_052_04",
+          "order": 4,
+          "expression": "Something came up.",
+          "meaning": "갑자기 일이 생겼어.",
+          "nuance": "약속을 취소할 때 이유를 자세히 말하고 싶지 않으면 이 한 문장으로 충분하다. 영어권에서는 이렇게 말하면 더 캐묻지 않는 게 예의라서 편하게 쓸 수 있다. 다만 자주 쓰면 핑계로 들리니 다음 약속을 먼저 제안하는 게 좋다.",
+          "dialogue": "Nina: Sorry, I have to cancel tonight. Something came up.\nJay: Oh no, everything okay?\nNina: Yeah, just a family thing. Can we do next week?\nJay: Of course.",
+          "example": "I'm so sorry, something came up and I can't make it tonight.",
+          "example_ko": "정말 미안, 갑자기 일이 생겨서 오늘 밤 못 가.",
+          "practice": "Something came up at work, so I'll be about thirty minutes late."
+        },
+        {
+          "id": "PACK_EN_052_05",
+          "order": 5,
+          "expression": "Let's hang out sometime.",
+          "meaning": "언제 한번 놀자.",
+          "nuance": "hang out은 특별한 목적 없이 같이 시간을 보내는 것을 말한다. 'play'는 아이들 놀이라 어른이 'Let's play'라고 하면 어색하다. 한국어 '언제 밥 한번 먹자'처럼 인사치레일 때도 많아서, 진짜 만나고 싶으면 날짜를 바로 제안하자.",
+          "dialogue": "Ben: It was so good running into you!\nKate: I know! Let's hang out sometime.\nBen: For real — how about next Saturday?\nKate: Deal. I'll text you.",
+          "example": "We should hang out sometime — maybe grab coffee next week?",
+          "example_ko": "우리 언제 한번 놀자 — 다음 주에 커피 어때?",
+          "practice": "We haven't hung out in ages. Are you free on Sunday?"
+        }
+      ],
+      "master_paragraph": {
+        "text": "On Friday, my friend texted me: 'Are you free this weekend?' She wanted to go to a food festival, and I replied, 'I'm down.' But on Saturday morning, something came up at work, and I had to ask, 'Can we push it to next week?' She said it was fine and suggested the next Sunday instead. We ended up having a great time, and on the way home she said, 'We should hang out more often.' Honestly, that's the kind of friend everyone needs.",
+        "translation": "금요일에 친구가 '이번 주말에 시간 돼?'라고 문자를 보냈다. 음식 축제에 가자길래 '콜!'이라고 답했다. 그런데 토요일 아침 회사에 갑자기 일이 생겨서 '다음 주로 미룰 수 있을까?'라고 물어야 했다. 친구는 괜찮다며 대신 그다음 일요일에 가자고 했다. 결국 정말 즐거운 시간을 보냈고, 집에 가는 길에 친구가 '우리 좀 더 자주 놀자'라고 했다. 솔직히 누구에게나 그런 친구가 필요하다.",
+        "highlights": [
+          "Are you free this weekend",
+          "I'm down",
+          "something came up",
+          "push it to next week",
+          "hang out"
+        ]
+      }
+    },
+    {
+      "id": "PACK_EN_053",
+      "theme_key": "apologizing_friends_en",
+      "theme_category": "drama_spoken",
+      "theme_title": "친구에게 사과하고 화해할 때",
+      "theme_title_en": "Saying Sorry & Making Up",
+      "level": "beginner",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_053_01",
+          "order": 1,
+          "expression": "My bad.",
+          "meaning": "내 실수야, 미안.",
+          "nuance": "가벼운 실수를 인정할 때 쓰는 아주 캐주얼한 사과다. 발을 밟았거나 메시지를 잘못 보낸 정도에 어울리고, 진지한 잘못에 쓰면 오히려 성의 없어 보인다. 큰일에는 'I'm really sorry'로 가야 한다.",
+          "dialogue": "Mia: Hey, you ate my yogurt.\nSam: Oh, that was yours? My bad.\nMia: It's fine. Just buy me another one.\nSam: Deal. I'll get two.",
+          "example": "Oh, I sent you the wrong file. My bad!",
+          "example_ko": "아, 파일을 잘못 보냈네. 내 실수야!",
+          "practice": "My bad — I thought the meeting was at three."
+        },
+        {
+          "id": "PACK_EN_053_02",
+          "order": 2,
+          "expression": "I didn't mean it.",
+          "meaning": "진심이 아니었어. 그럴 뜻은 없었어.",
+          "nuance": "홧김에 한 말을 되돌리고 싶을 때 쓴다. 'I didn't mean to'(일부러 그런 게 아니야)와 구분해야 한다 — 이쪽은 '말한 내용이 진심이 아니었다'는 뜻이다. 사과 문장 뒤에 붙여야 진정성이 생긴다.",
+          "dialogue": "Anna: That really hurt, what you said yesterday.\nJoe: I know. I'm sorry. I didn't mean it.\nAnna: Then why did you say it?\nJoe: I was stressed, and I took it out on you. That wasn't fair.",
+          "example": "I'm sorry I snapped at you. I didn't mean it.",
+          "example_ko": "너한테 버럭해서 미안해. 진심이 아니었어.",
+          "practice": "I didn't mean to hurt your feelings."
+        },
+        {
+          "id": "PACK_EN_053_03",
+          "order": 3,
+          "expression": "Are we good?",
+          "meaning": "우리 괜찮은 거지? (서운한 거 풀렸지?)",
+          "nuance": "사과하거나 다툰 뒤 관계가 회복됐는지 확인하는 말이다. good이 '착하다'가 아니라 '문제없다'는 뜻. 대답은 보통 'We're good'이다. 미드에서 싸운 뒤 어색한 장면에 거의 빠짐없이 나온다.",
+          "dialogue": "Ryan: Hey, about last night… I'm sorry. Are we good?\nLiz: Yeah, we're good.\nRyan: You sure?\nLiz: I'm sure. Just don't do it again.",
+          "example": "I know I was out of line. Are we good?",
+          "example_ko": "내가 선을 넘은 거 알아. 우리 괜찮은 거지?",
+          "practice": "We're good. Don't worry about it."
+        },
+        {
+          "id": "PACK_EN_053_04",
+          "order": 4,
+          "expression": "I owe you one.",
+          "meaning": "신세 졌다, 다음에 갚을게.",
+          "nuance": "누가 도와줬을 때 '고마워'보다 한 걸음 더 나간 표현이다. one은 '호의 하나'를 뜻한다. 가볍게 말하지만 실제로 나중에 갚는 게 이 말의 약속이라, 친구 사이 신뢰를 쌓는 말이기도 하다.",
+          "dialogue": "Kim: Thanks for covering my shift.\nDan: No problem.\nKim: Seriously, I owe you one.\nDan: I'll remember that next time I need a favor.",
+          "example": "Thanks for picking me up from the airport. I owe you one.",
+          "example_ko": "공항까지 데리러 와 줘서 고마워. 신세 졌다.",
+          "practice": "You helped me move? I definitely owe you one."
+        },
+        {
+          "id": "PACK_EN_053_05",
+          "order": 5,
+          "expression": "Let's just forget about it.",
+          "meaning": "그냥 없던 일로 하자.",
+          "nuance": "다툼을 끝내고 넘어가자는 제안이다. 사과를 받은 쪽이 말하면 '용서할게'라는 뜻이 되고, 사과해야 할 쪽이 먼저 말하면 책임을 피하는 것처럼 들릴 수 있다. 누가 말하느냐가 뜻을 바꾸는 표현이다.",
+          "dialogue": "Ella: I'm really sorry about the party.\nMax: It's okay. Let's just forget about it.\nElla: Really?\nMax: Really. Life's too short.",
+          "example": "It was a misunderstanding. Let's just forget about it.",
+          "example_ko": "오해였어. 그냥 없던 일로 하자.",
+          "practice": "Can we just forget about it and start over?"
+        }
+      ],
+      "master_paragraph": {
+        "text": "Last week, I forgot my best friend's birthday dinner. When I finally called, I didn't say 'My bad' — this was too big for that. I told her I was really sorry and that I didn't mean to let her down. Then I asked, 'Are we good?' She was quiet for a second, then laughed and said, 'Let's just forget about it. But you're buying dinner.' I said, 'Deal. I owe you one.' Sometimes the right words matter more than the mistake.",
+        "translation": "지난주에 가장 친한 친구의 생일 저녁을 깜빡했다. 마침내 전화했을 때 '내 실수'라고 가볍게 말하지 않았다 — 그러기엔 일이 너무 컸다. 정말 미안하다고, 실망시킬 뜻은 없었다고 말했다. 그리고 '우리 괜찮은 거지?'라고 물었다. 친구는 잠시 조용하더니 웃으며 말했다. '그냥 없던 일로 하자. 대신 저녁은 네가 사.' 나는 '좋아, 신세 졌다'고 했다. 때로는 실수보다 제대로 된 말이 더 중요하다.",
+        "highlights": [
+          "My bad",
+          "didn't mean",
+          "Are we good",
+          "forget about it",
+          "I owe you one"
+        ]
+      }
+    },
+    {
+      "id": "PACK_EN_054",
+      "theme_key": "dating_talk_en",
+      "theme_category": "drama_spoken",
+      "theme_title": "썸·연애 이야기 — 미드에서 매일 나오는 말",
+      "theme_title_en": "Talking About Dating",
+      "level": "intermediate",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_054_01",
+          "order": 1,
+          "expression": "We really hit it off.",
+          "meaning": "우리 정말 잘 통했어.",
+          "nuance": "처음 만났는데 바로 대화가 잘 풀리고 죽이 맞았을 때 쓴다. 연애에만 쓰는 게 아니라 새 동료·친구와도 쓸 수 있어 활용도가 높다. 'We got along'보다 '첫 만남부터 확 통했다'는 속도감이 있다.",
+          "dialogue": "Zoe: So how was the blind date?\nAva: Honestly? We really hit it off.\nZoe: No way! Are you seeing him again?\nAva: Saturday. I'm kind of nervous.",
+          "example": "I met her at a friend's wedding, and we really hit it off.",
+          "example_ko": "친구 결혼식에서 그녀를 만났는데, 우리 정말 잘 통했어.",
+          "practice": "The new manager and I hit it off right away."
+        },
+        {
+          "id": "PACK_EN_054_02",
+          "order": 2,
+          "expression": "I think I'm into him.",
+          "meaning": "나 걔 좋아하는 것 같아.",
+          "nuance": "be into someone은 '~에게 끌리다, 좋아하다'의 구어체다. 'I like him'보다 설레는 느낌이 강하고, 사랑(love)까지는 아닌 썸 단계에 딱 맞는다. 취미에도 'I'm into hiking'처럼 쓴다.",
+          "dialogue": "Lily: Can I tell you something? I think I'm into Mark.\nGrace: Mark from accounting? Since when?\nLily: Since the team dinner. He's really funny.\nGrace: Okay, I need details.",
+          "example": "I think I'm into him, but I'm not sure he feels the same way.",
+          "example_ko": "나 걔 좋아하는 것 같은데, 걔도 같은 마음인지는 모르겠어.",
+          "practice": "Is she into you, or is she just being nice?"
+        },
+        {
+          "id": "PACK_EN_054_03",
+          "order": 3,
+          "expression": "Are you guys a thing now?",
+          "meaning": "너희 이제 사귀는 거야?",
+          "nuance": "a thing은 '공식은 아니어도 뭔가 있는 사이'를 뜻한다. 'dating'이라고 딱 잘라 묻기 애매할 때 쓰는 말이라 썸과 연애 사이를 가리키기에 좋다. 친한 친구끼리 놀리듯 묻는 말투다.",
+          "dialogue": "Chris: I saw you two at the café again. Are you guys a thing now?\nNoah: I mean… kind of?\nChris: Kind of? What does that mean?\nNoah: We haven't made it official yet.",
+          "example": "They keep leaving together. Are they a thing now?",
+          "example_ko": "둘이 계속 같이 나가던데. 이제 사귀는 거야?",
+          "practice": "We're not a thing — we're just friends."
+        },
+        {
+          "id": "PACK_EN_054_04",
+          "order": 4,
+          "expression": "It's complicated.",
+          "meaning": "좀 복잡해. (한마디로 설명하기 어려워)",
+          "nuance": "관계를 설명하고 싶지 않거나 정리가 안 됐을 때 쓰는 만능 회피 문장이다. SNS 연애 상태 옵션으로 유명해져서 약간 농담처럼 들리기도 한다. 더 묻지 말아 달라는 신호이니 상대가 이 말을 하면 캐묻지 않는 게 좋다.",
+          "dialogue": "Mom: So, are you seeing anyone?\nYou: It's complicated.\nMom: What does that mean?\nYou: It means I'll tell you when I know.",
+          "example": "Are we together? Honestly, it's complicated.",
+          "example_ko": "우리가 사귀냐고? 솔직히 좀 복잡해.",
+          "practice": "My relationship with my old boss is a bit complicated."
+        },
+        {
+          "id": "PACK_EN_054_05",
+          "order": 5,
+          "expression": "Don't lead him on.",
+          "meaning": "관심 없으면 헷갈리게 하지 마. (희망 고문하지 마)",
+          "nuance": "lead someone on은 마음이 없으면서 좋아하는 것처럼 행동해 기대하게 만드는 것이다. 한국어 '희망 고문'에 가장 가깝다. 비난의 뉘앙스가 강해서 친구에게 조언할 때나 스스로 반성할 때 주로 쓴다.",
+          "dialogue": "Jen: He asked me out again. I don't really like him, but he's sweet.\nKay: Then say no. Don't lead him on.\nJen: I don't want to hurt him.\nKay: You'll hurt him more if you string him along.",
+          "example": "If you're not interested, tell him. Don't lead him on.",
+          "example_ko": "관심 없으면 말해. 헷갈리게 하지 마.",
+          "practice": "I didn't mean to lead her on — I thought we were just friends."
+        }
+      ],
+      "master_paragraph": {
+        "text": "My roommate came home from a blind date glowing. 'We really hit it off,' she said, and a week later she admitted, 'I think I'm into him.' When I asked, 'So are you guys a thing now?' she just shrugged and said, 'It's complicated.' Apparently he had just gotten out of a relationship. I told her to be honest with him, and to make sure he wasn't leading her on either. A month later, they made it official — and she still says it started with one good conversation.",
+        "translation": "룸메이트가 소개팅에서 돌아와 싱글벙글했다. '우리 정말 잘 통했어'라고 하더니, 일주일 뒤엔 '나 걔 좋아하는 것 같아'라고 털어놨다. '그래서 너희 이제 사귀는 거야?'라고 묻자 어깨를 으쓱하며 '좀 복잡해'라고 했다. 그 남자가 연애를 막 끝낸 참이었나 보다. 나는 솔직하게 말하라고, 그리고 그 사람도 희망 고문하는 건 아닌지 잘 보라고 했다. 한 달 뒤 둘은 공식 커플이 됐고 — 룸메이트는 지금도 그게 좋은 대화 한 번에서 시작됐다고 말한다.",
+        "highlights": [
+          "hit it off",
+          "I'm into him",
+          "a thing",
+          "It's complicated",
+          "leading her on"
+        ]
+      }
+    },
+    {
+      "id": "PACK_EN_055",
+      "theme_key": "gossip_talk_en",
+      "theme_category": "drama_spoken",
+      "theme_title": "소문·비밀 얘기할 때",
+      "theme_title_en": "Gossip & Secrets",
+      "level": "intermediate",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_055_01",
+          "order": 1,
+          "expression": "You didn't hear it from me.",
+          "meaning": "나한테 들었다고 하지 마.",
+          "nuance": "비밀이나 소문을 전하면서 출처를 숨겨 달라는 말이다. 말하는 사람도 반쯤 장난스럽게 쓰는 경우가 많아, 미드에서는 음모를 꾸미듯 목소리를 낮추는 장면과 함께 나온다. 회사에서 쓰면 실제로 곤란해질 수 있으니 주의.",
+          "dialogue": "Pam: Okay, you didn't hear it from me, but Kevin's leaving.\nJim: What? When?\nPam: End of the month. He got an offer from a startup.\nJim: Wow. My lips are sealed.",
+          "example": "You didn't hear it from me, but there's going to be a reorg.",
+          "example_ko": "나한테 들었다고 하지 마, 근데 조직 개편이 있을 거래.",
+          "practice": "You didn't hear it from me, but the party's a surprise."
+        },
+        {
+          "id": "PACK_EN_055_02",
+          "order": 2,
+          "expression": "What's the deal with him?",
+          "meaning": "쟤는 대체 왜 저래? / 무슨 사연이야?",
+          "nuance": "'무슨 일이야, 사정이 뭐야'를 캐주얼하게 묻는다. 억양에 따라 순수한 궁금증이 되기도, '쟤 왜 저래?'라는 짜증이 되기도 한다. 사람 말고 상황에도 'What's the deal with this line?'처럼 쓴다.",
+          "dialogue": "Rob: What's the deal with the new guy? He hasn't said a word all week.\nTina: I think he's just shy.\nRob: Or he hates us.\nTina: Give him time.",
+          "example": "What's the deal with the printer? It's been broken for days.",
+          "example_ko": "프린터는 대체 왜 저래? 며칠째 고장이잖아.",
+          "practice": "So what's the deal with you two? Are you fighting?"
+        },
+        {
+          "id": "PACK_EN_055_03",
+          "order": 3,
+          "expression": "I heard it through the grapevine.",
+          "meaning": "소문으로 들었어, 건너 건너 들었어.",
+          "nuance": "grapevine은 포도 덩굴처럼 얽힌 비공식 소문망을 뜻한다. 누구에게 들었는지 밝히고 싶지 않을 때 편리하다. 1960년대 노래 제목으로 유명해진 표현이라 약간 옛스럽고 장난스러운 느낌이 있다.",
+          "dialogue": "Lisa: How did you know I got engaged?\nTim: I heard it through the grapevine.\nLisa: Who told you?\nTim: I can't reveal my sources.",
+          "example": "I heard it through the grapevine that you're moving to London.",
+          "example_ko": "너 런던으로 이사 간다고 건너 건너 들었어.",
+          "practice": "Is it true, or is it just something you heard through the grapevine?"
+        },
+        {
+          "id": "PACK_EN_055_04",
+          "order": 4,
+          "expression": "Keep it on the down-low.",
+          "meaning": "조용히 해 둬, 소문내지 마.",
+          "nuance": "down-low(DL)는 '비밀리에, 조용히'라는 속어다. 'Keep it a secret'보다 캐주얼하고 친구끼리 쓰는 말투다. 문자로는 'keep it on the DL'이라고 줄여 쓰기도 한다.",
+          "dialogue": "Ian: I'm applying for the manager job. Keep it on the down-low, okay?\nMeg: Of course. Does your boss know?\nIan: Not yet. I want to tell her myself.\nMeg: Smart.",
+          "example": "We're planning a surprise party for her, so keep it on the down-low.",
+          "example_ko": "그녀를 위해 깜짝 파티를 준비 중이니까 소문내지 마.",
+          "practice": "I'm interviewing at another company — keep it on the DL."
+        },
+        {
+          "id": "PACK_EN_055_05",
+          "order": 5,
+          "expression": "Word is, they're getting divorced.",
+          "meaning": "소문에 의하면 그 둘 이혼한대.",
+          "nuance": "'Word is ~'는 '소문으로는 ~래'라는 구어체 머리말이다. 'Rumor has it ~'과 같지만 더 짧고 캐주얼하다. 확인되지 않은 얘기라는 걸 스스로 밝히는 말이라, 틀려도 책임을 덜 지는 효과가 있다.",
+          "dialogue": "Amy: Have you seen the Parkers lately?\nBeth: Word is, they're getting divorced.\nAmy: No! Since when?\nBeth: Don't know. That's just what I heard.",
+          "example": "Word is, the new CEO wants to cut half the projects.",
+          "example_ko": "소문에 의하면 새 CEO가 프로젝트 절반을 없애려 한대.",
+          "practice": "Word is, that restaurant is closing next month."
+        }
+      ],
+      "master_paragraph": {
+        "text": "At lunch, my coworker leaned in and whispered, 'You didn't hear it from me, but our manager is quitting.' I asked, 'Wait, what's the deal with that?' She said she'd heard it through the grapevine that he got a big offer somewhere else. 'Keep it on the down-low,' she added. An hour later, another colleague told me in the kitchen, 'Word is, he's already cleaned out his desk.' I just smiled and made my coffee.",
+        "translation": "점심때 동료가 몸을 기울이며 속삭였다. '나한테 들었다고 하지 마, 근데 우리 매니저 그만둔대.' '잠깐, 그거 무슨 사연이야?'라고 묻자, 다른 데서 큰 제안을 받았다는 얘기를 건너 건너 들었다고 했다. '조용히 해 둬'라고 덧붙였다. 한 시간 뒤 다른 동료가 탕비실에서 '소문에 의하면 벌써 책상까지 다 뺐대'라고 말했다. 나는 그냥 웃으며 커피를 탔다.",
+        "highlights": [
+          "You didn't hear it from me",
+          "what's the deal",
+          "heard it through the grapevine",
+          "down-low",
+          "Word is"
+        ]
+      }
+    },
+    {
+      "id": "PACK_EN_056",
+      "theme_key": "arguing_back_en",
+      "theme_category": "drama_spoken",
+      "theme_title": "말다툼할 때 맞받아치는 말",
+      "theme_title_en": "Holding Your Ground in an Argument",
+      "level": "advanced",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_056_01",
+          "order": 1,
+          "expression": "Don't put words in my mouth.",
+          "meaning": "내가 하지도 않은 말 지어내지 마.",
+          "nuance": "상대가 내 말을 왜곡해서 '그러니까 네 말은 ~라는 거지?'라고 몰아갈 때 바로 끊는 말이다. 감정적으로 들리지 않으면서도 단호하다. 회의에서도 'I didn't say that'보다 이 표현이 논점을 정확히 짚는다.",
+          "dialogue": "Mark: So you're saying my plan is stupid.\nJane: Don't put words in my mouth. I said the timeline is too tight.\nMark: Same thing.\nJane: It's really not.",
+          "example": "I never said you were lazy. Don't put words in my mouth.",
+          "example_ko": "네가 게으르다고 한 적 없어. 내가 하지도 않은 말 지어내지 마.",
+          "practice": "Please don't put words in my mouth — I only asked a question."
+        },
+        {
+          "id": "PACK_EN_056_02",
+          "order": 2,
+          "expression": "That's rich, coming from you.",
+          "meaning": "너한테 그런 말 들으니 기가 막히네.",
+          "nuance": "rich는 여기서 '부유한'이 아니라 '어처구니없는, 뻔뻔한'이라는 반어다. 상대가 자기도 똑같이 하는 일로 나를 비난할 때 쓰는 강한 비꼼이라, 싸움을 키울 각오가 있을 때만 쓴다. 영국 영어에서 특히 자주 들린다.",
+          "dialogue": "Tom: You're always late.\nSue: That's rich, coming from you. You missed my birthday dinner.\nTom: That was one time!\nSue: Three times, actually.",
+          "example": "You're calling me messy? That's rich, coming from you.",
+          "example_ko": "나보고 지저분하다고? 너한테 그런 말 들으니 기가 막히네.",
+          "practice": "Lecturing me about money? That's rich coming from someone who's always broke."
+        },
+        {
+          "id": "PACK_EN_056_03",
+          "order": 3,
+          "expression": "You're missing the point.",
+          "meaning": "요점을 놓치고 있어, 그게 핵심이 아니야.",
+          "nuance": "상대가 곁가지에 매달려 본론을 피할 때 대화를 되돌리는 말이다. 'You don't understand'보다 덜 공격적이고, 상대 지능이 아니라 초점을 문제 삼는다. 이어서 'The point is ~'로 내 요점을 다시 말하면 효과적이다.",
+          "dialogue": "Dad: I paid for your car, didn't I?\nKate: You're missing the point. I just want you to trust me.\nDad: I do trust you.\nKate: Then let me make my own decisions.",
+          "example": "It's not about the money. You're missing the point.",
+          "example_ko": "돈 문제가 아니야. 요점을 놓치고 있어.",
+          "practice": "I think we're both missing the point here."
+        },
+        {
+          "id": "PACK_EN_056_04",
+          "order": 4,
+          "expression": "Where is this coming from?",
+          "meaning": "갑자기 왜 그래? 이게 어디서 나온 얘기야?",
+          "nuance": "상대가 예상치 못한 불만이나 감정을 쏟아낼 때 그 원인을 묻는 말이다. 방어적으로 되받아치는 대신 이유를 물어서 싸움의 온도를 낮추는 효과가 있다. 진심으로 궁금해하는 톤으로 말해야 비꼼으로 들리지 않는다.",
+          "dialogue": "Rachel: You never listen to me!\nRoss: Whoa, where is this coming from?\nRachel: You forgot about my interview today.\nRoss: Oh no. You're right. I'm sorry.",
+          "example": "You want to quit? Where is this coming from?",
+          "example_ko": "그만두고 싶다고? 갑자기 왜 그래?",
+          "practice": "I'm not angry, I just want to know where this is coming from."
+        },
+        {
+          "id": "PACK_EN_056_05",
+          "order": 5,
+          "expression": "Let's not go there.",
+          "meaning": "그 얘긴 꺼내지 말자.",
+          "nuance": "민감한 과거사나 끝없는 논쟁 주제로 번지려 할 때 선을 긋는 말이다. 명령이 아니라 Let's로 '우리 둘 다를 위해' 피하자는 제안이라 부드럽다. 억양을 세게 하면 '거기까지'라는 경고가 된다.",
+          "dialogue": "Ann: This is just like what happened with your ex.\nBen: Let's not go there.\nAnn: I'm just saying—\nBen: Seriously. Let's stick to what happened today.",
+          "example": "Politics at Thanksgiving dinner? Let's not go there.",
+          "example_ko": "추수감사절 저녁에 정치 얘기? 그 얘긴 꺼내지 말자.",
+          "practice": "I know what you're going to say, and let's not go there."
+        }
+      ],
+      "master_paragraph": {
+        "text": "The argument started over something small — the dishes. Then my brother said, 'So you think I'm useless.' I told him, 'Don't put words in my mouth.' When he accused me of never cleaning up, I said, 'That's rich, coming from you.' We went back and forth until I realized we were both missing the point. I took a breath and asked, 'Where is this coming from?' He admitted he was stressed about his job. When he started to bring up last Christmas, I said, 'Let's not go there,' and we both laughed.",
+        "translation": "말다툼은 사소한 것 — 설거지에서 시작됐다. 그러다 동생이 '그러니까 내가 쓸모없다는 거지'라고 했다. 나는 '내가 하지도 않은 말 지어내지 마'라고 했다. 내가 전혀 안 치운다고 몰아붙이길래 '너한테 그런 말 들으니 기가 막히네'라고 받아쳤다. 한참 주고받다가 우리 둘 다 요점을 놓치고 있다는 걸 깨달았다. 숨을 고르고 '갑자기 왜 그래?'라고 물었다. 동생은 회사 일로 스트레스를 받고 있다고 털어놨다. 동생이 지난 크리스마스 얘기를 꺼내려 하자 나는 '그 얘긴 꺼내지 말자'고 했고, 우리 둘 다 웃음이 터졌다.",
+        "highlights": [
+          "Don't put words in my mouth",
+          "That's rich, coming from you",
+          "missing the point",
+          "Where is this coming from",
+          "Let's not go there"
+        ]
+      }
+    },
+    {
+      "id": "PACK_EN_057",
+      "theme_key": "comforting_someone_en",
+      "theme_category": "drama_spoken",
+      "theme_title": "힘든 사람을 위로할 때 — 진심 대화",
+      "theme_title_en": "Being There for Someone",
+      "level": "advanced",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_057_01",
+          "order": 1,
+          "expression": "I'm here for you.",
+          "meaning": "내가 곁에 있을게.",
+          "nuance": "해결책을 주기보다 '혼자가 아니다'라는 걸 전하는 위로의 기본 문장이다. 영어권에서는 힘든 사람에게 조언부터 하면 오히려 서운해하는 경우가 많아, 이 말이 가장 먼저 나온다. 'whatever you need'를 붙이면 구체적인 도움까지 제안하는 말이 된다.",
+          "dialogue": "Jo: I just found out my dad's sick.\nAmy: Oh, Jo. I'm so sorry. I'm here for you.\nJo: I don't even know what to do.\nAmy: You don't have to figure it out tonight.",
+          "example": "Whatever happens with the job, I'm here for you.",
+          "example_ko": "일이 어떻게 되든 내가 곁에 있을게.",
+          "practice": "Just so you know, I'm here for you — day or night."
+        },
+        {
+          "id": "PACK_EN_057_02",
+          "order": 2,
+          "expression": "That must be really hard.",
+          "meaning": "정말 힘들겠다.",
+          "nuance": "상대의 감정을 판단하지 않고 인정해 주는 공감 표현이다. must be는 '분명 그럴 거야'라는 추측이라 '네 입장이 되어 본다'는 뉘앙스를 준다. 'I know how you feel'은 상대가 '네가 어떻게 알아'라고 느낄 수 있어 이쪽이 더 안전하다.",
+          "dialogue": "Ken: My startup failed. Three years, gone.\nLiz: That must be really hard.\nKen: It is. I feel like an idiot.\nLiz: You're not. You tried something most people never do.",
+          "example": "Moving to a new country alone — that must be really hard.",
+          "example_ko": "혼자 새로운 나라로 이사 간다니 — 정말 힘들겠다.",
+          "practice": "That must have been really scary for you."
+        },
+        {
+          "id": "PACK_EN_057_03",
+          "order": 3,
+          "expression": "It's not on you.",
+          "meaning": "네 탓이 아니야.",
+          "nuance": "on you는 '네 책임'이라는 뜻이라, 자책하는 사람에게 짐을 덜어 주는 말이다. 'It's not your fault'와 같은 뜻이지만 더 구어적이고 따뜻하게 들린다. 반대로 'That's on me'는 '내 책임이야'가 된다.",
+          "dialogue": "Sam: If I'd called her earlier, maybe she wouldn't have left.\nMia: Hey. It's not on you.\nSam: It feels like it is.\nMia: She made her own choice. You couldn't have stopped it.",
+          "example": "The project was cut for budget reasons. It's not on you.",
+          "example_ko": "그 프로젝트는 예산 때문에 잘린 거야. 네 탓이 아니야.",
+          "practice": "Stop blaming yourself — it's not on you."
+        },
+        {
+          "id": "PACK_EN_057_04",
+          "order": 4,
+          "expression": "Take all the time you need.",
+          "meaning": "천천히 해, 시간 충분히 가져.",
+          "nuance": "슬픔이나 결정을 재촉하지 않겠다는 배려다. 회사에서도 상사가 휴가나 회복이 필요한 직원에게 쓴다. 'Take your time'보다 '얼마가 걸려도 괜찮다'는 무게가 더 실린다.",
+          "dialogue": "Nina: I'm not ready to talk about it yet.\nOwen: That's okay. Take all the time you need.\nNina: Thanks for not pushing.\nOwen: I'll be right here when you're ready.",
+          "example": "Don't worry about work. Take all the time you need.",
+          "example_ko": "일은 걱정하지 마. 시간 충분히 가져.",
+          "practice": "There's no rush on your answer — take all the time you need."
+        },
+        {
+          "id": "PACK_EN_057_05",
+          "order": 5,
+          "expression": "For what it's worth, you did everything you could.",
+          "meaning": "도움이 될지 모르겠지만, 넌 할 수 있는 건 다 했어.",
+          "nuance": "for what it's worth는 '내 말이 얼마나 도움이 될지 모르지만'이라는 겸손한 머리말이다. 위로가 강요처럼 들리지 않게 한 발 물러서서 진심을 전한다. 조언 앞에 붙여 'For what it's worth, I'd take the offer'처럼도 쓴다.",
+          "dialogue": "Dan: I keep thinking I should've done more for Grandma.\nEve: For what it's worth, you did everything you could.\nDan: You think so?\nEve: I know so. She knew how much you loved her.",
+          "example": "For what it's worth, I think you made the right call.",
+          "example_ko": "도움이 될지 모르겠지만, 난 네가 옳은 결정을 했다고 생각해.",
+          "practice": "For what it's worth, everyone on the team respects you."
+        }
+      ],
+      "master_paragraph": {
+        "text": "When my friend lost her job after eight years, she called me in tears. I didn't try to fix anything. I just said, 'I'm here for you,' and, 'That must be really hard.' She kept saying she should have seen it coming, so I told her, 'It's not on you — the whole department was cut.' She said she wasn't ready to start job hunting, and I told her to take all the time she needed. Before we hung up, I said, 'For what it's worth, you did everything you could.' She told me later that was exactly what she needed to hear.",
+        "translation": "친구가 8년 다닌 회사를 잃고 울면서 전화했다. 나는 뭔가를 해결하려 하지 않았다. 그냥 '내가 곁에 있을게', '정말 힘들겠다'라고 말했다. 친구가 자기가 미리 알아챘어야 했다고 계속 말하길래 '네 탓이 아니야 — 부서 전체가 없어진 거잖아'라고 했다. 아직 구직을 시작할 준비가 안 됐다고 해서 시간을 충분히 가지라고 했다. 전화를 끊기 전에 '도움이 될지 모르겠지만, 넌 할 수 있는 건 다 했어'라고 말했다. 나중에 친구는 그게 딱 듣고 싶던 말이었다고 했다.",
+        "highlights": [
+          "I'm here for you",
+          "That must be really hard",
+          "It's not on you",
+          "take all the time she needed",
+          "For what it's worth"
+        ]
+      }
+    }
+  ]
+}

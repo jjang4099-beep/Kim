@@ -666,7 +666,7 @@
         <summary><b>${esc(w.word)}</b>${w.pos ? `<i>${esc(w.pos)}</i>` : ''}<span>${esc(w.meaning || '')}</span></summary>
         <div class="md__fold-body">
           ${sec('함께 쓰는 말', (w.collocations || []).length ? `<p class="md__tags">${w.collocations.map(c => `<span>${esc(c)}</span>`).join('')}</p>` : '')}
-          ${sec('헷갈리는 말', w.confusable ? para(w.confusable.replace(/\*\*/g, '')) : '')}
+          ${sec('헷갈리는 말', w.confusable ? para(w.confusable).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>') : '')}
           ${sec('뉘앙스', w.nuance ? para(w.nuance) : '')}
           ${sec('예문', w.example ? `${para(w.example)}${w.exampleKo ? `<span class="md__ko">${para(w.exampleKo)}</span>` : ''}` : '')}
         </div>

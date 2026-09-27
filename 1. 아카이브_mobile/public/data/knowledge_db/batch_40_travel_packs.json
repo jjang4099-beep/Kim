@@ -1,0 +1,437 @@
+{
+  "meta": {
+    "label": "일상·여행 영어 테마팩 40차 (daily_travel × 6 — 초급 2 · 중급 2 · 고급 2)",
+    "mode": "work",
+    "updated": "2026-09-27",
+    "note": "daily_travel이 4개뿐이고 고급은 0개였다. 같은 여행 상황을 레벨별로 — 초급은 정확히 말하기, 고급은 원어민처럼 압축해서 말하기.",
+    "count": { "english_theme_packs": 6 }
+  },
+  "english_theme_packs": [
+    {
+      "id": "PACK_EN_046",
+      "theme_key": "hotel_checkin_en",
+      "theme_category": "daily_travel",
+      "theme_title": "호텔 체크인·요청 영어",
+      "theme_title_en": "Checking In & Asking at the Hotel",
+      "level": "beginner",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_046_01",
+          "order": 1,
+          "expression": "I have a reservation under Kim.",
+          "meaning": "김(Kim) 이름으로 예약했어요.",
+          "nuance": "한국인은 'I reserved…'로 시작하는 경우가 많은데, 프런트에서는 'I have a reservation under + 이름'이 가장 자연스럽다. under는 '그 이름 아래 걸려 있다'는 느낌이라 식당·렌터카 예약에도 그대로 쓴다. 성(last name)을 말하는 게 기본이다.",
+          "dialogue": "Clerk: Good evening. Checking in?\nYou: Yes, I have a reservation under Kim.\nClerk: Let me see… Kim, three nights, a double room?\nYou: That's right.",
+          "example": "Hi, I have a reservation under Kim for two nights.",
+          "example_ko": "안녕하세요, 김 이름으로 이틀 밤 예약했어요.",
+          "practice": "I have a reservation under Park — it should be for four people."
+        },
+        {
+          "id": "PACK_EN_046_02",
+          "order": 2,
+          "expression": "Is breakfast included?",
+          "meaning": "조식 포함인가요?",
+          "nuance": "included는 '가격에 이미 들어 있다'는 뜻이라 추가 요금이 있는지 한 번에 확인된다. 'Is there breakfast?'라고 하면 '조식을 파는지'만 묻는 말이 되어 요금 여부를 다시 물어야 한다. 와이파이·주차에도 'Is parking included?'처럼 그대로 쓴다.",
+          "dialogue": "You: Is breakfast included?\nClerk: Yes, it's served from seven to ten in the lobby restaurant.\nYou: Great. And is Wi-Fi included too?\nClerk: It is. The password is on your key card holder.",
+          "example": "Is breakfast included in the room rate, or is it extra?",
+          "example_ko": "조식이 객실 요금에 포함인가요, 아니면 따로인가요?",
+          "practice": "Is parking included, or do I pay for it separately?"
+        },
+        {
+          "id": "PACK_EN_046_03",
+          "order": 3,
+          "expression": "Could I check in early?",
+          "meaning": "일찍 체크인할 수 있을까요?",
+          "nuance": "비행기가 아침에 도착하면 가장 먼저 필요한 문장이다. Can보다 Could가 한 단계 부드러워 '안 되면 괜찮다'는 여지를 남긴다. 안 된다고 하면 'Could you keep my bags until then?'으로 짐을 맡기는 게 다음 수순이다.",
+          "dialogue": "You: My flight landed early. Could I check in early?\nClerk: The room isn't ready yet, I'm afraid. Probably around one.\nYou: No problem. Could you keep my bags until then?\nClerk: Of course. Here's your claim ticket.",
+          "example": "Could I check in early? I just got off a long flight.",
+          "example_ko": "일찍 체크인할 수 있을까요? 긴 비행을 막 마치고 왔거든요.",
+          "practice": "Could I check out a little late tomorrow — maybe around one?"
+        },
+        {
+          "id": "PACK_EN_046_04",
+          "order": 4,
+          "expression": "The air conditioner isn't working.",
+          "meaning": "에어컨이 안 돼요.",
+          "nuance": "고장은 'broken'보다 'isn't working'이 흔하고 부드럽다. broken은 '부서졌다'는 느낌이라 내가 망가뜨린 것처럼 들릴 수도 있다. 전화할 때는 방 번호를 먼저 말하고 이 문장을 붙이면 된다.",
+          "dialogue": "You: Hi, this is room 1204. The air conditioner isn't working.\nFront desk: I'm sorry about that. I'll send someone up right away.\nYou: Thank you. Should I wait in the room?\nFront desk: Yes, they'll be there in about ten minutes.",
+          "example": "Sorry to bother you, but the air conditioner isn't working in my room.",
+          "example_ko": "귀찮게 해서 죄송한데, 제 방 에어컨이 안 돼요.",
+          "practice": "The hot water isn't working in room 805."
+        },
+        {
+          "id": "PACK_EN_046_05",
+          "order": 5,
+          "expression": "Could I get some extra towels?",
+          "meaning": "수건 좀 더 받을 수 있을까요?",
+          "nuance": "'Could I get ~?'은 호텔·식당에서 무언가를 부탁할 때 쓰는 만능 틀이다. 'Give me'는 명령처럼 들려 피한다. extra만 붙이면 베개·담요·물 등 무엇이든 추가로 요청할 수 있다.",
+          "dialogue": "You: Hi, could I get some extra towels?\nFront desk: Sure. How many would you like?\nYou: Two bath towels, please. And maybe an extra pillow?\nFront desk: No problem. Housekeeping will bring them up.",
+          "example": "Could I get some extra towels and a couple of bottles of water?",
+          "example_ko": "수건 좀 더 받고, 물도 두어 병 받을 수 있을까요?",
+          "practice": "Could I get an extra blanket? It's a bit cold in the room."
+        }
+      ],
+      "master_paragraph": {
+        "text": "We landed in Vancouver at eight in the morning, completely exhausted. At the front desk, I said, 'I have a reservation under Kim,' and asked, 'Could I check in early?' The room wasn't ready, so they kept our bags and told us breakfast was included — a small win. That night, the air conditioner wasn't working, so I called the front desk. While they fixed it, I asked, 'Could I get some extra towels?' By the end of the trip, talking to the hotel staff felt easy.",
+        "translation": "우리는 완전히 지친 채 아침 8시에 밴쿠버에 도착했다. 프런트에서 '김 이름으로 예약했어요'라고 말하고 '일찍 체크인할 수 있을까요?'라고 물었다. 방이 아직 준비되지 않아 짐을 맡겼는데, 조식이 포함이라는 말을 들었다 — 작은 행운이었다. 그날 밤 에어컨이 안 돼서 프런트에 전화했다. 고치는 동안 '수건 좀 더 받을 수 있을까요?'라고 부탁했다. 여행이 끝날 즈음엔 호텔 직원과 말하는 게 편해져 있었다.",
+        "highlights": ["reservation under Kim", "check in early", "breakfast was included", "wasn't working", "extra towels"]
+      }
+    },
+    {
+      "id": "PACK_EN_047",
+      "theme_key": "getting_around_en",
+      "theme_category": "daily_travel",
+      "theme_title": "택시·지하철로 이동할 때",
+      "theme_title_en": "Getting Around the City",
+      "level": "beginner",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_047_01",
+          "order": 1,
+          "expression": "Could you take me to this address?",
+          "meaning": "이 주소로 가 주시겠어요?",
+          "nuance": "발음이 어려운 지명을 억지로 말하기보다 휴대폰 화면을 보여 주며 이 문장을 쓰는 게 가장 확실하다. take me to는 '나를 거기까지 데려다 달라'는 뜻이라 택시에 딱 맞는다. 'Go to ~'라고만 하면 명령처럼 들린다.",
+          "dialogue": "You: Hi. Could you take me to this address? (shows phone)\nDriver: Sure. That's about twenty minutes from here.\nYou: Great, thanks.\nDriver: Do you want me to take the highway?",
+          "example": "Could you take me to this address? I'm not sure how to pronounce it.",
+          "example_ko": "이 주소로 가 주시겠어요? 발음을 어떻게 하는지 잘 몰라서요.",
+          "practice": "Could you take me to the Hilton on Main Street?"
+        },
+        {
+          "id": "PACK_EN_047_02",
+          "order": 2,
+          "expression": "How long does it take to get there?",
+          "meaning": "거기까지 얼마나 걸려요?",
+          "nuance": "시간은 'How long does it take'로 묻고, 거리는 'How far is it'으로 묻는다. 한국어로는 둘 다 '얼마나'라서 섞어 쓰기 쉽다. 걸어서인지 차로인지 궁금하면 뒤에 'on foot' 'by train'을 붙인다.",
+          "dialogue": "You: Excuse me, how long does it take to get to the museum?\nLocal: On foot? About fifteen minutes.\nYou: And by bus?\nLocal: Five minutes, but the bus only comes every half hour.",
+          "example": "How long does it take to get to the airport by train?",
+          "example_ko": "기차로 공항까지 얼마나 걸려요?",
+          "practice": "How long does it take to get to the beach on foot?"
+        },
+        {
+          "id": "PACK_EN_047_03",
+          "order": 3,
+          "expression": "Which line goes to Central Station?",
+          "meaning": "중앙역에 가려면 몇 호선을 타야 해요?",
+          "nuance": "지하철 노선은 영어로 line이다. 한국처럼 '2호선'을 번호로 부르는 도시도 있지만 런던·뉴욕은 색이나 이름으로 부르는 경우가 많아, 번호로 묻기보다 목적지로 묻는 게 안전하다. 갈아타야 하면 'Do I need to transfer?'를 이어서 묻는다.",
+          "dialogue": "You: Excuse me, which line goes to Central Station?\nStaff: Take the green line, three stops.\nYou: Do I need to transfer?\nStaff: No, it's a straight shot.",
+          "example": "Which line goes to Central Station, and do I need to transfer?",
+          "example_ko": "중앙역에 가려면 몇 호선을 타야 하고, 갈아타야 하나요?",
+          "practice": "Which line goes to the stadium on game days?"
+        },
+        {
+          "id": "PACK_EN_047_04",
+          "order": 4,
+          "expression": "Is this the right platform for Boston?",
+          "meaning": "보스턴 가는 거 여기서 타는 게 맞나요?",
+          "nuance": "'Is this the right ~ for ~?'는 내가 맞는 곳에 있는지 확인할 때 쓰는 틀이다. 기차 플랫폼·버스 정류장·줄(line)에 모두 쓸 수 있다. 잘못 탔을 때 수습하는 것보다 타기 전에 한 번 묻는 게 훨씬 싸게 먹힌다.",
+          "dialogue": "You: Sorry, is this the right platform for Boston?\nPassenger: Yeah, the 3:15 leaves from here.\nYou: Great, thanks. Is it usually on time?\nPassenger: Pretty much. Sometimes five minutes late.",
+          "example": "Is this the right platform for the express train to Boston?",
+          "example_ko": "보스턴 가는 급행열차는 여기서 타는 게 맞나요?",
+          "practice": "Is this the right stop for the bus to the zoo?"
+        },
+        {
+          "id": "PACK_EN_047_05",
+          "order": 5,
+          "expression": "Could you let me know when we get there?",
+          "meaning": "도착하면 알려 주시겠어요?",
+          "nuance": "버스 기사나 옆자리 사람에게 내릴 곳을 부탁할 때 쓴다. let me know는 '알려 달라'를 가장 부드럽게 말하는 방법이라 일상 어디에나 붙는다. 'Tell me'는 명령처럼 들릴 수 있어 부탁할 때는 이쪽이 낫다.",
+          "dialogue": "You: I'm going to the Grand Hotel. Could you let me know when we get there?\nDriver: Sure, it's about six stops.\nYou: Thank you so much.\nDriver: No problem. Just sit up front.",
+          "example": "I'm not from around here — could you let me know when we get to my stop?",
+          "example_ko": "제가 여기 사람이 아니라서요 — 제 정류장에 도착하면 알려 주시겠어요?",
+          "practice": "Could you let me know when the next train to the airport leaves?"
+        }
+      ],
+      "master_paragraph": {
+        "text": "On our first day in Boston, I got into a taxi and asked, 'Could you take me to this address?' The next morning, we decided to try the subway. I asked a staff member, 'Which line goes to Central Station?' and then double-checked with a passenger: 'Is this the right platform?' Before leaving, I also asked how long it would take to get there. On the bus back, I told the driver where I was going and said, 'Could you let me know when we get there?' He did — and even waved goodbye.",
+        "translation": "보스턴에서의 첫날, 택시에 타서 '이 주소로 가 주시겠어요?'라고 물었다. 다음 날 아침엔 지하철을 타 보기로 했다. 직원에게 '중앙역에 가려면 몇 호선을 타야 해요?'라고 묻고, 승객에게 한 번 더 '여기서 타는 게 맞나요?'라고 확인했다. 떠나기 전엔 거기까지 얼마나 걸리는지도 물었다. 돌아오는 버스에서는 기사에게 목적지를 말하고 '도착하면 알려 주시겠어요?'라고 부탁했다. 그는 정말로 알려 줬고, 손까지 흔들어 줬다.",
+        "highlights": ["take me to this address", "Which line goes to", "right platform", "how long it would take", "let me know when we get there"]
+      }
+    },
+    {
+      "id": "PACK_EN_048",
+      "theme_key": "pharmacy_sick_abroad_en",
+      "theme_category": "daily_travel",
+      "theme_title": "여행 중에 아플 때 — 약국·병원 영어",
+      "theme_title_en": "Feeling Sick Abroad",
+      "level": "intermediate",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_048_01",
+          "order": 1,
+          "expression": "I'm not feeling well.",
+          "meaning": "몸이 좀 안 좋아요.",
+          "nuance": "'I'm sick'보다 부드럽고 범위가 넓어, 증상을 정확히 모를 때 첫 문장으로 가장 무난하다. 영국·호주에서 'I'm sick'은 '토할 것 같다'로 들리기도 해서 이 표현이 오해가 적다. 이어서 구체적인 증상을 말하면 된다.",
+          "dialogue": "Pharmacist: Hi, how can I help?\nYou: I'm not feeling well. I think I caught a cold on the plane.\nPharmacist: What are your symptoms?\nYou: Sore throat, and a bit of a fever since last night.",
+          "example": "I'm not feeling well, so I think I'll skip the tour today.",
+          "example_ko": "몸이 좀 안 좋아서 오늘 투어는 빠질까 봐요.",
+          "practice": "I'm not feeling well — is there a pharmacy near the hotel?"
+        },
+        {
+          "id": "PACK_EN_048_02",
+          "order": 2,
+          "expression": "I've had a headache since this morning.",
+          "meaning": "아침부터 계속 머리가 아파요.",
+          "nuance": "증상이 '언제부터' 이어졌는지는 약사·의사가 가장 먼저 묻는 정보라 현재완료 have had + since로 말한다. 'I have a headache from this morning'은 한국어식 오류다. 기간이면 for를 써서 'for two days'처럼 말한다.",
+          "dialogue": "Doctor: So what brings you in today?\nYou: I've had a headache since this morning, and now I feel dizzy.\nDoctor: Have you been drinking enough water?\nYou: Probably not. It's been really hot.",
+          "example": "I've had a stomachache for two days, ever since I ate at that street stall.",
+          "example_ko": "그 노점에서 먹은 뒤로 이틀째 배가 아파요.",
+          "practice": "I've had a cough since we got here on Monday."
+        },
+        {
+          "id": "PACK_EN_048_03",
+          "order": 3,
+          "expression": "Do I need a prescription for this?",
+          "meaning": "이거 처방전이 있어야 하나요?",
+          "nuance": "나라마다 처방전 없이 살 수 있는 약의 범위가 다르다. 한국에서 쉽게 사던 약이 미국·유럽에서는 처방약인 경우가 많아 이 질문이 필수다. 처방 없이 사는 약은 over-the-counter(OTC)라고 부른다.",
+          "dialogue": "You: Do I need a prescription for this?\nPharmacist: For that one, yes. But I can give you something over the counter that works similarly.\nYou: That's fine. How often should I take it?\nPharmacist: Two tablets every six hours, with food.",
+          "example": "Do I need a prescription for antibiotics here, or can I buy them over the counter?",
+          "example_ko": "여기서는 항생제를 사려면 처방전이 필요한가요, 아니면 그냥 살 수 있나요?",
+          "practice": "Do I need a prescription for allergy medicine in this country?"
+        },
+        {
+          "id": "PACK_EN_048_04",
+          "order": 4,
+          "expression": "I'm allergic to penicillin.",
+          "meaning": "저는 페니실린 알레르기가 있어요.",
+          "nuance": "여행 중 가장 중요한 문장 중 하나라 발음과 함께 외워 둔다. allergic은 '앨러-직'처럼 가운데에 강세가 있다. 음식 알레르기도 같은 틀로 'I'm allergic to peanuts'라고 말하면 된다.",
+          "dialogue": "Doctor: I'm going to prescribe an antibiotic.\nYou: Just so you know, I'm allergic to penicillin.\nDoctor: Good thing you told me. I'll give you something else.\nYou: Thank you. Is it safe to take with painkillers?",
+          "example": "Before you prescribe anything, I'm allergic to penicillin.",
+          "example_ko": "뭔가 처방하시기 전에 말씀드리면, 저는 페니실린 알레르기가 있어요.",
+          "practice": "I'm allergic to shellfish, so please don't put shrimp in it."
+        },
+        {
+          "id": "PACK_EN_048_05",
+          "order": 5,
+          "expression": "Does my travel insurance cover this?",
+          "meaning": "여행자 보험으로 처리되나요?",
+          "nuance": "cover는 보험에서 '보장하다'라는 뜻으로 가장 많이 쓰이는 동사다. 병원비가 비싼 나라에서는 진료 전에 이걸 먼저 묻고, 나중에 청구하려면 영수증(receipt)과 진단서(medical report)를 받아 둔다.",
+          "dialogue": "You: Does my travel insurance cover this?\nReceptionist: You'll have to pay now, but you can claim it back later.\nYou: Okay. Could I get a receipt and a medical report?\nReceptionist: Of course. I'll print them for you.",
+          "example": "Does my travel insurance cover this, or do I pay now and claim it later?",
+          "example_ko": "여행자 보험으로 처리되나요, 아니면 지금 내고 나중에 청구하나요?",
+          "practice": "Could I get a copy of the medical report for my insurance claim?"
+        }
+      ],
+      "master_paragraph": {
+        "text": "On the third day of our trip to Lisbon, I woke up and told my wife, 'I'm not feeling well.' At the pharmacy, I explained that I'd had a headache since this morning and a slight fever. The pharmacist offered me something, but I asked, 'Do I need a prescription for this?' When the doctor later wanted to give me antibiotics, I made sure to say, 'I'm allergic to penicillin.' Before paying, I asked whether my travel insurance would cover it. Being sick abroad is stressful, but a few clear sentences made it much easier.",
+        "translation": "리스본 여행 셋째 날, 잠에서 깨어 아내에게 '몸이 좀 안 좋아'라고 말했다. 약국에서 아침부터 계속 머리가 아프고 열이 조금 있다고 설명했다. 약사가 약을 권했지만 나는 '이거 처방전이 필요한가요?'라고 물었다. 나중에 의사가 항생제를 주려 할 때는 꼭 '저는 페니실린 알레르기가 있어요'라고 말했다. 계산하기 전에는 여행자 보험으로 처리되는지 물었다. 외국에서 아픈 건 스트레스지만, 분명한 문장 몇 개가 일을 훨씬 쉽게 만들어 줬다.",
+        "highlights": ["not feeling well", "had a headache since this morning", "need a prescription", "allergic to penicillin", "travel insurance would cover"]
+      }
+    },
+    {
+      "id": "PACK_EN_049",
+      "theme_key": "shopping_returns_en",
+      "theme_category": "daily_travel",
+      "theme_title": "쇼핑할 때 — 입어 보기·교환·환불",
+      "theme_title_en": "Shopping, Trying On & Returns",
+      "level": "intermediate",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_049_01",
+          "order": 1,
+          "expression": "I'm just browsing, thanks.",
+          "meaning": "그냥 구경하는 중이에요, 고마워요.",
+          "nuance": "점원이 'Can I help you find anything?'이라고 물을 때 가장 자연스러운 대답이다. 'I'm just looking'도 같지만 browsing이 조금 더 여유 있고 세련되게 들린다. 끝에 thanks를 붙여야 거절이 아니라 호의에 대한 답으로 들린다.",
+          "dialogue": "Clerk: Hi there! Can I help you find anything?\nYou: I'm just browsing, thanks.\nClerk: No problem. Let me know if you need a size.\nYou: Will do.",
+          "example": "I'm just browsing, thanks — I'll let you know if I need anything.",
+          "example_ko": "그냥 구경하는 중이에요, 고마워요 — 필요한 게 있으면 말씀드릴게요.",
+          "practice": "Thanks, but I'm just browsing for now."
+        },
+        {
+          "id": "PACK_EN_049_02",
+          "order": 2,
+          "expression": "Do you have this in a medium?",
+          "meaning": "이거 미디엄 사이즈 있어요?",
+          "nuance": "사이즈는 'in + 사이즈/색'으로 묻는다: in a medium, in black, in a size 8. 'medium size'라고 size를 붙이지 않는 게 원어민 방식이다. 미국 신발·옷 사이즈는 한국과 표기가 달라서 숫자보다 'What size would I be?'라고 먼저 묻는 것도 방법이다.",
+          "dialogue": "You: Do you have this in a medium?\nClerk: Let me check in the back.\nClerk: We have it in navy, but not in black, sorry.\nYou: Navy's fine. Can I try it on?",
+          "example": "Do you have this in a medium, or maybe in a darker color?",
+          "example_ko": "이거 미디엄 사이즈 있어요? 아니면 좀 더 어두운 색은요?",
+          "practice": "Do you have these shoes in a size 9?"
+        },
+        {
+          "id": "PACK_EN_049_03",
+          "order": 3,
+          "expression": "Where are the fitting rooms?",
+          "meaning": "탈의실이 어디예요?",
+          "nuance": "탈의실은 미국에서 fitting room 또는 dressing room이라고 한다. 'Can I try this on?'과 짝으로 쓰이며, try on은 대명사가 가운데 들어가 'try it on'이 된다('try on it'은 틀린다). 입어 볼 수 있는 개수 제한이 있는 매장도 많다.",
+          "dialogue": "You: Can I try these on?\nClerk: Sure. How many items do you have?\nYou: Three. Where are the fitting rooms?\nClerk: Right past the jeans, on your left.",
+          "example": "Excuse me, where are the fitting rooms? I'd like to try this on.",
+          "example_ko": "실례합니다, 탈의실이 어디예요? 이거 입어 보고 싶어서요.",
+          "practice": "Is there a limit on how many items I can take into the fitting room?"
+        },
+        {
+          "id": "PACK_EN_049_04",
+          "order": 4,
+          "expression": "Could I exchange this for a different size?",
+          "meaning": "이거 다른 사이즈로 교환할 수 있을까요?",
+          "nuance": "exchange A for B는 'A를 B로 바꾸다'라는 틀이다. 돈을 돌려받고 싶으면 exchange가 아니라 'Could I get a refund?' 또는 'Could I return this?'라고 해야 한다. 영수증(receipt)을 먼저 내밀면 대화가 훨씬 빨라진다.",
+          "dialogue": "You: Hi, I bought this yesterday. Could I exchange this for a different size?\nClerk: Do you have the receipt?\nYou: Yes, here it is.\nClerk: Great. What size would you like instead?",
+          "example": "Could I exchange this for a different size? It's a bit too tight.",
+          "example_ko": "이거 다른 사이즈로 교환할 수 있을까요? 좀 너무 꽉 껴서요.",
+          "practice": "Could I exchange this for the same one in blue?"
+        },
+        {
+          "id": "PACK_EN_049_05",
+          "order": 5,
+          "expression": "Can I get a tax refund on this?",
+          "meaning": "이거 세금 환급 받을 수 있나요?",
+          "nuance": "유럽 등에서는 여행자가 일정 금액 이상 사면 부가세를 돌려받을 수 있어, 계산할 때 이 질문으로 서류를 요청한다. 가게마다 최소 금액과 절차가 달라 결제 전에 묻는 게 좋다. 미국은 대부분 주에서 이 제도가 없다.",
+          "dialogue": "You: Can I get a tax refund on this?\nClerk: Yes, if you spend over 100 euros. May I see your passport?\nYou: Here you go.\nClerk: Keep this form and get it stamped at the airport.",
+          "example": "Can I get a tax refund on this? I'm flying back to Korea next week.",
+          "example_ko": "이거 세금 환급 받을 수 있나요? 다음 주에 한국으로 돌아가거든요.",
+          "practice": "What's the minimum purchase for a tax refund here?"
+        }
+      ],
+      "master_paragraph": {
+        "text": "In a small shop in Paris, a clerk asked if I needed help, and I said, 'I'm just browsing, thanks.' Then I found a jacket I loved and asked, 'Do you have this in a medium?' She brought one out and showed me where the fitting rooms were. It fit perfectly, so I bought it and asked, 'Can I get a tax refund on this?' The next day, I realized the sleeves were a little short, so I went back to exchange it for a different size. The clerk remembered me and smiled.",
+        "translation": "파리의 작은 가게에서 점원이 도움이 필요하냐고 묻자 나는 '그냥 구경하는 중이에요, 고마워요'라고 했다. 그러다 마음에 쏙 드는 재킷을 발견해 '이거 미디엄 있어요?'라고 물었다. 점원은 하나를 꺼내 와 탈의실 위치를 알려 줬다. 딱 맞아서 사면서 '이거 세금 환급 받을 수 있나요?'라고 물었다. 다음 날 소매가 조금 짧다는 걸 알고, 다른 사이즈로 교환하러 다시 갔다. 점원은 나를 알아보고 웃었다.",
+        "highlights": ["just browsing", "in a medium", "fitting rooms", "tax refund", "exchange it for a different size"]
+      }
+    },
+    {
+      "id": "PACK_EN_050",
+      "theme_key": "flight_disruption_en",
+      "theme_category": "daily_travel",
+      "theme_title": "비행기가 취소·지연됐을 때",
+      "theme_title_en": "When Your Flight Gets Cancelled",
+      "level": "advanced",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_050_01",
+          "order": 1,
+          "expression": "I missed my connection.",
+          "meaning": "환승편을 놓쳤어요.",
+          "nuance": "원어민은 'connecting flight'를 줄여 그냥 'connection'이라고 한다. 앞 비행기가 늦어 환승을 놓친 경우 항공사 책임이라 새 표를 무료로 받는 게 원칙이니, 카운터에서 첫 문장으로 상황을 명확히 해 두는 게 중요하다.",
+          "dialogue": "You: Hi, my flight from Seoul was delayed and I missed my connection to Denver.\nAgent: I'm sorry about that. Let me look at your options.\nYou: Is there anything tonight?\nAgent: There's a 9:40 flight with one seat left.",
+          "example": "Our first flight landed forty minutes late, so I missed my connection.",
+          "example_ko": "첫 비행기가 40분 늦게 도착해서 환승편을 놓쳤어요.",
+          "practice": "If I miss my connection, will you rebook me automatically?"
+        },
+        {
+          "id": "PACK_EN_050_02",
+          "order": 2,
+          "expression": "Can you rebook me on the next available flight?",
+          "meaning": "가장 빠른 다음 편으로 다시 예약해 주실 수 있나요?",
+          "nuance": "rebook은 '다시 예약하다', next available은 '빈자리가 있는 가장 빠른'이라는 뜻이라 두 단어로 원하는 걸 정확히 요구한다. 원하는 조건이 있으면 'even if it's a different airline'처럼 덧붙여 선택지를 넓힐 수 있다.",
+          "dialogue": "You: Can you rebook me on the next available flight?\nAgent: The next one with space is tomorrow at 7 a.m.\nYou: Could you check partner airlines too? I have a meeting at noon.\nAgent: Let me see what I can do.",
+          "example": "Can you rebook me on the next available flight, even if it's with a partner airline?",
+          "example_ko": "제휴 항공사라도 괜찮으니 가장 빠른 다음 편으로 다시 예약해 주실 수 있나요?",
+          "practice": "Could you rebook us together? We're traveling with a toddler."
+        },
+        {
+          "id": "PACK_EN_050_03",
+          "order": 3,
+          "expression": "Am I entitled to a hotel voucher?",
+          "meaning": "호텔 숙박권을 받을 수 있는 건가요?",
+          "nuance": "be entitled to는 '~을 받을 권리가 있다'는 뜻으로, 부탁이 아니라 규정상 권리를 확인하는 말투다. 'Can I get ~?'보다 단호하지만 무례하지 않다. 항공사 사유로 밤을 새야 하면 숙박·식사 쿠폰을 주는 경우가 많고, 날씨 탓이면 안 주기도 한다.",
+          "dialogue": "You: Since the next flight is tomorrow, am I entitled to a hotel voucher?\nAgent: Yes, because the delay was on our side. Here's a voucher for the airport hotel.\nYou: What about meals?\nAgent: There's a 20-dollar meal voucher included.",
+          "example": "The cancellation wasn't weather-related, so am I entitled to a hotel voucher?",
+          "example_ko": "날씨 때문에 취소된 게 아니니, 호텔 숙박권을 받을 수 있는 건가요?",
+          "practice": "Am I entitled to compensation for a delay of over three hours?"
+        },
+        {
+          "id": "PACK_EN_050_04",
+          "order": 4,
+          "expression": "Will my bags be transferred?",
+          "meaning": "제 짐은 알아서 옮겨지나요?",
+          "nuance": "편이 바뀌면 부친 짐이 새 비행기로 따라오는지가 가장 흔한 사고 지점이다. transfer는 짐을 '옮겨 싣다'는 뜻으로 공항에서 자주 쓰인다. 확실하지 않으면 'Do I need to pick up my bags and recheck them?'이라고 한 번 더 확인한다.",
+          "dialogue": "You: Will my bags be transferred to the new flight?\nAgent: They should be, but since you're staying overnight, you might want to claim them.\nYou: Where do I pick them up?\nAgent: Carousel 5, and then recheck them tomorrow morning.",
+          "example": "Will my bags be transferred automatically, or do I need to recheck them?",
+          "example_ko": "제 짐은 알아서 옮겨지나요, 아니면 다시 부쳐야 하나요?",
+          "practice": "My bags were checked through to Denver — will they be transferred to the new flight?"
+        },
+        {
+          "id": "PACK_EN_050_05",
+          "order": 5,
+          "expression": "I'd like to file a complaint.",
+          "meaning": "정식으로 불만을 접수하고 싶어요.",
+          "nuance": "file a complaint는 '공식적으로 이의를 제기한다'는 말이라, 단순히 투덜대는 'complain'보다 무게가 있다. 감정적으로 따지기보다 이 문장 한마디로 기록을 남기면 보상 절차가 시작된다. 온라인 양식이 있는지 묻는 게 다음 단계다.",
+          "dialogue": "You: I've been stuck here for ten hours. I'd like to file a complaint.\nAgent: I understand. You can do it online, or I can give you a form.\nYou: I'll take the form. Who do I send it to?\nAgent: Customer relations — the address is at the bottom.",
+          "example": "I'd like to file a complaint about how the cancellation was handled.",
+          "example_ko": "결항 처리 방식에 대해 정식으로 불만을 접수하고 싶어요.",
+          "practice": "How do I file a complaint about my damaged luggage?"
+        }
+      ],
+      "master_paragraph": {
+        "text": "My flight from Seoul landed an hour late in Chicago, and I missed my connection to Denver. At the service desk, I stayed calm and asked the agent to rebook me on the next available flight. It wasn't until the next morning, so I politely asked whether I was entitled to a hotel voucher. She gave me one, along with a meal voucher. Before leaving, I checked: 'Will my bags be transferred?' Later that night, I filed a complaint online — not out of anger, but so there would be a record.",
+        "translation": "서울발 비행기가 시카고에 한 시간 늦게 도착해 덴버행 환승편을 놓쳤다. 서비스 데스크에서 침착하게 가장 빠른 다음 편으로 다시 예약해 달라고 했다. 다음 날 아침 편밖에 없어서, 호텔 숙박권을 받을 수 있는지 정중하게 물었다. 직원은 식사권과 함께 숙박권을 줬다. 떠나기 전에 '제 짐은 알아서 옮겨지나요?'라고 확인했다. 그날 밤 온라인으로 불만을 접수했다 — 화가 나서가 아니라 기록을 남기기 위해서.",
+        "highlights": ["missed my connection", "next available flight", "entitled to a hotel voucher", "bags be transferred", "filed a complaint"]
+      }
+    },
+    {
+      "id": "PACK_EN_051",
+      "theme_key": "dining_out_advanced_en",
+      "theme_category": "daily_travel",
+      "theme_title": "근사한 식당에서 — 예약부터 계산까지",
+      "theme_title_en": "Dining Out Like a Local",
+      "level": "advanced",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_051_01",
+          "order": 1,
+          "expression": "Do you have a table for two around seven?",
+          "meaning": "7시쯤 두 명 자리 있을까요?",
+          "nuance": "'I want to reserve…'보다 'Do you have a table for ~?'가 훨씬 자연스럽고 여유 있게 들린다. around를 넣으면 시간에 유연하다는 신호라 자리를 잡기 쉬워진다. 예약 없이 들렀을 때도 똑같이 쓴다.",
+          "dialogue": "You: Hi, do you have a table for two around seven?\nHost: We're fully booked at seven, but I could do 7:30.\nYou: 7:30 works. The name's Lee.\nHost: Perfect, see you then.",
+          "example": "Do you have a table for two around seven, preferably by the window?",
+          "example_ko": "7시쯤 두 명 자리 있을까요? 가능하면 창가로요.",
+          "practice": "Do you have anything for four tonight, maybe on the patio?"
+        },
+        {
+          "id": "PACK_EN_051_02",
+          "order": 2,
+          "expression": "What would you recommend tonight?",
+          "meaning": "오늘 추천해 주실 만한 게 있나요?",
+          "nuance": "tonight을 붙이면 '오늘 특히 좋은 것'을 묻는 말이 돼서 메뉴에 없는 오늘의 특선(specials)이나 제철 요리를 끌어낼 수 있다. 서버의 취향을 존중하는 질문이라 대화가 부드럽게 열린다.",
+          "dialogue": "You: What would you recommend tonight?\nServer: The halibut is really fresh today, and the risotto is a house favorite.\nYou: I'll go with the halibut, then.\nServer: Great choice.",
+          "example": "It's our first time here — what would you recommend tonight?",
+          "example_ko": "여기 처음 왔는데요 — 오늘 추천해 주실 만한 게 있나요?",
+          "practice": "What would you recommend to go with the steak?"
+        },
+        {
+          "id": "PACK_EN_051_03",
+          "order": 3,
+          "expression": "Could I have the dressing on the side?",
+          "meaning": "드레싱은 따로 주시겠어요?",
+          "nuance": "on the side는 '곁들여 따로'라는 뜻으로, 소스·드레싱 양을 스스로 조절하고 싶을 때 쓰는 가장 흔한 주문 요청이다. 미국 식당에서는 이런 맞춤 요청이 무례하지 않고 아주 일상적이다. 'without onions'처럼 빼 달라는 요청과 함께 알아 두면 좋다.",
+          "dialogue": "You: I'll have the Caesar salad. Could I have the dressing on the side?\nServer: Of course. Anything else?\nYou: And no croutons, please.\nServer: Got it.",
+          "example": "Could I have the sauce on the side? I don't like it too rich.",
+          "example_ko": "소스는 따로 주시겠어요? 너무 진한 걸 안 좋아해서요.",
+          "practice": "Could I get the burger without cheese and the fries on the side?"
+        },
+        {
+          "id": "PACK_EN_051_04",
+          "order": 4,
+          "expression": "We'll take the check whenever you're ready.",
+          "meaning": "편하실 때 계산서 부탁드려요.",
+          "nuance": "미국에서는 서버가 계산서를 먼저 가져오지 않는 경우가 많다(재촉하는 걸 무례하다고 봐서). 이 문장은 '서두르지 않아도 된다'는 배려를 담아 계산을 요청하는 세련된 방법이다. 영국에서는 check 대신 bill을 쓴다.",
+          "dialogue": "Server: Can I get you anything else? Dessert, coffee?\nYou: We're good, thanks. We'll take the check whenever you're ready.\nServer: Sure, I'll bring it right over.\nYou: Thanks — everything was great.",
+          "example": "No dessert for us, thanks. We'll take the check whenever you're ready.",
+          "example_ko": "디저트는 괜찮아요, 고마워요. 편하실 때 계산서 부탁드려요.",
+          "practice": "Could we get the bill, please? We're in a bit of a hurry."
+        },
+        {
+          "id": "PACK_EN_051_05",
+          "order": 5,
+          "expression": "Is service included?",
+          "meaning": "봉사료가 포함돼 있나요?",
+          "nuance": "팁 문화는 나라마다 달라서 계산서를 받으면 이걸 먼저 확인해야 두 번 내는 실수를 피한다. 유럽은 service charge가 포함된 곳이 많고, 미국은 보통 포함되지 않아 15~20%를 따로 낸다. 대형 테이블은 미국에서도 자동으로 붙는 경우가 있다.",
+          "dialogue": "You: Quick question — is service included?\nServer: It is, a 12 percent service charge is already on there.\nYou: Great, thanks. Can we pay separately?\nServer: Of course.",
+          "example": "Is service included, or should we leave a tip?",
+          "example_ko": "봉사료가 포함돼 있나요, 아니면 팁을 따로 남겨야 하나요?",
+          "practice": "Is a gratuity added automatically for groups of six?"
+        }
+      ],
+      "master_paragraph": {
+        "text": "For our anniversary, I called a small bistro and asked, 'Do you have a table for two around seven?' When we arrived, I asked the server what she would recommend tonight, and she pointed us to the halibut. My wife ordered a salad and asked for the dressing on the side. After a long, relaxed dinner, I told the server, 'We'll take the check whenever you're ready.' Before signing, I asked, 'Is service included?' — and it was, which saved me from tipping twice.",
+        "translation": "결혼기념일에 작은 비스트로에 전화해 '7시쯤 두 명 자리 있을까요?'라고 물었다. 도착해서 서버에게 오늘 추천해 줄 만한 게 있는지 묻자 넙치 요리를 권해 줬다. 아내는 샐러드를 시키며 드레싱을 따로 달라고 했다. 느긋하게 긴 저녁을 즐긴 뒤 서버에게 '편하실 때 계산서 부탁드려요'라고 말했다. 서명하기 전에 '봉사료가 포함돼 있나요?'라고 물었는데 — 포함돼 있어서 팁을 두 번 낼 뻔한 걸 피했다.",
+        "highlights": ["table for two around seven", "recommend tonight", "dressing on the side", "take the check whenever you're ready", "Is service included"]
+      }
+    }
+  ]
+}

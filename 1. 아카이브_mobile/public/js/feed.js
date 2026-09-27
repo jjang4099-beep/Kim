@@ -102,12 +102,14 @@ Object.assign(Mob, {
    */
   _renderWordTrack(words) {
     if (!Array.isArray(words) || !words.length) return '';
+    /* 시드의 핵심 대비는 **굵게**로 적혀 있다 — 별표가 그대로 보이지 않게 <b>로 바꾼다 */
+    const bold = s => String(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
     const rows = words.map((w, i) => {
       const colloc = (w.collocations || []).length
         ? `<div class="mob-wd-colloc">${w.collocations.map(c => `<span>${c}</span>`).join('')}</div>` : '';
       const body = [
-        w.nuance     ? `<div class="mob-wd-sect"><span class="mob-wd-lbl">쓰임</span>${w.nuance}</div>` : '',
-        w.confusable ? `<div class="mob-wd-sect"><span class="mob-wd-lbl">헷갈리는 말</span>${w.confusable}</div>` : '',
+        w.nuance     ? `<div class="mob-wd-sect"><span class="mob-wd-lbl">쓰임</span>${bold(w.nuance)}</div>` : '',
+        w.confusable ? `<div class="mob-wd-sect"><span class="mob-wd-lbl">헷갈리는 말</span>${bold(w.confusable)}</div>` : '',
         w.example    ? `<div class="mob-wd-ex">${w.example}${w.exampleKo ? `<span class="mob-wd-ex-ko">${w.exampleKo}</span>` : ''}</div>` : '',
       ].filter(Boolean).join('');
       return `

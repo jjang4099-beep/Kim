@@ -1,0 +1,366 @@
+{
+  "meta": {
+    "label": "미드 구어체 테마팩 51차 (drama_spoken 초급 3 · 중급 2)",
+    "mode": "work",
+    "updated": "2026-09-27",
+    "note": "초급은 미드에서 매 장면 나오는 짧은 한마디(기분·대화 잇기·밥 먹을 때), 중급은 연락·재회 대화. 평면 풀의 Long story short·Running late·No big deal 등은 피했다.",
+    "count": { "english_theme_packs": 5 }
+  },
+  "english_theme_packs": [
+    {
+      "id": "PACK_EN_072",
+      "theme_key": "how_i_feel_en",
+      "theme_category": "drama_spoken",
+      "theme_title": "지금 내 상태 한마디",
+      "theme_title_en": "How I Feel Right Now",
+      "level": "beginner",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_072_01",
+          "order": 1,
+          "expression": "I'm so bored.",
+          "meaning": "너무 심심해. / 너무 지루해.",
+          "nuance": "bored(지루함을 느끼는)와 boring(지루하게 만드는)을 헷갈리면 뜻이 완전히 바뀐다. 'I'm boring'은 '나는 재미없는 사람이야'라는 말이 된다. 감정은 -ed, 원인은 -ing로 기억하자(tired/tiring, excited/exciting).",
+          "dialogue": "Kid: Mom, I'm so bored.\nMom: Why don't you read a book?\nKid: I've read all of them.\nMom: Then help me with the dishes.",
+          "example": "It's raining all day and I'm so bored.",
+          "example_ko": "하루 종일 비가 와서 너무 심심해.",
+          "practice": "This movie is so boring — let's watch something else."
+        },
+        {
+          "id": "PACK_EN_072_02",
+          "order": 2,
+          "expression": "I'm starving.",
+          "meaning": "배고파 죽겠어.",
+          "nuance": "starve는 원래 '굶주리다'지만 일상에서는 과장해서 '엄청 배고프다'로 쓴다. 'I'm hungry'보다 감정이 훨씬 크게 들려 친구 사이에 잘 어울린다. 반대로 배부를 때는 'I'm full' 또는 'I'm stuffed'.",
+          "dialogue": "Tom: Want to grab lunch?\nAmy: Yes, please. I'm starving.\nTom: Didn't you eat breakfast?\nAmy: I didn't have time.",
+          "example": "I skipped lunch, so I'm starving right now.",
+          "example_ko": "점심을 걸러서 지금 배고파 죽겠어.",
+          "practice": "Let's order now — everyone's starving."
+        },
+        {
+          "id": "PACK_EN_072_03",
+          "order": 3,
+          "expression": "I'm wiped out.",
+          "meaning": "완전 녹초야. 기운이 하나도 없어.",
+          "nuance": "wipe out은 '싹 쓸어 없애다'라서 기운이 하나도 안 남았다는 뜻이 된다. 'I'm tired'보다 훨씬 지친 느낌이고, 운동·이사·긴 하루 끝에 자주 쓴다. 비슷한 말로 'I'm exhausted', 'I'm dead tired'가 있다.",
+          "dialogue": "Jen: Want to go out tonight?\nMike: I can't. I'm wiped out.\nJen: Long day?\nMike: Twelve hours of meetings.",
+          "example": "After moving all day, I'm totally wiped out.",
+          "example_ko": "하루 종일 이사했더니 완전 녹초야.",
+          "practice": "The kids wiped me out today."
+        },
+        {
+          "id": "PACK_EN_072_04",
+          "order": 4,
+          "expression": "I'm freaking out.",
+          "meaning": "나 멘붕이야. 완전 패닉이야.",
+          "nuance": "freak out은 너무 놀라거나 불안해서 어쩔 줄 모르는 상태를 말한다. 나쁜 일뿐 아니라 너무 좋은 소식(합격, 고백)에 흥분할 때도 쓴다. 'Don't freak out'은 '놀라지 말고 들어'라는 뜻으로 나쁜 소식 앞에 자주 붙는다.",
+          "dialogue": "Sara: I'm freaking out. My interview is in ten minutes.\nLeo: Breathe. You're ready.\nSara: What if I forget everything?\nLeo: You won't. Just be yourself.",
+          "example": "I can't find my passport and I'm freaking out.",
+          "example_ko": "여권을 못 찾겠어서 완전 패닉이야.",
+          "practice": "Don't freak out, but I scratched your car."
+        },
+        {
+          "id": "PACK_EN_072_05",
+          "order": 5,
+          "expression": "I'm in a really good mood today.",
+          "meaning": "나 오늘 기분 진짜 좋아.",
+          "nuance": "mood는 '그때그때의 기분'이다. 'My feeling is good'은 한국어식 오류라 쓰지 않는다. 기분이 나쁠 땐 'I'm in a bad mood', 뭔가 하고 싶지 않을 땐 'I'm not in the mood'라고 한다.",
+          "dialogue": "Nina: Why are you smiling so much?\nJay: I'm in a really good mood today.\nNina: What happened?\nJay: I finally finished my project!",
+          "example": "The sun is out, and I'm in a really good mood today.",
+          "example_ko": "해가 나와서 오늘 기분 진짜 좋아.",
+          "practice": "Sorry, I'm not in the mood for karaoke tonight."
+        }
+      ],
+      "master_paragraph": {
+        "text": "It was a strange Saturday. In the morning, I was so bored that I cleaned the whole apartment. By noon, I was starving, so I made a huge lunch. Then I helped my friend move, and by evening I was completely wiped out. Suddenly, I got an email saying I'd been accepted to the program — I was freaking out! I called my mom right away. She laughed and said, 'You sound like you're in a really good mood today.'",
+        "translation": "이상한 토요일이었다. 아침엔 너무 심심해서 집 전체를 청소했다. 정오쯤엔 배고파 죽겠어서 점심을 잔뜩 만들었다. 그러고 나서 친구 이사를 도왔고, 저녁엔 완전 녹초가 됐다. 그런데 갑자기 프로그램에 합격했다는 이메일이 왔다 — 완전 흥분해서 난리였다! 바로 엄마에게 전화했다. 엄마는 웃으며 '너 오늘 기분 진짜 좋구나'라고 했다.",
+        "highlights": ["so bored", "starving", "wiped out", "freaking out", "in a really good mood today"]
+      }
+    },
+    {
+      "id": "PACK_EN_073",
+      "theme_key": "keeping_convo_going_en",
+      "theme_category": "drama_spoken",
+      "theme_title": "대화를 잇는 한마디",
+      "theme_title_en": "Keeping the Conversation Going",
+      "level": "beginner",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_073_01",
+          "order": 1,
+          "expression": "What's up?",
+          "meaning": "잘 지내? / 무슨 일이야?",
+          "nuance": "친구 사이의 가장 흔한 인사다. 대답은 'Not much'나 'Nothing much, you?'가 자연스럽고, 'I'm fine, thank you'는 어색하다. 억양을 올려 걱정스럽게 말하면 '무슨 일 있어?'라는 뜻이 된다.",
+          "dialogue": "Ben: Hey, what's up?\nKate: Not much. Just finished work. You?\nBen: Same. Want to get a drink?\nKate: Sure.",
+          "example": "Hey, what's up? I haven't heard from you in a while.",
+          "example_ko": "야, 잘 지내? 한동안 연락이 없었네.",
+          "practice": "You look worried. What's up?"
+        },
+        {
+          "id": "PACK_EN_073_02",
+          "order": 2,
+          "expression": "Guess what!",
+          "meaning": "있잖아, 대박 소식!",
+          "nuance": "놀라운 소식을 전하기 전에 상대의 관심을 끄는 말이다. 정말 맞혀 보라는 게 아니라 '들어 봐'라는 신호라, 받는 사람은 'What?'이라고만 해도 된다. 신나는 톤으로 말해야 이 표현이 산다.",
+          "dialogue": "Mia: Guess what!\nSam: What?\nMia: I'm going to Japan next month!\nSam: No way! That's awesome.",
+          "example": "Guess what! I passed my driving test.",
+          "example_ko": "있잖아, 나 운전면허 붙었어!",
+          "practice": "Guess who I ran into at the mall?"
+        },
+        {
+          "id": "PACK_EN_073_03",
+          "order": 3,
+          "expression": "Wait, what?",
+          "meaning": "잠깐, 뭐라고?",
+          "nuance": "상대가 믿기 어려운 말을 했을 때 대화를 멈춰 세우는 리액션이다. 제대로 못 들었을 때도, 들었는데 믿기지 않을 때도 쓴다. 두 단어 사이에 잠깐 쉬어야 놀람이 살아난다.",
+          "dialogue": "Jake: So I quit my job this morning.\nEmma: Wait, what?\nJake: I'm starting my own café.\nEmma: Since when do you know how to make coffee?",
+          "example": "Wait, what? You're getting married next week?",
+          "example_ko": "잠깐, 뭐라고? 너 다음 주에 결혼한다고?",
+          "practice": "Hold on — say that again?"
+        },
+        {
+          "id": "PACK_EN_073_04",
+          "order": 4,
+          "expression": "Anyway, …",
+          "meaning": "아무튼, … / 그건 그렇고, …",
+          "nuance": "이야기가 옆길로 샜을 때 본론으로 돌아오거나 화제를 바꾸는 신호다. 대화에서 가장 많이 쓰는 연결어 가운데 하나다. 다만 상대가 진지하게 말할 때 'Anyway'로 끊으면 무시하는 것처럼 들릴 수 있다.",
+          "dialogue": "Lily: …and then the cat knocked over my coffee. Anyway, how was your weekend?\nOwen: Pretty quiet. I just stayed home.\nLily: Nice. Anyway, are you coming to the party?\nOwen: Wouldn't miss it.",
+          "example": "Anyway, that's enough about me. How are you?",
+          "example_ko": "아무튼, 내 얘기는 그만하고. 너는 어때?",
+          "practice": "Anyway, where was I?"
+        },
+        {
+          "id": "PACK_EN_073_05",
+          "order": 5,
+          "expression": "You know what I mean?",
+          "meaning": "무슨 말인지 알지?",
+          "nuance": "내 말에 상대가 공감하는지 확인하며 대화를 잇는 말이다. 너무 자주 쓰면 말버릇처럼 들리니 적당히 쓰는 게 좋다. 대답은 'Totally', 'I know what you mean'이 자연스럽다.",
+          "dialogue": "Anna: I love my job, but sometimes I just want a quiet day. You know what I mean?\nJoe: Totally. Just one day with no emails.\nAnna: Exactly!\nJoe: Let's both take Friday off.",
+          "example": "He's nice, but he talks way too much. You know what I mean?",
+          "example_ko": "착하긴 한데 말이 너무 많아. 무슨 말인지 알지?",
+          "practice": "I know exactly what you mean."
+        }
+      ],
+      "master_paragraph": {
+        "text": "My roommate walked in and said, 'What's up?' Before I could answer, she shouted, 'Guess what! I got the job in London!' I said, 'Wait, what? When did you apply?' She told me the whole story, then laughed and said, 'Anyway, I leave in two months.' I told her I was happy for her but also sad. 'It's great news, but I'll miss you,' I said. 'You know what I mean?'",
+        "translation": "룸메이트가 들어오며 '잘 지내?'라고 했다. 내가 대답하기도 전에 소리쳤다. '있잖아, 나 런던 회사 붙었어!' 나는 '잠깐, 뭐라고? 언제 지원했는데?'라고 했다. 그녀는 자초지종을 다 이야기하더니 웃으며 '아무튼, 두 달 뒤에 떠나'라고 했다. 나는 기쁘기도 하지만 슬프기도 하다고 말했다. '좋은 소식인데, 네가 보고 싶을 거야. 무슨 말인지 알지?'",
+        "highlights": ["What's up", "Guess what", "Wait, what", "Anyway", "You know what I mean"]
+      }
+    },
+    {
+      "id": "PACK_EN_074",
+      "theme_key": "eating_with_friends_en",
+      "theme_category": "drama_spoken",
+      "theme_title": "친구랑 밥 먹을 때",
+      "theme_title_en": "Eating Out with Friends",
+      "level": "beginner",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_074_01",
+          "order": 1,
+          "expression": "What are you in the mood for?",
+          "meaning": "뭐 먹고 싶어? (당기는 거 있어?)",
+          "nuance": "in the mood for는 '~이 당기다'라는 뜻이라 메뉴를 정할 때 가장 자연스러운 질문이다. 'What do you want to eat?'보다 부드럽고 상대 기분을 묻는 느낌이다. 대답은 'I'm in the mood for pizza'처럼 같은 틀로 한다.",
+          "dialogue": "Jay: I'm hungry. What are you in the mood for?\nNora: Something spicy. Maybe Thai?\nJay: Thai sounds perfect.\nNora: I know a great place nearby.",
+          "example": "What are you in the mood for — pizza or sushi?",
+          "example_ko": "뭐 먹고 싶어 — 피자, 아니면 초밥?",
+          "practice": "I'm not really in the mood for burgers today."
+        },
+        {
+          "id": "PACK_EN_074_02",
+          "order": 2,
+          "expression": "I'm getting hungry.",
+          "meaning": "슬슬 배고파지네.",
+          "nuance": "get + 형용사는 '점점 ~해지다'라는 변화를 나타낸다. 'I'm hungry'보다 은근하게 밥 먹자고 제안하는 말투라, 친구에게 식사를 권할 때 자연스럽다. 'It's getting late', 'I'm getting tired'처럼 다른 상황에도 쓴다.",
+          "dialogue": "Sam: It's already six.\nLiz: I'm getting hungry.\nSam: Me too. Let's wrap up and eat.\nLiz: Finally!",
+          "example": "I'm getting hungry — should we grab something on the way?",
+          "example_ko": "슬슬 배고파지네 — 가는 길에 뭐 좀 사 먹을까?",
+          "practice": "It's getting late. Let's head home."
+        },
+        {
+          "id": "PACK_EN_074_03",
+          "order": 3,
+          "expression": "Want to split it?",
+          "meaning": "반반 나눠 먹을래? / 나눠 낼래?",
+          "nuance": "split은 '나누다'라서 음식을 나눠 먹을 때도, 계산을 나눠 낼 때도 쓴다. 계산이면 'Let's split the bill', 각자 먹은 만큼 내면 'separate checks'나 'go Dutch'라고 한다. 친구 사이에 가장 흔하게 쓰는 말이다.",
+          "dialogue": "Ella: This dessert is huge. Want to split it?\nMax: Sure. Two spoons, please!\nElla: And let's split the bill too.\nMax: Deal.",
+          "example": "The pizza is too big for one person. Want to split it?",
+          "example_ko": "피자가 혼자 먹기엔 너무 커. 반반 나눠 먹을래?",
+          "practice": "Let's just split the bill evenly."
+        },
+        {
+          "id": "PACK_EN_074_04",
+          "order": 4,
+          "expression": "This is so good.",
+          "meaning": "이거 진짜 맛있다.",
+          "nuance": "음식을 먹으며 가장 자주 하는 감탄이다. 'delicious'는 조금 격식 있거나 광고처럼 들려서 친구끼리는 'so good', 'amazing'이 더 자연스럽다. 강조하고 싶으면 'This is so, so good'처럼 반복한다.",
+          "dialogue": "Kim: Try this pasta.\nDan: Wow. This is so good.\nKim: Right? The sauce is homemade.\nDan: I'm coming back here next week.",
+          "example": "You have to try the tacos. This is so good.",
+          "example_ko": "타코 꼭 먹어 봐. 이거 진짜 맛있다.",
+          "practice": "This soup is amazing. What's in it?"
+        },
+        {
+          "id": "PACK_EN_074_05",
+          "order": 5,
+          "expression": "I'm stuffed.",
+          "meaning": "배 터질 것 같아.",
+          "nuance": "stuffed는 '속을 꽉 채운'이라는 뜻이라 'I'm full'보다 훨씬 배부른 느낌이다. 디저트를 권받았을 때 거절하는 말로도 자주 쓴다. 그래도 먹고 싶으면 'I'm stuffed, but I always have room for dessert'라고 농담한다.",
+          "dialogue": "Server: Can I get you some dessert?\nYou: No, thanks. I'm stuffed.\nFriend: I'll have the cheesecake.\nYou: …Okay, maybe one bite.",
+          "example": "I can't eat another bite. I'm stuffed.",
+          "example_ko": "한 입도 더 못 먹겠어. 배 터질 것 같아.",
+          "practice": "I'm full, but I have room for ice cream."
+        }
+      ],
+      "master_paragraph": {
+        "text": "After work, my friend asked, 'What are you in the mood for?' I said I was getting hungry for something spicy, so we went to a Thai place. We ordered a huge plate of noodles, and she asked, 'Want to split it?' After the first bite, I said, 'This is so good.' We also ordered spring rolls, curry, and mango sticky rice. By the end, I leaned back and groaned, 'I'm stuffed.'",
+        "translation": "퇴근 후 친구가 '뭐 먹고 싶어?'라고 물었다. 나는 슬슬 배고파지는데 매운 게 당긴다고 해서 태국 음식점에 갔다. 커다란 국수 한 접시를 시켰더니 친구가 '반반 나눠 먹을래?'라고 했다. 첫 입을 먹고 나는 '이거 진짜 맛있다'라고 했다. 스프링롤, 커리, 망고 찹쌀밥까지 시켰다. 마지막엔 의자에 기대 앓는 소리를 냈다. '배 터질 것 같아.'",
+        "highlights": ["What are you in the mood for", "getting hungry", "Want to split it", "This is so good", "I'm stuffed"]
+      }
+    },
+    {
+      "id": "PACK_EN_075",
+      "theme_key": "phone_text_talk_en",
+      "theme_category": "drama_spoken",
+      "theme_title": "전화·문자로 연락할 때",
+      "theme_title_en": "Calling & Texting",
+      "level": "intermediate",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_075_01",
+          "order": 1,
+          "expression": "I'm on my way.",
+          "meaning": "지금 가는 중이야.",
+          "nuance": "약속 장소로 이동 중이라는 뜻인데, 미드에서는 아직 집에서 출발도 안 했으면서 이렇게 말하는 장면이 단골 농담이다. 문자로는 'OMW'라고 줄여 쓴다. 도착 시간을 붙이면 'I'm on my way — be there in ten'.",
+          "dialogue": "Kate: Where are you? The movie starts in fifteen minutes.\nBen: I'm on my way.\nKate: Are you actually on your way, or are you still in bed?\nBen: …I'm putting on my shoes.",
+          "example": "I'm on my way — I'll be there in about ten minutes.",
+          "example_ko": "지금 가는 중이야 — 10분 정도면 도착해.",
+          "practice": "Sorry, I'm stuck in traffic but I'm on my way."
+        },
+        {
+          "id": "PACK_EN_075_02",
+          "order": 2,
+          "expression": "Hang on a sec.",
+          "meaning": "잠깐만 기다려.",
+          "nuance": "통화 중에 잠시 기다려 달라고 할 때 가장 많이 쓰는 말이다. sec은 second의 줄임말. 'Hold on'도 같은 뜻이고, 전화를 잠시 보류할 때는 'Can you hold?'라고 한다. 대면 대화에서도 '잠깐만'으로 똑같이 쓴다.",
+          "dialogue": "Mom: Did you remember to pay the rent?\nJay: Hang on a sec. Let me check my banking app.\nMom: I'll wait.\nJay: …Yes! Paid yesterday.",
+          "example": "Hang on a sec — someone's at the door.",
+          "example_ko": "잠깐만 — 누가 문 앞에 왔어.",
+          "practice": "Hold on, I'm getting another call."
+        },
+        {
+          "id": "PACK_EN_075_03",
+          "order": 3,
+          "expression": "My phone died.",
+          "meaning": "폰 배터리가 나갔어.",
+          "nuance": "배터리가 다 되어 꺼진 것을 영어에서는 '죽었다'라고 표현한다. 'My battery is dead'도 같은 뜻이다. 답장을 못 한 이유로 가장 흔히 쓰는 말이라, 미드에서는 핑계처럼 들리는 장면도 많다.",
+          "dialogue": "Lily: Why didn't you answer? I called five times!\nOwen: Sorry, my phone died.\nLily: You should carry a charger.\nOwen: I know. Lesson learned.",
+          "example": "Sorry I didn't text back — my phone died.",
+          "example_ko": "답장 못 해서 미안 — 폰 배터리가 나갔어.",
+          "practice": "My phone's about to die. Can I borrow your charger?"
+        },
+        {
+          "id": "PACK_EN_075_04",
+          "order": 4,
+          "expression": "I'll text you the address.",
+          "meaning": "주소 문자로 보내 줄게.",
+          "nuance": "text는 명사(문자)뿐 아니라 동사(문자 보내다)로 쓰인다. 'send a message'보다 훨씬 구어적이고, 'text someone something'처럼 사람과 내용을 바로 받는다. 전화하겠다고 할 땐 'I'll call you', 영상통화는 'FaceTime you'.",
+          "dialogue": "Nina: Where's the party?\nJoe: I'll text you the address.\nNina: Great. Is there parking?\nJoe: Street parking only.",
+          "example": "I'll text you the address and the door code.",
+          "example_ko": "주소랑 현관 비밀번호 문자로 보내 줄게.",
+          "practice": "Text me when you get home safely."
+        },
+        {
+          "id": "PACK_EN_075_05",
+          "order": 5,
+          "expression": "You're breaking up.",
+          "meaning": "소리가 끊겨.",
+          "nuance": "통화 중 신호가 약해 목소리가 끊길 때 쓰는 말이다. 연애에서 '헤어지다'라는 뜻도 있어 미드에서는 이 두 의미로 말장난을 치는 장면이 자주 나온다. 신호가 나쁘면 'I'll call you back'으로 이어 가면 된다.",
+          "dialogue": "Sam: Hello? You're breaking up.\nAnna: Can you hear me now?\nSam: Barely. I'm in a tunnel.\nAnna: Call me back when you're out.",
+          "example": "You're breaking up — I'll call you back in a minute.",
+          "example_ko": "소리가 끊겨 — 금방 다시 걸게.",
+          "practice": "The signal is bad here. Can you hear me?"
+        }
+      ],
+      "master_paragraph": {
+        "text": "Last Friday, I was late for a friend's dinner party. I texted her, 'I'm on my way!' When she called, I said, 'Hang on a sec,' because I was paying for gas. Then she said, 'You're breaking up,' and the call dropped — my phone died. I borrowed a charger at the gas station, and she said, 'I'll text you the address again.' I finally arrived an hour late, holding a very expensive cake as an apology.",
+        "translation": "지난 금요일, 친구네 저녁 파티에 늦었다. '지금 가는 중이야!'라고 문자를 보냈다. 친구가 전화했을 때 주유비를 내고 있어서 '잠깐만 기다려'라고 했다. 그러다 친구가 '소리가 끊겨'라고 하더니 전화가 끊겼다 — 폰 배터리가 나간 거였다. 주유소에서 충전기를 빌리자 친구가 '주소 다시 문자로 보내 줄게'라고 했다. 나는 결국 한 시간 늦게, 사과의 뜻으로 아주 비싼 케이크를 들고 도착했다.",
+        "highlights": ["I'm on my way", "Hang on a sec", "You're breaking up", "my phone died", "text you the address"]
+      }
+    },
+    {
+      "id": "PACK_EN_076",
+      "theme_key": "reunion_talk_en",
+      "theme_category": "drama_spoken",
+      "theme_title": "오랜만에 만났을 때",
+      "theme_title_en": "Running Into an Old Friend",
+      "level": "intermediate",
+      "delivery_date": null,
+      "expressions": [
+        {
+          "id": "PACK_EN_076_01",
+          "order": 1,
+          "expression": "Long time no see!",
+          "meaning": "이게 얼마 만이야!",
+          "nuance": "문법적으로는 어색하지만 아주 오래 쓰여 굳어진 인사다. 중국어식 영어(피진 영어)에서 왔다는 설이 널리 알려져 있다. 친한 사이에 반갑게 쓰는 말이라 격식 있는 자리에서는 'It's been a while'이 더 무난하다.",
+          "dialogue": "Jake: Emma? Long time no see!\nEmma: Jake! Oh my gosh, it's been years.\nJake: Since graduation, right?\nEmma: At least. You look great!",
+          "example": "Long time no see! How have you been?",
+          "example_ko": "이게 얼마 만이야! 어떻게 지냈어?",
+          "practice": "It's been a while. How's everything?"
+        },
+        {
+          "id": "PACK_EN_076_02",
+          "order": 2,
+          "expression": "What have you been up to?",
+          "meaning": "그동안 뭐 하고 지냈어?",
+          "nuance": "be up to는 '~을 하고 있다'라는 구어로, 오랜만에 만난 사람의 근황을 물을 때 가장 자연스럽다. 'What are you doing these days?'보다 친근하다. 대답은 'Not much'부터 이직·결혼 소식까지 무엇이든 된다.",
+          "dialogue": "Emma: So what have you been up to?\nJake: I moved to Seattle and started a new job.\nEmma: That's amazing! Doing what?\nJake: I'm a nurse now, if you can believe it.",
+          "example": "It's been ages! What have you been up to?",
+          "example_ko": "진짜 오랜만이다! 그동안 뭐 하고 지냈어?",
+          "practice": "What are you up to this weekend?"
+        },
+        {
+          "id": "PACK_EN_076_03",
+          "order": 3,
+          "expression": "You haven't changed a bit.",
+          "meaning": "넌 하나도 안 변했다.",
+          "nuance": "오랜만에 만난 사람에게 하는 칭찬이다. '여전히 젊고 멋지다'는 뜻으로 받아들여진다. not a bit은 '조금도 ~않다'는 강조다. 성격을 두고 말하면 '여전하네'라는 뜻이 되어, 억양에 따라 칭찬이 되기도 핀잔이 되기도 한다.",
+          "dialogue": "Jake: You haven't changed a bit.\nEmma: Liar. I have gray hair now.\nJake: I can't see any.\nEmma: That's why you're my favorite.",
+          "example": "Ten years later, and you haven't changed a bit!",
+          "example_ko": "10년이 지났는데 넌 하나도 안 변했다!",
+          "practice": "You're still late for everything. You haven't changed at all."
+        },
+        {
+          "id": "PACK_EN_076_04",
+          "order": 4,
+          "expression": "What a small world!",
+          "meaning": "세상 참 좁다!",
+          "nuance": "뜻밖의 곳에서 아는 사람을 만나거나 공통의 지인이 있다는 걸 알았을 때 쓰는 감탄이다. 한국어 '세상 좁다'와 생각이 똑같아 외우기 쉽다. 'It's a small world'라고도 한다.",
+          "dialogue": "Emma: Wait, you work with Sarah Kim?\nJake: Yeah, she's my manager.\nEmma: She's my cousin! What a small world!\nJake: No way!",
+          "example": "You went to my high school too? What a small world!",
+          "example_ko": "너도 우리 고등학교 나왔어? 세상 참 좁다!",
+          "practice": "It's a small world — we have three friends in common."
+        },
+        {
+          "id": "PACK_EN_076_05",
+          "order": 5,
+          "expression": "Let's not wait another five years.",
+          "meaning": "또 5년 기다리지 말자. (자주 보자)",
+          "nuance": "헤어지면서 다음 만남을 약속하는 따뜻한 농담이다. 'Let's keep in touch'는 인사치레로 끝나기 쉽지만, 이 표현은 지난 공백을 웃으며 인정해서 진심이 더 잘 전해진다. 이 말 뒤엔 보통 연락처를 교환한다.",
+          "dialogue": "Jake: This was so fun.\nEmma: Seriously. Let's not wait another five years.\nJake: Deal. Dinner next month?\nEmma: I'll put it in my calendar right now.",
+          "example": "Let's not wait another five years — how about lunch next month?",
+          "example_ko": "또 5년 기다리지 말자 — 다음 달에 점심 어때?",
+          "practice": "Let's keep in touch this time, okay?"
+        }
+      ],
+      "master_paragraph": {
+        "text": "At the airport, someone tapped my shoulder and said, 'Long time no see!' It was my college roommate. We grabbed coffee, and she asked, 'What have you been up to?' I told her about my new job, and she laughed and said, 'You haven't changed a bit.' Then we found out her husband worked at my company — what a small world! Before boarding, we hugged and promised, 'Let's not wait another five years.'",
+        "translation": "공항에서 누가 내 어깨를 두드리며 '이게 얼마 만이야!'라고 했다. 대학 시절 룸메이트였다. 우리는 커피를 마셨고 그녀가 '그동안 뭐 하고 지냈어?'라고 물었다. 새 직장 이야기를 했더니 그녀가 웃으며 '넌 하나도 안 변했다'라고 했다. 그러다 그녀의 남편이 우리 회사에 다닌다는 걸 알게 됐다 — 세상 참 좁다! 탑승 전에 우리는 포옹하며 약속했다. '또 5년 기다리지 말자.'",
+        "highlights": ["Long time no see", "What have you been up to", "haven't changed a bit", "what a small world", "Let's not wait another five years"]
+      }
+    }
+  ]
+}

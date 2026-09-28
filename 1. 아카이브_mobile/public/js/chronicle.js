@@ -661,9 +661,12 @@
         ${mp.translation ? `<details class="md__tr"><summary>해석 보기</summary><p>${para(mp.translation)}</p></details>` : ''}
       </section>`;
   }
+  const WORD_DOM = { news: '📰 뉴스', daily: '💬 일상', business: '💼 비즈니스' };
+  const LV = { beginner: '초급', intermediate: '중급', advanced: '고급' };
   function wordBlock(w) {
+    const tags = [WORD_DOM[w.domain], LV[w.level]].filter(Boolean).join(' · ');
     return `<details class="md__fold">
-        <summary><b>${esc(w.word)}</b>${w.pos ? `<i>${esc(w.pos)}</i>` : ''}<span>${esc(w.meaning || '')}</span></summary>
+        <summary><b>${esc(w.word)}</b>${w.pos ? `<i>${esc(w.pos)}</i>` : ''}${tags ? `<i>${esc(tags)}</i>` : ''}<span>${esc(w.meaning || '')}</span></summary>
         <div class="md__fold-body">
           ${sec('함께 쓰는 말', (w.collocations || []).length ? `<p class="md__tags">${w.collocations.map(c => `<span>${esc(c)}</span>`).join('')}</p>` : '')}
           ${sec('헷갈리는 말', w.confusable ? para(w.confusable).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>') : '')}
@@ -683,8 +686,25 @@
           <dl class="md__siblings">${others.map(s => `<div><dt>${esc(s.expression)}</dt><dd>${esc(s.meaning || '')}</dd></div>`).join('')}</dl></section>` : '');
   }
 
-  function packHTML(vocab, mp, words) {
+  /* 오늘의 구문 — 문장을 여는 틀 하나(언제·형태·예문·실수·비슷한 틀) */
+  function patternHTML(p) {
+    if (!p || !p.pattern) return '';
+    const reg = { daily: '💬 일상 대화', business: '💼 비즈니스', any: '🔁 어디서나' }[p.register] || '';
+    const bold = t => para(t).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+    return `<section class="md__pack-sec" id="pk-pat"><h4 class="md__pack-h">💬 오늘의 구문 <small>${esc([reg, LV[p.level]].filter(Boolean).join(' · '))}</small></h4>
+        <div class="md__fold" style="padding:12px 14px"><p class="md__expr" style="margin:0">${esc(p.pattern)}</p>
+          ${p.meaning ? `<p class="md__mean">${esc(p.meaning)}</p>` : ''}
+          ${sec('언제 쓰나', p.when ? bold(p.when) : '')}
+          ${sec('형태', p.structure ? para(p.structure) : '')}
+          ${sec('예문', (p.examples || []).map(e => `${para(e.en || '')}${e.ko ? `<span class="md__ko">${para(e.ko)}</span>` : ''}`).join('<br>'))}
+          ${sec('흔한 실수', p.mistake ? bold(p.mistake) : '')}
+          ${sec('비슷한 틀과 차이', p.similar ? bold(p.similar) : '')}
+        </div></section>`;
+  }
+
+  function packHTML(vocab, mp, words, pat) {
     const jump = [mp && mp.text ? ['pk-text', '📖 글 1편'] : null, ['pk-expr', `🔤 표현 ${vocab.length}`],
+                  pat && pat.pattern ? ['pk-pat', '💬 구문 1'] : null,
                   words.length ? ['pk-word', `📚 단어 ${words.length}`] : null].filter(Boolean);
     return `<nav class="md__jump">${jump.map(([id, l]) => `<button type="button" data-jump="${id}">${l}</button>`).join('')}</nav>`
       + masterHTML(mp)
@@ -693,6 +713,7 @@
             <summary><em>${i + 1}</em><b>${esc(v.expression || v.word || '')}</b><span>${esc(v.meaning || '')}</span></summary>
             <div class="md__fold-body">${vocabBlock({ ...v, expression: '', meaning: '' }, false)}</div>
           </details>`).join('')}</section>`
+      + patternHTML(pat)
       + (words.length ? `<section class="md__pack-sec" id="pk-word"><h4 class="md__pack-h">📚 오늘의 단어</h4>${words.map(wordBlock).join('')}</section>` : '');
   }
 
@@ -762,7 +783,7 @@
     if (vocab.length > 1 && packTitle) {
       const words = [it.wordEntries, fd.wordEntries].find(a => Array.isArray(a) && a.length) || [];
       return head('영어 · 테마팩', packTitle, it.themeTitleEn || fd.themeTitleEn || '')
-        + packHTML(vocab, it.masterParagraph || fd.masterParagraph, words) + noteSec;
+        + packHTML(vocab, it.masterParagraph || fd.masterParagraph, words, it.patternEntry || fd.patternEntry) + noteSec;
     }
 
     if (vocab.length) {

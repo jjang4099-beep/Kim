@@ -82,6 +82,7 @@ Object.assign(Mob, {
       ${!isThemePack && item.summary ? `<div class="mob-card-summary">${item.summary}</div>` : ''}
       ${themeBand}
       <div class="mob-feed-vocab-list">${vocabHTML}</div>
+      ${this._renderPatternCard(item.patternEntry)}
       ${this._renderWordTrack(item.wordEntries)}
       ${masterHTML}
       <div class="mob-feed-card-ft">
@@ -118,6 +119,8 @@ Object.assign(Mob, {
           <div class="mob-wd-head">
             <span class="mob-wd-word">${w.word || ''}</span>
             ${w.pos ? `<span class="mob-wd-pos">${w.pos}</span>` : ''}
+            ${WORD_DOMAIN_LABEL[w.domain] ? `<span class="mob-wd-tag">${WORD_DOMAIN_LABEL[w.domain]}</span>` : ''}
+            ${LEVEL_LABEL[w.level] ? `<span class="mob-wd-tag lv">${LEVEL_LABEL[w.level]}</span>` : ''}
           </div>
           <div class="mob-wd-meaning">${w.meaning || ''}</div>
           ${colloc}
@@ -130,6 +133,38 @@ Object.assign(Mob, {
     <div class="mob-wd-block">
       <div class="mob-wd-kicker">오늘의 단어 <span>${words.length}</span></div>
       ${rows}
+    </div>`;
+  },
+
+  /**
+   * 오늘의 구문 — "I'm not sure I should ~" 같은 문장을 여는 틀.
+   * 앞면: 틀·뜻·언제 쓰나·형태·예문 1개 / 펼치면: 나머지 예문·흔한 실수·비슷한 틀과 차이.
+   */
+  _renderPatternCard(p) {
+    if (!p || !p.pattern) return '';
+    const bold = s => String(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+    const ex   = (p.examples || []).map(e => `<li>${e.en || ''}${e.ko ? `<span>${e.ko}</span>` : ''}</li>`);
+    const more = [
+      ex.length > 1 ? `<ul class="mob-pt-ex">${ex.slice(1).join('')}</ul>` : '',
+      p.mistake ? `<div class="mob-pt-sect"><span class="mob-wd-lbl">흔한 실수</span>${bold(p.mistake)}</div>` : '',
+      p.similar ? `<div class="mob-pt-sect"><span class="mob-wd-lbl">비슷한 틀과 차이</span>${bold(p.similar)}</div>` : '',
+    ].join('');
+    return `
+    <div class="mob-pt-block">
+      <div class="mob-wd-kicker">오늘의 구문</div>
+      <div class="mob-pt-card">
+        <div class="mob-pt-head">
+          ${PATTERN_REGISTER_LABEL[p.register] ? `<span class="mob-wd-tag">${PATTERN_REGISTER_LABEL[p.register]}</span>` : ''}
+          ${LEVEL_LABEL[p.level] ? `<span class="mob-wd-tag lv">${LEVEL_LABEL[p.level]}</span>` : ''}
+        </div>
+        <div class="mob-pt-pattern">${p.pattern}</div>
+        ${p.meaning ? `<div class="mob-pt-meaning">${p.meaning}</div>` : ''}
+        ${p.when ? `<div class="mob-pt-sect"><span class="mob-wd-lbl">언제 쓰나</span>${bold(p.when)}</div>` : ''}
+        ${p.structure ? `<div class="mob-pt-struct">${p.structure}</div>` : ''}
+        ${ex.length ? `<ul class="mob-pt-ex">${ex[0]}</ul>` : ''}
+        ${more ? `<div class="mob-pt-body">${more}</div>
+        <button class="mob-pt-more" onclick="event.stopPropagation();const c=this.closest('.mob-pt-card');c.classList.toggle('fv-open');this.textContent=c.classList.contains('fv-open')?'접기':'예문 더 보기 · 흔한 실수';">예문 더 보기 · 흔한 실수</button>` : ''}
+      </div>
     </div>`;
   },
 
@@ -1257,7 +1292,8 @@ Object.assign(Mob, {
     const EN_THEMES = [
       { val:'business_meeting', label:'💼 비즈니스 영어'   },
       { val:'daily_travel',     label:'✈️ 일상/여행 회화'  },
-      { val:'drama_spoken',     label:'🎬 미드 구어체'     }
+      { val:'drama_spoken',     label:'🎬 미드 구어체'     },
+      { val:'everyday_situations', label:'🗓 상황별 표현 (날씨·쇼핑·은행·전화…)' }
     ];
     const ZH_THEMES = [
       { val:'biz_hsk',     label:'💼 비즈니스 HSK 실무'   },

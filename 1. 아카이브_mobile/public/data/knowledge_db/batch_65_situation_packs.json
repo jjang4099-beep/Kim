@@ -1,0 +1,259 @@
+{
+  "meta": {
+    "label": "🗓 상황별 표현 테마팩 65차 (everyday_situations × 8 — 날씨 2 · 가게에서 살 때 · 가게에서 팔 때 · 은행 · 미용실 · 전화 · 택배)",
+    "mode": "work",
+    "updated": "2026-09-28",
+    "note": "09-28 사용자 요청: 날씨·매장에서 사고팔 때처럼 '상황'별로 따로 떼어 알려 주기. 새 theme_category everyday_situations — 관리 화면 영어 테마에 '🗓 상황별 표현'으로 추가됨.",
+    "count": { "english_theme_packs": 8 }
+  },
+  "english_theme_packs": [
+    {
+      "id": "PACK_EN_077", "theme_key": "weather_basics_en", "theme_category": "everyday_situations",
+      "theme_title": "날씨 표현 — 기본", "theme_title_en": "Talking About the Weather", "level": "beginner", "delivery_date": null,
+      "expressions": [
+        {"id": "PACK_EN_077_01", "order": 1, "expression": "It's freezing today.", "meaning": "오늘 엄청 추워요.",
+         "nuance": "freezing은 '얼 정도로'라서 'very cold'보다 훨씬 생생합니다. 실제 영하가 아니어도 과장해서 자주 써요. 덥다면 'It's boiling', 선선하면 'It's chilly'로 강도를 조절합니다.",
+         "dialogue": "Anna: Close the door! It's freezing today.\nMin: Sorry! I thought spring was here.\nAnna: Not yet. It's minus five outside.\nMin: I should've worn a thicker coat.",
+         "example": "It's freezing today — don't forget your gloves.", "example_ko": "오늘 엄청 추워 — 장갑 잊지 마.", "practice": "It's boiling in here. Can we turn on the AC?"},
+        {"id": "PACK_EN_077_02", "order": 2, "expression": "It looks like rain.", "meaning": "비가 올 것 같아요.",
+         "nuance": "하늘을 보고 비 올 것 같다고 할 때 가장 자연스러운 말입니다. 'It will rain'은 확신하는 예보처럼 들려요. 'It looks like it's going to rain'이라고 길게 말해도 됩니다.",
+         "dialogue": "Tom: Want to eat outside?\nJen: Hmm, it looks like rain.\nTom: You're right, those clouds are dark.\nJen: Let's get a table inside.",
+         "example": "It looks like rain, so take an umbrella.", "example_ko": "비가 올 것 같으니까 우산 챙겨.", "practice": "It looks like it's going to snow tonight."},
+        {"id": "PACK_EN_077_03", "order": 3, "expression": "It's so humid.", "meaning": "너무 습해요 / 후덥지근해요.",
+         "nuance": "한국 여름 날씨를 설명할 때 꼭 필요한 단어입니다. hot만 쓰면 건조한 더위인지 습한 더위인지 모르니, 끈적한 더위는 humid 또는 muggy라고 해요. 반대로 건조하면 dry.",
+         "dialogue": "Leo: How's summer in Seoul?\nSara: It's so humid. Your shirt sticks to you.\nLeo: Worse than here?\nSara: Much worse. Bring light clothes.",
+         "example": "It's not that hot, but it's so humid.", "example_ko": "그렇게 덥진 않은데 너무 습해.", "practice": "It's a dry heat here, so it doesn't feel as bad."},
+        {"id": "PACK_EN_077_04", "order": 4, "expression": "What's the weather like tomorrow?", "meaning": "내일 날씨 어때요?",
+         "nuance": "날씨를 물을 때 like가 꼭 들어갑니다. 'How is the weather tomorrow?'도 되지만 'What's the weather like?'가 원어민에게 가장 흔해요. 'Like'는 여기서 '좋아하다'가 아니라 '~와 같은'이에요.",
+         "dialogue": "Kate: What's the weather like tomorrow?\nDan: Sunny in the morning, cloudy later.\nKate: Good. We're going hiking.\nDan: Take a jacket just in case.",
+         "example": "What's the weather like in Busan this week?", "example_ko": "이번 주 부산 날씨 어때?", "practice": "What's it like outside right now?"},
+        {"id": "PACK_EN_077_05", "order": 5, "expression": "It's supposed to clear up this afternoon.", "meaning": "오후에는 갤 거래요.",
+         "nuance": "be supposed to는 '예보로는 ~래'라는 뜻으로, 날씨 예보를 전할 때 가장 자주 씁니다. clear up은 '(날씨가) 개다'. 확신이 없을 때 'will'보다 부드럽게 들려요.",
+         "dialogue": "Mia: Is the picnic still on?\nJay: It's supposed to clear up this afternoon.\nMia: I hope so. It's pouring right now.\nJay: Let's check again at noon.",
+         "example": "It's cloudy now, but it's supposed to clear up this afternoon.", "example_ko": "지금은 흐린데 오후에는 갤 거래.", "practice": "It's supposed to snow all weekend."}
+      ],
+      "master_paragraph": {
+        "text": "This morning I opened the window and said, 'It's freezing today!' My roommate checked her phone and asked, 'What's the weather like tomorrow?' The app said it would be warmer, but by noon the sky was dark and it looked like rain. In summer, the problem is different — it's so humid that nobody wants to go out. Luckily, the forecast says it's supposed to clear up this afternoon.",
+        "translation": "오늘 아침 창문을 열고 '오늘 엄청 춥다!'라고 했다. 룸메이트가 휴대폰을 확인하며 '내일 날씨 어때?'라고 물었다. 앱에서는 더 따뜻해진다고 했지만, 정오쯤 하늘이 어두워지며 비가 올 것 같았다. 여름엔 문제가 다르다 — 너무 습해서 아무도 나가고 싶어 하지 않는다. 다행히 예보로는 오후에는 갤 거라고 한다.",
+        "highlights": ["It's freezing today", "What's the weather like tomorrow", "looked like rain", "so humid", "supposed to clear up this afternoon"]
+      }
+    },
+    {
+      "id": "PACK_EN_078", "theme_key": "weather_smalltalk_en", "theme_category": "everyday_situations",
+      "theme_title": "날씨로 스몰토크하기", "theme_title_en": "Weather Small Talk", "level": "intermediate", "delivery_date": null,
+      "expressions": [
+        {"id": "PACK_EN_078_01", "order": 1, "expression": "Nice weather we're having, huh?", "meaning": "날씨 좋죠?",
+         "nuance": "엘리베이터나 줄 서 있을 때 처음 보는 사람과 대화를 여는 가장 무난한 말입니다. 끝의 huh나 isn't it은 대답을 부르는 장치예요. 날씨가 나쁠 때 반어적으로 쓰면 농담이 됩니다.",
+         "dialogue": "Stranger: Nice weather we're having, huh?\nYou: It really is. Finally feels like spring.\nStranger: Perfect day for a walk.\nYou: That's exactly what I'm doing after work.",
+         "example": "Nice weather we're having, isn't it?", "example_ko": "날씨 참 좋죠?", "practice": "Lovely day, isn't it?"},
+        {"id": "PACK_EN_078_02", "order": 2, "expression": "It's pouring out there.", "meaning": "밖에 비가 억수같이 와요.",
+         "nuance": "pour는 '쏟아붓다'라 폭우를 말할 때 가장 흔한 동사입니다. 'It's raining a lot'보다 훨씬 생생해요. 약한 비는 drizzling, 잠깐 쏟아지는 소나기는 a shower라고 합니다.",
+         "dialogue": "Nina: Did you bring an umbrella?\nOwen: No, why?\nNina: It's pouring out there.\nOwen: Great. I'll wait until it lets up.",
+         "example": "It's pouring out there — you'll get soaked.", "example_ko": "밖에 비가 억수같이 와 — 흠뻑 젖을 거야.", "practice": "It's just drizzling. We can still walk."},
+        {"id": "PACK_EN_078_03", "order": 3, "expression": "We're in for a heat wave this week.", "meaning": "이번 주에 폭염이 온대요.",
+         "nuance": "be in for는 '(좋든 나쁘든) ~을 겪게 될 것이다'라는 뜻으로 예보를 전하는 원어민식 표현입니다. heat wave는 폭염, cold snap은 갑작스러운 한파예요.",
+         "dialogue": "Kim: We're in for a heat wave this week.\nDan: How hot?\nKim: Thirty-seven on Thursday.\nDan: I'm working from home that day.",
+         "example": "Stay hydrated — we're in for a heat wave this week.", "example_ko": "물 많이 마셔 — 이번 주에 폭염이 온대.", "practice": "We're in for a cold snap over the weekend."},
+        {"id": "PACK_EN_078_04", "order": 4, "expression": "It's a bit chilly for this time of year.", "meaning": "이맘때치고는 좀 쌀쌀하네요.",
+         "nuance": "chilly는 '살짝 쌀쌀한'으로 cold보다 약합니다. 'for this time of year'(이맘때치고는)를 붙이면 평소와 다르다는 관찰이 되어 대화가 자연스럽게 이어져요.",
+         "dialogue": "Ella: It's a bit chilly for this time of year.\nMax: I know. It's almost June.\nElla: I had to take my coat back out.\nMax: Same here.",
+         "example": "It's a bit chilly for this time of year, don't you think?", "example_ko": "이맘때치고는 좀 쌀쌀하지 않아?", "practice": "It's unusually warm for November."},
+        {"id": "PACK_EN_078_05", "order": 5, "expression": "I'll believe it when I see it.", "meaning": "직접 봐야 믿지.",
+         "nuance": "예보나 약속을 믿지 못하겠다는 가벼운 농담입니다. 날씨 이야기에서 '눈 온다는데?'에 이렇게 답하면 웃음이 나요. 사람의 약속에 쓰면 불신이 담긴 비꼼이 될 수 있습니다.",
+         "dialogue": "Joe: The forecast says it'll snow on Christmas.\nAnna: I'll believe it when I see it.\nJoe: Come on, it's ninety percent.\nAnna: They said that last year too.",
+         "example": "A white Christmas? I'll believe it when I see it.", "example_ko": "화이트 크리스마스라고? 직접 봐야 믿지.", "practice": "He says he'll be on time. I'll believe it when I see it."}
+      ],
+      "master_paragraph": {
+        "text": "Waiting for the elevator, a neighbor smiled and said, 'Nice weather we're having, huh?' I agreed, but added that it was a bit chilly for this time of year. She said the news claimed we were in for a heat wave next week. I laughed: 'I'll believe it when I see it.' The next morning, it was pouring out there, and we both stood in the lobby shaking our heads.",
+        "translation": "엘리베이터를 기다리는데 이웃이 웃으며 '날씨 좋죠?'라고 했다. 나는 맞장구를 치면서 이맘때치고는 좀 쌀쌀하다고 덧붙였다. 그녀는 뉴스에서 다음 주에 폭염이 온다고 했다고 전했다. 나는 웃었다. '직접 봐야 믿죠.' 다음 날 아침엔 밖에 비가 억수같이 쏟아졌고, 우리 둘은 로비에 서서 고개를 저었다.",
+        "highlights": ["Nice weather we're having", "a bit chilly for this time of year", "in for a heat wave", "I'll believe it when I see it", "pouring out there"]
+      }
+    },
+    {
+      "id": "PACK_EN_079", "theme_key": "shopping_customer_en", "theme_category": "everyday_situations",
+      "theme_title": "가게에서 살 때 — 손님 영어", "theme_title_en": "Buying Things in a Store", "level": "beginner", "delivery_date": null,
+      "expressions": [
+        {"id": "PACK_EN_079_01", "order": 1, "expression": "How much is this?", "meaning": "이거 얼마예요?",
+         "nuance": "가격을 묻는 가장 기본 문장입니다. 여러 개면 'How much are these?'로 바꿔야 해요. 'What's the price?'도 되지만 조금 딱딱합니다. 가격표가 없을 때 물건을 들고 말하면 됩니다.",
+         "dialogue": "You: Excuse me, how much is this?\nClerk: That's fifteen dollars.\nYou: And these socks?\nClerk: Three for ten.",
+         "example": "Excuse me, how much is this bag?", "example_ko": "실례합니다, 이 가방 얼마예요?", "practice": "How much are these apples?"},
+        {"id": "PACK_EN_079_02", "order": 2, "expression": "Do you have this in stock?", "meaning": "이거 재고 있어요?",
+         "nuance": "in stock은 '재고가 있는', out of stock은 '품절된'이라는 뜻입니다. 진열대에 없는 물건을 찾을 때 이 질문을 하면 점원이 창고나 다른 지점을 확인해 줍니다.",
+         "dialogue": "You: Do you have this in stock? The shelf is empty.\nClerk: Let me check the computer.\nClerk: We have two left in the back.\nYou: Great, I'll take one.",
+         "example": "Do you have this in stock, or should I order it online?", "example_ko": "이거 재고 있어요, 아니면 온라인으로 주문해야 해요?", "practice": "Is this item out of stock?"},
+        {"id": "PACK_EN_079_03", "order": 3, "expression": "Do you take cards?", "meaning": "카드 되나요?",
+         "nuance": "take가 여기서는 '(결제 수단을) 받다'라는 뜻입니다. 'Can I pay by card?'도 같은 뜻이에요. 해외 작은 가게나 시장에서는 현금만 받는 곳(cash only)이 있어 먼저 확인하는 게 좋아요.",
+         "dialogue": "You: Do you take cards?\nVendor: Sorry, cash only.\nYou: Is there an ATM nearby?\nVendor: Right across the street.",
+         "example": "Do you take cards, or is it cash only?", "example_ko": "카드 되나요, 아니면 현금만 돼요?", "practice": "Can I pay with my phone?"},
+        {"id": "PACK_EN_079_04", "order": 4, "expression": "Is this on sale?", "meaning": "이거 세일하는 거예요?",
+         "nuance": "on sale은 '할인 중'이고, for sale은 '판매용'입니다. 둘을 헷갈리면 '이거 파는 거예요?'라는 엉뚱한 질문이 돼요. 할인 폭을 물을 땐 'How much off is it?'.",
+         "dialogue": "You: Is this on sale?\nClerk: Yes, it's thirty percent off.\nYou: So how much is it now?\nClerk: Twenty-one dollars.",
+         "example": "Is this jacket on sale, or is it full price?", "example_ko": "이 재킷 세일하는 거예요, 아니면 정가예요?", "practice": "Is this for sale, or just for display?"},
+        {"id": "PACK_EN_079_05", "order": 5, "expression": "Can I get a receipt, please?", "meaning": "영수증 주실 수 있어요?",
+         "nuance": "해외에서는 영수증을 물어보고 주는 곳이 많아, 교환·환불이나 경비 처리를 하려면 먼저 요청하는 게 좋습니다. 'Can I get ~?'은 가게에서 무언가를 부탁하는 만능 틀이에요.",
+         "dialogue": "Clerk: Here's your change.\nYou: Can I get a receipt, please?\nClerk: Sure, printed or emailed?\nYou: Printed is fine.",
+         "example": "Can I get a receipt, please? It's for work.", "example_ko": "영수증 주실 수 있어요? 회사 경비라서요.", "practice": "Could you email me the receipt?"}
+      ],
+      "master_paragraph": {
+        "text": "At a small shop in London, I picked up a scarf and asked, 'How much is this?' It was a bit expensive, so I asked, 'Is this on sale?' It wasn't, but the clerk said the blue one was. I asked, 'Do you have this in stock?' and she found one in the back. Before paying, I checked, 'Do you take cards?' Finally, I said, 'Can I get a receipt, please?' — just in case I wanted to return it.",
+        "translation": "런던의 작은 가게에서 스카프를 집어 들고 '이거 얼마예요?'라고 물었다. 조금 비싸서 '이거 세일하는 거예요?'라고 물었다. 그건 아니었지만 점원이 파란색은 세일 중이라고 했다. '이거 재고 있어요?'라고 묻자 창고에서 하나 찾아왔다. 계산 전에 '카드 되나요?'라고 확인했다. 마지막으로 '영수증 주실 수 있어요?'라고 했다 — 혹시 반품하고 싶을 경우를 대비해서.",
+        "highlights": ["How much is this", "on sale", "in stock", "Do you take cards", "Can I get a receipt"]
+      }
+    },
+    {
+      "id": "PACK_EN_080", "theme_key": "shop_staff_en", "theme_category": "everyday_situations",
+      "theme_title": "가게에서 팔 때 — 점원 영어", "theme_title_en": "Working at a Store", "level": "intermediate", "delivery_date": null,
+      "expressions": [
+        {"id": "PACK_EN_080_01", "order": 1, "expression": "Are you finding everything okay?", "meaning": "찾으시는 건 잘 찾고 계세요?",
+         "nuance": "미국 매장 점원이 손님에게 다가가 가장 먼저 하는 말입니다. 'Can I help you?'보다 부담이 적어 손님이 편하게 대답할 수 있어요. 손님이 'I'm just looking'이라고 하면 물러나는 게 예의입니다.",
+         "dialogue": "Staff: Hi there! Are you finding everything okay?\nCustomer: Actually, I'm looking for phone chargers.\nStaff: They're in aisle four, next to the headphones.\nCustomer: Thanks!",
+         "example": "Hi! Are you finding everything okay today?", "example_ko": "안녕하세요! 찾으시는 건 잘 찾고 계세요?", "practice": "Let me know if you need any help."},
+        {"id": "PACK_EN_080_02", "order": 2, "expression": "Let me check in the back for you.", "meaning": "창고에 있는지 확인해 드릴게요.",
+         "nuance": "the back은 매장 뒤쪽 창고를 가리키는 말입니다. 원하는 사이즈나 색이 진열대에 없을 때 쓰며, 'for you'를 붙이면 친절한 인상을 줘요. 'Give me one moment'와 함께 쓰면 좋습니다.",
+         "dialogue": "Customer: Do you have this in a larger size?\nStaff: Let me check in the back for you.\nStaff: Good news — we have one medium left.\nCustomer: Perfect.",
+         "example": "Let me check in the back for you — one moment.", "example_ko": "창고에 있는지 확인해 드릴게요 — 잠시만요.", "practice": "Let me see if another store has it."},
+        {"id": "PACK_EN_080_03", "order": 3, "expression": "That'll be $24.50.", "meaning": "24달러 50센트입니다.",
+         "nuance": "계산대에서 금액을 알려 줄 때의 정형화된 말입니다. 'The total is ~'보다 자연스럽고 짧아요. 달러와 센트는 보통 'twenty-four fifty'처럼 줄여서 읽습니다.",
+         "dialogue": "Staff: That'll be twenty-four fifty.\nCustomer: Here's thirty.\nStaff: Your change is five fifty.\nCustomer: Thanks.",
+         "example": "That'll be $24.50. Will that be cash or card?", "example_ko": "24달러 50센트입니다. 현금이세요, 카드세요?", "practice": "Your total comes to $18.75."},
+        {"id": "PACK_EN_080_04", "order": 4, "expression": "Would you like a bag for that?", "meaning": "봉투 드릴까요?",
+         "nuance": "봉투가 유료인 곳이 많아 계산 전에 꼭 묻는 말입니다. 유료라면 'Bags are ten cents'를 덧붙여요. 영수증을 물을 때도 같은 틀로 'Would you like your receipt?'라고 합니다.",
+         "dialogue": "Staff: Would you like a bag for that?\nCustomer: No thanks, I have one.\nStaff: Great. Would you like your receipt?\nCustomer: Just email it, please.",
+         "example": "Would you like a bag for that? It's ten cents.", "example_ko": "봉투 드릴까요? 10센트예요.", "practice": "Would you like your receipt in the bag?"},
+        {"id": "PACK_EN_080_05", "order": 5, "expression": "We're out of stock, but we can order it for you.", "meaning": "품절인데, 주문해 드릴 수 있어요.",
+         "nuance": "'없어요'로 끝내지 않고 대안을 붙이는 게 판매 영어의 핵심입니다. out of stock(품절)과 함께 'It should be back in by Friday'(금요일쯤 다시 들어와요)처럼 입고 시점을 알려 주면 더 친절해요.",
+         "dialogue": "Customer: Do you have the black one?\nStaff: We're out of stock, but we can order it for you.\nCustomer: How long would that take?\nStaff: About three days. We'll call you when it arrives.",
+         "example": "Sorry, we're out of stock, but we can order it for you.", "example_ko": "죄송해요, 품절인데 주문해 드릴 수 있어요.", "practice": "It should be back in stock next week."}
+      ],
+      "master_paragraph": {
+        "text": "On my first day working at a bookstore in Toronto, I greeted every customer with, 'Are you finding everything okay?' One woman wanted a novel that wasn't on the shelf, so I said, 'Let me check in the back for you.' It was gone, so I told her, 'We're out of stock, but we can order it for you.' At the register, I said, 'That'll be $24.50,' and asked, 'Would you like a bag for that?' By the end of the day, the phrases came out naturally.",
+        "translation": "토론토의 서점에서 일한 첫날, 나는 손님마다 '찾으시는 건 잘 찾고 계세요?'라고 인사했다. 한 여성이 진열대에 없는 소설을 찾아서 '창고에 있는지 확인해 드릴게요'라고 했다. 이미 다 팔려서 '품절인데, 주문해 드릴 수 있어요'라고 말했다. 계산대에서는 '24달러 50센트입니다'라고 하고 '봉투 드릴까요?'라고 물었다. 하루가 끝날 무렵엔 이 말들이 자연스럽게 나왔다.",
+        "highlights": ["Are you finding everything okay", "check in the back for you", "out of stock, but we can order it for you", "That'll be $24.50", "Would you like a bag for that"]
+      }
+    },
+    {
+      "id": "PACK_EN_081", "theme_key": "at_the_bank_en", "theme_category": "everyday_situations",
+      "theme_title": "은행에서 — 계좌·환전·카드 문제", "theme_title_en": "At the Bank", "level": "intermediate", "delivery_date": null,
+      "expressions": [
+        {"id": "PACK_EN_081_01", "order": 1, "expression": "I'd like to open an account.", "meaning": "계좌를 개설하고 싶어요.",
+         "nuance": "'I'd like to ~'는 은행·관공서 창구에서 용건을 말하는 기본 틀입니다. 입출금 계좌는 checking account, 저축 계좌는 savings account라고 구분해서 말하면 대화가 빨라져요.",
+         "dialogue": "Teller: How can I help you today?\nYou: I'd like to open an account.\nTeller: Checking or savings?\nYou: Checking, please. I just moved here for work.",
+         "example": "I'd like to open a checking account, please.", "example_ko": "입출금 계좌를 개설하고 싶어요.", "practice": "What documents do I need to open an account?"},
+        {"id": "PACK_EN_081_02", "order": 2, "expression": "I'd like to withdraw 200 dollars.", "meaning": "200달러 인출하고 싶어요.",
+         "nuance": "withdraw는 '인출하다', 넣는 건 deposit입니다. 창구에서 지폐 단위를 원하면 'in twenties'(20달러짜리로)처럼 덧붙여요. ATM에서 돈을 뽑는 건 구어로 'take out money'라고도 합니다.",
+         "dialogue": "Teller: What can I do for you?\nYou: I'd like to withdraw 200 dollars.\nTeller: How would you like it?\nYou: In twenties, please.",
+         "example": "I'd like to withdraw 200 dollars in twenties.", "example_ko": "20달러짜리로 200달러 인출하고 싶어요.", "practice": "I need to take out some cash."},
+        {"id": "PACK_EN_081_03", "order": 3, "expression": "What's the exchange rate today?", "meaning": "오늘 환율이 얼마예요?",
+         "nuance": "환전할 때 가장 먼저 확인하는 질문입니다. 수수료는 fee 또는 commission이라 'Is there a fee?'를 함께 물어보면 좋아요. 공항 환전소는 환율이 불리한 경우가 많습니다.",
+         "dialogue": "You: What's the exchange rate today?\nTeller: 1,320 won to the dollar.\nYou: Is there a fee?\nTeller: A flat five-dollar fee.",
+         "example": "What's the exchange rate today, and is there a fee?", "example_ko": "오늘 환율이 얼마고, 수수료가 있나요?", "practice": "I'd like to exchange won for dollars."},
+        {"id": "PACK_EN_081_04", "order": 4, "expression": "I'd like to deposit this check.", "meaning": "이 수표를 입금하고 싶어요.",
+         "nuance": "미국에서는 아직 수표(check)가 흔해 월급·보증금 환불을 수표로 받는 경우가 있습니다. 수표 뒷면에 서명하는 것을 endorse라고 해요. 요즘은 앱으로 사진을 찍어 입금하기도 합니다.",
+         "dialogue": "Teller: Next, please.\nYou: I'd like to deposit this check.\nTeller: Could you sign the back for me?\nYou: Sure. When will it clear?",
+         "example": "I'd like to deposit this check into my savings account.", "example_ko": "이 수표를 저축 계좌에 입금하고 싶어요.", "practice": "When will the funds be available?"},
+        {"id": "PACK_EN_081_05", "order": 5, "expression": "There's a charge on my card I don't recognize.", "meaning": "제 카드에 모르는 결제 내역이 있어요.",
+         "nuance": "해외에서 카드 도용이 의심될 때 쓰는 정확한 표현입니다. charge는 '청구된 금액'이에요. 이어서 'I'd like to dispute it'(이의를 제기하고 싶어요), 'Can you freeze my card?'(카드 정지)를 알아 두면 좋습니다.",
+         "dialogue": "You: There's a charge on my card I don't recognize.\nAgent: I'm sorry to hear that. How much was it?\nYou: 480 dollars from an online store.\nAgent: I'll freeze your card and open a dispute.",
+         "example": "There's a charge on my card I don't recognize — can you freeze it?", "example_ko": "제 카드에 모르는 결제 내역이 있어요 — 카드 정지해 주실 수 있나요?", "practice": "I'd like to dispute this charge."}
+      ],
+      "master_paragraph": {
+        "text": "When I moved to Chicago, my first stop was the bank. I told the teller, 'I'd like to open an account,' and then asked, 'What's the exchange rate today?' to change my savings. A week later, I came back and said, 'I'd like to deposit this check' — my first paycheck. I also needed cash, so I said, 'I'd like to withdraw 200 dollars.' A month later, I had to call the bank: 'There's a charge on my card I don't recognize.' They fixed it in ten minutes.",
+        "translation": "시카고로 이사했을 때 제일 먼저 간 곳은 은행이었다. 창구 직원에게 '계좌를 개설하고 싶어요'라고 한 뒤, 모아 둔 돈을 바꾸려고 '오늘 환율이 얼마예요?'라고 물었다. 일주일 뒤 다시 가서 '이 수표를 입금하고 싶어요'라고 했다 — 첫 월급이었다. 현금도 필요해서 '200달러 인출하고 싶어요'라고 했다. 한 달 뒤에는 은행에 전화해야 했다. '제 카드에 모르는 결제 내역이 있어요.' 그들은 10분 만에 해결해 줬다.",
+        "highlights": ["open an account", "What's the exchange rate today", "deposit this check", "withdraw 200 dollars", "a charge on my card I don't recognize"]
+      }
+    },
+    {
+      "id": "PACK_EN_082", "theme_key": "hair_salon_en", "theme_category": "everyday_situations",
+      "theme_title": "미용실에서 원하는 머리 말하기", "theme_title_en": "At the Hair Salon", "level": "beginner", "delivery_date": null,
+      "expressions": [
+        {"id": "PACK_EN_082_01", "order": 1, "expression": "I'd like a haircut, please.", "meaning": "머리 자르고 싶어요.",
+         "nuance": "'I want to cut my hair'라고 하면 내가 직접 자르겠다는 뜻으로 들릴 수 있어요. 미용사가 잘라 주는 것은 'get a haircut'이나 'I'd like a haircut'이라고 합니다.",
+         "dialogue": "Stylist: Hi, what are we doing today?\nYou: I'd like a haircut, please.\nStylist: Sure. Any idea what style?\nYou: I have a picture.",
+         "example": "Hi, I'd like a haircut, please. I don't have an appointment.", "example_ko": "안녕하세요, 머리 자르고 싶어요. 예약은 안 했어요.", "practice": "I need to get a haircut this weekend."},
+        {"id": "PACK_EN_082_02", "order": 2, "expression": "Just a trim, please.", "meaning": "살짝 다듬기만 해 주세요.",
+         "nuance": "trim은 길이를 거의 유지하면서 끝만 정리하는 것입니다. 'Just'를 붙이면 '많이 자르지 마세요'라는 의도가 분명해져요. 얼마나 자를지는 손가락으로 보여 주며 'about an inch'처럼 말하면 확실합니다.",
+         "dialogue": "Stylist: How much do you want off?\nYou: Just a trim, please. About an inch.\nStylist: Got it. Same shape?\nYou: Yes, just cleaner.",
+         "example": "Just a trim, please — I'm growing it out.", "example_ko": "살짝 다듬기만 해 주세요 — 기르는 중이에요.", "practice": "Could you just clean up the ends?"},
+        {"id": "PACK_EN_082_03", "order": 3, "expression": "Could you take a little off the sides?", "meaning": "옆머리를 조금 쳐 주시겠어요?",
+         "nuance": "'take off'는 머리 길이를 '덜어 내다'라는 뜻으로 미용실에서 가장 많이 쓰는 동사입니다. the sides(옆), the back(뒤), the top(윗머리)만 알면 원하는 부위를 정확히 말할 수 있어요.",
+         "dialogue": "Stylist: Anything else?\nYou: Could you take a little off the sides?\nStylist: Sure. Leave the top long?\nYou: Yes, please.",
+         "example": "Could you take a little off the sides and leave the top?", "example_ko": "옆머리를 조금 쳐 주시고 윗머리는 그대로 둬 주시겠어요?", "practice": "Could you thin it out a little on top?"},
+        {"id": "PACK_EN_082_04", "order": 4, "expression": "Not too short, please.", "meaning": "너무 짧지 않게 해 주세요.",
+         "nuance": "해외 미용실에서는 생각보다 짧게 잘리는 일이 흔해서, 자르기 시작하기 전에 미리 꼭 해 두면 좋은 말입니다. 바리캉 길이를 숫자로 말하는 곳도 많아요(a number four). 앞머리는 미국에서 bangs, 영국에서 fringe라고 해요.",
+         "dialogue": "Stylist: Short on the sides?\nYou: Not too short, please.\nStylist: How about a number four clipper?\nYou: Sounds good.",
+         "example": "Not too short, please. I'd like to keep my bangs.", "example_ko": "너무 짧지 않게 해 주세요. 앞머리는 남겨 두고 싶어요.", "practice": "Could you leave it a bit longer in the front?"},
+        {"id": "PACK_EN_082_05", "order": 5, "expression": "How much do I owe you?", "meaning": "얼마 드리면 되죠?",
+         "nuance": "서비스를 받은 뒤 값을 물을 때 자연스러운 말입니다. owe는 '빚지다'지만 여기서는 '제가 드릴 돈이 얼마죠?'라는 가벼운 뜻이에요. 미국은 미용실에서도 15~20% 팁을 주는 게 일반적입니다.",
+         "dialogue": "You: That looks great. How much do I owe you?\nStylist: Forty-five.\nYou: Here's fifty-five. Keep the change.\nStylist: Thank you so much!",
+         "example": "That looks great! How much do I owe you?", "example_ko": "정말 좋네요! 얼마 드리면 되죠?", "practice": "Do you take tips on the card?"}
+      ],
+      "master_paragraph": {
+        "text": "Getting a haircut abroad always made me nervous. This time, I walked in and said, 'I'd like a haircut, please,' and showed a photo. I told the stylist, 'Just a trim, please,' and asked, 'Could you take a little off the sides?' When she picked up the clippers, I quickly added, 'Not too short, please.' It turned out perfect. At the end, I smiled and asked, 'How much do I owe you?' — and left a good tip.",
+        "translation": "해외에서 머리를 자르는 건 늘 긴장됐다. 이번엔 들어가서 '머리 자르고 싶어요'라고 하고 사진을 보여 줬다. 미용사에게 '살짝 다듬기만 해 주세요'라고 하고 '옆머리를 조금 쳐 주시겠어요?'라고 물었다. 그녀가 바리캉을 들자 얼른 '너무 짧지 않게 해 주세요'라고 덧붙였다. 결과는 완벽했다. 마지막에 웃으며 '얼마 드리면 되죠?'라고 묻고, 팁을 넉넉히 남겼다.",
+        "highlights": ["I'd like a haircut", "Just a trim", "take a little off the sides", "Not too short", "How much do I owe you"]
+      }
+    },
+    {
+      "id": "PACK_EN_083", "theme_key": "phone_calls_appointments_en", "theme_category": "everyday_situations",
+      "theme_title": "전화로 예약·문의하기", "theme_title_en": "Making Calls and Appointments", "level": "intermediate", "delivery_date": null,
+      "expressions": [
+        {"id": "PACK_EN_083_01", "order": 1, "expression": "Hi, this is Min calling from ABC.", "meaning": "안녕하세요, ABC의 민입니다.",
+         "nuance": "전화에서 자기소개는 'I am ~'이 아니라 **'This is ~'**라고 합니다. 소속을 밝힐 땐 'calling from ~'. 받는 쪽이 누구냐고 물으면 'Who's calling, please?'라고 해요.",
+         "dialogue": "Receptionist: Good morning, Dr. Kim's office.\nYou: Hi, this is Min calling from ABC Company.\nReceptionist: How can I help you?\nYou: I'm calling about my appointment on Friday.",
+         "example": "Hi, this is Min calling from ABC. Is Sarah available?", "example_ko": "안녕하세요, ABC의 민입니다. 사라 씨 통화 가능할까요?", "practice": "Hi, this is Jay. I'm returning your call."},
+        {"id": "PACK_EN_083_02", "order": 2, "expression": "I'm calling to make an appointment.", "meaning": "예약하려고 전화했어요.",
+         "nuance": "'I'm calling to ~'로 용건을 바로 밝히면 통화가 짧고 분명해집니다. 병원·미용실·상담은 appointment, 식당·호텔은 reservation이라고 구분해요.",
+         "dialogue": "Receptionist: How can I help you?\nYou: I'm calling to make an appointment.\nReceptionist: Sure. Is this your first visit?\nYou: Yes, it is.",
+         "example": "I'm calling to make an appointment for next Tuesday.", "example_ko": "다음 주 화요일로 예약하려고 전화했어요.", "practice": "I'm calling to reschedule my appointment."},
+        {"id": "PACK_EN_083_03", "order": 3, "expression": "Could I leave a message?", "meaning": "메시지 남겨도 될까요?",
+         "nuance": "찾는 사람이 없을 때 쓰는 말입니다. 받는 쪽은 'Can I take a message?'라고 해요. leave(남기다)와 take(받아 두다)의 방향이 다르니 짝으로 기억하세요.",
+         "dialogue": "Receptionist: I'm sorry, he's in a meeting.\nYou: Could I leave a message?\nReceptionist: Of course. Go ahead.\nYou: Please ask him to call me back before five.",
+         "example": "Could I leave a message for Ms. Park?", "example_ko": "박 선생님께 메시지 남겨도 될까요?", "practice": "Can I take a message?"},
+        {"id": "PACK_EN_083_04", "order": 4, "expression": "Sorry, I think you have the wrong number.", "meaning": "죄송한데 잘못 거신 것 같아요.",
+         "nuance": "모르는 사람이 다른 사람을 찾을 때 쓰는 정중한 말입니다. 'I think'를 넣으면 단정하지 않아 부드러워요. 내가 잘못 걸었을 땐 'Sorry, wrong number'라고 짧게 끊으면 됩니다.",
+         "dialogue": "Caller: Is this Tony's Pizza?\nYou: Sorry, I think you have the wrong number.\nCaller: Oh, is this 555-0142?\nYou: No, it's 555-0124.",
+         "example": "Sorry, I think you have the wrong number. There's no Mike here.", "example_ko": "죄송한데 잘못 거신 것 같아요. 여기 마이크라는 사람은 없어요.", "practice": "Sorry, I must have dialed the wrong number."},
+        {"id": "PACK_EN_083_05", "order": 5, "expression": "Could you speak a little slower, please?", "meaning": "조금 천천히 말씀해 주시겠어요?",
+         "nuance": "전화는 표정이 안 보여 알아듣기 더 어렵습니다. 모른 척 넘어가지 말고 이 말로 속도를 늦추는 게 오히려 프로다워요. 'Could you repeat that?', 'Could you spell that for me?'도 함께 알아 두세요.",
+         "dialogue": "Agent: Your confirmation number is K-L-7-4-...\nYou: Sorry, could you speak a little slower, please?\nAgent: Of course. K, L, seven, four, nine.\nYou: Got it. Thank you.",
+         "example": "Sorry, could you speak a little slower, please? The line isn't great.", "example_ko": "죄송한데 조금 천천히 말씀해 주시겠어요? 연결 상태가 안 좋아서요.", "practice": "Could you spell your last name for me?"}
+      ],
+      "master_paragraph": {
+        "text": "Phone calls in English used to terrify me. Now I start with, 'Hi, this is Min calling from ABC,' and say, 'I'm calling to make an appointment.' When the person I need isn't there, I ask, 'Could I leave a message?' If someone talks too fast, I simply say, 'Could you speak a little slower, please?' And when a stranger calls asking for a pizza place, I laugh and say, 'Sorry, I think you have the wrong number.'",
+        "translation": "예전엔 영어 전화가 정말 무서웠다. 이제는 '안녕하세요, ABC의 민입니다'로 시작해서 '예약하려고 전화했어요'라고 말한다. 찾는 사람이 없으면 '메시지 남겨도 될까요?'라고 묻는다. 상대가 너무 빨리 말하면 그냥 '조금 천천히 말씀해 주시겠어요?'라고 한다. 그리고 모르는 사람이 피자 가게를 찾으며 전화하면 웃으며 '죄송한데 잘못 거신 것 같아요'라고 한다.",
+        "highlights": ["this is Min calling from ABC", "calling to make an appointment", "Could I leave a message", "speak a little slower", "you have the wrong number"]
+      }
+    },
+    {
+      "id": "PACK_EN_084", "theme_key": "package_problems_en", "theme_category": "everyday_situations",
+      "theme_title": "택배·배송 문제 해결하기", "theme_title_en": "Sorting Out Delivery Problems", "level": "advanced", "delivery_date": null,
+      "expressions": [
+        {"id": "PACK_EN_084_01", "order": 1, "expression": "My package shows as delivered, but it never showed up.", "meaning": "배송 완료로 떠 있는데 물건이 안 왔어요.",
+         "nuance": "'show as ~'는 '(시스템상) ~로 표시되다', 'show up'은 '나타나다'라서 같은 동사를 두 번 쓰는 원어민식 말투입니다. 상담원에게 상황을 한 문장으로 정확히 전달하는 첫 줄이에요.",
+         "dialogue": "Agent: How can I help you today?\nYou: My package shows as delivered, but it never showed up.\nAgent: I'm sorry. Could you give me the tracking number?\nYou: Sure, it's 1Z-448-921.",
+         "example": "My package shows as delivered, but it never showed up at my door.", "example_ko": "배송 완료로 떠 있는데 물건이 문 앞에 안 왔어요.", "practice": "The tracking hasn't updated in five days."},
+        {"id": "PACK_EN_084_02", "order": 2, "expression": "The box came crushed and the item is damaged.", "meaning": "상자가 찌그러져서 왔고 물건이 파손됐어요.",
+         "nuance": "파손을 신고할 때는 상자 상태와 물건 상태를 나눠 말하면 보상 처리가 빨라집니다. 사진을 요청받을 테니 'I have photos of both'를 덧붙이면 좋아요.",
+         "dialogue": "You: The box came crushed and the item is damaged.\nAgent: I'm so sorry. Do you have photos?\nYou: Yes, of the box and the item.\nAgent: Great, please upload them to this link.",
+         "example": "The box came crushed and the item is damaged — I have photos.", "example_ko": "상자가 찌그러져서 왔고 물건이 파손됐어요 — 사진 있어요.", "practice": "The screen was cracked when I opened it."},
+        {"id": "PACK_EN_084_03", "order": 3, "expression": "Could you reship it or issue a refund?", "meaning": "다시 보내 주시거나 환불해 주실 수 있나요?",
+         "nuance": "원하는 해결책을 두 개 제시하면 상담원이 고르기 쉬워 처리가 빨라집니다. issue a refund는 '환불을 처리하다'라는 업계 표현이에요. 원하는 쪽이 분명하면 하나만 말하세요.",
+         "dialogue": "Agent: What would you like us to do?\nYou: Could you reship it or issue a refund?\nAgent: I can reship it today with express shipping.\nYou: That works. Thank you.",
+         "example": "Could you reship it or issue a refund, whichever is faster?", "example_ko": "다시 보내 주시거나 환불해 주실 수 있나요? 더 빠른 쪽으로요.", "practice": "I'd prefer a full refund, please."},
+        {"id": "PACK_EN_084_04", "order": 4, "expression": "Could you have it left at the front desk?", "meaning": "프런트에 맡겨 달라고 해 주실 수 있나요?",
+         "nuance": "'have + 물건 + p.p.'는 '누군가 ~하게 하다'라는 사역 구조입니다. 배달 기사에게 직접이 아니라 회사를 통해 요청할 때 딱 맞아요. 문 앞은 'leave it at the door'.",
+         "dialogue": "You: I won't be home tomorrow. Could you have it left at the front desk?\nAgent: Sure, I'll add that note to the delivery.\nYou: Thanks. Will someone need to sign?\nAgent: No signature required.",
+         "example": "I'm at work all day — could you have it left at the front desk?", "example_ko": "종일 회사에 있어서요 — 프런트에 맡겨 달라고 해 주실 수 있나요?", "practice": "Please leave it with my neighbor in 3B."},
+        {"id": "PACK_EN_084_05", "order": 5, "expression": "I'd like to file a claim for a lost package.", "meaning": "분실 택배 보상 신청을 하고 싶어요.",
+         "nuance": "file a claim은 '(보험·보상) 청구를 하다'라는 공식 표현입니다. 판매자가 해결해 주지 않을 때 배송 회사에 직접 청구하는 단계에서 써요. 청구 번호(claim number)를 꼭 받아 두세요.",
+         "dialogue": "You: I'd like to file a claim for a lost package.\nAgent: Of course. When was it supposed to arrive?\nYou: Last Monday. It's been a week.\nAgent: I've opened the claim. Your claim number is 7731.",
+         "example": "It's been ten days, so I'd like to file a claim for a lost package.", "example_ko": "열흘이 지나서, 분실 택배 보상 신청을 하고 싶어요.", "practice": "Could I get a claim number for my records?"}
+      ],
+      "master_paragraph": {
+        "text": "Online shopping is easy until something goes wrong. Last month, I called customer service and said, 'My package shows as delivered, but it never showed up.' When the replacement finally came, the box came crushed and the item was damaged. I sent photos and asked, 'Could you reship it or issue a refund?' This time I asked them to have it left at the front desk. When a third order went missing, I didn't wait — I filed a claim for a lost package the same day.",
+        "translation": "온라인 쇼핑은 뭔가 잘못되기 전까지만 쉽다. 지난달 고객센터에 전화해 '배송 완료로 떠 있는데 물건이 안 왔어요'라고 했다. 마침내 대체품이 왔을 땐 상자가 찌그러져 있었고 물건은 파손돼 있었다. 사진을 보내고 '다시 보내 주시거나 환불해 주실 수 있나요?'라고 물었다. 이번엔 프런트에 맡겨 달라고 요청했다. 세 번째 주문까지 사라지자 기다리지 않았다 — 그날 바로 분실 택배 보상을 신청했다.",
+        "highlights": ["shows as delivered, but it never showed up", "the box came crushed and the item was damaged", "reship it or issue a refund", "have it left at the front desk", "filed a claim for a lost package"]
+      }
+    }
+  ]
+}

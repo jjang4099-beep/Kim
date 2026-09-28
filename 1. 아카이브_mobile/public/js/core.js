@@ -118,6 +118,11 @@ const FEED_CHIP_MAP = {
   daily_wisdom:    { icon: '📜', label: '오늘의 지혜', color: '#92400e' },
 };
 
+/* 영어 단어·구문이 쓰이는 자리와 난이도 라벨 — 배달 카드·서재 상세 공용 (09-28~) */
+const WORD_DOMAIN_LABEL = { news: '📰 뉴스', daily: '💬 일상 대화', business: '💼 비즈니스' };
+const PATTERN_REGISTER_LABEL = { daily: '💬 일상 대화', business: '💼 비즈니스', any: '🔁 어디서나' };
+const LEVEL_LABEL = { beginner: '초급', intermediate: '중급', advanced: '고급' };
+
 /* Archive Row 모노그램 맵 (subId → 약어 코드 + 영문 전칭) */
 const FEED_ARCHIVE_MAP = {
   en_expr    : { code: 'EN',  full: 'English Expression' },

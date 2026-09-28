@@ -35,6 +35,8 @@ const k = scanDir(path.join(BASE, 'knowledge_db'), [
   { key: 'chinese_expressions', prefix: 'ZH' },
   { key: 'idioms_and_quotes',   prefix: 'IQ' },
   { key: 'history_facts',       prefix: 'HI' },
+  { key: 'english_words',       prefix: 'WD' },
+  { key: 'english_patterns',    prefix: 'PT' },
 ]);
 const e = scanDir(path.join(BASE, 'exam_db'), [
   { key: 'exam_vocab_themes', prefix: 'EV_PACK', nested: { field: 'words', prefix: 'EV' } },
@@ -52,6 +54,8 @@ console.log(line('영어 표현', 'EN', k.english_expressions.max, k.english_exp
 console.log(line('중국어 표현', 'ZH', k.chinese_expressions.max, k.chinese_expressions.count));
 console.log(line('명언·고사(구버전)', 'IQ', k.idioms_and_quotes.max, k.idioms_and_quotes.count));
 console.log(line('역사 상식', 'HI', k.history_facts.max, k.history_facts.count));
+console.log(line('영어 단어', 'WD', k.english_words.max, k.english_words.count));
+console.log(line('영어 구문', 'PT', k.english_patterns.max, k.english_patterns.count));
 console.log('=== 직장인 work_db (오늘 신규) ===');
 console.log(line('고전 LIBER', 'CLQ', w.classic_quotes.max, w.classic_quotes.count));
 console.log(line('고사성어', 'IDC', w.idiom_cards.max, w.idiom_cards.count));

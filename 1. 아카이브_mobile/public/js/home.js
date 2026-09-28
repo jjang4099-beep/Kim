@@ -1424,6 +1424,9 @@ Object.assign(Mob, {
       }
       /* 팩 전체 저장 시 함께 배달된 '오늘의 단어'도 feedData에 남아 있다 — 배달 카드와 같은 모양으로 */
       const wordEntries = item.wordEntries || fd.wordEntries || [];
+      /* 오늘의 구문(09-28~)도 팩 전체 저장 시 feedData에 함께 남는다 */
+      const patternEntry = item.patternEntry || fd.patternEntry || null;
+      if (patternEntry && this._renderPatternCard) body += this._renderPatternCard(patternEntry);
       if (wordEntries.length && this._renderWordTrack) body += this._renderWordTrack(wordEntries);
 
     } else if (cat === 'en') {

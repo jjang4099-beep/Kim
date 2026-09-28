@@ -6170,6 +6170,45 @@ html[data-theme="dark"] .mob-life-note-input { background: var(--bg); }
   background: var(--bg); font-size: 13px; color: var(--text-1); line-height: 1.6;
 }
 .mob-wd-ex-ko { display: block; margin-top: 4px; font-size: 12.5px; color: var(--text-3); }
+/* 단어가 쓰이는 자리(뉴스·일상·비즈니스)와 난이도 뱃지 — 같은 단어라도 어디서 쓰는지가 먼저 보이게 */
+.mob-wd-tag {
+  display: inline-block; font-size: 10.5px; font-weight: 600; padding: 1px 7px;
+  border-radius: 20px; border: 1px solid var(--border); color: var(--text-2); background: var(--bg);
+}
+.mob-wd-tag.lv { color: var(--text-3); }
+
+/* ── 오늘의 구문 (문장을 여는 틀) ── 언제 쓰나 → 형태 → 예문 → 흔한 실수 → 비슷한 틀과 차이 */
+.mob-pt-block {
+  margin: 14px 0 0; padding: 14px 0 2px;
+  border-top: 1px dashed var(--border);
+}
+.mob-pt-card {
+  border: 1px solid var(--border); border-radius: 12px; background: var(--surface);
+  padding: 13px 14px 12px;
+}
+.mob-pt-head { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 6px; }
+.mob-pt-pattern {
+  font-size: 17px; font-weight: 700; color: var(--text-1); letter-spacing: -.01em; line-height: 1.45;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+.mob-pt-meaning { font-size: 13.5px; color: var(--text-2); margin-top: 3px; line-height: 1.55; }
+.mob-pt-sect { margin-top: 10px; font-size: 13px; color: var(--text-2); line-height: 1.7; }
+.mob-pt-struct {
+  margin-top: 10px; padding: 7px 10px; border-radius: 8px; background: var(--bg);
+  font-size: 12.5px; color: var(--text-1); font-family: 'DM Sans', system-ui, sans-serif;
+}
+.mob-pt-ex { margin: 8px 0 0; padding: 0; list-style: none; }
+.mob-pt-ex li {
+  padding: 8px 10px; border-radius: 8px; background: var(--bg); margin-top: 6px;
+  font-size: 13px; color: var(--text-1); line-height: 1.6;
+}
+.mob-pt-ex li span { display: block; margin-top: 3px; font-size: 12.5px; color: var(--text-3); }
+.mob-pt-body { display: none; }
+.mob-pt-card.fv-open .mob-pt-body { display: block; }
+.mob-pt-more {
+  margin-top: 10px; padding: 4px 0; background: none; border: 0; font-size: 12.5px;
+  color: var(--accent); cursor: pointer;
+}
 
 
 /* ══ LIGHT-INDIGO-OVERRIDES ══ */

@@ -58,7 +58,8 @@ const EXAM_SETTINGS_PATH     = path.join(_DATA_DIR, 'exam_settings.json');
 /* 영어 테마 카테고리 — 관리 화면 체크박스·시드 검증이 같은 목록을 본다.
    여기에 없는 값으로 팩을 만들면 어떤 설정으로도 매칭되지 않아 콘텐츠가 죽는다.
    (옛 office_email은 2026-09에 폐기됨) */
-const EN_THEME_CATEGORIES = new Set(['business_meeting', 'daily_travel', 'drama_spoken']);
+/* everyday_situations(09-28~): 날씨·가게에서 사고팔기·은행·미용실·전화 예약·택배처럼 '상황'별로 떼어 낸 표현 */
+const EN_THEME_CATEGORIES = new Set(['business_meeting', 'daily_travel', 'drama_spoken', 'everyday_situations']);
 
 // DOMAINS / CATEGORY_TO_DOMAIN / getDomain / MODE_EXAM / MODE_PRO / normalizeMode / deriveItemMode
 // → public/lib/domain.js로 이관 (db/items.js와 공유)
@@ -1677,7 +1678,7 @@ let _kdb = null;
 function loadKnowledgeDB() {
   if (_kdb) return _kdb;
   const dbDir = path.join(__dirname, 'data', 'knowledge_db');
-  const db = { english_expressions: [], chinese_expressions: [], idioms_and_quotes: [], history_facts: [], english_theme_packs: [], english_words: [] };
+  const db = { english_expressions: [], chinese_expressions: [], idioms_and_quotes: [], history_facts: [], english_theme_packs: [], english_words: [], english_patterns: [] };
   try {
     if (!fs.existsSync(dbDir)) { _kdb = db; return db; }
     const files = fs.readdirSync(dbDir).filter(f => f.endsWith('.json')).sort();
@@ -1689,7 +1690,7 @@ function loadKnowledgeDB() {
         }
       } catch (e) { console.warn(`[KnowledgeDB] ${file} 파싱 실패:`, e.message); }
     }
-    console.log(`[KnowledgeDB] 로드 완료 EN:${db.english_expressions.length} ZH:${db.chinese_expressions.length} IQ:${db.idioms_and_quotes.length} HI:${db.history_facts.length} WD:${db.english_words.length}`);
+    console.log(`[KnowledgeDB] 로드 완료 EN:${db.english_expressions.length} ZH:${db.chinese_expressions.length} IQ:${db.idioms_and_quotes.length} HI:${db.history_facts.length} WD:${db.english_words.length} PT:${db.english_patterns.length}`);
   } catch (e) { console.warn('[KnowledgeDB] 로드 실패:', e.message); }
   _kdb = db;
   return db;
@@ -1703,15 +1704,33 @@ function loadKnowledgeDB() {
  *
  * 레벨이 맞는 게 모자라면 전체 풀에서 채운다(_pickFlatPoolTopUp과 같은 방식).
  */
+/* 단어는 쓰이는 자리가 다르다 — 뉴스·일상 대화·비즈니스에서 쓰는 어휘가 따로 있다(09-28 사용자 피드백).
+   그래서 하루 3개를 영역별로 하나씩 뽑아, 카드에 '📰 뉴스 · 중급'처럼 어디서 쓰는 말인지 붙여 보낸다. */
+const WORD_DOMAINS = ['news', 'daily', 'business'];
 function _pickDailyWords(level, recentIds, count = 3) {
   if (count <= 0) return [];
   const pool = loadKnowledgeDB().english_words || [];
   if (!pool.length) return [];
-  const byLevel = level ? pool.filter(w => w.level === level) : [];
-  const base = byLevel.length >= count ? byLevel : pool;
-  return pickUnseenItems(base, recentIds, count).map(w => ({
+  const domOf  = w => w.domain || 'business';
+  const picked = [];
+  for (const dom of WORD_DOMAINS.slice(0, count)) {
+    const inDom = pool.filter(w => domOf(w) === dom && !picked.includes(w));
+    const lvl   = level ? inDom.filter(w => w.level === level) : [];
+    const base  = lvl.length ? lvl : inDom;           // 레벨이 없으면 같은 영역의 다른 레벨로
+    if (!base.length) continue;
+    const [w] = pickUnseenItems(base, recentIds, 1);
+    if (w) picked.push(w);
+  }
+  if (picked.length < count) {                        // 영역이 모자라면 예전처럼 레벨 기준으로 채운다
+    const rest = pool.filter(w => !picked.includes(w));
+    const byLevel = level ? rest.filter(w => w.level === level) : [];
+    picked.push(...pickUnseenItems(byLevel.length ? byLevel : rest, recentIds, count - picked.length));
+  }
+  return picked.map(w => ({
     item_id:      w.id,
     word:         w.word,
+    domain:       domOf(w),
+    level:        w.level        || '',
     pos:          w.pos          || '',
     meaning:      w.meaning      || '',
     collocations: Array.isArray(w.collocations) ? w.collocations : [],
@@ -1720,6 +1739,30 @@ function _pickDailyWords(level, recentIds, count = 3) {
     example:      w.example      || '',
     exampleKo:    w.example_ko   || '',
   }));
+}
+
+/**
+ * 오늘의 구문 — "I'm not sure I should ~"처럼 문장을 여는 틀 하나를, 언제·어떻게 쓰는지와 함께.
+ * 표현(통째로 외우는 말)·단어와 별개 트랙. 영어 카드에 한 장 붙는다.
+ */
+function _pickDailyPattern(level, recentIds) {
+  const pool = loadKnowledgeDB().english_patterns || [];
+  if (!pool.length) return null;
+  const byLevel = level ? pool.filter(p => p.level === level) : [];
+  const [p] = pickUnseenItems(byLevel.length ? byLevel : pool, recentIds, 1);
+  if (!p) return null;
+  return {
+    item_id:   p.id,
+    pattern:   p.pattern,
+    meaning:   p.meaning   || '',
+    level:     p.level     || '',
+    register:  p.register  || 'daily',
+    when:      p.when      || '',
+    structure: p.structure || '',
+    examples:  Array.isArray(p.examples) ? p.examples : [],
+    mistake:   p.mistake   || '',
+    similar:   p.similar   || '',
+  };
 }
 
 function pickUnseenItems(pool, recentIds, count) {
@@ -1750,6 +1793,9 @@ function getRecentDeliveredIDs(subId, days = 60) {
       const feed = feeds?.[key];
       if (!feed) continue;
       if (Array.isArray(feed.vocabEntries)) feed.vocabEntries.forEach(e => { if (e.item_id) ids.push(e.item_id); });
+      /* 09-28 점검: 오늘의 단어·구문은 여기서 빠져 있어 중복 방지가 전혀 안 되고 있었다 */
+      if (Array.isArray(feed.wordEntries))  feed.wordEntries.forEach(e => { if (e.item_id) ids.push(e.item_id); });
+      if (feed.patternEntry?.item_id) ids.push(feed.patternEntry.item_id);
       if (feed.item_id)  ids.push(feed.item_id);
       if (feed.pack_id)  ids.push(feed.pack_id);
     }
@@ -1824,7 +1870,8 @@ function _tryEnThemePackFeed(sub, feedCfg) {
   }
 
   /* 오늘의 단어 — 표현과 별개 트랙. 같은 subId 이력으로 중복을 피한다 */
-  const wordEntries = _pickDailyWords(level, getRecentDeliveredIDs(sub.id, 30), 3);
+  const wordEntries  = _pickDailyWords(level, getRecentDeliveredIDs(sub.id, 60), 3);
+  const patternEntry = _pickDailyPattern(level, getRecentDeliveredIDs(sub.id, 120));
 
   console.log(`[SQLite EnTheme] 서빙: ${theme.pack_id} (${theme.theme_title}) [${theme.theme_category || '미분류'}/${theme.level}] 표현 ${vocabEntries.length}개 + 단어 ${wordEntries.length}개`);
   return {
@@ -1840,6 +1887,7 @@ function _tryEnThemePackFeed(sub, feedCfg) {
     dayOfWeek:     dayKr,
     vocabEntries,
     wordEntries,
+    patternEntry,
     masterParagraph: {
       text:        theme.master_paragraph_en,
       translation: theme.master_paragraph_ko,
@@ -1894,7 +1942,8 @@ function _tryKnowledgeDbLanguageFeed(sub, langKey, lang, count, level) {
   }));
   /* 오늘의 단어 — 팩 경로(Tier 1)와 동일하게 붙인다. 여기서 빠뜨리면
      평면 풀로 떨어진 사용자만 단어를 못 받는다. */
-  const wordEntries = _pickDailyWords(level, getRecentDeliveredIDs(sub.id, 30), 3);
+  const wordEntries  = langKey === 'en' ? _pickDailyWords(level, getRecentDeliveredIDs(sub.id, 60), 3) : [];
+  const patternEntry = langKey === 'en' ? _pickDailyPattern(level, getRecentDeliveredIDs(sub.id, 120)) : null;
   console.log(`[KnowledgeDB] 언어피드 DB 서빙 (${sub.id}) 표현 ${items.length}개 + 단어 ${wordEntries.length}개`);
   return {
     type:        'language',
@@ -1908,6 +1957,7 @@ function _tryKnowledgeDbLanguageFeed(sub, langKey, lang, count, level) {
     dayOfWeek:   dayKr,
     vocabEntries,
     wordEntries,
+    patternEntry,
     aiGenerated: false
   };
 }

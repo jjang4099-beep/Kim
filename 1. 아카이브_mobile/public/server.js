@@ -1715,9 +1715,13 @@ function _pickDailyWords(level, recentIds, count = 3) {
   const picked = [];
   for (const dom of WORD_DOMAINS.slice(0, count)) {
     const inDom = pool.filter(w => domOf(w) === dom && !picked.includes(w));
-    const lvl   = level ? inDom.filter(w => w.level === level) : [];
-    const base  = lvl.length ? lvl : inDom;           // 레벨이 없으면 같은 영역의 다른 레벨로
-    if (!base.length) continue;
+    if (!inDom.length) continue;
+    /* 같은 영역 안에서 ① 내 레벨의 안 본 단어 → ② 다른 레벨의 안 본 단어 → ③ 그래도 없으면 내 레벨에서 반복.
+       (영역×레벨 칸이 7~9개뿐이라, 예전처럼 레벨 칸만 보면 일주일 만에 같은 단어가 돌아왔다) */
+    const unseen = inDom.filter(w => !recentIds.includes(w.id));
+    const lvlUnseen = level ? unseen.filter(w => w.level === level) : unseen;
+    const lvlAll    = level ? inDom.filter(w => w.level === level) : inDom;
+    const base = lvlUnseen.length ? lvlUnseen : unseen.length ? unseen : (lvlAll.length ? lvlAll : inDom);
     const [w] = pickUnseenItems(base, recentIds, 1);
     if (w) picked.push(w);
   }
@@ -1748,8 +1752,10 @@ function _pickDailyWords(level, recentIds, count = 3) {
 function _pickDailyPattern(level, recentIds) {
   const pool = loadKnowledgeDB().english_patterns || [];
   if (!pool.length) return null;
-  const byLevel = level ? pool.filter(p => p.level === level) : [];
-  const [p] = pickUnseenItems(byLevel.length ? byLevel : pool, recentIds, 1);
+  /* 내 레벨의 안 본 구문 → 다른 레벨의 안 본 구문 → 반복 (레벨별 구문이 10개 안팎이라 레벨 칸만 보면 금방 되풀이된다) */
+  const unseen = pool.filter(p => !recentIds.includes(p.id));
+  const lvlUnseen = level ? unseen.filter(p => p.level === level) : unseen;
+  const [p] = pickUnseenItems(lvlUnseen.length ? lvlUnseen : unseen.length ? unseen : pool, recentIds, 1);
   if (!p) return null;
   return {
     item_id:   p.id,
@@ -1863,7 +1869,9 @@ function _tryEnThemePackFeed(sub, feedCfg) {
   /* 설정한 개수가 팩 기본 개수(현재 전부 5개)보다 많으면 플랫 풀에서 부족분을 보충,
      더 적으면 그만큼만 잘라낸다 — "배달 개수" 설정이 실제로 반영되도록 */
   if (wantCount && vocabEntries.length < wantCount) {
-    const excludeIds = new Set(vocabEntries.map(v => v.item_id));
+    /* 09-28 점검: 예전엔 오늘 팩의 표현만 빼고 뽑아서, 같은 보충 표현이 일주일에 세 번 나온 적도 있다(EN_207, 09-20·21·24).
+       최근 60일 배달분까지 빼고 뽑는다. */
+    const excludeIds = new Set([...vocabEntries.map(v => v.item_id), ...getRecentDeliveredIDs(sub.id, 60)]);
     vocabEntries = vocabEntries.concat(_pickFlatPoolTopUp('en', level, excludeIds, wantCount - vocabEntries.length));
   } else if (wantCount && vocabEntries.length > wantCount) {
     vocabEntries = vocabEntries.slice(0, wantCount);

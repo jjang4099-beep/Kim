@@ -22,17 +22,6 @@
    "example_ko": "그 배우 이름 아는데 — 입에서 맴도네요. 잠깐만요."
   },
   {
-   "id": "EN_102",
-   "expression": "I'm all over the place today.",
-   "meaning": "오늘 정신이 하나도 없어요. / 너무 산만해요.",
-   "level": "beginner",
-   "theme": "daily-life",
-   "example": "Sorry I keep losing track of what I was saying — I'm all over the place today.",
-   "dialogue": "A: You seem distracted. Everything okay?\nB: I'm all over the place today — barely slept, missed my alarm, and I forgot my laptop at home. Today is not my day.",
-   "nuance": "머리가 여기저기 흩어져 있다는 뜻으로, 집중이 안 되거나 감정이 오락가락할 때 씁니다. 사람이 아니라 발표나 글에 쓰면 \"두서없다\"는 비판이 됩니다(\"The presentation was all over the place\"). 자기 상태를 말할 때는 사과의 쿠션이 되어 상대가 이해해 줍니다.",
-   "example_ko": "자꾸 말하다 흐름을 놓쳐서 죄송해요 — 오늘 정신이 하나도 없네요."
-  },
-  {
    "id": "EN_103",
    "expression": "That really hit home.",
    "meaning": "그 말이 가슴에 와 닿았어요. / 정말 공감이 됐어요.",
@@ -346,10 +335,10 @@
    "meaning": "어떤 힘든 일에도 밝은 면이 있어요. (전화위복 긍정 표현)",
    "level": "beginner",
    "theme": "life-advice",
-   "example": "The pandemic was devastating, but for many small businesses every cloud has a silver lining — they found entirely new customer bases online.",
+   "example": "Losing that client hurt, but every cloud has a silver lining — now we finally have time to fix our process.",
    "dialogue": "A: I'm gutted we didn't win the pitch.\nB: Every cloud has a silver lining. We learned a lot about how we present our pricing, and the feedback they gave us is going to make our next pitch much stronger.",
    "nuance": "먹구름 가장자리에 햇빛이 비쳐 은색으로 빛나는 모습에서 온 속담입니다. \"blessing in disguise\"가 지나고 보니 좋은 일이었다는 쪽이라면, 이 표현은 힘든 일 속에서도 좋은 면을 찾자는 쪽입니다. 대화에서는 \"The silver lining is...\"로 줄여 더 자주 씁니다.",
-   "example_ko": "팬데믹은 참혹했지만, 많은 작은 가게들에겐 좋은 면도 있었어요 — 온라인에서 완전히 새로운 고객층을 찾았거든요."
+   "example_ko": "그 고객을 잃은 건 아팠지만, 전화위복이라고 — 이제야 우리 프로세스를 고칠 시간이 생겼어요."
   },
   {
    "id": "EN_136",
@@ -383,17 +372,6 @@
    "dialogue": "A: Did you say the server was stable again?\nB: I spoke too soon. It went down again about twenty minutes after I sent that update. I'm sorry — we're still working on the root cause.",
    "nuance": "\"좋은 일이 생겼다\"고 말하자마자 일이 틀어졌을 때 쓰는 자조적인 표현입니다. 한국어 \"김칫국 마셨다\"보다 말을 섣불리 한 행동에 초점이 있습니다. 원어민은 이 징크스 때문에 좋은 소식을 말한 뒤 \"knock on wood(나무를 두드리자)\"를 덧붙이기도 합니다.",
    "example_ko": "문제가 해결됐다고 다들 말했는데, 제가 너무 일찍 말했네요 — 한 시간 뒤에 다시 터졌어요."
-  },
-  {
-   "id": "EN_139",
-   "expression": "Let's bury the hatchet.",
-   "meaning": "지난 일은 묻어두고 화해합시다.",
-   "level": "advanced",
-   "theme": "relationships",
-   "example": "We've been at odds for months — I think it's time to bury the hatchet and move forward.",
-   "dialogue": "A: Things have been tense between our teams since the product launch dispute.\nB: Can we just bury the hatchet? We're on the same side at the end of the day. How about lunch this week, just us?",
-   "nuance": "도끼(hatchet)를 땅에 묻는다는 뜻으로, 북미 원주민이 화해의 표시로 무기를 묻던 관습에서 왔다고 알려져 있습니다. 오랜 갈등을 끝내자는 꽤 무게 있는 제안이라 사소한 말다툼보다는 오래된 앙금에 어울립니다.",
-   "example_ko": "몇 달째 사이가 틀어져 있었잖아요 — 이제 지난 일은 묻고 앞으로 나아갈 때인 것 같아요."
   },
   {
    "id": "EN_140",
@@ -583,17 +561,6 @@
    "example_ko": "관리자로 6개월 일해 보니 저는 이게 적성이 아니더라고요 — 실무가 그리워요."
   },
   {
-   "id": "EN_159",
-   "expression": "Let's call it a day.",
-   "meaning": "오늘은 이만 마무리합시다. / 퇴근합시다.",
-   "level": "beginner",
-   "theme": "daily-life",
-   "example": "We've hit every item on the agenda — let's call it a day and get some rest.",
-   "dialogue": "A: Should we try to fit in one more review before we wrap?\nB: It's already 7:30 and everyone's running on fumes. Let's call it a day. We'll come back fresh in the morning and it'll be better work anyway.",
-   "nuance": "\"오늘 하루는 이걸로 치자\"는 뜻으로 일을 마무리할 때 씁니다. 누군가 이 말을 하면 보통 회의나 작업의 종료 선언입니다. 비슷한 \"Let's wrap it up\"은 \"마무리 단계로 가자\"이고, 이 표현은 \"오늘은 끝\"이라는 더 분명한 선언입니다.",
-   "example_ko": "안건을 다 다뤘네요 — 오늘은 여기까지 하고 좀 쉽시다."
-  },
-  {
    "id": "EN_160",
    "expression": "I can't wrap my head around it.",
    "meaning": "도저히 이해가 안 돼요. / 머릿속에서 정리가 안 돼요.",
@@ -625,17 +592,6 @@
    "dialogue": "A: The early days of the startup sound chaotic.\nB: They were. But once we landed that first enterprise client, the ball really got rolling. Word spread fast and suddenly everyone wanted a demo.",
    "nuance": "공이 한 번 구르기 시작하면 계속 굴러가듯, 일이 탄력을 받았다는 뜻입니다. 시작을 제안할 땐 \"Let's get the ball rolling(시작해 봅시다)\"을 가장 많이 씁니다. 이미 진행 중인 흐름을 말할 땐 이 형태, 시작할 땐 get the ball rolling을 쓰세요.",
    "example_ko": "첫 투자자를 확보하자 일이 본격적으로 굴러가기 시작했고, 한 달 안에 세 곳이 더 따라왔어요."
-  },
-  {
-   "id": "EN_163",
-   "expression": "I'm drawing a blank.",
-   "meaning": "아무것도 생각이 안 나요. / 머리가 하얘졌어요.",
-   "level": "intermediate",
-   "theme": "daily-life",
-   "example": "I studied everything last night, but in the exam I was drawing a complete blank.",
-   "dialogue": "A: What was the name of that framework we used in the last project?\nB: I'm completely drawing a blank right now. Let me search through my emails — I know I emailed about it at the time.",
-   "nuance": "옛 복권에서 꽝 표(blank)를 뽑는 것에서 왔다는 설이 있습니다. 머리가 하얘져 아무것도 떠오르지 않는 상태로, 시험이나 발표에서 긴장했을 때 딱 맞습니다. tip of my tongue이 거의 떠오를 듯한 상태라면, 이 표현은 완전히 백지인 상태입니다.",
-   "example_ko": "어젯밤에 다 공부했는데 시험장에서 머리가 완전히 하얘졌어요."
   },
   {
    "id": "EN_164",

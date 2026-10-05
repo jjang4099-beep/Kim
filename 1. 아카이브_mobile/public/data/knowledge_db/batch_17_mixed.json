@@ -255,17 +255,6 @@
       "example_ko": "온보딩 흐름을 개선해야 해요 — 새 사용자들이 제품의 핵심 가치를 경험하기도 전에 떠나고 있어요."
     },
     {
-      "id": "EN_493",
-      "expression": "Pain point",
-      "meaning": "고통 포인트, 사용자나 고객이 겪는 불편함이나 문제.",
-      "level": "intermediate",
-      "theme": "workplace_jargon",
-      "example": "The biggest pain point for our users is the time it takes to get data out of the system — sometimes over 20 minutes.",
-      "dialogue": "A: What's the first thing we should build?\nB: Whatever addresses the biggest pain point. Not the most interesting feature — the most painful problem that nobody else is solving well.\nA: How do we figure out what that is?\nB: Talk to 20 customers this week. Don't ask what they want. Ask what costs them the most time or money. The answer is almost always there.",
-      "nuance": "고객이 실제로 아파하는 지점 = 해결하면 돈을 낼 만한 불편함이라는 뜻입니다. 제품 기획과 영업에서 가장 많이 쓰는 개념으로, \"What's your biggest pain point?\"는 고객 인터뷰의 단골 질문입니다. 단순한 불만(complaint)보다 해결할 가치가 있는 문제라는 뉘앙스가 있습니다.",
-      "example_ko": "사용자들이 가장 불편해하는 건 시스템에서 데이터를 꺼내는 데 걸리는 시간이에요 — 가끔 20분이 넘어요."
-    },
-    {
       "id": "EN_495",
       "expression": "Scope creep",
       "meaning": "범위 확장, 처음 합의된 범위를 넘어 요구사항이 조금씩 늘어나는 현상.",

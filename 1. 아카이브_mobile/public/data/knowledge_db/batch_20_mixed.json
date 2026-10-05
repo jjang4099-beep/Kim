@@ -138,13 +138,13 @@
    "meaning": "분란을 일으키다, 현상을 흔들다",
    "level": "intermediate",
    "theme": "Change & Conflict",
-   "example": "Nobody wanted to rock the boat, so the problem went unaddressed.",
+   "example": "I don't want to rock the boat, but I think we should talk about the deadline.",
    "dialogue": {
     "A": "Should I raise this issue in the all-hands?",
     "B": "It might rock the boat, but someone needs to address it."
    },
    "nuance": "작은 배를 흔들면 모두가 물에 빠질 수 있다 = 괜히 분란을 일으키지 말라는 뜻입니다. 보통 부정형 \"don't want to rock the boat\"로 쓰이며, 문제를 알면서도 침묵하는 조직 문화를 비판할 때 자주 등장합니다. 변화를 원하는 사람에게는 오히려 필요한 행동일 때도 있습니다.",
-   "example_ko": "아무도 분란을 일으키고 싶어 하지 않아서, 문제는 그대로 방치됐어요."
+   "example_ko": "분란을 일으키고 싶진 않은데, 마감 얘기는 해야 할 것 같아요."
   },
   {
    "id": "EN_547",

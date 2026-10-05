@@ -91,28 +91,6 @@
   ],
   "english_expressions": [
     {
-      "id": "EN_496",
-      "expression": "I can work with that",
-      "meaning": "그렇게 하면 가능합니다. 상대의 제안을 받아들일 수 있다는 유연한 수용 신호.",
-      "level": "intermediate",
-      "theme": "negotiation",
-      "example": "A: We can do 15% off instead of 20%. B: I can work with that — let's finalize the contract.",
-      "dialogue": "A: What if we moved the deadline to the 25th?\nB: I can work with that. I'll adjust the sprint plan this afternoon.\nA: Great. Thanks for being flexible.\nB: It's the right call — rushing it wasn't going to help either of us.",
-      "nuance": "\"완벽하진 않지만 이 정도면 받아들일 수 있다\"는 유연한 수용입니다. 협상에서 원하는 걸 다 얻지 못했지만 합의로 가겠다는 신호라 분위기를 부드럽게 만듭니다. 열정적인 동의가 아니라 담담한 수용이라서, 기쁜 제안에 쓰면 시큰둥하게 들릴 수 있습니다.",
-      "example_ko": "A: 20% 대신 15% 할인은 가능해요. B: 그 정도면 괜찮아요 — 계약 마무리합시다."
-    },
-    {
-      "id": "EN_497",
-      "expression": "That's a deal-breaker",
-      "meaning": "그건 수용 불가입니다. 협상을 중단시킬 수 있는 절대 조건.",
-      "level": "intermediate",
-      "theme": "negotiation",
-      "example": "Removing the warranty entirely is a deal-breaker for me. Let's find another way.",
-      "dialogue": "A: We'd need you to sign a non-compete for 5 years.\nB: That's a deal-breaker. Three years is the furthest I can go, and only within this specific industry.\nA: Let me check with legal and come back to you.\nB: Happy to wait — but that's a firm line for me.",
-      "nuance": "이것 하나 때문에 거래(deal) 전체가 깨질 수 있는 결정적인 조건이라는 뜻입니다. \"non-starter\"가 처음부터 논의조차 안 되는 제안이라면, deal-breaker는 다른 조건이 다 좋아도 이것 때문에 무산되는 조건입니다. 연애에서도 \"그건 나한테 절대 안 되는 조건\"이라는 뜻으로 많이 씁니다.",
-      "example_ko": "보증을 아예 빼는 건 저한테는 수용 불가예요. 다른 방법을 찾아봐요."
-    },
-    {
       "id": "EN_499",
       "expression": "I'm flexible on that",
       "meaning": "그 부분은 유연하게 할 수 있어요. 특정 조건에 대해 협상 여지가 있다는 신호.",

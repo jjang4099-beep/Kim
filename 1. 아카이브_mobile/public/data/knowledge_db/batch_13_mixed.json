@@ -32,13 +32,13 @@
     {
      "id": "PACK_EN_029_02",
      "order": 2,
-     "expression": "Let me push back on that.",
-     "meaning": "그 의견에 반론을 제기하겠습니다. 직접적이지만 공격적이지 않게 이의를 표현하는 법.",
-     "nuance": "'Push back'은 물리적으로 밀어낸다는 이미지로, 상대방의 주장에 맞서 자신의 입장을 밀어 올리는 것입니다. 이 표현은 고위 리더들이 자주 쓰는 표현으로, 직접적이지만 무례하지 않고 전문적인 인상을 줍니다. '틀렸다'고 말하는 대신 '다시 생각해볼 여지가 있다'고 제안하는 톤입니다.",
-     "dialogue": "Director: I think we should go with Option A. It's safer.\nYou: I'd like to push back on that. 'Safer' depends on the time horizon. Option A is safer in the next six months, but it leaves us structurally vulnerable in two years when the market shifts. Option B has more short-term risk but builds a capability we'll need regardless.\nDirector: Walk me through that vulnerability.\nYou: If we go Option A, we stay dependent on a single supplier in a market that's consolidating. That's the risk I'm worried about.",
-     "example": "Let me push back on the assumption that our churn problem is a product problem. Our data suggests it's actually an onboarding problem — users who complete onboarding stay at 80% one-year retention.",
-     "practice": "I want to push back on the idea that more features will solve the engagement problem. Every feature we've added in the last two quarters hasn't moved retention.",
-     "example_ko": "이탈 문제가 제품 문제라는 전제에 반대 의견을 내고 싶습니다. 저희 데이터는 사실 온보딩 문제라는 걸 보여줍니다 — 온보딩을 완료한 사용자는 1년 유지율이 80%예요."
+     "expression": "With all due respect, I see it differently.",
+     "meaning": "외람되지만 저는 다르게 봅니다.",
+     "nuance": "윗사람이나 고객의 의견에 반대할 때 쓰는 정중한 머리말입니다. 'With all due respect'는 '충분히 존중하지만'이라는 뜻이라 반대 의견의 충격을 줄여 줘요. 다만 억양을 세게 하면 오히려 비꼬는 말로 들릴 수 있어, 차분한 톤과 근거를 함께 말해야 합니다.",
+     "dialogue": "Director: I think we should delay the launch until next year.\nYou: With all due respect, I see it differently.\nDirector: Go on.\nYou: Our competitor launches in March. Waiting means giving them the market.",
+     "example": "With all due respect, I see it differently — waiting a year is the bigger risk.",
+     "practice": "I understand your concern, but I see it differently.",
+     "example_ko": "외람되지만 저는 다르게 봅니다 — 1년을 기다리는 게 더 큰 위험이에요."
     },
     {
      "id": "PACK_EN_029_03",
@@ -75,11 +75,11 @@
     }
    ],
    "master_paragraph": {
-    "text": "I see where you're coming from — the risk is real and I'm not dismissing it. But I'd like to push back on the idea that caution is always the right answer here. I'd like to offer a different perspective: the biggest risk might not be moving too fast, but moving too slow while others move. That said, if we can't fully align today, we may have to agree to disagree on the pace — but let's at least agree on what a minimal test would look like. And before we close — what would it take for you to be convinced? Tell me what you'd need to see, and I'll make sure our next meeting has it.",
-    "translation": "말씀하시는 맥락은 이해합니다 — 위험이 실제로 있고, 저도 그것을 무시하는 게 아닙니다. 하지만 신중함이 항상 정답이라는 생각에는 반론을 제기하고 싶습니다. 다른 관점을 하나 제시하자면: 여기서 가장 큰 위험은 너무 빨리 움직이는 것이 아니라, 다른 사람들이 움직이는 동안 너무 느리게 움직이는 것일 수 있습니다. 그렇긴 해도, 오늘 속도에 대해 완전히 합의하지 못한다면 이견을 인정하고 넘어가야 할 수도 있습니다 — 하지만 최소한 어떤 테스트를 해볼지는 합의할 수 있지 않을까요? 마무리하기 전에 — 무엇이 있어야 납득하실 수 있으신가요? 필요하신 것을 알려주시면, 다음 회의에서 그걸 준비해 오겠습니다.",
+    "text": "I see where you're coming from — the risk is real and I'm not dismissing it. But with all due respect, I see it differently — caution isn't always the right answer here. I'd like to offer a different perspective: the biggest risk might not be moving too fast, but moving too slow while others move. That said, if we can't fully align today, we may have to agree to disagree on the pace — but let's at least agree on what a minimal test would look like. And before we close — what would it take for you to be convinced? Tell me what you'd need to see, and I'll make sure our next meeting has it.",
+    "translation": "말씀하시는 맥락은 이해합니다 — 위험이 실제로 있고, 저도 그것을 무시하는 게 아닙니다. 하지만 외람되지만 저는 다르게 봅니다 — 여기서 신중함이 항상 정답은 아닙니다. 다른 관점을 하나 제시하자면: 여기서 가장 큰 위험은 너무 빨리 움직이는 것이 아니라, 다른 사람들이 움직이는 동안 너무 느리게 움직이는 것일 수 있습니다. 그렇긴 해도, 오늘 속도에 대해 완전히 합의하지 못한다면 이견을 인정하고 넘어가야 할 수도 있습니다 — 하지만 최소한 어떤 테스트를 해볼지는 합의할 수 있지 않을까요? 마무리하기 전에 — 무엇이 있어야 납득하실 수 있으신가요? 필요하신 것을 알려주시면, 다음 회의에서 그걸 준비해 오겠습니다.",
     "highlights": [
      "I see where you're coming from",
-     "push back on",
+     "with all due respect, I see it differently",
      "offer a different perspective",
      "agree to disagree",
      "what would it take for you to be convinced"
@@ -106,10 +106,10 @@
    "meaning": "분위기나 기준을 설정하다, 방향을 처음부터 잡다.",
    "level": "intermediate",
    "theme": "leadership",
-   "example": "How leaders behave in the first week of a crisis sets the tone for how the entire organization responds.",
+   "example": "How we handle the first week of this crisis will set the tone for the whole year.",
    "dialogue": "A: Should I say anything at the start of the all-hands before the difficult restructuring news?\nB: Absolutely. You set the tone for how people receive it. If you're calm and direct, they'll be calm and direct. If you seem nervous and evasive, that's what they'll amplify.\nA: So lead with honesty, not spin.\nB: Lead with honesty and genuine care. Both.",
    "nuance": "음악의 첫 음이 곡 전체의 분위기를 정하듯, 처음의 행동이나 말이 이후 전체의 기준이 된다는 뜻입니다. 리더의 행동, 회의의 첫 발언, 첫 이메일의 말투가 모두 \"set the tone\"합니다. 그래서 첫인상과 초기 대응의 중요성을 강조할 때 자주 씁니다.",
-   "example_ko": "위기 첫 주에 리더들이 어떻게 행동하느냐가 조직 전체가 대응하는 방식의 기준이 됩니다."
+   "example_ko": "이 위기의 첫 주를 어떻게 다루느냐가 1년 전체의 분위기를 정할 거예요."
   },
   {
    "id": "EN_372",

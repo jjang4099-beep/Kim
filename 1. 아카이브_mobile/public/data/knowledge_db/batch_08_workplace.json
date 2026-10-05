@@ -178,9 +178,9 @@
      "meaning": "당신이 한 일을 인정하고 싶어요.",
      "nuance": "성과에 대한 인정은 보너스나 승진만큼이나 강력한 동기부여 도구입니다. 특히 공개적인 자리나 즉각적인 인정은 '내 노력이 보이고 있다'는 심리적 안전감을 줍니다. 막연한 칭찬('잘했어')보다 구체적인 행동을 명시하는 것이 훨씬 효과적입니다 — '당신이 클라이언트와의 위기 상황에서 보여준 침착함을 인정하고 싶어요'처럼.",
      "dialogue": "You: Before we move on, I want to recognize what you did this week. You rewrote the entire API documentation in three days to meet the launch deadline.\nDeveloper: It was a lot of nights, honestly.\nYou: And it showed. The client team specifically mentioned how clear it was. That kind of work doesn't go unnoticed.\nDeveloper: That really means a lot to hear.",
-     "example": "She made it a habit to open every team meeting by recognizing what someone had done — morale improved within a month.",
+     "example": "Before we start, I want to recognize what you did last week — you saved that client.",
      "practice": "I want to recognize what you did on the Johnson account — handling that objection under pressure was exactly the kind of leadership we need.",
-     "example_ko": "그녀는 팀 회의를 시작할 때마다 누군가 해낸 일을 인정하는 걸 습관으로 삼았다 — 한 달 만에 사기가 올라갔다."
+     "example_ko": "시작하기 전에 지난주에 하신 일을 꼭 인정하고 싶어요 — 덕분에 그 고객을 지켰어요."
     },
     {
      "id": "PACK_EN_020_02",
@@ -266,9 +266,9 @@
      "meaning": "이 역할에서 성공이 어떤 모습인가요?",
      "nuance": "면접에서 지원자가 던지는 가장 강력한 질문 중 하나입니다. 단순히 직무 설명을 넘어 '90일 후, 1년 후에 어떤 상태여야 하는가'를 묻는 것입니다. 이 질문은 두 가지를 동시에 보여줍니다: 결과 지향적 사고방식과, 기대치를 사전에 정렬하려는 프로다운 태도. 면접관 입장에서도 이 질문을 받으면 '이 사람은 진지하다'는 인상을 받습니다.",
      "dialogue": "You: Before we finish, I have a question. What does success look like in this role at the 6-month mark?\nHiring Manager: That's a great question. By six months, I'd want you to have built rapport with the key stakeholders and delivered your first independent project.\nYou: And at 12 months?\nHiring Manager: Ideally, you'd be mentoring someone more junior. That's how I know you've fully landed.",
-     "example": "Her final question in every interview was always the same: 'What does success look like in this role?' — it always changed the energy in the room.",
+     "example": "Thanks for explaining the role. What does success look like in this role after six months?",
      "practice": "What does success look like in this role after the first 90 days, from your perspective?",
-     "example_ko": "모든 면접에서 그녀의 마지막 질문은 항상 같았다: '이 역할에서 성공이란 어떤 모습인가요?' — 이 질문은 언제나 자리의 분위기를 바꿔놓았다."
+     "example_ko": "직무 설명 감사합니다. 6개월 뒤 이 역할에서 성공이란 어떤 모습인가요?"
     },
     {
      "id": "PACK_EN_021_03",
@@ -343,9 +343,9 @@
      "meaning": "이 아이디어의 핵심 통찰은...",
      "nuance": "'Insight'는 누구나 볼 수 있는 데이터가 아니라, 그 데이터를 깊이 들여다봤을 때만 보이는 비자명한 진실을 의미합니다. 피치에서 인사이트를 명확히 하는 것은 '우리는 남들이 보지 못한 것을 봤다'는 경쟁 우위의 선언입니다. 강력한 인사이트는 '아, 그렇구나' 하는 반응을 만들어냅니다 — 그 반응이 나오면 피치는 이미 절반은 성공한 것입니다.",
      "dialogue": "You: The insight behind this is that people don't abandon products because they stop needing them — they abandon them because the product stopped surprising them.\nPartner: That's interesting. Where did that come from?\nYou: Exit survey analysis across 40,000 churned users. The top reason wasn't 'too expensive' or 'found a better alternative' — it was 'became boring.'\nPartner: That fundamentally reframes the problem.",
-     "example": "He didn't present a product. He presented an insight — 'the insight behind this is that trust is lost in seconds and built in months' — and the room went quiet.",
+     "example": "The insight behind this is simple: people don't trust reviews, they trust friends.",
      "practice": "The insight behind this is something our competitors are consistently missing — and that gap is our entire opportunity.",
-     "example_ko": "그는 제품을 소개하지 않았다. 통찰을 소개했다 — '이 핵심은 신뢰가 몇 초 만에 무너지고 몇 달에 걸쳐 쌓인다는 것입니다' — 그러자 좌중이 조용해졌다."
+     "example_ko": "이 아이디어의 핵심 통찰은 간단해요. 사람들은 리뷰가 아니라 친구를 믿는다는 거예요."
     },
     {
      "id": "PACK_EN_022_03",
@@ -354,9 +354,9 @@
      "meaning": "만약 ~한 세상을 상상해보세요.",
      "nuance": "추상적인 솔루션을 구체적인 이미지로 전환하는 스토리텔링 기법입니다. 사람들은 기능 목록이 아니라 이야기와 이미지에 감동합니다. '우리 제품은 A, B, C를 합니다'보다 '이런 세상을 상상해보세요, 그것이 우리가 만드는 것입니다'가 훨씬 기억에 남습니다. TED 강연과 실리콘밸리 피치 모두 이 프레임을 자주 사용하는 이유입니다.",
      "dialogue": "You: Imagine a world where a small business owner in Seoul can access the same financial tools that Goldman Sachs uses — in under five minutes, on a phone.\nAudience: [engaged silence]\nYou: That's not a fantasy. We've built it. And 12,000 users are already using it.\nAudience: How does the pricing work?",
-     "example": "She opened the pitch with 'imagine a world where every child has a personal tutor' — by the end, three investors had already leaned over to their partners.",
+     "example": "Imagine a world where you never have to fill out a form again.",
      "practice": "Imagine a world where reporting takes 10 minutes instead of 10 hours. That's the specific problem we built this for.",
-     "example_ko": "그녀는 피치를 '모든 아이에게 개인 튜터가 있는 세상을 상상해보세요'로 시작했다 — 끝날 무렵엔 투자자 세 명이 이미 파트너 쪽으로 몸을 기울이고 있었다."
+     "example_ko": "다시는 서류를 채울 필요가 없는 세상을 상상해 보세요."
     },
     {
      "id": "PACK_EN_022_04",
@@ -397,17 +397,6 @@
  ],
  "english_expressions": [
   {
-   "id": "EN_276",
-   "expression": "Read the room.",
-   "meaning": "분위기를 파악하다.",
-   "level": "intermediate",
-   "theme": "communication",
-   "example": "Before jumping into the agenda, she paused to read the room — the team was clearly exhausted from the previous session.",
-   "dialogue": "A: Why did you change your presentation style halfway through?\nB: I had to read the room. They weren't responding to data — they needed a story.\nA: Smart. The energy shifted completely after that.\nB: Always watch the audience more than your own slides.",
-   "nuance": "방 안의 공기를 \"읽는다\"는 뜻으로, 한국어 \"눈치를 보다\"와 가장 가까운 영어입니다. 다만 한국어의 눈치가 남을 의식해 몸을 사리는 느낌이라면, 이 표현은 분위기를 파악해 적절히 행동을 조절하는 능력이라 긍정적입니다. 부정형 \"He can't read the room\"은 \"분위기 파악 못 하는 사람\"이라는 꽤 날카로운 비판입니다.",
-   "example_ko": "안건으로 들어가기 전에 그녀는 잠시 분위기를 살폈다 — 팀이 앞 세션 때문에 확실히 지쳐 있었다."
-  },
-  {
    "id": "EN_284",
    "expression": "Put it on the radar.",
    "meaning": "인지하고 있도록 하다, 주의를 기울이게 하다.",
@@ -446,10 +435,10 @@
    "meaning": "빠르게 움직이고 실수를 두려워하지 마라. (스타트업 문화의 핵심 표현)",
    "level": "intermediate",
    "theme": "execution",
-   "example": "The early-stage startup culture was 'move fast and break things' — iteration speed was everything.",
+   "example": "We're a five-person startup — we can afford to move fast and break things.",
    "dialogue": "A: We keep waiting for the perfect version. When do we actually ship?\nB: Move fast and break things. Ship the 80% version, learn from real users, fix what breaks. You'll never hit 100% in the lab.\nA: What if something breaks in production?\nB: Fix it faster than a competitor would have launched.",
    "nuance": "페이스북 초창기의 사내 모토로 유명해진 말입니다. 속도를 위해 실수를 감수하라는 뜻이지만, 개인정보 문제 등을 겪은 뒤 페이스북 스스로 2014년 이 모토를 \"안정적인 인프라와 함께 빠르게 움직여라\"로 바꿨습니다. 지금은 무책임한 속도 지상주의를 비꼬는 맥락에서도 자주 쓰입니다.",
-   "example_ko": "초기 스타트업 문화는 \"빠르게 움직이고 부숴라\"였어요 — 반복 속도가 전부였죠."
+   "example_ko": "우린 다섯 명짜리 스타트업이에요 — 빠르게 움직이고 좀 깨져도 괜찮아요."
   },
   {
    "id": "EN_291",

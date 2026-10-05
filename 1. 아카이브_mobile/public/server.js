@@ -732,6 +732,20 @@ function _queryEnThemePack(subId, categories, level) {
         themeRow = _sqlGet(`SELECT * FROM english_themes WHERE 1=1${filterSql} ORDER BY RANDOM() LIMIT 1`, filterParams);
       }
     }
+    /* ②-b 같은 카테고리·같은 레벨 팩을 다 봤으면, 반복하기 전에 가까운 레벨의 안 본 팩부터.
+       (10-05 점검: 비즈니스 초급이 4팩뿐이라 14일 동안 같은 팩이 서너 번 돌아왔다) */
+    if (!themeRow && level && recentPackIds.length > 0) {
+      const NEAR = { beginner: ['intermediate', 'advanced'], intermediate: ['advanced', 'beginner'], advanced: ['intermediate', 'beginner'] };
+      const catSql = Array.isArray(categories) && categories.length ? ` AND theme_category IN (${categories.map(() => '?').join(',')})` : '';
+      const notIn  = recentPackIds.map(() => '?').join(',');
+      for (const lv of NEAR[level] || []) {
+        themeRow = _sqlGet(
+          `SELECT * FROM english_themes WHERE pack_id NOT IN (${notIn})${catSql} AND level = ? ORDER BY RANDOM() LIMIT 1`,
+          [...recentPackIds, ...(catSql ? categories : []), lv]
+        );
+        if (themeRow) break;
+      }
+    }
     /* ③ 최근 배달 여부는 무시하고서라도 조건 일치하는 팩이 있으면 재사용 */
     if (!themeRow) {
       themeRow = _sqlGet(`SELECT * FROM english_themes WHERE 1=1${filterSql} ORDER BY RANDOM() LIMIT 1`, filterParams);
@@ -1822,15 +1836,43 @@ function _todayDayKr() {
 
 /** 팩 표현이 유저가 설정한 개수보다 부족할 때 플랫 풀(knowledge_db 최상위 english_expressions)에서
     나머지를 채운다 — 플랫 풀은 아직 theme_category 태깅 전이라 레벨만 맞춰서 뽑는다. */
-function _pickFlatPoolTopUp(langKey, level, excludeIds, count) {
+/* 평면 풀의 theme는 109가지 자유 표기(american_tv·소통·Conflict & Negotiation…)라 팩 카테고리와 바로 맞지 않는다.
+   보충 표현이 그날 팩 주제와 동떨어지지 않게(10-05 점검: '거짓말 눈치챘을 때' 팩에 'Flag (something)'이 붙음) 대분류로 묶는다. */
+const _FLAT_DRAMA_RE = /american_tv|social|emotion|feeling|relationship|인간관계|humor|reaction|sarcasm|friend|dating/i;
+const _FLAT_DAILY_RE = /daily-life|everyday|life-advice|life-lesson|hope|optimism|gratitude|encourag|reassur|건강|burnout|self-reflection|self-improvement|motivation/i;
+function _flatCategory(item) {
+  const t = String(item.theme || '');
+  if (_FLAT_DRAMA_RE.test(t)) return 'drama_spoken';
+  if (_FLAT_DAILY_RE.test(t)) return 'daily_travel';
+  return 'business_meeting';
+}
+
+function _pickFlatPoolTopUp(langKey, level, excludeIds, count, preferCategory) {
   if (count <= 0) return [];
   const kdb  = loadKnowledgeDB();
   const pool = langKey === 'en' ? kdb.english_expressions : kdb.chinese_expressions;
   const base = pool.filter(item => !excludeIds.has(item.id));
-  const withLevel = level ? base.filter(item => item.level === level) : [];
-  const candidates = withLevel.length >= count ? withLevel : base;
-  const shuffled = [...candidates].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, count).map(item => ({
+  const shuffle = arr => [...arr].sort(() => Math.random() - 0.5);
+  /* 우선순위: ① 같은 대분류 + 같은 레벨 → ② 같은 대분류 → ③ 같은 레벨 → ④ 전체.
+     상황별 표현(everyday_situations)은 평면 풀에 짝이 없어 일상(daily_travel)으로 본다. */
+  const cat = preferCategory === 'everyday_situations' ? 'daily_travel' : preferCategory;
+  const tiers = [];
+  if (langKey === 'en' && cat) {
+    const inCat = base.filter(item => _flatCategory(item) === cat);
+    if (level) tiers.push(inCat.filter(item => item.level === level));
+    tiers.push(inCat);
+  }
+  if (level) tiers.push(base.filter(item => item.level === level));
+  tiers.push(base);
+  const picked = [];
+  for (const tier of tiers) {
+    for (const item of shuffle(tier)) {
+      if (picked.length >= count) break;
+      if (!picked.includes(item)) picked.push(item);
+    }
+    if (picked.length >= count) break;
+  }
+  return picked.map(item => ({
     item_id:          item.id,
     expression:       item.expression,
     meaning:          item.meaning,
@@ -1872,7 +1914,7 @@ function _tryEnThemePackFeed(sub, feedCfg) {
     /* 09-28 점검: 예전엔 오늘 팩의 표현만 빼고 뽑아서, 같은 보충 표현이 일주일에 세 번 나온 적도 있다(EN_207, 09-20·21·24).
        최근 60일 배달분까지 빼고 뽑는다. */
     const excludeIds = new Set([...vocabEntries.map(v => v.item_id), ...getRecentDeliveredIDs(sub.id, 60)]);
-    vocabEntries = vocabEntries.concat(_pickFlatPoolTopUp('en', level, excludeIds, wantCount - vocabEntries.length));
+    vocabEntries = vocabEntries.concat(_pickFlatPoolTopUp('en', level, excludeIds, wantCount - vocabEntries.length, theme.theme_category));
   } else if (wantCount && vocabEntries.length > wantCount) {
     vocabEntries = vocabEntries.slice(0, wantCount);
   }

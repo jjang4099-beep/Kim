@@ -43,9 +43,9 @@
           "meaning": "아침 내내 신경이 날카로워져 있었다",
           "nuance": "'On edge'는 신체적으로 날이 세워진 칼날 위에 서 있는 이미지에서 나온 표현으로, 내가 통제할 수 없는 불안 요소(시스템 장애, 마감, 인사 발표 등) 때문에 온종일 신경이 곤두서 있는 상태를 묘사합니다. 단순한 '긴장(nervous)'과 달리, 이 상태는 지속적이고 누적된 스트레스에서 비롯된 만성적 초조함을 내포합니다.",
           "dialogue": "Colleague: Are you okay? You seem distracted during the standup.\nYou: Sorry. I've been on edge all morning because of the server incident. It's hard to focus.\nColleague: I get it. The whole team is stressed. Did DevOps give any update yet?\nYou: They said it'll be resolved by noon, but I keep checking the dashboard every five minutes.",
-          "example": "With the audit coming up next week, the entire finance team has been on edge.",
+          "example": "Sorry if I snapped at you — I've been on edge all morning waiting for the audit results.",
           "practice": "I've been on edge all morning waiting for the board's decision on the restructuring plan.",
-          "example_ko": "다음 주 감사를 앞두고, 재무팀 전체가 예민해져 있다."
+          "example_ko": "아까 날카롭게 굴었다면 미안해요 — 감사 결과 기다리느라 아침 내내 신경이 곤두서 있었어요."
         },
         {
           "id": "PACK_EN_001_04",
@@ -97,9 +97,9 @@
           "meaning": "중간 선에서 합의합시다",
           "nuance": "'Meet halfway'는 양측이 각자의 입장에서 딱 중간 지점을 향해 한 발씩 양보하는 이미지입니다. 단순히 '타협하자(Let's compromise)'보다 공평성의 뉘앙스가 강하며, 어느 한쪽만 손해 보는 것이 아니라 서로 동등하게 양보하는 건전한 협상 자세를 보여줍니다.",
           "dialogue": "Client: We can't go above 50,000 dollars for the entire project.\nYou: That's significantly below our minimum. But if you're flexible on the timeline, we could meet halfway at 65,000.\nClient: Hmm. What would we get for that additional budget?\nYou: A dedicated project manager and bi-weekly progress calls throughout the entire engagement.",
-          "example": "Neither side got everything they wanted, but both were willing to meet halfway on the delivery terms.",
+          "example": "You want delivery in two weeks, we need four. Let's meet halfway — three weeks?",
           "practice": "If you can extend the pilot period to 60 days, we're happy to meet halfway on the setup cost.",
-          "example_ko": "양쪽 다 원하는 걸 전부 얻지는 못했지만, 배송 조건에서 서로 절반씩 양보하기로 했다."
+          "example_ko": "그쪽은 2주 안에 납품을 원하시고 저희는 4주가 필요해요. 중간에서 맞추죠 — 3주 어떠세요?"
         },
         {
           "id": "PACK_EN_002_02",

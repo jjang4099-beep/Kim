@@ -124,13 +124,13 @@
    "meaning": "책임을 다른 사람에게 떠넘기다",
    "level": "intermediate",
    "theme": "Accountability & Leadership",
-   "example": "Great leaders don't pass the buck — they own the outcome.",
+   "example": "Don't pass the buck — if it's your team's mistake, just say so.",
    "dialogue": {
     "A": "The project failed because the other team didn't deliver.",
     "B": "Let's not pass the buck — we should have caught that dependency earlier."
    },
    "nuance": "포커에서 다음 딜러를 표시하던 칼자루(buck)를 넘기던 데서 온 말로, 책임을 다른 사람에게 떠넘긴다는 뜻입니다. 트루먼 대통령이 책상에 둔 명패 \"The buck stops here(책임은 여기서 멈춘다)\"가 이 표현의 반대말로 유명합니다.",
-   "example_ko": "훌륭한 리더는 책임을 떠넘기지 않아요 — 결과를 스스로 짊어지죠."
+   "example_ko": "책임을 떠넘기지 마세요 — 당신 팀 실수라면 그냥 그렇다고 말하세요."
   },
   {
    "id": "EN_591",

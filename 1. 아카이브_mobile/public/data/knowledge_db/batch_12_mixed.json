@@ -101,17 +101,6 @@
    "example_ko": "새 영업 프로세스에 대해 조언 좀 구해도 될까요? 이런 방식을 운영해 보셨으니 경험에서 배우고 싶어요."
   },
   {
-   "id": "EN_352",
-   "expression": "See eye to eye",
-   "meaning": "의견이 완전히 일치하다, 같은 시각을 갖다.",
-   "level": "beginner",
-   "theme": "communication",
-   "example": "We don't always see eye to eye on strategy, but we respect each other's reasoning and that makes the disagreement productive.",
-   "dialogue": "A: It seems like you and the CTO don't see eye to eye on the tech stack decision.\nB: We don't on this one. He wants stability, I want flexibility. Both are valid priorities.\nA: How do you resolve it?\nB: We find the one dimension we do agree on — security — and use that as the deciding factor.",
-   "nuance": "눈높이가 같다 = 의견이 일치한다는 뜻인데, 부정형 \"We don't see eye to eye\"로 훨씬 자주 씁니다. 부정형은 \"의견이 안 맞는다\"를 부드럽게 표현해서, 갈등을 인정하면서도 관계는 괜찮다는 인상을 줍니다. \"disagree\"보다 덜 대립적입니다.",
-   "example_ko": "전략에서 늘 의견이 같지는 않지만, 서로의 논리를 존중해서 이견이 생산적이에요."
-  },
-  {
    "id": "EN_355",
    "expression": "Dig deeper",
    "meaning": "더 깊이 파고들다, 표면 아래를 탐색하다.",
@@ -121,17 +110,6 @@
    "dialogue": "A: Revenue is up 12% this quarter.\nB: Let's dig deeper before we celebrate. What's the channel mix? New vs. returning customers?\nA: Mostly new customers and one big enterprise deal.\nB: Then recurring revenue might actually be flat or declining. That's the story we need to understand.",
    "nuance": "표면 아래로 더 파고들자는 뜻입니다. drill down이 데이터를 단계적으로 쪼개 들어가는 분석이라면, dig deeper는 원인·동기·숨은 문제까지 넓게 탐구하는 느낌입니다. 면접관이 \"Let's dig deeper into that\"이라고 하면 방금 한 답에 대해 더 구체적으로 묻겠다는 신호입니다.",
    "example_ko": "초기 데이터는 괜찮아 보이지만 세그먼트별로 더 파고들어 봐요 — 전체 숫자가 문제를 숨기고 있을 수 있어요."
-  },
-  {
-   "id": "EN_356",
-   "expression": "Push the envelope",
-   "meaning": "한계를 넘어서다, 기존의 경계를 뛰어넘는 시도를 하다.",
-   "level": "advanced",
-   "theme": "innovation",
-   "example": "The brief asked for a 10% improvement in load time. The engineering team pushed the envelope and delivered 60%.",
-   "dialogue": "A: The client wants something 'edgy but safe.' What does that even mean?\nB: It means they want us to push the envelope — but not so far that they're uncomfortable approving it.\nA: That's a very narrow target.\nB: It is. But that's the creative challenge. Find the edge they didn't know they could go to, and bring them there gently.",
-   "nuance": "항공공학의 \"비행 한계 범위(flight envelope)\"를 넘나드는 시험 비행에서 온 말로, 1950~60년대 시험 비행사들 사이에서 퍼졌습니다. 기존의 한계를 넘어서는 시도를 한다는 뜻이라, 기술·예술·디자인에서 칭찬으로 씁니다. 규칙을 어기는 행동에 쓰면 \"선을 넘는다\"는 비판이 됩니다.",
-   "example_ko": "요구 사항은 로딩 속도 10% 개선이었는데, 엔지니어링 팀은 한계를 넘어 60%를 달성했어요."
   },
   {
    "id": "EN_357",
@@ -161,10 +139,10 @@
    "meaning": "현황을 파악하다, 상황을 전반적으로 이해하다.",
    "level": "intermediate",
    "theme": "workplace",
-   "example": "Before making any recommendations, she spent two weeks interviewing every team to get the lay of the land.",
+   "example": "I'm new here, so I'll spend my first two weeks getting the lay of the land before I change anything.",
    "dialogue": "A: You've been here a month now. How are you finding it?\nB: Still getting the lay of the land, honestly. The org chart doesn't reflect how decisions actually get made — I'm trying to understand the informal power structure.\nA: That's exactly the right thing to be learning at this stage.\nB: Once I have that map, I'll have a much clearer view of what's actually possible here.",
    "nuance": "땅의 생김새(lay)를 파악한다 = 새로운 환경의 전반적인 상황과 분위기를 이해한다는 뜻입니다. 새 직장이나 조직에 합류했을 때 섣불리 판단하지 않고 먼저 관찰하겠다는 겸손한 태도를 보여줍니다. 입사 초기에 \"I'm still getting the lay of the land\"라고 하면 자연스럽습니다.",
-   "example_ko": "어떤 제안을 하기 전에 그녀는 2주 동안 모든 팀을 인터뷰하며 현황을 파악했어요."
+   "example_ko": "저는 새로 왔으니, 뭘 바꾸기 전에 첫 2주는 현황 파악부터 할게요."
   },
   {
    "id": "EN_362",

@@ -32,28 +32,6 @@
    "example_ko": "새 기능 요청은 좋지만, 9월 출시 이후까지는 뒤로 미뤄 둡시다."
   },
   {
-   "id": "EN_339",
-   "expression": "Ahead of the curve",
-   "meaning": "트렌드보다 앞서가다, 선도적 위치에 있다.",
-   "level": "advanced",
-   "theme": "innovation",
-   "example": "By adopting AI tools two years ago, the company was ahead of the curve — now their productivity per person is 40% above the industry average.",
-   "dialogue": "A: Do we really need to invest in this technology now? It feels early.\nB: That's exactly why we should. Being ahead of the curve means we build capability before it becomes essential — not after.\nA: But what if the technology doesn't take off?\nB: Then we've learned something no one else has. The cost of learning early is almost always less than the cost of catching up late.",
-   "nuance": "곡선(추세선)보다 앞서 있다 = 남들보다 먼저 흐름을 읽고 준비했다는 칭찬입니다. 반대로 \"behind the curve\"는 흐름에 뒤처졌다는 비판입니다. 여기서 curve는 원래 기술 확산이나 학습 곡선을 뜻합니다.",
-   "example_ko": "2년 전 AI 도구를 도입한 덕에 그 회사는 시대를 앞서갔어요 — 지금 인당 생산성이 업계 평균보다 40% 높아요."
-  },
-  {
-   "id": "EN_340",
-   "expression": "Cut to the chase",
-   "meaning": "핵심으로 바로 가다, 군말 없이 요점만 말하다.",
-   "level": "beginner",
-   "theme": "communication",
-   "example": "We only have 10 minutes — let me cut to the chase. We need a 15% budget increase to hit the Q4 targets.",
-   "dialogue": "A: I want to give you some context before I explain the issue—\nB: Please, just cut to the chase. What's the problem and what do you need from me?\nA: The supplier raised prices by 12%. We need to either increase product price or cut margin.\nB: Good. Now I know what we're deciding. Let's look at the numbers.",
-   "nuance": "초창기 무성 영화에서 지루한 대사 장면을 건너뛰고 곧장 추격(chase) 장면으로 가라던 데서 온 말로 알려져 있습니다. 서론 없이 바로 본론으로 가겠다는 뜻이라 시간이 없을 때 좋습니다. 남에게 \"Cut to the chase\"라고 하면 \"요점만 말해\"라는 재촉이 되어 무례할 수 있습니다.",
-   "example_ko": "10분밖에 없으니 바로 본론으로 갈게요. 4분기 목표를 달성하려면 예산을 15% 늘려야 해요."
-  },
-  {
    "id": "EN_342",
    "expression": "Break new ground",
    "meaning": "새로운 영역을 개척하다, 선례를 만들다.",

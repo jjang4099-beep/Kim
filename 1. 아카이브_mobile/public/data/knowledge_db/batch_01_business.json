@@ -256,17 +256,6 @@
    "example_ko": "가격 모델에 대해 좋은 지적인데 주제에서 벗어나고 있어요 — 일단 표시해 두고 나중에 다시 봐요."
   },
   {
-   "id": "EN_026",
-   "expression": "Can you walk me through it?",
-   "meaning": "처음부터 차근차근 설명해 주시겠어요?",
-   "level": "beginner",
-   "theme": "communication",
-   "example": "I haven't seen this system before — can you walk me through how the approval process works?",
-   "dialogue": "A: Here's the dashboard we built for tracking campaign performance.\nB: It looks great, but I'm new to this tool. Can you walk me through it? Especially how the conversion funnel is set up.",
-   "nuance": "옆에서 함께 걸으며 안내하듯 단계별로 설명해 달라는 요청입니다. \"Explain it\"보다 부드럽고, 모른다는 것을 인정하면서도 적극적으로 배우려는 자세가 보입니다. 면접관이 \"Walk me through your resume\"라고 하면 이력을 순서대로 설명하라는 뜻입니다.",
-   "example_ko": "이 시스템은 처음 보는데 — 승인 절차가 어떻게 돌아가는지 차근차근 설명해 주실래요?"
-  },
-  {
    "id": "EN_027",
    "expression": "We're in good shape.",
    "meaning": "우리 상황이 꽤 좋습니다. / 준비가 잘 되어 있어요.",

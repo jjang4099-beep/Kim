@@ -27,9 +27,9 @@
      "meaning": "숫자가 다른 이야기를 하고 있어요.",
      "nuance": "상대방의 주장이나 직감과 실제 데이터가 다를 때 쓰는 강력한 표현입니다. 개인의 의견이나 감정을 직접 부정하지 않으면서도, 객관적 데이터가 다른 방향을 가리킨다고 부드럽게 지적하는 방법입니다. '당신이 틀렸다'가 아닌 '숫자가 무언가를 말하고 있다'는 관점의 전환으로, 방어적 반응을 줄이면서 데이터 중심의 논의를 유도합니다.",
      "dialogue": "Director: I believe our brand awareness is at an all-time high — customers are talking about us everywhere.\nYou: The numbers tell a different story. Organic search traffic is up 12%, but direct brand search is actually down 8% from Q2.\nDirector: That's unexpected. What's driving the discrepancy?\nYou: It looks like our awareness is growing in new segments, but core loyalty may be softening. Here's the breakdown.",
-     "example": "The team felt the campaign was a success, but the numbers told a different story — conversion rates had dropped.",
+     "example": "I know the campaign felt like a success, but the numbers tell a different story.",
      "practice": "Before we commit to this direction, let me show you where the numbers tell a different story.",
-     "example_ko": "팀은 캠페인이 성공적이었다고 느꼈지만, 수치는 다른 이야기를 하고 있었다 — 전환율이 떨어졌던 것이다."
+     "example_ko": "캠페인이 성공한 것처럼 느껴지는 건 알지만, 숫자는 다른 얘기를 하고 있어요."
     },
     {
      "id": "PACK_EN_015_02",
@@ -38,9 +38,9 @@
      "meaning": "설득력 있는 논거를 만들다",
      "nuance": "'Compelling'은 저항하기 힘들 만큼 강력하게 이끄는 힘을 의미합니다. 단순히 의견을 말하는 것이 아니라, 상대방이 '이건 틀리기가 어렵다'고 느낄 만한 논리와 증거의 구조를 만드는 것입니다. 이사회나 임원진 앞에서 예산을 요청하거나 전략 전환을 제안할 때, 단순한 피치보다 compelling case가 결정을 만듭니다.",
      "dialogue": "Manager: We need to convince the board to approve the new platform investment.\nYou: To make a compelling case, we need three things: the cost of doing nothing, the ROI timeline, and one comparable company that's already seen results.\nManager: That's a solid framework. How long will it take?\nYou: Give me two days to pull the numbers. I want the case to be airtight before we walk in.",
-     "example": "She made a compelling case for restructuring the team — every objection had been anticipated and addressed.",
+     "example": "If you want more budget, you'll need to make a compelling case to the CFO.",
      "practice": "If we want buy-in from the CFO, we need to make a compelling case with at least 18 months of data.",
-     "example_ko": "그녀는 팀 재편에 대해 설득력 있는 논리를 펼쳤다 — 예상되는 반론을 전부 미리 예측하고 대응해두었다."
+     "example_ko": "예산을 더 받고 싶으면 CFO에게 설득력 있는 논거를 내놔야 해요."
     },
     {
      "id": "PACK_EN_015_03",
@@ -49,9 +49,9 @@
      "meaning": "데이터로 뒷받침하다",
      "nuance": "'Back up'은 지원하고 강화한다는 의미입니다. 어떤 주장을 혼자 세워두는 것이 아니라 데이터라는 기둥으로 받쳐주는 이미지입니다. 회의에서 의견을 말한 후 'Can you back that up?'이라는 질문을 받으면, 데이터나 근거를 제시해야 한다는 신호입니다. 데이터가 있는 주장과 없는 주장의 신뢰도 차이를 만드는 핵심 표현입니다.",
      "dialogue": "Colleague: I think we should double down on the enterprise segment.\nYou: I agree, but we need to back it up with data before we take it to leadership. What's our current enterprise win rate versus SMB?\nColleague: Enterprise is 34%, SMB is 22%.\nYou: And average contract value?\nColleague: Enterprise is 8x. The case writes itself.",
-     "example": "The proposal was strong intuitively, but he backed it up with five quarters of customer retention data.",
+     "example": "I like the idea, but can you back it up with data before Monday?",
      "practice": "Whatever recommendation we bring to the steering committee, we have to back it up with data — gut feelings won't move this group.",
-     "example_ko": "그 제안은 직관적으로도 설득력이 있었지만, 그는 5분기치 고객 유지 데이터로 뒷받침했다."
+     "example_ko": "아이디어는 좋은데, 월요일 전에 데이터로 뒷받침해 줄 수 있어요?"
     },
     {
      "id": "PACK_EN_015_04",
@@ -148,9 +148,9 @@
      "meaning": "평소보다 더 자주, 더 명확하게 소통하다",
      "nuance": "원격 근무에서 가장 흔한 실수 중 하나는 '알겠지'라는 가정입니다. 사무실에서는 얼굴 표정, 몸짓, 복도 대화로 상태를 읽을 수 있지만 원격에서는 그 맥락이 사라집니다. Over-communicate는 '너무 많이' 소통하는 것처럼 보이지만, 원격 환경에서는 오히려 딱 적당한 소통 수준입니다. '이미 알고 있을 것 같아서 말 안 했다'가 오해의 출발점이 됩니다.",
      "dialogue": "You: I feel like I'm sending too many update messages to the team.\nManager: In a remote environment, you can't over-communicate. If they already know, they skim it. If they didn't know, you prevented a problem.\nYou: So it's better to over-share than under-share?\nManager: Always. Silence is the most expensive form of communication in distributed teams.",
-     "example": "In her first month managing a fully remote team, she learned to over-communicate — daily summaries, written decisions, and explicit next steps.",
+     "example": "Since we're all remote now, let's over-communicate — daily updates, even short ones.",
      "practice": "When in doubt in a remote setting, over-communicate. The cost of sending one extra message is zero. The cost of being misunderstood is days.",
-     "example_ko": "완전 원격팀을 관리한 첫 달, 그녀는 과할 정도로 소통하는 법을 배웠다 — 매일 요약, 문서화된 결정, 명확한 다음 단계까지."
+     "example_ko": "이제 다 원격이니까 소통을 넘치게 하죠 — 짧더라도 매일 업데이트해요."
     }
    ],
    "master_paragraph": {
@@ -181,9 +181,9 @@
      "meaning": "안건을 정합시다.",
      "nuance": "좋은 회의는 안건(agenda) 설정에서 시작됩니다. 'What are we here to decide?'가 명확해야 회의가 생산적으로 됩니다. 안건 없는 회의는 대화이고, 안건이 있는 회의는 작업입니다. 이 표현을 먼저 꺼내는 사람은 회의를 이끄는 사람입니다. 미팅 전에 1~2일 전 공유되는 안건은 참석자가 준비하게 하고 시간 낭비를 최소화합니다.",
      "dialogue": "You: Before we start, let's set the agenda. We have 45 minutes. I'd suggest: 15 minutes on Q3 results, 20 minutes on Q4 priorities, and 10 for open questions.\nColleague: Can we add the headcount discussion? That's been pending.\nYou: Good point. Let's add it as the third item and tighten the first two. Does everyone agree?\nAll: Yes, let's go.",
-     "example": "She always set the agenda 24 hours in advance — participants arrived prepared, and meetings rarely ran over.",
+     "example": "Let's set the agenda now so everyone comes prepared tomorrow.",
      "practice": "Let's set the agenda right now before everyone joins so we don't spend the first ten minutes figuring out why we're all here.",
-     "example_ko": "그녀는 항상 24시간 전에 안건을 정했다 — 참석자들은 준비된 상태로 왔고, 회의는 좀처럼 길어지지 않았다."
+     "example_ko": "다들 내일 준비해서 올 수 있게 지금 안건을 정하죠."
     },
     {
      "id": "PACK_EN_017_02",
@@ -192,9 +192,9 @@
      "meaning": "그건 일단 잠시 옆에 두고 넘어갑시다.",
      "nuance": "주차(park)는 차를 잠시 멈춰두는 것입니다. 회의 중 중요하지만 지금 다루기에 부적절한 주제가 나왔을 때, 그것을 버리지 않고 '나중에 다루겠다'고 표시하는 방법입니다. 'Table this'와 비슷하지만 더 직관적이며, 회의 흐름을 방해하지 않으면서도 그 주제를 잊지 않겠다는 약속을 담고 있습니다. 실제로 '파킹 랏(Parking Lot)' 화이트보드를 두는 팀도 있습니다.",
      "dialogue": "Colleague: Actually, while we're on the topic, I want to discuss the whole brand positioning—\nYou: That's a really important conversation. Let's park that for now and add it to next week's strategy session. I'll note it down.\nColleague: Fair enough.\nYou: Okay — back to the Q3 deliverables. Where were we?",
-     "example": "The facilitator parked the pricing debate and redirected the team to the product roadmap, promising to return to it before the session ended.",
+     "example": "Good point about pricing, but let's park that for now and come back to it at the end.",
      "practice": "If we don't park that and move on, we'll run out of time before we make the decision we actually came here for.",
-     "example_ko": "진행자는 가격 논쟁을 잠시 보류하고 팀을 제품 로드맵으로 돌렸으며, 세션이 끝나기 전에 다시 다루겠다고 약속했다."
+     "example_ko": "가격 얘기 좋은 지적인데, 일단 잠시 옆에 두고 마지막에 다시 다루죠."
     },
     {
      "id": "PACK_EN_017_03",
@@ -203,9 +203,9 @@
      "meaning": "주제에서 벗어나지 말고 집중합시다.",
      "nuance": "기차가 철로(track)에서 벗어나면 탈선합니다. 회의에서 논의가 계획된 주제에서 벗어날 때, 원래의 궤도로 돌아오자는 신호입니다. 특정 사람을 비판하는 것이 아니라, 모두가 합의한 안건에 집중하자는 공정한 요청입니다. 'We're getting off track' + 'Let's keep on track'을 함께 쓰면 자연스럽게 방향을 바로잡을 수 있습니다.",
      "dialogue": "Participant: This actually reminds me of what happened with the 2021 launch campaign—\nYou: Interesting context, but we're getting off track. Let's keep on track and finish the budget discussion — we can reference 2021 as a lesson learned at the end.\nParticipant: You're right, sorry.\nYou: No need to apologise — it's a relevant point. Let's note it and come back.",
-     "example": "The CEO was known for keeping meetings on track — she'd redirect off-topic conversations with a smile, not an interruption.",
+     "example": "We only have ten minutes left, so let's keep on track.",
      "practice": "We have 10 minutes left and two agenda items. Let's keep on track or we'll have to schedule a follow-up.",
-     "example_ko": "그 CEO는 회의를 궤도에서 벗어나지 않게 하는 걸로 유명했다 — 주제에서 벗어난 대화는 끊는 게 아니라 미소로 방향을 돌렸다."
+     "example_ko": "10분밖에 안 남았으니 주제에서 벗어나지 말죠."
     },
     {
      "id": "PACK_EN_017_04",
@@ -214,9 +214,9 @@
      "meaning": "실행 항목이 무엇인가요? (누가 무엇을 언제까지 할 건가요?)",
      "nuance": "회의의 가장 중요한 산출물은 '결정'과 '행동'입니다. Action items 없이 끝나는 회의는 대화일 뿐입니다. 좋은 action item은 항상 세 가지를 포함합니다: '누가(WHO)', '무엇을(WHAT)', '언제까지(WHEN)'. 이 세 가지가 없으면 책임 소재가 불분명해져서 팔로우업이 흐지부지됩니다. 회의 마지막 5분을 action items 정리에 쓰는 것이 가장 효율적인 투자입니다.",
      "dialogue": "You: Before we wrap up — what are the action items from today?\nLead: I'll finalize the budget breakdown by Thursday.\nColleague: I'll send the vendor shortlist by Friday.\nYou: And I'll schedule the follow-up review for next Monday. Let me capture all three in the meeting notes and share them now.",
-     "example": "She never ended a meeting without listing the action items clearly — each one had an owner, a deliverable, and a deadline.",
+     "example": "Before we wrap up — what are the action items, and who owns each one?",
      "practice": "We spent an hour in that meeting but nothing changed because nobody captured the action items. Let's not let that happen again.",
-     "example_ko": "그녀는 실행 항목을 명확히 나열하지 않고 회의를 끝낸 적이 없다 — 각 항목마다 담당자, 산출물, 마감일이 있었다."
+     "example_ko": "마무리하기 전에요 — 실행 항목이 뭐고, 각각 누가 맡죠?"
     },
     {
      "id": "PACK_EN_017_05",

@@ -152,13 +152,13 @@
    "meaning": "주도권을 잡다, 먼저 나서다",
    "level": "intermediate",
    "theme": "Leadership & Proactivity",
-   "example": "She took the initiative to restructure the onboarding before anyone asked.",
+   "example": "Nobody asked me to, but I took the initiative and rewrote the onboarding guide.",
    "dialogue": {
     "A": "Who started the documentation project?",
     "B": "No one assigned it — he just took the initiative when he saw the gap."
    },
    "nuance": "누가 시키기 전에 먼저 나선다는 뜻으로, 영어권 직장에서 가장 높이 평가받는 태도 중 하나입니다. 인사 평가나 추천서에 \"She takes initiative\"라고 쓰면 강한 칭찬입니다. 다만 권한 밖의 일을 상의 없이 벌이면 \"월권\"으로 받아들여질 수 있으니 공유는 필수입니다.",
-   "example_ko": "그녀는 누가 요청하기도 전에 먼저 나서서 온보딩을 재구성했어요."
+   "example_ko": "아무도 시키지 않았지만, 제가 먼저 나서서 온보딩 가이드를 다시 썼어요."
   },
   {
    "id": "EN_569",

@@ -1,0 +1,197 @@
+{
+  "meta": {
+    "label": "비즈니스 초급 4 + 상황별 고급 2 (10-05 점검 결과: business_meeting 초급 0개 → 초급 설정 시 팩 없이 평면 풀로 떨어지던 문제)",
+    "mode": "work",
+    "updated": "2026-10-05",
+    "note": "초급 비즈니스는 '어려운 업무 영어'가 아니라 입사 첫 주에 바로 필요한 짧고 정확한 문장. 예문은 모두 본인이 그대로 말할 수 있는 1·2인칭 문장으로.",
+    "count": { "english_theme_packs": 6 }
+  },
+  "english_theme_packs": [
+    {
+      "id": "PACK_EN_085", "theme_key": "first_week_at_work_en", "theme_category": "business_meeting",
+      "theme_title": "입사 첫 주 — 인사하고 물어보기", "theme_title_en": "Your First Week at Work", "level": "beginner", "delivery_date": null,
+      "expressions": [
+        {"id": "PACK_EN_085_01", "order": 1, "expression": "Hi, I'm Min. I just joined the marketing team.", "meaning": "안녕하세요, 민이에요. 마케팅팀에 막 들어왔어요.",
+         "nuance": "자기소개는 이름 + 소속 + '막 들어왔다'만 말해도 충분합니다. just joined는 '입사한 지 얼마 안 됐다'는 뜻이라 상대가 자연스럽게 도와주려는 마음이 들게 해요. 'I'm a new employee'보다 훨씬 자연스럽습니다.",
+         "dialogue": "Min: Hi, I'm Min. I just joined the marketing team.\nTom: Welcome! I'm Tom from sales.\nMin: Nice to meet you, Tom.\nTom: Let me know if you need anything.",
+         "example": "Hi, I'm Min. I just joined the marketing team last Monday.", "example_ko": "안녕하세요, 민이에요. 지난 월요일에 마케팅팀에 들어왔어요.", "practice": "Hi, I'm Jay. I just started in finance this week."},
+        {"id": "PACK_EN_085_02", "order": 2, "expression": "What team are you on?", "meaning": "어느 팀이세요?",
+         "nuance": "회사에서 처음 만난 사람에게 가장 먼저 묻는 질문입니다. team 앞에는 전치사 on을 써요('in the team'보다 'on the team'이 자연스러움). 하는 일을 물을 땐 'What do you do here?'라고 합니다.",
+         "dialogue": "Min: What team are you on?\nAnna: I'm on the design team.\nMin: Oh, so we'll probably work together.\nAnna: Definitely. Your team sends us most of our requests.",
+         "example": "Sorry, I didn't catch it — what team are you on?", "example_ko": "죄송해요, 못 들었어요 — 어느 팀이세요?", "practice": "What do you do here, exactly?"},
+        {"id": "PACK_EN_085_03", "order": 3, "expression": "Could you show me how this works?", "meaning": "이거 어떻게 쓰는지 보여 주실 수 있어요?",
+         "nuance": "새 시스템이나 기계 사용법을 물을 때 'Teach me'보다 'Could you show me'가 훨씬 부드럽습니다. 직접 보여 달라는 요청이라 설명이 짧고 정확해져요. 'when you have a minute'을 붙이면 더 배려 있게 들립니다.",
+         "dialogue": "Min: Could you show me how this works? The expense system, I mean.\nTom: Sure. You upload the receipt here.\nMin: And then I submit it to my manager?\nTom: Exactly. She approves it, and you get paid next month.",
+         "example": "Could you show me how this works when you have a minute?", "example_ko": "시간 되실 때 이거 어떻게 쓰는지 보여 주실 수 있어요?", "practice": "Could you show me where the meeting rooms are?"},
+        {"id": "PACK_EN_085_04", "order": 4, "expression": "Who should I ask about this?", "meaning": "이건 누구한테 물어보면 될까요?",
+         "nuance": "모르는 걸 혼자 끙끙대지 않고 담당자를 찾는 가장 효율적인 질문입니다. 신입이 이걸 잘 물어보면 오히려 일을 잘한다는 인상을 줘요. 'Who's in charge of ~?'(누가 ~ 담당이에요?)도 함께 알아 두세요.",
+         "dialogue": "Min: I need a new laptop charger. Who should I ask about this?\nAnna: IT. Just send a ticket to the helpdesk.\nMin: How long does it usually take?\nAnna: Usually a day or two.",
+         "example": "My login isn't working. Who should I ask about this?", "example_ko": "로그인이 안 돼요. 이건 누구한테 물어보면 될까요?", "practice": "Who's in charge of booking meeting rooms?"},
+        {"id": "PACK_EN_085_05", "order": 5, "expression": "I'm looking forward to working with you.", "meaning": "함께 일하게 돼서 기대돼요.",
+         "nuance": "첫 인사나 첫 이메일의 마무리로 가장 많이 쓰는 문장입니다. look forward to 뒤에는 -ing가 와야 해요('to work' ✗). 짧게 말할 땐 'Looking forward to working with you!'라고 합니다.",
+         "dialogue": "Manager: Welcome to the team, Min.\nMin: Thank you. I'm looking forward to working with you.\nManager: Same here. Let's grab lunch this week.\nMin: I'd love that.",
+         "example": "Thanks for the warm welcome — I'm looking forward to working with you all.", "example_ko": "따뜻하게 맞아 주셔서 감사해요 — 모두와 함께 일하게 돼서 기대돼요.", "practice": "I'm looking forward to meeting the rest of the team."}
+      ],
+      "master_paragraph": {
+        "text": "On my first day, I walked around the office and said, 'Hi, I'm Min. I just joined the marketing team.' Everyone was friendly, and I kept asking, 'What team are you on?' When I couldn't figure out the expense system, I asked a coworker, 'Could you show me how this works?' For everything else, I simply asked, 'Who should I ask about this?' At the end of the day, I told my manager, 'I'm looking forward to working with you.'",
+        "translation": "첫 출근 날, 사무실을 돌며 '안녕하세요, 민이에요. 마케팅팀에 막 들어왔어요'라고 인사했다. 다들 친절했고, 나는 계속 '어느 팀이세요?'라고 물었다. 경비 처리 시스템을 모르겠어서 동료에게 '이거 어떻게 쓰는지 보여 주실 수 있어요?'라고 부탁했다. 나머지는 그냥 '이건 누구한테 물어보면 될까요?'라고 물었다. 퇴근 무렵 매니저에게 '함께 일하게 돼서 기대돼요'라고 말했다.",
+        "highlights": ["I just joined the marketing team", "What team are you on", "Could you show me how this works", "Who should I ask about this", "looking forward to working with you"]
+      }
+    },
+    {
+      "id": "PACK_EN_086", "theme_key": "basic_work_email_en", "theme_category": "business_meeting",
+      "theme_title": "업무 이메일 기본 문장", "theme_title_en": "Basic Work Emails", "level": "beginner", "delivery_date": null,
+      "expressions": [
+        {"id": "PACK_EN_086_01", "order": 1, "expression": "I hope this email finds you well.", "meaning": "잘 지내고 계시길 바랍니다. (이메일 첫인사)",
+         "nuance": "처음 연락하거나 오랜만에 보내는 격식 있는 메일의 첫 문장입니다. 매일 주고받는 동료에게는 과하게 들리니 'Hi Sarah,' 다음에 바로 용건을 쓰는 게 낫습니다. 비슷하게 'I hope you're doing well'도 많이 써요.",
+         "dialogue": "Colleague: How should I start an email to a new client?\nYou: Something simple, like 'I hope this email finds you well.'\nColleague: Isn't that too formal?\nYou: For a first email, it's perfect.",
+         "example": "Dear Ms. Park, I hope this email finds you well.", "example_ko": "박 선생님께, 잘 지내고 계시길 바랍니다.", "practice": "Hi James, I hope you're doing well."},
+        {"id": "PACK_EN_086_02", "order": 2, "expression": "I'm writing to ask about the invoice.", "meaning": "청구서에 대해 문의드리려고 메일 드립니다.",
+         "nuance": "'I'm writing to ~'는 메일의 목적을 첫 줄에 밝히는 가장 깔끔한 틀입니다. 상대는 이 한 줄만 읽고도 무슨 메일인지 알 수 있어요. to 뒤에 ask about / confirm / follow up on 등을 바꿔 넣으면 됩니다.",
+         "dialogue": "You: How do I get to the point quickly in an email?\nManager: Start with 'I'm writing to…' and then the reason.\nYou: Like 'I'm writing to ask about the invoice'?\nManager: Exactly. Short and clear.",
+         "example": "I'm writing to ask about the invoice you sent on May 3.", "example_ko": "5월 3일에 보내 주신 청구서에 대해 문의드리려고 메일 드립니다.", "practice": "I'm writing to confirm our meeting on Thursday."},
+        {"id": "PACK_EN_086_03", "order": 3, "expression": "Thank you for your quick reply.", "meaning": "빠른 답장 감사합니다.",
+         "nuance": "답장을 받았을 때 첫 줄로 쓰면 대화가 부드럽게 이어집니다. 답장이 늦었다면 반대로 'Sorry for the late reply'로 시작해요. 'Thanks for getting back to me'는 조금 더 캐주얼합니다.",
+         "dialogue": "Client: The files are attached.\nYou: Thank you for your quick reply.\nClient: No problem. Let me know if anything's missing.\nYou: Will do.",
+         "example": "Thank you for your quick reply. The files look perfect.", "example_ko": "빠른 답장 감사합니다. 파일 완벽하네요.", "practice": "Sorry for the late reply — I was out of the office yesterday."},
+        {"id": "PACK_EN_086_04", "order": 4, "expression": "Could you confirm by Friday?", "meaning": "금요일까지 확인해 주실 수 있을까요?",
+         "nuance": "답을 받아야 할 때는 기한을 분명히 적어야 일이 늦어지지 않습니다. 'Please confirm ASAP'은 재촉하는 느낌이 강해, 구체적인 요일을 넣는 이 문장이 더 정중해요. confirm은 '맞다고 확정해 주다'라는 뜻입니다.",
+         "dialogue": "Manager: Did the supplier agree to the new price?\nYou: Not yet. I asked, 'Could you confirm by Friday?'\nManager: Good. We need it for the budget.\nYou: I'll follow up Thursday if I don't hear back.",
+         "example": "Could you confirm by Friday whether you can join the call?", "example_ko": "통화에 참석하실 수 있는지 금요일까지 확인해 주실 수 있을까요?", "practice": "Could you let me know by the end of the day?"},
+        {"id": "PACK_EN_086_05", "order": 5, "expression": "Please let me know if you have any questions.", "meaning": "궁금한 점 있으시면 알려 주세요.",
+         "nuance": "업무 메일 마지막 줄의 정석입니다. 상대가 편하게 다시 연락할 수 있도록 문을 열어 두는 말이에요. 조금 더 친근하게는 'Feel free to reach out if anything's unclear.'라고 합니다.",
+         "dialogue": "You: How should I end the email?\nColleague: 'Please let me know if you have any questions.' Then 'Best regards.'\nYou: That's it?\nColleague: That's it. Short emails get read.",
+         "example": "I've attached the schedule. Please let me know if you have any questions.", "example_ko": "일정표를 첨부했어요. 궁금한 점 있으시면 알려 주세요.", "practice": "Feel free to reach out if anything's unclear."}
+      ],
+      "master_paragraph": {
+        "text": "My first work email in English took me an hour. I started with 'I hope this email finds you well,' then wrote, 'I'm writing to ask about the invoice.' I asked, 'Could you confirm by Friday?' and ended with 'Please let me know if you have any questions.' The client answered in ten minutes, so my next email began with 'Thank you for your quick reply.' Now these sentences take me thirty seconds.",
+        "translation": "영어로 쓴 첫 업무 메일은 한 시간이 걸렸다. '잘 지내고 계시길 바랍니다'로 시작해서 '청구서에 대해 문의드리려고 메일 드립니다'라고 썼다. '금요일까지 확인해 주실 수 있을까요?'라고 묻고 '궁금한 점 있으시면 알려 주세요'로 마무리했다. 고객이 10분 만에 답장해서, 다음 메일은 '빠른 답장 감사합니다'로 시작했다. 이제 이 문장들은 30초면 쓴다.",
+        "highlights": ["I hope this email finds you well", "I'm writing to ask about the invoice", "Could you confirm by Friday", "Please let me know if you have any questions", "Thank you for your quick reply"]
+      }
+    },
+    {
+      "id": "PACK_EN_087", "theme_key": "meeting_basics_en", "theme_category": "business_meeting",
+      "theme_title": "회의 기본 — 온라인 회의에서 한마디", "theme_title_en": "Speaking Up in Meetings", "level": "beginner", "delivery_date": null,
+      "expressions": [
+        {"id": "PACK_EN_087_01", "order": 1, "expression": "Can you hear me okay?", "meaning": "제 목소리 잘 들리세요?",
+         "nuance": "온라인 회의를 시작할 때 가장 먼저 하는 말입니다. 'Can you hear me?'만 해도 되지만 okay를 붙이면 '잘 들리는지'까지 묻는 자연스러운 말투가 돼요. 상대가 음소거 상태라면 'I think you're on mute'라고 알려 줍니다.",
+         "dialogue": "You: Hi everyone. Can you hear me okay?\nSarah: Yes, loud and clear.\nYou: Great. Tom, I think you're on mute.\nTom: Sorry! Can you hear me now?",
+         "example": "Hi everyone, can you hear me okay? My mic has been acting up.", "example_ko": "안녕하세요 여러분, 제 목소리 잘 들리세요? 마이크가 좀 이상해서요.", "practice": "I think you're on mute, Tom."},
+        {"id": "PACK_EN_087_02", "order": 2, "expression": "Sorry, could you repeat that?", "meaning": "죄송한데 다시 한번 말씀해 주시겠어요?",
+         "nuance": "못 알아들었을 때 모르는 척 넘어가는 것보다 이 한마디가 훨씬 프로답습니다. 'What?'은 무례하게 들릴 수 있어요. 연결 문제라면 'You cut out for a second'(잠깐 끊겼어요)를 덧붙이면 좋아요.",
+         "dialogue": "Manager: …so the deadline moves to the twelfth.\nYou: Sorry, could you repeat that? You cut out for a second.\nManager: The deadline moves to the twelfth.\nYou: Got it, thanks.",
+         "example": "Sorry, could you repeat that? I missed the last part.", "example_ko": "죄송한데 다시 한번 말씀해 주시겠어요? 마지막 부분을 놓쳤어요.", "practice": "You cut out for a second — could you say the last part again?"},
+        {"id": "PACK_EN_087_03", "order": 3, "expression": "I have a quick question.", "meaning": "간단한 질문 하나 있어요.",
+         "nuance": "회의 중 끼어들 때 쓰는 가장 부드러운 시작입니다. quick이 '오래 안 걸린다'는 신호라 상대가 부담 없이 기회를 줘요. 손을 드는 대신 이 말로 시작하면 자연스럽게 발언권을 얻을 수 있습니다.",
+         "dialogue": "Sarah: …and that's the plan for Q3.\nYou: I have a quick question. Who's handling the budget?\nSarah: Good question — Tom is.\nTom: I'll send the numbers by Friday.",
+         "example": "Before we move on, I have a quick question about the timeline.", "example_ko": "넘어가기 전에 일정에 대해 간단한 질문 하나 있어요.", "practice": "Can I ask a quick question before we move on?"},
+        {"id": "PACK_EN_087_04", "order": 4, "expression": "I agree with Sarah.", "meaning": "저도 사라 씨와 같은 생각이에요.",
+         "nuance": "회의에서 처음 발언할 때 가장 쉽고 효과적인 방법은 앞사람 의견에 동의하며 이름을 부르는 것입니다. 이유를 하나 덧붙이면('because ~') 단순한 맞장구가 아니라 의견이 돼요. 'I'm agree'는 틀린 표현이에요.",
+         "dialogue": "Sarah: I think we should launch in September.\nYou: I agree with Sarah. Our customers buy more in the fall.\nManager: Good point. Any other thoughts?\nTom: I'm worried about the budget, though.",
+         "example": "I agree with Sarah — September makes more sense because of the holidays.", "example_ko": "저도 사라 씨와 같은 생각이에요 — 휴가철 때문에 9월이 더 맞아요.", "practice": "I see your point, but I think we need more time."},
+        {"id": "PACK_EN_087_05", "order": 5, "expression": "Can I share my screen?", "meaning": "제 화면 공유해도 될까요?",
+         "nuance": "온라인 회의에서 자료를 보여 줄 때 허락을 구하는 말입니다. 공유한 뒤에는 'Can you see my screen?'으로 상대 화면에 잘 보이는지 확인해요. 다 보여 줬으면 'I'll stop sharing now'라고 합니다.",
+         "dialogue": "You: Can I share my screen?\nManager: Go ahead.\nYou: Can everyone see the slides?\nSarah: Yes, we can see them.",
+         "example": "Can I share my screen? I'd like to show you the new design.", "example_ko": "제 화면 공유해도 될까요? 새 디자인을 보여 드리고 싶어서요.", "practice": "Can everyone see my screen?"}
+      ],
+      "master_paragraph": {
+        "text": "My first online meeting in English was scary, but I prepared five sentences. I started with 'Can you hear me okay?' When the connection dropped, I said, 'Sorry, could you repeat that?' In the middle, I raised my hand and said, 'I have a quick question.' When Sarah suggested a new date, I said, 'I agree with Sarah.' Finally, I asked, 'Can I share my screen?' and showed my design. Nobody noticed how nervous I was.",
+        "translation": "영어로 하는 첫 온라인 회의는 무서웠지만 다섯 문장을 준비했다. '제 목소리 잘 들리세요?'로 시작했다. 연결이 끊기자 '죄송한데 다시 한번 말씀해 주시겠어요?'라고 했다. 중간에 손을 들고 '간단한 질문 하나 있어요'라고 했다. 사라가 새 날짜를 제안하자 '저도 사라 씨와 같은 생각이에요'라고 했다. 마지막으로 '제 화면 공유해도 될까요?'라고 묻고 디자인을 보여 줬다. 아무도 내가 얼마나 긴장했는지 몰랐다.",
+        "highlights": ["Can you hear me okay", "could you repeat that", "I have a quick question", "I agree with Sarah", "Can I share my screen"]
+      }
+    },
+    {
+      "id": "PACK_EN_088", "theme_key": "work_progress_basics_en", "theme_category": "business_meeting",
+      "theme_title": "일 진행 상황 묻고 답하기", "theme_title_en": "Talking About Work Progress", "level": "beginner", "delivery_date": null,
+      "expressions": [
+        {"id": "PACK_EN_088_01", "order": 1, "expression": "How's the project going?", "meaning": "프로젝트는 잘 돼 가요?",
+         "nuance": "진행 상황을 부드럽게 묻는 가장 흔한 질문입니다. 'Is the project finished?'처럼 예/아니오로 묻는 것보다 상대가 편하게 상황을 설명할 수 있어요. 대답은 'It's going well' 또는 'We're on track'이 자연스럽습니다.",
+         "dialogue": "Manager: How's the project going?\nYou: It's going well. We're on track for Friday.\nManager: Great. Any problems?\nYou: Just one — I'm waiting for the final photos.",
+         "example": "Hey, how's the project going? Do you need any help?", "example_ko": "프로젝트는 잘 돼 가요? 도움 필요한 거 있어요?", "practice": "How's the report coming along?"},
+        {"id": "PACK_EN_088_02", "order": 2, "expression": "I'm almost done.", "meaning": "거의 다 했어요.",
+         "nuance": "진행 상황을 짧게 알릴 때 씁니다. 'almost'만 쓰면 언제 끝날지 모호하니, 'I'm almost done — give me ten more minutes'처럼 남은 시간을 붙이면 상대가 계획을 세우기 쉬워요.",
+         "dialogue": "Tom: Are you ready for the meeting?\nYou: I'm almost done with the slides. Give me five minutes.\nTom: No rush. They're running late too.\nYou: Perfect.",
+         "example": "I'm almost done with the slides — give me ten more minutes.", "example_ko": "슬라이드 거의 다 했어요 — 10분만 더 주세요.", "practice": "I'm halfway through the report."},
+        {"id": "PACK_EN_088_03", "order": 3, "expression": "I'll get it done by tomorrow.", "meaning": "내일까지 끝낼게요.",
+         "nuance": "get it done은 '끝내다'를 행동 중심으로 말하는 표현이라 책임감 있게 들립니다. 기한은 by(~까지)로 말해요. 'until tomorrow'는 '내일까지 계속'이라는 뜻이 돼서 틀린 표현이에요.",
+         "dialogue": "Manager: The client wants the summary soon.\nYou: I'll get it done by tomorrow morning.\nManager: That works. Send it to me first.\nYou: Will do.",
+         "example": "Don't worry, I'll get it done by tomorrow morning.", "example_ko": "걱정 마세요, 내일 아침까지 끝낼게요.", "practice": "I can finish it by the end of the week."},
+        {"id": "PACK_EN_088_04", "order": 4, "expression": "Do you have a minute?", "meaning": "잠깐 시간 괜찮으세요?",
+         "nuance": "상대의 일을 방해하기 전에 먼저 양해를 구하는 말입니다. 1분만 쓰겠다는 뜻이 아니라 '잠깐'이라는 관용 표현이에요. 상대가 바쁘면 'Not right now, can we talk at three?'처럼 대답합니다.",
+         "dialogue": "You: Do you have a minute?\nManager: Sure, what's up?\nYou: I have a question about the new schedule.\nManager: Have a seat.",
+         "example": "Do you have a minute? I'd like to ask you about tomorrow's meeting.", "example_ko": "잠깐 시간 괜찮으세요? 내일 회의에 대해 여쭤보고 싶어서요.", "practice": "Is now a good time to talk?"},
+        {"id": "PACK_EN_088_05", "order": 5, "expression": "I'm running a bit behind.", "meaning": "일이 조금 밀리고 있어요.",
+         "nuance": "일정보다 늦어지고 있다는 걸 미리 솔직하게 알리는 말입니다. a bit을 넣으면 심각하지 않다는 느낌을 주고, 이유와 새 일정을 함께 말하면 신뢰를 잃지 않아요. 미리 말하는 게 마감 직전에 말하는 것보다 훨씬 좋습니다.",
+         "dialogue": "Manager: Will the design be ready today?\nYou: I'm running a bit behind. Can I send it tomorrow at noon?\nManager: That's fine. Thanks for telling me early.\nYou: Of course.",
+         "example": "I'm running a bit behind on the report — can I send it tomorrow at noon?", "example_ko": "보고서가 조금 밀리고 있어요 — 내일 정오에 보내도 될까요?", "practice": "We're a little behind schedule, but we'll catch up."}
+      ],
+      "master_paragraph": {
+        "text": "Every morning, my manager stops by and asks, 'How's the project going?' Most days I say, 'I'm almost done,' or 'I'll get it done by tomorrow.' Last week, I was running a bit behind, so I knocked on her door and asked, 'Do you have a minute?' I told her the truth and gave her a new date. She thanked me for telling her early — and I learned that bad news delivered on time is still good communication.",
+        "translation": "매일 아침 매니저가 들러서 '프로젝트는 잘 돼 가요?'라고 묻는다. 대부분은 '거의 다 했어요'나 '내일까지 끝낼게요'라고 답한다. 지난주엔 일이 조금 밀려서, 매니저 방 문을 두드리고 '잠깐 시간 괜찮으세요?'라고 물었다. 사실대로 말하고 새 날짜를 알려 드렸다. 매니저는 일찍 말해 줘서 고맙다고 했다 — 나쁜 소식도 제때 전하면 좋은 소통이라는 걸 배웠다.",
+        "highlights": ["How's the project going", "I'm almost done", "get it done by tomorrow", "running a bit behind", "Do you have a minute"]
+      }
+    },
+    {
+      "id": "PACK_EN_089", "theme_key": "renting_apartment_en", "theme_category": "everyday_situations",
+      "theme_title": "집 구할 때 — 렌트 조건 협상하기", "theme_title_en": "Renting an Apartment", "level": "advanced", "delivery_date": null,
+      "expressions": [
+        {"id": "PACK_EN_089_01", "order": 1, "expression": "Is the rent negotiable?", "meaning": "월세 조정이 가능한가요?",
+         "nuance": "해외 렌트 시장에서는 조건 협상이 흔하지만, 'Can you lower the price?'라고 바로 깎아 달라고 하면 공격적으로 들릴 수 있습니다. negotiable은 '조정 여지가 있나요?'라고 문을 두드리는 말이라 집주인이 대안을 내놓기 쉬워요.",
+         "dialogue": "You: I love the place. Is the rent negotiable?\nLandlord: A little. What did you have in mind?\nYou: If I sign for two years, could we do 1,800 instead of 1,900?\nLandlord: Let me think about it and get back to you.",
+         "example": "I'm ready to sign a two-year lease. Is the rent negotiable?", "example_ko": "2년 계약할 준비가 됐어요. 월세 조정이 가능한가요?", "practice": "Would you consider a lower rent for a longer lease?"},
+        {"id": "PACK_EN_089_02", "order": 2, "expression": "What's included in the rent?", "meaning": "월세에 뭐가 포함돼 있나요?",
+         "nuance": "해외에서는 수도·전기·가스·인터넷(utilities)이 월세에 포함되는지가 집마다 달라 실제 비용이 크게 차이 납니다. 계약 전에 반드시 물어야 할 질문이에요. 관리비가 따로 있다면 'Are there any additional fees?'를 이어서 묻습니다.",
+         "dialogue": "You: What's included in the rent?\nAgent: Water and trash. Electricity and internet are separate.\nYou: Roughly how much are utilities per month?\nAgent: About 150 dollars in winter.",
+         "example": "Before I decide, what's included in the rent — are utilities covered?", "example_ko": "결정하기 전에 여쭤볼게요, 월세에 뭐가 포함돼 있나요 — 공과금도 포함인가요?", "practice": "Are there any additional fees I should know about?"},
+        {"id": "PACK_EN_089_03", "order": 3, "expression": "I'd like to read the lease before I sign.", "meaning": "서명하기 전에 계약서를 읽어 보고 싶어요.",
+         "nuance": "집주인이 서명을 재촉할 때 정중하게 시간을 버는 말입니다. lease는 임대 계약서예요. 당연한 권리라서 미안해할 필요 없고, 'Could you email me a copy?'라고 이어서 요청하면 꼼꼼히 확인할 수 있습니다.",
+         "dialogue": "Landlord: Great, just sign here and here.\nYou: I'd like to read the lease before I sign. Could you email me a copy?\nLandlord: Sure, but I have other people interested.\nYou: I understand. I'll get back to you by tomorrow.",
+         "example": "I'd like to read the lease before I sign — could you email me a copy tonight?", "example_ko": "서명하기 전에 계약서를 읽어 보고 싶어요 — 오늘 밤에 사본을 메일로 보내 주실 수 있어요?", "practice": "Can I take the contract home and review it?"},
+        {"id": "PACK_EN_089_04", "order": 4, "expression": "Is there a penalty for breaking the lease early?", "meaning": "계약을 일찍 해지하면 위약금이 있나요?",
+         "nuance": "break a lease는 '임대 계약을 중도에 깨다'라는 정해진 표현입니다. 이직이나 귀국 가능성이 있다면 반드시 확인해야 할 조건이에요. 위약금 대신 다음 세입자를 구해 주면 되는 경우(sublet)도 있어 함께 물어보면 좋습니다.",
+         "dialogue": "You: My job might move me next year. Is there a penalty for breaking the lease early?\nLandlord: Two months' rent.\nYou: What if I find someone to take over the lease?\nLandlord: Then there's no penalty.",
+         "example": "My job might move me abroad. Is there a penalty for breaking the lease early?", "example_ko": "회사 때문에 해외로 갈 수도 있어서요. 계약을 일찍 해지하면 위약금이 있나요?", "practice": "Am I allowed to sublet the apartment?"},
+        {"id": "PACK_EN_089_05", "order": 5, "expression": "Who's responsible for repairs?", "meaning": "수리는 누가 책임지나요?",
+         "nuance": "보일러나 수도가 고장 났을 때 비용을 누가 내는지는 계약서에 따라 다르니 미리 분명히 해 둬야 합니다. responsible for는 '책임이 있는'이라는 뜻이에요. 급한 고장 때 누구에게 연락하는지 'Who do I call for emergencies?'도 함께 물어보세요.",
+         "dialogue": "You: Who's responsible for repairs?\nLandlord: Anything major is on me. Small things like light bulbs are on you.\nYou: And who do I call for emergencies?\nLandlord: The building manager. His number is on the fridge.",
+         "example": "If the heating breaks in winter, who's responsible for repairs?", "example_ko": "겨울에 난방이 고장 나면 수리는 누가 책임지나요?", "practice": "Who do I call if something breaks at night?"}
+      ],
+      "master_paragraph": {
+        "text": "When I moved to Toronto, I found an apartment I loved but couldn't quite afford. I asked, 'Is the rent negotiable?' and offered to sign for two years. Then I asked, 'What's included in the rent?' and found out that internet was extra. When the landlord pushed me to sign, I said, 'I'd like to read the lease before I sign.' I also checked, 'Is there a penalty for breaking the lease early?' and 'Who's responsible for repairs?' In the end, I got a lower rent and no surprises.",
+        "translation": "토론토로 이사했을 때 마음에 쏙 드는데 조금 비싼 집을 찾았다. '월세 조정이 가능한가요?'라고 묻고 2년 계약을 제안했다. 그리고 '월세에 뭐가 포함돼 있나요?'라고 물어 인터넷은 별도라는 걸 알았다. 집주인이 서명을 재촉하자 '서명하기 전에 계약서를 읽어 보고 싶어요'라고 했다. '계약을 일찍 해지하면 위약금이 있나요?', '수리는 누가 책임지나요?'도 확인했다. 결국 월세를 낮추고, 뜻밖의 문제도 없었다.",
+        "highlights": ["Is the rent negotiable", "What's included in the rent", "read the lease before I sign", "penalty for breaking the lease early", "Who's responsible for repairs"]
+      }
+    },
+    {
+      "id": "PACK_EN_090", "theme_key": "seeing_a_doctor_en", "theme_category": "everyday_situations",
+      "theme_title": "병원 진료 — 증상 설명하고 질문하기", "theme_title_en": "Seeing a Doctor", "level": "advanced", "delivery_date": null,
+      "expressions": [
+        {"id": "PACK_EN_090_01", "order": 1, "expression": "It hurts when I bend my knee.", "meaning": "무릎을 굽힐 때 아파요.",
+         "nuance": "'아파요'만으로는 진단이 어렵습니다. 'It hurts when I ~'로 어떤 동작에서 아픈지 말하면 의사가 원인을 훨씬 빨리 좁혀요. 계속 아프면 'It hurts all the time', 콕콕 쑤시면 'a sharp pain', 둔하게 아프면 'a dull ache'라고 합니다.",
+         "dialogue": "Doctor: Where does it hurt?\nYou: Right here. It hurts when I bend my knee.\nDoctor: Is it a sharp pain or more of a dull ache?\nYou: Sharp, especially on the stairs.",
+         "example": "It doesn't hurt when I walk, but it hurts when I bend my knee.", "example_ko": "걸을 때는 안 아픈데 무릎을 굽힐 때 아파요.", "practice": "It's a dull ache, and it gets worse at night."},
+        {"id": "PACK_EN_090_02", "order": 2, "expression": "It started about three days ago.", "meaning": "한 사흘 전부터 시작됐어요.",
+         "nuance": "증상이 언제 시작됐는지는 의사가 거의 반드시 묻는 정보입니다. about을 넣으면 정확하지 않다는 뜻을 자연스럽게 전해요. 점점 심해졌다면 'and it's getting worse', 나아지고 있으면 'but it's getting better'를 붙입니다.",
+         "dialogue": "Doctor: When did the cough start?\nYou: It started about three days ago, and it's getting worse.\nDoctor: Any fever?\nYou: A little last night.",
+         "example": "It started about three days ago, right after I went swimming.", "example_ko": "수영하고 난 직후, 한 사흘 전부터 시작됐어요.", "practice": "It's been like this for about a week."},
+        {"id": "PACK_EN_090_03", "order": 3, "expression": "Do I need a referral to see a specialist?", "meaning": "전문의를 보려면 의뢰서가 필요한가요?",
+         "nuance": "영국·캐나다 등 많은 나라는 일반의(GP)를 먼저 거쳐야 전문의를 볼 수 있고, 이때 필요한 게 referral(진료 의뢰서)입니다. 보험 처리 여부도 여기에 달려 있어서 해외에 사는 사람에게 꼭 필요한 질문이에요.",
+         "dialogue": "You: My knee isn't getting better. Do I need a referral to see a specialist?\nDoctor: Yes, I'll write one for an orthopedist.\nYou: How long is the wait usually?\nDoctor: About three weeks, unfortunately.",
+         "example": "If the pain doesn't go away, do I need a referral to see a specialist?", "example_ko": "통증이 계속되면 전문의를 보려면 의뢰서가 필요한가요?", "practice": "Could you refer me to a dermatologist?"},
+        {"id": "PACK_EN_090_04", "order": 4, "expression": "Are there any side effects?", "meaning": "부작용이 있나요?",
+         "nuance": "새 약을 처방받을 때 꼭 묻는 질문입니다. side effects는 항상 복수형으로 써요. 운전이나 술과 관련된 주의 사항이 궁금하면 'Is it okay to drive after taking this?'처럼 구체적으로 물으면 더 정확한 답을 들을 수 있습니다.",
+         "dialogue": "Doctor: I'll prescribe an anti-inflammatory.\nYou: Are there any side effects?\nDoctor: It might upset your stomach, so take it with food.\nYou: Is it okay to drink alcohol with it?",
+         "example": "Before I start taking it, are there any side effects I should watch for?", "example_ko": "먹기 시작하기 전에요, 조심해야 할 부작용이 있나요?", "practice": "Is it safe to drive after taking this?"},
+        {"id": "PACK_EN_090_05", "order": 5, "expression": "I'd like to get a second opinion.", "meaning": "다른 의사 소견도 들어 보고 싶어요.",
+         "nuance": "중요한 수술이나 진단을 받았을 때 다른 의사의 의견을 구하는 것은 흔하고 당연한 권리입니다. 담당 의사를 의심한다는 뜻으로 받아들여지지 않으니 편하게 말해도 돼요. 진료 기록은 'Could I get a copy of my records?'로 요청합니다.",
+         "dialogue": "Doctor: I recommend surgery next month.\nYou: I'd like to get a second opinion before I decide.\nDoctor: That's completely reasonable.\nYou: Could I get a copy of my test results?",
+         "example": "It's a big decision, so I'd like to get a second opinion first.", "example_ko": "큰 결정이라 먼저 다른 의사 소견도 들어 보고 싶어요.", "practice": "Could I get a copy of my medical records?"}
+      ],
+      "master_paragraph": {
+        "text": "After a ski trip in Canada, my knee started bothering me. At the clinic, I explained, 'It hurts when I bend my knee,' and added, 'It started about three days ago.' The doctor prescribed some medicine, and I asked, 'Are there any side effects?' When the pain didn't go away, I asked, 'Do I need a referral to see a specialist?' The specialist suggested surgery, but I said, 'I'd like to get a second opinion.' The second doctor recommended physical therapy instead — and it worked.",
+        "translation": "캐나다에서 스키를 타고 온 뒤 무릎이 신경 쓰이기 시작했다. 병원에서 '무릎을 굽힐 때 아파요'라고 설명하고 '한 사흘 전부터 시작됐어요'라고 덧붙였다. 의사가 약을 처방해서 '부작용이 있나요?'라고 물었다. 통증이 사라지지 않자 '전문의를 보려면 의뢰서가 필요한가요?'라고 물었다. 전문의는 수술을 권했지만 나는 '다른 의사 소견도 들어 보고 싶어요'라고 했다. 두 번째 의사는 대신 물리치료를 권했고 — 그게 효과가 있었다.",
+        "highlights": ["It hurts when I bend my knee", "It started about three days ago", "Are there any side effects", "need a referral to see a specialist", "get a second opinion"]
+      }
+    }
+  ]
+}

@@ -188,17 +188,6 @@
    "example_ko": "저기 — 10분 정도 늦을 것 같아요. 저 없이 먼저 시작해 주세요."
   },
   {
-   "id": "EN_455",
-   "expression": "Wrap it up",
-   "meaning": "마무리해요, 끝내요. 발표, 회의, 작업 등을 마무리하자고 신호를 줄 때.",
-   "level": "beginner",
-   "theme": "workplace_daily",
-   "example": "We're running five minutes over — let's wrap it up with the key action items.",
-   "dialogue": "A: We're at the thirty-minute mark and there are two more agenda items.\nB: Let's wrap up the current topic with a decision and move fast. What's the call on vendor A vs B?\nA: Vendor A, final answer. Agreed?\nAll: Agreed.\nB: Great. Next.",
-   "nuance": "시간이 다 됐다는 신호입니다. 발표자에게 진행자가 던지면 \"이제 마무리하세요\"라는 압박이 되고, 동료끼리는 \"슬슬 끝내자\" 정도입니다. 손으로 원을 그리는 제스처와 같이 쓰는 경우가 많습니다.",
-   "example_ko": "5분 넘겼네요 — 핵심 실행 항목으로 마무리합시다."
-  },
-  {
    "id": "EN_456",
    "expression": "Take it or leave it",
    "meaning": "싫으면 말고, 이게 제 최선이에요. 더 이상 협상하지 않겠다는 최종 제안.",

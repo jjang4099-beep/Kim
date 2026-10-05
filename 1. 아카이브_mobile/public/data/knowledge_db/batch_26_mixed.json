@@ -35,16 +35,13 @@
     {
      "id": "EN_040_02",
      "order": 2,
-     "expression": "Let's find a middle ground.",
-     "meaning": "서로 타협점을 찾아봅시다",
-     "nuance": "양측 모두가 100% 원하는 것을 얻을 수 없을 때 쓰는 표현. '네가 져야 내가 이긴다'는 제로섬이 아니라 '둘 다 일부를 얻는' 포지티브섬으로 대화를 이동시키는 효과가 있다. 협상의 핵심은 '나의 입장(position)'이 아니라 '나의 필요(interest)'가 무엇인지를 이해하는 것이다.",
-     "dialogue": {
-      "A": "We absolutely cannot extend the deadline.",
-      "B": "I understand the pressure. Let's find a middle ground — maybe we phase the deliverables?"
-     },
-     "example": "Both sides have valid points. Let's find a middle ground that works for everyone.",
-     "practice": "의견 충돌이 팽팽할 때 협력적 해결을 제안하는 상황",
-     "example_ko": "양쪽 다 타당한 지점이 있네요. 모두에게 맞는 중간 지점을 찾아봅시다."
+     "expression": "Let's split the difference.",
+     "meaning": "차이를 반씩 양보하죠.",
+     "nuance": "두 숫자 사이에서 정확히 중간으로 합의하자는 협상의 정석 표현입니다. 가격·일정·수량처럼 숫자로 맞서는 상황에서 가장 빠르게 결론을 내는 말이에요. 서로 체면을 지키며 끝낼 수 있어 협상 막바지에 자주 쓰입니다.",
+     "dialogue": "Client: We can pay 8,000.\nYou: Our price is 10,000.\nClient: Let's split the difference — 9,000?\nYou: Deal.",
+     "example": "You're at eight weeks, I'm at twelve. Let's split the difference and say ten.",
+     "practice": "If we split the difference, we can sign today.",
+     "example_ko": "그쪽은 8주, 저는 12주예요. 차이를 반씩 양보해서 10주로 하죠."
     },
     {
      "id": "EN_040_03",
@@ -63,16 +60,13 @@
     {
      "id": "EN_040_04",
      "order": 4,
-     "expression": "Can we separate the issue from the person?",
-     "meaning": "문제 자체와 사람을 분리해서 생각해볼 수 있을까요?",
-     "nuance": "갈등이 격화될 때 자주 발생하는 실수는 '그 사람'을 공격하는 것이다. 문제와 사람을 분리하면 방어적 반응이 줄고 실제 문제 해결에 집중할 수 있다. 하버드 협상 프로그램(Getting to Yes)의 핵심 원칙이다.",
-     "dialogue": {
-      "A": "This is a mess and it's clearly his fault.",
-      "B": "Can we separate the issue from the person? Let's focus on what went wrong in the process."
-     },
-     "example": "I know tensions are high, but can we separate the issue from the person and focus on the solution?",
-     "practice": "팀 내 갈등이 개인 감정 싸움으로 번질 때, 논의를 문제 중심으로 되돌릴 때",
-     "example_ko": "긴장이 높다는 건 알지만, 문제와 사람을 분리해서 해결책에 집중할 수 있을까요?"
+     "expression": "Let's take a step back.",
+     "meaning": "잠깐 한발 물러서서 보죠.",
+     "nuance": "논쟁이 과열되거나 세부 사항에 갇혔을 때 큰 그림으로 돌아가자는 말입니다. 상대를 탓하지 않고 대화의 온도를 낮추는 효과가 있어요. 이어서 'What are we actually trying to achieve?'처럼 목표를 다시 묻는 질문을 붙이면 좋습니다.",
+     "dialogue": "Tom: The font is wrong, the colors are wrong—\nAnna: Okay, let's take a step back.\nTom: Fine.\nAnna: What do we actually need this page to do?",
+     "example": "We're arguing about details. Let's take a step back — what's the goal here?",
+     "practice": "Before we decide, let's take a step back and look at the numbers.",
+     "example_ko": "세부 사항으로 다투고 있네요. 잠깐 한발 물러서 보죠 — 여기서 목표가 뭐죠?"
     },
     {
      "id": "EN_040_05",
@@ -90,13 +84,13 @@
     }
    ],
    "master_paragraph": {
-    "text": "When conflict arises, the first step is to say 'I hear what you're saying' to show you're listening. Then, instead of pushing your position, ask 'I'd like to understand your perspective better.' If the conversation gets personal, gently suggest 'Can we separate the issue from the person?' and work toward finding a middle ground. Finally, shift the conversation forward with 'What would it take for us to move forward together?'",
-    "translation": "갈등이 생겼을 때, 첫 번째 단계는 '말씀하시는 것을 잘 듣고 있습니다'라고 말해 경청하고 있음을 보여주는 것이다. 그런 다음, 자신의 입장을 밀어붙이는 대신 '당신의 관점을 더 잘 이해하고 싶습니다'라고 묻는다. 대화가 개인적으로 흐르면, '문제 자체와 사람을 분리해볼 수 있을까요?'라고 부드럽게 제안하며 타협점을 찾아간다. 마지막으로 '우리가 함께 앞으로 나아가려면 무엇이 필요할까요?'라는 질문으로 대화를 미래로 전환시킨다.",
+    "text": "When conflict arises, the first step is to say 'I hear what you're saying' to show you're listening. Then, instead of pushing your position, ask 'I'd like to understand your perspective better.' If the conversation gets heated, gently say 'Let's take a step back,' and if you're stuck on numbers, suggest that you split the difference. Finally, shift the conversation forward with 'What would it take for us to move forward together?'",
+    "translation": "갈등이 생겼을 때, 첫 번째 단계는 '말씀하시는 것을 잘 듣고 있습니다'라고 말해 경청하고 있음을 보여주는 것이다. 그런 다음, 자신의 입장을 밀어붙이는 대신 '당신의 관점을 더 잘 이해하고 싶습니다'라고 묻는다. 대화가 과열되면 '잠깐 한발 물러서 보죠'라고 부드럽게 말하고, 숫자에서 막히면 차이를 반씩 양보하자고 제안한다. 마지막으로 '우리가 함께 앞으로 나아가려면 무엇이 필요할까요?'라는 질문으로 대화를 미래로 전환시킨다.",
     "highlights": [
      "I hear what you're saying",
      "I'd like to understand your perspective better",
-     "Can we separate the issue from the person?",
-     "finding a middle ground",
+     "Let's take a step back",
+     "split the difference",
      "What would it take for us to move forward together?"
     ]
    },
@@ -110,13 +104,13 @@
    "meaning": "변화나 위기의 조짐을 알아채다, 앞으로 일어날 일을 미리 감지하다",
    "level": "advanced",
    "theme": "insight",
-   "example": "The experienced manager saw the writing on the wall and started upskilling her team before the market shifted.",
+   "example": "I saw the writing on the wall, so I started learning data analysis last year.",
    "dialogue": {
     "A": "Did you expect the layoffs?",
     "B": "I saw the writing on the wall six months ago — the numbers just weren't adding up."
    },
    "nuance": "구약 다니엘서에서 바빌론 왕의 연회장 벽에 손가락이 나타나 멸망을 예고하는 글을 썼다는 이야기에서 온 말입니다. 곧 닥칠 불운이나 변화의 뚜렷한 조짐을 알아챈다는 뜻이라, 회사의 위기나 퇴사 결심을 말할 때 자주 씁니다.",
-   "example_ko": "노련한 매니저는 변화의 조짐을 알아채고, 시장이 바뀌기 전에 팀의 역량을 키우기 시작했어요."
+   "example_ko": "변화의 조짐이 보여서 작년부터 데이터 분석을 배우기 시작했어요."
   },
   {
    "id": "EN_624",
@@ -133,32 +127,18 @@
    "example_ko": "양측 모두 진정으로 타협할 의지를 갖고 협상에 나와야 해요."
   },
   {
-   "id": "EN_625",
-   "expression": "Bridge the gap",
-   "meaning": "격차를 좁히다, 양측 사이의 차이를 메우다",
-   "level": "advanced",
-   "theme": "alignment",
-   "example": "The workshop was designed to bridge the gap between the engineering and marketing teams.",
-   "dialogue": {
-    "A": "There's still a big disconnect between what sales promised and what we can deliver.",
-    "B": "That's exactly why I set up this meeting — to bridge the gap before it becomes a crisis."
-   },
-   "nuance": "두 쪽 사이에 다리를 놓는다 = 격차나 차이를 메운다는 뜻입니다. 부서 간 소통, 세대 차이, 기술 격차 등에 두루 씁니다. 긍정적인 역할을 강조하는 말이라, 자기소개에서 \"I bridge the gap between design and engineering\"처럼 쓰면 좋은 어필이 됩니다.",
-   "example_ko": "그 워크숍은 엔지니어링팀과 마케팅팀 사이의 간극을 좁히려고 기획됐어요."
-  },
-  {
    "id": "EN_630",
    "expression": "Speak volumes",
    "meaning": "말 없이도 많은 것을 전달하다, 무언가를 강렬하게 보여주다",
    "level": "advanced",
    "theme": "impact",
-   "example": "The fact that they showed up 30 minutes early says — or rather, speaks volumes — about their commitment.",
+   "example": "You showed up 30 minutes early on your first day — that speaks volumes.",
    "dialogue": {
     "A": "She didn't say anything in the meeting.",
     "B": "Her silence spoke volumes. She clearly disagrees but doesn't feel safe saying so."
    },
    "nuance": "책 여러 권(volumes)만큼 말한다 = 말없이도 많은 것을 드러낸다는 뜻입니다. 행동이나 사실이 사람의 성격이나 의도를 보여줄 때 씁니다. 칭찬(\"It speaks volumes about her dedication\")에도 비판(\"His silence speaks volumes\")에도 쓰입니다.",
-   "example_ko": "그들이 30분 일찍 왔다는 사실만으로도 그들의 의지가 충분히 드러나요."
+   "example_ko": "첫날 30분이나 일찍 오셨네요 — 그것만으로도 많은 걸 말해 주죠."
   },
   {
    "id": "EN_631",
@@ -194,13 +174,13 @@
    "meaning": "알맹이와 쭉정이를 분리하다, 중요한 것과 쓸모없는 것을 가려내다",
    "level": "advanced",
    "theme": "judgment",
-   "example": "With so many data points, the analyst's job was to separate the wheat from the chaff and find the real insights.",
+   "example": "We got 500 survey responses, so I need to separate the wheat from the chaff before the meeting.",
    "dialogue": {
     "A": "We have hundreds of customer feedback entries — where do we even start?",
     "B": "We need to separate the wheat from the chaff first. Let's cluster the most common themes."
    },
    "nuance": "곡식을 까불러 알곡(wheat)과 쭉정이(chaff)를 가려내는 옛 농사일에서 온 표현으로, 성경에도 여러 번 나옵니다. 넘쳐나는 정보나 지원자 속에서 진짜 가치 있는 것을 골라낸다는 뜻입니다. 사람에게 쓰면 누군가를 \"쭉정이\"로 부르는 셈이니 주의하세요.",
-   "example_ko": "데이터가 워낙 많아서, 분석가의 일은 알맹이와 쭉정이를 가려내 진짜 인사이트를 찾는 것이었어요."
+   "example_ko": "설문 응답이 500개나 와서, 회의 전에 중요한 것과 아닌 걸 골라내야 해요."
   }
  ],
  "chinese_expressions": [

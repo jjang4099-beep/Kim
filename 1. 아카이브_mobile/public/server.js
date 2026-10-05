@@ -1893,7 +1893,11 @@ function loadDeepLayers() {
 }
 const _deepOf = id => loadDeepLayers().deep[id] || null;
 
-/** 미배달 항목 중 깊이 읽기가 있는 것을 먼저 — 없으면 원래 후보 그대로 */
+/* 깊이 읽기·연재의 '본 적 있음' 판정 창. 갈래별 중복 창(인사이트 60일·고전 90일·역사 180일)보다 길게 잡는다 —
+   10-05 100일 시뮬레이션: 60일이 지나자 '깊이 읽기 우선'이 이미 본 인사이트를 다시 끌어와 18장이 재배달됐다. */
+const DEEP_SEEN_DAYS = 365;
+
+/** 미배달 항목 중 깊이 읽기가 있는 것을 먼저 — 없으면 원래 후보 그대로 (recentIds는 DEEP_SEEN_DAYS 창으로 넘길 것) */
 function _preferDeep(cands, recentIds) {
   const deep = cands.filter(i => _deepOf(i.id) && !recentIds.includes(i.id));
   return deep.length ? deep : cands;
@@ -2721,13 +2725,16 @@ function generateLiberFeed(sub) {
      09-24·09-28처럼 손자병법이 두 번 연속 나왔다. 최근 90일에 나온 책은 다른 책이 남아 있는 한 건너뛴다. */
   const bookKey = q => String(q.book || '').split('(')[0].trim();
   const recentBooks = new Set(pool.filter(q => recentIds.includes(q.id)).map(bookKey));
-  const freshBooks  = pool.filter(q => !recentBooks.has(bookKey(q)) && !recentIds.includes(q.id));
+  /* 10-05: 구절 중복 창 90일 → 1년(152구절을 3일에 한 번 꺼내므로 1년이면 다 돈다). 같은 책 피하기는 90일 그대로 */
+  const longIds     = getRecentDeliveredIDs(_dedupKeys(sub), DEEP_SEEN_DAYS);
+  const freshBooks  = pool.filter(q => !recentBooks.has(bookKey(q)) && !longIds.includes(q.id));
+  const unseenAny   = pool.filter(q => !longIds.includes(q.id));
   /* 깊이 읽기가 있는 구절 먼저 — 책 다양성 안에서 고르고, 없으면 다른 책이라도 깊이 읽기 있는 구절 */
   const deepFresh = freshBooks.filter(q => _deepOf(q.id));
-  const deepAny   = pool.filter(q => _deepOf(q.id) && !recentIds.includes(q.id));
-  const [q] = deepFresh.length ? pickUnseenItems(deepFresh, recentIds, 1)
-    : deepAny.length ? pickUnseenItems(deepAny, recentIds, 1)
-    : freshBooks.length ? pickUnseenItems(freshBooks, recentIds, 1) : pickUnseenItems(pool, recentIds, 1);
+  const deepAny   = unseenAny.filter(q => _deepOf(q.id));
+  const [q] = pickUnseenItems(
+    deepFresh.length ? deepFresh : deepAny.length ? deepAny : freshBooks.length ? freshBooks : unseenAny.length ? unseenAny : pool,
+    longIds, 1);
   if (!q) return null;
   console.log(`[WorkDB] LIBER 서빙 (${q.id} · ${q.book})`);
   return {
@@ -2748,15 +2755,15 @@ function generateInsightFeed(sub) {
   if (!all.length) return null;
   /* 시드의 dayOfWeek는 월=1…일=7인데 getDay()는 일=0이라 일요일 항목(14개)이 일요일에 한 번도 안 골라졌다 */
   const dow  = new Date().getDay() || 7;
-  const seen = getRecentDeliveredIDs(_dedupKeys(sub), 60);
-  let pool = all.filter(i => i.dayOfWeek === dow);
-  if (!pool.length) pool = all;
-  /* 깊이 읽기 있는 항목 먼저 — 요일 주제 안에서, 없으면 요일과 상관없이 */
-  const deepDow = pool.filter(i => _deepOf(i.id) && !seen.includes(i.id));
-  const deepAll = all.filter(i => _deepOf(i.id) && !seen.includes(i.id));
-  if (deepDow.length) pool = deepDow; else if (deepAll.length) pool = deepAll;
-  let [it] = pickUnseenItems(pool, seen, 1);
-  if (!it) [it] = pickUnseenItems(all, seen, 1);
+  /* 10-05: 중복 창 60일 → 1년. 60일 창 + 요일 묶음(요일당 약 16개)이라 두 달이면 같은 글이 다시 나왔다.
+     순서: 깊이 읽기(요일) → 깊이 읽기(전체) → 안 본 요일 항목 → 안 본 전체 → 전체 */
+  const seen    = getRecentDeliveredIDs(_dedupKeys(sub), DEEP_SEEN_DAYS);
+  const unseen  = all.filter(i => !seen.includes(i.id));
+  const dowNew  = unseen.filter(i => i.dayOfWeek === dow);
+  const deepDow = dowNew.filter(i => _deepOf(i.id));
+  const deepAll = unseen.filter(i => _deepOf(i.id));
+  const pool = deepDow.length ? deepDow : deepAll.length ? deepAll : dowNew.length ? dowNew : unseen.length ? unseen : all;
+  const [it] = pickUnseenItems(pool, seen, 1);
   if (!it) return null;
   console.log(`[WorkDB] 인사이트 서빙 (${it.id} · ${it.topic})`);
   return {
@@ -2772,7 +2779,8 @@ function generateInsightFeed(sub) {
 function generateIdiomFeedDB(sub) {
   const pool = loadWorkDB().idiom_cards;
   if (!pool.length) return null;
-  const recent = getRecentDeliveredIDs(_dedupKeys(sub), 90);
+  /* 10-05: 중복 창 90일 → 1년(102개를 3일에 한 번) */
+  const recent = getRecentDeliveredIDs(_dedupKeys(sub), DEEP_SEEN_DAYS);
   const [c] = pickUnseenItems(_preferDeep(pool, recent), recent, 1);
   if (!c) return null;
   console.log(`[WorkDB] 고사성어 서빙 (${c.id} · ${c.idiom})`);
@@ -2877,12 +2885,13 @@ async function generateHumanitiesFeed(sub, user) {
          옛 147개는 비즈니스 사례가 67개이고 같은 사건이 2~3번씩 겹친다(프랑스 혁명·산업혁명·러시아 혁명 각 3개).
          이제 era 항목을 항상 먼저 쓰고, 다 본 뒤에만 옛 항목으로 넘어간다. */
       /* 10-05~ 연재가 최우선: 어제 이야기의 다음 편 → 안 끝난 연재 → (연재 밖) 깊이 읽기 있는 항목 → era 항목 → 전체 */
-      const seriesPick = _pickSeriesItem(pool, recentIds, _dedupKeys(sub));
+      const longIds    = getRecentDeliveredIDs(_dedupKeys(sub), DEEP_SEEN_DAYS);
+      const seriesPick = _pickSeriesItem(pool, longIds, _dedupKeys(sub));
       const curated = pool.filter(i => i.era && !recentIds.includes(i.id));
       const [item]  = seriesPick ? [seriesPick.item]
         : curated.length
-        ? pickUnseenItems(_preferDeep(curated, recentIds), recentIds, 1)
-        : pickUnseenItems(_preferDeep(pool, recentIds), recentIds, 1);
+        ? pickUnseenItems(_preferDeep(curated, longIds), recentIds, 1)
+        : pickUnseenItems(_preferDeep(pool, longIds), recentIds, 1);
       if (item) {
         console.log(`[KnowledgeDB] 역사피드 DB 서빙 (${item.id}${seriesPick ? ` · 연재 ${seriesPick.series.id} ${seriesPick.series.no}/${seriesPick.series.total}` : ''})`);
         return {

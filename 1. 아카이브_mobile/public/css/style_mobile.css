@@ -6297,3 +6297,36 @@ html[data-theme="light"] body,
 html[data-theme="light"] body *:not(code, pre, kbd, .ti, [class*="ti-"], .app-entrance, .app-entrance *) {
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif !important;
 }
+
+/* ══════════════════════════════════════════════════════════
+   v96 — 지식 한줌 깊이 읽기(용어·써먹는 한마디)·연재
+══════════════════════════════════════════════════════════ */
+.mob-hum-terms { display: flex; flex-direction: column; gap: 8px; }
+.mob-hum-term {
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 8px 10px; border-radius: 8px;
+  background: var(--surface); border: 1px solid var(--border);
+}
+.mob-hum-term b    { font-size: 13px; font-weight: 800; color: var(--text-1); }
+.mob-hum-term span { font-size: 12.5px; line-height: 1.6; color: var(--text-2); word-break: keep-all; }
+.mob-hum-talk-body {
+  font-size: 13.5px; line-height: 1.7; font-weight: 600; color: #78350f;
+  padding: 10px 12px; border-radius: 8px;
+  background: #fff7ed; border-left: 3px solid #f59e0b; word-break: keep-all;
+}
+.mob-hum-series-no { font-weight: 800; margin-left: 2px; }
+.mob-hum-next {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 10px 14px; border-top: 1px dashed var(--border);
+  font-size: 12.5px; color: var(--text-2); word-break: keep-all;
+}
+.mob-hum-next-lbl {
+  flex-shrink: 0; font-size: 10.5px; font-weight: 800; letter-spacing: .04em;
+  color: #9A6F1B; background: #F4ECD8; padding: 2px 7px; border-radius: 99px;
+}
+html[data-theme="dark"] .mob-hum-term             { background: #16223a; border-color: #1E3356; }
+html[data-theme="dark"] .mob-hum-term b           { color: #F1F5F9; }
+html[data-theme="dark"] .mob-hum-term span        { color: #CBD5E1; }
+html[data-theme="dark"] .mob-hum-talk-body        { background: #26354f; color: var(--color-premium-gold); border-left-color: var(--color-premium-gold); }
+html[data-theme="dark"] .mob-hum-next             { color: #CBD5E1; border-top-color: #2a3349; }
+html[data-theme="dark"] .mob-hum-next-lbl         { background: #26354f; color: var(--color-premium-gold); }

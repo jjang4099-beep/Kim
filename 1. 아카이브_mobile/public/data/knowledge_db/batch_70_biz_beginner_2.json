@@ -1,0 +1,321 @@
+{
+  "meta": {
+    "label": "비즈니스 초급 4팩 추가 (10-05: 초급 비즈니스 4팩 → 8팩 — 4주면 다 보고 중급으로 넘어가던 문제)",
+    "mode": "work",
+    "updated": "2026-10-05",
+    "note": "초급 비즈니스 = 매일 회사에서 쓰는 짧고 정확한 문장. 전화·일정·부탁·사과/지연 알림. 예문은 모두 1·2인칭.",
+    "count": {
+      "english_theme_packs": 4
+    }
+  },
+  "english_theme_packs": [
+    {
+      "id": "PACK_EN_091",
+      "theme_key": "out_of_office_en",
+      "theme_category": "business_meeting",
+      "theme_title": "외근·재택·휴가 — 자리 비울 때 알리기",
+      "theme_title_en": "Letting People Know You're Away",
+      "level": "beginner",
+      "delivery_date": null,
+      "master_paragraph": {
+        "text": "Next week is busy. On Monday I'm working from home, so I told my team, 'I'm working from home today, but I'm online.' On Wednesday I have a client visit, so I said, 'I'll be out of the office all afternoon.' For urgent things, I added, 'You can reach me on my cell.' I'm also taking Friday off, so I set up an email reply: 'I'll be back on Monday.' Before leaving, I asked a coworker, 'Could you cover for me while I'm away?'",
+        "translation": "다음 주는 바쁘다. 월요일엔 재택이라 팀에 '오늘 재택인데 온라인이에요'라고 말했다. 수요일엔 고객 방문이 있어서 '오후 내내 외근이에요'라고 했다. 급한 일에 대비해 '휴대폰으로 연락 주세요'라고 덧붙였다. 금요일엔 휴가라 이메일 자동 답장을 설정했다. '월요일에 복귀합니다.' 떠나기 전에 동료에게 '저 없는 동안 대신 봐 줄 수 있어요?'라고 부탁했다.",
+        "highlights": [
+          "I'm working from home today",
+          "I'll be out of the office",
+          "You can reach me on my cell",
+          "I'll be back on Monday",
+          "Could you cover for me"
+        ]
+      },
+      "expressions": [
+        {
+          "id": "PACK_EN_091_01",
+          "order": 1,
+          "expression": "I'm working from home today.",
+          "meaning": "오늘 재택근무해요.",
+          "nuance": "재택근무는 work from home, 줄여서 WFH라고 많이 씁니다. 메신저에 'WFH today'라고만 써도 다 알아들어요. 연락이 된다는 걸 알리려면 'but I'm online'을 붙이세요.",
+          "dialogue": "Colleague: Are you coming to the office?\nYou: No, I'm working from home today.\nColleague: Can I still call you?\nYou: Sure, I'm online all day.",
+          "example": "I'm working from home today, but I'm on Slack if you need me.",
+          "example_ko": "오늘 재택이지만 필요하면 슬랙에 있어요.",
+          "practice": "I'm WFH on Mondays and Fridays."
+        },
+        {
+          "id": "PACK_EN_091_02",
+          "order": 2,
+          "expression": "I'll be out of the office all afternoon.",
+          "meaning": "오후 내내 외근이에요(자리에 없어요).",
+          "nuance": "out of the office는 출장·외근·휴가 등 이유와 상관없이 '사무실에 없다'는 뜻입니다. 이메일 자동 응답을 'out-of-office reply'라고 부르는 것도 여기서 왔어요. 언제 돌아오는지 함께 말하면 좋습니다.",
+          "dialogue": "Manager: Can we talk at 3?\nYou: Sorry, I'll be out of the office all afternoon.\nManager: Client visit?\nYou: Yes. How about 10 tomorrow?",
+          "example": "I'll be out of the office all afternoon for a client meeting.",
+          "example_ko": "고객 미팅 때문에 오후 내내 자리에 없어요.",
+          "practice": "I'll be out of the office until Wednesday."
+        },
+        {
+          "id": "PACK_EN_091_03",
+          "order": 3,
+          "expression": "You can reach me on my cell.",
+          "meaning": "제 휴대폰으로 연락 주세요.",
+          "nuance": "reach는 '연락이 닿다'라는 뜻입니다. 미국에선 휴대폰을 cell(cell phone), 영국에선 mobile이라고 해요. 이메일로 연락받고 싶으면 'You can reach me by email'이라고 합니다.",
+          "dialogue": "Colleague: What if something urgent comes up?\nYou: You can reach me on my cell.\nColleague: What's the number again?\nYou: I'll text it to you now.",
+          "example": "I'm traveling tomorrow, but you can reach me on my cell.",
+          "example_ko": "내일 출장 가지만 휴대폰으로 연락 주시면 돼요.",
+          "practice": "The best way to reach me is by email."
+        },
+        {
+          "id": "PACK_EN_091_04",
+          "order": 4,
+          "expression": "I'll be back on Monday.",
+          "meaning": "월요일에 복귀해요.",
+          "nuance": "휴가나 출장에서 언제 돌아오는지 알리는 기본 문장입니다. 자동 응답 메일에도 그대로 써요. 'I'm off on Friday'(금요일에 쉬어요)와 짝을 이뤄 자주 쓰입니다.",
+          "dialogue": "Client: Can we meet this Friday?\nYou: Sorry, I'm off on Friday. I'll be back on Monday.\nClient: Monday morning, then?\nYou: Monday at 10 works for me.",
+          "example": "I'm taking Friday off. I'll be back on Monday.",
+          "example_ko": "금요일에 휴가예요. 월요일에 복귀해요.",
+          "practice": "I'm off next week, back on the 15th."
+        },
+        {
+          "id": "PACK_EN_091_05",
+          "order": 5,
+          "expression": "Could you cover for me while I'm away?",
+          "meaning": "제가 없는 동안 대신 봐 줄 수 있어요?",
+          "nuance": "cover for someone은 '다른 사람의 일을 잠시 대신 맡아 주다'라는 뜻입니다. 부탁할 때는 무엇을 봐 줘야 하는지 구체적으로 말해 주세요. 돌아와서 'Thanks for covering for me'라고 고마움을 전하는 것도 잊지 마세요.",
+          "dialogue": "You: I'm on vacation next week. Could you cover for me while I'm away?\nColleague: Sure. What do I need to watch?\nYou: Just the client emails. Everything else can wait.\nColleague: No problem. Enjoy your trip!",
+          "example": "Could you cover for me while I'm away? It's mostly emails.",
+          "example_ko": "제가 없는 동안 대신 봐 줄 수 있어요? 거의 이메일이에요.",
+          "practice": "Thanks for covering for me last week."
+        }
+      ]
+    },
+    {
+      "id": "PACK_EN_092",
+      "theme_key": "scheduling_basics_en",
+      "theme_category": "business_meeting",
+      "theme_title": "일정 잡기·바꾸기",
+      "theme_title_en": "Setting and Changing Schedules",
+      "level": "beginner",
+      "delivery_date": null,
+      "master_paragraph": {
+        "text": "I needed to meet a client next week, so I emailed her: 'Are you free on Tuesday?' She wasn't, so I wrote, 'What time works for you?' We agreed on Thursday, but the next day my boss called a meeting. I wrote back, 'Can we move it to Friday?' She said yes, and I replied, 'Friday at 2 works for me.' Finally, I added, 'I'll send you a calendar invite.'",
+        "translation": "다음 주에 고객을 만나야 해서 이메일을 보냈다. '화요일에 시간 되세요?' 안 된다고 해서 '언제가 편하세요?'라고 썼다. 목요일로 정했는데 다음 날 상사가 회의를 잡았다. 나는 '금요일로 옮길 수 있을까요?'라고 다시 썼다. 괜찮다고 해서 '금요일 2시 좋습니다'라고 답했다. 마지막으로 '캘린더 초대 보내 드릴게요'라고 덧붙였다.",
+        "highlights": [
+          "Are you free on Tuesday",
+          "What time works for you",
+          "Can we move it to Friday",
+          "Friday at 2 works for me",
+          "I'll send you a calendar invite"
+        ]
+      },
+      "expressions": [
+        {
+          "id": "PACK_EN_092_01",
+          "order": 1,
+          "expression": "Are you free on Tuesday?",
+          "meaning": "화요일에 시간 되세요?",
+          "nuance": "일정을 물을 때 가장 쉽고 자연스러운 문장입니다. 'Do you have time on Tuesday?'도 같은 뜻이에요. 요일 앞에는 on, 시각 앞에는 at을 씁니다 — 'Are you free at 3?'",
+          "dialogue": "You: I'd like to go over the proposal with you. Are you free on Tuesday?\nClient: Tuesday is busy for me.\nYou: How about Wednesday?\nClient: Wednesday afternoon is fine.",
+          "example": "Are you free on Tuesday for a quick call?",
+          "example_ko": "화요일에 잠깐 통화할 시간 되세요?",
+          "practice": "Are you free at 3 this afternoon?"
+        },
+        {
+          "id": "PACK_EN_092_02",
+          "order": 2,
+          "expression": "What time works for you?",
+          "meaning": "언제가 편하세요?",
+          "nuance": "상대에게 시간 선택권을 넘기는 배려 있는 질문입니다. work for you는 '당신에게 괜찮다'는 뜻으로, 일정 이야기에서 아주 많이 써요. 'What day works best?'(무슨 요일이 제일 좋아요?)도 함께 익혀 두세요.",
+          "dialogue": "You: Let's meet this week. What time works for you?\nColleague: Maybe Thursday morning?\nYou: Thursday at 10?\nColleague: Perfect.",
+          "example": "I'm flexible this week. What time works for you?",
+          "example_ko": "이번 주는 저는 아무 때나 괜찮아요. 언제가 편하세요?",
+          "practice": "What day works best for your team?"
+        },
+        {
+          "id": "PACK_EN_092_03",
+          "order": 3,
+          "expression": "Can we move it to Friday?",
+          "meaning": "금요일로 옮길 수 있을까요?",
+          "nuance": "이미 잡힌 일정을 바꿀 때 쓰는 기본 문장입니다. move는 '날짜를 옮기다'라는 뜻으로, reschedule보다 짧고 쉬워요. 바꾸는 이유를 한마디 붙이면 더 정중합니다 — 'Something came up.'(일이 좀 생겼어요.)",
+          "dialogue": "You: Sorry, something came up on Thursday. Can we move it to Friday?\nClient: Sure. Same time?\nYou: Yes, 10 a.m.\nClient: That works.",
+          "example": "Something came up. Can we move our meeting to Friday?",
+          "example_ko": "일이 좀 생겼어요. 회의를 금요일로 옮길 수 있을까요?",
+          "practice": "Can we push it back by an hour?"
+        },
+        {
+          "id": "PACK_EN_092_04",
+          "order": 4,
+          "expression": "Friday at 2 works for me.",
+          "meaning": "금요일 2시 저는 좋아요.",
+          "nuance": "제안받은 시간을 수락할 때 'OK'보다 훨씬 분명하고 프로답게 들립니다. 날짜와 시각을 다시 말해 주기 때문에 착오도 줄어요. 안 될 때는 'Friday doesn't work for me'라고 합니다.",
+          "dialogue": "Client: How about Friday at 2?\nYou: Friday at 2 works for me.\nClient: Great. At your office?\nYou: Yes. I'll book a room.",
+          "example": "Friday at 2 works for me. See you then.",
+          "example_ko": "금요일 2시 좋아요. 그때 봬요.",
+          "practice": "Monday morning doesn't work for me, unfortunately."
+        },
+        {
+          "id": "PACK_EN_092_05",
+          "order": 5,
+          "expression": "I'll send you a calendar invite.",
+          "meaning": "캘린더 초대 보내 드릴게요.",
+          "nuance": "일정을 정한 뒤 마무리하는 표준 문장입니다. invite는 여기서 명사로 '초대장'이라는 뜻이에요. 화상 회의라면 'with the Zoom link'를 붙이면 됩니다.",
+          "dialogue": "Colleague: So, Friday at 2?\nYou: Yes. I'll send you a calendar invite.\nColleague: Thanks. Will it be online?\nYou: Yes, I'll add the Zoom link.",
+          "example": "I'll send you a calendar invite with the Zoom link.",
+          "example_ko": "줌 링크 넣어서 캘린더 초대 보내 드릴게요.",
+          "practice": "Did you get my calendar invite?"
+        }
+      ]
+    },
+    {
+      "id": "PACK_EN_093",
+      "theme_key": "asking_and_offering_help_en",
+      "theme_category": "business_meeting",
+      "theme_title": "부탁하고 도와주기",
+      "theme_title_en": "Asking for and Offering Help",
+      "level": "beginner",
+      "delivery_date": null,
+      "master_paragraph": {
+        "text": "Last week I was stuck on a big report. I finally walked over to Sarah and asked, 'Can I borrow you for a second?' Then I said, 'Could you take a look at this?' She found two mistakes right away. When she got busy later, I said, 'Let me know if you need a hand.' She asked me to check her slides, and I said, 'No problem. I'm on it.' At the end of the day, I told her, 'You're a lifesaver.'",
+        "translation": "지난주 큰 보고서에서 막혀 있었다. 결국 사라에게 가서 '잠깐 시간 좀 내 줄 수 있어요?'라고 물었다. 그리고 '이것 좀 봐 주실 수 있어요?'라고 했다. 사라는 바로 실수 두 개를 찾아냈다. 나중에 사라가 바빠졌을 때 나는 '도움 필요하면 말해요'라고 했다. 사라가 슬라이드 확인을 부탁해서 '문제없어요. 바로 할게요'라고 답했다. 퇴근 무렵 나는 사라에게 말했다. '덕분에 살았어요.'",
+        "highlights": [
+          "Can I borrow you for a second",
+          "Could you take a look at this",
+          "Let me know if you need a hand",
+          "I'm on it",
+          "You're a lifesaver"
+        ]
+      },
+      "expressions": [
+        {
+          "id": "PACK_EN_093_01",
+          "order": 1,
+          "expression": "Can I borrow you for a second?",
+          "meaning": "잠깐 시간 좀 내 줄 수 있어요?",
+          "nuance": "직역하면 '당신을 잠깐 빌려도 될까요?' — 동료를 잠깐 불러낼 때 원어민이 아주 자주 쓰는 친근한 말입니다. 'Do you have a minute?'보다 한결 가볍고 웃음기가 있어요. 윗사람에게는 'Do you have a moment?'가 무난합니다.",
+          "dialogue": "You: Hi, Sarah. Can I borrow you for a second?\nSarah: Sure, what's up?\nYou: I have a quick question about the budget.\nSarah: Go ahead.",
+          "example": "Can I borrow you for a second? I need your eyes on something.",
+          "example_ko": "잠깐 시간 좀 내 줄 수 있어요? 뭘 좀 봐 줬으면 해서요.",
+          "practice": "Is now a good time to talk?"
+        },
+        {
+          "id": "PACK_EN_093_02",
+          "order": 2,
+          "expression": "Could you take a look at this?",
+          "meaning": "이것 좀 봐 주실 수 있어요?",
+          "nuance": "검토나 확인을 부탁할 때 쓰는 말입니다. take a look은 '한번 훑어보다'라는 가벼운 느낌이라 부탁의 부담을 줄여 줘요. 언제까지인지 덧붙이면 상대가 계획을 세우기 쉽습니다 — 'by tomorrow?'",
+          "dialogue": "You: Could you take a look at this? It's my first report.\nSarah: Sure. When do you need it?\nYou: By tomorrow morning, if possible.\nSarah: No problem. I'll check it this afternoon.",
+          "example": "Could you take a look at this email before I send it?",
+          "example_ko": "보내기 전에 이 이메일 좀 봐 주실 수 있어요?",
+          "practice": "Could you double-check these numbers for me?"
+        },
+        {
+          "id": "PACK_EN_093_03",
+          "order": 3,
+          "expression": "Let me know if you need a hand.",
+          "meaning": "도움 필요하면 말해요.",
+          "nuance": "a hand는 '도움'을 뜻하는 아주 흔한 구어 표현입니다. 'Can I help you?'보다 부담이 적어 상대가 편하게 부탁할 수 있어요. 바로 도와주겠다면 'Do you need a hand?'라고 물으면 됩니다.",
+          "dialogue": "Colleague: I have three reports due today.\nYou: Wow. Let me know if you need a hand.\nColleague: Actually, could you check the charts?\nYou: Sure. Send them over.",
+          "example": "I'm free this afternoon, so let me know if you need a hand.",
+          "example_ko": "오늘 오후에 시간 있으니까 도움 필요하면 말해요.",
+          "practice": "Do you need a hand with those boxes?"
+        },
+        {
+          "id": "PACK_EN_093_04",
+          "order": 4,
+          "expression": "No problem. I'm on it.",
+          "meaning": "문제없어요. 바로 할게요.",
+          "nuance": "I'm on it은 '지금 바로 처리하겠다'는 믿음직한 대답입니다. 'OK, I'll do it'보다 빠르고 적극적으로 들려요. 상사나 동료가 급한 일을 맡길 때 특히 좋습니다.",
+          "dialogue": "Manager: The client needs the file by noon.\nYou: No problem. I'm on it.\nManager: Thanks. Let me know when it's sent.\nYou: Will do.",
+          "example": "Got your message. I'm on it — you'll have it in an hour.",
+          "example_ko": "메시지 받았어요. 바로 할게요 — 한 시간 안에 드릴게요.",
+          "practice": "Leave it to me. I'll take care of it."
+        },
+        {
+          "id": "PACK_EN_093_05",
+          "order": 5,
+          "expression": "You're a lifesaver.",
+          "meaning": "덕분에 살았어요.",
+          "nuance": "급할 때 도와준 사람에게 하는 아주 흔한 감사 표현입니다. 'Thank you'보다 감정이 훨씬 크게 전달돼요. 진짜 큰 도움이 아니어도 가볍게 씁니다 — 펜 하나 빌려줘도 'You're a lifesaver!'",
+          "dialogue": "You: Thanks for fixing my slides last night.\nSarah: Anytime.\nYou: Seriously, you're a lifesaver.\nSarah: Then coffee's on you tomorrow!",
+          "example": "You found the file? You're a lifesaver.",
+          "example_ko": "파일 찾았어요? 덕분에 살았어요.",
+          "practice": "Thanks a lot. Next coffee is on me."
+        }
+      ]
+    },
+    {
+      "id": "PACK_EN_094",
+      "theme_key": "delays_and_apologies_en",
+      "theme_category": "business_meeting",
+      "theme_title": "늦을 때·실수했을 때 알리기",
+      "theme_title_en": "Reporting Delays and Mistakes",
+      "level": "beginner",
+      "delivery_date": null,
+      "master_paragraph": {
+        "text": "Monday was a rough day. My train stopped, so I texted my team: 'I'm running a few minutes late.' At the office, I noticed I'd sent the wrong file to a client. I called her right away: 'I'm sorry, that was my mistake.' Then I said, 'I'll send you the right file in ten minutes.' My report was also behind, so I told my manager, 'I need one more day.' He said, 'Thanks for letting me know.'",
+        "translation": "월요일은 힘든 날이었다. 지하철이 멈춰서 팀에 문자를 보냈다. '몇 분 늦을 것 같아요.' 회사에 도착해서는 고객에게 엉뚱한 파일을 보냈다는 걸 알았다. 바로 전화했다. '죄송합니다, 제 실수예요.' 그리고 '10분 안에 맞는 파일을 보내 드릴게요'라고 했다. 보고서도 밀려 있어서 매니저에게 '하루만 더 필요해요'라고 말했다. 매니저는 '알려 줘서 고마워요'라고 했다.",
+        "highlights": [
+          "I'm running a few minutes late",
+          "that was my mistake",
+          "I'll send you the right file",
+          "I need one more day",
+          "Thanks for letting me know"
+        ]
+      },
+      "expressions": [
+        {
+          "id": "PACK_EN_094_01",
+          "order": 1,
+          "expression": "I'm running a few minutes late.",
+          "meaning": "몇 분 늦을 것 같아요.",
+          "nuance": "늦을 때 미리 알리는 가장 자연스러운 문장입니다. 'I'm late'는 이미 늦었다는 뜻이고, 'I'm running late'는 '지금 늦어지고 있다'는 뜻이라 미리 알리는 느낌이 나요. 도착 예정 시각을 붙이면 완벽합니다.",
+          "dialogue": "You: Hi, it's Min. I'm running a few minutes late.\nColleague: No worries. How long?\nYou: About ten minutes. The train stopped.\nColleague: Okay, we'll start without you.",
+          "example": "Sorry, I'm running a few minutes late. I'll be there by 9:10.",
+          "example_ko": "죄송해요, 몇 분 늦을 것 같아요. 9시 10분까지는 갈게요.",
+          "practice": "I'm stuck in traffic. Please start without me."
+        },
+        {
+          "id": "PACK_EN_094_02",
+          "order": 2,
+          "expression": "I'm sorry, that was my mistake.",
+          "meaning": "죄송합니다, 제 실수예요.",
+          "nuance": "실수를 바로 인정하는 짧고 분명한 사과입니다. 핑계를 길게 늘어놓는 것보다 이 한 문장이 훨씬 신뢰를 줘요. 'my fault'도 비슷하지만, 업무에서는 'my mistake'가 조금 더 차분하게 들립니다.",
+          "dialogue": "Client: This isn't the file we talked about.\nYou: I'm sorry, that was my mistake.\nClient: It happens.\nYou: I'll fix it right away.",
+          "example": "I sent the wrong version. I'm sorry, that was my mistake.",
+          "example_ko": "제가 잘못된 버전을 보냈어요. 죄송합니다, 제 실수예요.",
+          "practice": "My fault — I forgot to add you to the email."
+        },
+        {
+          "id": "PACK_EN_094_03",
+          "order": 3,
+          "expression": "I'll send you the right file in ten minutes.",
+          "meaning": "10분 안에 맞는 파일을 보내 드릴게요.",
+          "nuance": "사과 다음에는 반드시 '무엇을, 언제까지' 하겠다는 말이 따라와야 합니다. in ten minutes는 '10분 후에(10분 안에)'라는 뜻이에요. 구체적인 시간을 말하면 상대가 안심합니다.",
+          "dialogue": "Client: When can I get the correct file?\nYou: I'll send you the right file in ten minutes.\nClient: Great, thanks.\nYou: Again, sorry for the confusion.",
+          "example": "I'll send you the right file in ten minutes, and I'll double-check it first.",
+          "example_ko": "10분 안에 맞는 파일 보내 드릴게요. 먼저 한 번 더 확인할게요.",
+          "practice": "I'll fix it and send it back by noon."
+        },
+        {
+          "id": "PACK_EN_094_04",
+          "order": 4,
+          "expression": "I need one more day.",
+          "meaning": "하루만 더 필요해요.",
+          "nuance": "마감을 못 맞출 것 같을 때, 마감 직전이 아니라 미리 말하는 게 핵심입니다. 이유를 짧게 덧붙이고 새 마감을 분명히 말하면 대부분 받아들여져요 — 'Can I send it on Thursday instead?'",
+          "dialogue": "Manager: How's the report going?\nYou: It's almost done, but I need one more day.\nManager: What's the problem?\nYou: I'm still waiting for the sales numbers. Can I send it on Thursday?",
+          "example": "I'm sorry, but I need one more day to finish the report.",
+          "example_ko": "죄송하지만 보고서 끝내는 데 하루만 더 필요해요.",
+          "practice": "Could I have until Friday to finish this?"
+        },
+        {
+          "id": "PACK_EN_094_05",
+          "order": 5,
+          "expression": "Thanks for letting me know.",
+          "meaning": "알려 줘서 고마워요.",
+          "nuance": "누군가 늦거나 문제가 생겼다고 미리 알려 줬을 때 하는 대답입니다. 불평 대신 이 말을 하면 상대가 앞으로도 문제를 빨리 말해 줘요. 이메일에서도 그대로 쓸 수 있습니다.",
+          "dialogue": "Colleague: Just a heads-up — the client meeting moved to 4.\nYou: Thanks for letting me know.\nColleague: Sure. Same room.\nYou: Great. See you there.",
+          "example": "Thanks for letting me know. I'll update the schedule.",
+          "example_ko": "알려 줘서 고마워요. 일정 업데이트할게요.",
+          "practice": "Thanks for the heads-up."
+        }
+      ]
+    }
+  ]
+}

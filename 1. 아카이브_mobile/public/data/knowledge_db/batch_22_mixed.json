@@ -23,11 +23,8 @@
      "order": 1,
      "expression": "I completely understand where you're coming from.",
      "meaning": "당신의 입장을 완전히 이해합니다",
-     "nuance": "설득의 첫 번째 단계는 상대의 입장을 인정하는 것이다. 이 표현은 '나는 당신의 반대 의견을 들었고 존중한다'는 신호를 보낸 후 다음 논거를 제시할 수 있는 발판을 만들어준다.",
-     "dialogue": {
-      "A": "I'm not sure we should invest in this right now.",
-      "B": "I completely understand where you're coming from — the timing feels uncertain. That's exactly why I want to show you what the data says."
-     },
+     "nuance": "설득의 첫 번째 단계는 상대의 입장을 인정하는 것입니다. 이 표현은 '나는 당신의 반대 의견을 들었고 존중한다'는 신호를 보낸 후 다음 논거를 제시할 수 있는 발판을 만들어줍니다.",
+     "dialogue": "Director: I'm not sure we should invest in this right now.\nYou: I completely understand where you're coming from — the timing feels uncertain.\nDirector: Exactly. The market is shaky.\nYou: That's why I'd like to show you what the data says before we decide.",
      "example": "I completely understand where you're coming from, and I'd like to offer a different angle.",
      "practice": "반대 의견을 받았을 때 공감으로 시작하며 설득의 문을 열 때",
      "example_ko": "말씀하시는 취지는 충분히 이해합니다, 그리고 다른 관점도 하나 제안드리고 싶어요."
@@ -37,11 +34,8 @@
      "order": 2,
      "expression": "What if we looked at it this way...",
      "meaning": "이런 시각으로 보면 어떨까요...",
-     "nuance": "상대의 관점을 직접 부정하지 않고, 새로운 프레임을 조심스럽게 제안하는 표현. 'You're wrong'은 방어심을 유발하지만, 'What if...'는 상대가 스스로 생각을 바꿀 공간을 준다.",
-     "dialogue": {
-      "A": "This approach seems too risky.",
-      "B": "What if we looked at it this way — the risk of doing nothing might actually be higher?"
-     },
+     "nuance": "상대의 관점을 직접 부정하지 않고, 새로운 프레임을 조심스럽게 제안하는 표현. 'You're wrong'은 방어심을 유발하지만, 'What if...'는 상대가 스스로 생각을 바꿀 공간을 줍니다.",
+     "dialogue": "Manager: This approach seems too risky.\nYou: What if we looked at it this way — the risk of doing nothing might be higher?\nManager: What do you mean?\nYou: Our two biggest competitors already launched. Waiting could cost us more.",
      "example": "What if we looked at it this way: what's the cost of not acting now?",
      "practice": "관점을 부드럽게 전환하며 새로운 논리를 제시할 때",
      "example_ko": "이렇게 한번 생각해보면 어떨까요: 지금 행동하지 않았을 때의 비용은 얼마일까요?"
@@ -51,11 +45,8 @@
      "order": 3,
      "expression": "The data suggests that...",
      "meaning": "데이터에 따르면...",
-     "nuance": "주관적 의견 대신 데이터를 화자로 내세우는 표현. 'I think...'보다 훨씬 설득력 있고, 논쟁의 화살이 '나'가 아닌 '데이터'를 향하게 한다. 반론하기 어렵게 만드는 효과적인 설득 구조다.",
-     "dialogue": {
-      "A": "I'm not convinced this will work.",
-      "B": "The data suggests that similar initiatives in our sector have a 70% success rate."
-     },
+     "nuance": "주관적 의견 대신 데이터를 화자로 내세우는 표현. 'I think...'보다 훨씬 설득력 있고, 논쟁의 화살이 '나'가 아닌 '데이터'를 향하게 합니다. 반론하기 어렵게 만드는 효과적인 설득 구조입니다.",
+     "dialogue": "Director: I'm not convinced this will work.\nYou: The data suggests that similar projects in our industry succeed about 70% of the time.\nDirector: Where's that number from?\nYou: An industry report from last year. I'll send it to you today.",
      "example": "The data suggests that customer retention improves significantly in the first 30 days of onboarding.",
      "practice": "감정적 반박을 줄이고 사실 기반 설득을 할 때",
      "example_ko": "데이터에 따르면 온보딩 첫 30일 동안 고객 유지율이 크게 개선됩니다."
@@ -65,11 +56,8 @@
      "order": 4,
      "expression": "Let me share what's been working for others in similar situations.",
      "meaning": "비슷한 상황에서 다른 분들에게 효과가 있었던 것을 공유해 드릴게요",
-     "nuance": "사회적 증거(Social Proof)를 활용한 설득 표현. '나만의 주장'이 아니라 '다른 사람들도 검증한 방법'이라는 프레임이 설득력을 높인다. 컨설팅·세일즈·코칭에서 자주 쓰인다.",
-     "dialogue": {
-      "A": "We've tried something like this before and it didn't work.",
-      "B": "Let me share what's been working for others in similar situations — the key difference was in the implementation."
-     },
+     "nuance": "사회적 증거(Social Proof)를 활용한 설득 표현. '나만의 주장'이 아니라 '다른 사람들도 검증한 방법'이라는 프레임이 설득력을 높입니다. 컨설팅·세일즈·코칭에서 자주 쓰입니다.",
+     "dialogue": "Client: We tried something like this before, and it didn't work.\nYou: Let me share what's been working for others in similar situations.\nClient: Go ahead.\nYou: The key difference was starting small with one team before rolling it out.",
      "example": "Let me share what's been working for others in similar situations before you make a decision.",
      "practice": "사례 기반으로 신뢰를 쌓으며 설득할 때",
      "example_ko": "결정하시기 전에, 비슷한 상황에서 다른 분들에게 효과가 있었던 방법을 공유드리고 싶어요."
@@ -79,11 +67,8 @@
      "order": 5,
      "expression": "I'd love your input on this before we move forward.",
      "meaning": "진행하기 전에 이 부분에 대한 의견을 꼭 듣고 싶습니다",
-     "nuance": "상대를 의사결정에 참여시켜 주인의식을 심는 표현. 사람은 자신이 기여한 결정에 더 헌신한다 — 'IKEA 효과'와 같은 원리다. 단순히 설득하는 것이 아니라 함께 만드는 구조를 만든다.",
-     "dialogue": {
-      "A": "When are you planning to finalize this?",
-      "B": "I'd love your input on this before we move forward — your perspective will make this much stronger."
-     },
+     "nuance": "상대를 의사결정에 참여시켜 주인의식을 심는 표현. 사람은 자신이 기여한 결정에 더 헌신합니다 — 'IKEA 효과'와 같은 원리입니다. 단순히 설득하는 것이 아니라 함께 만드는 구조를 만듭니다.",
+     "dialogue": "Senior colleague: When are you planning to finalize this?\nYou: Next week. But I'd love your input on this before we move forward.\nSenior colleague: Sure. Send me the draft.\nYou: Thanks. Your experience with this client will make it much stronger.",
      "example": "I'd love your input on this before we move forward — what am I missing?",
      "practice": "상대를 결정 과정에 참여시켜 주인의식과 동의를 이끌 때",
      "example_ko": "진행하기 전에 의견을 듣고 싶어요 — 제가 놓치고 있는 부분이 있을까요?"

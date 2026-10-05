@@ -314,6 +314,41 @@ Object.assign(Mob, {
     return `<div class="mob-card mob-hum-card"><div class="mob-hum-content"><div class="mob-hum-title">${item.title || '인문학 지식'}</div></div></div>`;
   },
 
+  /** 깊이 읽기(deep layer) 섹션 — 10-05 "유식해진다는 느낌이 없다" 피드백으로 추가.
+      그때 판(배경) → 오늘 알게 된 말 → 그 후, 그리고 지금 → 써먹는 한마디. 역사·고사성어·고전·인사이트 공용 */
+  _humDeepHTML(deep, opt = {}) {
+    if (!deep) return '';
+    const sect = (lbl, body) => body ? `
+      <div class="mob-hum-acc-sect">
+        <div class="mob-hum-acc-lbl">${lbl}</div>
+        <div class="mob-hum-acc-body">${body}</div>
+      </div>` : '';
+    const terms = Array.isArray(deep.terms) && deep.terms.length ? `
+      <div class="mob-hum-terms">${deep.terms.map(t => `
+        <div class="mob-hum-term"><b>${t.t}</b><span>${t.d}</span></div>`).join('')}
+      </div>` : '';
+    const part = {
+      background: sect(opt.bgLabel || '그때 판 — 왜 그런 일이', deep.background),
+      terms:      terms ? `
+      <div class="mob-hum-acc-sect">
+        <div class="mob-hum-acc-lbl">오늘 알게 된 말</div>${terms}
+      </div>` : '',
+      after:      sect(opt.afterLabel || '그 후, 그리고 지금', deep.after),
+      talk:       deep.talk ? `
+      <div class="mob-hum-acc-sect mob-hum-talk">
+        <div class="mob-hum-acc-lbl">써먹는 한마디</div>
+        <div class="mob-hum-talk-body">${deep.talk}</div>
+      </div>` : '',
+    };
+    return (opt.only || ['background', 'terms', 'after', 'talk']).map(k => part[k]).join('');
+  },
+
+  /** 연재 다음 편 예고 — 역사를 하루 한 편씩 이어 읽게 한다 */
+  _humSeriesNext(series) {
+    if (!series || !series.next) return '';
+    return `<div class="mob-hum-next"><span class="mob-hum-next-lbl">다음 편</span><span>${series.next}</span></div>`;
+  },
+
   /** 역사 카드 v53 — Closed: 제목+교훈 / Expanded: Behind Story + Strategic Lesson */
   _cardHumHistory(item) {
     const s3Lines = (item.summary3 || '').replace(/\\n/g, '\n')
@@ -334,7 +369,8 @@ Object.assign(Mob, {
         ${lessonBullets || `<div class="mob-hum-acc-body">${item.lesson}</div>`}
       </div>` : '';
 
-    const hasExpand = !!(behindSect || lessonSect);
+    const deep = item.deep || null;
+    const hasExpand = !!(behindSect || lessonSect || deep);
     /* ⚠️ item.summary(사건 본문 4~5문장)는 예전에 아예 렌더되지 않아 카드에 제목만 남았었다.
        DB 서빙 역사 항목은 summary3/lesson이 비어 있으므로 summary가 유일한 본문이다 — 지우지 말 것. */
     const frontLesson = item.lesson || s3Lines[0] || '';
@@ -353,7 +389,9 @@ Object.assign(Mob, {
     return `
     <div class="mob-card mob-hum-card">
       <div class="mob-hum-badge-row">
-        <span class="mob-hum-badge">역사 · ${item.era || '세계사'}</span>
+        <span class="mob-hum-badge">${item.series
+          ? `연재 · ${item.series.title} <b class="mob-hum-series-no">${item.series.no}/${item.series.total}</b>`
+          : `역사 · ${item.era || '세계사'}`}</span>
         <div class="mob-hum-badge-row-r">
           <span class="mob-hum-period">${[item.period, item.region].filter(Boolean).join(' · ')}</span>
           ${saveBtn}
@@ -368,12 +406,13 @@ Object.assign(Mob, {
         ${bodyText ? `<div class="mob-hum-behind-txt" style="padding:10px 0 0">${bodyText}</div>` : ''}
       </div>
       ${hasExpand ? `
-      <button class="mob-hum-behind-btn" onclick="event.stopPropagation();Mob._toggleBehindStory(this)">
-        비하인드 스토리 보기 <i class="ti ti-chevron-down"></i>
+      <button class="mob-hum-behind-btn" data-label="${deep ? '깊이 읽기 — 배경·용어·그 후' : '비하인드 스토리'}" onclick="event.stopPropagation();Mob._toggleBehindStory(this)">
+        ${deep ? '깊이 읽기 — 배경·용어·그 후' : '비하인드 스토리'} 보기 <i class="ti ti-chevron-down"></i>
       </button>
       <div class="mob-hum-behind-panel">
-        ${behindSect}${lessonSect}
+        ${this._humDeepHTML(deep, { only: ['background'] })}${behindSect}${this._humDeepHTML(deep, { only: ['terms', 'after', 'talk'] })}${deep ? '' : lessonSect}
       </div>` : ''}
+      ${this._humSeriesNext(item.series)}
     </div>`;
   },
 
@@ -447,12 +486,14 @@ Object.assign(Mob, {
         <div class="mob-hum-acc-lbl">오늘의 나에게</div>
         <div class="mob-hum-acc-body">${item.context}</div>
       </div>` : '';
-    const ctxBlock = (backSect || ctxSect) ? `
-      <button class="mob-hum-behind-btn" onclick="event.stopPropagation();Mob._toggleBehindStory(this)">
-        ${item.backstory ? '이야기 보기' : '해설 보기'} <i class="ti ti-chevron-down"></i>
+    const deep = item.deep || null;
+    const lbl = deep ? '깊이 읽기 — 그 사람·그 시대·그 후' : (item.backstory ? '이야기' : '해설');
+    const ctxBlock = (backSect || ctxSect || deep) ? `
+      <button class="mob-hum-behind-btn" data-label="${lbl}" onclick="event.stopPropagation();Mob._toggleBehindStory(this)">
+        ${lbl} 보기 <i class="ti ti-chevron-down"></i>
       </button>
       <div class="mob-hum-behind-panel">
-        ${backSect}${ctxSect}
+        ${this._humDeepHTML(deep, { only: ['background'], bgLabel: '그 사람, 그 시대' })}${backSect}${this._humDeepHTML(deep, { only: ['terms', 'after'], afterLabel: '이 말이 걸어온 길' })}${ctxSect}${this._humDeepHTML(deep, { only: ['talk'] })}
       </div>` : '';
 
     return `
@@ -469,9 +510,10 @@ Object.assign(Mob, {
         <div class="mob-hum-quote-txt">${item.quote || ''}</div>
         <div class="mob-hum-author-info">${item.author || ''}${item.source ? ` · ${item.source}` : ''}</div>
       </div>
-      ${item.theme ? `
+      ${(item.deep?.lesson || item.theme) ? `
       <div class="mob-hum-content">
-        <div class="mob-hum-application"><span>주제 — ${item.theme}</span></div>
+        ${item.deep?.lesson ? `<div class="mob-hum-lesson"><span>${item.deep.lesson}</span></div>`
+          : `<div class="mob-hum-application"><span>주제 — ${item.theme}</span></div>`}
       </div>` : ''}
       ${ctxBlock}
     </div>`;
@@ -488,12 +530,16 @@ Object.assign(Mob, {
         title="${isSaved ? '이미 저장됨' : '서재에 저장'}" ${isSaved ? 'disabled' : ''}>
         <i class="ti ti-${isSaved ? 'bookmark-filled' : 'bookmark'}"></i>
       </button>` : '';
-    const expand = (item.realLife || item.question) ? `
-      <button class="mob-hum-behind-btn" onclick="event.stopPropagation();Mob._toggleBehindStory(this)">
-        더 알아보기 <i class="ti ti-chevron-down"></i>
+    const deep = item.deep || null;
+    const lbl = deep ? '깊이 읽기 — 어디서 나온 개념인가' : '더 알아보기';
+    const expand = (item.realLife || item.question || deep) ? `
+      <button class="mob-hum-behind-btn" data-label="${lbl}" onclick="event.stopPropagation();Mob._toggleBehindStory(this)">
+        ${lbl} 보기 <i class="ti ti-chevron-down"></i>
       </button>
       <div class="mob-hum-behind-panel">
+        ${this._humDeepHTML(deep, { only: ['background'], bgLabel: '이 개념이 나온 곳' })}
         ${item.realLife ? `<div class="mob-hum-acc-sect"><div class="mob-hum-acc-lbl">실전 사례</div><div class="mob-hum-acc-body">${item.realLife}</div></div>` : ''}
+        ${this._humDeepHTML(deep, { only: ['terms', 'after', 'talk'], afterLabel: '더 넓게 보면' })}
         ${item.question ? `<div class="mob-hum-acc-sect mob-hum-acc-lesson"><div class="mob-hum-acc-lbl">오늘의 질문</div><div class="mob-hum-acc-body">${item.question}</div></div>` : ''}
       </div>` : '';
 
@@ -540,7 +586,8 @@ Object.assign(Mob, {
         <div class="mob-hum-acc-body">${item.application}</div>
       </div>` : '';
 
-    const hasExpand = !!(originSect || storySect || behindSect || applSect);
+    const deep = item.deep || null;
+    const hasExpand = !!(originSect || storySect || behindSect || applSect || deep);
     const subId = item.subId || '';
     const date  = item.date  || '';
     const isSaved = !!(item.saved || item.savedItemId);
@@ -564,13 +611,14 @@ Object.assign(Mob, {
       <div class="mob-hum-content">
         <div class="mob-hum-idiom-title">${item.idiom || item.title || ''}</div>
         ${item.meaning ? `<div class="mob-hum-meaning">${item.meaning}</div>` : ''}
+        ${item.deep?.lesson ? `<div class="mob-hum-lesson" style="margin-top:10px"><span>${item.deep.lesson}</span></div>` : ''}
       </div>
       ${hasExpand ? `
-      <button class="mob-hum-behind-btn" onclick="event.stopPropagation();Mob._toggleBehindStory(this)">
-        자세히 보기 <i class="ti ti-chevron-down"></i>
+      <button class="mob-hum-behind-btn" data-label="${deep ? '깊이 읽기 — 그 시대·한자·쓰임' : '자세히'}" onclick="event.stopPropagation();Mob._toggleBehindStory(this)">
+        ${deep ? '깊이 읽기 — 그 시대·한자·쓰임' : '자세히'} 보기 <i class="ti ti-chevron-down"></i>
       </button>
       <div class="mob-hum-behind-panel">
-        ${originSect}${storySect}${applSect}${behindSect}
+        ${this._humDeepHTML(deep, { only: ['background'], bgLabel: '그 시대, 그 사람들' })}${originSect}${this._humDeepHTML(deep, { only: ['terms'] })}${storySect}${applSect}${behindSect}${this._humDeepHTML(deep, { only: ['after', 'talk'], afterLabel: '이 말이 걸어온 길' })}
       </div>` : ''}
     </div>`;
   },
@@ -581,9 +629,11 @@ Object.assign(Mob, {
     if (!panel) return;
     const isOpen = panel.classList.toggle('open');
     btn.classList.toggle('open', isOpen);
+    /* 전에는 어느 카드든 '비하인드 스토리'로 라벨이 바뀌었다 — 카드별 라벨(data-label) 유지 */
+    const lbl = btn.dataset.label || '비하인드 스토리';
     btn.innerHTML = isOpen
-      ? '비하인드 스토리 접기 <i class="ti ti-chevron-up"></i>'
-      : '비하인드 스토리 보기 <i class="ti ti-chevron-down"></i>';
+      ? `${lbl} 접기 <i class="ti ti-chevron-up"></i>`
+      : `${lbl} 보기 <i class="ti ti-chevron-down"></i>`;
   },
 
   /** 오늘의 지식 배달 카드 (type: 'daily_delivery') — v26 프리미엄 아카이브 리포트 */

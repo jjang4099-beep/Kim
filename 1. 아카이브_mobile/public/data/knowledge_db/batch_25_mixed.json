@@ -23,11 +23,8 @@
      "order": 1,
      "expression": "We're moving in a new direction.",
      "meaning": "우리는 새로운 방향으로 나아가고 있습니다",
-     "nuance": "조직 변화를 발표할 때 쓰는 가장 중립적이면서도 명확한 표현. '방향을 바꾼다'는 것은 이전이 틀렸다는 뜻이 아니라 '이제 앞으로 나아갈 곳이 여기다'라는 신호다. 불필요한 방어나 사과 없이 변화를 선언하는 자신감 있는 표현이다.",
-     "dialogue": {
-      "A": "Are we scrapping everything we've built?",
-      "B": "Not at all — we're moving in a new direction, building on what worked and letting go of what didn't."
-     },
+     "nuance": "조직 변화를 발표할 때 쓰는 가장 중립적이면서도 명확한 표현. '방향을 바꾼다'는 것은 이전이 틀렸다는 뜻이 아니라 '이제 앞으로 나아갈 곳이 여기다'라는 신호입니다. 불필요한 방어나 사과 없이 변화를 선언하는 자신감 있는 표현입니다.",
+     "dialogue": "Team member: Are we scrapping everything we've built?\nYou: Not at all. We're moving in a new direction.\nTeam member: So what stays?\nYou: We keep what worked and let go of what didn't.",
      "example": "As of next quarter, we're moving in a new direction with our product strategy.",
      "practice": "팀에게 전략 전환을 알릴 때, 방어적이지 않게 변화를 선언할 때",
      "example_ko": "다음 분기부터 저희는 제품 전략에서 새로운 방향으로 나아갑니다."
@@ -37,11 +34,8 @@
      "order": 2,
      "expression": "This is going to be an adjustment period.",
      "meaning": "이것은 적응 기간이 될 것입니다",
-     "nuance": "변화에 따르는 혼란과 불편함을 미리 인정하는 표현. '어렵겠지만 정상이다'는 메시지를 담고 있다. 변화 초기에 팀의 불안을 줄이고 심리적 안전감을 주는 가장 솔직한 커뮤니케이션 방식이다.",
-     "dialogue": {
-      "A": "The new process is so different — I'm not sure I'll get used to it.",
-      "B": "This is going to be an adjustment period for all of us. Let's give it a few weeks before we evaluate."
-     },
+     "nuance": "변화에 따르는 혼란과 불편함을 미리 인정하는 표현. '어렵겠지만 정상이다'는 메시지를 담고 있습니다. 변화 초기에 팀의 불안을 줄이고 심리적 안전감을 주는 가장 솔직한 커뮤니케이션 방식입니다.",
+     "dialogue": "Team member: The new process is so different. I'm not sure I'll get used to it.\nYou: This is going to be an adjustment period for all of us.\nTeam member: How long do we have?\nYou: Let's give it a month before we judge it.",
      "example": "I'll be honest — this is going to be an adjustment period, but I'm confident we'll come out stronger.",
      "practice": "조직 변화 초반 팀원들의 저항과 불안을 인정하며 안심시킬 때",
      "example_ko": "솔직히 말씀드리면 — 이건 적응 기간이 될 거예요, 하지만 우리가 더 강해져서 나올 거라고 확신합니다."
@@ -51,11 +45,8 @@
      "order": 3,
      "expression": "I want to be transparent about what's changing and why.",
      "meaning": "무엇이 바뀌는지, 왜 바뀌는지에 대해 투명하게 말씀드리고 싶습니다",
-     "nuance": "변화 커뮤니케이션에서 가장 흔한 실수는 '무엇(what)'만 말하고 '왜(why)'를 빠뜨리는 것이다. '왜'가 없으면 사람들은 자기만의 이유를 만들어낸다 — 대부분 부정적으로. 이 표현은 '숨기는 게 없다'는 신뢰의 신호다.",
-     "dialogue": {
-      "A": "We heard there are big changes coming. Nobody's telling us anything.",
-      "B": "I want to be transparent about what's changing and why — let me walk you through it now."
-     },
+     "nuance": "변화 커뮤니케이션에서 가장 흔한 실수는 '무엇(what)'만 말하고 '왜(why)'를 빠뜨리는 것입니다. '왜'가 없으면 사람들은 자기만의 이유를 만들어냅니다 — 대부분 부정적으로. 이 표현은 '숨기는 게 없다'는 신뢰의 신호입니다.",
+     "dialogue": "Team member: We heard big changes are coming, but nobody's telling us anything.\nYou: I want to be transparent about what's changing and why.\nTeam member: Thank you. That's all we're asking for.\nYou: Let me walk you through it right now.",
      "example": "Before we get into the details, I want to be transparent about what's changing and why we made this decision.",
      "practice": "중요한 변화를 발표하기 전에 신뢰를 선언하며 시작할 때",
      "example_ko": "세부사항으로 들어가기 전에, 무엇이 바뀌는지 그리고 왜 이런 결정을 내렸는지 투명하게 말씀드리고 싶습니다."
@@ -65,11 +56,8 @@
      "order": 4,
      "expression": "Your concerns are valid, and here's how we're addressing them.",
      "meaning": "여러분의 우려는 타당합니다, 그리고 우리가 그것을 어떻게 다룰지 말씀드리겠습니다",
-     "nuance": "두 파트로 구성된 강력한 변화 관리 표현. 앞부분은 상대의 감정을 인정(validate)하고, 뒷부분은 해결책으로 바로 연결한다. 우려를 무시하거나 논리로만 누르려 하면 저항이 커진다 — 먼저 감정을 인정해야 논리가 들어갈 공간이 생긴다.",
-     "dialogue": {
-      "A": "What about our team? Are our jobs secure?",
-      "B": "Your concerns are valid, and here's how we're addressing them — no layoffs, and each of you will have a defined role in the new structure."
-     },
+     "nuance": "두 파트로 구성된 강력한 변화 관리 표현. 앞부분은 상대의 감정을 인정(validate)하고, 뒷부분은 해결책으로 바로 연결합니다. 우려를 무시하거나 논리로만 누르려 하면 저항이 커집니다 — 먼저 감정을 인정해야 논리가 들어갈 공간이 생깁니다.",
+     "dialogue": "Team member: What about our team? Are our jobs safe?\nYou: Your concerns are valid, and here's how we're addressing them.\nTeam member: Okay, I'm listening.\nYou: There are no layoffs, and each of you will have a clear role in the new structure.",
      "example": "Your concerns are valid, and here's how we're addressing them — we've built a 90-day transition plan.",
      "practice": "변화 발표 후 저항과 불안을 표출하는 팀원들에게 대응할 때",
      "example_ko": "여러분의 우려는 타당합니다, 그리고 저희가 그걸 어떻게 다룰지 말씀드리겠습니다 — 90일짜리 전환 계획을 마련했습니다."
@@ -79,11 +67,8 @@
      "order": 5,
      "expression": "Change is hard, but standing still is harder in the long run.",
      "meaning": "변화는 어렵지만, 장기적으로는 제자리에 머무르는 것이 더 어렵습니다",
-     "nuance": "변화에 대한 저항을 우회하는 데 쓰는 표현. '변화하기 싫다'는 사람에게 '변하지 않는 것'의 비용을 제시하는 방식이다. 변화를 강요하는 것이 아니라 스스로 선택하게 만드는 구조다.",
-     "dialogue": {
-      "A": "I'd rather just keep doing what we've been doing. It works.",
-      "B": "Change is hard, but standing still is harder in the long run — and the market isn't standing still with us."
-     },
+     "nuance": "변화에 대한 저항을 우회하는 데 쓰는 표현. '변화하기 싫다'는 사람에게 '변하지 않는 것'의 비용을 제시하는 방식입니다. 변화를 강요하는 것이 아니라 스스로 선택하게 만드는 구조입니다.",
+     "dialogue": "Team member: I'd rather keep doing what we've been doing. It works.\nYou: Change is hard, but standing still is harder in the long run.\nTeam member: But why now?\nYou: Because the market is changing, and it won't wait for us.",
      "example": "I understand the reluctance. Change is hard, but standing still is harder in the long run.",
      "practice": "변화 피로감을 느끼는 팀이나 현상 유지를 원하는 이해관계자를 설득할 때",
      "example_ko": "그 망설임을 이해합니다. 변화는 어렵지만, 장기적으로는 제자리에 머무르는 게 더 어렵습니다."

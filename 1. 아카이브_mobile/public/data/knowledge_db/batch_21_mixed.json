@@ -23,11 +23,8 @@
      "order": 1,
      "expression": "Walk me through your experience.",
      "meaning": "경력 사항을 설명해 주세요",
-     "nuance": "면접관이 이력서를 이미 봤음에도 이 질문을 하는 이유는 '당신의 스토리'를 듣고 싶어서다. 단순 나열이 아니라 성장의 흐름을 시간 순서로 연결해 말하는 것이 포인트.",
-     "dialogue": {
-      "A": "Walk me through your experience.",
-      "B": "I started in data analytics, then moved into product strategy after leading a cross-functional project that taught me how to connect data to business decisions."
-     },
+     "nuance": "면접관이 이력서를 이미 봤음에도 이 질문을 하는 이유는 '당신의 스토리'를 듣고 싶어서입니다. 단순 나열이 아니라 성장의 흐름을 시간 순서로 연결해 말하는 것이 포인트.",
+     "dialogue": "Interviewer: Walk me through your experience.\nYou: I started in data analytics, then moved into product strategy.\nInterviewer: What made you switch?\nYou: I led a project with sales and design, and I realized I loved turning data into decisions.",
      "example": "Sure — I'll walk you through the key milestones that led me to this role.",
      "practice": "경력의 흐름을 인과관계로 연결해 설명할 때",
      "example_ko": "네 — 제가 이 자리까지 오게 된 주요 이정표들을 말씀드릴게요."
@@ -37,11 +34,8 @@
      "order": 2,
      "expression": "I'm particularly proud of...",
      "meaning": "저는 특히 ~에 자부심을 느낍니다",
-     "nuance": "'I achieved...' 보다 훨씬 자연스럽고 열정이 느껴지는 표현. 성과를 자랑하는 것이 아니라 어떤 과정에서 의미를 찾았는지 보여줄 때 쓴다.",
-     "dialogue": {
-      "A": "What's your greatest achievement?",
-      "B": "I'm particularly proud of rebuilding the onboarding flow — it cut churn by 30% and got featured in our company newsletter."
-     },
+     "nuance": "'I achieved...' 보다 훨씬 자연스럽고 열정이 느껴지는 표현. 성과를 자랑하는 것이 아니라 어떤 과정에서 의미를 찾았는지 보여줄 때 씁니다.",
+     "dialogue": "Interviewer: What's your greatest achievement?\nYou: I'm particularly proud of rebuilding our onboarding process.\nInterviewer: What was the result?\nYou: It cut customer churn by 30% in six months.",
      "example": "I'm particularly proud of how the team came together under pressure to ship on time.",
      "practice": "성과와 함께 가치관이나 동기를 드러낼 때",
      "example_ko": "팀이 압박 속에서도 하나로 뭉쳐 제때 출시해낸 게 특히 자랑스럽습니다."
@@ -51,11 +45,8 @@
      "order": 3,
      "expression": "One area I'm actively working on is...",
      "meaning": "제가 현재 적극적으로 개선하고 있는 부분은...",
-     "nuance": "약점 질문('What's your weakness?')에 대한 가장 세련된 답변 구조. 단순히 약점을 고백하는 게 아니라, 자기인식이 있고 이미 개선 중임을 보여준다.",
-     "dialogue": {
-      "A": "What's an area where you'd like to improve?",
-      "B": "One area I'm actively working on is public speaking — I've joined a Toastmasters chapter and recently gave my first keynote."
-     },
+     "nuance": "약점 질문('What's your weakness?')에 대한 가장 세련된 답변 구조. 단순히 약점을 고백하는 게 아니라, 자기인식이 있고 이미 개선 중임을 보여줍니다.",
+     "dialogue": "Interviewer: What's an area you'd like to improve?\nYou: One area I'm actively working on is public speaking.\nInterviewer: What are you doing about it?\nYou: I joined a speaking club, and last month I gave my first keynote.",
      "example": "One area I'm actively working on is delegating more effectively instead of doing everything myself.",
      "practice": "약점 질문에 자기인식과 성장 의지를 동시에 보여줄 때",
      "example_ko": "제가 적극적으로 개선하려는 부분은 모든 걸 직접 다 하기보다 더 효과적으로 위임하는 것입니다."
@@ -65,11 +56,8 @@
      "order": 4,
      "expression": "Based on my research, I was hoping for a range of...",
      "meaning": "제가 조사한 바에 따르면, ~의 범위를 기대하고 있었습니다",
-     "nuance": "연봉 협상에서 수동적으로 상대의 제안을 기다리지 않고, 사전 조사를 근거로 먼저 제시하는 표현. 'I need...'나 'I want...' 대신 'research'를 앞세우면 훨씬 설득력 있다.",
-     "dialogue": {
-      "A": "What are your salary expectations?",
-      "B": "Based on my research into similar roles in this market, I was hoping for a range of $90K to $105K."
-     },
+     "nuance": "연봉 협상에서 수동적으로 상대의 제안을 기다리지 않고, 사전 조사를 근거로 먼저 제시하는 표현. 'I need...'나 'I want...' 대신 'research'를 앞세우면 훨씬 설득력 있습니다.",
+     "dialogue": "Interviewer: What are your salary expectations?\nYou: Based on my research, I was hoping for a range of $90K to $105K.\nInterviewer: That's a little above our budget.\nYou: I understand. I'm open to discussing the full package, including bonuses.",
      "example": "Based on my research and my seven years of experience, I was hoping for a range of 70M to 80M KRW.",
      "practice": "연봉 협상에서 사전 조사를 근거로 희망 범위를 제시할 때",
      "example_ko": "제 조사와 7년 경력을 바탕으로, 7천만 원에서 8천만 원 사이를 기대하고 있었습니다."
@@ -79,11 +67,8 @@
      "order": 5,
      "expression": "What does success look like in this role in the first 90 days?",
      "meaning": "이 역할에서 첫 90일의 성공은 어떤 모습인가요?",
-     "nuance": "면접 마지막의 '질문 있으신가요?'에서 쓰는 가장 강력한 역질문 중 하나. 단순한 정보 수집이 아니라, 이미 이 역할을 맡은 것처럼 생각하고 있다는 인상을 준다.",
-     "dialogue": {
-      "A": "Do you have any questions for us?",
-      "B": "Yes — what does success look like in this role in the first 90 days?"
-     },
+     "nuance": "면접 마지막의 '질문 있으신가요?'에서 쓰는 가장 강력한 역질문 중 하나. 단순한 정보 수집이 아니라, 이미 이 역할을 맡은 것처럼 생각하고 있다는 인상을 줍니다.",
+     "dialogue": "Interviewer: Do you have any questions for us?\nYou: Yes — what does success look like in this role in the first 90 days?\nInterviewer: Good question. Mainly, getting to know the clients and fixing our reporting.\nYou: That sounds great. Reporting is exactly what I did at my last job.",
      "example": "I'd love to understand what success looks like in this role in the first 90 days so I can hit the ground running.",
      "practice": "면접 역질문으로 적극적인 인상을 줄 때",
      "example_ko": "처음 90일 동안 이 역할에서 성공이 어떤 모습인지 알고 싶습니다, 그래야 바로 속도를 낼 수 있으니까요."

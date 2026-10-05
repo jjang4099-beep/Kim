@@ -24,11 +24,8 @@
      "order": 1,
      "expression": "I'd like to share some observations.",
      "meaning": "몇 가지 관찰한 점을 공유하고 싶습니다 (피드백을 시작하는 부드러운 도입 표현)",
-     "nuance": "직접적으로 '문제가 있다'거나 '비판이 있다'고 말하지 않고, 중립적이고 비방어적인 방식으로 피드백 대화를 여는 표현이다. 'observations'는 판단이 아닌 '관찰'이라는 의미를 담아, 상대방이 방어적이 되지 않게 하는 효과가 있다.",
-     "dialogue": {
-      "A": "Do you have a moment? I'd like to share some observations about the client presentation.",
-      "B": "Of course. I'd appreciate any feedback you have."
-     },
+     "nuance": "직접적으로 '문제가 있다'거나 '비판이 있다'고 말하지 않고, 중립적이고 비방어적인 방식으로 피드백 대화를 여는 표현입니다. 'observations'는 판단이 아닌 '관찰'이라는 의미를 담아, 상대방이 방어적이 되지 않게 하는 효과가 있습니다.",
+     "dialogue": "You: Do you have a moment? I'd like to share some observations about the client presentation.\nColleague: Of course. I'd appreciate any feedback.\nYou: The opening was strong, but the pricing slide confused the client.\nColleague: Good to know. I'll simplify it.",
      "example": "Before we wrap up today's one-on-one, I'd like to share some observations about your recent reports.",
      "practice": "1:1 면담, 팀 리뷰, 프로젝트 검토에서 피드백을 시작하기 전 도입 문구로",
      "example_ko": "오늘 1:1 면담을 마무리하기 전에, 최근 보고서에 대해 몇 가지 관찰한 점을 공유하고 싶습니다."
@@ -38,11 +35,8 @@
      "order": 2,
      "expression": "What's working well, and what could be improved?",
      "meaning": "잘 되고 있는 것과 개선할 수 있는 것이 무엇인지 말해주세요",
-     "nuance": "일방적으로 문제점을 지적하는 대신 긍정적인 것과 개선점을 균형 있게 탐색하는 코칭 질문이다. '나쁜 것'이 아닌 '개선 가능한 것'이라는 표현이 상대방에게 성장의 여지를 주는 심리적 안전감을 만든다.",
-     "dialogue": {
-      "A": "How do you feel about how the project is going?",
-      "B": "That's a good question. What's working well, and what could be improved? Let's think through both."
-     },
+     "nuance": "일방적으로 문제점을 지적하는 대신 긍정적인 것과 개선점을 균형 있게 탐색하는 코칭 질문입니다. '나쁜 것'이 아닌 '개선 가능한 것'이라는 표현이 상대방에게 성장의 여지를 주는 심리적 안전감을 만듭니다.",
+     "dialogue": "Team member: How do you think the project is going?\nYou: Let's look at it together. What's working well, and what could be improved?\nTeam member: The design is great, but our meetings run too long.\nYou: Good point. Let's cap them at 30 minutes.",
      "example": "Let's start our retrospective with the basics: what's working well, and what could be improved?",
      "practice": "팀 회고, 성과 리뷰, 코칭 세션에서 균형 잡힌 피드백을 이끌어낼 때",
      "example_ko": "회고를 기본적인 것부터 시작해봅시다 — 잘 되고 있는 것과 개선할 수 있는 것이 무엇인지 얘기해봅시다."
@@ -52,11 +46,8 @@
      "order": 3,
      "expression": "Can you walk me through your thinking?",
      "meaning": "어떤 생각으로 그렇게 했는지 설명해줄 수 있나요?",
-     "nuance": "실수나 의외의 결과에 대해 즉시 비판하는 대신, 상대방의 의사결정 과정을 이해하려는 코칭 접근법이다. '왜 그랬어요?'보다 훨씬 부드럽고, 상대방이 자신의 논리를 스스로 점검하게 유도하는 효과도 있다.",
-     "dialogue": {
-      "A": "Can you walk me through your thinking on the pricing decision?",
-      "B": "Sure. I assumed we'd want to match the competitor's rate, but looking back, I should have checked with the team first."
-     },
+     "nuance": "실수나 의외의 결과에 대해 즉시 비판하는 대신, 상대방의 의사결정 과정을 이해하려는 코칭 접근법입니다. '왜 그랬어요?'보다 훨씬 부드럽고, 상대방이 자신의 논리를 스스로 점검하게 유도하는 효과도 있습니다.",
+     "dialogue": "You: Can you walk me through your thinking on the pricing decision?\nTeam member: Sure. I wanted to match our competitor's price.\nYou: That makes sense. Did you check with sales first?\nTeam member: No, I should have. I'll talk to them today.",
      "example": "Before I give you my feedback, can you walk me through your thinking on how you structured the proposal?",
      "practice": "결과에 의문이 생겼을 때, 즉각적인 비판 대신 의사결정 과정을 이해하려 할 때",
      "example_ko": "피드백을 드리기 전에, 제안서를 어떻게 구성했는지 생각하신 과정을 설명해줄 수 있나요?"
@@ -66,11 +57,8 @@
      "order": 4,
      "expression": "Here's what I noticed — and I might be missing context.",
      "meaning": "제가 관찰한 것을 말씀드리는데 — 놓친 맥락이 있을 수도 있습니다",
-     "nuance": "'I might be missing context'라는 인정이 핵심이다. 이 문구는 피드백 제공자가 모든 것을 알지 못할 수 있다는 겸손함을 표현하면서도, 관찰 내용을 전달할 수 있게 해준다. 결과적으로 수신자가 덜 방어적이 되고 대화가 더 개방적으로 흐른다.",
-     "dialogue": {
-      "A": "Here's what I noticed — and I might be missing context. The deadline slipped twice this month.",
-      "B": "You're right to flag that. There were some blockers I should have communicated earlier."
-     },
+     "nuance": "'I might be missing context'라는 인정이 핵심입니다. 이 문구는 피드백 제공자가 모든 것을 알지 못할 수 있다는 겸손함을 표현하면서도, 관찰 내용을 전달할 수 있게 해줍니다. 결과적으로 수신자가 덜 방어적이 되고 대화가 더 개방적으로 흐릅니다.",
+     "dialogue": "You: Here's what I noticed — and I might be missing context. The deadline slipped twice this month.\nTeam member: You're right. There were some blockers.\nYou: What kind of blockers?\nTeam member: We were waiting on legal. I should have told you earlier.",
      "example": "Here's what I noticed — and I might be missing context — the client seemed disengaged in the last two calls.",
      "practice": "완전한 정보 없이 피드백을 전달해야 할 때, 열린 대화를 유지하면서 관찰을 공유할 때",
      "example_ko": "제가 관찰한 것을 말씀드리는데 — 놓친 맥락이 있을 수도 있습니다 — 최근 두 번의 통화에서 고객이 집중하지 않는 것처럼 보였습니다."
@@ -80,11 +68,8 @@
      "order": 5,
      "expression": "What support do you need from me?",
      "meaning": "제가 어떤 지원을 드릴 수 있을까요?",
-     "nuance": "피드백이나 코칭 대화의 마무리에 쓰는 핵심 문구다. 문제를 지적하는 것에서 끝나지 않고, '해결을 함께 만들어가겠다'는 의지를 보여준다. 특히 어려운 피드백 후에 이 질문이 있으면 관계가 훼손되지 않고 신뢰로 마무리된다.",
-     "dialogue": {
-      "A": "I understand the feedback. I know I need to be more proactive about communicating blockers.",
-      "B": "I appreciate that. Going forward, what support do you need from me to make that easier?"
-     },
+     "nuance": "피드백이나 코칭 대화의 마무리에 쓰는 핵심 문구입니다. 문제를 지적하는 것에서 끝나지 않고, '해결을 함께 만들어가겠다'는 의지를 보여줍니다. 특히 어려운 피드백 후에 이 질문이 있으면 관계가 훼손되지 않고 신뢰로 마무리됩니다.",
+     "dialogue": "Team member: I know I need to tell you about problems sooner.\nYou: I appreciate that. What support do you need from me?\nTeam member: Maybe a quick check-in every Monday?\nYou: Sure. Let's start next week.",
      "example": "I've shared my observations, and I know some of this is challenging. What support do you need from me?",
      "practice": "피드백 세션 마무리, 어려운 대화 후 관계를 복원하고 다음 단계를 열 때",
      "example_ko": "제 관찰 내용을 공유했는데, 일부는 어려울 수 있다는 걸 압니다. 제가 어떤 지원을 드릴 수 있을까요?"

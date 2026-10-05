@@ -23,11 +23,8 @@
      "order": 1,
      "expression": "I'm afraid I won't be able to...",
      "meaning": "유감스럽게도 ~를 할 수 없을 것 같습니다",
-     "nuance": "직접적인 'No'보다 훨씬 부드럽고 정중한 거절 표현. 'I'm afraid'가 감정적 완충재 역할을 해 상대방이 덜 상처를 받는다.",
-     "dialogue": {
-      "A": "Can you take on this extra project?",
-      "B": "I'm afraid I won't be able to — my plate is full through next month."
-     },
+     "nuance": "직접적인 'No'보다 훨씬 부드럽고 정중한 거절 표현. 'I'm afraid'가 감정적 완충재 역할을 해 상대방이 덜 상처를 받습니다.",
+     "dialogue": "Manager: Can you take on this extra project?\nYou: I'm afraid I won't be able to — my plate is full through next month.\nManager: Even if it's just a small part?\nYou: I could review the final draft, but I can't own it.",
      "example": "I'm afraid I won't be able to make it to the Friday meeting.",
      "practice": "추가 업무나 요청을 정중하게 거절할 때",
      "example_ko": "죄송하지만 금요일 미팅에는 참석하지 못할 것 같습니다."
@@ -37,11 +34,8 @@
      "order": 2,
      "expression": "That's not going to work for me.",
      "meaning": "저에게는 맞지 않습니다 / 그건 어렵겠습니다",
-     "nuance": "비교적 직접적이지만 이유를 설명하지 않아도 되는 자신감 있는 거절. 'I can't'보다 주도적이고 명확하다.",
-     "dialogue": {
-      "A": "We need this by 8 AM tomorrow.",
-      "B": "That's not going to work for me — can we discuss a more realistic deadline?"
-     },
+     "nuance": "비교적 직접적이지만 이유를 설명하지 않아도 되는 자신감 있는 거절. 'I can't'보다 주도적이고 명확합니다.",
+     "dialogue": "Client: We need this by 8 a.m. tomorrow.\nYou: That's not going to work for me. My team needs at least two days.\nClient: Could you do Wednesday noon?\nYou: Wednesday noon works. I'll confirm in writing.",
      "example": "A 10% discount is the best I can do — anything lower is not going to work for me.",
      "practice": "협상에서 조건이 맞지 않을 때 명확히 선을 그을 때",
      "example_ko": "10% 할인이 제가 드릴 수 있는 최선입니다 — 그보다 낮으면 저희 쪽에서 어렵습니다."
@@ -51,11 +45,8 @@
      "order": 3,
      "expression": "Let me get back to you on that.",
      "meaning": "그 건으로 나중에 다시 연락드리겠습니다",
-     "nuance": "즉각적인 답을 피하고 시간을 버는 표현. 충분히 생각하거나 일정을 확인한 후에 답하고 싶을 때 쓴다. 무조건 OK하는 것보다 훨씬 전문적이다.",
-     "dialogue": {
-      "A": "Can you present at our conference next month?",
-      "B": "Let me get back to you on that — I need to check my schedule first."
-     },
+     "nuance": "즉각적인 답을 피하고 시간을 버는 표현. 충분히 생각하거나 일정을 확인한 후에 답하고 싶을 때 씁니다. 무조건 OK하는 것보다 훨씬 전문적입니다.",
+     "dialogue": "Organizer: Can you present at our conference next month?\nYou: Let me get back to you on that — I need to check my schedule first.\nOrganizer: Sure. When can you let me know?\nYou: I'll email you by Friday.",
      "example": "That's an interesting proposal. Let me get back to you on that by end of week.",
      "practice": "즉답을 피하고 숙고 시간을 확보할 때",
      "example_ko": "흥미로운 제안이네요. 이번 주말까지 다시 연락드리겠습니다."
@@ -65,11 +56,8 @@
      "order": 4,
      "expression": "I have to pass on this one.",
      "meaning": "이번 건은 패스해야 할 것 같습니다",
-     "nuance": "기회나 제안을 거절할 때 자연스럽고 캐주얼하게 쓰는 표현. 부정적이지 않으며 '이번만'이라는 뉘앙스가 있어 관계를 유지하면서 거절할 수 있다.",
-     "dialogue": {
-      "A": "We're having a team dinner tonight. Want to join?",
-      "B": "I'd love to, but I have to pass on this one — I have a prior commitment."
-     },
+     "nuance": "기회나 제안을 거절할 때 자연스럽고 캐주얼하게 쓰는 표현. 부정적이지 않으며 '이번만'이라는 뉘앙스가 있어 관계를 유지하면서 거절할 수 있습니다.",
+     "dialogue": "Colleague: We're having a team dinner tonight. Want to join?\nYou: I'd love to, but I have to pass on this one — I already have plans.\nColleague: No worries. Maybe next time?\nYou: Definitely. Let me know when the next one is.",
      "example": "Thanks for thinking of me, but I have to pass on this one.",
      "practice": "초대나 제안을 부드럽게 거절할 때",
      "example_ko": "생각해주셔서 감사하지만, 이번 건은 참여하지 않겠습니다."
@@ -79,11 +67,8 @@
      "order": 5,
      "expression": "I appreciate the offer, but...",
      "meaning": "제안해주셔서 감사하지만...",
-     "nuance": "감사함을 먼저 표현한 후 거절하는 구조. 상대방의 호의를 인정하면서 거절하기 때문에 관계가 손상되지 않는다. 뒤에 이유나 대안을 붙여 쓴다.",
-     "dialogue": {
-      "A": "We'd love to have you as a co-founder.",
-      "B": "I appreciate the offer, but I need to stay focused on my current role right now."
-     },
+     "nuance": "감사함을 먼저 표현한 후 거절하는 구조. 상대방의 호의를 인정하면서 거절하기 때문에 관계가 손상되지 않습니다. 뒤에 이유나 대안을 붙여 씁니다.",
+     "dialogue": "Founder: We'd love to have you as a co-founder.\nYou: I appreciate the offer, but I need to stay focused on my current role right now.\nFounder: I understand. Can I ask you again next year?\nYou: Of course. And I'm happy to give you advice in the meantime.",
      "example": "I appreciate the offer, but the timing doesn't work for me at the moment.",
      "practice": "중요한 제안을 정중하게 거절하며 관계를 유지할 때",
      "example_ko": "제안은 감사하지만, 지금 시점에는 타이밍이 맞지 않네요."

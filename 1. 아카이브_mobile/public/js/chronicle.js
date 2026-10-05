@@ -747,31 +747,48 @@
     const vocab = Array.isArray(it.vocabEntries) && it.vocabEntries.length ? it.vocabEntries
       : Array.isArray(fd.vocabEntries) ? fd.vocabEntries : [];
 
+    /* 10-05 깊이 읽기 — 지식 한줌 카드의 배경·용어·그 후·한마디 */
+    const dp = fd.deep || null;
+    const deepSec = (keys) => !dp ? '' : keys.map(k => k === 'terms'
+      ? sec('오늘 알게 된 말', (dp.terms || []).length ? `<dl class="md__terms">${dp.terms.map(t => `<dt>${esc(t.t)}</dt><dd>${esc(t.d)}</dd>`).join('')}</dl>` : '')
+      : sec({ lesson: '한 줄', background: '그때 판', after: '그 후, 그리고 지금', talk: '써먹는 한마디' }[k], dp[k] ? para(dp[k]) : '', k === 'talk' ? 'md__sec--talk' : '')).join('');
+
     if (fd.subType === 'liber' && fd.quote) return head('고전', '', [fd.book, fd.author, fd.era].filter(Boolean).join(' · '))
       + `<blockquote class="md__quote">${para(fd.quote)}</blockquote>`
       + sec('원문', fd.source ? para(fd.source) : '', 'md__sec--muted')
+      + deepSec(['lesson', 'background'])
       + sec('그때 무슨 일이', fd.backstory ? para(fd.backstory) : '')
+      + deepSec(['terms', 'after'])
       + sec('오늘의 나에게', fd.context ? para(fd.context) : '')
+      + deepSec(['talk'])
       + (Array.isArray(fd.tags) && fd.tags.length ? `<p class="md__tags">${fd.tags.map(t => `<span>#${esc(t)}</span>`).join('')}</p>` : '')
       + noteSec;
 
     if (fd.subType === 'idiom' && fd.idiom) return head('고사성어', `${fd.idiom}${fd.hanja ? ` ${fd.hanja}` : ''}`, fd.meaning)
+      + deepSec(['lesson', 'background'])
       + sec('유래', fd.origin ? para(fd.origin) : '')
+      + deepSec(['terms'])
       + sec('이렇게 쓴다', fd.story ? para(fd.story) : '')
       + sec('숨은 이야기', fd.behindStory ? para(fd.behindStory) : '')
       + sec('오늘의 적용', fd.application ? para(fd.application) : '')
+      + deepSec(['after', 'talk'])
       + noteSec;
 
-    if (fd.subType === 'history' && fd.title) return head('역사', fd.title, [fd.era, fd.period, fd.region].filter(Boolean).join(' · '))
+    if (fd.subType === 'history' && fd.title) return head(fd.series ? `역사 · 연재 ${fd.series.title} ${fd.series.no}/${fd.series.total}` : '역사', fd.title, [fd.era, fd.period, fd.region].filter(Boolean).join(' · '))
+      + sec('교훈', fd.lesson ? para(fd.lesson) : '')
+      + deepSec(['background'])
       + sec('무슨 일이 있었나', fd.summary ? para(fd.summary) : '')
       + sec('세 줄 요약', fd.summary3 ? para(fd.summary3) : '')
       + sec('비하인드', fd.behindStory ? para(fd.behindStory) : '')
-      + sec('교훈', fd.lesson ? para(fd.lesson) : '')
+      + deepSec(['terms', 'after', 'talk'])
       + noteSec;
 
     if (fd.subType === 'insight' && (fd.headline || fd.topic)) return head('인사이트', fd.headline || fd.topic, fd.headline ? fd.topic : '')
+      + deepSec(['lesson'])
       + sec('핵심', fd.body ? para(fd.body) : '')
+      + deepSec(['background'])
       + sec('실제로는', fd.realLife ? para(fd.realLife) : '')
+      + deepSec(['terms', 'after', 'talk'])
       + sec('생각해 볼 질문', fd.question ? para(fd.question) : '')
       + noteSec;
 

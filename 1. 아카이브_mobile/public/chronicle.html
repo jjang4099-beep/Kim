@@ -570,6 +570,11 @@ html.modal-open, html.modal-open body{overflow:hidden}
 .md__sec > div ol{margin:0; padding-left:20px}
 .md__sec--muted > div{color:var(--text-3); font-size:13px}
 .md__sec--note{padding:12px 14px; border-radius:calc(var(--r-card) * .6); background:var(--hover)}
+.md__sec--talk > div{padding:10px 14px; border-left:3px solid var(--jusa); background:var(--hover); border-radius:0 8px 8px 0; font-weight:600}
+.md__terms{margin:0; display:grid; grid-template-columns:max-content 1fr; gap:6px 14px}
+.md__terms dt{font-weight:700; color:var(--text-1)}
+.md__terms dd{margin:0; color:var(--text-2); font-size:13.5px; line-height:1.7}
+@media (max-width:560px){ .md__terms{grid-template-columns:1fr; gap:2px} .md__terms dd{margin-bottom:8px} }
 .md__quote{margin:6px 0 4px; padding-left:14px; border-left:3px solid var(--jusa); font-family:var(--serif); font-size:19px; line-height:1.65; color:var(--text-1)}
 .md__tags{display:flex; flex-wrap:wrap; gap:6px; margin:16px 0 0}
 .md__tags span{padding:3px 10px; border-radius:var(--r-ctl); background:var(--hover); font-size:12px; color:var(--text-2)}
@@ -898,6 +903,6 @@ html.modal-open, html.modal-open body{overflow:hidden}
   </article>
 </div>
 
-<script src="js/chronicle.js?v=26"></script>
+<script src="js/chronicle.js?v=27"></script>
 </body>
 </html>

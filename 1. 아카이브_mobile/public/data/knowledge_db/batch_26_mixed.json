@@ -23,11 +23,8 @@
      "order": 1,
      "expression": "I hear what you're saying.",
      "meaning": "말씀하시는 것을 잘 듣고 있습니다 (상대의 감정과 입장을 인정하는 표현)",
-     "nuance": "단순히 '들었다'가 아니라 '이해하려고 노력하고 있다'는 신호다. 갈등 상황에서 가장 먼저 해야 할 일은 주장이 아니라 경청의 자세를 보여주는 것이다. 이 한 마디가 방어적인 대화를 협력적인 대화로 전환시키는 첫 번째 스위치다.",
-     "dialogue": {
-      "A": "You never listen to my ideas — you just push your own agenda.",
-      "B": "I hear what you're saying, and I want to understand where this frustration is coming from."
-     },
+     "nuance": "단순히 '들었다'가 아니라 '이해하려고 노력하고 있다'는 신호입니다. 갈등 상황에서 가장 먼저 해야 할 일은 주장이 아니라 경청의 자세를 보여주는 것입니다. 이 한 마디가 방어적인 대화를 협력적인 대화로 전환시키는 첫 번째 스위치입니다.",
+     "dialogue": "Colleague: You never listen to my ideas. You just push your own.\nYou: I hear what you're saying.\nColleague: Do you, though?\nYou: I do. Tell me which idea you felt I ignored, and let's look at it together.",
      "example": "I hear what you're saying, and your concern about the timeline is completely valid.",
      "practice": "상대가 불만을 표출하거나 방어적인 태도를 보일 때, 대화의 첫 문을 여는 경청 신호로",
      "example_ko": "무슨 말씀인지 알겠습니다, 그리고 일정에 대한 우려는 충분히 타당합니다."
@@ -48,11 +45,8 @@
      "order": 3,
      "expression": "I'd like to understand your perspective better.",
      "meaning": "당신의 관점을 더 잘 이해하고 싶습니다",
-     "nuance": "'당신이 틀렸다'는 전제 없이 상대의 시각을 먼저 이해하려는 자세를 보여준다. 사람들은 자신의 이야기를 들어주는 사람에게 더 열린 마음을 갖는다. 이 표현 뒤에는 구체적인 질문이 따라오면 효과가 배가된다.",
-     "dialogue": {
-      "A": "I just don't think this approach will work.",
-      "B": "I'd like to understand your perspective better. What specifically concerns you about it?"
-     },
+     "nuance": "'당신이 틀렸다'는 전제 없이 상대의 시각을 먼저 이해하려는 자세를 보여줍니다. 사람들은 자신의 이야기를 들어주는 사람에게 더 열린 마음을 갖습니다. 이 표현 뒤에는 구체적인 질문이 따라오면 효과가 배가됩니다.",
+     "dialogue": "Colleague: I just don't think this approach will work.\nYou: I'd like to understand your perspective better.\nColleague: The timeline is too short for my team.\nYou: That's helpful. How much more time would you need?",
      "example": "Before we decide, I'd like to understand your perspective better on the risks involved.",
      "practice": "의사결정 전 다양한 입장을 수집하거나, 갈등 상황에서 상대방의 입장을 파악할 때",
      "example_ko": "결정하기 전에, 관련된 리스크에 대한 관점을 더 이해하고 싶습니다."
@@ -73,11 +67,8 @@
      "order": 5,
      "expression": "What would it take for us to move forward together?",
      "meaning": "우리가 함께 앞으로 나아가려면 무엇이 필요할까요?",
-     "nuance": "갈등의 원인을 파헤치는 대신 '이제 무엇이 있어야 함께 갈 수 있는가'로 대화를 미래 지향적으로 전환시킨다. 상대에게 해결의 주도권을 주는 동시에 '나는 함께 가고 싶다'는 협력 의지를 담는다.",
-     "dialogue": {
-      "A": "I'm not sure we can continue like this.",
-      "B": "I hear you. What would it take for us to move forward together in a way that works for both of us?"
-     },
+     "nuance": "갈등의 원인을 파헤치는 대신 '이제 무엇이 있어야 함께 갈 수 있는가'로 대화를 미래 지향적으로 전환시킵니다. 상대에게 해결의 주도권을 주는 동시에 '나는 함께 가고 싶다'는 협력 의지를 담습니다.",
+     "dialogue": "Partner: I'm not sure we can keep working like this.\nYou: I hear you. What would it take for us to move forward together?\nPartner: Clearer deadlines, and fewer last-minute changes.\nYou: That's fair. Let's put both in writing this week.",
      "example": "We've all shared our frustrations. Now — what would it take for us to move forward together?",
      "practice": "교착 상태에 빠진 대화를 해결책 중심으로 전환할 때, 협상의 마무리 단계에서",
      "example_ko": "다들 답답함을 나눴네요. 이제 — 함께 앞으로 나아가려면 무엇이 필요할까요?"

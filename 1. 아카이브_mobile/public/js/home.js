@@ -1533,6 +1533,19 @@ Object.assign(Mob, {
           </div>`;
         }
       }
+      /* 10-05 깊이 읽기 — 저장해 둔 지식 한줌 카드도 배경·용어·그 후·한마디를 그대로 다시 읽을 수 있게 */
+      const dp = item.deep || item.feedData?.deep;
+      if (dp) {
+        const sec = (lbl, html) => html ? `<div class="mob-detail-section">
+            <div class="mob-detail-sec-label">${lbl}</div>${html}</div>` : '';
+        const txt = t => t ? `<div class="mob-detail-full-text">${t}</div>` : '';
+        body += sec('💡 한 줄', txt(dp.lesson))
+          + sec('🧭 그때 판', txt(dp.background))
+          + sec('📚 오늘 알게 된 말', (dp.terms || []).map(t =>
+              `<div class="mob-detail-field-row"><span class="mob-detail-field-label">${t.t}</span><span class="mob-detail-field-val">${t.d}</span></div>`).join(''))
+          + sec('🔭 그 후, 그리고 지금', txt(dp.after))
+          + sec('🗣 써먹는 한마디', txt(dp.talk));
+      }
 
     } else if (type === 'image_analysis') {
       if (item.imageUrl) {

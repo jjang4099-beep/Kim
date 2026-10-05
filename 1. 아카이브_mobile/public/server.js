@@ -1850,6 +1850,87 @@ function getRecentDeliveredIDs(subId, days = 60) {
   return [...new Set(ids)];
 }
 
+/** 오늘보다 앞선 가장 최근 배달의 item_id — 연재(series)의 '다음 편'을 고를 때 쓴다 */
+function _lastDeliveredId(subId) {
+  const all = readDailyFeeds();
+  const wanted = Array.isArray(subId) ? subId : [subId];
+  const today = toDateStr(new Date());
+  for (const date of Object.keys(all).filter(d => d < today).sort().reverse()) {
+    for (const key of wanted) {
+      const id = all[date]?.[key]?.item_id;
+      if (id) return id;
+    }
+  }
+  return null;
+}
+
+/* ── 깊이 읽기(deep layer) + 연재 ──────────────────────────────────────────
+   10-05 사용자 피드백: "아침마다 지식 한줌을 보는데 글이 부족하다, 유식해진다는 느낌이 없다."
+   실제 카드는 본문 ~450자(무슨 일 + 비하인드)뿐이었다. 원본 항목은 그대로 두고
+   data/deep_layers/*.json 에 id별로 겹쳐 얹는다:
+     lesson(한 줄 통찰) · background(그때 판 — 왜 그런 일이) · terms[{t,d}](오늘 알게 된 말)
+     · after(그 후, 그리고 지금) · talk(써먹는 한마디)
+   series = 역사를 하루 한 편씩 이어지는 연재로 묶는다(어제 마라톤 → 오늘 테미스토클레스). */
+let _deepCache = null;
+function loadDeepLayers() {
+  if (_deepCache) return _deepCache;
+  const dir = path.join(__dirname, 'data', 'deep_layers');
+  const out = { deep: {}, series: [] };
+  try {
+    if (fs.existsSync(dir)) {
+      for (const file of fs.readdirSync(dir).filter(f => f.endsWith('.json')).sort()) {
+        try {
+          const b = JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8'));
+          Object.assign(out.deep, b.deep || {});
+          if (Array.isArray(b.series)) out.series.push(...b.series);
+        } catch (e) { console.warn(`[DeepLayers] ${file} 파싱 실패:`, e.message); }
+      }
+    }
+    console.log(`[DeepLayers] 로드 — 깊이 읽기 ${Object.keys(out.deep).length}개 · 연재 ${out.series.length}개`);
+  } catch (e) { console.warn('[DeepLayers] 로드 실패:', e.message); }
+  _deepCache = out;
+  return out;
+}
+const _deepOf = id => loadDeepLayers().deep[id] || null;
+
+/** 미배달 항목 중 깊이 읽기가 있는 것을 먼저 — 없으면 원래 후보 그대로 */
+function _preferDeep(cands, recentIds) {
+  const deep = cands.filter(i => _deepOf(i.id) && !recentIds.includes(i.id));
+  return deep.length ? deep : cands;
+}
+
+/**
+ * 연재 다음 편 고르기. 어제 나간 항목이 연재 중이면 그 다음 안 본 편,
+ * 아니면 아직 안 끝난 첫 연재의 첫 안 본 편. pool에 없는 항목(시대 필터로 빠진 것)은 건너뛴다.
+ */
+function _pickSeriesItem(pool, recentIds, keys) {
+  const { series } = loadDeepLayers();
+  if (!series.length) return null;
+  const byId = new Map(pool.map(i => [i.id, i]));
+  const open = s => s.items.filter(id => byId.has(id) && !recentIds.includes(id));
+  const lastId = _lastDeliveredId(keys);
+  /* 진행 중인 연재가 있으면 그 연재의 '아직 안 본 첫 편'(보통 어제 편의 다음 편).
+     10-05 시뮬레이션: 연재 도입 전날 우연히 로마 2편(파비우스)이 나가 있어서 '다음 편'만 찾으면
+     1편(한니발 알프스)을 건너뛰고 3편부터 시작했다 — 앞에 안 본 편이 있으면 그것부터. */
+  const cur = series.find(s => s.items.includes(lastId) && open(s).length);
+  const s = cur || series.find(x => open(x).length);
+  if (!s) return null;
+  const id = open(s)[0];
+  const inPool = s.items.filter(x => byId.has(x));
+  const idx = inPool.indexOf(id);
+  const t = x => (byId.get(x)?.title || '').replace(/\s*\([^)]*\)\s*$/, '');
+  /* 예고는 이미 본 편을 건너뛴 '실제로 내일 나갈 편' */
+  const nextId = inPool.slice(idx + 1).find(x => !recentIds.includes(x));
+  return {
+    item: byId.get(id),
+    series: {
+      id: s.id, title: s.title, no: idx + 1, total: inPool.length,
+      prev: idx > 0 ? t(inPool[idx - 1]) : '',
+      next: nextId ? t(nextId) : '',
+    },
+  };
+}
+
 /** 중복 배달 판정에 쓸 키 — 통합 피드는 shim sub에 dedupKeys를 달아 옛 키까지 포함시킨다 */
 function _dedupKeys(sub) {
   return sub.dedupKeys || sub.id;
@@ -2641,7 +2722,12 @@ function generateLiberFeed(sub) {
   const bookKey = q => String(q.book || '').split('(')[0].trim();
   const recentBooks = new Set(pool.filter(q => recentIds.includes(q.id)).map(bookKey));
   const freshBooks  = pool.filter(q => !recentBooks.has(bookKey(q)) && !recentIds.includes(q.id));
-  const [q] = freshBooks.length ? pickUnseenItems(freshBooks, recentIds, 1) : pickUnseenItems(pool, recentIds, 1);
+  /* 깊이 읽기가 있는 구절 먼저 — 책 다양성 안에서 고르고, 없으면 다른 책이라도 깊이 읽기 있는 구절 */
+  const deepFresh = freshBooks.filter(q => _deepOf(q.id));
+  const deepAny   = pool.filter(q => _deepOf(q.id) && !recentIds.includes(q.id));
+  const [q] = deepFresh.length ? pickUnseenItems(deepFresh, recentIds, 1)
+    : deepAny.length ? pickUnseenItems(deepAny, recentIds, 1)
+    : freshBooks.length ? pickUnseenItems(freshBooks, recentIds, 1) : pickUnseenItems(pool, recentIds, 1);
   if (!q) return null;
   console.log(`[WorkDB] LIBER 서빙 (${q.id} · ${q.book})`);
   return {
@@ -2651,6 +2737,7 @@ function generateLiberFeed(sub) {
     source: q.source || '', theme: q.theme || '', context: q.context || '',
     /* 배경·일화 — context(직장 적용)와 다른 칸이다. 이게 있어야 '읽을거리'가 된다 */
     backstory: q.backstory || '',
+    deep: _deepOf(q.id),
     tags: q.tags || [], aiGenerated: false,
   };
 }
@@ -2664,6 +2751,10 @@ function generateInsightFeed(sub) {
   const seen = getRecentDeliveredIDs(_dedupKeys(sub), 60);
   let pool = all.filter(i => i.dayOfWeek === dow);
   if (!pool.length) pool = all;
+  /* 깊이 읽기 있는 항목 먼저 — 요일 주제 안에서, 없으면 요일과 상관없이 */
+  const deepDow = pool.filter(i => _deepOf(i.id) && !seen.includes(i.id));
+  const deepAll = all.filter(i => _deepOf(i.id) && !seen.includes(i.id));
+  if (deepDow.length) pool = deepDow; else if (deepAll.length) pool = deepAll;
   let [it] = pickUnseenItems(pool, seen, 1);
   if (!it) [it] = pickUnseenItems(all, seen, 1);
   if (!it) return null;
@@ -2672,7 +2763,7 @@ function generateInsightFeed(sub) {
     type: 'humanities', subType: 'insight', subId: sub.id, label: sub.label, category: 'inbox',
     item_id: it.id, title: `${it.label} — ${it.topic}`,
     topic: it.topic, headline: it.headline || '', body: it.body || '', realLife: it.realLife || '',
-    question: it.question || '', tags: it.tags || [], icon: it.icon || '💡', color: it.color || '#7c3aed',
+    question: it.question || '', deep: _deepOf(it.id), tags: it.tags || [], icon: it.icon || '💡', color: it.color || '#7c3aed',
     subCategory: it.subCategory || '', aiGenerated: false,
   };
 }
@@ -2681,7 +2772,8 @@ function generateInsightFeed(sub) {
 function generateIdiomFeedDB(sub) {
   const pool = loadWorkDB().idiom_cards;
   if (!pool.length) return null;
-  const [c] = pickUnseenItems(pool, getRecentDeliveredIDs(_dedupKeys(sub), 90), 1);
+  const recent = getRecentDeliveredIDs(_dedupKeys(sub), 90);
+  const [c] = pickUnseenItems(_preferDeep(pool, recent), recent, 1);
   if (!c) return null;
   console.log(`[WorkDB] 고사성어 서빙 (${c.id} · ${c.idiom})`);
   return {
@@ -2689,7 +2781,7 @@ function generateIdiomFeedDB(sub) {
     item_id: c.id, title: `${c.idiom || ''} (${c.hanja || ''})`,
     idiom: c.idiom || '', hanja: c.hanja || '', meaning: c.meaning || '',
     origin: c.origin || '', story: c.example || '', behindStory: '',
-    application: c.modernUse || '', tags: c.tags || [], aiGenerated: false,
+    application: c.modernUse || '', deep: _deepOf(c.id), tags: c.tags || [], aiGenerated: false,
   };
 }
 
@@ -2784,12 +2876,15 @@ async function generateHumanitiesFeed(sub, user) {
       /* 09-28 점검: 70% 확률로는 부족했다 — 실제 배달 4번 중 3번이 옛 항목(베트남 전쟁·서로마·ITT)이었다.
          옛 147개는 비즈니스 사례가 67개이고 같은 사건이 2~3번씩 겹친다(프랑스 혁명·산업혁명·러시아 혁명 각 3개).
          이제 era 항목을 항상 먼저 쓰고, 다 본 뒤에만 옛 항목으로 넘어간다. */
+      /* 10-05~ 연재가 최우선: 어제 이야기의 다음 편 → 안 끝난 연재 → (연재 밖) 깊이 읽기 있는 항목 → era 항목 → 전체 */
+      const seriesPick = _pickSeriesItem(pool, recentIds, _dedupKeys(sub));
       const curated = pool.filter(i => i.era && !recentIds.includes(i.id));
-      const [item]  = curated.length
-        ? pickUnseenItems(curated, recentIds, 1)
-        : pickUnseenItems(pool, recentIds, 1);
+      const [item]  = seriesPick ? [seriesPick.item]
+        : curated.length
+        ? pickUnseenItems(_preferDeep(curated, recentIds), recentIds, 1)
+        : pickUnseenItems(_preferDeep(pool, recentIds), recentIds, 1);
       if (item) {
-        console.log(`[KnowledgeDB] 역사피드 DB 서빙 (${item.id})`);
+        console.log(`[KnowledgeDB] 역사피드 DB 서빙 (${item.id}${seriesPick ? ` · 연재 ${seriesPick.series.id} ${seriesPick.series.no}/${seriesPick.series.total}` : ''})`);
         return {
           type:        'humanities',
           subType:     'history',
@@ -2804,7 +2899,9 @@ async function generateHumanitiesFeed(sub, user) {
           summary:     item.summary      || '',
           summary3:    item.summary3     || '',
           behindStory: item.behind_story || '',
-          lesson:      item.lesson       || '',
+          lesson:      item.lesson       || _deepOf(item.id)?.lesson || '',
+          deep:        _deepOf(item.id),
+          series:      seriesPick?.series || null,
           aiGenerated: false
         };
       }

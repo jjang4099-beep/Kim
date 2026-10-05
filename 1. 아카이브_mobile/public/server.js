@@ -610,7 +610,7 @@ function _seedEnglishThemes() {
   const kdbDir = path.join(__dirname, 'data', 'knowledge_db');
   if (!fs.existsSync(kdbDir)) return;
   const files = fs.readdirSync(kdbDir).filter(f => f.endsWith('.json')).sort();
-  let seeded = 0;
+  let seeded = 0, _enSyncThemes = 0, _enSyncExprs = 0;
   for (const file of files) {
     try {
       const batch = JSON.parse(fs.readFileSync(path.join(kdbDir, file), 'utf8'));
@@ -649,8 +649,21 @@ function _seedEnglishThemes() {
         ]);
         tStmt.free();
         /* theme_id 조회 */
-        const themeRow = _sqlGet('SELECT id FROM english_themes WHERE pack_id = ?', [pack.id]);
+        const themeRow = _sqlGet('SELECT * FROM english_themes WHERE pack_id = ?', [pack.id]);
         if (!themeRow) continue;
+        /* 10-05: INSERT OR IGNORE만으로는 이미 시드된 팩을 고쳐도 운영 DB에 반영되지 않았다
+           (예문 1인칭화·중복 표현 교체·하이라이트 수정이 전부 묻힘). JSON이 원본이므로 내용이 다르면 덮어쓴다.
+           콘텐츠 테이블이라 유저 데이터와 무관하고, delivery_date는 건드리지 않는다. */
+        const tNew = [pack.theme_title || '', pack.theme_title_en || '', pack.theme_key || '', pack.theme_category || '',
+                      pack.level || 'intermediate', pack.master_paragraph?.text || '', pack.master_paragraph?.translation || '', highlights];
+        const tOld = [themeRow.theme_title, themeRow.theme_title_en, themeRow.theme_key, themeRow.theme_category,
+                      themeRow.level, themeRow.master_paragraph_en, themeRow.master_paragraph_ko, themeRow.highlights_json];
+        if (tNew.some((v, k) => v !== tOld[k])) {
+          getSQLiteDB().run(
+            `UPDATE english_themes SET theme_title=?, theme_title_en=?, theme_key=?, theme_category=?, level=?,
+               master_paragraph_en=?, master_paragraph_ko=?, highlights_json=? WHERE pack_id=?`, [...tNew, pack.id]);
+          _enSyncThemes++;
+        }
         /* 표현 INSERT OR IGNORE (expr_id UNIQUE) */
         for (const expr of (pack.expressions || [])) {
           const eStmt = getSQLiteDB().prepare(
@@ -674,6 +687,19 @@ function _seedEnglishThemes() {
           ]);
           eStmt.free();
           seeded++;
+          if (expr.id) {
+            const cur = _sqlGet('SELECT * FROM english_expressions WHERE expr_id = ?', [expr.id]);
+            const eNew = [expr.order || 0, expr.expression, expr.meaning, expr.nuance || '', _dialogueToString(expr.dialogue),
+                          expr.dialogue_ko || '', expr.example || '', expr.example_ko || '', expr.practice || ''];
+            const eOld = cur ? [cur.expression_order, cur.expression, cur.meaning, cur.nuance_story, cur.dialogue_en,
+                                cur.dialogue_ko, cur.example_en, cur.example_ko, cur.practice_en] : eNew;
+            if (cur && eNew.some((v, k) => v !== eOld[k])) {
+              getSQLiteDB().run(
+                `UPDATE english_expressions SET expression_order=?, expression=?, meaning=?, nuance_story=?, dialogue_en=?,
+                   dialogue_ko=?, example_en=?, example_ko=?, practice_en=? WHERE expr_id=?`, [...eNew, expr.id]);
+              _enSyncExprs++;
+            }
+          }
         }
       }
     } catch (e) {
@@ -681,6 +707,7 @@ function _seedEnglishThemes() {
     }
   }
   if (seeded > 0) console.log(`[EnTheme Seed] ${seeded}개 표현 시드 완료`);
+  if (_enSyncThemes || _enSyncExprs) console.log(`[EnTheme Sync] JSON 변경 반영 — 팩 ${_enSyncThemes}개 · 표현 ${_enSyncExprs}개 갱신`);
 }
 
 /**

@@ -501,7 +501,8 @@ function _migrateEnThemesCategory() {
  * 라이프(추억) 기록 일괄 가져오기 — {DATA_DIR}/life_import/*.json
  * 10-25 사용자 요청: 휴대폰의 파리 여행 사진을 날짜별 기록으로 남겨 달라.
  * 로그인 세션 없이 넣어야 해서, 볼륨에 둔 파일을 부팅 때 한 번 읽는다.
- *   파일 형식: { email, label, items: [ { id, title, text, date, createdAt, life: { photos:['/uploads/..'], place, ... } } ] }
+ *   파일 형식: { email, label, replace?, items: [ { id, title, text, date, createdAt, life: { photos:['/uploads/..'], place, ... } } ] }
+ *   ⚠️ /uploads는 로그인 없이 열리므로 사진 파일명은 추측할 수 없는 무작위 이름으로 올릴 것.
  * - 사진은 미리 {DATA_DIR}/uploads 에 올려 둔다(개인 사진이라 리포·이미지에는 넣지 않는다).
  * - 이미 있는 id는 건너뛴다(멱등). 처리한 파일은 .done 으로 이름을 바꾼다.
  * - 넣기 전에 DB를 백업한다.
@@ -528,7 +529,7 @@ function _importLifeRecords() {
       const have = new Set(ItemsDB.getItemsByUser(user.id).map(i => i.id));
       let added = 0, missing = 0;
       for (const it of (b.items || [])) {
-        if (!it.id || have.has(it.id)) continue;
+        if (!it.id || (have.has(it.id) && !b.replace)) continue;   // replace:true면 같은 id를 덮어쓴다(사진 경로 교체 등)
         const photos = (it.life?.photos || []).filter(u => fs.existsSync(path.join(UPLOADS_DIR, path.basename(u))));
         missing += (it.life?.photos || []).length - photos.length;
         ItemsDB.insertItem(user.id, {

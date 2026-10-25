@@ -572,16 +572,24 @@ Object.assign(Mob, {
 
     /* ── 배달 피드 카테고리 미리보기 (1 per 구독, 클릭 시 배달탭 해당 필터로 이동) ── */
     if (hasFeedPreview) {
-      /* subId 기준 중복 제거 — 카테고리별 딱 1개만 보장 */
+      /* 묶음(_feedGroupOf) 기준 중복 제거 — 카테고리별 딱 1개만 보장.
+         10-25: subId 기준이라 지식 한줌의 두 장(역사 daily_knowledge + 오늘의 지혜 daily_wisdom)이
+         따로 떠서 '역사 한줌에 고사성어가 섞여 나온다'처럼 보였고, 지혜 카드를 누르면
+         배달탭이 daily_wisdom 필터로 열려 빈 화면이 됐다. 이제 한 장으로 묶고 지혜는 부제로 붙인다. */
       const seenSubs = new Set();
-      const previews = this._orderFeeds(state.feedItems).filter(item => {
-        const key = item.subId || item.label || JSON.stringify(item).slice(0, 40);
+      const ordered  = this._orderFeeds(state.feedItems);
+      const previews = ordered.filter(item => {
+        const key = this._feedGroupOf(item) || item.label || JSON.stringify(item).slice(0, 40);
         if (seenSubs.has(key)) return false;
         seenSubs.add(key);
         return true;
       });
+      const wisdom = ordered.find(i => i.subId === 'daily_wisdom');
       html += '<div class="mob-feed-preview-list">';
-      previews.forEach(item => { html += this._cardFeedPreview(item); });
+      previews.forEach(item => {
+        const companion = this._feedGroupOf(item) === 'daily_knowledge' && item !== wisdom ? wisdom : null;
+        html += this._cardFeedPreview(item, companion);
+      });
       html += '</div>';
     }
 
@@ -679,8 +687,9 @@ Object.assign(Mob, {
      홈 화면 배달 피드 미리보기 카드 (1 per 구독)
      클릭 시 배달탭으로 이동하며 해당 칩 활성화
   ───────────────────────────────────────────── */
-  _cardFeedPreview(item) {
-    const subId   = item.subId || '';
+  _cardFeedPreview(item, companion = null) {
+    /* 오늘의 지혜는 지식 한줌 묶음으로 이동한다 — 'daily_wisdom' 필터는 배달탭에 없다 */
+    const subId   = this._feedGroupOf(item);
     const arch    = FEED_ARCHIVE_MAP?.[subId] || { code: '◆', full: item.label || '지식' };
     const title   = item.title   || item.label || '오늘의 지식';
     const summary = item.summary || '';
@@ -698,6 +707,7 @@ Object.assign(Mob, {
         <span class="mob-fpc-cat">${arch.full}${extra}</span>
         <div class="mob-fpc-title">${title}</div>
         ${snippet ? `<div class="mob-fpc-summary">${snippet}</div>` : ''}
+        ${companion ? `<div class="mob-fpc-summary">+ ${companion.label || '오늘의 지혜'} · ${companion.title || ''}</div>` : ''}
       </div>
       <i class="ti ti-chevron-right mob-fpc-arrow"></i>
     </button>`;
@@ -705,7 +715,7 @@ Object.assign(Mob, {
 
   /** 홈 미리보기 카드 클릭 → 배달탭으로 이동 + 해당 필터 활성화 */
   _goToFeedFiltered(subId) {
-    state.pendingFeedFilter = subId || 'all';
+    state.pendingFeedFilter = subId ? this._feedGroupOf({ subId }) : 'all';
     this.switchView('feed', el('bnFeed'));
   },
 

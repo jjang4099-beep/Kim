@@ -1169,6 +1169,8 @@ Object.assign(Mob, {
     if (!content) return;
 
     const items  = this._orderFeeds(state.feedItems || []);
+    /* 저장된 화면 상태 등에서 옛 'daily_wisdom' 필터가 들어와도 지식 한줌 묶음으로 본다 */
+    if (filter && filter !== 'all') filter = this._feedGroupOf({ subId: filter });
     const filtered = filter === 'all'
       ? items
       : items.filter(item => this._feedGroupOf(item) === filter);

@@ -134,6 +134,8 @@ const FEED_ARCHIVE_MAP = {
   idiom_daily: { code: 'IDM', full: 'Classical Idiom'     },
   liber_classic: { code: 'LIB', full: 'Liber · Classics' },
   insight_daily: { code: 'INS', full: 'Daily Insight'    },
+  /* 09-13 통합 이후의 지식 한줌 — 홈 미리보기에서 역사 + 오늘의 지혜를 한 장으로 묶는다 */
+  daily_knowledge: { code: 'HIS', full: '지식 한줌'       },
 };
 
 /* ──────────────────────────────────────────────

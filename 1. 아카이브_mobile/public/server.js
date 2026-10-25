@@ -312,6 +312,7 @@ async function initSQLiteDB() {
   _seedDefaultCategories();
   _migrateCreateOwnerAccount();
   _importLifeRecords();                // 볼륨의 life_import/*.json — 계정에 사진 기록 일괄 추가
+  _applyPasswordReset();               // 볼륨의 pw_reset.json — 소유자가 직접 만든 비밀번호 해시 적용
   _persistDB();
   console.log('[SQLite] DB 초기화 완료 →', SQLITE_PATH);
 }
@@ -543,6 +544,36 @@ function _importLifeRecords() {
     } catch (e) {
       console.warn(`[LifeImport] ${f} 처리 실패:`, e.message);
     }
+  }
+}
+
+/**
+ * 비밀번호 재설정 — {DATA_DIR}/pw_reset.json = { email, password_hash }
+ * 10-25: 비밀번호 찾기 기능이 없어 소유자가 로그인하지 못했다.
+ * 소유자가 자기 터미널에서 scripts/reset-password.js 를 실행해 새 비밀번호를 직접 입력하면,
+ * 그 컴퓨터에서 bcrypt 해시만 만들어 이 파일로 올린다(평문 비밀번호는 서버·파일 어디에도 남지 않는다).
+ * 부팅 때 한 번 적용하고 파일을 지운다. 해시 형식이 아니면 적용하지 않는다.
+ */
+function _applyPasswordReset() {
+  const fp = path.join(_DATA_DIR, 'pw_reset.json');
+  if (!fs.existsSync(fp)) return;
+  try {
+    const { email, password_hash } = JSON.parse(fs.readFileSync(fp, 'utf8'));
+    const user = UsersDB.findUserByEmail(email);
+    if (!user) {
+      console.warn('[Auth] 비밀번호 재설정: 계정을 찾지 못함');
+    } else if (!/^\$2[aby]\$\d{2}\$.{53}$/.test(String(password_hash || ''))) {
+      console.warn('[Auth] 비밀번호 재설정: bcrypt 해시 형식이 아님 — 적용 안 함');
+    } else {
+      const stmt = getSQLiteDB().prepare('UPDATE users SET password_hash=? WHERE id=?');
+      stmt.run([password_hash, user.id]);
+      stmt.free();
+      console.log(`[Auth] 비밀번호 재설정 적용 (${user.email})`);
+    }
+  } catch (e) {
+    console.warn('[Auth] 비밀번호 재설정 실패:', e.message);
+  } finally {
+    try { fs.unlinkSync(fp); } catch {}
   }
 }
 

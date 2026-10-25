@@ -311,6 +311,7 @@ async function initSQLiteDB() {
   _seedExamKnowledge();
   _seedDefaultCategories();
   _migrateCreateOwnerAccount();
+  _importLifeRecords();                // 볼륨의 life_import/*.json — 계정에 사진 기록 일괄 추가
   _persistDB();
   console.log('[SQLite] DB 초기화 완료 →', SQLITE_PATH);
 }
@@ -496,6 +497,54 @@ function _migrateEnThemesCategory() {
  * 레거시 소유자 계정 자동 생성 — usr_legacy_owner에 실제 로그인 가능한 이메일/비번을 부여.
  * OWNER_EMAIL / OWNER_TEMP_PASSWORD 미설정 시 건너뜀(로컬 최초 부팅 등). 멱등.
  */
+/**
+ * 라이프(추억) 기록 일괄 가져오기 — {DATA_DIR}/life_import/*.json
+ * 10-25 사용자 요청: 휴대폰의 파리 여행 사진을 날짜별 기록으로 남겨 달라.
+ * 로그인 세션 없이 넣어야 해서, 볼륨에 둔 파일을 부팅 때 한 번 읽는다.
+ *   파일 형식: { email, label, items: [ { id, title, text, date, createdAt, life: { photos:['/uploads/..'], place, ... } } ] }
+ * - 사진은 미리 {DATA_DIR}/uploads 에 올려 둔다(개인 사진이라 리포·이미지에는 넣지 않는다).
+ * - 이미 있는 id는 건너뛴다(멱등). 처리한 파일은 .done 으로 이름을 바꾼다.
+ * - 넣기 전에 DB를 백업한다.
+ */
+function _importLifeRecords() {
+  const dir = path.join(_DATA_DIR, 'life_import');
+  let files = [];
+  try { files = fs.existsSync(dir) ? fs.readdirSync(dir).filter(f => f.endsWith('.json')) : []; } catch {}
+  if (!files.length) return;
+  try {
+    const bak = `${SQLITE_PATH}.bak-lifeimport-${Date.now()}`;
+    fs.copyFileSync(SQLITE_PATH, bak);
+    console.log(`[LifeImport] 가져오기 전 DB 백업 → ${bak}`);
+  } catch (e) {
+    console.warn('[LifeImport] 백업 실패 — 가져오기를 건너뜀:', e.message);
+    return;
+  }
+  for (const f of files) {
+    const fp = path.join(dir, f);
+    try {
+      const b = JSON.parse(fs.readFileSync(fp, 'utf8'));
+      const user = UsersDB.findUserByEmail(b.email);
+      if (!user) { console.warn(`[LifeImport] ${f}: 계정을 찾지 못함 — 건너뜀`); continue; }
+      const have = new Set(ItemsDB.getItemsByUser(user.id).map(i => i.id));
+      let added = 0, missing = 0;
+      for (const it of (b.items || [])) {
+        if (!it.id || have.has(it.id)) continue;
+        const photos = (it.life?.photos || []).filter(u => fs.existsSync(path.join(UPLOADS_DIR, path.basename(u))));
+        missing += (it.life?.photos || []).length - photos.length;
+        ItemsDB.insertItem(user.id, {
+          ...it, category: 'life', contentType: 'life', mode: 'PROFESSIONAL',
+          life: { ...(it.life || {}), photos },
+        });
+        added++;
+      }
+      fs.renameSync(fp, fp + '.done');
+      console.log(`[LifeImport] ${f} (${b.label || ''}): 기록 ${added}개 추가${missing ? `, 없는 사진 ${missing}장 제외` : ''}`);
+    } catch (e) {
+      console.warn(`[LifeImport] ${f} 처리 실패:`, e.message);
+    }
+  }
+}
+
 function _migrateCreateOwnerAccount() {
   try {
     const existing = _sqlGet('SELECT id FROM users WHERE id = ?', ['usr_legacy_owner']);

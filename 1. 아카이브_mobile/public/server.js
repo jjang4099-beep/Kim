@@ -2887,7 +2887,10 @@ async function generateHumanitiesFeed(sub, user) {
       /* 10-05~ 연재가 최우선: 어제 이야기의 다음 편 → 안 끝난 연재 → (연재 밖) 깊이 읽기 있는 항목 → era 항목 → 전체 */
       const longIds    = getRecentDeliveredIDs(_dedupKeys(sub), DEEP_SEEN_DAYS);
       const seriesPick = _pickSeriesItem(pool, longIds, _dedupKeys(sub));
-      const curated = pool.filter(i => i.era && !recentIds.includes(i.id));
+      /* 10-25 200일 시뮬레이션: 연재가 끝난 뒤 180일 창만 보면, 10월에 나간 연재 편이 반년 만에 다시 나왔다
+         (한 번도 안 나간 era 항목이 100개 넘게 남아 있는데도). 1년 안에 안 본 것 먼저, 없을 때만 180일 창. */
+      const curatedNew = pool.filter(i => i.era && !longIds.includes(i.id));
+      const curated = curatedNew.length ? curatedNew : pool.filter(i => i.era && !recentIds.includes(i.id));
       const [item]  = seriesPick ? [seriesPick.item]
         : curated.length
         ? pickUnseenItems(_preferDeep(curated, longIds), recentIds, 1)

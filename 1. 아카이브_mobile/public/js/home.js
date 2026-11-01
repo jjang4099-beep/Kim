@@ -593,6 +593,9 @@ Object.assign(Mob, {
         html += this._cardFeedPreview(item, companion);
       });
       html += '</div>';
+      /* 받은 지식이 어디에 쌓였는지 — 연대기의 지식 지도로 */
+      html += `<a class="mob-kmap-link" href="chronicle.html#kmap">
+        <i class="ti ti-map-2"></i><span><b>지식 지도</b> 지금까지 받은 연재·지혜와 서로 이어진 이야기</span><i class="ti ti-chevron-right"></i></a>`;
     }
 
     if (todayItems.length === 0 && !hasFeedPreview && !hasExamDaily) {

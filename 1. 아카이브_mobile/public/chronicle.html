@@ -826,6 +826,74 @@ html.ap-open, html.ap-open body{overflow:hidden}
   .ap__route{left:24px; right:24px; bottom:26px}
 }
 
+/* ── 지식 지도 ── */
+.kmap{margin-top:78px; padding-top:32px; border-top:1px solid var(--border)}
+.kmap h2{margin:0 0 6px; font-family:var(--serif); font-size:26px; font-weight:var(--title-weight); letter-spacing:-.02em}
+.kmap .lede{margin:0 0 24px; color:var(--text-2); font-size:13.5px; max-width:60ch; line-height:1.7}
+.kmap__stats{display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:14px; margin-bottom:22px}
+.kmap .figure__num{font-size:34px}
+.kmap__board{border:1px solid var(--border-soft); border-radius:var(--r-card); background:var(--surface); box-shadow:var(--shadow);
+  overflow-x:auto; -webkit-overflow-scrolling:touch}
+.kmap__board svg{display:block; width:100%; min-width:860px; height:auto}
+.km-lane{font:700 12.5px var(--sans); fill:var(--text-2)}
+.km-sep{stroke:var(--border-soft); stroke-width:1}
+.km-tick{stroke:var(--border-soft); stroke-dasharray:2 4}
+.km-axis{font:500 11px var(--sans); fill:var(--text-3)}
+.km-wtitle{font:700 12.5px var(--sans); fill:var(--text-2)}
+.km-wtitle tspan, .km-series text tspan{font-weight:500; fill:var(--text-3)}
+.km-series{cursor:pointer}
+.km-series rect{fill:var(--bg); stroke:var(--border); stroke-width:1; transition:stroke .15s}
+.km-series.is-on rect{stroke:var(--jusa); stroke-opacity:.45}
+.km-series.is-done rect{stroke:var(--jusa); stroke-width:1.5}
+.km-series:hover rect, .km-series:focus-visible rect{stroke:var(--jusa); stroke-width:2}
+.km-series:focus{outline:none}
+.km-series text{font:700 12px var(--sans); fill:var(--text-1)}
+.km-dot{cursor:pointer}
+.km-dot .km-hit{fill:transparent; stroke:none}
+.km-dot circle:not(.km-hit){fill:var(--surface); stroke:var(--text-3); stroke-width:1.2; transition:r .15s}
+.km-dot.is-got circle:not(.km-hit){fill:var(--jusa); stroke:var(--jusa)}
+.km-dot.is-new circle:not(.km-hit){stroke:var(--jusa); stroke-width:3; stroke-opacity:.35}
+.km-dot:hover circle:not(.km-hit){stroke:var(--text-1); stroke-width:2}
+.km-link{fill:none; stroke:var(--jusa); stroke-width:1.1; stroke-opacity:.22; stroke-dasharray:3 4; transition:stroke-opacity .2s}
+.km-link.is-both{stroke-opacity:.42; stroke-dasharray:none}
+.has-sel .km-link{stroke-opacity:.06}
+.has-sel .km-link.is-sel{stroke-opacity:.95; stroke-width:2}
+.has-sel .km-dot:not(.is-sel):not(.is-near){opacity:.35}
+.km-dot.is-sel circle:not(.km-hit){stroke:var(--text-1); stroke-width:2.5}
+.kmap__legend{display:flex; flex-wrap:wrap; gap:6px 16px; margin:10px 2px 0; font-size:12px; color:var(--text-3)}
+.kmap__legend span{display:inline-flex; align-items:center; gap:6px}
+.kmap__legend .kmap__swipe{display:none}
+@media (max-width:860px){ .kmap__legend .kmap__swipe{display:inline-flex; color:var(--jusa)} }
+.km-key{display:inline-block; width:9px; height:9px; border-radius:50%; border:1.2px solid var(--text-3); background:var(--surface)}
+.km-key--got{background:var(--jusa); border-color:var(--jusa)}
+.km-key--new{background:var(--jusa); border-color:var(--jusa); box-shadow:0 0 0 3px color-mix(in srgb, var(--jusa) 30%, transparent)}
+.km-key--line, .km-key--dash{width:22px; height:0; border:0; border-top:2px solid var(--jusa); border-radius:0; background:none; opacity:.6}
+.km-key--dash{border-top-style:dashed; opacity:.4}
+.kmap__panel{margin-top:18px; padding:18px 20px; border:1px solid var(--border-soft); border-radius:var(--r-card); background:var(--surface)}
+.km-panel__kicker{display:flex; align-items:center; gap:10px; font-size:12px; font-weight:700; letter-spacing:.04em; color:var(--jusa)}
+.km-link-btn{padding:2px 10px; border:1px solid var(--border); border-radius:var(--r-ctl); background:none; font-size:12px; color:var(--text-2); cursor:pointer}
+.km-link-btn:hover{border-color:var(--jusa); color:var(--jusa)}
+.km-panel__title{margin:8px 0 4px; font-family:var(--serif); font-size:19px; line-height:1.4; color:var(--text-1)}
+.km-panel__meta{margin:0; font-size:13px; color:var(--text-3)}
+.km-panel__lesson{margin:12px 0 0; padding-left:12px; border-left:2px solid var(--jusa); font-family:var(--serif); font-size:14.5px; line-height:1.75; color:var(--text-1)}
+.km-panel__hint{margin:6px 0 0; font-size:13px; color:var(--text-3)}
+.km-panel__sub{margin:18px 0 6px; font-size:12px; font-weight:700; color:var(--text-2)}
+.km-list{list-style:none; margin:8px 0 0; padding:0; display:grid; gap:2px}
+.km-list--num{counter-reset:km}
+.km-list--num li{counter-increment:km; display:grid; grid-template-columns:26px minmax(0,1fr); align-items:center}
+.km-list--num li::before{content:counter(km); font-size:12px; color:var(--text-3); text-align:right; padding-right:8px}
+.km-row{display:flex; align-items:baseline; justify-content:space-between; gap:12px; width:100%; min-height:40px; padding:8px 10px;
+  border:0; border-radius:8px; background:none; text-align:left; cursor:pointer; color:var(--text-1)}
+.km-row:hover{background:var(--bg)}
+.km-row__t{font-size:14px; line-height:1.5}
+.km-row__m{flex:none; font-size:12px; color:var(--text-3); white-space:nowrap}
+.km-row.is-yet .km-row__t{color:var(--text-3)}
+@media (max-width:640px){
+  .kmap__stats{grid-template-columns:repeat(3, minmax(0,1fr))}
+  .kmap__panel{padding:14px}
+  .km-row{flex-direction:column; gap:2px}
+}
+
 /* 월별 서술 */
 .months-review{margin-top:52px; display:grid; gap:2px}
 .mrow{display:grid; grid-template-columns:56px minmax(0,1fr) 62px; gap:14px; align-items:center; padding:9px 0; border-bottom:1px solid var(--border-soft)}
@@ -994,6 +1062,23 @@ html.ap-open, html.ap-open body{overflow:hidden}
     </div>
   </section>
 
+  <!-- 지식 지도 — 연도와 상관없이 지금까지 배달받은 지식(연재·지혜)과 그 사이의 연결 -->
+  <section class="kmap" id="kmap" hidden>
+    <h2>지식 지도</h2>
+    <p class="lede">연도와 상관없이, 지금까지 배달받은 지식이 어디에 쌓였는지. 채운 점은 받은 편, 빈 점은 아직 오지 않은 편, 선은 같은 인물·사건·고사로 서로 이어진 이야기입니다.</p>
+    <div class="kmap__stats" id="kmapStats"></div>
+    <div class="kmap__board" id="kmapBoard"></div>
+    <div class="kmap__legend">
+      <span><i class="km-key km-key--got"></i>받은 편</span>
+      <span><i class="km-key km-key--new"></i>이번 주</span>
+      <span><i class="km-key"></i>아직</span>
+      <span><i class="km-key km-key--line"></i>둘 다 받은 연결</span>
+      <span><i class="km-key km-key--dash"></i>곧 이어질 연결</span>
+      <span class="kmap__swipe">지도는 옆으로 밀어 볼 수 있어요</span>
+    </div>
+    <div class="kmap__panel" id="kmapPanel" aria-live="polite"></div>
+  </section>
+
 </div>
 
 <div class="loading" id="loading">불러오는 중…</div>
@@ -1006,6 +1091,6 @@ html.ap-open, html.ap-open body{overflow:hidden}
   </article>
 </div>
 
-<script src="js/chronicle.js?v=29"></script>
+<script src="js/chronicle.js?v=32"></script>
 </body>
 </html>

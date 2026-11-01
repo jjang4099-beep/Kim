@@ -181,6 +181,7 @@
     renderLegend();
     renderAll();
     openAlbumFromLink();
+    loadKmap();
   }
 
   /* 앱 홈의 '1년 전 오늘' 카드에서 넘어올 때 — chronicle.html?album=2025-10-14
@@ -1955,6 +1956,211 @@
     _ap = { close };
     go(0);
     box.querySelector('#apClose').focus();
+  }
+
+  /* ── 지식 지도 ──────────────────────────────
+     연도와 상관없이 지금까지 배달받은 지식(GET /api/knowledge-map).
+     가로 = 시대(앞 시대일수록 촘촘해 구간별로 나눈 눈금), 세로 = 지역 줄(한국·중국·일본·서양·과학).
+     연재 하나 = 상자, 편 하나 = 점(받은 편은 채움, 아직 안 온 편은 빈 점). 아래 띠는 연재 밖 역사와 지혜.
+     선 = 서로 다른 판의 지식이 같은 인물·사건·고사로 이어진 곳(양쪽 다 받았으면 실선, 한쪽만이면 점선).
+     점이나 상자를 누르면 아래 칸에 그 지식과 이어진 이야기들. 샘플 모드에서는 그리지 않는다. */
+  const KM_LANES = ['한국', '중국', '일본', '서양', '과학'];
+  const KM_BREAKS = [-800, -200, 300, 1000, 1500, 1800, 2000];
+  const km = { data: null, sel: null, links: {} };
+
+  async function loadKmap() {
+    if (DEMO || km.data) return;
+    try {
+      const d = await api('/api/knowledge-map?mode=PROFESSIONAL');
+      if (!d.success || !Object.values(d.nodes).some(n => n.got)) return;
+      km.data = d;
+      km.links = {};
+      d.links.forEach(l => { (km.links[l.a] = km.links[l.a] || []).push(l); (km.links[l.b] = km.links[l.b] || []).push(l); });
+      $('kmap').hidden = false;
+      renderKmapStats();
+      renderKmap();
+      kmPanel();
+      if (location.hash === '#kmap') $('kmap').scrollIntoView({ block: 'start' });   // 앱 홈의 '지식 지도' 링크로 왔을 때
+    } catch { /* 지도가 없어도 연대기는 그대로 */ }
+  }
+
+  function renderKmapStats() {
+    const s = km.data.stats;
+    const tile = (num, unit, label) => `<div><div class="figure__num">${num}<small>${unit}</small></div><div class="figure__label">${label}</div></div>`;
+    $('kmapStats').innerHTML =
+      tile(s.history, '편', '받은 역사') +
+      tile(`${s.seriesDone}/${km.data.series.length}`, '', '끝까지 읽은 연재') +
+      tile(s.wisdom, '장', '받은 지혜') +
+      tile(s.linked, '줄', '이어진 이야기') +
+      tile(`+${s.week}`, '', '이번 주');
+  }
+
+  function renderKmap() {
+    const d = km.data, N = d.nodes;
+    const W = 1000, X0 = 84, X1 = W - 20;
+    const seg = (X1 - X0) / (KM_BREAKS.length - 1);
+    const xOf = yr => {
+      const y = Math.max(KM_BREAKS[0], Math.min(KM_BREAKS[KM_BREAKS.length - 1], yr));
+      let i = 0; while (i < KM_BREAKS.length - 2 && y > KM_BREAKS[i + 1]) i++;
+      return X0 + (i + (y - KM_BREAKS[i]) / (KM_BREAKS[i + 1] - KM_BREAKS[i])) * seg;
+    };
+    const weekAgo = isoOf(new Date(Date.now() - 7 * 86400000));
+    const pos = {}, out = [], bg = [];   // bg = 줄 이름·구분선·눈금(선보다 아래)
+    const dot = (id, x, y, r = 4.2) => {
+      const n = N[id]; pos[id] = { x, y };
+      const cls = ['km-dot', n.got ? 'is-got' : '', n.got && n.got >= weekAgo ? 'is-new' : '', n.saved ? 'is-saved' : '', km.links[id] ? 'is-linked' : ''].join(' ');
+      return `<g class="${cls}" data-id="${esc(id)}"><circle class="km-hit" cx="${x}" cy="${y}" r="8"/><circle cx="${x}" cy="${y}" r="${r}"/>
+        <title>${esc(n.title)}${n.got ? ` · ${shortDate(n.got)}` : ' · 아직'}</title></g>`;
+    };
+    let y = 14;
+    const lanes = [...KM_LANES, ...new Set(d.series.map(s => s.lane))].filter((l, i, a) => a.indexOf(l) === i && d.series.some(s => s.lane === l));
+    const ROW = 58, MINW = 150;
+    for (const lane of lanes) {
+      const rows = [];
+      const placed = d.series.filter(s => s.lane === lane && s.items.length)
+        .sort((a, b) => (a.from ?? 0) - (b.from ?? 0))
+        .map(s => {
+          let x1 = xOf(s.from ?? 0), x2 = xOf(s.to ?? s.from ?? 0);
+          if (x2 - x1 < MINW) { const c = (x1 + x2) / 2; x1 = c - MINW / 2; x2 = c + MINW / 2; }
+          if (x1 < X0) { x2 += X0 - x1; x1 = X0; }
+          if (x2 > X1) { x1 -= x2 - X1; x2 = X1; }
+          let r = rows.findIndex(right => right + 10 <= x1);
+          if (r < 0) { r = rows.length; rows.push(0); }
+          rows[r] = x2;
+          return { s, x1, x2, r };
+        });
+      const top = y, h = rows.length * ROW + 8;
+      bg.push(`<text class="km-lane" x="10" y="${top + h / 2 + 4}">${esc(lane)}</text>`,
+               `<line class="km-sep" x1="0" x2="${W}" y1="${top + h}" y2="${top + h}"/>`);
+      for (const { s, x1, x2, r } of placed) {
+        const by = top + 6 + r * ROW, w = x2 - x1, n = s.items.length;
+        const gotN = s.items.filter(id => N[id].got).length;
+        const sp = n > 1 ? Math.min(14, (w - 24) / (n - 1)) : 0;
+        const sx = x1 + (w - sp * (n - 1)) / 2;
+        out.push(`<g class="km-series${gotN === n ? ' is-done' : gotN ? ' is-on' : ''}" data-series="${esc(s.id)}" tabindex="0" role="button" aria-label="${esc(s.title)} 연재 ${gotN}/${n}편">
+          <rect x="${x1}" y="${by}" width="${w}" height="${ROW - 10}" rx="10"/>
+          <text x="${x1 + 10}" y="${by + 15}">${esc(s.title)}<tspan dx="6">${gotN}/${n}${gotN === n ? ' ✓' : ''}</tspan></text></g>`);
+        s.items.forEach((id, i) => out.push(dot(id, sx + i * sp, by + 33)));
+      }
+      y += h;
+    }
+    /* 연재 밖 역사 — 연도 자리에 작은 점 */
+    const others = d.others.filter(id => N[id].year !== null && N[id].year !== undefined);
+    if (others.length) {
+      const top = y, h = 52;
+      bg.push(`<text class="km-lane" x="10" y="${top + h / 2 + 4}">그 밖의<tspan x="10" dy="13">역사</tspan></text>`,
+               `<line class="km-sep" x1="0" x2="${W}" y1="${top + h}" y2="${top + h}"/>`);
+      others.forEach((id, i) => out.push(dot(id, xOf(N[id].year), top + 12 + (i % 3) * 14, 3.4)));
+      y += h;
+    }
+    /* 시대 눈금 */
+    KM_BREAKS.forEach((b, i) => {
+      const x = X0 + i * seg;
+      bg.push(`<line class="km-tick" x1="${x}" x2="${x}" y1="14" y2="${y}"/>`,
+               `<text class="km-axis" x="${x}" y="${y + 15}" text-anchor="${i === 0 ? 'start' : i === KM_BREAKS.length - 1 ? 'end' : 'middle'}">${kmYearLabel(b)}</text>`);
+    });
+    y += 34;
+    /* 지혜 — 갈래마다 받은 장을 점으로(전체 장수와 함께). 연도를 모르는 역사(경영·산업 이야기 등)도 이 띠에 */
+    const noYear = d.others.filter(id => N[id].year === null || N[id].year === undefined);
+    const groups = [...d.wisdom, ...(noYear.length ? [{ title: '연도 없는 역사', items: noYear, total: null }] : [])];
+    const gw = (W - 20) / groups.length;
+    let wh = 0;
+    groups.forEach((g, gi) => {
+      const gx = 10 + gi * gw, cols = Math.max(1, Math.floor((gw - 24) / 11));
+      out.push(`<text class="km-wtitle" x="${gx + 4}" y="${y + 12}">${esc(g.title)}<tspan dx="6">${g.items.length}${g.total ? `/${g.total}` : ''}</tspan></text>`);
+      g.items.forEach((id, i) => out.push(dot(id, gx + 10 + (i % cols) * 11, y + 30 + Math.floor(i / cols) * 11, 3.4)));
+      wh = Math.max(wh, 30 + Math.ceil(g.items.length / cols) * 11);
+    });
+    const H = y + wh + 8;
+
+    /* 선 — 점 아래에 깐다 */
+    const lines = d.links.filter(l => pos[l.a] && pos[l.b]).map(l => {
+      const a = pos[l.a], b = pos[l.b];
+      const both = N[l.a].got && N[l.b].got;
+      const my = Math.abs(a.y - b.y) < 20 ? Math.min(a.y, b.y) - 46 : (a.y + b.y) / 2;   // 같은 높이면 위로 둥글게
+      return `<path class="km-link${both ? ' is-both' : ''}" data-a="${esc(l.a)}" data-b="${esc(l.b)}" d="M ${a.x} ${a.y} C ${a.x} ${my}, ${b.x} ${my}, ${b.x} ${b.y}"/>`;
+    });
+    $('kmapBoard').innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="지식 지도 — 시대와 지역별 연재, 이어진 이야기">
+      ${bg.join('')}<g class="km-links">${lines.join('')}</g>${out.join('')}
+    </svg>`;
+    const svg = $('kmapBoard').querySelector('svg');
+    svg.addEventListener('click', e => {
+      const dt = e.target.closest('[data-id]'), sr = e.target.closest('[data-series]');
+      if (dt) kmSelect(dt.dataset.id);
+      else if (sr) kmSeries(sr.dataset.series);
+      else { km.sel = null; kmHighlight(null); kmPanel(); }   // 빈 곳을 누르면 처음 상태로
+    });
+    svg.addEventListener('keydown', e => {
+      const sr = e.target.closest('[data-series]');
+      if (sr && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); kmSeries(sr.dataset.series); }
+    });
+    if (km.sel) kmHighlight(km.sel);
+  }
+  const kmYearLabel = y => (y < 0 ? `기원전 ${-y}` : `${y}`);
+
+  function kmHighlight(id) {
+    const svg = $('kmapBoard').querySelector('svg'); if (!svg) return;
+    const near = new Set((km.links[id] || []).map(l => (l.a === id ? l.b : l.a)));
+    svg.classList.toggle('has-sel', !!id);
+    svg.querySelectorAll('.km-link').forEach(p => p.classList.toggle('is-sel', p.dataset.a === id || p.dataset.b === id));
+    svg.querySelectorAll('.km-dot').forEach(g => {
+      g.classList.toggle('is-sel', g.dataset.id === id);
+      g.classList.toggle('is-near', near.has(g.dataset.id));
+    });
+  }
+
+  const kmWhere = n => {
+    if (n.series) { const s = km.data.series.find(x => x.id === n.series); return `${s ? s.title : ''} · ${n.part}편`; }
+    if (n.group) return { classic: '고전', idiom: '고사성어', insight: '인사이트' }[n.group] || '지혜';
+    return n.era || '역사';
+  };
+  const kmItem = (id, extra = '') => {
+    const n = km.data.nodes[id];
+    return `<li><button type="button" class="km-row${n.got ? '' : ' is-yet'}" data-go="${esc(id)}">
+      <span class="km-row__t">${esc(n.title)}</span>
+      <span class="km-row__m">${extra}${n.got ? shortDate(n.got) : '아직'}</span></button></li>`;
+  };
+  function kmBindPanel() {
+    $('kmapPanel').querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => kmSelect(b.dataset.go)));
+    $('kmapPanel').querySelectorAll('[data-sgo]').forEach(b => b.addEventListener('click', () => kmSeries(b.dataset.sgo)));
+  }
+
+  /* 아무것도 고르지 않았을 때 — 가장 많이 이어진 지식부터 */
+  function kmPanel() {
+    const N = km.data.nodes;
+    const top = Object.keys(km.links).filter(id => N[id].got)
+      .sort((a, b) => km.links[b].length - km.links[a].length).slice(0, 6);
+    $('kmapPanel').innerHTML = `<div class="km-panel__kicker">가장 많이 이어진 지식</div>
+      <p class="km-panel__hint">점이나 연재 상자를 누르면, 그 지식이 다른 어떤 이야기와 이어지는지 보여 줘요.</p>
+      <ul class="km-list">${top.map(id => kmItem(id, `${km.links[id].length}줄 · `)).join('')}</ul>`;
+    kmBindPanel();
+  }
+
+  function kmSelect(id) {
+    const N = km.data.nodes, n = N[id]; if (!n) return;
+    km.sel = id;
+    kmHighlight(id);
+    const ls = (km.links[id] || []).slice().sort((a, b) => !!N[a.a === id ? a.b : a.a].got === !!N[b.a === id ? b.b : b.a].got ? 0 : N[a.a === id ? a.b : a.a].got ? -1 : 1);
+    $('kmapPanel').innerHTML = `<div class="km-panel__kicker">${esc(kmWhere(n))}${n.series ? ` <button type="button" class="km-link-btn" data-sgo="${esc(n.series)}">연재 전체 보기</button>` : ''}</div>
+      <h4 class="km-panel__title">${esc(n.title)}</h4>
+      <p class="km-panel__meta">${n.got ? `${shortDate(n.got)}에 받았어요${n.saved ? ' · 서재에 담음' : ''}` : '아직 오지 않은 편이에요'}</p>
+      ${n.got && n.lesson ? `<p class="km-panel__lesson">${esc(n.lesson)}</p>` : ''}
+      ${ls.length ? `<div class="km-panel__sub">이어진 이야기 ${ls.length}</div>
+        <ul class="km-list">${ls.map(l => kmItem(l.a === id ? l.b : l.a, `‘${esc(l.via.join('’·‘'))}’ · `)).join('')}</ul>`
+        : `<p class="km-panel__hint">아직 다른 지식과 이어진 곳이 없어요 — 더 받다 보면 생겨요.</p>`}`;
+    kmBindPanel();
+  }
+
+  function kmSeries(sid) {
+    const s = km.data.series.find(x => x.id === sid); if (!s) return;
+    const N = km.data.nodes;
+    km.sel = null; kmHighlight(null);
+    const gotN = s.items.filter(id => N[id].got).length;
+    $('kmapPanel').innerHTML = `<div class="km-panel__kicker">${esc(s.lane)} · 연재</div>
+      <h4 class="km-panel__title">${esc(s.title)}</h4>
+      <p class="km-panel__meta">${s.from !== null ? `${kmYearLabel(s.from)} – ${kmYearLabel(s.to)}년 · ` : ''}${gotN}/${s.items.length}편${gotN === s.items.length ? ' — 끝까지 읽었어요' : ''}</p>
+      <ol class="km-list km-list--num">${s.items.map(id => kmItem(id, km.links[id] ? `${km.links[id].length}줄 · ` : '')).join('')}</ol>`;
+    kmBindPanel();
   }
 
   /* ── AI 총평 ─────────────────────────────── */

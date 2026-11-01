@@ -5,8 +5,8 @@
     "note": "원본 항목(history_facts)의 summary/behind_story와 겹치지 않는 내용만 쓴다. background=그 사건 직전의 판, terms=지금도 쓰이는 말 위주, after=그 후와 오늘의 흔적, talk=대화에서 꺼낼 한마디."
   },
   "series": [
-    { "id": "greece", "title": "고대 그리스", "items": ["HI_424", "HI_344", "HI_345", "HI_315", "HI_346", "HI_347", "HI_348", "HI_349", "HI_350", "HI_194"] },
-    { "id": "rome", "title": "로마 공화정", "items": ["HI_425", "HI_355", "HI_356", "HI_357", "HI_358", "HI_426", "HI_314", "HI_359", "HI_427", "HI_360", "HI_361", "HI_362", "HI_363", "HI_364"] }
+    { "id": "greece", "lane": "서양", "title": "고대 그리스", "items": ["HI_424", "HI_344", "HI_345", "HI_315", "HI_346", "HI_347", "HI_348", "HI_349", "HI_350", "HI_194"] },
+    { "id": "rome", "lane": "서양", "title": "로마 공화정", "items": ["HI_425", "HI_355", "HI_356", "HI_357", "HI_358", "HI_426", "HI_314", "HI_359", "HI_427", "HI_360", "HI_361", "HI_362", "HI_363", "HI_364"] }
   ],
   "deep": {
     "HI_424": {

@@ -6362,3 +6362,22 @@ html[data-theme="dark"] .mob-hum-next-lbl         { background: #26354f; color: 
 .mob-otd-title  { font-size: 15px; font-weight: 700; color: var(--text-1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .mob-otd-sub    { font-size: 12.5px; color: var(--text-3); }
 html[data-theme="light"] .mob-otd-card { background: var(--surface); border-color: var(--border); }
+
+/* ── 홈: 지식 지도로 가는 줄 (배달 미리보기 아래) ── */
+.mob-kmap-link {
+  display      : flex;
+  align-items  : center;
+  gap          : 10px;
+  min-height   : 48px;
+  margin       : 8px 0 14px;
+  padding      : 10px 14px;
+  border       : 1px dashed var(--border);
+  border-radius: 14px;
+  color        : var(--text-2);
+  font-size    : 13px;
+  text-decoration: none;
+}
+.mob-kmap-link > .ti:first-child { font-size: 20px; color: var(--accent); }
+.mob-kmap-link span { flex: 1; min-width: 0; }
+.mob-kmap-link b    { color: var(--text-1); margin-right: 4px; }
+.mob-kmap-link > .ti:last-child { color: var(--text-3); }

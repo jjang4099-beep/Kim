@@ -4,8 +4,8 @@
     "updated": "2026-10-05"
   },
   "series": [
-    { "id": "joseon_early", "title": "조선 전기", "items": ["HI_245", "HI_163", "HI_159", "HI_246", "HI_284", "HI_401", "HI_158", "HI_389", "HI_390", "HI_402", "HI_260", "HI_285", "HI_391"] },
-    { "id": "tudor", "title": "튜더 왕조", "items": ["HI_178", "HI_179", "HI_180", "HI_182", "HI_181"] }
+    { "id": "joseon_early", "lane": "한국", "title": "조선 전기", "items": ["HI_245", "HI_163", "HI_159", "HI_246", "HI_284", "HI_401", "HI_158", "HI_389", "HI_390", "HI_402", "HI_260", "HI_285", "HI_391"] },
+    { "id": "tudor", "lane": "서양", "title": "튜더 왕조", "items": ["HI_178", "HI_179", "HI_180", "HI_182", "HI_181"] }
   ],
   "deep": {
     "HI_245": {

@@ -6065,6 +6065,154 @@ function _chronicleLearnedLine(it) {
   return t && !/^https?:\/\//.test(t) ? ['메모·기사', t] : null;
 }
 
+/* ══════════════════════════════════════════════════════════════
+   지식 지도 — GET /api/knowledge-map?mode=PROFESSIONAL
+   11-01 사용자: "배달된 지식이 쌓여도 쌓이는 느낌이 안 든다 — 연재와 주제가 이어지는 지도로 보고 싶다."
+   - 판(板): 역사 연재 전체(받은 편 + 아직 안 받은 편 — 빈칸이 있어야 '어디까지 왔는지'가 보인다)
+            + 연재 밖에서 받은 역사 + 받은 지혜(고전·고사성어·인사이트)
+   - 받은 날: dailyFeeds 배달 이력의 item_id(처음 받은 날). 배달 이력은 전역(모든 유저 공통 배달)
+   - 담은 것: 내 기록 중 배달에서 저장한 것(feedData.item_id) — 유저별
+   - 연결: 한 지식의 '이름'(역사 제목 앞머리의 인물·사건, 고전의 저자·책, 고사성어)이 다른 지식의 본문에
+          낱말로 다시 나오면 선을 잇는다. 낱말 경계를 본다('장성'이 '장성한'에 걸리지 않게).
+          너무 흔한 이름(8곳 넘게 나오는 말)은 뺀다. 깊이 읽기의 '오늘 알게 된 말'은 동명이인·일반 명사가
+          많아(헤르만=아르미니우스/헤르만 헤세, 은광, 해적) 이름으로 쓰지 않는다.
+   연결 색인은 콘텐츠(정적 파일)에만 달려 있으므로 전 카탈로그로 한 번 만들어 둔다.
+══════════════════════════════════════════════════════════════ */
+const KMAP_STOP = new Set(['전쟁', '왕', '황제', '개혁', '혁명', '제국', '왕조', '조선', '고려', '로마', '중국', '일본', '한국',
+  '미국', '영국', '프랑스', '독일', '아테네', '스파르타', '페르시아', '신라', '백제', '고구려', '세계', '역사', '시대', '전투', '정치',
+  '장자']);   // 장자(莊子)는 '맏아들'과 같은 글자
+const KMAP_GENERIC_LIMIT = 8;
+const KMAP_PARTICLE = '은는이가을를의에와과도로만께서며랑'.split('');
+
+/* 제목의 "(기원전 594년)"·"(1789~1799)"·"(4세기)" → 연도. 제목에 없으면 본문의 첫 "1592년"·"기원전 221년" */
+function _kmapYear(title, body = '') {
+  const m = String(title || '').match(/\((기원전\s*)?(\d{1,4})\s*(세기|년|~|–|-|\))/)
+         || String(body || '').match(/(기원전\s*)?(\d{3,4})(년)/);   // 본문은 세 자리 이상만('10년 동안' 제외)
+  if (!m) return null;
+  let y = Number(m[2]);
+  if (m[3] === '세기') y = (y - 1) * 100 + 50;
+  return m[1] ? -y : y;
+}
+/* "솔론 — …" → 솔론 / "카이사르와 해적 — …" → 카이사르 / "엘리자베스 1세와 스페인 무적함대" → 엘리자베스 1세 */
+const _kmapHead = title => String(title || '').split(' — ')[0].replace(/\(.*?\)/g, '').split(/와 |과 |, /)[0].trim();
+const _kmapPlain = s => String(s || '').split('(')[0].trim();
+const _kmapEsc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+/* 낱말로 나오는가 — 앞은 처음·공백·문장부호, 뒤는 끝·공백·문장부호·조사 한 글자 */
+function _kmapWordRe(name) {
+  return new RegExp(`(^|[\\s"'“”‘’(\\[《〈「『·,])${_kmapEsc(name)}(?=$|[\\s"'“”‘’)\\]》〉」』·,.!?:;]|[${KMAP_PARTICLE.join('')}])`);
+}
+
+let _kmapIndex = null;
+function _kmapCatalog() {
+  if (_kmapIndex) return _kmapIndex;
+  const kdb = loadKnowledgeDB(), wdb = loadWorkDB(), layers = loadDeepLayers();
+  const seriesOf = {};
+  layers.series.forEach(s => s.items.forEach((id, i) => { seriesOf[id] = { series: s.id, part: i + 1 }; }));
+  const cat = {};
+  const put = (id, base, text, names) => {
+    const d = layers.deep[id];
+    const deepText = d ? [d.lesson, d.background, d.after, ...(d.terms || []).map(t => `${t.t} ${t.d}`)].join(' ') : '';
+    cat[id] = { node: { id, ...base, lesson: d?.lesson || undefined },
+                text: `${base.title} ${text} ${deepText}`,
+                names: [...new Set(names.map(n => String(n || '').trim()))].filter(n => n.length >= 2 && n.length <= 14 && !KMAP_STOP.has(n)) };
+  };
+  kdb.history_facts.forEach(h => put(h.id, { kind: 'history', title: h.title, year: _kmapYear(h.title, h.summary), era: h.era || undefined, ...(seriesOf[h.id] || {}) },
+    `${h.summary || ''} ${h.behind_story || ''}`, [_kmapHead(h.title)]));
+  wdb.classic_quotes.forEach(c => put(c.id, { kind: 'wisdom', group: 'classic', title: `${c.book} — ${_kmapPlain(c.author)}` },
+    `${c.quote} ${c.context || ''} ${c.backstory || ''}`,
+    [_kmapPlain(c.author), _kmapPlain(c.book).length >= 3 ? _kmapPlain(c.book) : '']));   // '부활'처럼 짧은 책 이름은 일반 낱말과 겹친다
+  wdb.idiom_cards.forEach(c => put(c.id, { kind: 'wisdom', group: 'idiom', title: `${c.idiom}${c.hanja ? `(${c.hanja})` : ''}` },
+    `${c.meaning || ''} ${c.origin || ''}`, [c.idiom]));
+  wdb.daily_insights.forEach(c => put(c.id, { kind: 'wisdom', group: 'insight', title: c.topic || c.headline },
+    `${c.headline || ''} ${c.body || ''} ${c.realLife || ''}`, [c.topic]));
+
+  /* 연결 — 같은 연재 안의 이웃은 이미 이어져 있으니 다른 판 사이만 */
+  const ids = Object.keys(cat);
+  const pairs = new Map();
+  for (const a of ids) {
+    for (const name of cat[a].names) {
+      const re = _kmapWordRe(name);
+      const hits = ids.filter(b => b !== a && cat[b].text.includes(name) && re.test(cat[b].text));
+      if (!hits.length || hits.length > KMAP_GENERIC_LIMIT) continue;
+      for (const b of hits) {
+        const sa = cat[a].node.series, sb = cat[b].node.series;
+        if (sa && sa === sb) continue;
+        if (cat[a].node.title === cat[b].node.title) continue;   // 같은 책의 다른 구절끼리는 연결이 아니다
+        const [x, y] = a < b ? [a, b] : [b, a];
+        const e = pairs.get(`${x}|${y}`) || { a: x, b: y, via: [] };
+        if (!e.via.includes(name) && e.via.length < 3) e.via.push(name);
+        pairs.set(`${x}|${y}`, e);
+      }
+    }
+  }
+  _kmapIndex = { cat, links: [...pairs.values()], series: layers.series };
+  console.log(`[KnowledgeMap] 연결 색인 — 지식 ${ids.length}개 · 연결 ${pairs.size}개`);
+  return _kmapIndex;
+}
+
+function buildKnowledgeMap(userId, mode) {
+  const { cat, links, series: rawSeries } = _kmapCatalog();
+
+  /* 받은 날 — 날짜 오름차순으로 훑어 처음 받은 날만 */
+  const got = {};
+  const feeds = readDailyFeeds();
+  const today = toDateStr();
+  for (const date of Object.keys(feeds).sort()) {
+    if (date > today) continue;
+    for (const f of Object.values(feeds[date] || {})) {
+      if (f && f.item_id && !got[f.item_id]) got[f.item_id] = date;
+    }
+  }
+  const saved = new Set(ItemsDB.getItemsByUser(userId, mode).map(i => i.feedData?.item_id).filter(Boolean));
+
+  const nodes = {};
+  const take = id => { if (cat[id] && !nodes[id]) nodes[id] = { ...cat[id].node, got: got[id] || null, ...(saved.has(id) ? { saved: true } : {}) }; };
+  rawSeries.forEach(s => s.items.forEach(take));
+  Object.keys(got).forEach(take);
+
+  const series = rawSeries.map(s => {
+    const items = s.items.filter(id => nodes[id]);
+    const ys = items.map(id => nodes[id].year).filter(y => y !== null && y !== undefined);
+    return { id: s.id, title: s.title, lane: s.lane || '세계', items,
+             from: ys.length ? Math.min(...ys) : null, to: ys.length ? Math.max(...ys) : null };
+  });
+  const totals = { classic: 0, idiom: 0, insight: 0 };
+  Object.values(cat).forEach(c => { if (c.node.group) totals[c.node.group]++; });
+  const wisdom = [['classic', '고전'], ['idiom', '고사성어'], ['insight', '인사이트']].map(([id, title]) => ({
+    id, title, total: totals[id],
+    items: Object.values(nodes).filter(n => n.group === id).sort((a, b) => a.got.localeCompare(b.got)).map(n => n.id),
+  }));
+  const others = Object.values(nodes).filter(n => n.kind === 'history' && !n.series).sort((a, b) => a.got.localeCompare(b.got)).map(n => n.id);
+
+  /* 적어도 한쪽은 받은 지식이어야 '내 지도'의 선이다 */
+  const myLinks = links.filter(l => nodes[l.a] && nodes[l.b] && (nodes[l.a].got || nodes[l.b].got));
+
+  const weekAgo = toDateStr(new Date(Date.now() - 7 * 86400000));
+  const all = Object.values(nodes);
+  return {
+    success: true,
+    nodes, series, wisdom, others,
+    links: myLinks,
+    stats: {
+      history: all.filter(n => n.kind === 'history' && n.got).length,
+      seriesDone: series.filter(s => s.items.length && s.items.every(id => nodes[id].got)).length,
+      wisdom: all.filter(n => n.kind === 'wisdom').length,
+      linked: myLinks.filter(l => nodes[l.a].got && nodes[l.b].got).length,
+      week: all.filter(n => n.got && n.got >= weekAgo).length,
+      since: Object.keys(feeds).sort()[0] || null,
+    },
+  };
+}
+
+app.get('/api/knowledge-map', (req, res) => {
+  try {
+    res.json(buildKnowledgeMap(req.userId, req.query.mode || 'PROFESSIONAL'));
+  } catch (e) {
+    console.warn('[KnowledgeMap] 실패:', e.message);
+    res.status(500).json({ success: false, error: '지식 지도를 만들지 못했어요' });
+  }
+});
+
 app.get('/api/chronicle/review/:year', async (req, res) => {
   const year = Number(req.params.year);
   if (!Number.isInteger(year) || year < 2000 || year > 2100)

@@ -14,11 +14,11 @@
    — 이 파일이 바뀌어야 브라우저가 새 SW를 설치하고 구 캐시를 비움
    (07-26: 로그인/멀티유저 배포 때 이 버전을 못 올려서 이미 설치된 PWA들이
     구 서비스워커+구 페이지 상태로 남아 로그인 없이 API를 호출 → 전부 401 나던 버그 발생) */
-const CACHE_NAME    = 'sj-library-v50';
+const CACHE_NAME    = 'sj-library-v51';
 const STATIC_ASSETS = [
   '/index_mobile.html',
-  '/css/style_mobile.css?v=94',
-  '/js/core.js?v=13',
+  '/css/style_mobile.css?v=97',
+  '/js/core.js?v=17',
   '/js/pwa.js?v=3',
   '/manifest.json',
   '/icons/icon.svg',

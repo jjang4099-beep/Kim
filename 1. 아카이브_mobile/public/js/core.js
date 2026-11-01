@@ -152,6 +152,7 @@ const state = {
   feedLoaded       : false,
   feedItems        : [],
   examDaily        : null,   /* 수험생 모드 오늘의 배달(영어단어+한국사) */
+  onThisDay        : null,   /* 1년 전 오늘 — { date, years:[{year,ago,date,items}] } (그날 한 번만 받는다) */
   wrongItems       : [],     /* 오답노트 전체(과목 필터·기간 그룹용 캐시) */
   wrongFilter      : 'all',  /* 오답노트 과목 필터 (all | math | korean | …) */
   activeFeedFilter : 'all',

@@ -342,6 +342,7 @@ Object.assign(Mob, {
     state.feedLoaded    = false;
     state.libraryItems  = [];
     state.libraryLoaded = false;
+    state.onThisDay     = null;
     state.currentCat    = 'all';
     state.activeFeedFilter = 'all';
     /* 지식 순환 상태 — 이전 모드 태그/날짜 선택이 넘어오지 않도록 초기화 */
@@ -459,6 +460,7 @@ Object.assign(Mob, {
       const data = await fetchJSON(`/api/items?${domainParam}${modeParam}&limit=500`, {}, 20000);
       state.items = parseFeedsArray(data?.items ?? data);
       this.renderFeed(state.items);
+      this._loadOnThisDay();
     } catch (e) {
       if (feed) feed.innerHTML = `<div class="mob-loading" style="color:#ef4444">
         <i class="ti ti-alert-circle"></i> 불러오기 실패 — 새로고침 해주세요
@@ -553,7 +555,7 @@ Object.assign(Mob, {
       return d.getTime() < todayMidnight.getTime();
     });
 
-    let html = '';
+    let html = this._onThisDayHTML();
 
     /* ── [오늘] 섹션 헤더 ── */
     html += `
@@ -673,6 +675,54 @@ Object.assign(Mob, {
       const id = card.dataset.id;
       if (id) this._toggleDetail(card, id);
     };
+  },
+
+  /* ══════════════════════════════════════════
+     1년 전 오늘 — 지난해(들) 같은 날의 기록을 홈 맨 위에 꺼내 준다.
+     사진 기록(여행·일상)이 있으면 그 사진으로, 없으면 그날 남긴 지식으로.
+     누르면 연대기(chronicle.html?album=날짜) — 여행이면 앨범 넘겨보기가 바로 시작된다.
+  ══════════════════════════════════════════ */
+  async _loadOnThisDay() {
+    const today = toLocalDateStr(new Date());
+    if (state.onThisDay?.date === today) return;
+    try {
+      const data = await fetchJSON(`/api/items/on-this-day?date=${today}&mode=${this._modeEnum()}`, {}, 10000);
+      state.onThisDay = { date: today, years: data?.success ? (data.years || []) : [] };
+      if (state.onThisDay.years.length && state.currentView === 'home') this.renderFeed(state.items);
+    } catch { /* 없으면 카드만 안 뜬다 */ }
+  },
+
+  _onThisDayHTML() {
+    const years = state.onThisDay?.date === toLocalDateStr(new Date()) ? state.onThisDay.years : [];
+    if (!years.length) return '';
+    const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const cards = years.slice(0, 3).map(y => {
+      const lifes  = y.items.filter(i => i.category === 'life' || i.contentType === 'life');
+      const photos = lifes.flatMap(i => i.life?.photos || []);
+      const titleOf = i => i.title && i.title !== '라이프 기록' ? i.title : (i.analysis?.title || (i.text || '').split('\n')[0].slice(0, 40));
+      const main   = lifes.length ? lifes : y.items;
+      const place  = lifes.find(i => i.life?.place)?.life.place;
+      const more   = main.length > 1 ? ` 외 ${main.length - 1}` : '';
+      const kicker = `${y.ago}년 전 오늘 · ${y.year}년 ${fmtFull(y.date)}`;
+      const sub    = photos.length
+        ? `사진 ${photos.length}장 · ${place ? '앨범으로 다시 보기' : '그날 다시 보기'}`
+        : `그날 남긴 지식 ${y.items.length}개 · 다시 보기`;
+      return `
+      <button class="mob-otd-card" onclick="Mob._openOnThisDay('${y.date}')">
+        ${photos[0] ? `<img class="mob-otd-photo" src="${esc(photos[0])}" alt="" loading="lazy" onerror="this.remove()">`
+                    : `<span class="mob-otd-icon"><i class="ti ti-bookmark"></i></span>`}
+        <span class="mob-otd-body">
+          <span class="mob-otd-kicker">${esc(kicker)}</span>
+          <span class="mob-otd-title">${place?.flag ? esc(place.flag) + ' ' : ''}${esc(titleOf(main[0]))}${more}</span>
+          <span class="mob-otd-sub">${esc(sub)} <i class="ti ti-chevron-right"></i></span>
+        </span>
+      </button>`;
+    }).join('');
+    return `<div class="mob-otd">${cards}</div>`;
+  },
+
+  _openOnThisDay(date) {
+    location.href = `chronicle.html?album=${encodeURIComponent(date)}`;
   },
 
   /* 지난 지식 섹션으로 부드럽게 스크롤 */

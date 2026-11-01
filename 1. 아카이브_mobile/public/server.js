@@ -4456,6 +4456,30 @@ app.get('/api/items', (req, res) => {
   res.json({ success: true, total: items.length, items: items.slice(0, Number(limit)) });
 });
 
+/* ── 1년 전 오늘 — 지난해(들)의 같은 월·일 기록. /:id 보다 먼저 등록 ──
+   GET /api/items/on-this-day?date=YYYY-MM-DD&mode=…  (date = 클라이언트의 오늘 — 서버 시간대와 무관하게)
+   자동 배달 기록(daily_delivery)은 빼고, 내가 남긴 기록만. 해마다 묶어 가까운 해부터. */
+app.get('/api/items/on-this-day', (req, res) => {
+  const { date, mode } = req.query;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(date || ''))) {
+    return res.status(400).json({ success: false, error: '날짜 형식이 올바르지 않아요 (YYYY-MM-DD)' });
+  }
+  const year = Number(date.slice(0, 4)), md = date.slice(5);
+  const keyOf = i => String(i.date || '').slice(0, 10) || (i.createdAt ? toDateStr(new Date(i.createdAt)) : '');
+  const byYear = {};
+  for (const i of ItemsDB.getItemsByUser(req.userId, mode)) {
+    if (i.type === 'daily_delivery') continue;
+    const k = keyOf(i);
+    if (k.slice(5) !== md || Number(k.slice(0, 4)) >= year) continue;
+    (byYear[k.slice(0, 4)] = byYear[k.slice(0, 4)] || []).push(i);
+  }
+  const years = Object.keys(byYear).sort().reverse().map(y => ({
+    year: Number(y), ago: year - Number(y), date: `${y}-${md}`,
+    items: byYear[y].sort((a, b) => String(a.createdAt).localeCompare(String(b.createdAt))),
+  }));
+  res.json({ success: true, years });
+});
+
 /* ── 라이프 서재 — /:id 보다 먼저 등록해야 'life'가 id로 잡히지 않음 ── */
 app.get('/api/items/life', (req, res) => {
   try {

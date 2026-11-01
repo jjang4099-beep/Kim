@@ -180,6 +180,21 @@
     $('wrap').hidden = false;
     renderLegend();
     renderAll();
+    openAlbumFromLink();
+  }
+
+  /* 앱 홈의 '1년 전 오늘' 카드에서 넘어올 때 — chronicle.html?album=2025-10-14
+     그날이 든 여행이 있으면 앨범을 바로 펼쳐 넘겨보기 시작, 없으면 그날을 연다. */
+  function openAlbumFromLink() {
+    const k = new URLSearchParams(location.search).get('album');
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(k || '')) return;
+    if (Number(k.slice(0, 4)) !== state.year) {
+      state.year = Number(k.slice(0, 4)); state.month = Number(k.slice(5, 7)) - 1;
+      regroup(); renderAll();
+    }
+    const trip = tripsOf().find(t => t.from <= k && k <= t.to);
+    if (trip && trip.photos) return playAlbum(trip);
+    if (state.byDate[k]) { select(k); $('day').scrollIntoView({ block: 'start' }); }
   }
 
   /* ── 데이터 ─────────────────────────────── */

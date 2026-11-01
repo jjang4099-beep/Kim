@@ -1702,11 +1702,14 @@
   function openAlbum(t) {
     const byDay = {};
     t.items.forEach(it => (byDay[dateKey(it)] = byDay[dateKey(it)] || []).push(it));
+    const cover = albumCover(t);
     const html = `<header class="md__head">
         <div class="md__kind">${esc(t.place.flag || '📍')} 여행</div>
         <h3 class="md__title">${esc(t.place.name)}${t.cities.size ? ` · ${esc([...t.cities].join(' · '))}` : ''}</h3>
         <p class="md__sub">${shortDate(t.from)}${t.from !== t.to ? ` – ${shortDate(t.to)}` : ''} · ${t.days}일 · 사진 ${t.photos}장</p>
-      </header>` + Object.keys(byDay).sort().map(k => {
+      </header>
+      ${t.photos ? `<button type="button" class="album__play" id="albumPlayBtn">
+        ${cover ? `<img src="${esc(cover)}" alt=""/>` : ''}<span><b>▶ 앨범 넘겨보기</b><small>사진 한 장씩, 그날의 이야기와 함께 천천히</small></span></button>` : ''}` + Object.keys(byDay).sort().map(k => {
         const dd = new Date(k + 'T00:00:00');
         const list = byDay[k];
         return `<div class="album__day"><h4>${shortDate(k)} ${DOW[dd.getDay()]}요일</h4>
@@ -1717,7 +1720,226 @@
       }).join('');
     showModal(html);
     $('modalBody').querySelectorAll('.album__grid button').forEach(b => b.addEventListener('click', () => openDetail(b.dataset.id)));
+    $('albumPlayBtn')?.addEventListener('click', () => playAlbum(t));
     $('modalClose').focus();
+  }
+
+  /* ── 앨범 넘겨보기 ──────────────────────────
+     사진첩을 다시 꺼내 보는 경험 — 한 장씩 크게, 천천히 다가가는 화면(켄 번스),
+     날마다 "Day N" 장(章) 표지, 아래에는 여정 줄(기록한 곳 순서대로 점이 따라간다),
+     마지막 장에는 숫자로 본 여행과 표지 사진 고르기. 표지는 이 브라우저에만 저장한다. */
+  const coverKey = t => `chronicle-album-cover:${t.place.code}:${t.from}`;
+  function albumCover(t) {
+    const all = t.items.flatMap(it => it.life.photos || []);
+    let saved = null;
+    try { saved = localStorage.getItem(coverKey(t)); } catch { /* 저장소를 못 쓰면 첫 사진 */ }
+    return all.includes(saved) ? saved : all[0] || '';
+  }
+  /* "파리 · 개선문" → "개선문" (앞부분이 도시 이름이면 뗀다). 제목이 없으면 도시 */
+  function siteOf(it) {
+    const title = it.title && it.title !== DEFAULT_LIFE_TITLE ? String(it.title) : '';
+    const parts = title.split(' · ');
+    if (parts.length > 1 && parts[0] === it.life.place?.city) return parts.slice(1).join(' · ');
+    return title || it.life.place?.city || '';
+  }
+
+  let _ap = null;   // 열린 앨범 플레이어 하나
+  function playAlbum(t) {
+    if (_ap) _ap.close();
+    const byDay = {};
+    t.items.forEach(it => (byDay[dateKey(it)] = byDay[dateKey(it)] || []).push(it));
+    const dayKeys = Object.keys(byDay).sort();
+    const stops = [];                         // 여정 줄의 정류장 = 기록 하나
+    const slides = [{ kind: 'cover' }];
+    dayKeys.forEach((k, di) => {
+      slides.push({ kind: 'chapter', day: di + 1, key: k, list: byDay[k], stop: stops.length });
+      byDay[k].forEach(it => {
+        const photos = (it.life.photos || []);
+        if (!photos.length) return;
+        stops.push({ it, day: di + 1 });
+        photos.forEach((src, n) => slides.push({ kind: 'photo', it, src, n, of: photos.length, stop: stops.length - 1 }));
+      });
+    });
+    slides.push({ kind: 'end' });
+    const photoSlides = slides.filter(s => s.kind === 'photo');
+
+    const box = document.createElement('div');
+    box.className = 'ap';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', `${t.place.name} 여행 앨범`);
+    box.innerHTML = `<div class="ap__stage" id="apStage"></div>
+      <div class="ap__top">
+        <span class="ap__title">${esc(t.place.flag || '📍')} ${esc(t.place.name)} · ${t.label}</span>
+        <span class="ap__count" id="apCount"></span>
+        <button type="button" class="ap__btn" id="apPlay" aria-label="일시정지">❚❚</button>
+        <button type="button" class="ap__btn" id="apClose" aria-label="닫기">✕</button>
+      </div>
+      <button type="button" class="ap__nav ap__nav--prev" id="apPrev" aria-label="이전">‹</button>
+      <button type="button" class="ap__nav ap__nav--next" id="apNext" aria-label="다음">›</button>
+      <div class="ap__route" aria-hidden="true">
+        <div class="ap__line"></div><div class="ap__trail" id="apTrail"></div>
+        ${stops.map((s, i) => `<span class="ap__stop" data-s="${i}" style="left:${stops.length > 1 ? i / (stops.length - 1) * 100 : 50}%">
+          <i></i><em>${esc(siteOf(s.it))}</em></span>`).join('')}
+        <span class="ap__dot" id="apDot"></span>
+      </div>`;
+    document.body.appendChild(box);
+    document.documentElement.classList.add('ap-open');
+
+    const stage = box.querySelector('#apStage');
+    const S = { i: -1, playing: true, timer: null, last: document.activeElement };
+    const DUR = { cover: 4200, chapter: 3600, photo: 5600 };
+    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    const dateLine = k => { const d = new Date(k + 'T00:00:00'); return `${shortDate(k)} ${DOW[d.getDay()]}요일`; };
+
+    /* 여정 줄 위치(0~1): 정류장 사이를 사진 장수만큼 나눠 조금씩 간다 */
+    const posOf = s => {
+      if (s.kind === 'cover') return 0;
+      if (s.kind === 'end') return 1;
+      const n = Math.max(stops.length - 1, 1);
+      const frac = s.kind === 'photo' && s.of > 1 && s.stop < stops.length - 1 ? s.n / s.of : 0;
+      return stops.length > 1 ? Math.min((s.stop + frac) / n, 1) : .5;
+    };
+
+    function slideHTML(s, idx) {
+      if (s.kind === 'cover') {
+        const c = albumCover(t);
+        return `${c ? `<div class="ap__photo kb kb--0"><img class="ap__bg" src="${esc(c)}" alt=""/><img class="ap__img" src="${esc(c)}" alt=""/></div>` : ''}
+          <div class="ap__card ap__card--cover">
+            <div class="ap__kicker">${esc(t.place.flag || '')} ${t.from.slice(0, 4)}년의 여행</div>
+            <h2>${esc(t.place.name)}</h2>
+            <p>${esc([...t.cities].join(' · '))}</p>
+            <p class="ap__meta">${shortDate(t.from)}${t.from !== t.to ? ` – ${shortDate(t.to)}` : ''} · ${t.days}일</p>
+          </div>`;
+      }
+      if (s.kind === 'chapter') {
+        const sites = s.list.map(siteOf).filter(Boolean);
+        const cities = [...new Set(s.list.map(it => it.life.place?.city).filter(Boolean))];
+        const bg = s.list.flatMap(it => it.life.photos || [])[0];
+        return `${bg ? `<div class="ap__photo kb kb--2"><img class="ap__bg ap__bg--deep" src="${esc(bg)}" alt=""/></div>` : ''}
+          <div class="ap__card ap__card--chapter">
+            <div class="ap__kicker">Day ${s.day}</div>
+            <h2>${dateLine(s.key)}</h2>
+            <p>${esc(cities.join(' · '))}</p>
+            <ol class="ap__sites">${sites.map(x => `<li>${esc(x)}</li>`).join('')}</ol>
+          </div>`;
+      }
+      if (s.kind === 'photo') {
+        const it = s.it;
+        const text = lifeCaption(it) === it.title ? '' : lifeCaption(it);
+        return `<div class="ap__photo kb kb--${idx % 4}"><img class="ap__bg" src="${esc(s.src)}" alt=""/>
+            <img class="ap__img" src="${esc(s.src)}" alt="${esc(siteOf(it))}"/></div>
+          <figcaption class="ap__cap${s.n ? ' is-quiet' : ''}">
+            <span class="ap__where">Day ${stops[s.stop].day} · ${esc(siteOf(it))}${s.of > 1 ? ` <small>${s.n + 1}/${s.of}</small>` : ''}</span>
+            ${text && !s.n ? `<span class="ap__text">${esc(text).replace(/\n/g, '<br>')}</span>` : ''}
+          </figcaption>`;
+      }
+      const cities = new Set(t.items.map(it => it.life.place?.city).filter(Boolean));
+      const cur = albumCover(t);
+      return `<div class="ap__card ap__card--end">
+          <div class="ap__kicker">${esc(t.place.flag || '')} ${esc(t.place.name)}에서</div>
+          <h2>${t.days}일 · 사진 ${photoSlides.length}장 · 기록 ${stops.length}개${cities.size > 1 ? ` · ${cities.size}개 도시` : ''}</h2>
+          <p>표지로 남길 사진을 골라 주세요</p>
+          <div class="ap__covers">${photoSlides.map(p => `<button type="button" data-cover="${esc(p.src)}" class="${p.src === cur ? 'is-on' : ''}"
+            aria-label="${esc(siteOf(p.it))} 사진을 표지로"><img src="${esc(p.src)}" alt="" loading="lazy"/></button>`).join('')}</div>
+          <div class="ap__actions">
+            <button type="button" class="btn" data-act="again">처음부터 다시</button>
+            <button type="button" class="btn btn--primary" data-act="close">앨범 닫기</button>
+          </div>
+        </div>`;
+    }
+
+    function go(idx) {
+      idx = Math.max(0, Math.min(slides.length - 1, idx));
+      if (idx === S.i) return;
+      const back = idx < S.i;
+      S.i = idx;
+      const s = slides[idx];
+      stage.querySelectorAll('.ap__layer').forEach(l => { l.classList.add('is-out'); setTimeout(() => l.remove(), 1000); });
+      const layer = document.createElement('div');
+      layer.className = `ap__layer ap__layer--${s.kind}${back ? ' is-back' : ''}`;
+      layer.innerHTML = slideHTML(s, idx);
+      stage.appendChild(layer);
+      requestAnimationFrame(() => requestAnimationFrame(() => layer.classList.add('is-in')));
+      layer.querySelectorAll('[data-cover]').forEach(b => b.addEventListener('click', () => {
+        try { localStorage.setItem(coverKey(t), b.dataset.cover); } catch { /* 이번 화면에만 반영 */ }
+        layer.querySelectorAll('[data-cover]').forEach(x => x.classList.toggle('is-on', x === b));
+      }));
+      layer.querySelector('[data-act="again"]')?.addEventListener('click', () => { S.playing = true; paintPlay(); go(0); });
+      layer.querySelector('[data-act="close"]')?.addEventListener('click', close);
+
+      /* 다음 사진 미리 받기 */
+      const nx = slides[idx + 1];
+      if (nx?.kind === 'photo') new Image().src = nx.src;
+
+      const pos = posOf(s) * 100;
+      box.querySelector('#apDot').style.left = pos + '%';
+      box.querySelector('#apTrail').style.width = pos + '%';
+      const cur = s.kind === 'photo' ? s.stop : s.kind === 'end' ? stops.length : -1;
+      box.querySelectorAll('.ap__stop').forEach(el2 => {
+        const k = Number(el2.dataset.s);
+        el2.classList.toggle('is-past', k < cur || s.kind === 'end');
+        el2.classList.toggle('is-now', k === cur);
+      });
+      const pi = photoSlides.indexOf(s);
+      box.querySelector('#apCount').textContent = pi >= 0 ? `${pi + 1} / ${photoSlides.length}` : '';
+      box.querySelector('#apPrev').disabled = idx === 0;
+      box.querySelector('#apNext').disabled = idx === slides.length - 1;
+      schedule();
+    }
+    function schedule() {
+      clearTimeout(S.timer);
+      const s = slides[S.i];
+      if (!S.playing || s.kind === 'end') return;
+      S.timer = setTimeout(() => go(S.i + 1), DUR[s.kind] * (reduce ? 1.3 : 1));
+    }
+    function paintPlay() {
+      const b = box.querySelector('#apPlay');
+      b.textContent = S.playing ? '❚❚' : '▶';
+      b.setAttribute('aria-label', S.playing ? '일시정지' : '자동 넘기기');
+      box.classList.toggle('is-paused', !S.playing);
+    }
+    function toggle() { S.playing = !S.playing; paintPlay(); schedule(); }
+    function close() {
+      clearTimeout(S.timer);
+      window.removeEventListener('keydown', onKey, true);
+      box.classList.add('is-closing');
+      setTimeout(() => box.remove(), 350);
+      document.documentElement.classList.remove('ap-open');
+      _ap = null;
+      S.last?.focus?.();
+    }
+    function onKey(e) {
+      const k = e.key;
+      if (!['Escape', 'ArrowRight', 'ArrowLeft', ' ', 'Home', 'End'].includes(k)) return;
+      if (k === ' ' && e.target.closest?.('button')) return;   // 버튼 위 스페이스는 버튼 몫
+      e.preventDefault(); e.stopPropagation();                  // 아래 팝업이 같이 닫히거나 넘어가지 않게
+      if (k === 'Escape') close();
+      else if (k === 'ArrowRight') go(S.i + 1);
+      else if (k === 'ArrowLeft') go(S.i - 1);
+      else if (k === ' ') toggle();
+      else if (k === 'Home') go(0);
+      else go(slides.length - 1);
+    }
+    window.addEventListener('keydown', onKey, true);
+    box.querySelector('#apClose').addEventListener('click', close);
+    box.querySelector('#apPlay').addEventListener('click', toggle);
+    box.querySelector('#apPrev').addEventListener('click', () => go(S.i - 1));
+    box.querySelector('#apNext').addEventListener('click', () => go(S.i + 1));
+    /* 화면 탭(왼쪽 3분의 1은 이전, 나머지는 다음)·옆으로 밀기 */
+    let px = null;
+    stage.addEventListener('pointerdown', e => { px = e.clientX; });
+    stage.addEventListener('pointerup', e => {
+      if (px === null || e.target.closest('button')) { px = null; return; }
+      const dx = e.clientX - px; px = null;
+      if (Math.abs(dx) > 40) return go(S.i + (dx < 0 ? 1 : -1));
+      if (slides[S.i].kind === 'end') return;
+      go(S.i + (e.clientX < window.innerWidth / 3 ? -1 : 1));
+    });
+
+    _ap = { close };
+    go(0);
+    box.querySelector('#apClose').focus();
   }
 
   /* ── AI 총평 ─────────────────────────────── */

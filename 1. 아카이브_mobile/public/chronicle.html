@@ -722,6 +722,109 @@ html.modal-open, html.modal-open body{overflow:hidden}
 .album__grid button:hover img{transform:scale(1.04)}
 .album__note{margin:8px 0 0; font-family:var(--serif); font-size:14.5px; line-height:1.7; color:var(--text-1)}
 .album__note small{display:block; font-family:var(--sans); font-size:12px; color:var(--text-3)}
+.album__play{display:flex; align-items:center; gap:14px; width:100%; margin-top:16px; padding:10px; border:1px solid var(--border);
+  border-radius:var(--r-card); background:var(--surface); text-align:left; color:var(--text-1); transition:border-color .18s, transform .18s}
+.album__play:hover{border-color:var(--jusa); transform:translateY(-1px)}
+.album__play img{width:76px; height:76px; object-fit:cover; border-radius:calc(var(--r-card) * .6); flex:none}
+.album__play b{display:block; font-size:15px; color:var(--jusa)}
+.album__play small{display:block; margin-top:3px; font-size:12.5px; color:var(--text-3)}
+
+/* ── 앨범 넘겨보기(전체 화면) — 사진이 주인공이라 테마와 무관하게 어두운 극장 화면 ── */
+.ap{--ap-bg:#0b0b0f; --ap-fg:#f4f1ea; --ap-dim:rgba(244,241,234,.62); --ap-line:rgba(244,241,234,.22); --ap-pt:#e8b86a;
+  position:fixed; inset:0; z-index:90; background:var(--ap-bg); color:var(--ap-fg); overflow:hidden;
+  animation:apIn .45s ease both; user-select:none}
+.ap.is-closing{animation:apOut .35s ease both}
+@keyframes apIn{from{opacity:0}to{opacity:1}}
+@keyframes apOut{to{opacity:0}}
+html.ap-open, html.ap-open body{overflow:hidden}
+.ap__stage{position:absolute; inset:0; cursor:pointer}
+.ap__layer{position:absolute; inset:0; opacity:0; transition:opacity 1s ease}
+.ap__layer.is-in{opacity:1}
+.ap__layer.is-out{opacity:0; transition-duration:.9s}
+.ap__photo{position:absolute; inset:0; overflow:hidden}
+.ap__bg{position:absolute; inset:-6%; width:112%; height:112%; object-fit:cover; filter:blur(38px) brightness(.45) saturate(1.2)}
+.ap__bg--deep{filter:blur(46px) brightness(.32) saturate(1.1)}
+.ap__img{position:absolute; inset:0; width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 18px 50px rgba(0,0,0,.5))}
+.ap__layer--cover .ap__img{object-fit:cover; filter:brightness(.55)}
+.ap__layer--cover .ap__bg{display:none}
+@media (prefers-reduced-motion:no-preference){
+  .ap__layer.is-in .kb{animation:kb 7.5s ease-out both}
+  .ap__layer.is-in .kb--1{animation-name:kb1}
+  .ap__layer.is-in .kb--2{animation-name:kb2}
+  .ap__layer.is-in .kb--3{animation-name:kb3}
+  .ap.is-paused .kb{animation-play-state:paused}
+  .ap__layer.is-in .ap__card, .ap__layer.is-in .ap__cap:not(.is-quiet){animation:apRise 1.1s .25s ease both}
+}
+@keyframes kb {from{transform:scale(1)}to{transform:scale(1.09) translate(-1.2%,-.8%)}}
+@keyframes kb1{from{transform:scale(1.09) translate(1.2%,.6%)}to{transform:scale(1)}}
+@keyframes kb2{from{transform:scale(1.02) translate(-1%,0)}to{transform:scale(1.1) translate(1.4%,-1%)}}
+@keyframes kb3{from{transform:scale(1.1) translate(0,-1.2%)}to{transform:scale(1.02) translate(0,.8%)}}
+@keyframes apRise{from{opacity:0; transform:translateY(14px)}to{opacity:1; transform:none}}
+
+.ap__card{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:80px 24px 120px; text-align:center}
+.ap__kicker{font-size:13px; letter-spacing:.22em; text-transform:uppercase; color:var(--ap-pt)}
+.ap__card h2{margin:14px 0 8px; font-family:var(--serif); font-size:clamp(30px, 5.2vw, 58px); font-weight:500; line-height:1.2; letter-spacing:-.01em; color:var(--ap-fg)}
+.ap__card p{margin:4px 0; font-size:16px; color:var(--ap-dim)}
+.ap__card--cover{background:linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.45))}
+.ap__card--cover h2{font-size:clamp(40px, 8vw, 92px)}
+.ap__meta{margin-top:18px !important; font-size:14px !important; letter-spacing:.06em}
+.ap__sites{list-style:none; margin:22px 0 0; padding:0; display:flex; flex-wrap:wrap; justify-content:center; gap:8px 10px}
+.ap__sites li{padding:6px 14px; border:1px solid var(--ap-line); border-radius:999px; font-size:14px; color:var(--ap-fg)}
+.ap__card--end h2{font-size:clamp(24px, 3.6vw, 40px)}
+.ap__covers{display:grid; grid-template-columns:repeat(auto-fill, minmax(64px, 1fr)); gap:6px; width:min(720px, 100%);
+  margin:18px 0 22px; max-height:34vh; overflow:auto; padding:3px}
+.ap__covers button{padding:0; aspect-ratio:1/1; border-radius:8px; overflow:hidden; border:2px solid transparent; opacity:.7;
+  background:none; cursor:pointer; transition:opacity .2s, border-color .2s}
+.ap__covers button:hover{opacity:1}
+.ap__covers button.is-on{border-color:var(--ap-pt); opacity:1}
+.ap__covers img{display:block; width:100%; height:100%; object-fit:cover}
+.ap__actions{display:flex; gap:10px}
+.ap__actions .btn{min-height:44px; padding:0 20px; background:transparent; color:var(--ap-fg); border-color:var(--ap-line)}
+.ap__actions .btn--primary, .ap__actions .btn--primary:hover:not(:disabled){background:var(--ap-pt); color:var(--ap-bg); border-color:transparent}
+
+.ap__layer--photo::after{content:''; position:absolute; left:0; right:0; bottom:0; height:46%; pointer-events:none;
+  background:linear-gradient(180deg, transparent, rgba(0,0,0,.42) 45%, rgba(0,0,0,.78))}
+.ap__cap{position:absolute; z-index:1; left:0; right:0; bottom:96px; display:flex; flex-direction:column; align-items:center; gap:8px;
+  padding:0 24px; text-align:center; text-shadow:0 2px 14px rgba(0,0,0,.8); pointer-events:none}
+.ap__where{font-size:13px; letter-spacing:.12em; color:var(--ap-pt)}
+.ap__where small{margin-left:6px; color:var(--ap-dim); letter-spacing:0}
+.ap__text{max-width:760px; font-family:var(--serif); font-size:clamp(15px, 1.6vw, 19px); line-height:1.75; color:var(--ap-fg)}
+
+.ap__top{position:absolute; top:0; left:0; right:0; display:flex; align-items:center; gap:10px; padding:14px 16px;
+  background:linear-gradient(180deg, rgba(0,0,0,.55), transparent); z-index:2}
+.ap__title{flex:1; min-width:0; font-size:13.5px; color:var(--ap-dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.ap__count{font-size:12.5px; color:var(--ap-dim); font-variant-numeric:tabular-nums}
+.ap__btn{width:44px; height:44px; border-radius:50%; border:1px solid var(--ap-line); background:rgba(0,0,0,.25); color:var(--ap-fg);
+  font-size:14px; cursor:pointer}
+.ap__btn:hover, .ap__nav:hover:not(:disabled){background:rgba(255,255,255,.12)}
+.ap__btn:focus-visible, .ap__nav:focus-visible, .ap__covers button:focus-visible{outline:2px solid var(--ap-pt); outline-offset:2px}
+.ap__nav{position:absolute; top:50%; transform:translateY(-50%); z-index:2; width:52px; height:52px; border-radius:50%;
+  border:1px solid var(--ap-line); background:rgba(0,0,0,.25); color:var(--ap-fg); font-size:28px; line-height:1; cursor:pointer}
+.ap__nav--prev{left:16px}
+.ap__nav--next{right:16px}
+.ap__nav:disabled{opacity:0; pointer-events:none}
+
+/* 여정 줄 — 기록한 곳 순서대로 점이 따라간다 */
+.ap__route{position:absolute; left:max(48px, 8vw); right:max(48px, 8vw); bottom:34px; height:30px; z-index:2; pointer-events:none}
+.ap__line, .ap__trail{position:absolute; left:0; top:6px; height:2px; background:var(--ap-line); border-radius:2px}
+.ap__line{right:0}
+.ap__trail{width:0; background:var(--ap-pt); transition:width 1.2s ease}
+.ap__stop{position:absolute; top:0; transform:translateX(-50%)}
+.ap__stop i{display:block; width:8px; height:8px; margin:3px auto 0; border-radius:50%; background:var(--ap-bg); border:2px solid var(--ap-line); transition:border-color .4s, background .4s}
+.ap__stop.is-past i, .ap__stop.is-now i{border-color:var(--ap-pt); background:var(--ap-pt)}
+.ap__stop em{position:absolute; top:16px; left:50%; transform:translateX(-50%); font-style:normal; font-size:11px; white-space:nowrap;
+  color:var(--ap-dim); opacity:0; transition:opacity .4s}
+.ap__stop.is-now em{opacity:1; color:var(--ap-fg)}
+.ap__trail + .ap__stop em{left:-4px; transform:none}                        /* 맨 앞·맨 뒤 이름이 화면 밖으로 잘리지 않게 */
+.ap__stop:nth-last-child(2) em{left:auto; right:-4px; transform:none}
+.ap__dot{position:absolute; top:1px; left:0; width:12px; height:12px; margin-left:-6px; border-radius:50%; background:var(--ap-fg);
+  box-shadow:0 0 0 4px rgba(232,184,106,.35); transition:left 1.2s ease}
+@media (max-width:640px){
+  .ap__nav{display:none}
+  .ap__cap{bottom:84px}
+  .ap__route{left:24px; right:24px; bottom:26px}
+}
 
 /* 월별 서술 */
 .months-review{margin-top:52px; display:grid; gap:2px}
@@ -903,6 +1006,6 @@ html.modal-open, html.modal-open body{overflow:hidden}
   </article>
 </div>
 
-<script src="js/chronicle.js?v=27"></script>
+<script src="js/chronicle.js?v=28"></script>
 </body>
 </html>

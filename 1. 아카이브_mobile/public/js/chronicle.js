@@ -578,8 +578,8 @@
       const vocab = Array.isArray(fd.vocabEntries) ? fd.vocabEntries : [];
       if (vocab.length) return {
         kind: '영어 · 테마팩', title: fd.themeTitle || fd.title || '오늘의 표현',
-        sub: [fd.masterParagraph?.text ? '📖 글 1편' : '', `🔤 표현 ${vocab.length}`,
-              (fd.wordEntries || []).length ? `📚 단어 ${fd.wordEntries.length}` : ''].filter(Boolean).join(' · '),
+        sub: [fd.masterParagraph?.text ? '글 1편' : '', `표현 ${vocab.length}`,
+              (fd.wordEntries || []).length ? `단어 ${fd.wordEntries.length}` : ''].filter(Boolean).join(' · '),
         list: vocab.slice(0, 8).map(v => ({ a: v.expression || v.word || '', b: v.meaning || '' })).filter(v => v.a),
       };
     }
@@ -604,7 +604,7 @@
     if (it.source === 'daily-feed-entry') {
       const p = parseEntryText(it.text);
       if (p) return { kind: '영어 표현', title: p.expr, sub: p.meaning, detail: p.nuance,
-                      from: it.packContext?.themeTitle ? `📖 「${it.packContext.themeTitle}」 글과 함께` : '' };
+                      from: it.packContext?.themeTitle ? `「${it.packContext.themeTitle}」 글과 함께` : '' };
     }
     return null;
   }
@@ -665,19 +665,19 @@
     if (!mp || !mp.text) return '';
     const hl = (mp.highlights || []).filter(Boolean);
     const focus = String(opt.focus || '').toLowerCase();
-    let txt = esc(mp.text);
+    let txt = esc(mp.text).replace(/\*\*/g, '');   // 원문에 섞여 온 마크다운 굵게 표시는 지운다(강조는 아래 mark가 한다)
     hl.forEach((h, i) => {
       const re = new RegExp(`(${esc(h).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'i');
       const mine = focus && focus.includes(String(h).toLowerCase());
       txt = txt.replace(re, `<mark class="md__hl${focus ? (mine ? ' is-mine' : ' is-dim') : ''}" data-n="${i + 1}">$1</mark>`);
     });
     return `<section class="md__pack-sec" id="pk-text">
-        <h4 class="md__pack-h">${opt.title || `📖 오늘의 글 <small>표현 ${hl.length}개가 한 문맥에</small>`}</h4>
+        <h4 class="md__pack-h">${opt.title || `오늘의 글 <small>표현 ${hl.length}개가 한 문맥에</small>`}</h4>
         <div class="md__master">${txt}</div>
         ${mp.translation ? `<details class="md__tr"><summary>해석 보기</summary><p>${para(mp.translation)}</p></details>` : ''}
       </section>`;
   }
-  const WORD_DOM = { news: '📰 뉴스', daily: '💬 일상', business: '💼 비즈니스' };
+  const WORD_DOM = { news: '뉴스', daily: '일상', business: '비즈니스' };
   const LV = { beginner: '초급', intermediate: '중급', advanced: '고급' };
   function wordBlock(w) {
     const tags = [WORD_DOM[w.domain], LV[w.level]].filter(Boolean).join(' · ');
@@ -697,17 +697,17 @@
     const me = String(v.expression || '').toLowerCase();
     const others = (pc.siblings || []).filter(s => String(s.expression || '').toLowerCase() !== me);
     return `<hr class="md__hr">`
-      + masterHTML(pc.masterParagraph, { focus: v.expression, title: `📖 이 표현이 나온 글 <small>「${esc(pc.themeTitle || '')}」</small>` })
-      + (others.length ? `<section class="md__pack-sec"><h4 class="md__pack-h">🔤 같은 글의 다른 표현</h4>
+      + masterHTML(pc.masterParagraph, { focus: v.expression, title: `이 표현이 나온 글 <small>「${esc(pc.themeTitle || '')}」</small>` })
+      + (others.length ? `<section class="md__pack-sec"><h4 class="md__pack-h">같은 글의 다른 표현</h4>
           <dl class="md__siblings">${others.map(s => `<div><dt>${esc(s.expression)}</dt><dd>${esc(s.meaning || '')}</dd></div>`).join('')}</dl></section>` : '');
   }
 
   /* 오늘의 구문 — 문장을 여는 틀 하나(언제·형태·예문·실수·비슷한 틀) */
   function patternHTML(p) {
     if (!p || !p.pattern) return '';
-    const reg = { daily: '💬 일상 대화', business: '💼 비즈니스', any: '🔁 어디서나' }[p.register] || '';
+    const reg = { daily: '일상 대화', business: '비즈니스', any: '어디서나' }[p.register] || '';
     const bold = t => para(t).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
-    return `<section class="md__pack-sec" id="pk-pat"><h4 class="md__pack-h">💬 오늘의 구문 <small>${esc([reg, LV[p.level]].filter(Boolean).join(' · '))}</small></h4>
+    return `<section class="md__pack-sec" id="pk-pat"><h4 class="md__pack-h">오늘의 구문 <small>${esc([reg, LV[p.level]].filter(Boolean).join(' · '))}</small></h4>
         <div class="md__fold" style="padding:12px 14px"><p class="md__expr" style="margin:0">${esc(p.pattern)}</p>
           ${p.meaning ? `<p class="md__mean">${esc(p.meaning)}</p>` : ''}
           ${sec('언제 쓰나', p.when ? bold(p.when) : '')}
@@ -719,18 +719,18 @@
   }
 
   function packHTML(vocab, mp, words, pat) {
-    const jump = [mp && mp.text ? ['pk-text', '📖 글 1편'] : null, ['pk-expr', `🔤 표현 ${vocab.length}`],
-                  pat && pat.pattern ? ['pk-pat', '💬 구문 1'] : null,
-                  words.length ? ['pk-word', `📚 단어 ${words.length}`] : null].filter(Boolean);
+    const jump = [mp && mp.text ? ['pk-text', '글 1편'] : null, ['pk-expr', `표현 ${vocab.length}`],
+                  pat && pat.pattern ? ['pk-pat', '구문 1'] : null,
+                  words.length ? ['pk-word', `단어 ${words.length}`] : null].filter(Boolean);
     return `<nav class="md__jump">${jump.map(([id, l]) => `<button type="button" data-jump="${id}">${l}</button>`).join('')}</nav>`
       + masterHTML(mp)
-      + `<section class="md__pack-sec" id="pk-expr"><h4 class="md__pack-h">🔤 표현 <small>눌러서 뉘앙스·예문·대화 보기</small></h4>
+      + `<section class="md__pack-sec" id="pk-expr"><h4 class="md__pack-h">표현 <small>눌러서 뉘앙스·예문·대화 보기</small></h4>
           ${vocab.map((v, i) => `<details class="md__fold"${i ? '' : ' open'}>
             <summary><em>${i + 1}</em><b>${esc(v.expression || v.word || '')}</b><span>${esc(v.meaning || '')}</span></summary>
             <div class="md__fold-body">${vocabBlock({ ...v, expression: '', meaning: '' }, false)}</div>
           </details>`).join('')}</section>`
       + patternHTML(pat)
-      + (words.length ? `<section class="md__pack-sec" id="pk-word"><h4 class="md__pack-h">📚 오늘의 단어</h4>${words.map(wordBlock).join('')}</section>` : '');
+      + (words.length ? `<section class="md__pack-sec" id="pk-word"><h4 class="md__pack-h">오늘의 단어</h4>${words.map(wordBlock).join('')}</section>` : '');
   }
 
   function detailHTML(it) {
@@ -1960,11 +1960,11 @@
   }
 
   /* ── 지식 지도 = 지식 퀘스트 ──────────────────────────
-     분야(역사·영어·경제·과학·지혜) 탭 → 그 안의 테마(한국사·유럽사…) → 단계 길.
-     칸 하나 = 한 편(진할수록 깊이 소화: 받음 → 서재에 담음 → 생각 남김), 누르면 그 편을 팝업으로 다시 읽기.
-     단계를 다 채우면 보스가 나타나고, 받은 지식으로만 낸 문제로 물리친다(GET/POST /api/knowledge-quest/boss).
-     샘플 모드에서는 그리지 않는다. */
-  const km = { data: null, cat: '', theme: {}, nodes: {}, more: {} };
+     분야(역사·영어·경제·과학·지혜) 탭 → 분야 카드(레벨 고리·쌓은 것·다음에 할 일) → 테마(한국사·유럽사…) → 단계 카드.
+     단계를 펴면 굽이진 길에 편마다 디딤돌(진할수록 깊이 소화: 받음 → 서재에 담음 → 생각 남김)과 제목, 누르면 그 편을 팝업으로 다시 읽기.
+     길 끝에는 수문장 — 단계를 다 채우면 나타나고, 받은 지식으로만 낸 문제로 겨룬다(GET/POST /api/knowledge-quest/boss).
+     이모지는 쓰지 않는다(11-14 피드백). 샘플 모드에서는 그리지 않는다. */
+  const km = { data: null, cat: '', theme: {}, nodes: {}, more: {}, open: {} };
   const KM_LV = n => (!n || !n.got) ? 0 : n.thought ? 3 : n.saved ? 2 : 1;
   const KM_LV_LABEL = ['아직', '받음', '서재에 담음', '생각까지 남김'];
   const KM_DOMAIN = { history: 'humanities', economy: 'business', science: 'science', english: 'language', wisdom: 'psychology' };
@@ -1995,12 +1995,52 @@
     } catch { /* 지도가 없어도 연대기는 그대로 */ }
   }
 
+  /* ── 그림 조각 ── 이모지는 쓰지 않는다. 분야의 얼굴은 색(--kq-c)과 레벨 고리, 보스는 직접 그린 방패 수문장. */
+  const kqColor = id => `--kq-c:var(--d-${KM_DOMAIN[id] || 'society'})`;
+  const KQ_I = {
+    lock: '<svg class="kq-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',
+    star: '<svg class="kq-i is-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.3 1.1 6.1L12 16.9 6.6 19.8l1.1-6.1L3.2 9.4l6.1-.8z"/></svg>',
+    chev: '<svg class="kq-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>',
+    heart: '<svg class="kq-i is-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.8a4.3 4.3 0 0 1 7.5 2.7c0 5.4-7.5 10-7.5 10z"/></svg>',
+  };
+  /* 진행 고리 — ratio(0~1)만큼 채우고 가운데에 inner */
+  function kqRing(size, ratio, inner, cls) {
+    const sw = size >= 60 ? 7 : 3.5, r = (size - sw) / 2, len = 2 * Math.PI * r, c = size / 2;
+    const on = Math.max(0, Math.min(1, ratio || 0)) * len;
+    return `<span class="kq-ring ${cls}" style="width:${size}px;height:${size}px">
+      <svg viewBox="0 0 ${size} ${size}" aria-hidden="true"><circle class="kq-ring__bg" cx="${c}" cy="${c}" r="${r}" stroke-width="${sw}"/>
+        <circle class="kq-ring__on" cx="${c}" cy="${c}" r="${r}" stroke-width="${sw}" stroke-dasharray="${on.toFixed(1)} ${len.toFixed(1)}" transform="rotate(-90 ${c} ${c})"/></svg>
+      <span class="kq-ring__in">${inner}</span></span>`;
+  }
+  /* 소화 세 칸 — 받음 · 담음 · 생각 */
+  const kqDots = lv => `<i class="kq-dots" aria-hidden="true">${[1, 2, 3].map(n => `<i${lv >= n ? ' class="on"' : ''}></i>`).join('')}</i>`;
+  /* 수문장 — 방패 몸에 분야마다 다른 머리 장식. mood: ''(버티는 중) · 'shadow'(아직 안 나타남) · 'down'(격파 — 금빛 석상) */
+  function kqGuardian(cat, mood) {
+    const top = {
+      history: '<path class="g-top" d="M60 2c-13 0-22 8-24 20h48C82 10 73 2 60 2z"/>',
+      economy: '<path class="g-top" d="M36 22l4-16 10 9 10-13 10 13 10-9 4 16z"/>',
+      science: '<path class="g-line" d="M60 22V9"/><circle class="g-top" cx="60" cy="7" r="6"/>',
+      english: '<path class="g-top" d="M34 22c0-10 5-16 13-18l1 6c-4 2-5 5-5 12zM72 22c0-10 5-16 13-18l1 6c-4 2-5 5-5 12z"/>',
+      wisdom: '<path class="g-top" d="M28 28l6-24 14 17zM92 28l-6-24-14 17z"/>',
+    }[cat] || '';
+    const face = mood === 'shadow' ? '<path class="g-q" d="M51 58a9 9 0 1 1 13 8c-3 2-4 4-4 8M60 86v1"/>'
+      : mood === 'down' ? '<path class="g-x" d="M38 54l14 14M52 54L38 68M68 54l14 14M82 54L68 68"/><path class="g-mouth" d="M48 91q12-9 24 0"/>'
+        : '<ellipse class="g-eye" cx="46" cy="62" rx="10" ry="11"/><ellipse class="g-eye" cx="74" cy="62" rx="10" ry="11"/><circle class="g-pupil" cx="49" cy="64" r="5"/><circle class="g-pupil" cx="71" cy="64" r="5"/><path class="g-brow" d="M32 46l22 8M88 46l-22 8"/><path class="g-mouth" d="M47 88h26"/>';
+    return `<svg class="kq-g${mood ? ' is-' + mood : ''}" viewBox="0 0 120 124" aria-hidden="true">${top}
+      <path class="g-body" d="M60 16l44 14v36c0 26-20 44-44 54-24-10-44-28-44-54V30z"/>
+      <path class="g-shine" d="M60 16l44 14v36c0 26-20 44-44 54z"/>${face}</svg>`;
+  }
+  function kqFindStage(stageId) {
+    for (const c of km.data.categories) for (const t of c.themes) for (const s of t.stages) if (s.id === stageId) return { c, t, s };
+    return null;
+  }
+
   function renderKmap() {
     const d = km.data;
-    $('kqTabs').innerHTML = d.categories.map(c => `<button type="button" role="tab" class="kq-tab${c.id === km.cat ? ' is-on' : ''}${c.soon ? ' is-soon' : ''}"
-        data-kqcat="${esc(c.id)}" aria-selected="${c.id === km.cat}" ${c.soon ? 'disabled' : ''}>
-        <span class="kq-tab__i">${c.icon}</span><span class="kq-tab__t">${esc(c.label)}</span>
-        <small>${c.soon ? '준비 중' : `Lv.${c.level}`}</small></button>`).join('');
+    $('kqTabs').innerHTML = d.categories.map(c => `<button type="button" role="tab" class="kq-tab kq-c${c.id === km.cat ? ' is-on' : ''}${c.soon ? ' is-soon' : ''}"
+        data-kqcat="${esc(c.id)}" aria-selected="${c.id === km.cat}" style="${kqColor(c.id)}" ${c.soon ? 'disabled' : ''}>
+        ${c.soon ? '<span class="kq-ring kq-ring--sm is-empty"></span>' : kqRing(32, c.xpIn / c.xpNeed, `<b>${c.level}</b>`, 'kq-ring--sm')}
+        <span class="kq-tab__t"><b>${esc(c.label)}</b><small>${c.soon ? '준비 중' : `${esc(c.levelTitle)} · ${c.got}편`}</small></span></button>`).join('');
     $('kqTabs').querySelectorAll('[data-kqcat]').forEach(b => b.addEventListener('click', () => {
       km.cat = b.dataset.kqcat; kqStore.set({ cat: km.cat, theme: km.theme }); renderKmap();
     }));
@@ -2018,87 +2058,185 @@
     return c.themes.find(t => t.id === want) || c.themes.slice().sort((a, b) => b.got - a.got)[0];
   }
 
+  /* 다음에 할 일 한 줄 — 나타난 수문장 > 받기만 한 편 > 생각 없는 편 */
+  function kqCoach(c) {
+    if (!c.got) return { text: '아직 받은 편이 없어요. 지식 배달에서 이 분야를 받기 시작하면 여기에 길이 생겨요.' };
+    for (const t of c.themes) for (const s of t.stages) if (s.boss.state === 'ready')
+      return { text: `<b>${esc(s.boss.name)}</b>이 길을 막고 있어요. 이 단계에서 받은 지식으로 겨뤄 보세요.`, btn: '겨루러 가기', go: { theme: t.id, stage: s.id } };
+    const all = [];
+    c.themes.forEach(t => t.stages.forEach(s => s.items.forEach(x => { if (x.got) all.push({ t, s, x }); })));
+    all.sort((a, b) => (a.x.got < b.x.got ? 1 : -1));   // 가장 최근에 받은 편부터
+    const a = all.find(o => !o.x.saved);
+    if (a) return { text: `받기만 하고 지나간 편이 <b>${c.got - c.saved}편</b> 있어요. 다시 읽고 서재에 담으면 편마다 +10 XP.`,
+                    btn: '한 편 다시 읽기', go: { theme: a.t.id, stage: a.s.id, item: a.x.id } };
+    const b = all.find(o => !o.x.thought);
+    if (b) return { text: `담아 둔 편에 내 생각을 한 줄 남겨 보세요. 편마다 +20 XP, 길 위의 칸이 가장 진해져요.`,
+                    btn: '생각 남기러 가기', go: { theme: b.t.id, stage: b.s.id, item: b.x.id } };
+    return { text: '받은 편을 모두 내 것으로 만들었어요. 다음 편이 오면 길이 이어져요.' };
+  }
+
   function renderKqCat() {
     const c = km.data.categories.find(x => x.id === km.cat);
     if (!c) return;
-    const t = kqThemeOf(c);
-    const pct = v => Math.round(Math.min(1, v) * 100);
-    $('kqCat').innerHTML = `
-      <div class="kq-head">
-        <div class="kq-head__top">
-          <span class="kq-head__icon" aria-hidden="true">${c.icon}</span>
-          <div class="kq-head__name"><b>${esc(c.label)}</b><small>${esc(c.desc)}</small></div>
-          <div class="kq-lv"><span>Lv.${c.level}</span><small>${esc(c.levelTitle)}</small></div>
+    const t = kqThemeOf(c), coach = kqCoach(c);
+    const box = $('kqCat');
+    box.style.cssText = kqColor(c.id);
+    box.innerHTML = `
+      <div class="kq-hero">
+        ${kqRing(84, c.xpIn / c.xpNeed, `<small>Lv</small><b>${c.level}</b>`, 'kq-ring--lg')}
+        <div class="kq-hero__main">
+          <span class="kq-hero__rank">${esc(c.levelTitle)}</span>
+          <h3>${esc(c.label)}</h3>
+          <p>${esc(c.desc)}</p>
+          <p class="kq-hero__xp">다음 레벨까지 <b>${c.xpNeed - c.xpIn} XP</b></p>
         </div>
-        <div class="kq-xp" role="img" aria-label="경험치 ${c.xpIn}/${c.xpNeed}"><i style="width:${pct(c.xpIn / c.xpNeed)}%"></i></div>
-        <div class="kq-xp__label">다음 레벨까지 ${c.xpNeed - c.xpIn} XP <span>· 받음 10 · 담음 +10 · 생각 +20 · 보스 +50</span></div>
-        <div class="kq-stats">
-          <div><b>${c.got}</b><small>/${c.total}편</small><span>받은 지식</span></div>
-          <div><b>${c.saved}</b><small>편</small><span>서재에 담음</span></div>
-          <div><b>${c.thought}</b><small>편</small><span>생각 남김</span></div>
-          <div><b>${c.bossCleared}</b><small>/${c.bossTotal}</small><span>물리친 보스</span></div>
-        </div>
+        <ul class="kq-ladder" aria-label="${esc(c.label)}에서 쌓은 것">
+          <li><p><b>${c.got}</b><small>/${c.total}편</small></p><span>${kqDots(1)}받음</span><em>편마다 +10 XP</em></li>
+          <li><p><b>${c.saved}</b><small>편</small></p><span>${kqDots(2)}서재에 담음</span><em>+10 XP</em></li>
+          <li><p><b>${c.thought}</b><small>편</small></p><span>${kqDots(3)}생각 남김</span><em>+20 XP</em></li>
+          <li><p><b>${c.bossCleared}</b><small>/${c.bossTotal}</small></p><span>수문장 격파</span><em>+50 XP</em></li>
+        </ul>
+        <div class="kq-coach"><p>${coach.text}</p>${coach.go ? `<button type="button" id="kqCoachGo">${coach.btn}</button>` : ''}</div>
       </div>
       <div class="kq-themes" role="tablist" aria-label="${esc(c.label)} 테마">
-        ${c.themes.map(x => `<button type="button" role="tab" class="kq-theme${t && x.id === t.id ? ' is-on' : ''}" data-kqtheme="${esc(x.id)}" aria-selected="${t && x.id === t.id}">
-          <b>${esc(x.label)}</b>
-          <span class="kq-theme__bar"><i style="width:${x.total ? pct(x.got / x.total) : 0}%"></i></span>
-          <small>${x.got}/${x.total}편${x.bossCleared ? ` · 🏆${x.bossCleared}` : ''}</small></button>`).join('')}
+        ${c.themes.map(x => {
+          const ready = x.stages.filter(s => s.boss.state === 'ready').length;
+          const segs = x.stages.map(s => {
+            const n = s.items.length, g = s.items.filter(i => i.got).length;
+            return `<i${s.boss.state === 'cleared' ? ' class="is-clear"' : ''} style="--p:${n ? Math.round(g / n * 100) : 0}%"></i>`;
+          }).join('');
+          return `<button type="button" role="tab" class="kq-theme${t && x.id === t.id ? ' is-on' : ''}" data-kqtheme="${esc(x.id)}" aria-selected="${!!t && x.id === t.id}">
+            <b>${esc(x.label)}</b>
+            <span class="kq-theme__segs" aria-hidden="true">${segs}</span>
+            <small>${x.got}/${x.total}편${ready ? ` · <em>수문장 ${ready}</em>` : x.bossCleared ? ` · 격파 ${x.bossCleared}` : ''}</small></button>`;
+        }).join('')}
       </div>
       <div id="kqPath">${t ? kqPathHTML(c, t) : '<p class="muted">아직 열린 테마가 없어요.</p>'}</div>`;
-    $('kqCat').querySelectorAll('[data-kqtheme]').forEach(b => b.addEventListener('click', () => {
+    box.querySelectorAll('[data-kqtheme]').forEach(b => b.addEventListener('click', () => {
       km.theme[c.id] = b.dataset.kqtheme; kqStore.set({ cat: km.cat, theme: km.theme }); renderKqCat();
     }));
-    kqScrollOn($('kqCat').querySelector('.kq-themes'));
+    if (coach.go) $('kqCoachGo').addEventListener('click', () => kqGo(c, coach.go));
+    kqScrollOn(box.querySelector('.kq-themes'));
     kqBindPath();
   }
 
-  /* 단계 길 — 지금 단계 다음 하나까지 펼치고, 그 뒤는 접어 둔다 */
+  /* 한 줄 안내의 버튼 — 그 테마·단계를 펼치고, 편이면 바로 팝업, 수문장이면 그 자리로 */
+  function kqGo(c, go) {
+    km.theme[c.id] = go.theme; km.open[go.stage] = true;
+    kqStore.set({ cat: km.cat, theme: km.theme });
+    renderKqCat();
+    if (go.item) return openKmItem(go.item);
+    const el = [...$('kqPath').querySelectorAll('[data-boss]')].find(b => b.dataset.boss === go.stage);
+    if (el) { el.scrollIntoView({ block: 'center', behavior: 'smooth' }); el.focus({ preventScroll: true }); }
+  }
+
+  /* 단계 길 — 지금 단계 다음 하나까지 보이고, 그 뒤는 접어 둔다 */
   function kqPathHTML(c, t) {
     const cur = t.current;
     const showTo = km.more[t.id] ? t.stages.length : Math.min(t.stages.length, Math.max(cur + 2, 3));
     const stages = t.stages.slice(0, showTo).map((s, i) => kqStageHTML(c, t, s, i)).join('');
     const rest = t.stages.length - showTo;
-    return `<div class="kq-path__head"><b>${esc(t.label)}</b><span>${esc(t.desc || '')}</span></div>
+    return `<div class="kq-path__head"><h3>${esc(t.label)}</h3><span>${esc(t.desc || '')}</span><small>${t.stages.length}단계 · ${t.got}/${t.total}편</small></div>
       <ol class="kq-path">${stages}</ol>
       ${rest > 0 ? `<button type="button" class="kq-more" data-more="${esc(t.id)}">남은 단계 ${rest}개 더 보기</button>` : ''}`;
   }
 
+  /* 한 단계 = 접었다 펴는 카드. 접으면 편마다 점 하나, 펴면 굽이진 길에 제목까지. */
   function kqStageHTML(c, t, s, i) {
     const gotN = s.items.filter(x => x.got).length, all = s.items.length;
     const done = gotN === all, isCur = i === t.current && !done;
     const prevDone = i === 0 || t.stages[i - 1].items.every(x => x.got) || gotN > 0;
     const lock = !gotN && !prevDone;
+    const b = s.boss, canOpen = s.items.some(x => x.id);          // 전부 빈 칸이면 펼칠 것이 없다
+    const open = canOpen && (km.open[s.id] != null ? km.open[s.id] : (i === t.current || b.state === 'ready'));
     const nextIdx = s.items.findIndex(x => !x.got);
-    const ep = (x, k) => {
-      if (!x.id) return `<span class="kq-ep lv0 is-empty${isCur && k === nextIdx ? ' is-next' : ''}" aria-hidden="true">${k + 1}</span>`;
-      const lv = KM_LV(x);
-      return `<button type="button" class="kq-ep lv${lv}${isCur && k === nextIdx ? ' is-next' : ''}" data-km="${esc(x.id)}"
-        title="${esc(x.title)}${x.got ? ` · ${shortDate(x.got)} · ${KM_LV_LABEL[lv]}` : ' · 아직'}" aria-label="${k + 1}편 ${esc(x.title)} — ${KM_LV_LABEL[lv]}">${lv === 3 ? '✦' : k + 1}</button>`;
-    };
-    const b = s.boss;
-    const bossBtn = b.state === 'cleared'
-      ? `<button type="button" class="kq-boss is-cleared" data-boss="${esc(b.id)}"><span class="kq-boss__e">🏆</span><span><b>${esc(b.name)} 격파</b><small>최고 ${b.best}점 · 다시 도전하기</small></span></button>`
-      : b.state === 'ready'
-        ? `<button type="button" class="kq-boss is-ready" data-boss="${esc(b.id)}"><span class="kq-boss__e">${b.emoji}</span><span><b>${esc(b.name)}이 나타났다!</b><small>받은 지식으로 물리치기 ⚔️</small></span></button>`
-        : `<div class="kq-boss is-locked"><span class="kq-boss__e">🔒</span><span><b>보스 · ${esc(b.name)}</b><small>${b.need}편 더 받으면 나타나요</small></span></div>`;
-    return `<li class="kq-stage${done ? ' is-done' : ''}${isCur ? ' is-cur' : ''}${lock ? ' is-lock' : ''}${b.state === 'cleared' ? ' is-clear' : ''}">
-        <div class="kq-stage__rail"><span class="kq-stage__no">${b.state === 'cleared' ? '★' : s.no}</span></div>
-        <div class="kq-stage__body">
-          <div class="kq-stage__head"><b>${esc(s.title)}</b>${isCur ? '<em class="kq-here">📍 지금 여기</em>' : ''}<small>${gotN}/${all}</small></div>
-          ${s.desc ? `<p class="kq-stage__desc">${esc(s.desc)}</p>` : ''}
-          ${lock ? '' : `<div class="kq-eps">${s.items.map(ep).join('')}</div>`}
-          ${bossBtn}
-        </div>
+    const tag = b.state === 'cleared' ? '격파' : b.state === 'ready' ? '수문장 등장' : isCur ? (t.got ? '지금 여기' : '여기서 시작') : '';
+    const title = s.id.startsWith('c:') ? s.title : s.desc;       // 받은 순서로 묶은 단계는 이름 대신 범위를
+    const head = `<span class="kq-st__no">${b.state === 'cleared' ? KQ_I.star : lock ? KQ_I.lock : s.no}</span>
+        <span class="kq-st__txt"><small>${s.no}단계${tag ? ` · <em>${tag}</em>` : ''}</small><b>${esc(title)}</b></span>
+        <span class="kq-st__n"><b>${gotN}</b>/${all}</span>`;
+    let body;
+    if (open) {
+      body = `${s.id.startsWith('c:') && s.desc ? `<p class="kq-st__desc">${esc(s.desc)}</p>` : ''}${kqTrailHTML(c, s, isCur, nextIdx)}`;
+    } else {
+      const chip = b.state === 'ready' ? `<button type="button" class="kq-chip is-ready" data-boss="${esc(b.id)}">수문장과 겨루기</button>`
+        : b.state === 'cleared' ? `<button type="button" class="kq-chip is-cleared" data-boss="${esc(b.id)}">${KQ_I.star}최고 ${b.best}점</button>`
+          : `<span class="kq-chip">${KQ_I.lock}수문장 · ${b.need}편 남음</span>`;
+      body = `<div class="kq-pips"><span class="kq-pips__dots" aria-hidden="true">${s.items.map((x, k) => `<i class="lv${KM_LV(x)}${isCur && k === nextIdx ? ' is-next' : ''}"></i>`).join('')}</span>${chip}</div>`;
+    }
+    return `<li class="kq-st${done ? ' is-done' : ''}${isCur ? ' is-cur' : ''}${lock ? ' is-lock' : ''}${b.state === 'cleared' ? ' is-clear' : ''}${open ? ' is-open' : ''}">
+        ${canOpen
+          ? `<button type="button" class="kq-st__head" data-stage="${esc(s.id)}" data-open="${open ? 1 : 0}" aria-expanded="${open}">${head}<span class="kq-st__chev">${KQ_I.chev}</span></button>`
+          : `<div class="kq-st__head">${head}</div>`}
+        ${body}
       </li>`;
+  }
+
+  /* 굽이진 길 — 편마다 디딤돌 하나, 끝에 수문장. 줄 높이가 정해져 있어 길(SVG)을 재지 않고 그린다. */
+  const KQ_WAVE = [0, 30, 60, 30], KQ_COL = 108;
+  function kqTrailHTML(c, s, isCur, nextIdx) {
+    const rows = [];
+    const push = (h, size, got, html) => { const x = KQ_WAVE[rows.length % 4] + (48 - size) / 2; rows.push({ h, size, x, got, html: html(x) }); };
+    for (let i = 0; i < s.items.length; i++) {
+      const x = s.items[i], next = isCur && i === nextIdx;
+      if (!x.id && !next) {                                        // 아직 안 온 빈 칸들은 한 줄로
+        let j = i; while (j < s.items.length && !s.items[j].id) j++;
+        const n = j - i;
+        push(56, 36, false, px => `<div class="kq-row kq-row--gap lv0" style="height:56px;--x:${px}px">
+            <span class="kq-node">+${n}</span><span class="kq-row__txt"><small>아직 오지 않은 ${n}편</small></span></div>`);
+        i = j - 1; continue;
+      }
+      if (!x.id) {                                                 // 바로 다음에 받을 빈 칸
+        push(72, 48, false, px => `<div class="kq-row lv0 is-next" style="height:72px;--x:${px}px">
+            <span class="kq-node">${i + 1}</span><span class="kq-row__txt"><b>다음에 받을 편</b><small>받으면 이 자리에 채워져요</small></span></div>`);
+        continue;
+      }
+      const lv = KM_LV(x);
+      push(72, 48, !!x.got, px => `<button type="button" class="kq-row lv${lv}${next ? ' is-next' : ''}" data-km="${esc(x.id)}" style="height:72px;--x:${px}px"
+          aria-label="${i + 1}편 ${esc(x.title)} — ${KM_LV_LABEL[lv]}">
+          <span class="kq-node">${i + 1}${lv === 3 ? `<i class="kq-node__star">${KQ_I.star}</i>` : ''}</span>
+          <span class="kq-row__txt"><b>${esc(x.title)}</b><small>${x.got ? `${kqDots(lv)}${KM_LV_LABEL[lv]} · ${shortDate(x.got)}` : next ? '다음에 받을 편' : '아직 오지 않은 편'}</small></span></button>`);
+    }
+    const b = s.boss, bx = (KQ_COL - 64) / 2;
+    const g = `<span class="kq-node kq-node--boss">${kqGuardian(c.id, b.state === 'cleared' ? 'down' : b.state === 'locked' ? 'shadow' : '')}</span>`;
+    const bossRow = b.state === 'ready'
+      ? `<button type="button" class="kq-row kq-row--boss is-ready" data-boss="${esc(b.id)}" style="height:100px;--x:${bx}px">${g}
+          <span class="kq-row__txt"><b>${esc(b.name)}</b><small>이 단계에서 받은 지식으로 겨뤄요</small></span><span class="kq-cta">겨루기</span></button>`
+      : b.state === 'cleared'
+        ? `<button type="button" class="kq-row kq-row--boss is-cleared" data-boss="${esc(b.id)}" style="height:100px;--x:${bx}px">${g}
+          <span class="kq-row__txt"><b>${esc(b.name)} 격파</b><small>최고 ${b.best}점 · ${b.tries}번 겨룸</small></span><span class="kq-cta kq-cta--ghost">다시</span></button>`
+        : `<div class="kq-row kq-row--boss is-locked" style="height:100px;--x:${bx}px">${g}
+          <span class="kq-row__txt"><b>${esc(b.name)}</b><small>${b.need}편 더 받으면 나타나요</small></span></div>`;
+    rows.push({ h: 100, size: 64, x: bx, got: b.state !== 'locked', html: bossRow });
+    let y = 0;
+    const pts = rows.map(r => { const p = [r.x + r.size / 2, y + r.h / 2]; y += r.h; return p; });
+    const curve = ps => ps.map((p, k) => {
+      if (!k) return `M${p[0]} ${p[1]}`;
+      const q = ps[k - 1], m = (p[1] - q[1]) / 2;
+      return `C${q[0]} ${q[1] + m} ${p[0]} ${p[1] - m} ${p[0]} ${p[1]}`;
+    }).join(' ');
+    const reach = rows.reduce((a, r, k) => (r.got ? k : a), -1);   // 여기까지 걸어왔다
+    return `<div class="kq-trail">
+        <svg class="kq-trail__svg" width="${KQ_COL}" height="${y}" viewBox="0 0 ${KQ_COL} ${y}" aria-hidden="true">
+          <path class="kq-trail__bg" d="${curve(pts)}"/>${reach > 0 ? `<path class="kq-trail__on" d="${curve(pts.slice(0, reach + 1))}"/>` : ''}</svg>
+        ${rows.map(r => r.html).join('')}
+      </div>`;
   }
 
   function kqBindPath() {
     const box = $('kqPath'); if (!box) return;
     box.querySelectorAll('[data-km]').forEach(b => b.addEventListener('click', () => openKmItem(b.dataset.km)));
     box.querySelectorAll('[data-boss]').forEach(b => b.addEventListener('click', () => openBoss(b.dataset.boss)));
-    box.querySelectorAll('[data-more]').forEach(b => b.addEventListener('click', () => {
-      km.more[b.dataset.more] = true; renderKqCat();
+    const redraw = () => {
+      const c = km.data.categories.find(x => x.id === km.cat), t = c && kqThemeOf(c);
+      if (t) { box.innerHTML = kqPathHTML(c, t); kqBindPath(); }
+    };
+    box.querySelectorAll('[data-more]').forEach(b => b.addEventListener('click', () => { km.more[b.dataset.more] = true; redraw(); }));
+    box.querySelectorAll('[data-stage]').forEach(b => b.addEventListener('click', () => {
+      const id = b.dataset.stage;
+      km.open[id] = b.dataset.open !== '1'; redraw();
+      const again = [...box.querySelectorAll('[data-stage]')].find(x => x.dataset.stage === id);
+      if (again) again.focus({ preventScroll: true });
     }));
   }
 
@@ -2107,22 +2245,24 @@
      틀린 문제는 끝나고 '복습할 편'으로 모아 보여 주고, 누르면 그 편 팝업으로. */
   let kb = null;
   async function openBoss(stageId) {
-    showModal(`<div class="kg-pop__loading muted">보스가 다가오는 중…</div>`);
+    showModal(`<div class="kg-pop__loading muted">수문장이 다가오는 중…</div>`);
     let r;
     try { r = await api(`/api/knowledge-quest/boss/${encodeURIComponent(stageId)}?mode=PROFESSIONAL`); }
     catch (e) { $('modalBody').innerHTML = `<p class="muted kb__err">${esc(e.message)}</p>`; return; }
-    kb = { id: stageId, boss: r.boss, qs: r.questions, i: 0, hp: r.boss.hp, hearts: r.boss.hearts, score: 0, wrong: [], locked: false };
+    const at = kqFindStage(stageId);
+    kb = { id: stageId, cat: at ? at.c.id : '', boss: r.boss, qs: r.questions, i: 0, hp: r.boss.hp, hearts: r.boss.hearts, score: 0, wrong: [], locked: false };
     kbIntro();
   }
+  const kbHearts = () => Array.from({ length: kb.boss.hearts }, (_, k) => `<i class="${k < kb.hearts ? 'on' : ''}">${KQ_I.heart}</i>`).join('');
 
   function kbIntro() {
     const b = kb.boss;
-    $('modalBody').innerHTML = `<div class="kb kb--intro">
-        <p class="kb__crumb">${esc(b.category)} · ${esc(b.theme)} · ${esc(b.stageTitle)}</p>
-        <div class="kb__emoji kb__emoji--big">${b.emoji}</div>
-        <h3 class="kb__title">${esc(b.name)}이 길을 막았다!</h3>
-        <p class="kb__rule">이 단계에서 받은 지식으로만 문제가 나와요.<br>${b.hp}번 맞히면 승리 · 하트 ${b.hearts}개를 다 잃으면 패배</p>
-        <button type="button" class="btn btn--primary kb__go" id="kbGo">⚔️ 싸우기</button>
+    $('modalBody').innerHTML = `<div class="kb kb--intro kq-c" style="${kqColor(kb.cat)}">
+        <p class="kb__crumb">${esc(b.category)} · ${kbWhere(b)}</p>
+        <div class="kb__g kb__g--big">${kqGuardian(kb.cat)}</div>
+        <h3 class="kb__title">${esc(b.name)}이 길을 막았다</h3>
+        <p class="kb__rule">이 단계에서 받은 지식으로만 문제가 나와요.<br><b>${b.hp}번</b> 맞히면 승리 · 기회는 <b>${b.hearts}번</b></p>
+        <button type="button" class="btn btn--primary kb__go" id="kbGo">겨루기 시작</button>
       </div>`;
     $('kbGo').addEventListener('click', kbRender);
     $('kbGo').focus();
@@ -2130,13 +2270,12 @@
 
   function kbRender() {
     const b = kb.boss, q = kb.qs[kb.i];
-    const hearts = '❤️'.repeat(kb.hearts) + '🤍'.repeat(Math.max(0, b.hearts - kb.hearts));
-    $('modalBody').innerHTML = `<div class="kb">
-        <div class="kb__top"><span class="kb__crumb">${esc(b.theme)} · ${esc(b.stageTitle)}</span><span class="kb__hearts" aria-label="남은 하트 ${kb.hearts}">${hearts}</span></div>
+    $('modalBody').innerHTML = `<div class="kb kq-c" style="${kqColor(kb.cat)}">
+        <div class="kb__top"><span class="kb__crumb">${kbWhere(b)}</span><span class="kb__hearts" role="img" aria-label="남은 기회 ${kb.hearts}번">${kbHearts()}</span></div>
         <div class="kb__boss">
-          <div class="kb__emoji" id="kbEmoji">${b.emoji}</div>
+          <div class="kb__g" id="kbG">${kqGuardian(kb.cat)}</div>
           <div class="kb__bossinfo"><b>${esc(b.name)}</b>
-            <div class="kb__hp" role="img" aria-label="보스 HP ${kb.hp}/${b.hp}"><i style="width:${(kb.hp / b.hp) * 100}%"></i></div>
+            <div class="kb__hp" role="img" aria-label="수문장 HP ${kb.hp}/${b.hp}"><i style="width:${(kb.hp / b.hp) * 100}%"></i></div>
             <small>HP ${kb.hp}/${b.hp}</small></div>
         </div>
         <div class="kb__q">
@@ -2150,6 +2289,9 @@
     $('modalBody').querySelectorAll('.kb__opt').forEach(btn => btn.addEventListener('click', () => kbAnswer(Number(btn.dataset.k))));
   }
 
+  /* 받은 순서로 묶은 단계는 이름이 이미 '테마 N단계'라 테마를 한 번 더 붙이지 않는다 */
+  function kbWhere(b) { return String(b.stageTitle).startsWith(b.theme) ? esc(b.stageTitle) : `${esc(b.theme)} · ${esc(b.stageTitle)}`; }
+
   function kbAnswer(k) {
     if (kb.locked) return;
     kb.locked = true;
@@ -2158,22 +2300,22 @@
     opts.forEach((o, j) => { o.disabled = true; if (j === q.answer) o.classList.add('is-right'); else if (j === k) o.classList.add('is-wrong'); });
     if (ok) {
       kb.hp--; kb.score++;
-      $('kbEmoji').classList.add('is-hit');
+      $('kbG').classList.add('is-hit');
       $('modalBody').querySelector('.kb__hp i').style.width = `${(kb.hp / kb.boss.hp) * 100}%`;
       $('modalBody').querySelector('.kb__bossinfo small').textContent = `HP ${kb.hp}/${kb.boss.hp}`;
-      $('kbFb').innerHTML = `<p class="kb__hit">💥 명중! <span>‘${esc(q.title)}’에서 배운 거예요</span></p>`;
+      $('kbFb').innerHTML = `<p class="kb__hit">명중! <span>‘${esc(q.title)}’에서 배운 거예요</span></p>`;
     } else {
       kb.hearts--;
       kb.wrong.push(q.id);
       $('modalBody').querySelector('.kb').classList.add('is-ouch');
-      $('modalBody').querySelector('.kb__hearts').textContent = '❤️'.repeat(kb.hearts) + '🤍'.repeat(Math.max(0, kb.boss.hearts - kb.hearts));
+      $('modalBody').querySelector('.kb__hearts').innerHTML = kbHearts();
       $('kbFb').innerHTML = `<p class="kb__miss">빗나갔어요 — 정답은 <b>${esc(q.options[q.answer])}</b> <span>‘${esc(q.title)}’ · 끝나고 복습할 편에 담아 둘게요</span></p>`;
     }
     kb.i++;
     const end = kb.hp <= 0 ? 'win' : (kb.hearts <= 0 || kb.i >= kb.qs.length) ? 'lose' : '';
     const next = document.createElement('button');
     next.type = 'button'; next.className = 'btn btn--sm btn--primary kb__next';
-    next.textContent = end === 'win' ? '🏆 결과 보기' : end ? '결과 보기' : '다음 문제 →';
+    next.textContent = end ? '결과 보기' : '다음 문제 →';
     next.addEventListener('click', () => (end ? kbEnd(end === 'win') : kbRender()));
     $('kbFb').append(next);
     next.focus();
@@ -2188,13 +2330,13 @@
       first = r.firstClear;
     } catch { /* 기록을 못 남겨도 결과 화면은 보여 준다 */ }
     const wrong = [...new Set(kb.wrong)].filter(id => km.nodes[id]);
-    kb.endHTML = `<div class="kb kb--end ${won ? 'is-win' : 'is-lose'}">
-        <div class="kb__emoji kb__emoji--big">${won ? '🏆' : b.emoji}</div>
+    kb.endHTML = `<div class="kb kb--end kq-c ${won ? 'is-win' : 'is-lose'}" style="${kqColor(kb.cat)}">
+        <div class="kb__g kb__g--big">${kqGuardian(kb.cat, won ? 'down' : '')}</div>
         <h3 class="kb__title">${won ? `${esc(b.name)} 격파!` : `${esc(b.name)}이 아직 버티고 있어요`}</h3>
-        <p class="kb__rule">${kb.score}번 명중${won && first ? ' · <b>+50 XP</b> · 다음 단계로!' : won ? ' · 이미 깬 보스예요' : ' · 복습하고 다시 도전해 보세요'}</p>
-        ${wrong.length ? `<div class="kb__rv"><h4>📖 복습할 편</h4>${wrong.map(id => `<button type="button" class="kb__review" data-rv="${esc(id)}">${esc(km.nodes[id].title)}</button>`).join('')}</div>` : ''}
+        <p class="kb__rule">${kb.score}번 명중${won && first ? ' · <b>+50 XP</b> · 다음 단계로!' : won ? ' · 이미 깬 수문장이에요' : ' · 복습하고 다시 겨뤄 보세요'}</p>
+        ${wrong.length ? `<div class="kb__rv"><h4>복습할 편</h4>${wrong.map(id => `<button type="button" class="kb__review" data-rv="${esc(id)}">${esc(km.nodes[id].title)}</button>`).join('')}</div>` : ''}
         <div class="kb__end-actions">
-          <button type="button" class="btn btn--sm" id="kbAgain">다시 도전</button>
+          <button type="button" class="btn btn--sm" id="kbAgain">다시 겨루기</button>
           <button type="button" class="btn btn--sm btn--primary" id="kbDone">지도로 돌아가기</button>
         </div>
       </div>`;
@@ -2215,7 +2357,7 @@
     let r;
     try { r = await api(`/api/knowledge-map/item/${encodeURIComponent(id)}?mode=PROFESSIONAL`); }
     catch (e) { $('modalBody').innerHTML = `<p class="muted">이 지식을 불러오지 못했어요 — ${esc(e.message)}</p>`; return; }
-    const back = fromBoss && kb && kb.endHTML ? `<button type="button" class="md__back" id="kbBack">← 보스전 결과로</button>` : '';
+    const back = fromBoss && kb && kb.endHTML ? `<button type="button" class="md__back" id="kbBack">← 겨루기 결과로</button>` : '';
     if (!r.feed) {
       $('modalBody').innerHTML = back + `<header class="md__head">
           <div class="md__kind">${esc(n.theme)} · ${esc(n.stage)} ${n.no}편</div>
@@ -2242,13 +2384,13 @@
   /* 담기 / 생각 — 상세 맨 아래 */
   function kmActHTML(r) {
     if (!r.mine) return `<section class="md__sec kg-act">
-        <h4>📥 내 것으로 만들기</h4>
+        <h4>내 것으로 만들기</h4>
         <p class="muted">서재에 담으면 연대기에 남고, 생각을 붙일 수 있어요.</p>
         <button type="button" class="btn btn--sm btn--primary" id="kgSave">서재에 담기</button>
         <span class="muted kg-act__msg" id="kgMsg"></span></section>`;
     const t = r.mine.thought;
     return `<section class="md__sec md__thought kg-act">
-        <h4>💭 내 생각</h4>
+        <h4>내 생각</h4>
         <div id="kgView">${t ? `<p class="md__thought-text">${para(t)}</p>` : '<p class="muted">이걸 읽고 떠오른 생각, 내 일·삶과 이어지는 점을 적어 두세요. 칸이 가장 진해져요.</p>'}
           <button type="button" class="btn btn--sm" id="kgEdit">${t ? '고치기' : '생각 적기'}</button></div>
         <div id="kgForm" hidden>
@@ -2260,7 +2402,7 @@
   }
 
   const kmLinksHTML = links => !links.length ? '' : `<section class="md__sec kg-links">
-      <h4>🔗 이어진 이야기</h4>
+      <h4>이어진 이야기</h4>
       <ul class="kg-links__list">${links.map(l => `<li><button type="button" data-km-go="${esc(l.id)}">
         <span>${esc(l.title)}</span><small>‘${esc(l.via.join('’·‘'))}’ · ${shortDate(l.got)}</small></button></li>`).join('')}</ul></section>`;
 

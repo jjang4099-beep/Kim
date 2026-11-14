@@ -6240,10 +6240,18 @@ function buildKnowledgeMap(userId, mode) {
       if (f && f.item_id && !got[f.item_id]) got[f.item_id] = date;
     }
   }
-  const saved = new Set(ItemsDB.getItemsByUser(userId, mode).map(i => i.feedData?.item_id).filter(Boolean));
+  /* 소화 정도 — 받음 → 서재에 담음 → 내 생각을 남김. '['로 시작하는 myInsight는 옛 시스템 태그라 생각으로 치지 않는다 */
+  const mine = ItemsDB.getItemsByUser(userId, mode).filter(i => i.feedData?.item_id);
+  const saved = new Set(mine.map(i => i.feedData.item_id));
+  const thought = new Set(mine.filter(i => _kmThoughtOf(i)).map(i => i.feedData.item_id));
+  const savedAt = {};
+  mine.forEach(i => { const d = i.createdAt ? toDateStr(new Date(i.createdAt)) : (i.date || null); if (d && (!savedAt[i.feedData.item_id] || d < savedAt[i.feedData.item_id])) savedAt[i.feedData.item_id] = d; });
 
   const nodes = {};
-  const take = id => { if (cat[id] && !nodes[id]) nodes[id] = { ...cat[id].node, got: got[id] || null, ...(saved.has(id) ? { saved: true } : {}) }; };
+  const take = id => {
+    if (cat[id] && !nodes[id]) nodes[id] = { ...cat[id].node, got: got[id] || null,
+      ...(saved.has(id) ? { saved: true, savedAt: savedAt[id] || null } : {}), ...(thought.has(id) ? { thought: true } : {}) };
+  };
   rawSeries.forEach(s => s.items.forEach(take));
   Object.keys(got).forEach(take);
 
@@ -6264,13 +6272,30 @@ function buildKnowledgeMap(userId, mode) {
   /* 적어도 한쪽은 받은 지식이어야 '내 지도'의 선이다 */
   const myLinks = links.filter(l => nodes[l.a] && nodes[l.b] && (nodes[l.a].got || nodes[l.b].got));
 
+  /* 서가 — 지식 과정 분류(분야 > 갈래)를 그대로 따른다. 분류표에 없는 연재·낱편 역사·지혜는 뒤에 */
+  const shelves = [], shelved = new Set();
+  const { catalog } = loadCourseDB();
+  (catalog.fields || []).filter(f => !f.soon).forEach(f => (f.groups || []).forEach(g => {
+    const ss = (g.courses || []).filter(cid => series.some(s => s.id === cid && s.items.length));
+    if (!ss.length) return;
+    ss.forEach(cid => shelved.add(cid));
+    shelves.push({ id: g.id, label: g.label, field: f.label, icon: f.icon || '📚', series: ss });
+  }));
+  const rest = series.filter(s => s.items.length && !shelved.has(s.id)).map(s => s.id);
+  if (rest.length) shelves.push({ id: 'etc', label: '그 밖의 연재', field: '역사', icon: '🏛️', series: rest });
+  if (others.length) shelves.push({ id: 'loose', label: '낱편 이야기', field: '역사', icon: '🏛️', series: [], items: others });
+  if (wisdom.some(w => w.items.length)) shelves.push({ id: 'wisdom', label: '오늘의 지혜', field: '지혜', icon: '📜', series: [], wisdom: true });
+
   const weekAgo = toDateStr(new Date(Date.now() - 7 * 86400000));
   const all = Object.values(nodes);
   return {
     success: true,
-    nodes, series, wisdom, others,
+    nodes, series, wisdom, others, shelves,
     links: myLinks,
     stats: {
+      got: all.filter(n => n.got).length,
+      saved: all.filter(n => n.got && n.saved).length,
+      thought: all.filter(n => n.got && n.thought).length,
       history: all.filter(n => n.kind === 'history' && n.got).length,
       seriesDone: series.filter(s => s.items.length && s.items.every(id => nodes[id].got)).length,
       wisdom: all.filter(n => n.kind === 'wisdom').length,
@@ -6280,6 +6305,59 @@ function buildKnowledgeMap(userId, mode) {
     },
   };
 }
+
+function _kmThoughtOf(item) {
+  const t = String(item?.myInsight || '').trim();
+  return t && !t.startsWith('[') ? t : '';
+}
+
+/* 지식 지도에서 한 편을 눌렀을 때 — 배달됐던 그 카드(콘텐츠는 전원 공용) + 내가 담은 기록·생각 + 이어진 이야기 */
+app.get('/api/knowledge-map/item/:id', (req, res) => {
+  try {
+    const id = String(req.params.id || '');
+    const { cat, links } = _kmapCatalog();
+    if (!cat[id]) return res.status(404).json({ success: false, error: '없는 지식이에요' });
+    const feeds = readDailyFeeds();
+    const today = toDateStr();
+    let hit = null;
+    for (const date of Object.keys(feeds).sort()) {
+      if (date > today) continue;
+      for (const [subId, f] of Object.entries(feeds[date] || {})) {
+        if (f && f.item_id === id) { hit = { date, subId, f }; break; }
+      }
+      if (hit) break;
+    }
+    const mode = req.query.mode || 'PROFESSIONAL';
+    const mineItem = ItemsDB.getItemsByUser(req.userId, mode).find(i => i.feedData?.item_id === id) || null;
+    const got = {};
+    for (const date of Object.keys(feeds).sort()) {
+      if (date > today) continue;
+      for (const f of Object.values(feeds[date] || {})) if (f && f.item_id && !got[f.item_id]) got[f.item_id] = date;
+    }
+    const near = links.filter(l => l.a === id || l.b === id).map(l => {
+      const o = l.a === id ? l.b : l.a;
+      return { id: o, title: cat[o].node.title, via: l.via, got: got[o] || null };
+    }).filter(x => x.got).sort((a, b) => b.got.localeCompare(a.got)).slice(0, 8);
+    let feed = null;
+    if (hit) {
+      const { saved, savedBy, savedEntries, ...rest } = hit.f;   // 다른 유저의 저장 흔적은 내보내지 않는다
+      feed = rest;
+    }
+    res.json({
+      success: true,
+      node: cat[id].node,
+      got: hit ? hit.date : null,
+      date: hit ? hit.date : null,
+      subId: hit ? hit.subId : null,
+      feed,
+      mine: mineItem ? { id: mineItem.id, thought: _kmThoughtOf(mineItem) } : null,
+      links: near,
+    });
+  } catch (e) {
+    console.warn('[KnowledgeMap] 한 편 실패:', e.message);
+    res.status(500).json({ success: false, error: '이 지식을 불러오지 못했어요' });
+  }
+});
 
 app.get('/api/knowledge-map', (req, res) => {
   try {

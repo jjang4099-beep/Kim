@@ -604,7 +604,7 @@ Object.assign(Mob, {
           ? `${crs.title} <em>${crs.no}/${crs.total}</em> · 다른 분야 고르기`
           : '역사·경제… 받을 분야를 골라 보세요'}</span><i class="ti ti-chevron-right"></i></button>`;
       html += `<a class="mob-kmap-link" href="chronicle.html#kmap">
-        <i class="ti ti-map-2"></i><span><b>지식 지도</b> 지금까지 받은 연재·지혜와 서로 이어진 이야기</span><i class="ti ti-chevron-right"></i></a>`;
+        <i class="ti ti-map-2"></i><span><b>지식 지도</b> 받은 지식이 어디에, 얼마나 깊이 쌓였는지</span><i class="ti ti-chevron-right"></i></a>`;
     }
 
     if (todayItems.length === 0 && !hasFeedPreview && !hasExamDaily) {

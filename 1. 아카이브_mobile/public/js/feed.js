@@ -1703,7 +1703,7 @@ Object.assign(Mob, {
       ${now}${stats}${fields}
       ${d.chosen ? `<button class="mvw-crs-auto" onclick="Mob._selectCourse('', this)">고르기 풀기 — 정해진 순서대로 받기</button>` : ''}
       <a class="mob-kmap-link" href="chronicle.html#kmap">
-        <i class="ti ti-map-2"></i><span><b>지식 지도</b> 받은 이야기를 시대 순으로, 서로 이어진 선과 함께</span><i class="ti ti-chevron-right"></i></a>`;
+        <i class="ti ti-map-2"></i><span><b>지식 지도</b> 분야별 서가와 소화도 — 칸을 눌러 다시 읽기</span><i class="ti ti-chevron-right"></i></a>`;
   },
 
   _toggleCourse(id) {

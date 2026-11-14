@@ -790,7 +790,7 @@
       + deepSec(['after', 'talk'])
       + noteSec;
 
-    if (fd.subType === 'history' && fd.title) return head(fd.series ? `역사 · 연재 ${fd.series.title} ${fd.series.no}/${fd.series.total}` : '역사', fd.title, [fd.era, fd.period, fd.region].filter(Boolean).join(' · '))
+    if (fd.subType === 'history' && fd.title) return head(fd.series ? `${fd.field || '역사'} · 연재 ${fd.series.title} ${fd.series.no}/${fd.series.total}` : (fd.field || '역사'), fd.title, [fd.era, fd.period, fd.region].filter(Boolean).join(' · '))
       + sec('교훈', fd.lesson ? para(fd.lesson) : '')
       + deepSec(['background'])
       + sec('무슨 일이 있었나', fd.summary ? para(fd.summary) : '')
@@ -1988,7 +1988,7 @@
     const s = km.data.stats;
     const tile = (num, unit, label) => `<div><div class="figure__num">${num}<small>${unit}</small></div><div class="figure__label">${label}</div></div>`;
     $('kmapStats').innerHTML =
-      tile(s.history, '편', '받은 역사') +
+      tile(s.history, '편', '받은 이야기') +
       tile(`${s.seriesDone}/${km.data.series.length}`, '', '끝까지 읽은 연재') +
       tile(s.wisdom, '장', '받은 지혜') +
       tile(s.linked, '줄', '이어진 이야기') +

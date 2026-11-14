@@ -390,8 +390,8 @@ Object.assign(Mob, {
     <div class="mob-card mob-hum-card">
       <div class="mob-hum-badge-row">
         <span class="mob-hum-badge">${item.series
-          ? `연재 · ${item.series.title} <b class="mob-hum-series-no">${item.series.no}/${item.series.total}</b>`
-          : `역사 · ${item.era || '세계사'}`}</span>
+          ? `${item.field && item.field !== '역사' ? item.field : '연재'} · ${item.series.title} <b class="mob-hum-series-no">${item.series.no}/${item.series.total}</b>`
+          : item.field && item.field !== '역사' ? `${item.field}${item.concept ? ` · ${item.concept}` : ''}` : `역사 · ${item.era || '세계사'}`}</span>
         <div class="mob-hum-badge-row-r">
           <span class="mob-hum-period">${[item.period, item.region].filter(Boolean).join(' · ')}</span>
           ${saveBtn}
@@ -1364,7 +1364,12 @@ Object.assign(Mob, {
       ];
       return `
         <div class="mvw-en-section">
-          <div class="mvw-en-section-title">🗓️ 역사 시대 선호</div>
+          <div class="mvw-en-section-title">🎓 받을 과정</div>
+          <button class="mvw-crs-open" onclick="Mob.switchView('courses')">
+            <span>역사·경제… 분야와 과정 고르기</span><i class="ti ti-chevron-right"></i></button>
+        </div>
+        <div class="mvw-en-section">
+          <div class="mvw-en-section-title">🗓️ 역사 시대 선호 <small style="font-weight:500;color:var(--text-3)">(과정을 고르지 않았을 때)</small></div>
           <div class="mvw-level-group">
             ${opts.map(o => `
             <label class="mvw-level-item${era === o.val ? ' active' : ''}">
@@ -1590,6 +1595,147 @@ Object.assign(Mob, {
       toast('피드 생성 실패 — API 키 또는 네트워크 확인', 'err');
     } finally {
       if (btn) { btn.disabled = false; btn.innerHTML = '<i class="ti ti-refresh"></i> 지금 생성'; }
+    }
+  },
+
+});
+
+/* ══════════════════════════════════════════════════════════════
+   지식 과정 — 분야 > 갈래 > 과정(단계). 과정을 고르면 지식 한줌의 이야기가 그 과정의 다음 편으로 온다.
+   11-14 "역사뿐 아니라 경제·공학도 단계별로, 처음에 무엇을 받을지 골라 매일 채워 나가게."
+══════════════════════════════════════════════════════════════ */
+Object.assign(Mob, {
+
+  async _loadCoursesView() {
+    const wrap = el('coursesWrap');
+    if (!wrap) return;
+    if (!state.courses) wrap.innerHTML = `<div class="mob-loading"><span class="mob-spin"></span></div>`;
+    try {
+      const data = await fetchJSON('/api/courses', {}, 15000);
+      if (!data?.success) throw new Error(data?.error || '');
+      state.courses = data;
+      if (!state.courseOpen) state.courseOpen = data.current || '';
+      this._renderCourses();
+    } catch {
+      if (!state.courses) wrap.innerHTML = `<div class="mvw-crs-empty">지식 과정을 불러오지 못했어요.<br>
+        <button class="mvw-crs-pick" onclick="Mob._loadCoursesView()">다시 시도</button></div>`;
+    }
+  },
+
+  _renderCourses() {
+    const wrap = el('coursesWrap');
+    const d = state.courses;
+    if (!wrap || !d) return;
+    const all = d.fields.flatMap(f => f.groups.flatMap(g => g.courses.map(c => ({ ...c, field: f, group: g }))));
+    const cur = all.find(c => c.id === d.current);
+    const pct = c => c.total ? Math.round(c.done / c.total * 100) : 0;
+
+    const now = cur ? `
+      <div class="mvw-crs-now">
+        <div class="mvw-crs-now-lbl">지금 받는 과정${d.chosen ? '' : ' · 자동'}</div>
+        <div class="mvw-crs-now-title">${cur.field.icon} ${cur.field.label} · ${cur.title}</div>
+        <div class="mvw-crs-bar"><i style="width:${pct(cur)}%"></i></div>
+        <div class="mvw-crs-now-meta"><b>${cur.done}/${cur.total}편</b>${cur.next ? ` · 다음 편: ${cur.next}` : ' · 다 받았어요'}</div>
+      </div>` : `
+      <div class="mvw-crs-now">
+        <div class="mvw-crs-now-lbl">지금 받는 과정</div>
+        <div class="mvw-crs-now-title">아직 고른 과정이 없어요</div>
+        <div class="mvw-crs-now-meta">아래에서 과정을 눌러 "이 과정 받기"를 고르면 내일 아침부터 그 이야기가 옵니다.</div>
+      </div>`;
+
+    const tile = (n, unit, lbl) => `<div class="mvw-crs-stat"><b>${n}<small>${unit}</small></b><span>${lbl}</span></div>`;
+    const stats = `<div class="mvw-crs-stats">
+      ${tile(d.stats.parts, '편', '받은 이야기')}
+      ${tile(`${d.stats.coursesDone}<i>/${d.stats.coursesTotal}</i>`, '', '마친 과정')}
+      ${tile(d.stats.fieldsStarted, '개', '시작한 분야')}
+    </div>`;
+
+    const courseRow = c => {
+      const open   = state.courseOpen === c.id;
+      const isCur  = d.current === c.id;
+      const isDone = c.total > 0 && c.done === c.total;
+      const badge  = isCur ? `<span class="mvw-crs-badge on">받는 중</span>`
+                   : isDone ? `<span class="mvw-crs-badge done">완료</span>`
+                   : d.chosen === c.id ? `<span class="mvw-crs-badge">고름</span>` : '';
+      const dots = c.items.map(x => `<i class="${x.got ? 'on' : ''}"></i>`).join('');
+      const parts = open ? `
+        <ol class="mvw-crs-parts">${c.items.map((x, i) => `
+          <li class="${x.got ? 'got' : ''}"><span class="mvw-crs-part-no">${x.got ? '<i class="ti ti-check"></i>' : i + 1}</span>
+            <span class="mvw-crs-part-t">${x.title}</span>${x.got ? `<time>${fmt(x.got)}</time>` : ''}</li>`).join('')}
+        </ol>
+        ${isCur ? `<div class="mvw-crs-note">지금 받고 있는 과정이에요. 매일 한 편씩 이어집니다.</div>`
+          : isDone ? `<div class="mvw-crs-note">다 받은 과정이에요.</div>`
+          : `<button class="mvw-crs-pick" onclick="event.stopPropagation();Mob._selectCourse('${c.id}', this)">
+               <i class="ti ti-player-play"></i> 이 과정 받기${c.done ? ` (${c.done + 1}편부터 이어서)` : ''}</button>`}` : '';
+      return `
+      <div class="mvw-crs-course${open ? ' open' : ''}${isCur ? ' cur' : ''}">
+        <button class="mvw-crs-course-hd" onclick="Mob._toggleCourse('${c.id}')">
+          <span class="mvw-crs-stage">${c.stage}단계</span>
+          <span class="mvw-crs-course-main">
+            <span class="mvw-crs-course-title">${c.title}${badge}</span>
+            <span class="mvw-crs-course-desc">${c.desc}</span>
+            <span class="mvw-crs-dots">${dots}</span>
+          </span>
+          <span class="mvw-crs-count">${c.done}/${c.total}</span>
+          <i class="ti ti-chevron-down"></i>
+        </button>
+        ${parts}
+      </div>`;
+    };
+
+    const fields = d.fields.map(f => f.soon ? `
+      <section class="mvw-crs-field soon">
+        <div class="mvw-crs-field-hd"><span class="mvw-crs-field-ic">${f.icon}</span>
+          <div><b>${f.label}</b><span>${f.desc}</span></div><em>준비 중</em></div>
+      </section>` : `
+      <section class="mvw-crs-field">
+        <div class="mvw-crs-field-hd"><span class="mvw-crs-field-ic">${f.icon}</span>
+          <div><b>${f.label}</b><span>${f.desc}</span></div><em>${f.done}/${f.total}편</em></div>
+        <div class="mvw-crs-bar thin"><i style="width:${pct(f)}%"></i></div>
+        ${f.groups.map(g => `
+          ${f.groups.length > 1 || g.label !== f.label ? `<div class="mvw-crs-group">${g.label}</div>` : ''}
+          ${g.courses.map(courseRow).join('')}`).join('')}
+      </section>`).join('');
+
+    wrap.innerHTML = `
+      <button class="mvw-crs-back" onclick="Mob.switchView('home', el('bnHome'))"><i class="ti ti-chevron-left"></i> 홈</button>
+      <div class="mvw-crs-intro">받고 싶은 과정을 고르면, <b>지식 한줌</b>의 이야기가 매일 아침 그 과정의 다음 편으로 옵니다. 한 과정을 마치면 같은 갈래의 다음 단계로 넘어가요.</div>
+      ${now}${stats}${fields}
+      ${d.chosen ? `<button class="mvw-crs-auto" onclick="Mob._selectCourse('', this)">고르기 풀기 — 정해진 순서대로 받기</button>` : ''}
+      <a class="mob-kmap-link" href="chronicle.html#kmap">
+        <i class="ti ti-map-2"></i><span><b>지식 지도</b> 받은 이야기를 시대 순으로, 서로 이어진 선과 함께</span><i class="ti ti-chevron-right"></i></a>`;
+  },
+
+  _toggleCourse(id) {
+    state.courseOpen = state.courseOpen === id ? '' : id;
+    this._renderCourses();
+  },
+
+  async _selectCourse(id, btn) {
+    if (btn) btn.disabled = true;
+    try {
+      const data = await fetchJSON('/api/courses/select', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ courseId: id }),
+      }, 15000);
+      if (!data?.success) throw new Error(data?.error || '');
+      state.courses = data;
+      if (id) state.courseOpen = id;
+      /* 오늘 카드가 바뀌었으면 바로 다시 받아 둔다 — 홈·배달 탭이 옛 카드를 보여 주지 않게 */
+      if (data.switched) {
+        state.feedLoaded = false;
+        try {
+          const feed = await fetchJSON(`/api/daily-feed?mode=${this._modeEnum()}`, {}, 60000);
+          state.feedItems = parseFeedsArray(feed?.feeds ?? feed?.items ?? feed);
+          const again = await fetchJSON('/api/courses', {}, 15000);
+          if (again?.success) state.courses = again;
+        } catch { state.feedItems = []; }
+      }
+      this._renderCourses();
+      toast(!id ? '정해진 순서대로 받을게요' : data.switched ? '오늘 이야기부터 이 과정으로 바꿨어요' : '다음 편부터 이 과정으로 받아요', 'ok');
+    } catch (e) {
+      toast(e?.message || '과정을 바꾸지 못했어요', 'err');
+      if (btn) btn.disabled = false;
     }
   },
 

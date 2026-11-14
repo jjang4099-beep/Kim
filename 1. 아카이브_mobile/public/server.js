@@ -1974,6 +1974,67 @@ function loadDeepLayers() {
 }
 const _deepOf = id => loadDeepLayers().deep[id] || null;
 
+/* ── 지식 과정(course) ─────────────────────────────────────────────────────
+   11-14 사용자: "역사만이 아니라 경제·공학 같은 분야를 단계별로 만들고, 처음에 무엇을 받을지 골라
+   매일 그 분야를 채워 나가게 하고 싶다."
+   과정 = deep_layers의 series 하나(이미 '하루 한 편 이어지는 연재'다). 여기에 얹는 것은 두 가지:
+     · data/course_db/catalog.json — 분야 > 갈래 > 과정(순서 = 단계) 분류표
+     · data/course_db/*.json 의 lessons — 역사가 아닌 분야의 본문(역사 항목과 같은 틀 + concept)
+   배달 피드는 늘리지 않는다: 지식 한줌의 역사 자리가 '내가 고른 과정의 다음 편'이 된다. */
+let _courseCache = null;
+function loadCourseDB() {
+  if (_courseCache) return _courseCache;
+  const dir = path.join(__dirname, 'data', 'course_db');
+  const out = { catalog: { fields: [], courses: {} }, lessons: [] };
+  try {
+    if (fs.existsSync(dir)) {
+      for (const file of fs.readdirSync(dir).filter(f => f.endsWith('.json')).sort()) {
+        try {
+          const b = JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8'));
+          if (Array.isArray(b.fields))  out.catalog.fields = b.fields;
+          if (b.courses && !Array.isArray(b.courses)) Object.assign(out.catalog.courses, b.courses);
+          if (Array.isArray(b.lessons)) out.lessons.push(...b.lessons.filter(l => l && l.id && l.title));
+        } catch (e) { console.warn(`[CourseDB] ${file} 파싱 실패:`, e.message); }
+      }
+    }
+    console.log(`[CourseDB] 로드 — 분야 ${out.catalog.fields.length}개 · 역사 밖 본문 ${out.lessons.length}편`);
+  } catch (e) { console.warn('[CourseDB] 로드 실패:', e.message); }
+  _courseCache = out;
+  return out;
+}
+/* 분야 이름 → 저장할 때 쓰는 category (lib/domain.js가 도메인으로 옮긴다) */
+const COURSE_FIELD_CATEGORY = { '경제': 'economy', '과학': 'science', '기계공학': 'tech', '전기공학': 'tech' };
+
+/** 분류표를 실제 연재와 맞춘 것 — 분야 > 갈래 > 과정(series) 배열. 분류표에 없는 연재는 lane이 같은 갈래 뒤에 붙는다 */
+function _courseTree() {
+  const { catalog } = loadCourseDB();
+  const { series }  = loadDeepLayers();
+  const byId = new Map(series.map(s => [s.id, s]));
+  const placed = new Set();
+  catalog.fields.forEach(f => (f.groups || []).forEach(g => (g.courses || []).forEach(id => placed.add(id))));
+  return catalog.fields.map(f => ({
+    ...f,
+    groups: (f.groups || []).map(g => ({
+      ...g,
+      courses: [...(g.courses || []), ...series.filter(s => !placed.has(s.id) && s.lane === g.lane).map(s => s.id)]
+        .map(id => byId.get(id)).filter(Boolean),
+    })),
+  }));
+}
+/** 같은 갈래에서 이 과정 다음 단계들 (한국사 1단계를 마치면 2단계로 넘어가게) */
+function _courseNextStages(courseId) {
+  for (const f of _courseTree()) for (const g of f.groups) {
+    const i = g.courses.findIndex(c => c.id === courseId);
+    if (i >= 0) return g.courses.slice(i + 1);
+  }
+  return [];
+}
+/** 배달 프로필이 고른 과정 id (없으면 '' = 알아서 이어 주기) */
+function _chosenCourse(user) {
+  const id = user?.feed_settings?.daily_knowledge?.course || '';
+  return id && loadDeepLayers().series.some(s => s.id === id) ? id : '';
+}
+
 /* 깊이 읽기·연재의 '본 적 있음' 판정 창. 갈래별 중복 창(인사이트 60일·고전 90일·역사 180일)보다 길게 잡는다 —
    10-05 100일 시뮬레이션: 60일이 지나자 '깊이 읽기 우선'이 이미 본 인사이트를 다시 끌어와 18장이 재배달됐다. */
 const DEEP_SEEN_DAYS = 365;
@@ -1988,17 +2049,20 @@ function _preferDeep(cands, recentIds) {
  * 연재 다음 편 고르기. 어제 나간 항목이 연재 중이면 그 다음 안 본 편,
  * 아니면 아직 안 끝난 첫 연재의 첫 안 본 편. pool에 없는 항목(시대 필터로 빠진 것)은 건너뛴다.
  */
-function _pickSeriesItem(pool, recentIds, keys) {
+function _pickSeriesItem(pool, recentIds, keys, prefer = '') {
   const { series } = loadDeepLayers();
   if (!series.length) return null;
   const byId = new Map(pool.map(i => [i.id, i]));
   const open = s => s.items.filter(id => byId.has(id) && !recentIds.includes(id));
   const lastId = _lastDeliveredId(keys);
+  /* 11-14~ 고른 과정이 있으면 그 과정의 안 본 첫 편 → 다 봤으면 같은 갈래의 다음 단계 → 그래도 없으면 아래 기본 순서 */
+  const chosen = prefer ? series.find(x => x.id === prefer) : null;
+  const picked = chosen ? [chosen, ..._courseNextStages(chosen.id)].find(x => open(x).length) : null;
   /* 진행 중인 연재가 있으면 그 연재의 '아직 안 본 첫 편'(보통 어제 편의 다음 편).
      10-05 시뮬레이션: 연재 도입 전날 우연히 로마 2편(파비우스)이 나가 있어서 '다음 편'만 찾으면
      1편(한니발 알프스)을 건너뛰고 3편부터 시작했다 — 앞에 안 본 편이 있으면 그것부터. */
   const cur = series.find(s => s.items.includes(lastId) && open(s).length);
-  const s = cur || series.find(x => open(x).length);
+  const s = picked || cur || series.find(x => open(x).length);
   if (!s) return null;
   const id = open(s)[0];
   const inPool = s.items.filter(x => byId.has(x));
@@ -2967,7 +3031,13 @@ async function generateHumanitiesFeed(sub, user) {
          이제 era 항목을 항상 먼저 쓰고, 다 본 뒤에만 옛 항목으로 넘어간다. */
       /* 10-05~ 연재가 최우선: 어제 이야기의 다음 편 → 안 끝난 연재 → (연재 밖) 깊이 읽기 있는 항목 → era 항목 → 전체 */
       const longIds    = getRecentDeliveredIDs(_dedupKeys(sub), DEEP_SEEN_DAYS);
-      const seriesPick = _pickSeriesItem(pool, longIds, _dedupKeys(sub));
+      /* 연재(과정) 후보에는 역사 밖 분야의 본문도 넣는다. 과정을 직접 골랐으면 시대 선호는 연재 고르기에 적용하지 않는다
+         (한국사만 받겠다고 해 둔 채 로마 과정을 고르면 한 편도 안 나오므로). */
+      const chosenCourse = _chosenCourse(user);
+      const lessons      = loadCourseDB().lessons;
+      const seriesPool   = chosenCourse ? [...kdb.history_facts, ...lessons]
+                         : eraFilter === '상관없음' ? [...pool, ...lessons] : pool;
+      const seriesPick = _pickSeriesItem(seriesPool, longIds, _dedupKeys(sub), chosenCourse);
       /* 10-25 200일 시뮬레이션: 연재가 끝난 뒤 180일 창만 보면, 10월에 나간 연재 편이 반년 만에 다시 나왔다
          (한 번도 안 나간 era 항목이 100개 넘게 남아 있는데도). 1년 안에 안 본 것 먼저, 없을 때만 180일 창. */
       const curatedNew = pool.filter(i => i.era && !longIds.includes(i.id));
@@ -2983,9 +3053,11 @@ async function generateHumanitiesFeed(sub, user) {
           subType:     'history',
           subId:       sub.id,
           label:       sub.label,
-          category:    'history',
+          category:    COURSE_FIELD_CATEGORY[item.field] || 'history',
           item_id:     item.id,
-          era:         _historyEra(item),
+          field:       item.field || '역사',          // 역사 밖 과정(경제 등)은 카드 머리에 분야 이름을 쓴다
+          concept:     item.concept || '',
+          era:         item.field && item.field !== '역사' ? item.field : _historyEra(item),
           period:      item.period       || '',
           region:      item.region       || '',
           title:       item.title        || '오늘의 역사',
@@ -4049,8 +4121,11 @@ app.patch('/api/delivery-settings/all', (req, res) => {
     };
   } else if (feedId === 'hist_daily' || feedId === 'daily_knowledge') {
     /* 역사 피드 — 시대 선호 */
+    /* 고른 과정(course)은 /api/courses/select 가 따로 저장한다 — 시대만 바꿀 때 지워지면 안 된다 */
+    const prevCourse = user.feed_settings[feedId]?.course;
     user.feed_settings[feedId] = {
-      era: ['한국사', '세계사', '상관없음'].includes(settings.era) ? settings.era : '상관없음'
+      era: ['한국사', '세계사', '상관없음'].includes(settings.era) ? settings.era : '상관없음',
+      ...(prevCourse ? { course: prevCourse } : {})
     };
   } else {
     /* quote_daily, idiom_daily — 별도 상세 설정 없음 */
@@ -6118,6 +6193,8 @@ function _kmapCatalog() {
   };
   kdb.history_facts.forEach(h => put(h.id, { kind: 'history', title: h.title, year: _kmapYear(h.title, h.summary), era: h.era || undefined, ...(seriesOf[h.id] || {}) },
     `${h.summary || ''} ${h.behind_story || ''}`, [_kmapHead(h.title)]));
+  loadCourseDB().lessons.forEach(h => put(h.id, { kind: 'history', title: h.title, year: _kmapYear(h.title, h.summary), era: h.field || undefined, ...(seriesOf[h.id] || {}) },
+    `${h.summary || ''} ${h.behind_story || ''}`, [_kmapHead(h.title)]));
   wdb.classic_quotes.forEach(c => put(c.id, { kind: 'wisdom', group: 'classic', title: `${c.book} — ${_kmapPlain(c.author)}` },
     `${c.quote} ${c.context || ''} ${c.backstory || ''}`,
     [_kmapPlain(c.author), _kmapPlain(c.book).length >= 3 ? _kmapPlain(c.book) : '']));   // '부활'처럼 짧은 책 이름은 일반 낱말과 겹친다
@@ -6210,6 +6287,114 @@ app.get('/api/knowledge-map', (req, res) => {
   } catch (e) {
     console.warn('[KnowledgeMap] 실패:', e.message);
     res.status(500).json({ success: false, error: '지식 지도를 만들지 못했어요' });
+  }
+});
+
+/* ══════════════════════════════════════════════════════════════
+   지식 과정 — GET /api/courses · POST /api/courses/select
+   분야 > 갈래 > 과정(단계)과 과정별 '받은 편'을 돌려준다.
+   ⚠️ 배달은 프로필 하나(users.json 첫 유저)로 모두에게 같은 카드가 나간다 — 받은 날·고른 과정도 그 프로필의 것이다.
+══════════════════════════════════════════════════════════════ */
+function buildCourses() {
+  const kdb = loadKnowledgeDB();
+  const titleOf = new Map([...kdb.history_facts, ...loadCourseDB().lessons].map(i => [i.id, i.title || '']));
+  const feeds = readDailyFeeds();
+  const today = toDateStr();
+  const got = {};
+  for (const date of Object.keys(feeds).sort()) {
+    if (date > today) continue;
+    for (const f of Object.values(feeds[date] || {})) {
+      if (f && f.item_id && !got[f.item_id]) got[f.item_id] = date;
+    }
+  }
+  const user     = getDefaultUser();
+  const chosen   = _chosenCourse(user);
+  const todayFeed = feeds[today]?.daily_knowledge;
+  const lastId   = todayFeed?.item_id || _lastDeliveredId(['daily_knowledge', 'hist_daily']);
+  const { catalog } = loadCourseDB();
+  const { series }  = loadDeepLayers();
+  const openCount = s => s.items.filter(id => titleOf.has(id) && !got[id]).length;
+  /* 지금 받는 과정 — 오늘 카드가 속한 과정, 없으면 고른 과정(또는 그 다음 단계), 그것도 없으면 마지막으로 받던 과정 */
+  const chosenS = chosen ? [series.find(s => s.id === chosen), ..._courseNextStages(chosen)].filter(Boolean).find(openCount) : null;
+  const current = todayFeed?.series?.id
+    || chosenS?.id
+    || series.find(s => s.items.includes(lastId) && openCount(s))?.id
+    || '';
+
+  const plain = t => String(t || '').replace(/\s*\([^)]*\)\s*$/, '');
+  const fields = _courseTree().map(f => {
+    const groups = f.groups.map(g => ({
+      id: g.id, label: g.label,
+      courses: g.courses.map((s, i) => {
+        const items = s.items.filter(id => titleOf.has(id)).map(id => ({ id, title: plain(titleOf.get(id)), got: got[id] || null }));
+        const done  = items.filter(x => x.got).length;
+        return { id: s.id, title: s.title, stage: i + 1, desc: catalog.courses[s.id]?.desc || '',
+                 total: items.length, done, items,
+                 next: plain(items.find(x => !x.got)?.title || '') };
+      }),
+    }));
+    const all = groups.flatMap(g => g.courses);
+    return { id: f.id, label: f.label, icon: f.icon || '', desc: f.desc || '', soon: !!f.soon || !all.length, groups,
+             total: all.reduce((n, c) => n + c.total, 0), done: all.reduce((n, c) => n + c.done, 0),
+             coursesDone: all.filter(c => c.total && c.done === c.total).length, coursesTotal: all.length };
+  });
+  const allCourses = fields.flatMap(f => f.groups.flatMap(g => g.courses));
+  return {
+    success: true, chosen, current, fields,
+    stats: {
+      parts: allCourses.reduce((n, c) => n + c.done, 0),
+      partsTotal: allCourses.reduce((n, c) => n + c.total, 0),
+      coursesDone: allCourses.filter(c => c.total && c.done === c.total).length,
+      coursesTotal: allCourses.length,
+      fieldsStarted: fields.filter(f => f.done > 0).length,
+    },
+  };
+}
+
+app.get('/api/courses', (req, res) => {
+  try {
+    res.json(buildCourses());
+  } catch (e) {
+    console.warn('[Courses] 실패:', e.message);
+    res.status(500).json({ success: false, error: '지식 과정을 불러오지 못했어요' });
+  }
+});
+
+/** Body: { courseId } — '' 를 보내면 고르기를 풀고 원래 순서대로 이어 준다 */
+app.post('/api/courses/select', (req, res) => {
+  try {
+    const courseId = String(req.body?.courseId || '').trim();
+    const { series } = loadDeepLayers();
+    const target = courseId ? series.find(s => s.id === courseId) : null;
+    if (courseId && !target) return res.status(400).json({ success: false, error: '없는 과정이에요' });
+    const users = readUsers();
+    if (!users.length) return res.status(404).json({ success: false, error: '배달 설정이 아직 없어요' });
+    const user = users[0];
+    if (!user.feed_settings) user.feed_settings = {};
+    const cfg = { ...(user.feed_settings.daily_knowledge || {}) };
+    if (courseId) cfg.course = courseId; else delete cfg.course;
+    user.feed_settings.daily_knowledge = cfg;
+    user.updated_at = new Date().toISOString();
+    writeUsers(users);
+
+    /* 오늘 카드가 다른 과정의 편이면 지워서 새 과정의 편으로 다시 만든다(다음 /api/daily-feed 때).
+       지워진 편은 '안 받은 편'으로 남아 그 과정을 다시 받을 때 나온다. 고르기를 푼 경우는 오늘 카드를 그대로 둔다. */
+    let switched = false;
+    if (courseId) {
+      const todayKey = toDateStr();
+      const all = readDailyFeeds();
+      const cur = all[todayKey]?.daily_knowledge;
+      if (cur && cur.series?.id !== courseId && !(cur.savedBy && Object.keys(cur.savedBy).length)) {
+        delete all[todayKey].daily_knowledge;
+        writeDailyFeeds(all);
+        switched = true;
+      }
+    }
+    console.log(`[Courses] 과정 선택 — ${courseId || '(자동)'}${switched ? ' · 오늘 카드 다시 만들기' : ''}`);
+    res.json({ success: true, switched, ...buildCourses() });
+  } catch (e) {
+    console.warn('[Courses] 선택 실패:', e.message);
+    res.status(500).json({ success: false, error: '과정을 바꾸지 못했어요' });
   }
 });
 

@@ -343,6 +343,8 @@ Object.assign(Mob, {
     state.libraryItems  = [];
     state.libraryLoaded = false;
     state.onThisDay     = null;
+    state.courses       = null;
+    state.courseOpen    = '';
     state.currentCat    = 'all';
     state.activeFeedFilter = 'all';
     /* 지식 순환 상태 — 이전 모드 태그/날짜 선택이 넘어오지 않도록 초기화 */
@@ -420,6 +422,7 @@ Object.assign(Mob, {
 
     if (viewName === 'home')    this.renderFeed(state.items);
     if (viewName === 'feed')    this._loadFeedView();
+    if (viewName === 'courses') this._loadCoursesView();
     if (viewName === 'manage')  {
       this._loadManageView();
       const mode = document.body.dataset.mode;
@@ -594,6 +597,12 @@ Object.assign(Mob, {
       });
       html += '</div>';
       /* 받은 지식이 어디에 쌓였는지 — 연대기의 지식 지도로 */
+      /* 지식 과정 — 오늘 이야기가 어느 과정의 몇 편째인지, 눌러서 받을 분야를 고른다 */
+      const crs = state.feedItems.find(f => f.series && f.subType === 'history')?.series;
+      html += `<button class="mob-kmap-link mob-crs-link" onclick="Mob.switchView('courses')">
+        <i class="ti ti-school"></i><span><b>지식 과정</b> ${crs
+          ? `${crs.title} <em>${crs.no}/${crs.total}</em> · 다른 분야 고르기`
+          : '역사·경제… 받을 분야를 골라 보세요'}</span><i class="ti ti-chevron-right"></i></button>`;
       html += `<a class="mob-kmap-link" href="chronicle.html#kmap">
         <i class="ti ti-map-2"></i><span><b>지식 지도</b> 지금까지 받은 연재·지혜와 서로 이어진 이야기</span><i class="ti ti-chevron-right"></i></a>`;
     }

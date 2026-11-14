@@ -152,6 +152,8 @@ const state = {
   feedLoaded       : false,
   feedItems        : [],
   examDaily        : null,   /* 수험생 모드 오늘의 배달(영어단어+한국사) */
+  courses          : null,   /* 지식 과정 — /api/courses 응답 { chosen, current, fields, stats } */
+  courseOpen       : '',     /* 지식 과정 화면에서 펼쳐 둔 과정 id */
   onThisDay        : null,   /* 1년 전 오늘 — { date, years:[{year,ago,date,items}] } (그날 한 번만 받는다) */
   wrongItems       : [],     /* 오답노트 전체(과목 필터·기간 그룹용 캐시) */
   wrongFilter      : 'all',  /* 오답노트 과목 필터 (all | math | korean | …) */
@@ -198,6 +200,7 @@ const VIEW_CONFIG = {
   summary: { el:'viewSummary', tabsVisible:false, title:'내 서재',   showHeaderActions:false },
   manage:  { el:'viewManage',  tabsVisible:false, title:'학습 관리', showHeaderActions:false },
   quiz:    { el:'viewQuiz',    tabsVisible:false, title:'AI 퀴즈',   showHeaderActions:false },
+  courses: { el:'viewCourses', tabsVisible:false, title:'지식 과정', showHeaderActions:false },
 };
 
 /* ══════════════════════════════════════════════

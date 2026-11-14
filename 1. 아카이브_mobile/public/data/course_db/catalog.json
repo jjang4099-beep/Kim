@@ -1,0 +1,47 @@
+{
+  "_comment": "지식 과정 카탈로그 — 분야(field) > 갈래(group) > 과정(course). 과정 = deep_layers의 series 하나. courses 배열 순서가 곧 단계(1단계, 2단계…). lane이 같은데 여기 안 적힌 연재는 그 갈래 맨 뒤에 붙는다. soon:true 는 아직 콘텐츠가 없는 '준비 중' 분야.",
+  "fields": [
+    {
+      "id": "history", "label": "역사", "icon": "🏛️",
+      "desc": "사람 이야기로 읽는 역사 — 사건만이 아니라 그 배경까지",
+      "groups": [
+        { "id": "korea", "label": "한국사", "lane": "한국", "courses": ["samguk", "goryeo", "joseon_early", "modern_korea"] },
+        { "id": "china", "label": "중국사", "lane": "중국", "courses": ["chunqiu", "qinhan"] },
+        { "id": "japan", "label": "일본사", "lane": "일본", "courses": ["sengoku"] },
+        { "id": "west",  "label": "유럽사·미국사", "lane": "서양", "courses": ["greece", "rome", "voyage", "tudor", "usa"] }
+      ]
+    },
+    {
+      "id": "economy", "label": "경제", "icon": "💰",
+      "desc": "돈·은행·물가·금리 — 뉴스에 나오는 말이 어디서 왔는지",
+      "groups": [
+        { "id": "economy_basic", "label": "경제 기초", "lane": "경제", "courses": ["econ_money"] }
+      ]
+    },
+    {
+      "id": "science", "label": "과학", "icon": "🔬",
+      "desc": "세상을 보는 눈을 바꾼 발견과 사람들",
+      "groups": [
+        { "id": "science_people", "label": "과학사", "lane": "과학", "courses": ["science"] }
+      ]
+    },
+    { "id": "mech", "label": "기계공학", "icon": "⚙️", "soon": true, "desc": "지렛대에서 엔진까지 — 힘을 다루는 기술" },
+    { "id": "elec", "label": "전기공학", "icon": "⚡", "soon": true, "desc": "번개에서 반도체까지 — 전기를 길들인 이야기" }
+  ],
+  "courses": {
+    "samguk":       { "desc": "진대법에서 백제의 마지막 날까지 — 세 나라가 다투던 시대" },
+    "goryeo":       { "desc": "서희의 담판에서 팔만대장경까지 — 거란·여진·몽골과 맞선 고려" },
+    "joseon_early": { "desc": "정도전의 설계에서 이이의 경고까지 — 조선이 틀을 잡던 200년" },
+    "modern_korea": { "desc": "척화비에서 3·1 운동까지 — 나라를 지키려 한 사람들" },
+    "chunqiu":      { "desc": "손무·공자에서 진시황까지 — 제후들이 다투던 500년" },
+    "qinhan":       { "desc": "홍문의 연회에서 종이의 발명까지 — 첫 통일 제국" },
+    "sengoku":      { "desc": "천하를 두고 다툰 무장들의 100년" },
+    "greece":       { "desc": "솔론의 개혁에서 소크라테스의 독배까지 — 민주정이 태어난 도시들" },
+    "rome":         { "desc": "한니발의 알프스에서 토이토부르크 숲까지 — 공화정에서 제국으로" },
+    "voyage":       { "desc": "정화의 원정에서 튤립 파동까지 — 세계가 하나로 이어지던 때" },
+    "tudor":        { "desc": "헨리 8세의 결혼에서 무적함대까지" },
+    "usa":          { "desc": "독립 선언에서 알래스카 매입까지" },
+    "science":      { "desc": "아르키메데스에서 튜링까지 — 과학을 만든 사람들" },
+    "econ_money":   { "desc": "금화에서 금리까지 — 돈이 굴러가는 원리를 이야기 10편으로" }
+  }
+}

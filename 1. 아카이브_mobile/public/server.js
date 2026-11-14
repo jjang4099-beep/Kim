@@ -40,6 +40,7 @@ const ItemsDB = require('./db/items');
 const UsersDB = require('./db/users');
 const CategoriesDB = require('./db/categories');
 const SummariesDB = require('./db/summaries');
+const ProgressDB = require('./db/progress');
 const { DOMAINS, CATEGORY_TO_DOMAIN, getDomain, contentDomain, MODE_EXAM, MODE_PRO, normalizeMode, deriveItemMode } = require('./lib/domain');
 const { generateToken, setAuthCookie, clearAuthCookie, requireAuth, getUserId } = require('./lib/auth');
 
@@ -295,6 +296,16 @@ async function initSQLiteDB() {
       ended_at   TEXT
     );
     CREATE INDEX IF NOT EXISTS idx_ump_user ON user_mode_periods(user_id, started_at);
+
+    /* 지식 퀘스트 — 단계 보스전 결과(유저별). 새 테이블만 추가, 기존 데이터는 건드리지 않는다 */
+    CREATE TABLE IF NOT EXISTS user_boss_clears (
+      user_id    TEXT NOT NULL,
+      stage_id   TEXT NOT NULL,
+      best       INTEGER DEFAULT 0,
+      tries      INTEGER DEFAULT 0,
+      cleared_at TEXT,
+      PRIMARY KEY (user_id, stage_id)
+    );
   `);
   _migrateFromJSON();
   _migrateLegacyDomains();
@@ -6316,19 +6327,21 @@ app.get('/api/knowledge-map/item/:id', (req, res) => {
   try {
     const id = String(req.params.id || '');
     const { cat, links } = _kmapCatalog();
-    if (!cat[id]) return res.status(404).json({ success: false, error: '없는 지식이에요' });
+    const qsrc = _questIndex().src[id];
+    if (!cat[id] && !qsrc) return res.status(404).json({ success: false, error: '없는 지식이에요' });
+    const baseNode = cat[id] ? cat[id].node : { id, kind: qsrc.kind, title: qsrc.title };
     const feeds = readDailyFeeds();
     const today = toDateStr();
     let hit = null;
     for (const date of Object.keys(feeds).sort()) {
       if (date > today) continue;
       for (const [subId, f] of Object.entries(feeds[date] || {})) {
-        if (f && f.item_id === id) { hit = { date, subId, f }; break; }
+        if (f && (f.item_id === id || f.pack_id === id)) { hit = { date, subId, f }; break; }
       }
       if (hit) break;
     }
     const mode = req.query.mode || 'PROFESSIONAL';
-    const mineItem = ItemsDB.getItemsByUser(req.userId, mode).find(i => i.feedData?.item_id === id) || null;
+    const mineItem = ItemsDB.getItemsByUser(req.userId, mode).find(i => i.feedData?.item_id === id || (i.feedData?.pack_id === id && i.feedData?.vocabEntries)) || null;
     const got = {};
     for (const date of Object.keys(feeds).sort()) {
       if (date > today) continue;
@@ -6345,7 +6358,7 @@ app.get('/api/knowledge-map/item/:id', (req, res) => {
     }
     res.json({
       success: true,
-      node: cat[id].node,
+      node: baseNode,
       got: hit ? hit.date : null,
       date: hit ? hit.date : null,
       subId: hit ? hit.subId : null,
@@ -6365,6 +6378,252 @@ app.get('/api/knowledge-map', (req, res) => {
   } catch (e) {
     console.warn('[KnowledgeMap] 실패:', e.message);
     res.status(500).json({ success: false, error: '지식 지도를 만들지 못했어요' });
+  }
+});
+
+/* ══════════════════════════════════════════════════════════════
+   지식 퀘스트 — GET /api/knowledge-quest · GET/POST /api/knowledge-quest/boss/:stageId
+   카테고리(역사·영어·경제·과학·지혜) > 테마(한국사·유럽사…) > 단계 > 편.
+   · 순서가 정해진 연재(과정)는 연재 하나 = 한 단계, 연재 순서대로 편이 채워진다.
+   · 순서 없이 섞여 오는 풀(영어 팩·고전·고사성어·인사이트·낱편 역사)은 '받은 순서'로 묶어 단계를 만든다
+     → 늘 앞 단계부터 차례로 차고, 일정 편수마다 보스가 나온다.
+   · 단계를 다 채우면 그 단계의 보스(받은 지식으로만 낸 퀴즈)에 도전할 수 있다. 결과는 user_boss_clears(유저별).
+   ⚠️ 받은 날은 배달 프로필 하나(dailyFeeds 공용) 기준, 담음·생각·보스 기록은 로그인한 유저 기준.
+══════════════════════════════════════════════════════════════ */
+const QUEST_EN_THEMES = [
+  ['business_meeting', '비즈니스 영어', '회의·협상·보고에서 바로 쓰는 표현'],
+  ['drama_spoken', '미드 영어', '드라마에서 매일 들리는 진짜 구어'],
+  ['daily_travel', '여행 영어', '공항·호텔·식당에서 막히지 않게'],
+  ['everyday_situations', '생활 영어', '일상의 작은 상황들'],
+];
+const QUEST_WISDOM = [['classic', '고전', '동서양 고전의 한 구절'], ['idiom', '고사성어', '네 글자에 담긴 옛이야기'], ['insight', '인사이트', '일과 삶에 쓰는 생각 도구']];
+const QUEST_CHUNK = { en: 5, wisdom: 10, loose: 10 };
+const QUEST_BOSS = { history: '🐲', economy: '👹', science: '🤖', english: '🦖', wisdom: '🦉' };
+
+function _questGot() {
+  const feeds = readDailyFeeds(), today = toDateStr();
+  const got = {}, order = [];
+  for (const date of Object.keys(feeds).sort()) {
+    if (date > today) continue;
+    for (const f of Object.values(feeds[date] || {})) {
+      const id = f && (f.item_id || f.pack_id);
+      if (id && !got[id]) { got[id] = date; order.push(id); }
+    }
+  }
+  return { got, order };
+}
+
+/* 내가 담은 것 / 생각 남긴 것 — 지식 id(item_id 또는 팩 id) 기준 */
+function _questMine(userId, mode) {
+  const saved = new Set(), thought = new Set();
+  ItemsDB.getItemsByUser(userId, mode).forEach(i => {
+    const ids = [i.feedData?.item_id, i.feedData?.pack_id, i.packContext?.packId].filter(Boolean);
+    ids.forEach(id => { saved.add(id); if (_kmThoughtOf(i)) thought.add(id); });
+  });
+  return { saved, thought };
+}
+
+/* 퀴즈·제목에 쓰는 원본 색인 */
+let _questIdx = null;
+function _questIndex() {
+  if (_questIdx) return _questIdx;
+  const kdb = loadKnowledgeDB(), wdb = loadWorkDB(), layers = loadDeepLayers();
+  const src = {};
+  [...kdb.history_facts, ...loadCourseDB().lessons].forEach(h => { src[h.id] = { kind: 'history', title: h.title, h, deep: layers.deep[h.id] || null }; });
+  wdb.classic_quotes.forEach(c => { src[c.id] = { kind: 'classic', title: `${c.book} — ${_kmapPlain(c.author)}`, c }; });
+  wdb.idiom_cards.forEach(c => { src[c.id] = { kind: 'idiom', title: `${c.idiom}${c.hanja ? ` ${c.hanja}` : ''}`, c }; });
+  wdb.daily_insights.forEach(c => { src[c.id] = { kind: 'insight', title: c.topic || c.headline, c }; });
+  (kdb.english_theme_packs || []).forEach(p => { src[p.id] = { kind: 'english', title: p.theme_title, p }; });
+  _questIdx = { src, packs: kdb.english_theme_packs || [], wisdom: { classic: wdb.classic_quotes.length, idiom: wdb.idiom_cards.length, insight: wdb.daily_insights.length } };
+  return _questIdx;
+}
+
+function buildQuest(userId, mode) {
+  const { got, order } = _questGot();
+  const { saved, thought } = _questMine(userId, mode);
+  const boss = ProgressDB.getBossRecords(userId);
+  const { src, packs, wisdom } = _questIndex();
+  const layers = loadDeepLayers();
+  const { catalog } = loadCourseDB();
+  const item = id => ({ id, title: src[id]?.title || id, got: got[id] || null,
+    ...(saved.has(id) ? { saved: true } : {}), ...(thought.has(id) ? { thought: true } : {}) });
+  const bossOf = (stageId, items, title, cat) => {
+    const need = items.filter(i => !i.got).length;
+    const rec = boss[stageId];
+    return { id: stageId, name: `${title}의 수문장`, emoji: QUEST_BOSS[cat] || '👾',
+             state: rec?.clearedAt ? 'cleared' : need ? 'locked' : 'ready', need, best: rec?.best || 0, tries: rec?.tries || 0 };
+  };
+  /* 받은 순서로 묶는 풀 → 단계들. total = 풀 전체 편수(아직 안 온 칸은 뒤 단계에 빈칸으로) */
+  const chunked = (prefix, ids, total, size, cat, label) => {
+    const n = Math.max(1, Math.ceil(Math.max(total, ids.length) / size));
+    return Array.from({ length: n }, (_, k) => {
+      const part = ids.slice(k * size, k * size + size).map(item);
+      const slots = Math.min(size, Math.max(total, ids.length) - k * size);
+      while (part.length < slots) part.push({ id: null, title: '', got: null });
+      const title = `${label} ${k + 1}단계`;
+      return { id: `${prefix}:${k + 1}`, no: k + 1, title, desc: `${k * size + 1}~${k * size + slots}번째로 받은 편`, items: part, boss: bossOf(`${prefix}:${k + 1}`, part, title, cat) };
+    });
+  };
+  const seriesStage = (sid, no, cat) => {
+    const s = layers.series.find(x => x.id === sid); if (!s) return null;
+    const items = s.items.filter(id => src[id]).map(item);
+    return { id: `c:${sid}`, no, title: s.title, desc: catalog.courses?.[sid]?.desc || '', items, boss: bossOf(`c:${sid}`, items, s.title, cat) };
+  };
+  const theme = (id, label, desc, stages) => {
+    const all = stages.flatMap(s => s.items);   // 빈 칸(아직 안 온 편)까지 전체
+    const gotN = all.filter(i => i.got).length;
+    /* 지금 여기 = 아직 다 안 찬 첫 단계 */
+    const cur = stages.findIndex(s => s.items.some(i => !i.got));
+    return { id, label, desc, stages, total: all.length, got: gotN,
+             saved: all.filter(i => i.got && i.saved).length, thought: all.filter(i => i.got && i.thought).length,
+             bossCleared: stages.filter(s => s.boss.state === 'cleared').length, current: cur < 0 ? stages.length - 1 : cur };
+  };
+  const cats = [];
+  const fieldCat = { history: 'history', economy: 'economy', science: 'science' };
+  for (const f of catalog.fields || []) {
+    const cid = fieldCat[f.id] || f.id;
+    if (f.soon) { cats.push({ id: cid, label: f.label, icon: f.icon, desc: f.desc || '', soon: true, themes: [] }); continue; }
+    const themes = (f.groups || []).map(g => theme(g.id, g.label, g.desc || '', g.courses.map((sid, i) => seriesStage(sid, i + 1, cid)).filter(Boolean)))
+      .filter(t => t.stages.length);
+    if (f.id === 'history') {
+      const inSeries = new Set(layers.series.flatMap(s => s.items));
+      const loose = order.filter(id => src[id]?.kind === 'history' && !inSeries.has(id));
+      if (loose.length) themes.push(theme('loose', '그 밖의 역사', '연재 밖에서 받은 낱편 이야기', chunked('h-loose', loose, Math.ceil(loose.length / QUEST_CHUNK.loose) * QUEST_CHUNK.loose, QUEST_CHUNK.loose, cid, '낱편')));
+    }
+    cats.push({ id: cid, label: f.label, icon: f.icon, desc: f.desc || '', themes });
+  }
+  /* 영어 — 테마 범주마다 받은 순서로 5팩씩 */
+  const enThemes = QUEST_EN_THEMES.map(([k, label, desc]) => {
+    const pool = packs.filter(p => p.theme_category === k);
+    const ids = order.filter(id => src[id]?.kind === 'english' && src[id].p.theme_category === k);
+    return theme(`en-${k}`, label, desc, chunked(`en-${k}`, ids, pool.length, QUEST_CHUNK.en, 'english', label));
+  }).filter(t => t.total);
+  cats.splice(1, 0, { id: 'english', label: '영어', icon: '🗽', desc: '테마팩으로 쌓는 실전 표현', themes: enThemes });
+  /* 지혜 — 고전·고사성어·인사이트, 받은 순서로 10장씩 */
+  cats.push({ id: 'wisdom', label: '지혜', icon: '📜', desc: '매일 한 장, 오늘의 지혜',
+    themes: QUEST_WISDOM.map(([k, label, desc]) => theme(`w-${k}`, label, desc,
+      chunked(`w-${k}`, order.filter(id => src[id]?.kind === k), wisdom[k], QUEST_CHUNK.wisdom, 'wisdom', label))) });
+
+  /* 레벨 — 받음 10 · 담음 +10 · 생각 +20 · 보스 +50 */
+  const TITLES = ['입문자', '견습생', '탐험가', '이야기꾼', '학자', '현자', '대가'];
+  for (const c of cats) {
+    const s = { got: 0, saved: 0, thought: 0, total: 0, bossCleared: 0, bossTotal: 0 };
+    c.themes.forEach(t => { s.got += t.got; s.saved += t.saved; s.thought += t.thought; s.total += t.total; s.bossCleared += t.bossCleared; s.bossTotal += t.stages.length; });
+    const xp = s.got * 10 + s.saved * 10 + s.thought * 20 + s.bossCleared * 50;
+    let lv = 1, need = 100, base = 0;
+    while (xp >= base + need) { base += need; lv++; need += 60; }
+    Object.assign(c, s, { xp, level: lv, levelTitle: TITLES[Math.min(lv - 1, TITLES.length - 1)], xpIn: xp - base, xpNeed: need });
+  }
+  return { success: true, categories: cats };
+}
+
+app.get('/api/knowledge-quest', (req, res) => {
+  try { res.json(buildQuest(req.userId, req.query.mode || 'PROFESSIONAL')); }
+  catch (e) {
+    console.warn('[Quest] 실패:', e.message);
+    res.status(500).json({ success: false, error: '지식 지도를 만들지 못했어요' });
+  }
+});
+
+/* 단계 하나 찾기 — 보스 문제·결과 검증용 */
+function _questStage(userId, mode, stageId) {
+  for (const c of buildQuest(userId, mode).categories) {
+    for (const t of c.themes) {
+      const s = t.stages.find(x => x.id === stageId);
+      if (s) return { cat: c, theme: t, stage: s };
+    }
+  }
+  return null;
+}
+
+const _shuffle = a => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
+const _qHead = t => String(t || '').replace(/\s*\([^)]*\)\s*$/, '').split(' — ')[0].trim();
+const _qYear = t => { const m = String(t || '').match(/\(([^)]*\d[^)]*)\)\s*$/); return m ? m[1] : ''; };
+
+/* 받은 지식으로만 문제를 만든다. 오답 보기는 같은 단계 → 같은 종류의 받은 지식 → 같은 종류 전체 순으로 채운다 */
+function _questQuestions(stageItems, cat) {
+  const { src } = _questIndex();
+  const { got } = _questGot();
+  const mine = stageItems.filter(i => i.id && i.got && src[i.id]).map(i => i.id);
+  const sameKind = k => Object.keys(src).filter(id => src[id].kind === k);
+  const pickOpts = (answer, pool) => {
+    const opts = [answer];
+    for (const o of _shuffle([...new Set(pool)])) { if (opts.length >= 4) break; if (o && !opts.includes(o)) opts.push(o); }
+    return opts.length >= 3 ? _shuffle(opts) : null;
+  };
+  const qs = [];
+  /* 지문에 정답이 그대로 들어 있으면 가린다(‘팬아메리칸 항공(팬암)은…’ → ‘○○ ○○(○○)은…’) */
+  const mask = (text, answer) => {
+    let t = String(text || '');
+    String(answer || '').replace(/[()·,]/g, ' ').split(/\s+/).filter(w => w.length >= 2).forEach(w => { t = t.split(w).join('○○'); });
+    return t;
+  };
+  const add = (id, q, prompt, answer, pool) => {
+    const options = pickOpts(answer, pool);
+    if (options && prompt) qs.push({ id, q, prompt: mask(prompt, answer).slice(0, 320), options, answer: options.indexOf(answer), title: src[id].title });
+  };
+  for (const id of mine) {
+    const s = src[id];
+    if (s.kind === 'history') {
+      const heads = [...mine, ...sameKind('history').filter(x => got[x])].map(x => src[x].kind === 'history' ? _qHead(src[x].title) : '');
+      const fill = sameKind('history').map(x => _qHead(src[x].title));
+      add(id, '이 이야기는 누구·무엇의 이야기일까요?', s.deep?.lesson || s.h.summary, _qHead(s.title), [...heads, ...fill.slice(0, 60)]);
+      const t = (s.deep?.terms || [])[Math.floor(Math.random() * (s.deep?.terms || []).length)];
+      if (t) {
+        const terms = mine.flatMap(x => (src[x].deep?.terms || []).map(y => y.t));
+        const more = sameKind('history').slice(0, 200).flatMap(x => (src[x].deep?.terms || []).map(y => y.t));
+        add(id, '이 설명에 맞는 말은?', t.d, t.t, [...terms, ...more]);
+      }
+      const yr = _qYear(s.title);
+      if (yr) add(id, `‘${_qHead(s.title)}’은 언제의 일일까요?`, s.h.summary, yr, [...mine.map(x => _qYear(src[x].title)), ...sameKind('history').map(x => _qYear(src[x].title))].filter(Boolean));
+    } else if (s.kind === 'idiom') {
+      add(id, '이 뜻을 가진 고사성어는?', s.c.meaning, s.title, [...mine.map(x => src[x].title), ...sameKind('idiom').map(x => src[x].title)]);
+    } else if (s.kind === 'classic') {
+      add(id, '이 구절은 어느 책에서 나왔을까요?', `“${s.c.quote}”`, s.title, [...mine.map(x => src[x].title), ...sameKind('classic').map(x => src[x].title)]);
+    } else if (s.kind === 'insight') {
+      add(id, '이 생각 도구의 이름은?', s.c.headline || s.c.body, s.title, [...mine.map(x => src[x].title), ...sameKind('insight').map(x => src[x].title)]);
+    } else if (s.kind === 'english') {
+      const exprs = mine.flatMap(x => src[x].p?.expressions || []).map(e => e.expression);
+      _shuffle(s.p.expressions || []).slice(0, 2).forEach(e =>
+        add(id, '이 뜻을 영어로 하면?', e.meaning, e.expression, [...exprs, ...sameKind('english').flatMap(x => (src[x].p.expressions || []).map(y => y.expression)).slice(0, 300)]));
+    }
+  }
+  /* 한 편에서 너무 많이 나오지 않게 섞어서 최대 8문제 */
+  const seen = {}, out = [];
+  for (const q of _shuffle(qs)) { if ((seen[q.id] = (seen[q.id] || 0) + 1) > 2) continue; out.push(q); if (out.length >= 8) break; }
+  return out;
+}
+
+app.get('/api/knowledge-quest/boss/:stageId', (req, res) => {
+  try {
+    const mode = req.query.mode || 'PROFESSIONAL';
+    const hit = _questStage(req.userId, mode, String(req.params.stageId || ''));
+    if (!hit) return res.status(404).json({ success: false, error: '없는 단계예요' });
+    if (hit.stage.boss.state === 'locked') return res.status(400).json({ success: false, error: `${hit.stage.boss.need}편 더 받으면 보스가 나타나요` });
+    const questions = _questQuestions(hit.stage.items, hit.cat.id);
+    if (questions.length < 3) return res.status(400).json({ success: false, error: '문제를 만들 만큼 내용이 모이지 않았어요' });
+    const hp = Math.min(5, questions.length - 1);
+    res.json({ success: true, boss: { ...hit.stage.boss, hp, hearts: 3, stageTitle: hit.stage.title, theme: hit.theme.label, category: hit.cat.label }, questions });
+  } catch (e) {
+    console.warn('[Quest] 보스 실패:', e.message);
+    res.status(500).json({ success: false, error: '보스를 불러오지 못했어요' });
+  }
+});
+
+app.post('/api/knowledge-quest/boss/:stageId/result', (req, res) => {
+  try {
+    const mode = req.query.mode || 'PROFESSIONAL';
+    const stageId = String(req.params.stageId || '');
+    const hit = _questStage(req.userId, mode, stageId);
+    if (!hit) return res.status(404).json({ success: false, error: '없는 단계예요' });
+    if (hit.stage.boss.state === 'locked') return res.status(400).json({ success: false, error: '아직 도전할 수 없는 단계예요' });
+    const score = Math.max(0, Math.min(20, Number(req.body?.score) || 0));
+    const won = req.body?.won === true;
+    const rec = ProgressDB.recordBossTry(req.userId, stageId, score, won);
+    res.json({ success: true, record: rec, firstClear: won && hit.stage.boss.state !== 'cleared' });
+  } catch (e) {
+    console.warn('[Quest] 결과 저장 실패:', e.message);
+    res.status(500).json({ success: false, error: '결과를 저장하지 못했어요' });
   }
 });
 

@@ -803,6 +803,26 @@ function _seedEnglishThemes() {
 }
 
 /**
+ * 안 본 팩 후보(rows) 중 하나를 고른다 — 지식이 테마별로 쌓이게.
+ * 갈래(비즈니스·생활·여행·미드)는 예전처럼 무작위로 섞이고, 그 갈래 안에서는 분류표(course_db/english_themes.json) 순서대로:
+ * 받다 만 테마가 있으면 그 테마의 다음 팩, 없으면 아직 시작 안 한 첫 테마의 첫 팩. 분류표에 없는 팩이면 그대로 무작위.
+ */
+function _pickEnPackInThemeOrder(rows) {
+  if (!rows || !rows.length) return null;
+  const seed = rows[Math.floor(Math.random() * rows.length)];
+  try {
+    const group = (loadCourseDB().english || []).find(g => g.themes.some(t => (t.packs || []).includes(seed.pack_id)));
+    if (!group) return seed;
+    const { got } = _questGot();
+    const cand = new Map(rows.map(r => [r.pack_id, r]));
+    const fresh = t => (t.packs || []).filter(id => cand.has(id) && !got[id]);
+    const open = group.themes.filter(t => fresh(t).length);
+    const theme = open.find(t => (t.packs || []).some(id => got[id])) || open[0];
+    return theme ? cand.get(fresh(theme)[0]) : seed;   // 이 갈래를 한 바퀴 다 돌았으면(전부 받은 적 있음) 무작위 복습
+  } catch (e) { return seed; }
+}
+
+/**
  * 오늘 배달할 영어 테마팩 1개를 SQLite에서 선택 (AI 호출 없음)
  * categories(관리 화면에서 고른 테마 체크박스 값 배열)·level이 주어지면 그 조건에 맞는 팩만 고른다 —
  * 조건에 맞는 팩이 하나도 없으면 null을 반환해 호출부가 Tier 2/3로 폴백하게 한다(엉뚱한 테마를 억지로 주지 않음).
@@ -834,21 +854,21 @@ function _queryEnThemePack(subId, categories, level) {
         `SELECT * FROM english_themes WHERE delivery_date = ? AND pack_id NOT IN (${notIn})${filterSql} LIMIT 1`,
         [today, ...recentPackIds, ...filterParams]
       );
-      /* ② 날짜 무관 미배달 + 조건 일치 랜덤 */
+      /* ② 날짜 무관 미배달 + 조건 일치 — 하던 테마를 먼저 끝낸다(_pickEnPackInThemeOrder) */
       if (!themeRow) {
-        themeRow = _sqlGet(
-          `SELECT * FROM english_themes WHERE pack_id NOT IN (${notIn})${filterSql} ORDER BY RANDOM() LIMIT 1`,
+        themeRow = _pickEnPackInThemeOrder(_sqlQuery(
+          `SELECT * FROM english_themes WHERE pack_id NOT IN (${notIn})${filterSql}`,
           [...recentPackIds, ...filterParams]
-        );
+        ));
       }
     } else {
       /* ① 오늘 지정 날짜 + 조건 일치 */
       themeRow = _sqlGet(
         `SELECT * FROM english_themes WHERE delivery_date = ?${filterSql} LIMIT 1`, [today, ...filterParams]
       );
-      /* ② 조건 일치 전체 랜덤 */
+      /* ② 조건 일치 전체 — 테마 순서대로 */
       if (!themeRow) {
-        themeRow = _sqlGet(`SELECT * FROM english_themes WHERE 1=1${filterSql} ORDER BY RANDOM() LIMIT 1`, filterParams);
+        themeRow = _pickEnPackInThemeOrder(_sqlQuery(`SELECT * FROM english_themes WHERE 1=1${filterSql}`, filterParams));
       }
     }
     /* ②-b 같은 카테고리·같은 레벨 팩을 다 봤으면, 반복하기 전에 가까운 레벨의 안 본 팩부터.
@@ -1996,7 +2016,7 @@ let _courseCache = null;
 function loadCourseDB() {
   if (_courseCache) return _courseCache;
   const dir = path.join(__dirname, 'data', 'course_db');
-  const out = { catalog: { fields: [], courses: {} }, lessons: [] };
+  const out = { catalog: { fields: [], courses: {} }, lessons: [], english: [] };
   try {
     if (fs.existsSync(dir)) {
       for (const file of fs.readdirSync(dir).filter(f => f.endsWith('.json')).sort()) {
@@ -2005,6 +2025,7 @@ function loadCourseDB() {
           if (Array.isArray(b.fields))  out.catalog.fields = b.fields;
           if (b.courses && !Array.isArray(b.courses)) Object.assign(out.catalog.courses, b.courses);
           if (Array.isArray(b.lessons)) out.lessons.push(...b.lessons.filter(l => l && l.id && l.title));
+          if (Array.isArray(b.english_groups)) out.english = b.english_groups.filter(g => g && g.id && Array.isArray(g.themes));
         } catch (e) { console.warn(`[CourseDB] ${file} 파싱 실패:`, e.message); }
       }
     }
@@ -6385,19 +6406,14 @@ app.get('/api/knowledge-map', (req, res) => {
    지식 퀘스트 — GET /api/knowledge-quest · GET/POST /api/knowledge-quest/boss/:stageId
    카테고리(역사·영어·경제·과학·지혜) > 테마(한국사·유럽사…) > 단계 > 편.
    · 순서가 정해진 연재(과정)는 연재 하나 = 한 단계, 연재 순서대로 편이 채워진다.
-   · 순서 없이 섞여 오는 풀(영어 팩·고전·고사성어·인사이트·낱편 역사)은 '받은 순서'로 묶어 단계를 만든다
+   · 영어는 상황 테마(회의·병원·공항…) 하나 = 한 단계. 팩 구성은 course_db/english_themes.json, 배달도 그 순서를 따른다.
+   · 순서 없이 섞여 오는 풀(고전·고사성어·인사이트·낱편 역사)은 '받은 순서'로 묶어 단계를 만든다
      → 늘 앞 단계부터 차례로 차고, 일정 편수마다 보스가 나온다.
    · 단계를 다 채우면 그 단계의 보스(받은 지식으로만 낸 퀴즈)에 도전할 수 있다. 결과는 user_boss_clears(유저별).
    ⚠️ 받은 날은 배달 프로필 하나(dailyFeeds 공용) 기준, 담음·생각·보스 기록은 로그인한 유저 기준.
 ══════════════════════════════════════════════════════════════ */
-const QUEST_EN_THEMES = [
-  ['business_meeting', '비즈니스 영어', '회의·협상·보고에서 바로 쓰는 표현'],
-  ['drama_spoken', '미드 영어', '드라마에서 매일 들리는 진짜 구어'],
-  ['daily_travel', '여행 영어', '공항·호텔·식당에서 막히지 않게'],
-  ['everyday_situations', '생활 영어', '일상의 작은 상황들'],
-];
 const QUEST_WISDOM = [['classic', '고전', '동서양 고전의 한 구절'], ['idiom', '고사성어', '네 글자에 담긴 옛이야기'], ['insight', '인사이트', '일과 삶에 쓰는 생각 도구']];
-const QUEST_CHUNK = { en: 5, wisdom: 10, loose: 10 };
+const QUEST_CHUNK = { wisdom: 10, loose: 10 };
 const QUEST_BOSS = { history: '🐲', economy: '👹', science: '🤖', english: '🦖', wisdom: '🦉' };
 
 function _questGot() {
@@ -6467,7 +6483,7 @@ function buildQuest(userId, mode) {
   const seriesStage = (sid, no, cat) => {
     const s = layers.series.find(x => x.id === sid); if (!s) return null;
     const items = s.items.filter(id => src[id]).map(item);
-    return { id: `c:${sid}`, no, title: s.title, desc: catalog.courses?.[sid]?.desc || '', items, boss: bossOf(`c:${sid}`, items, s.title, cat) };
+    return { id: `c:${sid}`, no, title: s.title, desc: catalog.courses?.[sid]?.desc || '', fixed: true, items, boss: bossOf(`c:${sid}`, items, s.title, cat) };
   };
   const theme = (id, label, desc, stages) => {
     const all = stages.flatMap(s => s.items);   // 빈 칸(아직 안 온 편)까지 전체
@@ -6492,13 +6508,22 @@ function buildQuest(userId, mode) {
     }
     cats.push({ id: cid, label: f.label, icon: f.icon, desc: f.desc || '', themes });
   }
-  /* 영어 — 테마 범주마다 받은 순서로 5팩씩 */
-  const enThemes = QUEST_EN_THEMES.map(([k, label, desc]) => {
-    const pool = packs.filter(p => p.theme_category === k);
-    const ids = order.filter(id => src[id]?.kind === 'english' && src[id].p.theme_category === k);
-    return theme(`en-${k}`, label, desc, chunked(`en-${k}`, ids, pool.length, QUEST_CHUNK.en, 'english', label));
+  /* 영어 — 갈래(비즈니스·생활·여행·미드) > 상황 테마(회의·병원…) = 한 단계. 테마의 팩을 다 받으면 그 테마의 수문장.
+     분류표(course_db/english_themes.json)에 없는 팩은 같은 theme_category 갈래 끝의 '그 밖의 상황'으로 — 새 팩이 지도에서 사라지지 않게. */
+  const enGroups = loadCourseDB().english || [];
+  const enPlaced = new Set(enGroups.flatMap(g => g.themes.flatMap(t => t.packs || [])));
+  const enThemes = enGroups.map(g => {
+    const stage = (id, title, desc, ids) => {
+      const items = ids.filter(x => src[x]?.kind === 'english').map(item);
+      return items.length ? { id: `en:${id}`, no: 0, title, desc, fixed: true, items, boss: bossOf(`en:${id}`, items, title, 'english') } : null;
+    };
+    const stages = g.themes.map(t => stage(t.id, t.label, t.desc || '', t.packs || []));
+    stages.push(stage(`${g.id}-etc`, '그 밖의 상황', '아직 테마로 묶이지 않은 팩', packs.filter(p => p.theme_category === g.category && !enPlaced.has(p.id)).map(p => p.id)));
+    const live = stages.filter(Boolean);
+    live.forEach((s, i) => { s.no = i + 1; });
+    return theme(`en-${g.category}`, g.label, g.desc || '', live);
   }).filter(t => t.total);
-  cats.splice(1, 0, { id: 'english', label: '영어', icon: '🗽', desc: '테마팩으로 쌓는 실전 표현', themes: enThemes });
+  cats.splice(1, 0, { id: 'english', label: '영어', icon: '🗽', desc: '상황 테마를 하나씩 깨며 쌓는 실전 표현', themes: enThemes });
   /* 지혜 — 고전·고사성어·인사이트, 받은 순서로 10장씩 */
   cats.push({ id: 'wisdom', label: '지혜', icon: '📜', desc: '매일 한 장, 오늘의 지혜',
     themes: QUEST_WISDOM.map(([k, label, desc]) => theme(`w-${k}`, label, desc,

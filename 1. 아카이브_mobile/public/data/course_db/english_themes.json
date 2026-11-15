@@ -1,0 +1,299 @@
+{
+ "_comment": "영어 테마 분류표 — 갈래(group) > 상황 테마(theme) > 팩. 지식 지도에서 테마 하나 = 한 단계(팩을 다 받으면 수문장). 배달도 이 순서를 따른다: 갈래는 무작위, 갈래 안에서는 하던 테마를 먼저 끝내고 다음 테마로. category = 그 갈래의 기본 theme_category — 여기 안 적힌 새 팩은 같은 category 갈래의 '그 밖의 상황'으로 붙는다. packs 순서 = 받는 순서(쉬운 것부터).",
+ "english_groups": [
+  {
+   "id": "biz",
+   "category": "business_meeting",
+   "label": "비즈니스 영어",
+   "desc": "회의·보고·협상 — 상황별로 하나씩 깨는 업무 영어",
+   "themes": [
+    {
+     "id": "biz-basics",
+     "label": "기본 업무 소통",
+     "desc": "인사·일정·부탁·진행 상황 — 매일 쓰는 한마디",
+     "packs": [
+      "PACK_EN_085",
+      "PACK_EN_088",
+      "PACK_EN_091",
+      "PACK_EN_092",
+      "PACK_EN_093",
+      "PACK_EN_094"
+     ]
+    },
+    {
+     "id": "biz-meeting",
+     "label": "회의",
+     "desc": "말문 트기부터 회의를 이끄는 표현까지",
+     "packs": [
+      "PACK_EN_087",
+      "PACK_EN_017",
+      "PACK_EN_028",
+      "PACK_EN_035"
+     ]
+    },
+    {
+     "id": "biz-report",
+     "label": "이메일·보고",
+     "desc": "메일 한 통, 근거 있는 보고, 설득력 있는 제안",
+     "packs": [
+      "PACK_EN_086",
+      "PACK_EN_033",
+      "PACK_EN_016",
+      "PACK_EN_015",
+      "PACK_EN_022"
+     ]
+    },
+    {
+     "id": "biz-getdone",
+     "label": "일 처리·마감",
+     "desc": "막혔을 때, 급할 때, 끝까지 해낼 때",
+     "packs": [
+      "PACK_EN_001",
+      "PACK_EN_003",
+      "PACK_EN_013",
+      "PACK_EN_025"
+     ]
+    },
+    {
+     "id": "biz-nego",
+     "label": "협상·고객",
+     "desc": "밀고 당기기, 고객과 이해관계자 다루기",
+     "packs": [
+      "PACK_EN_034",
+      "PACK_EN_012",
+      "PACK_EN_024",
+      "PACK_EN_002",
+      "PACK_EN_038"
+     ]
+    },
+    {
+     "id": "biz-conflict",
+     "label": "갈등·거절",
+     "desc": "실수 인정, 이견 조율, 불편한 대화, 정중한 거절",
+     "packs": [
+      "PACK_EN_011",
+      "PACK_EN_014",
+      "PACK_EN_036",
+      "PACK_EN_019",
+      "PACK_EN_029",
+      "PACK_EN_040"
+     ]
+    },
+    {
+     "id": "biz-lead",
+     "label": "리더십·팀",
+     "desc": "방향 잡기, 신뢰, 동기부여, 피드백, 변화 이끌기",
+     "packs": [
+      "PACK_EN_004",
+      "PACK_EN_006",
+      "PACK_EN_020",
+      "PACK_EN_041",
+      "PACK_EN_010",
+      "PACK_EN_023",
+      "PACK_EN_039"
+     ]
+    },
+    {
+     "id": "biz-career",
+     "label": "커리어·면접",
+     "desc": "면접, 커리어의 갈림길, 네트워킹, 글로벌 무대",
+     "packs": [
+      "PACK_EN_005",
+      "PACK_EN_018",
+      "PACK_EN_021",
+      "PACK_EN_037",
+      "PACK_EN_027"
+     ]
+    },
+    {
+     "id": "biz-self",
+     "label": "자기 관리",
+     "desc": "번아웃, 경계 지키기, 나와 관계를 돌아보는 말",
+     "packs": [
+      "PACK_EN_007",
+      "PACK_EN_008",
+      "PACK_EN_009",
+      "PACK_EN_026"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "life",
+   "category": "everyday_situations",
+   "label": "생활 영어",
+   "desc": "병원·가게·은행 — 살면서 꼭 마주치는 상황들",
+   "themes": [
+    {
+     "id": "life-shop",
+     "label": "물건 사기",
+     "desc": "가게에서 사고, 바꾸고, 택배 문제까지",
+     "packs": [
+      "PACK_EN_079",
+      "PACK_EN_080",
+      "PACK_EN_049",
+      "PACK_EN_084"
+     ]
+    },
+    {
+     "id": "life-hospital",
+     "label": "병원·약국",
+     "desc": "증상 설명하고, 묻고, 약 받기",
+     "packs": [
+      "PACK_EN_048",
+      "PACK_EN_090"
+     ]
+    },
+    {
+     "id": "life-errands",
+     "label": "생활 볼일",
+     "desc": "미용실·은행·전화 예약·집 구하기",
+     "packs": [
+      "PACK_EN_082",
+      "PACK_EN_081",
+      "PACK_EN_083",
+      "PACK_EN_089"
+     ]
+    },
+    {
+     "id": "life-weather",
+     "label": "날씨·스몰토크",
+     "desc": "날씨 한마디로 대화 트기",
+     "packs": [
+      "PACK_EN_077",
+      "PACK_EN_078"
+     ]
+    },
+    {
+     "id": "life-realtalk",
+     "label": "솔직한 일상",
+     "desc": "교과서에 없는, 매일 입에 붙는 말",
+     "packs": [
+      "PACK_EN_030",
+      "PACK_EN_032"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "trip",
+   "category": "daily_travel",
+   "label": "여행 영어",
+   "desc": "공항에서 식당까지 — 여행의 장면마다",
+   "themes": [
+    {
+     "id": "trip-airport",
+     "label": "공항·비행기",
+     "desc": "체크인, 입국심사, 결항·지연 대처",
+     "packs": [
+      "PACK_EN_042",
+      "PACK_EN_068",
+      "PACK_EN_050"
+     ]
+    },
+    {
+     "id": "trip-stay",
+     "label": "숙소",
+     "desc": "체크인과 요청, 문제가 있을 때 따지기",
+     "packs": [
+      "PACK_EN_046",
+      "PACK_EN_059"
+     ]
+    },
+    {
+     "id": "trip-move",
+     "label": "이동·길 찾기",
+     "desc": "택시·지하철, 길 묻기, 렌터카",
+     "packs": [
+      "PACK_EN_047",
+      "PACK_EN_069",
+      "PACK_EN_058"
+     ]
+    },
+    {
+     "id": "trip-food",
+     "label": "식당·카페",
+     "desc": "주문부터 예약·계산까지",
+     "packs": [
+      "PACK_EN_043",
+      "PACK_EN_051"
+     ]
+    },
+    {
+     "id": "trip-sight",
+     "label": "관광·현지인",
+     "desc": "표 사기, 사진 부탁, 현지인과 수다",
+     "packs": [
+      "PACK_EN_070",
+      "PACK_EN_071",
+      "PACK_EN_060"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "drama",
+   "category": "drama_spoken",
+   "label": "미드 영어",
+   "desc": "드라마에서 매일 들리는 진짜 구어 — 장면별로",
+   "themes": [
+    {
+     "id": "drama-react",
+     "label": "리액션",
+     "desc": "감탄·공감·맞장구, 대화를 잇는 한마디",
+     "packs": [
+      "PACK_EN_031",
+      "PACK_EN_044",
+      "PACK_EN_072",
+      "PACK_EN_073",
+      "PACK_EN_045"
+     ]
+    },
+    {
+     "id": "drama-friends",
+     "label": "친구와 만남",
+     "desc": "약속 잡기, 밥 먹기, 연락, 오랜만의 재회",
+     "packs": [
+      "PACK_EN_052",
+      "PACK_EN_074",
+      "PACK_EN_075",
+      "PACK_EN_076",
+      "PACK_EN_065"
+     ]
+    },
+    {
+     "id": "drama-love",
+     "label": "연애·소문",
+     "desc": "썸, 비밀 얘기, 결정적 고백",
+     "packs": [
+      "PACK_EN_054",
+      "PACK_EN_055",
+      "PACK_EN_063"
+     ]
+    },
+    {
+     "id": "drama-fight",
+     "label": "다툼·사과",
+     "desc": "따지고, 맞받아치고, 선 긋고, 화해하기",
+     "packs": [
+      "PACK_EN_053",
+      "PACK_EN_066",
+      "PACK_EN_056",
+      "PACK_EN_061",
+      "PACK_EN_062"
+     ]
+    },
+    {
+     "id": "drama-comfort",
+     "label": "위로·부탁",
+     "desc": "하소연 들어주기, 도움 청하기, 곁에 있어 주기",
+     "packs": [
+      "PACK_EN_064",
+      "PACK_EN_067",
+      "PACK_EN_057"
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1960,11 +1960,12 @@
   }
 
   /* ── 지식 지도 = 지식 퀘스트 ──────────────────────────
-     분야(역사·영어·경제·과학·지혜) 탭 → 분야 카드(레벨 고리·쌓은 것·다음에 할 일) → 테마(한국사·유럽사…) → 단계 카드.
+     분야(역사·영어·경제·과학·지혜) 탭 → 전체 지도(테마별 판에 단계 마디와 편 점 — 분야 하나를 한눈에) → 분야 카드(레벨 고리·쌓은 것·다음에 할 일)
+     → 테마(한국사·유럽사…, 영어는 비즈니스·생활·여행·미드) → 단계 카드(영어는 상황 테마 하나 = 한 단계: 회의·병원…).
      단계를 펴면 굽이진 길에 편마다 디딤돌(진할수록 깊이 소화: 받음 → 서재에 담음 → 생각 남김)과 제목, 누르면 그 편을 팝업으로 다시 읽기.
      길 끝에는 수문장 — 단계를 다 채우면 나타나고, 받은 지식으로만 낸 문제로 겨룬다(GET/POST /api/knowledge-quest/boss).
      이모지는 쓰지 않는다(11-14 피드백). 샘플 모드에서는 그리지 않는다. */
-  const km = { data: null, cat: '', theme: {}, nodes: {}, more: {}, open: {} };
+  const km = { data: null, cat: '', theme: {}, nodes: {}, more: {}, open: {}, mapOff: false };
   const KM_LV = n => (!n || !n.got) ? 0 : n.thought ? 3 : n.saved ? 2 : 1;
   const KM_LV_LABEL = ['아직', '받음', '서재에 담음', '생각까지 남김'];
   const KM_DOMAIN = { history: 'humanities', economy: 'business', science: 'science', english: 'language', wisdom: 'psychology' };
@@ -1972,6 +1973,7 @@
     get() { try { return JSON.parse(localStorage.getItem('kq-view-v1')) || {}; } catch { return {}; } },
     set(v) { try { localStorage.setItem('kq-view-v1', JSON.stringify(v)); } catch { /* 기억 못 해도 화면은 그대로 */ } },
   };
+  const kqSave = () => kqStore.set({ cat: km.cat, theme: km.theme, mapOff: km.mapOff });
 
   async function loadKmap(keep) {
     if (DEMO) return;
@@ -1988,6 +1990,7 @@
         const byGot = d.categories.filter(c => !c.soon).slice().sort((a, b) => b.got - a.got);
         km.cat = d.categories.some(c => c.id === saved.cat && !c.soon) ? saved.cat : byGot[0].id;
         km.theme = saved.theme || {};
+        km.mapOff = !!saved.mapOff;
       }
       $('kmap').hidden = false;
       renderKmap();
@@ -2042,7 +2045,7 @@
         ${c.soon ? '<span class="kq-ring kq-ring--sm is-empty"></span>' : kqRing(32, c.xpIn / c.xpNeed, `<b>${c.level}</b>`, 'kq-ring--sm')}
         <span class="kq-tab__t"><b>${esc(c.label)}</b><small>${c.soon ? '준비 중' : `${esc(c.levelTitle)} · ${c.got}편`}</small></span></button>`).join('');
     $('kqTabs').querySelectorAll('[data-kqcat]').forEach(b => b.addEventListener('click', () => {
-      km.cat = b.dataset.kqcat; kqStore.set({ cat: km.cat, theme: km.theme }); renderKmap();
+      km.cat = b.dataset.kqcat; kqSave(); renderKmap();
     }));
     kqScrollOn($('kqTabs'));
     renderKqCat();
@@ -2082,6 +2085,7 @@
     const box = $('kqCat');
     box.style.cssText = kqColor(c.id);
     box.innerHTML = `
+      ${kqMapHTML(c, t)}
       <div class="kq-hero">
         ${kqRing(84, c.xpIn / c.xpNeed, `<small>Lv</small><b>${c.level}</b>`, 'kq-ring--lg')}
         <div class="kq-hero__main">
@@ -2113,17 +2117,96 @@
       </div>
       <div id="kqPath">${t ? kqPathHTML(c, t) : '<p class="muted">아직 열린 테마가 없어요.</p>'}</div>`;
     box.querySelectorAll('[data-kqtheme]').forEach(b => b.addEventListener('click', () => {
-      km.theme[c.id] = b.dataset.kqtheme; kqStore.set({ cat: km.cat, theme: km.theme }); renderKqCat();
+      km.theme[c.id] = b.dataset.kqtheme; kqSave(); renderKqCat();
     }));
     if (coach.go) $('kqCoachGo').addEventListener('click', () => kqGo(c, coach.go));
+    kqBindMap(c);
     kqScrollOn(box.querySelector('.kq-themes'));
     kqBindPath();
+  }
+
+  /* ── 전체 지도 ── 분야 하나를 한눈에(11-14: "지도처럼 전체가 보이는 형태로도"). 테마마다 판 하나, 단계는 알약 마디, 편은 마디를 도는 점.
+     받은 편은 점에 불이 들어오고(담으면 더 밝게, 생각을 남기면 금빛), 다 채운 단계에서 다음 단계로 가는 길이 켜진다.
+     마디를 누르면 아래에 그 단계의 길이 펼쳐진다. 받은 순서로 묶는 테마(지혜·낱편)는 끝이 멀어 지금 단계 다음 하나까지만 그린다. */
+  const KQM = { W: 400, COLS: [102, 298], TOP: 58, RH: 116, PW: 82, PH: 22, RX: 92, RY: 40 };
+  const kqmCut = (str, n) => { str = String(str || ''); return str.length > n ? str.slice(0, n - 1) + '…' : str; };
+  function kqMapHTML(c, cur) {
+    if (!c.themes.length) return '';
+    const stN = c.themes.reduce((a, t) => a + t.stages.length, 0);
+    const head = `<div class="kqm__head"><h3>${esc(c.label)} 전체 지도</h3>
+        <p>테마 ${c.themes.length}개 · ${stN}단계 · ${c.total}편 가운데 <b>${c.got}편</b>에 불이 켜졌어요.${km.mapOff ? '' : ' 마디를 누르면 아래에 그 단계의 길이 펼쳐져요.'}</p>
+        <button type="button" class="kqm__fold" id="kqmFold" aria-expanded="${!km.mapOff}">${km.mapOff ? '지도 펼치기' : '지도 접기'}</button></div>`;
+    if (km.mapOff) return `<div class="kqm is-off">${head}</div>`;
+    const cut = window.matchMedia && window.matchMedia('(max-width:640px)').matches ? 8 : 10;
+    const panels = c.themes.map((t, ti) => {
+      const fixed = t.stages.every(x => x.fixed);
+      const shown = fixed ? t.stages : t.stages.slice(0, Math.min(t.stages.length, t.current + 2));
+      const rest = t.stages.length - shown.length, n = shown.length + (rest ? 1 : 0);
+      const at = i => { const r = Math.floor(i / 2), k = i % 2; return { x: n === 1 ? KQM.W / 2 : KQM.COLS[r % 2 ? 1 - k : k], y: KQM.TOP + r * KQM.RH }; };
+      const H = KQM.TOP + (Math.ceil(n / 2) - 1) * KQM.RH + KQM.RY + 18;
+      const bx = x => x - KQM.PW + 21;   // 번호 동그라미 가운데
+      let links = '', nodes = '';
+      shown.forEach((st, i) => {
+        const p = at(i), all = st.items.length, g = st.items.filter(x => x.got).length, b = st.boss;
+        if (i) { const a = at(i - 1); links += `<path class="kqm-link${shown[i - 1].items.every(x => x.got) ? ' is-on' : ''}" d="M${a.x} ${a.y}L${p.x} ${p.y}"/>`; }
+        const cls = b.state === 'cleared' ? 'is-clear' : b.state === 'ready' ? 'is-ready' : g ? 'is-cur' : 'is-none';
+        const sub = b.state === 'cleared' ? `격파 · 최고 ${b.best}점` : b.state === 'ready' ? '수문장 등장' : `${g}/${all}편`;
+        const sats = st.items.map((x, j) => {
+          const ang = (-90 + (j + .5) * 360 / all) * Math.PI / 180;
+          const dx = (p.x + KQM.RX * Math.cos(ang)).toFixed(1), dy = (p.y + KQM.RY * Math.sin(ang)).toFixed(1);
+          return `<line class="kqm-spoke" x1="${p.x}" y1="${p.y}" x2="${dx}" y2="${dy}"/><circle class="kqm-dot lv${KM_LV(x)}" cx="${dx}" cy="${dy}" r="4"/>`;
+        }).join('');
+        nodes += `<g class="kqm-node ${cls}" data-mapstage="${esc(st.id)}" data-maptheme="${esc(t.id)}" tabindex="0" role="button" aria-label="${esc(t.label)} ${st.no}단계 ${esc(st.title)}, ${sub}">
+            <title>${esc(st.title)} — ${sub}</title>${sats}
+            <rect class="kqm-pill" x="${p.x - KQM.PW}" y="${p.y - KQM.PH}" width="${KQM.PW * 2}" height="${KQM.PH * 2}" rx="${KQM.PH}"/>
+            <circle class="kqm-badge" cx="${bx(p.x)}" cy="${p.y}" r="12"/>
+            ${b.state === 'cleared'
+              ? `<path class="kqm-star" transform="translate(${bx(p.x) - 8} ${p.y - 8}) scale(.667)" d="M12 3l2.7 5.6 6.1.8-4.5 4.3 1.1 6.1L12 16.9 6.6 19.8l1.1-6.1L3.2 9.4l6.1-.8z"/>`
+              : `<text class="kqm-no" x="${bx(p.x)}" y="${p.y + 4}">${st.no}</text>`}
+            <text class="kqm-t" x="${p.x - KQM.PW + 39}" y="${p.y - 2}">${esc(kqmCut(st.fixed ? st.title : `${st.no}단계`, cut))}</text>
+            <text class="kqm-s" x="${p.x - KQM.PW + 39}" y="${p.y + 12}">${sub}</text>
+            ${b.state === 'ready' ? `<circle class="kqm-alert" cx="${p.x + KQM.PW - 10}" cy="${p.y - KQM.PH + 5}" r="5"/>` : ''}</g>`;
+      });
+      if (rest) {
+        const p = at(shown.length), a = at(shown.length - 1);
+        links += `<path class="kqm-link" d="M${a.x} ${a.y}L${p.x} ${p.y}"/>`;
+        nodes += `<g class="kqm-node is-rest" data-maptheme="${esc(t.id)}" tabindex="0" role="button" aria-label="${esc(t.label)} 남은 ${rest}단계 보기">
+            <rect class="kqm-pill" x="${p.x - KQM.PW}" y="${p.y - KQM.PH}" width="${KQM.PW * 2}" height="${KQM.PH * 2}" rx="${KQM.PH}"/>
+            <text class="kqm-rest" x="${p.x}" y="${p.y + 4}">+ ${rest}단계 더</text></g>`;
+      }
+      return `<section class="kqm-panel${cur && t.id === cur.id ? ' is-on' : ''}">
+          <button type="button" class="kqm-panel__head" data-maptheme="${esc(t.id)}"><i>${String(ti + 1).padStart(2, '0')}</i><b>${esc(t.label)}</b><small>${t.stages.length}단계 · ${t.got}/${t.total}편</small></button>
+          <svg viewBox="0 0 ${KQM.W} ${H}" role="group" aria-label="${esc(t.label)} 지도">${links}${nodes}</svg></section>`;
+    }).join('');
+    return `<div class="kqm">${head}
+      <div class="kqm__grid">${panels}</div>
+      <p class="kqm__legend"><span><i></i>아직</span><span><i class="lv1"></i>받음</span><span><i class="lv2"></i>서재에 담음</span><span><i class="lv3"></i>생각 남김</span><span><i class="is-gold"></i>수문장 격파</span></p></div>`;
+  }
+  function kqBindMap(c) {
+    const box = $('kqCat');
+    const fold = $('kqmFold');
+    if (fold) fold.addEventListener('click', () => { km.mapOff = !km.mapOff; kqSave(); renderKqCat(); const again = $('kqmFold'); if (again) again.focus({ preventScroll: true }); });
+    box.querySelectorAll('.kqm [data-maptheme]').forEach(el => {
+      const go = () => kqJump(c, el.dataset.maptheme, el.dataset.mapstage || '');
+      el.addEventListener('click', go);
+      if (el.tagName !== 'BUTTON') el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+    });
+  }
+  /* 지도에서 고른 테마·단계를 아래 길에서 펼쳐 보여 준다 */
+  function kqJump(c, themeId, stageId) {
+    km.theme[c.id] = themeId;
+    km.more[themeId] = true;
+    if (stageId) km.open[stageId] = true;
+    kqSave();
+    renderKqCat();
+    const el = (stageId && [...$('kqPath').querySelectorAll('[data-st]')].find(x => x.dataset.st === stageId)) || $('kqPath');
+    el.scrollIntoView({ block: 'start', behavior: 'smooth' });
   }
 
   /* 한 줄 안내의 버튼 — 그 테마·단계를 펼치고, 편이면 바로 팝업, 수문장이면 그 자리로 */
   function kqGo(c, go) {
     km.theme[c.id] = go.theme; km.open[go.stage] = true;
-    kqStore.set({ cat: km.cat, theme: km.theme });
+    kqSave();
     renderKqCat();
     if (go.item) return openKmItem(go.item);
     const el = [...$('kqPath').querySelectorAll('[data-boss]')].find(b => b.dataset.boss === go.stage);
@@ -2151,20 +2234,20 @@
     const open = canOpen && (km.open[s.id] != null ? km.open[s.id] : (i === t.current || b.state === 'ready'));
     const nextIdx = s.items.findIndex(x => !x.got);
     const tag = b.state === 'cleared' ? '격파' : b.state === 'ready' ? '수문장 등장' : isCur ? (t.got ? '지금 여기' : '여기서 시작') : '';
-    const title = s.id.startsWith('c:') ? s.title : s.desc;       // 받은 순서로 묶은 단계는 이름 대신 범위를
+    const title = s.fixed ? s.title : s.desc;       // 받은 순서로 묶은 단계는 이름 대신 범위를
     const head = `<span class="kq-st__no">${b.state === 'cleared' ? KQ_I.star : lock ? KQ_I.lock : s.no}</span>
         <span class="kq-st__txt"><small>${s.no}단계${tag ? ` · <em>${tag}</em>` : ''}</small><b>${esc(title)}</b></span>
         <span class="kq-st__n"><b>${gotN}</b>/${all}</span>`;
     let body;
     if (open) {
-      body = `${s.id.startsWith('c:') && s.desc ? `<p class="kq-st__desc">${esc(s.desc)}</p>` : ''}${kqTrailHTML(c, s, isCur, nextIdx)}`;
+      body = `${s.fixed && s.desc ? `<p class="kq-st__desc">${esc(s.desc)}</p>` : ''}${kqTrailHTML(c, s, isCur, nextIdx)}`;
     } else {
       const chip = b.state === 'ready' ? `<button type="button" class="kq-chip is-ready" data-boss="${esc(b.id)}">수문장과 겨루기</button>`
         : b.state === 'cleared' ? `<button type="button" class="kq-chip is-cleared" data-boss="${esc(b.id)}">${KQ_I.star}최고 ${b.best}점</button>`
           : `<span class="kq-chip">${KQ_I.lock}수문장 · ${b.need}편 남음</span>`;
       body = `<div class="kq-pips"><span class="kq-pips__dots" aria-hidden="true">${s.items.map((x, k) => `<i class="lv${KM_LV(x)}${isCur && k === nextIdx ? ' is-next' : ''}"></i>`).join('')}</span>${chip}</div>`;
     }
-    return `<li class="kq-st${done ? ' is-done' : ''}${isCur ? ' is-cur' : ''}${lock ? ' is-lock' : ''}${b.state === 'cleared' ? ' is-clear' : ''}${open ? ' is-open' : ''}">
+    return `<li data-st="${esc(s.id)}" class="kq-st${done ? ' is-done' : ''}${isCur ? ' is-cur' : ''}${lock ? ' is-lock' : ''}${b.state === 'cleared' ? ' is-clear' : ''}${open ? ' is-open' : ''}">
         ${canOpen
           ? `<button type="button" class="kq-st__head" data-stage="${esc(s.id)}" data-open="${open ? 1 : 0}" aria-expanded="${open}">${head}<span class="kq-st__chev">${KQ_I.chev}</span></button>`
           : `<div class="kq-st__head">${head}</div>`}

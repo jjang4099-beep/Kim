@@ -863,6 +863,63 @@ html.ap-open, html.ap-open body{overflow:hidden}
 .kq-tab.is-on{border-color:var(--kq-c); background:var(--kq-c-soft); box-shadow:inset 0 0 0 1px var(--kq-c)}
 .kq-tab.is-on small{color:var(--text-2)}
 .kq-tab.is-soon{opacity:.55; cursor:default}
+/* 전체 지도 — 아카이브의 종이 위에 그린 도면. 색은 앱 토큰 그대로(라이트·다크 따라감), 불이 켜진 칸만 분야색 */
+.kqm{--kqm-bg:var(--surface); --kqm-panel:var(--bg); --kqm-line:var(--border); --kqm-text:var(--text-1); --kqm-dim:var(--text-3); --kqm-c:var(--kq-c);
+  margin-top:10px; padding:20px; border:1px solid var(--border-soft); border-radius:var(--r-card); background:var(--surface); color:var(--text-1); box-shadow:var(--shadow)}
+.kqm__head{display:flex; flex-wrap:wrap; align-items:center; gap:6px 14px; margin:0 2px 14px}
+.kqm.is-off .kqm__head{margin-bottom:0}
+.kqm__head h3{margin:0; font-family:var(--serif); font-size:19px; font-weight:var(--title-weight); letter-spacing:-.02em; color:var(--kqm-text)}
+.kqm__head p{flex:1 1 260px; margin:0; font-size:12.5px; line-height:1.6; color:var(--kqm-dim); word-break:keep-all}
+.kqm__head p b{color:var(--kq-c-text)}
+.kqm__fold{flex:none; min-height:44px; padding:0 14px; border:1px solid var(--kqm-line); border-radius:var(--r-ctl); background:none; color:var(--kqm-dim);
+  font:inherit; font-size:12.5px; font-weight:700; cursor:pointer}
+.kqm__fold:hover, .kqm__fold:focus-visible{border-color:var(--kq-c-line); color:var(--text-1)}
+.kqm__grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:12px; align-items:start}
+.kqm-panel{border:1px solid var(--border-soft); border-radius:16px; overflow:hidden;
+  background:radial-gradient(circle, var(--border) .8px, transparent 1px) 0 0/18px 18px, var(--kqm-panel)}   /* 모눈 점 — 도면 종이 */
+.kqm-panel.is-on{border-color:var(--kq-c-line)}
+.kqm-panel__head{display:flex; align-items:baseline; gap:8px; width:100%; min-height:44px; padding:13px 14px 0; border:0; background:none; color:inherit;
+  font:inherit; text-align:left; cursor:pointer}
+.kqm-panel__head i{font-style:normal; font-family:var(--serif); font-size:13px; font-weight:700; color:var(--kq-c-text)}
+.kqm-panel__head b{font-family:var(--serif); font-size:16px; font-weight:var(--title-weight); color:var(--kqm-text)}
+.kqm-panel__head small{margin-left:auto; font-size:11.5px; color:var(--kqm-dim)}
+.kqm-panel svg{display:block; width:100%; max-width:440px; margin:0 auto}
+.kqm-panel svg text{font-family:inherit}
+.kqm-link{fill:none; stroke:var(--kqm-line); stroke-width:2; stroke-linecap:round; stroke-dasharray:1 6}
+.kqm-link.is-on{stroke:var(--kqm-c); stroke-dasharray:none}
+.kqm-spoke{stroke:var(--border-soft); stroke-width:1}
+.kqm-dot{fill:var(--surface); stroke:var(--kqm-line); stroke-width:1.5}
+.kqm-dot.lv1{fill:var(--kq-c-soft); stroke:var(--kqm-c)}
+.kqm-dot.lv2{fill:var(--kqm-c); stroke:var(--kqm-c)}
+.kqm-dot.lv3{fill:var(--kq-gold); stroke:var(--kq-gold)}
+.kqm-node{cursor:pointer; outline:0}
+.kqm-pill{fill:var(--surface); stroke:var(--kqm-line); stroke-width:1; transition:fill .15s, stroke .15s}
+.kqm-badge{fill:var(--border-soft)}
+.kqm-no{fill:var(--text-2); font-size:11.5px; font-weight:800; text-anchor:middle}
+.kqm-t{fill:var(--kqm-text); font-size:12.5px; font-weight:700}
+.kqm-s{fill:var(--kqm-dim); font-size:10px; font-weight:600}
+.kqm-rest{fill:var(--kqm-dim); font-size:12px; font-weight:700; text-anchor:middle}
+.kqm-node.is-none .kqm-t{fill:var(--kqm-dim)}
+.kqm-node.is-cur .kqm-pill, .kqm-node.is-ready .kqm-pill{stroke:var(--kqm-c); stroke-width:1.5}
+.kqm-node.is-cur .kqm-badge, .kqm-node.is-ready .kqm-badge{fill:var(--kqm-c)}
+.kqm-node.is-cur .kqm-no, .kqm-node.is-ready .kqm-no{fill:var(--kq-on)}
+.kqm-node.is-cur .kqm-s{fill:var(--kq-c-text)}
+.kqm-node.is-ready .kqm-s{fill:var(--err)}
+.kqm-node.is-clear .kqm-pill{stroke:var(--kq-gold); stroke-width:1.5}
+.kqm-node.is-clear .kqm-badge{fill:var(--kq-gold)}
+.kqm-node.is-clear .kqm-s{fill:var(--text-2)}
+.kqm-star{fill:var(--kq-on)}
+.kqm-alert{fill:var(--err); stroke:var(--surface); stroke-width:2}
+.kqm-node.is-rest .kqm-pill{stroke-dasharray:4 5}
+.kqm-node:hover .kqm-pill, .kqm-node:focus-visible .kqm-pill{fill:var(--kq-c-soft); stroke:var(--kqm-c)}
+.kqm__legend{display:flex; flex-wrap:wrap; gap:6px 16px; margin:14px 2px 0; font-size:11.5px; color:var(--kqm-dim)}
+.kqm__legend span{display:inline-flex; align-items:center; gap:6px}
+.kqm__legend i{width:9px; height:9px; border:1.5px solid var(--kqm-line); border-radius:50%}
+.kqm__legend i.lv1{border-color:var(--kqm-c); background:var(--kq-c-soft)}
+.kqm__legend i.lv2{border-color:var(--kqm-c); background:var(--kqm-c)}
+.kqm__legend i.lv3{border-color:var(--kq-gold); background:var(--kq-gold)}
+.kqm__legend i.is-gold{width:16px; border-radius:5px; border-color:var(--kq-gold)}
+.kq-st, #kqPath{scroll-margin-top:72px}
 /* 분야 카드 */
 .kq-hero{display:grid; grid-template-columns:auto minmax(0,1fr); gap:16px 18px; align-items:center; margin-top:10px; padding:20px;
   border:1px solid var(--border-soft); border-radius:var(--r-card); background:var(--surface); box-shadow:var(--shadow)}
@@ -1062,6 +1119,11 @@ button.kq-row:focus-visible .kq-node{outline:2px solid var(--text-1); outline-of
 .kg-links__list small{font-size:12px; color:var(--text-3)}
 @media (max-width:640px){
   .kq-hero{padding:16px 14px; gap:14px}
+  .kqm{padding:14px 10px}
+  .kqm__grid{grid-template-columns:minmax(0,1fr)}
+  .kqm-t{font-size:14px}
+  .kqm-s{font-size:11.5px}
+  .kqm-no{font-size:12.5px}
   .kq-ring--lg{transform:scale(.88); margin:-5px}
   .kq-ladder{grid-template-columns:repeat(2, minmax(0,1fr))}
   .kq-coach button{flex:1 1 auto}
@@ -1242,7 +1304,7 @@ button.kq-row:focus-visible .kq-node{outline:2px solid var(--text-1); outline-of
   <!-- 지식 지도 — 분야를 고르면 그 안의 테마마다 단계 길, 단계 끝에는 보스 -->
   <section class="kmap" id="kmap" hidden>
       <h2>지식 지도</h2>
-      <p class="lede">분야를 고르면 테마마다 걸어온 길이 보여요. 디딤돌 하나가 한 편 — 누르면 다시 읽고, 담고 생각을 남길수록 진해져요. 한 단계를 다 채우면 길 끝에서 수문장이 기다려요.</p>
+      <p class="lede">분야를 고르면 전체 지도가 펼쳐져요. 점 하나가 한 편 — 받으면 불이 켜지고, 마디를 누르면 아래에 그 단계의 길이 열려요. 한 단계를 다 채우면 길 끝에서 수문장이 기다려요.</p>
       <div class="kq-tabs" id="kqTabs" role="tablist" aria-label="분야"></div>
       <div id="kqCat" class="kq-c"></div>
     </section>
@@ -1259,6 +1321,6 @@ button.kq-row:focus-visible .kq-node{outline:2px solid var(--text-1); outline-of
   </article>
 </div>
 
-<script src="js/chronicle.js?v=45"></script>
+<script src="js/chronicle.js?v=48"></script>
 </body>
 </html>

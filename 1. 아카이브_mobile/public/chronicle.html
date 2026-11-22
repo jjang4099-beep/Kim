@@ -920,6 +920,94 @@ html.ap-open, html.ap-open body{overflow:hidden}
 .kqm__legend i.lv3{border-color:var(--kq-gold); background:var(--kq-gold)}
 .kqm__legend i.is-gold{width:16px; border-radius:5px; border-color:var(--kq-gold)}
 .kq-st, #kqPath{scroll-margin-top:72px}
+/* 역사 연표 지도(11-22) — 시대 위 테마 칩. 넓으면 가로 연표, 좁으면 시대 넘기기. 색은 분야색(--kq-c 파생)과 연대기 토큰만 */
+.ktl{--kqm-line:var(--border); --kqm-dim:var(--text-3); --kqm-text:var(--text-1); --kqm-c:var(--kq-c);
+  margin-top:10px; padding:16px; border:1px solid var(--border); border-radius:var(--r-card); background:var(--surface); box-shadow:var(--shadow)}
+.ktl__head{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:6px 14px}
+.ktl__head h3{margin:0; font-family:var(--serif); font-size:19px; font-weight:var(--title-weight); letter-spacing:-.02em}
+.ktl__head p{margin:2px 0 0; font-size:13px; line-height:1.6; color:var(--text-2); word-break:keep-all}
+.ktl__head p b{color:var(--kq-c-text)}
+.ktl__map{margin-top:12px}
+.ktl-chip{position:relative; display:flex; flex-direction:column; justify-content:center; gap:1px; min-height:52px; max-width:220px; padding:7px 12px 9px;
+  border:1px solid var(--border); border-radius:12px; background:var(--surface); color:var(--text-1); font:inherit; text-align:left; cursor:pointer; overflow:hidden}
+.ktl-chip b{font-size:13.5px; line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.ktl-chip small{font-size:11.5px; line-height:1.35; color:var(--text-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.ktl-chip__pg{position:absolute; left:0; bottom:0; height:3px; background:var(--kq-c)}
+.ktl-chip:hover{border-color:var(--text-3)}
+.ktl-chip:focus-visible{outline:2px solid var(--kq-c); outline-offset:2px}
+.ktl-chip.is-prog{border-color:var(--kq-c-line)}
+.ktl-chip.is-cur{border:2px solid var(--kq-c); background:var(--kq-c-soft); padding:6px 11px 8px}
+.ktl-chip.is-clr{border-color:var(--kq-gold); background:color-mix(in srgb, var(--kq-gold) 13%, var(--surface))}
+.ktl-chip.is-clr .ktl-chip__pg{background:var(--kq-gold)}
+.ktl-chip.is-clr small{color:color-mix(in srgb, var(--kq-gold) 75%, var(--text-1))}
+.ktl-chip.is-sel{box-shadow:0 0 0 3px color-mix(in srgb, var(--text-1) 14%, transparent)}
+.ktl-tag{position:absolute; font-size:11px; font-weight:700; white-space:nowrap; pointer-events:none}
+.ktl-tag.is-cur{color:var(--kq-c-text)} .ktl-tag.is-clr{color:color-mix(in srgb, var(--kq-gold) 80%, var(--text-1))}
+/* 가로 */
+.ktl-h{position:relative}
+.ktl-h .ktl-chip{position:absolute}
+.ktl-h__era{position:absolute; top:0; bottom:22px} .ktl-h__era.is-a{background:var(--bg)}
+.ktl-h__era span{position:absolute; top:6px; width:100%; text-align:center; font-size:12.5px; font-weight:600; color:var(--text-2)}
+.ktl-h__year{position:absolute; bottom:0; transform:translateX(-50%); white-space:nowrap; font-size:11px; color:var(--text-3); font-variant-numeric:tabular-nums}
+.ktl-h__lane{position:absolute; left:0; right:0; border-top:1px solid var(--border-soft)}
+.ktl-h__ln{position:absolute; left:6px; top:14px; width:84px}
+.ktl-h__ln b{display:block; font-size:14px; word-break:keep-all} .ktl-h__ln small{display:block; font-size:11.5px; color:var(--text-2); font-variant-numeric:tabular-nums}
+.ktl-h__span{position:absolute; height:2px; border-radius:2px; background:var(--border)}
+/* 폰 — 시대 넘기기 */
+.ktl-v__strip{position:sticky; top:0; z-index:3; display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:5px; padding:4px 0 10px; background:var(--surface)}
+.ktl-era{position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; min-height:60px; padding:6px 2px;
+  border:1px solid var(--border); border-radius:12px; background:var(--surface); color:var(--text-2); font:inherit; cursor:pointer}
+.ktl-era b{font-size:14px} .ktl-era small{font-size:10.5px; color:var(--text-3); font-variant-numeric:tabular-nums}
+.ktl-era__bar{width:72%; height:3px; border-radius:3px; background:var(--border-soft); overflow:hidden} .ktl-era__bar i{display:block; height:100%; background:var(--kq-c)}
+.ktl-era[aria-pressed="true"]{border:2px solid var(--kq-c); background:var(--kq-c-soft); color:var(--text-1)}
+.ktl-era__here{position:absolute; top:5px; right:6px; width:6px; height:6px; border-radius:50%; background:var(--kq-c)}
+.ktl-era:focus-visible{outline:2px solid var(--kq-c); outline-offset:2px}
+.ktl-v__head{display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 10px; margin:8px 2px 0}
+.ktl-v__head b{font-family:var(--serif); font-size:22px} .ktl-v__head span{font-size:12.5px; color:var(--text-3); font-variant-numeric:tabular-nums}
+.ktl-v__lane{margin-top:14px; padding-top:12px; border-top:1px solid var(--border-soft)}
+.ktl-v__ln{display:flex; align-items:baseline; justify-content:space-between; margin:0 2px} .ktl-v__ln b{font-size:14px} .ktl-v__ln span{font-size:11.5px; color:var(--text-3)}
+.ktl-v__row{display:flex; gap:8px; overflow-x:auto; scroll-snap-type:x proximity; scroll-padding-inline:12px; margin:0 -12px; padding:20px 12px 4px; scrollbar-width:none}
+.ktl-v__row::-webkit-scrollbar{display:none}
+.ktl-v__cell{position:relative; flex:none; scroll-snap-align:start}
+.ktl-v__cell .ktl-chip{max-width:240px}
+.ktl-v__cell .ktl-tag{left:2px; top:-17px}
+.ktl-v__empty{margin:6px 2px 0; font-size:12.5px; color:var(--text-3)}
+.ktl-nav{display:flex; justify-content:space-between; margin-top:18px}
+.ktl-nav button{min-height:44px; padding:0 16px; border:1px solid var(--border); border-radius:999px; background:none; color:var(--text-2); font:inherit; font-size:13.5px; font-weight:600; cursor:pointer}
+/* 패널 */
+.ktl-panel{position:sticky; bottom:0; z-index:5; margin:12px -16px -16px; padding:14px 16px calc(16px + env(safe-area-inset-bottom,0px));
+  border-top:1px solid var(--border); background:var(--surface); box-shadow:0 -6px 24px color-mix(in srgb, var(--text-1) 8%, transparent); max-height:44vh; overflow:auto}
+.ktl-panel[hidden]{display:none}
+.ktl-panel__top{display:flex; gap:12px; align-items:flex-start; justify-content:space-between}
+.ktl-panel__when{margin:0; font-size:12.5px; color:var(--text-2); font-variant-numeric:tabular-nums}
+.ktl-panel h4{margin:1px 0 0; font-family:var(--serif); font-size:20px; font-weight:var(--title-weight); letter-spacing:-.01em; word-break:keep-all}
+.ktl-close{flex:none; width:44px; height:44px; margin:-8px -8px 0 0; border:0; border-radius:999px; background:none; color:var(--text-2); font-size:22px; line-height:1; cursor:pointer}
+.ktl-close:hover,.ktl-close:focus-visible{background:var(--hover); color:var(--text-1)}
+.ktl-panel__prog{display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; margin-top:8px; font-size:13.5px; color:var(--text-2)}
+.ktl-panel__prog b{color:var(--text-1); font-variant-numeric:tabular-nums}
+.ktl-meter{width:120px; height:6px; border-radius:6px; background:var(--border-soft); overflow:hidden} .ktl-meter i{display:block; height:100%; background:var(--kq-c)}
+.ktl-meter.is-clr i{background:var(--kq-gold)}
+.ktl-walk{min-height:44px; padding:0 16px; border:1px solid var(--kq-c); border-radius:999px; background:none; color:var(--kq-c-text); font:inherit; font-size:13.5px; font-weight:700; cursor:pointer}
+.ktl-walk:hover,.ktl-walk:focus-visible{background:var(--kq-c-soft)}
+.ktl-badge{font-size:13px; font-weight:700; color:var(--kq-c-text)} .ktl-badge.is-clr{color:color-mix(in srgb, var(--kq-gold) 80%, var(--text-1))}
+.ktl-msg{font-size:13px; color:var(--kq-c-text)}
+.ktl-sec{margin:14px 0 6px; font-size:12.5px; font-weight:700; color:var(--text-2)}
+.ktl-items{display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:0 18px; margin:0; padding:0; list-style:none}
+.ktl-items button{display:flex; gap:8px; align-items:baseline; width:100%; min-height:36px; padding:6px 0; border:0; background:none; color:var(--text-2); font:inherit; font-size:13.5px; text-align:left; cursor:pointer}
+.ktl-items button:hover .ktl-it,.ktl-items button:focus-visible .ktl-it{text-decoration:underline; text-underline-offset:3px}
+.ktl-mk{flex:none; width:14px; text-align:center; color:var(--text-3); font-size:12px}
+.ktl-items .is-got .ktl-mk,.ktl-items .is-next .ktl-mk{color:var(--kq-c)}
+.ktl-items time{flex:none; min-width:58px; color:var(--text-3); font-size:12.5px; font-variant-numeric:tabular-nums}
+.ktl-it{min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.ktl-items .is-got button{color:var(--text-1)} .ktl-items .is-next button{color:var(--text-1); font-weight:700}
+.ktl-items em{flex:none; font-style:normal; font-size:11px; font-weight:700; color:var(--kq-c-text)}
+.ktl-others{display:flex; flex-wrap:wrap; gap:8px}
+.ktl-oc{display:flex; flex-direction:column; align-items:flex-start; min-height:44px; padding:6px 12px; border:1px solid var(--border); border-radius:12px; background:var(--surface); color:var(--text-1); font:inherit; text-align:left; cursor:pointer}
+.ktl-oc:hover,.ktl-oc:focus-visible{border-color:var(--kq-c)}
+.ktl-oc small{font-size:11.5px; color:var(--text-2); font-variant-numeric:tabular-nums} .ktl-oc b{font-size:13.5px}
+.ktl-evs{margin:8px 0 0; padding:0; list-style:none; font-size:13px; color:var(--text-2)}
+.ktl-evs li{display:flex; gap:8px; padding:2px 0} .ktl-evs time{flex:none; min-width:84px; color:var(--text-3); font-variant-numeric:tabular-nums}
+.ktl-none{margin:0; font-size:13px}
 /* 분야 카드 */
 .kq-hero{display:grid; grid-template-columns:auto minmax(0,1fr); gap:16px 18px; align-items:center; margin-top:10px; padding:20px;
   border:1px solid var(--border-soft); border-radius:var(--r-card); background:var(--surface); box-shadow:var(--shadow)}
@@ -1120,6 +1208,9 @@ button.kq-row:focus-visible .kq-node{outline:2px solid var(--text-1); outline-of
 @media (max-width:640px){
   .kq-hero{padding:16px 14px; gap:14px}
   .kqm{padding:14px 10px}
+  .ktl{padding:14px 12px}
+  .ktl-panel{margin:12px -12px -14px; max-height:58vh}
+  .ktl-items{grid-template-columns:minmax(0,1fr)}
   .kqm__grid{grid-template-columns:minmax(0,1fr)}
   .kqm-t{font-size:14px}
   .kqm-s{font-size:11.5px}
@@ -1321,6 +1412,6 @@ button.kq-row:focus-visible .kq-node{outline:2px solid var(--text-1); outline-of
   </article>
 </div>
 
-<script src="js/chronicle.js?v=48"></script>
+<script src="js/chronicle.js?v=49"></script>
 </body>
 </html>

@@ -1965,7 +1965,7 @@
      단계를 펴면 굽이진 길에 편마다 디딤돌(진할수록 깊이 소화: 받음 → 서재에 담음 → 생각 남김)과 제목, 누르면 그 편을 팝업으로 다시 읽기.
      길 끝에는 수문장 — 단계를 다 채우면 나타나고, 받은 지식으로만 낸 문제로 겨룬다(GET/POST /api/knowledge-quest/boss).
      이모지는 쓰지 않는다(11-14 피드백). 샘플 모드에서는 그리지 않는다. */
-  const km = { data: null, cat: '', theme: {}, nodes: {}, more: {}, open: {}, mapOff: false };
+  const km = { data: null, cat: '', theme: {}, nodes: {}, more: {}, open: {}, mapOff: false, sel: null, era: null, ktlMsg: '' };   // sel·era·ktlMsg = 역사 연표(선택 테마·폰 시대·안내)
   const KM_LV = n => (!n || !n.got) ? 0 : n.thought ? 3 : n.saved ? 2 : 1;
   const KM_LV_LABEL = ['아직', '받음', '서재에 담음', '생각까지 남김'];
   const KM_DOMAIN = { history: 'humanities', economy: 'business', science: 'science', english: 'language', wisdom: 'psychology' };
@@ -2085,7 +2085,7 @@
     const box = $('kqCat');
     box.style.cssText = kqColor(c.id);
     box.innerHTML = `
-      ${kqMapHTML(c, t)}
+      ${c.id === 'history' ? ktlHTML(c) : kqMapHTML(c, t)}
       <div class="kq-hero">
         ${kqRing(84, c.xpIn / c.xpNeed, `<small>Lv</small><b>${c.level}</b>`, 'kq-ring--lg')}
         <div class="kq-hero__main">
@@ -2121,6 +2121,7 @@
     }));
     if (coach.go) $('kqCoachGo').addEventListener('click', () => kqGo(c, coach.go));
     kqBindMap(c);
+    if (c.id === 'history') ktlBind(c);
     kqScrollOn(box.querySelector('.kq-themes'));
     kqBindPath();
   }
@@ -2201,6 +2202,173 @@
     renderKqCat();
     const el = (stageId && [...$('kqPath').querySelectorAll('[data-st]')].find(x => x.dataset.st === stageId)) || $('kqPath');
     el.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  }
+
+  /* ── 역사 연표 지도(11-22) ── 시대가 흐르는 연표 위에 갈래(한국·중국·일본·유럽미국·그 밖의 세계)별 테마 칩만 놓는다.
+     칩을 누르면 아래 패널에 그 시대의 이야기(편 목록, 누르면 다시 읽기)와 '그때 다른 나라는'(겹치는 다른 나라 테마 + 큰 사건).
+     넓으면(지도 ≥ 760px) 가로 연표, 좁으면 시대 넘기기(위 시대 띠 → 그 시대의 다섯 나라 줄). 이 길 걷기 = 과정 고르기 API.
+     설계: docs/superpowers/specs/2026-11-22-history-timeline-map-design.md */
+  const KTL_ERA = [['고대', -650, 400, 1], ['중세', 400, 1400, 1], ['근세', 1400, 1800, 1.6], ['근대', 1800, 1945, 1.15], ['현대', 1945, 2030, 0.75]];
+  const KTL_LANE = { korea: ['한국', '한국'], china: ['중국', '중국'], japan: ['일본', '일본'], west: ['서양', '유럽·미국'], world: ['세계', '그 밖의 세계'] };
+  const ktlYr = y => (y < 0 ? `BC ${-y}` : `${y}`);
+  const ktlSpan = s => `${ktlYr(s.years[0])}–${s.years[1] < 0 ? -s.years[1] : s.years[1]}`;
+  const ktlEraOf = y => { const k = KTL_ERA.findIndex(e => y < e[2]); return k < 0 ? KTL_ERA.length - 1 : k; };
+  const ktlEraMid = s => ktlEraOf((s.years[0] + s.years[1]) / 2);   // 폰 시대 넘기기 — 기간의 가운데가 속한 시대(명·청 1368–1912는 근세)
+  const ktlLaneName = t => KTL_LANE[t.id]?.[1] || t.label;
+  const ktlStages = c => c.themes.flatMap(t => t.stages.map(s => ({ s, t })));
+  const ktlGot = s => s.items.filter(i => i.got).length;
+  const ktlState = (c, s) => (s.boss.state === 'cleared' ? 'clr' : s.id === c.current ? 'cur' : ktlGot(s) ? 'prog' : '');
+  const ktlTag = st => (st === 'cur' ? '<span class="ktl-tag is-cur">지금 여기</span>' : st === 'clr' ? '<span class="ktl-tag is-clr">격파</span>' : '');
+  function ktlChip(c, s, t) {
+    const n = s.items.length, g = ktlGot(s), st = ktlState(c, s);
+    return `<button type="button" class="ktl-chip${st ? ' is-' + st : ''}${s.id === km.sel ? ' is-sel' : ''}" data-ktl="${esc(s.id)}"
+        aria-label="${esc(ktlLaneName(t))} ${esc(s.title)}, ${ktlSpan(s)}, ${n}편 가운데 ${g}편${st === 'cur' ? ', 지금 걷는 테마' : st === 'clr' ? ', 수문장 격파' : ''}">
+        <b>${esc(s.title)}</b><small>${esc(s.sub || ktlSpan(s))}</small>${g ? `<i class="ktl-chip__pg" style="width:${Math.round(g / n * 100)}%"></i>` : ''}</button>`;
+  }
+
+  function ktlHTML(c) {
+    const cur = ktlStages(c).find(o => o.s.id === c.current);
+    const nx = cur && cur.s.items.find(i => !i.got);
+    const head = `<div class="ktl__head"><div><h3>역사 연표</h3>
+        <p>${cur ? `지금 걷는 길 <b>${esc(cur.s.title)}</b> ${ktlGot(cur.s)}/${cur.s.items.length}${nx ? ` · 다음은 ${esc(nx.title.split(' — ')[0])}` : ''}` : '시대를 따라 나라마다 테마가 놓여 있어요.'}</p></div>
+        <button type="button" class="kqm__fold" id="ktlFold" aria-expanded="${!km.mapOff}">${km.mapOff ? '연표 펼치기' : '연표 접기'}</button></div>`;
+    if (km.mapOff) return `<div class="ktl is-off">${head}</div>`;
+    return `<div class="ktl">${head}<div class="ktl__map" id="ktlMap" aria-label="역사 연표"></div><section class="ktl-panel" id="ktlPanel" aria-live="polite" hidden></section></div>`;
+  }
+
+  function ktlBind(c) {
+    const fold = $('ktlFold');
+    if (fold) fold.addEventListener('click', () => { km.mapOff = !km.mapOff; kqSave(); renderKqCat(); });
+    if (km.mapOff) return;
+    if (km.sel === null && !(window.matchMedia && window.matchMedia('(max-width:640px)').matches)) km.sel = c.current;   // 폰은 연표가 먼저 보이게 패널을 닫고 시작
+    ktlDraw(c); ktlPanel(c);
+    const map = $('ktlMap');
+    map.addEventListener('click', e => {
+      const b = e.target.closest('[data-ktl]');
+      if (b) { km.sel = b.dataset.ktl; ktlDraw(c); ktlPanel(c); return; }
+      const er = e.target.closest('[data-ktl-era]');
+      if (er) { km.era = +er.dataset.ktlEra; ktlDraw(c); if (er.closest('.ktl-nav')) map.scrollIntoView({ block: 'start', behavior: 'smooth' }); }
+    });
+    if (window.ResizeObserver) {
+      let w = map.clientWidth;
+      const ro = new ResizeObserver(() => { if (!document.body.contains(map)) { ro.disconnect(); return; } if (Math.abs(map.clientWidth - w) > 4) { w = map.clientWidth; ktlDraw(c); } });
+      ro.observe(map);
+    }
+  }
+  function ktlDraw(c) {
+    const map = $('ktlMap'); if (!map) return;
+    const W = map.clientWidth;
+    if (W >= 760) ktlDrawH(c, map, W); else ktlDrawV(c, map);
+  }
+
+  /* 가로 — 시대 폭은 가중치(근세가 가장 넓다), 칩은 시작 연도 자리에 놓고 같은 갈래에서 겹치면 아래 줄로 */
+  function ktlDrawH(c, map, W) {
+    const LX = 96, RX = W - 4, ROW = 74, ws = KTL_ERA.reduce((a, e) => a + e[3], 0);
+    let acc = LX;
+    const EX = KTL_ERA.map(e => { const w = (RX - LX) * e[3] / ws, o = { a: acc, w }; acc += w; return o; });
+    const X = y => { const k = ktlEraOf(y), e = KTL_ERA[k]; return EX[k].a + (Math.max(e[1], Math.min(y, e[2])) - e[1]) / (e[2] - e[1]) * EX[k].w; };
+    const list = ktlStages(c);
+    map.innerHTML = `<div class="ktl-h" id="ktlH">${list.map(o => ktlChip(c, o.s, o.t)).join('')}</div>`;
+    const box = $('ktlH'), place = new Map();
+    box.querySelectorAll('[data-ktl]').forEach(el => {
+      const o = list.find(x => x.s.id === el.dataset.ktl), w = el.offsetWidth;
+      place.set(o.s.id, { el, w, x: Math.max(LX + 2, Math.min(X(o.s.years[0]), RX - w)) });
+    });
+    let top = 34, ln = '', extra = '';
+    c.themes.forEach(t => {
+      const ids = t.stages.map(s => s.id).sort((a, b) => place.get(a).x - place.get(b).x), ends = [];
+      ids.forEach(id => { const p = place.get(id); let r = 0; while (ends[r] !== undefined && p.x < ends[r] + 10) r++; ends[r] = p.x + p.w; p.r = r; });
+      const h = Math.max(1, ends.length) * ROW + 12;
+      ln += `<div class="ktl-h__lane" style="top:${top}px;height:${h}px"><div class="ktl-h__ln"><b>${esc(ktlLaneName(t))}</b><small>${t.got}/${t.total}편</small></div></div>`;
+      t.stages.forEach(s => {
+        const p = place.get(s.id), y = top + 26 + p.r * ROW, st = ktlState(c, s);
+        p.el.style.left = `${p.x}px`; p.el.style.top = `${y}px`;
+        if (st === 'cur' || st === 'clr') extra += `<span class="ktl-tag is-${st}" style="left:${p.x}px;top:${y - 17}px">${st === 'cur' ? '지금 여기' : '격파'}</span>`;
+        const x1 = X(s.years[1]);
+        if (x1 - p.x > p.w + 6) extra += `<span class="ktl-h__span" style="left:${p.x + p.w}px;width:${x1 - p.x - p.w}px;top:${y + 26}px"></span>`;
+      });
+      top += h;
+    });
+    let bg = '';
+    KTL_ERA.forEach((e, k) => { bg += `<div class="ktl-h__era${k % 2 ? '' : ' is-a'}" style="left:${EX[k].a}px;width:${EX[k].w}px"><span>${e[0]}</span></div><span class="ktl-h__year" style="left:${EX[k].a}px">${k ? ktlYr(e[1]) : 'BC 650'}</span>`; });
+    bg += `<span class="ktl-h__year" style="left:${RX - 14}px">지금</span>`;
+    box.style.height = `${top + 26}px`;
+    box.insertAdjacentHTML('afterbegin', bg + ln);
+    box.insertAdjacentHTML('beforeend', extra);
+  }
+
+  /* 폰 — 시대 넘기기: 위 시대 띠에서 한 시대를 고르면 그 시대의 다섯 나라가 한 화면에(줄마다 옆으로 넘기는 칩) */
+  function ktlDrawV(c, map) {
+    const list = ktlStages(c), curStage = list.find(o => o.s.id === c.current);
+    const curEra = curStage ? ktlEraMid(curStage.s) : 0;
+    if (km.era === null) km.era = curEra;
+    const k = km.era, e = KTL_ERA[k];
+    const inEra = j => list.filter(o => ktlEraMid(o.s) === j);
+    const tally = os => os.reduce((a, o) => [a[0] + ktlGot(o.s), a[1] + o.s.items.length], [0, 0]);
+    const strip = KTL_ERA.map((x, j) => {
+      const [g, n] = tally(inEra(j));
+      return `<button type="button" class="ktl-era" data-ktl-era="${j}" aria-pressed="${j === k}" aria-label="${x[0]}, ${n}편 가운데 ${g}편${j === curEra ? ', 지금 여기' : ''}">
+        ${j === curEra ? '<i class="ktl-era__here" aria-hidden="true"></i>' : ''}<b>${x[0]}</b><span class="ktl-era__bar" aria-hidden="true"><i style="width:${n ? Math.round(g / n * 100) : 0}%"></i></span><small>${g}/${n}</small></button>`;
+    }).join('');
+    const os = inEra(k), [g, n] = tally(os);
+    const lanes = c.themes.map(t => {
+      const row = os.filter(o => o.t.id === t.id).sort((a, b) => a.s.years[0] - b.s.years[0]);
+      return `<section class="ktl-v__lane"><div class="ktl-v__ln"><b>${esc(ktlLaneName(t))}</b><span>${row.length ? `테마 ${row.length}` : ''}</span></div>
+        ${row.length ? `<div class="ktl-v__row">${row.map(o => `<div class="ktl-v__cell">${ktlTag(ktlState(c, o.s))}${ktlChip(c, o.s, o.t)}</div>`).join('')}</div>` : '<p class="ktl-v__empty">이 시대 이야기는 아직 없어요</p>'}</section>`;
+    }).join('');
+    map.innerHTML = `<div class="ktl-v__strip" role="group" aria-label="시대 고르기">${strip}</div>
+      <div class="ktl-v__head"><b>${e[0]}</b><span>${k ? ktlYr(e[1]) : 'BC 650'} – ${k < KTL_ERA.length - 1 ? ktlYr(e[2]) : '지금'} · 테마 ${os.length}개 · ${g}/${n}편</span></div>${lanes}
+      <div class="ktl-nav">${k ? `<button type="button" data-ktl-era="${k - 1}">‹ ${KTL_ERA[k - 1][0]}</button>` : '<span></span>'}${k < KTL_ERA.length - 1 ? `<button type="button" data-ktl-era="${k + 1}">${KTL_ERA[k + 1][0]} ›</button>` : '<span></span>'}</div>`;
+    const on = map.querySelector('.ktl-chip.is-sel');
+    if (on) { const r = on.closest('.ktl-v__row'); if (r) r.scrollLeft = on.parentElement.offsetLeft - 12; }
+  }
+
+  /* 패널 — 이 시대의 이야기 · 그때 다른 나라는 · 이 길 걷기 */
+  function ktlPanel(c) {
+    const p = $('ktlPanel'); if (!p) return;
+    const all = ktlStages(c), o = all.find(x => x.s.id === km.sel);
+    if (!o) { p.hidden = true; p.innerHTML = ''; return; }
+    const { s, t } = o, n = s.items.length, g = ktlGot(s), st = ktlState(c, s), nx = s.items.find(i => !i.got);
+    const lane = KTL_LANE[t.id]?.[0];
+    const act = st === 'clr' ? '<span class="ktl-badge is-clr">수문장 격파</span>'
+      : s.id === c.current ? '<span class="ktl-badge">지금 걷는 길</span>'
+        : '<button type="button" class="ktl-walk" id="ktlWalk">이 길 걷기</button>';
+    const items = s.items.map(i => {
+      const isNext = nx && i.id === nx.id;
+      return `<li class="${i.got ? 'is-got' : ''}${isNext ? ' is-next' : ''}"><button type="button" data-km="${esc(i.id)}">
+        <span class="ktl-mk" aria-hidden="true">${i.got ? '✓' : isNext ? '›' : '·'}</span><time>${i.year == null ? '' : ktlYr(i.year)}</time>
+        <span class="ktl-it">${esc(i.title.split(' — ')[0])}</span>${isNext ? '<em>다음</em>' : ''}</button></li>`;
+    }).join('');
+    const others = all.filter(x => x.t.id !== t.id && x.s.years[0] <= s.years[1] && x.s.years[1] >= s.years[0]);
+    const evs = (c.backbone || []).filter(b => b.lane !== lane && b.year >= s.years[0] && b.year <= s.years[1]).slice(0, 6);
+    const laneOf = l => Object.values(KTL_LANE).find(v => v[0] === l)?.[1] || l;
+    p.innerHTML = `<div class="ktl-panel__top"><div><p class="ktl-panel__when">${esc(ktlLaneName(t))} · ${ktlSpan(s)} · ${s.kind === 'series' ? '연재' : '시대 테마'}</p><h4>${esc(s.title)}</h4></div>
+        <button type="button" class="ktl-close" id="ktlClose" aria-label="닫기">×</button></div>
+      <div class="ktl-panel__prog"><span class="ktl-meter${st === 'clr' ? ' is-clr' : ''}"><i style="width:${n ? Math.round(g / n * 100) : 0}%"></i></span><span><b>${g}</b> / ${n}편</span>${act}${km.ktlMsg ? `<span class="ktl-msg">${esc(km.ktlMsg)}</span>` : ''}</div>
+      <p class="ktl-sec">이 시대의 이야기</p><ul class="ktl-items">${items}</ul>
+      <p class="ktl-sec">그때 다른 나라는</p>
+      ${others.length ? `<div class="ktl-others">${others.map(x => `<button type="button" class="ktl-oc" data-ktl-go="${esc(x.s.id)}"><small>${esc(ktlLaneName(x.t))} · ${ktlSpan(x.s)}</small><b>${esc(x.s.title)}</b></button>`).join('')}</div>` : ''}
+      ${evs.length ? `<ul class="ktl-evs">${evs.map(b => `<li><time>${ktlYr(b.year)} ${esc(laneOf(b.lane))}</time><span>${esc(b.title)}</span></li>`).join('')}</ul>` : ''}
+      ${!others.length && !evs.length ? '<p class="muted ktl-none">이 시기 다른 나라 테마는 아직 없어요</p>' : ''}`;
+    p.hidden = false; km.ktlMsg = '';
+    $('ktlClose').addEventListener('click', () => { km.sel = ''; ktlDraw(c); ktlPanel(c); });
+    p.querySelectorAll('[data-km]').forEach(b => b.addEventListener('click', () => openKmItem(b.dataset.km)));
+    p.querySelectorAll('[data-ktl-go]').forEach(b => b.addEventListener('click', () => {
+      km.sel = b.dataset.ktlGo;
+      const x = all.find(y => y.s.id === km.sel); if (x) km.era = ktlEraMid(x.s);
+      ktlDraw(c); ktlPanel(c);
+      const ch = $('ktlMap').querySelector('.ktl-chip.is-sel'); if (ch) ch.scrollIntoView({ block: 'nearest' });
+    }));
+    const wk = $('ktlWalk');
+    if (wk) wk.addEventListener('click', async () => {
+      wk.disabled = true;
+      try {
+        await api('/api/courses/select', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ courseId: s.kind === 'series' ? s.id.slice(2) : s.id }) });
+        km.ktlMsg = '다음 배달부터 이 테마에서 와요'; km.era = ktlEraMid(s);
+        await loadKmap(true);
+      } catch (e) { km.ktlMsg = `바꾸지 못했어요 — ${e.message}`; ktlPanel(c); }
+    });
   }
 
   /* 한 줄 안내의 버튼 — 그 테마·단계를 펼치고, 편이면 바로 팝업, 수문장이면 그 자리로 */

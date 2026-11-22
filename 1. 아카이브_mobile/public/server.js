@@ -43,6 +43,7 @@ const SummariesDB = require('./db/summaries');
 const ProgressDB = require('./db/progress');
 const { DOMAINS, CATEGORY_TO_DOMAIN, getDomain, contentDomain, MODE_EXAM, MODE_PRO, normalizeMode, deriveItemMode } = require('./lib/domain');
 const { generateToken, setAuthCookie, clearAuthCookie, requireAuth, getUserId } = require('./lib/auth');
+const HistoryTimeline = require('./lib/historyTimeline');   // 역사 연표 지도 — 연도·갈래 단계·다음 편
 
 const PORT                   = process.env.PORT || 3000;
 /* DATA_DIR: Fly.io 볼륨 경로(/data)를 env로 주입, 로컬은 기존 경로 유지 */
@@ -2016,7 +2017,8 @@ let _courseCache = null;
 function loadCourseDB() {
   if (_courseCache) return _courseCache;
   const dir = path.join(__dirname, 'data', 'course_db');
-  const out = { catalog: { fields: [], courses: {} }, lessons: [], english: [] };
+  const out = { catalog: { fields: [], courses: {} }, lessons: [], english: [],
+               historyThemes: { themes: [], business: [], aliases: {} }, backbone: [] };
   try {
     if (fs.existsSync(dir)) {
       for (const file of fs.readdirSync(dir).filter(f => f.endsWith('.json')).sort()) {
@@ -2026,6 +2028,9 @@ function loadCourseDB() {
           if (b.courses && !Array.isArray(b.courses)) Object.assign(out.catalog.courses, b.courses);
           if (Array.isArray(b.lessons)) out.lessons.push(...b.lessons.filter(l => l && l.id && l.title));
           if (Array.isArray(b.english_groups)) out.english = b.english_groups.filter(g => g && g.id && Array.isArray(g.themes));
+          /* 역사 연표 지도(11-22) — history_themes.json(시대 테마·기업 이야기·같은 주제 합치기), history_backbone.json(큰 사건) */
+          if (Array.isArray(b.themes) && Array.isArray(b.business)) out.historyThemes = { themes: b.themes, business: b.business, aliases: b.aliases || {} };
+          if (Array.isArray(b.events)) out.backbone = b.events;
         } catch (e) { console.warn(`[CourseDB] ${file} 파싱 실패:`, e.message); }
       }
     }
@@ -6454,14 +6459,50 @@ function _questIndex() {
   return _questIdx;
 }
 
+/* 역사 편 원문 색인 — 역사 밖 과정 본문(경제 lessons, field 있음)은 뺀다 */
+function _questFacts(src) {
+  const facts = {};
+  for (const [id, s] of Object.entries(src)) if (s.kind === 'history' && (!s.h.field || s.h.field === '역사')) facts[id] = s.h;
+  return facts;
+}
+/* 역사 연표 지도(11-22) — 갈래 다섯(한국·중국·일본·서양·세계), 갈래마다 연재(c:)와 시대 테마(h:)를 시작 연도순으로.
+   분류표에 없는 새 편은 갈래 끝 '아직 묶지 않은 이야기'. current = 지금 걷는 단계(고른 과정·테마 → 최근 받은 역사 편의 단계 → 한국 첫 단계).
+   backbone = 큰 사건(패널의 '그때 다른 나라는'에만 쓴다). */
+function _questHistoryCat(f, cid, { src, layers, catalog, ht, order, item, bossOf, theme }) {
+  const facts = _questFacts(src);
+  const laneNames = new Set(HistoryTimeline.LANES.map(l => l.lane));
+  const series = layers.series.filter(s => laneNames.has(s.lane));
+  const placed = new Set([...layers.series.flatMap(s => s.items), ...ht.themes.flatMap(t => t.items),
+                          ...ht.business.flatMap(t => t.items), ...Object.keys(ht.aliases)]);
+  const unplaced = {};
+  Object.keys(facts).filter(id => !placed.has(id)).forEach(id => { (unplaced[HistoryTimeline.laneOfItem(facts[id])] ||= []).push(id); });
+  const themes = HistoryTimeline.LANES.map(L => {
+    const g = (f.groups || []).find(x => x.lane === L.lane);
+    const stages = HistoryTimeline.laneStages(L.lane, { series, themes: ht.themes, courses: catalog.courses || {}, facts, unplaced: unplaced[L.lane] || [] })
+      .map((s, i) => { const items = s.itemIds.map(item);
+        return { id: s.id, no: i + 1, title: s.title, sub: s.sub, desc: s.desc, years: s.years, kind: s.kind, fixed: true, items, boss: bossOf(s.id, items, s.title, cid) }; });
+    return theme(g?.id || L.id, g?.label || L.label, g?.desc || '', stages);
+  }).filter(t => t.stages.length);
+  const stageIds = new Set(themes.flatMap(t => t.stages.map(s => s.id)));
+  const chosen = String(readUsers()[0]?.feed_settings?.daily_knowledge?.course || '');
+  const chosenId = chosen.startsWith('h:') ? chosen : chosen ? `c:${chosen}` : '';
+  const lastHist = [...order].reverse().map(id => ht.aliases[id] || id).find(id => facts[id]);
+  const lastStage = lastHist && themes.flatMap(t => t.stages).find(s => s.items.some(x => x.id === lastHist));
+  const current = stageIds.has(chosenId) ? chosenId : lastStage ? lastStage.id : (themes[0]?.stages[0]?.id || '');
+  return { id: cid, label: f.label, icon: f.icon, desc: f.desc || '', themes, current, backbone: loadCourseDB().backbone };
+}
+
 function buildQuest(userId, mode) {
-  const { got, order } = _questGot();
+  const { got: gotRaw, order } = _questGot();
+  const ht = loadCourseDB().historyThemes;
+  const got = HistoryTimeline.foldAliases(gotRaw, ht.aliases);   // 같은 주제의 예전 글을 받았으면 원래 글이 '받음'
   const { saved, thought } = _questMine(userId, mode);
   const boss = ProgressDB.getBossRecords(userId);
   const { src, packs, wisdom } = _questIndex();
   const layers = loadDeepLayers();
   const { catalog } = loadCourseDB();
   const item = id => ({ id, title: src[id]?.title || id, got: got[id] || null,
+    ...(src[id]?.kind === 'history' ? { year: HistoryTimeline.yearOf(src[id].h) } : {}),
     ...(saved.has(id) ? { saved: true } : {}), ...(thought.has(id) ? { thought: true } : {}) });
   const bossOf = (stageId, items, title, cat) => {
     const need = items.filter(i => !i.got).length;
@@ -6499,12 +6540,14 @@ function buildQuest(userId, mode) {
   for (const f of catalog.fields || []) {
     const cid = fieldCat[f.id] || f.id;
     if (f.soon) { cats.push({ id: cid, label: f.label, icon: f.icon, desc: f.desc || '', soon: true, themes: [] }); continue; }
+    if (f.id === 'history') { cats.push(_questHistoryCat(f, cid, { src, layers, catalog, ht, order, item, bossOf, theme })); continue; }
     const themes = (f.groups || []).map(g => theme(g.id, g.label, g.desc || '', g.courses.map((sid, i) => seriesStage(sid, i + 1, cid)).filter(Boolean)))
       .filter(t => t.stages.length);
-    if (f.id === 'history') {
-      const inSeries = new Set(layers.series.flatMap(s => s.items));
-      const loose = order.filter(id => src[id]?.kind === 'history' && !inSeries.has(id));
-      if (loose.length) themes.push(theme('loose', '그 밖의 역사', '연재 밖에서 받은 낱편 이야기', chunked('h-loose', loose, Math.ceil(loose.length / QUEST_CHUNK.loose) * QUEST_CHUNK.loose, QUEST_CHUNK.loose, cid, '낱편')));
+    /* 경제 — 연재 뒤에 '기업 이야기'(예전 역사 항목 중 기업·산업 사례, history_themes.json business) */
+    if (f.id === 'economy') {
+      const stages = HistoryTimeline.businessStages(ht.business, _questFacts(src))
+        .map((s, i) => { const items = s.itemIds.map(item); return { id: s.id, no: i + 1, title: s.title, sub: s.sub, desc: '', years: s.years, kind: s.kind, fixed: true, items, boss: bossOf(s.id, items, s.title, cid) }; });
+      if (stages.length) themes.push(theme('business', '기업 이야기', '회사와 산업이 만든 장면들', stages));
     }
     cats.push({ id: cid, label: f.label, icon: f.icon, desc: f.desc || '', themes });
   }

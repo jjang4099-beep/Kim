@@ -1017,6 +1017,7 @@ html.ap-open, html.ap-open body{overflow:hidden}
 .kq-hero__main .kq-hero__xp{margin-top:6px; color:var(--text-2)}
 .kq-hero__xp b{color:var(--kq-c-text)}
 .kq-ladder{grid-column:1/-1; list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:8px}
+.kq-ladder.is-3{grid-template-columns:repeat(3, minmax(0,1fr))}   /* 수문장 칸을 숨겼을 때 */
 .kq-ladder li{display:flex; flex-direction:column; gap:3px; padding:11px 12px; border-radius:12px; background:var(--bg)}
 .kq-ladder p{margin:0; line-height:1.1}
 .kq-ladder b{font-family:var(--serif); font-size:23px; font-weight:800; color:var(--text-1)}
@@ -1217,6 +1218,7 @@ button.kq-row:focus-visible .kq-node{outline:2px solid var(--text-1); outline-of
   .kqm-no{font-size:12.5px}
   .kq-ring--lg{transform:scale(.88); margin:-5px}
   .kq-ladder{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .kq-ladder.is-3{grid-template-columns:repeat(3, minmax(0,1fr))}
   .kq-coach button{flex:1 1 auto}
   .kq-pips{padding-left:14px}
   .kq-trail{margin:8px 10px 10px}
@@ -1395,7 +1397,7 @@ button.kq-row:focus-visible .kq-node{outline:2px solid var(--text-1); outline-of
   <!-- 지식 지도 — 분야를 고르면 그 안의 테마마다 단계 길, 단계 끝에는 보스 -->
   <section class="kmap" id="kmap" hidden>
       <h2>지식 지도</h2>
-      <p class="lede">분야를 고르면 전체 지도가 펼쳐져요. 점 하나가 한 편 — 받으면 불이 켜지고, 마디를 누르면 아래에 그 단계의 길이 열려요. 한 단계를 다 채우면 길 끝에서 수문장이 기다려요.</p>
+      <p class="lede">분야를 고르면 전체 지도가 펼쳐져요. 역사는 시대 위에 나라마다 테마가 놓이고, 테마를 누르면 그 시대의 이야기와 같은 때 다른 나라가 이어져요.</p>
       <div class="kq-tabs" id="kqTabs" role="tablist" aria-label="분야"></div>
       <div id="kqCat" class="kq-c"></div>
     </section>
@@ -1412,6 +1414,6 @@ button.kq-row:focus-visible .kq-node{outline:2px solid var(--text-1); outline-of
   </article>
 </div>
 
-<script src="js/chronicle.js?v=49"></script>
+<script src="js/chronicle.js?v=50"></script>
 </body>
 </html>

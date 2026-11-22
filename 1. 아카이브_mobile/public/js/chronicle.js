@@ -1965,6 +1965,9 @@
      단계를 펴면 굽이진 길에 편마다 디딤돌(진할수록 깊이 소화: 받음 → 서재에 담음 → 생각 남김)과 제목, 누르면 그 편을 팝업으로 다시 읽기.
      길 끝에는 수문장 — 단계를 다 채우면 나타나고, 받은 지식으로만 낸 문제로 겨룬다(GET/POST /api/knowledge-quest/boss).
      이모지는 쓰지 않는다(11-14 피드백). 샘플 모드에서는 그리지 않는다. */
+  /* 수문장(보스 퀴즈)은 화면에서 숨김 — 11-22 사용자: "허접하다. 애매한 퀴즈로는 흥미를 못 끈다, 할 거면 나중에 제대로 된 게임으로."
+     서버(/api/knowledge-quest/boss)와 지금까지의 격파 기록은 그대로 둔다. 다시 켜려면 true. */
+  const KQ_BOSS = false;
   const km = { data: null, cat: '', theme: {}, nodes: {}, more: {}, open: {}, mapOff: false, sel: null, era: null, ktlMsg: '' };   // sel·era·ktlMsg = 역사 연표(선택 테마·폰 시대·안내)
   const KM_LV = n => (!n || !n.got) ? 0 : n.thought ? 3 : n.saved ? 2 : 1;
   const KM_LV_LABEL = ['아직', '받음', '서재에 담음', '생각까지 남김'];
@@ -1981,6 +1984,7 @@
       const d = await api('/api/knowledge-quest?mode=PROFESSIONAL');
       if (!d.success || !d.categories.some(c => c.got)) return;
       km.data = d;
+      if (!KQ_BOSS) d.categories.forEach(c => { c.bossCleared = 0; c.themes.forEach(t => { t.bossCleared = 0; t.stages.forEach(s => { s.boss = { ...s.boss, state: 'off' }; }); }); });
       km.nodes = {};
       d.categories.forEach(c => c.themes.forEach(t => t.stages.forEach(s => s.items.forEach((it, i) => {
         if (it.id) km.nodes[it.id] = Object.assign(it, { cat: c.id, theme: t.label, stage: s.title, no: i + 1, of: s.items.length });
@@ -2094,11 +2098,11 @@
           <p>${esc(c.desc)}</p>
           <p class="kq-hero__xp">다음 레벨까지 <b>${c.xpNeed - c.xpIn} XP</b></p>
         </div>
-        <ul class="kq-ladder" aria-label="${esc(c.label)}에서 쌓은 것">
+        <ul class="kq-ladder${KQ_BOSS ? '' : ' is-3'}" aria-label="${esc(c.label)}에서 쌓은 것">
           <li><p><b>${c.got}</b><small>/${c.total}편</small></p><span>${kqDots(1)}받음</span><em>편마다 +10 XP</em></li>
           <li><p><b>${c.saved}</b><small>편</small></p><span>${kqDots(2)}서재에 담음</span><em>+10 XP</em></li>
           <li><p><b>${c.thought}</b><small>편</small></p><span>${kqDots(3)}생각 남김</span><em>+20 XP</em></li>
-          <li><p><b>${c.bossCleared}</b><small>/${c.bossTotal}</small></p><span>수문장 격파</span><em>+50 XP</em></li>
+          ${KQ_BOSS ? `<li><p><b>${c.bossCleared}</b><small>/${c.bossTotal}</small></p><span>수문장 격파</span><em>+50 XP</em></li>` : ''}
         </ul>
         <div class="kq-coach"><p>${coach.text}</p>${coach.go ? `<button type="button" id="kqCoachGo">${coach.btn}</button>` : ''}</div>
       </div>
@@ -2181,7 +2185,7 @@
     }).join('');
     return `<div class="kqm">${head}
       <div class="kqm__grid">${panels}</div>
-      <p class="kqm__legend"><span><i></i>아직</span><span><i class="lv1"></i>받음</span><span><i class="lv2"></i>서재에 담음</span><span><i class="lv3"></i>생각 남김</span><span><i class="is-gold"></i>수문장 격파</span></p></div>`;
+      <p class="kqm__legend"><span><i></i>아직</span><span><i class="lv1"></i>받음</span><span><i class="lv2"></i>서재에 담음</span><span><i class="lv3"></i>생각 남김</span>${KQ_BOSS ? '<span><i class="is-gold"></i>수문장 격파</span>' : ''}</p></div>`;
   }
   function kqBindMap(c) {
     const box = $('kqCat');
@@ -2205,7 +2209,7 @@
   }
 
   /* ── 역사 연표 지도(11-22) ── 시대가 흐르는 연표 위에 갈래(한국·중국·일본·유럽미국·그 밖의 세계)별 테마 칩만 놓는다.
-     칩을 누르면 아래 패널에 그 시대의 이야기(편 목록, 누르면 다시 읽기)와 '그때 다른 나라는'(겹치는 다른 나라 테마 + 큰 사건).
+     패널은 닫힌 채 시작(11-22 사용자), 칩을 누르면 아래 패널에 그 시대의 이야기(편 목록, 누르면 다시 읽기)와 '그때 다른 나라는'(겹치는 다른 나라 테마 + 큰 사건).
      넓으면(지도 ≥ 760px) 가로 연표, 좁으면 시대 넘기기(위 시대 띠 → 그 시대의 다섯 나라 줄). 이 길 걷기 = 과정 고르기 API.
      설계: docs/superpowers/specs/2026-11-22-history-timeline-map-design.md */
   const KTL_ERA = [['고대', -650, 400, 1], ['중세', 400, 1400, 1], ['근세', 1400, 1800, 1.6], ['근대', 1800, 1945, 1.15], ['현대', 1945, 2030, 0.75]];
@@ -2240,7 +2244,6 @@
     const fold = $('ktlFold');
     if (fold) fold.addEventListener('click', () => { km.mapOff = !km.mapOff; kqSave(); renderKqCat(); });
     if (km.mapOff) return;
-    if (km.sel === null && !(window.matchMedia && window.matchMedia('(max-width:640px)').matches)) km.sel = c.current;   // 폰은 연표가 먼저 보이게 패널을 닫고 시작
     ktlDraw(c); ktlPanel(c);
     const map = $('ktlMap');
     map.addEventListener('click', e => {
@@ -2412,7 +2415,7 @@
     } else {
       const chip = b.state === 'ready' ? `<button type="button" class="kq-chip is-ready" data-boss="${esc(b.id)}">수문장과 겨루기</button>`
         : b.state === 'cleared' ? `<button type="button" class="kq-chip is-cleared" data-boss="${esc(b.id)}">${KQ_I.star}최고 ${b.best}점</button>`
-          : `<span class="kq-chip">${KQ_I.lock}수문장 · ${b.need}편 남음</span>`;
+          : b.state === 'off' ? '' : `<span class="kq-chip">${KQ_I.lock}수문장 · ${b.need}편 남음</span>`;
       body = `<div class="kq-pips"><span class="kq-pips__dots" aria-hidden="true">${s.items.map((x, k) => `<i class="lv${KM_LV(x)}${isCur && k === nextIdx ? ' is-next' : ''}"></i>`).join('')}</span>${chip}</div>`;
     }
     return `<li data-st="${esc(s.id)}" class="kq-st${done ? ' is-done' : ''}${isCur ? ' is-cur' : ''}${lock ? ' is-lock' : ''}${b.state === 'cleared' ? ' is-clear' : ''}${open ? ' is-open' : ''}">
@@ -2458,7 +2461,7 @@
           <span class="kq-row__txt"><b>${esc(b.name)} 격파</b><small>최고 ${b.best}점 · ${b.tries}번 겨룸</small></span><span class="kq-cta kq-cta--ghost">다시</span></button>`
         : `<div class="kq-row kq-row--boss is-locked" style="height:100px;--x:${bx}px">${g}
           <span class="kq-row__txt"><b>${esc(b.name)}</b><small>${b.need}편 더 받으면 나타나요</small></span></div>`;
-    rows.push({ h: 100, size: 64, x: bx, got: b.state !== 'locked', html: bossRow });
+    if (b.state !== 'off') rows.push({ h: 100, size: 64, x: bx, got: b.state !== 'locked', html: bossRow });
     let y = 0;
     const pts = rows.map(r => { const p = [r.x + r.size / 2, y + r.h / 2]; y += r.h; return p; });
     const curve = ps => ps.map((p, k) => {

@@ -74,3 +74,21 @@ test('큰 사건은 lane·연도·이름이 있고 id가 겹치지 않는다', (
 test('일본 큰 사건이 있다', () => {
   assert.ok(backbone().filter(e => e.lane === '일본').length >= 10);
 });
+
+const aliases = () => themesFile().aliases || {};
+
+test('같은 주제 합치기: 예전 글은 실제 역사 편이고, 원래 글은 지도에 있는 편이다', () => {
+  const facts = historyFactIds(), series = seriesItemIds(), placed = new Set(placedIds());
+  const a = aliases();
+  assert.ok(Object.keys(a).length > 0, 'aliases 없음');
+  for (const [old, main] of Object.entries(a)) {
+    assert.ok(facts.has(old), `${old} 없는 편`);
+    assert.ok(!placed.has(old) && !series.has(old), `${old}는 이미 테마·연재에 있음`);
+    assert.ok(placed.has(main) || series.has(main), `${old} → ${main}: 원래 글이 지도에 없음`);
+  }
+});
+
+test('역사 편은 전부 연재·시대 테마·기업 이야기·같은 주제 합치기 중 한 곳에 있다', () => {
+  const where = new Set([...seriesItemIds(), ...placedIds(), ...Object.keys(aliases())]);
+  assert.deepEqual([...historyFactIds()].filter(id => !where.has(id)), []);
+});

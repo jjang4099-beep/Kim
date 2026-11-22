@@ -6455,6 +6455,8 @@ app.get('/api/knowledge-map', (req, res) => {
 const QUEST_WISDOM = [['classic', '고전', '동서양 고전의 한 구절'], ['idiom', '고사성어', '네 글자에 담긴 옛이야기'], ['insight', '인사이트', '일과 삶에 쓰는 생각 도구']];
 const QUEST_CHUNK = { wisdom: 10, loose: 10 };
 const QUEST_BOSS = { history: '🐲', economy: '👹', science: '🤖', english: '🦖', wisdom: '🦉' };
+/* 수문장(보스 퀴즈)은 꺼 둠 — 11-22 사용자: 화면에서 빼고 예전 격파 XP도 레벨에서 빼기. 게임은 나중에 별도 프로젝트로. 격파 기록(user_boss_clears)은 지우지 않는다 */
+const QUEST_BOSS_ON = false;
 
 function _questGot() {
   const feeds = readDailyFeeds(), today = toDateStr();
@@ -6607,12 +6609,12 @@ function buildQuest(userId, mode) {
     themes: QUEST_WISDOM.map(([k, label, desc]) => theme(`w-${k}`, label, desc,
       chunked(`w-${k}`, order.filter(id => src[id]?.kind === k), wisdom[k], QUEST_CHUNK.wisdom, 'wisdom', label))) });
 
-  /* 레벨 — 받음 10 · 담음 +10 · 생각 +20 · 보스 +50 */
+  /* 레벨 — 받음 10 · 담음 +10 · 생각 +20 (보스 +50은 QUEST_BOSS_ON일 때만) */
   const TITLES = ['입문자', '견습생', '탐험가', '이야기꾼', '학자', '현자', '대가'];
   for (const c of cats) {
     const s = { got: 0, saved: 0, thought: 0, total: 0, bossCleared: 0, bossTotal: 0 };
     c.themes.forEach(t => { s.got += t.got; s.saved += t.saved; s.thought += t.thought; s.total += t.total; s.bossCleared += t.bossCleared; s.bossTotal += t.stages.length; });
-    const xp = s.got * 10 + s.saved * 10 + s.thought * 20 + s.bossCleared * 50;
+    const xp = s.got * 10 + s.saved * 10 + s.thought * 20 + (QUEST_BOSS_ON ? s.bossCleared * 50 : 0);
     let lv = 1, need = 100, base = 0;
     while (xp >= base + need) { base += need; lv++; need += 60; }
     Object.assign(c, s, { xp, level: lv, levelTitle: TITLES[Math.min(lv - 1, TITLES.length - 1)], xpIn: xp - base, xpNeed: need });

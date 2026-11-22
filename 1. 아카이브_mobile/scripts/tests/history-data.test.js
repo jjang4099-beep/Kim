@@ -56,3 +56,21 @@ test('lane과 기간이 올바르다', () => {
     assert.ok(t.items.length > 0, `${t.id} 편 없음`);
   }
 });
+
+const backbone = () => readJSON(path.join('course_db', 'history_backbone.json')).events;
+
+test('큰 사건은 lane·연도·이름이 있고 id가 겹치지 않는다', () => {
+  const ev = backbone();
+  assert.ok(ev.length >= 120, `큰 사건 ${ev.length}개`);
+  for (const e of ev) {
+    assert.ok(LANES.includes(e.lane), `${e.id} lane=${e.lane}`);
+    assert.ok(Number.isInteger(e.year), `${e.id} year=${e.year}`);
+    assert.ok(e.title && e.title.trim(), `${e.id} 이름 없음`);
+  }
+  const ids = ev.map(e => e.id);
+  assert.deepEqual(ids.filter((id, i) => ids.indexOf(id) !== i), []);
+});
+
+test('일본 큰 사건이 있다', () => {
+  assert.ok(backbone().filter(e => e.lane === '일본').length >= 10);
+});

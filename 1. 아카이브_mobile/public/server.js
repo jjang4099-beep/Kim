@@ -2069,7 +2069,37 @@ function _courseNextStages(courseId) {
 /** 배달 프로필이 고른 과정 id (없으면 '' = 알아서 이어 주기) */
 function _chosenCourse(user) {
   const id = user?.feed_settings?.daily_knowledge?.course || '';
+  if (id.startsWith('h:')) return _historyThemeOf(id) ? id : '';   // 11-22~ 지도에서 고른 역사 시대 테마
   return id && loadDeepLayers().series.some(s => s.id === id) ? id : '';
+}
+/** 'h:<themeId>' → 역사 시대 테마(분류표 history_themes.json) 또는 null */
+function _historyThemeOf(stageId) {
+  return loadCourseDB().historyThemes.themes.find(t => `h:${t.id}` === stageId) || null;
+}
+/**
+ * 고른 시대 테마의 다음 편 — 그 테마의 안 받은 첫 편(연도순) → 다 받았으면 같은 갈래의 다음 단계(연재·테마를 시작 연도순으로).
+ * 같은 주제의 예전 글(aliases)을 받았으면 원래 글도 받은 것으로 본다. 반환 모양은 _pickSeriesItem과 같다.
+ */
+function _pickThemeItem(stageId, byId, recentIds) {
+  const t = _historyThemeOf(stageId);
+  if (!t) return null;
+  const { historyThemes: ht, catalog } = loadCourseDB();
+  const facts = {};
+  byId.forEach((i, id) => { if (!i.field || i.field === '역사') facts[id] = i; });
+  const series = loadDeepLayers().series.filter(x => x.lane === t.lane);
+  const stages = HistoryTimeline.laneStages(t.lane, { series, themes: ht.themes, courses: catalog.courses || {}, facts });
+  const seen = new Set(recentIds);
+  Object.entries(ht.aliases).forEach(([old, main]) => { if (seen.has(old)) seen.add(main); });
+  const r = HistoryTimeline.nextThemeItem(stages, stageId, id => byId.has(id) && !seen.has(id));
+  if (!r) return null;
+  const ids = r.stage.itemIds.filter(x => byId.has(x)), idx = ids.indexOf(r.id);
+  const plain = x => (byId.get(x)?.title || '').replace(/\s*\([^)]*\)\s*$/, '');
+  const nextId = ids.slice(idx + 1).find(x => !seen.has(x));
+  return {
+    item: byId.get(r.id),
+    series: { id: r.stage.kind === 'series' ? r.stage.id.slice(2) : r.stage.id, title: r.stage.title, no: idx + 1, total: ids.length,
+              prev: idx > 0 ? plain(ids[idx - 1]) : '', next: nextId ? plain(nextId) : '' },
+  };
 }
 
 /* 깊이 읽기·연재의 '본 적 있음' 판정 창. 갈래별 중복 창(인사이트 60일·고전 90일·역사 180일)보다 길게 잡는다 —
@@ -2092,6 +2122,11 @@ function _pickSeriesItem(pool, recentIds, keys, prefer = '') {
   const byId = new Map(pool.map(i => [i.id, i]));
   const open = s => s.items.filter(id => byId.has(id) && !recentIds.includes(id));
   const lastId = _lastDeliveredId(keys);
+  /* 11-22~ 지도에서 시대 테마를 골랐으면(h:<id>) 그 테마부터 — 다 받았으면 아래 기본 순서 */
+  if (prefer.startsWith('h:')) {
+    const themed = _pickThemeItem(prefer, byId, recentIds);
+    if (themed) return themed;
+  }
   /* 11-14~ 고른 과정이 있으면 그 과정의 안 본 첫 편 → 다 봤으면 같은 갈래의 다음 단계 → 그래도 없으면 아래 기본 순서 */
   const chosen = prefer ? series.find(x => x.id === prefer) : null;
   const picked = chosen ? [chosen, ..._courseNextStages(chosen.id)].find(x => open(x).length) : null;
@@ -6770,8 +6805,9 @@ app.post('/api/courses/select', (req, res) => {
   try {
     const courseId = String(req.body?.courseId || '').trim();
     const { series } = loadDeepLayers();
-    const target = courseId ? series.find(s => s.id === courseId) : null;
-    if (courseId && !target) return res.status(400).json({ success: false, error: '없는 과정이에요' });
+    const isTheme = courseId.startsWith('h:') && !!_historyThemeOf(courseId);   // 지도의 '이 길 걷기'로 고른 역사 시대 테마
+    const target = courseId && !isTheme ? series.find(s => s.id === courseId) : null;
+    if (courseId && !target && !isTheme) return res.status(400).json({ success: false, error: '없는 과정이에요' });
     const users = readUsers();
     if (!users.length) return res.status(404).json({ success: false, error: '배달 설정이 아직 없어요' });
     const user = users[0];

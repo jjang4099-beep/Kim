@@ -43,7 +43,8 @@ const SummariesDB = require('./db/summaries');
 const ProgressDB = require('./db/progress');
 const { DOMAINS, CATEGORY_TO_DOMAIN, getDomain, contentDomain, MODE_EXAM, MODE_PRO, normalizeMode, deriveItemMode } = require('./lib/domain');
 const { generateToken, setAuthCookie, clearAuthCookie, requireAuth, getUserId } = require('./lib/auth');
-const HistoryTimeline = require('./lib/historyTimeline');   // 역사 연표 지도 — 연도·갈래 단계·다음 편
+const HistoryTimeline = require('./lib/historyTimeline');
+const MonthlyLetter = require('./lib/monthlyLetter');       // 나의 역사 — 월간 편지   // 역사 연표 지도 — 연도·갈래 단계·다음 편
 
 const PORT                   = process.env.PORT || 3000;
 /* DATA_DIR: Fly.io 볼륨 경로(/data)를 env로 주입, 로컬은 기존 경로 유지 */
@@ -6175,6 +6176,46 @@ app.get('/api/summary/:type/:period', async (req, res) => {
     res.json(result);
   } catch (e) {
     res.status(500).json({ error: '결산 생성 실패: ' + e.message });
+  }
+});
+
+/**
+ * GET /api/letter/monthly/:ym?mode= — 나의 역사 · 월간 편지(11-28, 설계 docs/superpowers/specs/2026-11-28-monthly-letter-design.md)
+ * 내 기록(자동 배달 카드 제외) + 그달 받은 지식(배달 프로필)으로 "이번 달의 당신". 기록이 바뀔 때만 다시 쓴다(지문 캐시).
+ * AI가 실패하거나 기록이 없는 달은 기록으로 만든 짧은 대체 편지.
+ */
+app.get('/api/letter/monthly/:ym', async (req, res) => {
+  const ym = String(req.params.ym || '');
+  if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(ym)) return res.status(400).json({ success: false, error: '달 형식이 올바르지 않아요' });
+  if (ym > toDateStr().slice(0, 7)) return res.status(400).json({ success: false, error: '아직 오지 않은 달이에요' });
+  const mode = normalizeMode(req.query.mode);
+  try {
+    const items = ItemsDB.getItemsByUser(req.userId, mode).filter(i => i.type !== 'daily_delivery');
+    const { got } = _questGot();
+    const aliases = loadCourseDB().historyThemes.aliases || {};
+    const where = {};
+    buildQuest(req.userId, mode).categories.forEach(c => c.themes.forEach(t => t.stages.forEach(st => st.items.forEach(x => {
+      if (x.id) where[x.id] = { cat: c.label, theme: t.label, stage: st.title };
+    }))));
+    const facts = MonthlyLetter.letterFacts({ ym, items, got, stageOf: id => where[id] || where[aliases[id]] || null });
+    const period = `${ym}@${MonthlyLetter.fingerprint(facts)}`;
+    const cached = SummariesDB.getCachedSummary(req.userId, mode, 'letter-monthly', period);
+    if (cached && req.query.force !== '1') return res.json(cached);
+    let out = MonthlyLetter.fallbackLetter(facts), ai = false;
+    if (!facts.thin) {
+      try {
+        const { system, user } = MonthlyLetter.letterPrompt(facts);
+        const raw = await callClaude({ model: 'claude-opus-5', maxTokens: 1500, system, messages: [{ role: 'user', content: user }] });
+        const parsed = MonthlyLetter.parseLetter(raw);
+        if (parsed.letter) { out = { title: parsed.title || out.title, letter: parsed.letter }; ai = true; }
+      } catch (e) { console.warn('[Letter] AI 편지 실패 — 대체 편지:', e.message); }
+    }
+    const result = { success: true, ...facts, ...out, ai, generatedAt: new Date().toISOString() };
+    if (ai || facts.thin) SummariesDB.setCachedSummary(req.userId, mode, 'letter-monthly', period, result);
+    res.json(result);
+  } catch (e) {
+    console.warn('[Letter] 실패:', e.message);
+    res.status(500).json({ success: false, error: '편지를 만들지 못했어요' });
   }
 });
 

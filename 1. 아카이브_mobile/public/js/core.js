@@ -142,6 +142,8 @@ const FEED_ARCHIVE_MAP = {
    전역 상태 — 모든 앱 상태는 이 객체에만 저장
 ────────────────────────────────────────────── */
 const state = {
+  engMeta          : null,   /* 목표형 영어 — 목표·수준표(GET /api/english/goal) */
+  engDaily         : null,   /* 목표형 영어 — 오늘 묶음(듣기용) */
   currentUser      : null,   /* 로그인한 유저 { id, email, name, currentMode } — checkAuth()가 채움 */
   currentView      : 'home',
   currentCat       : 'all',

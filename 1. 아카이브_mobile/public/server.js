@@ -40,11 +40,13 @@ const ItemsDB = require('./db/items');
 const UsersDB = require('./db/users');
 const CategoriesDB = require('./db/categories');
 const SummariesDB = require('./db/summaries');
+const EnglishGoalsDB = require('./db/englishGoals');   // 목표형 영어 — 유저별 목표·최근 묶음
 const ProgressDB = require('./db/progress');
 const { DOMAINS, CATEGORY_TO_DOMAIN, getDomain, contentDomain, MODE_EXAM, MODE_PRO, normalizeMode, deriveItemMode } = require('./lib/domain');
 const { generateToken, setAuthCookie, clearAuthCookie, requireAuth, getUserId } = require('./lib/auth');
 const HistoryTimeline = require('./lib/historyTimeline');
-const MonthlyLetter = require('./lib/monthlyLetter');       // 나의 역사 — 월간 편지   // 역사 연표 지도 — 연도·갈래 단계·다음 편
+const MonthlyLetter = require('./lib/monthlyLetter');
+const EnglishDaily = require('./lib/englishDaily');       // 목표형 영어 — 매일 묶음       // 나의 역사 — 월간 편지   // 역사 연표 지도 — 연도·갈래 단계·다음 편
 
 const PORT                   = process.env.PORT || 3000;
 /* DATA_DIR: Fly.io 볼륨 경로(/data)를 env로 주입, 로컬은 기존 경로 유지 */
@@ -6177,6 +6179,35 @@ app.get('/api/summary/:type/:period', async (req, res) => {
     res.json(result);
   } catch (e) {
     res.status(500).json({ error: '결산 생성 실패: ' + e.message });
+  }
+});
+
+/* 목표형 영어(11-28, 설계 docs/superpowers/specs/2026-11-28-english-goal-design.md)
+   목표 저장·불러오기 + 오늘 묶음. 1단계: 그날 처음 열 때 고른 수준의 모델로 한 번 만들어 그날 내내 캐시(밤에 미리 만들기는 2단계). */
+app.get('/api/english/goal', (req, res) => {
+  res.json({ success: true, goal: EnglishGoalsDB.getGoal(req.userId), tiers: EnglishDaily.TIERS, levels: EnglishDaily.LEVELS });
+});
+app.post('/api/english/goal', (req, res) => {
+  const v = EnglishDaily.validateGoal(req.body || {});
+  if (!v.ok) return res.status(400).json({ success: false, error: v.error });
+  res.json({ success: true, goal: EnglishGoalsDB.setGoal(req.userId, v.goal) });
+});
+app.get('/api/english/daily', async (req, res) => {
+  const goal = EnglishGoalsDB.getGoal(req.userId);
+  if (!goal) return res.json({ success: true, needGoal: true });
+  const today = toDateStr();
+  const cached = EnglishGoalsDB.getDaily(req.userId, today);
+  if (cached && cached.goalText === goal.text && cached.tier === goal.tier) return res.json({ success: true, goal, daily: cached });
+  try {
+    const tier = EnglishDaily.TIERS[goal.tier] || EnglishDaily.TIERS.basic;
+    const { system, user } = EnglishDaily.dailyPrompt({ goal, date: today, recent: EnglishGoalsDB.recentTitles(req.userId) });
+    const raw = await callClaude({ model: tier.model, maxTokens: 8000, system, messages: [{ role: 'user', content: user }] });
+    const daily = { ...EnglishDaily.parseDaily(raw), date: today, tier: goal.tier, goalText: goal.text, model: tier.model };
+    EnglishGoalsDB.setDaily(req.userId, today, daily);
+    res.json({ success: true, goal, daily });
+  } catch (e) {
+    console.warn('[English] 오늘 묶음 실패:', e.message);
+    res.status(502).json({ success: false, error: '오늘 묶음을 만들지 못했어요. 잠시 뒤 다시 열어 주세요' });
   }
 });
 

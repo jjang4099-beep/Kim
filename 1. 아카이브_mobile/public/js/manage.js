@@ -28,6 +28,7 @@ Object.assign(Mob, {
       /* 카테고리 칩 + 결산 초기 로드 (병렬, 실패해도 무시) */
       this._renderCategoryChips().catch(() => {});
       this._renderLetterMonths();   // 나의 역사 · 월간 편지(옛 지식 결산 자리)
+      this._loadEngGoal();          // 목표형 영어
     } catch {
       el('statTotal').textContent  = '—';
       el('statStreak').textContent = '—';
@@ -446,6 +447,110 @@ Object.assign(Mob, {
   /* ══════════════════════════════════════════
      결산
   ══════════════════════════════════════════ */
+  /* ── 목표형 영어(11-28) ── 내 목표를 적으면 매일 그에 맞춘 읽기 글·말하기 표현 5개·듣기·쓰기 과제가 온다.
+     답변 수준(기본·표준·프리미엄)은 고를 수 있고, 지금은 체험 기간이라 모두 무료. 설계: docs/superpowers/specs/2026-11-28-english-goal-design.md */
+  _engEsc(s) { return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); },
+  async _loadEngGoal(edit) {
+    const box = el('engGoalBody'); if (!box) return;
+    try {
+      const d = await fetchJSON('/api/english/goal', {}, 15000);
+      if (!d?.success) throw new Error(d?.error || '');
+      state.engMeta = d;
+      box.innerHTML = (!d.goal || edit) ? this._engGoalFormHTML(d) : this._engGoalCardHTML(d);
+    } catch { box.innerHTML = '<p class="mvw-letter-lede">영어 목표를 불러오지 못했어요.</p>'; }
+  },
+  _engGoalCardHTML(d) {
+    const g = d.goal, t = d.tiers[g.tier] || d.tiers.basic, e = s => this._engEsc(s);
+    return `<p class="mvw-eng-goal">${e(g.text)}</p>
+      <p class="mvw-letter-lede">${e(d.levels[g.level] || '중급')} · 답변 수준 ${e(t.label)}</p>
+      <div class="mvw-eng-actions">
+        <button type="button" class="mvw-eng-btn is-main" onclick="Mob.openEnglishDaily()">오늘의 영어 열기</button>
+        <button type="button" class="mvw-eng-btn" onclick="Mob._loadEngGoal(true)">목표 바꾸기</button>
+      </div>`;
+  },
+  _engGoalFormHTML(d) {
+    const g = d.goal || {}, e = s => this._engEsc(s);
+    const lv = g.level || 'intermediate', tr = g.tier || 'basic';
+    return `<p class="mvw-letter-lede">이루고 싶은 영어 목표를 한 줄로 적으면, 매일 그 목표에 맞춘 읽기·말하기·듣기·쓰기 묶음이 와요.</p>
+      <label class="mvw-eng-label" for="engGoalText">내 목표</label>
+      <textarea id="engGoalText" class="mvw-eng-text" rows="3" maxlength="300" placeholder="예: 1월 싱가포르 고객 미팅에서 제품을 소개하고 질문에 답하기">${e(g.text || '')}</textarea>
+      <p class="mvw-eng-label">수준</p>
+      <div class="mvw-eng-levels" role="radiogroup" aria-label="수준">${Object.entries(d.levels).map(([k, v]) => `
+        <label class="mvw-eng-opt"><input type="radio" name="engLevel" value="${k}"${k === lv ? ' checked' : ''}><span>${e(v)}</span></label>`).join('')}</div>
+      <p class="mvw-eng-label">답변 수준 <small>체험 기간에는 모두 무료예요</small></p>
+      <div class="mvw-eng-tiers" role="radiogroup" aria-label="답변 수준">${Object.entries(d.tiers).map(([k, t]) => `
+        <label class="mvw-eng-tier"><input type="radio" name="engTier" value="${k}"${k === tr ? ' checked' : ''}>
+          <span><b>${e(t.label)}</b><em>${t.price ? `월 +${t.price.toLocaleString()}원` : '무료'}</em><small>${e(t.note)}</small></span></label>`).join('')}</div>
+      <p class="mvw-eng-err" id="engGoalErr" role="alert"></p>
+      <div class="mvw-eng-actions">
+        <button type="button" class="mvw-eng-btn is-main" onclick="Mob.saveEngGoal()">목표 저장</button>
+        ${d.goal ? '<button type="button" class="mvw-eng-btn" onclick="Mob._loadEngGoal()">취소</button>' : ''}
+      </div>`;
+  },
+  async saveEngGoal() {
+    const goal = el('engGoalText')?.value || '';
+    const level = document.querySelector('input[name="engLevel"]:checked')?.value;
+    const tier = document.querySelector('input[name="engTier"]:checked')?.value;
+    const err = el('engGoalErr'); if (err) err.textContent = '';
+    try {
+      const d = await fetchJSON('/api/english/goal', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ goal, level, tier }) }, 15000);
+      if (!d?.success) throw new Error(d?.error || '');
+      toast('목표를 저장했어요', 'ok');
+      this._loadEngGoal();
+    } catch (e) { if (err) err.textContent = e.message || '저장하지 못했어요'; }
+  },
+  async openEnglishDaily() {
+    const view = el('engView'), body = el('engBody'); if (!view || !body) return;
+    const close = `<button type="button" class="mob-letter__close" onclick="Mob.closeEnglishDaily()" aria-label="닫기"><i class="ti ti-x"></i></button>`;
+    view.hidden = false; view.scrollTop = 0; document.body.style.overflow = 'hidden';
+    body.innerHTML = `${close}<div class="mob-letter__wait"><span class="mob-spin"></span><p>오늘 묶음을 준비하고 있어요</p></div>`;
+    try {
+      const d = await fetchJSON('/api/english/daily', {}, 120000);
+      if (!d?.success) throw new Error(d?.error || '');
+      if (d.needGoal) { body.innerHTML = `${close}<div class="mob-letter__wait"><p>먼저 영어 목표를 적어 주세요</p></div>`; return; }
+      state.engDaily = d.daily;
+      body.innerHTML = close + this._engDailyHTML(d);
+    } catch (e) { body.innerHTML = `${close}<div class="mob-letter__wait"><p>${this._engEsc(e.message || '오늘 묶음을 열지 못했어요')}</p></div>`; }
+  },
+  closeEnglishDaily() {
+    try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch {}
+    const view = el('engView'); if (view) view.hidden = true;
+    document.body.style.overflow = '';
+  },
+  /* 듣기 — 브라우저 음성 읽기(무료). which: 'reading' | 표현 번호 */
+  engSpeak(which) {
+    const d = state.engDaily; if (!d || !window.speechSynthesis) { toast('이 기기에서는 읽어 주기를 쓸 수 없어요', 'err'); return; }
+    const text = which === 'reading' ? d.reading : `${d.expressions[which].en}. ${d.expressions[which].example}`;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text.replace(/\*\*/g, ''));
+    u.lang = 'en-US'; u.rate = 0.95;
+    window.speechSynthesis.speak(u);
+  },
+  _engDailyHTML(d) {
+    const x = d.daily, e = s => this._engEsc(s);
+    const reading = e(x.reading).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n+/g, '</p><p>');
+    const listen = (w, label) => `<button type="button" class="mob-eng-listen" onclick="Mob.engSpeak(${w === 'reading' ? "'reading'" : w})" aria-label="${label}"><i class="ti ti-volume"></i> 듣기</button>`;
+    return `<article class="mob-letter__paper mob-eng">
+      <header class="mob-letter__cover">
+        <p class="mob-letter__kicker">목표형 영어 · ${e(x.date)}</p>
+        <h2 class="mob-letter__month">${e(x.title || '오늘의 영어')}</h2>
+        <p class="mob-letter__title">${e(d.goal.text)}</p>
+      </header>
+      <div class="mob-eng-head"><h3>읽기</h3>${listen('reading', '읽기 글 듣기')}</div>
+      <section class="mob-eng-reading"><p>${reading}</p></section>
+      ${x.summaryKo ? `<p class="mob-eng-sum">${e(x.summaryKo)}</p>` : ''}
+      <h3>말하기 표현</h3>
+      <ol class="mob-eng-exprs">${x.expressions.map((p, i) => `<li>
+        <div class="mob-eng-expr"><b>${e(p.en)}</b>${listen(i, `${e(p.en)} 듣기`)}</div>
+        <p class="mob-eng-ko">${e(p.ko)}</p>
+        ${p.example ? `<p class="mob-eng-ex">${e(p.example)}</p>` : ''}
+        ${p.tip ? `<p class="mob-eng-tip">${e(p.tip)}</p>` : ''}</li>`).join('')}</ol>
+      ${x.writing?.prompt ? `<h3>쓰기</h3><p class="mob-eng-write">${e(x.writing.prompt)}</p>
+        <textarea class="mvw-eng-text" rows="4" aria-label="쓰기 연습" placeholder="여기에 영어로 써 보세요"></textarea>
+        <p class="mvw-letter-lede">첨삭은 곧 열려요.</p>` : ''}
+    </article>`;
+  },
+
   /* ── 나의 역사 · 월간 편지(11-28) ── 이번 달과 지난 5달. 누르면 "이번 달의 당신" 잡지 한 편이 화면 가득.
      편지는 서버(GET /api/letter/monthly/:ym)가 내 기록으로만 쓴다. 설계: docs/superpowers/specs/2026-11-28-monthly-letter-design.md */
   _renderLetterMonths() {

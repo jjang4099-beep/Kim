@@ -449,11 +449,13 @@ Object.assign(Mob, {
   /* ── 나의 역사 · 월간 편지(11-28) ── 이번 달과 지난 5달. 누르면 "이번 달의 당신" 잡지 한 편이 화면 가득.
      편지는 서버(GET /api/letter/monthly/:ym)가 내 기록으로만 쓴다. 설계: docs/superpowers/specs/2026-11-28-monthly-letter-design.md */
   _renderLetterMonths() {
+    /* 분기 편지(11-28 사용자: 매달보다 분기로) — 이번 분기와 지난 3분기 */
     const box = el('letterMonths'); if (!box) return;
-    const now = new Date(), months = [];
-    for (let k = 0; k < 6; k++) { const d = new Date(now.getFullYear(), now.getMonth() - k, 1); months.push(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`); }
-    box.innerHTML = months.map((ym, k) => `<button type="button" class="mvw-letter-chip${k === 0 ? ' is-now' : ''}" onclick="Mob.openLetter('${ym}')">
-        <small>${ym.slice(0, 4)}</small><b>${Number(ym.slice(5))}월</b><span>${k === 0 ? '이번 달' : k === 1 ? '지난달' : ''}</span></button>`).join('');
+    const now = new Date(); let y = now.getFullYear(), q = Math.floor(now.getMonth() / 3) + 1;
+    const list = [];
+    for (let k = 0; k < 4; k++) { list.push([y, q]); if (--q < 1) { q = 4; y--; } }
+    box.innerHTML = list.map(([yy, qq], k) => `<button type="button" class="mvw-letter-chip${k === 0 ? ' is-now' : ''}" onclick="Mob.openLetter('${yy}-Q${qq}')">
+        <small>${yy}</small><b>${qq}분기</b><span>${k === 0 ? '이번 분기' : k === 1 ? '지난 분기' : ''}</span></button>`).join('');
   },
   async openLetter(ym) {
     const view = el('letterView'), body = el('letterBody'); if (!view || !body) return;
@@ -461,7 +463,7 @@ Object.assign(Mob, {
     view.hidden = false; view.scrollTop = 0; document.body.style.overflow = 'hidden';
     body.innerHTML = `${close}<div class="mob-letter__wait"><span class="mob-spin"></span><p>편지를 쓰고 있어요</p></div>`;
     try {
-      const d = await fetchJSON(`/api/letter/monthly/${ym}?mode=${this._modeEnum()}`, {}, 90000);
+      const d = await fetchJSON(`/api/letter/${ym}?mode=${this._modeEnum()}`, {}, 90000);
       if (!d?.success) throw new Error(d?.error || '');
       body.innerHTML = close + this._letterHTML(d);
     } catch (e) {
@@ -479,17 +481,17 @@ Object.assign(Mob, {
     return `<article class="mob-letter__paper">
       <header class="mob-letter__cover">
         ${d.cover ? `<img class="mob-letter__photo" src="${esc(d.cover)}" alt="">` : ''}
-        <p class="mob-letter__kicker">나의 역사 · 월간 편지</p>
+        <p class="mob-letter__kicker">나의 역사 · ${String(d.period || '').includes('Q') ? '분기' : '월간'} 편지</p>
         <h2 class="mob-letter__month">${esc(d.label)}의 당신</h2>
         ${d.title ? `<p class="mob-letter__title">${esc(d.title)}</p>` : ''}
       </header>
+      ${d.quotes.length ? `<h3>내가 남긴 문장</h3>${d.quotes.map(q => `<blockquote class="mob-letter__quote"><p>${esc(q.text)}</p><cite>${md(q.date)}${q.title ? ` · ${esc(q.title)}` : ''}</cite></blockquote>`).join('')}` : ''}
       <section class="mob-letter__letter"><p>${esc(d.letter)}</p></section>
       ${d.thin ? '' : `<dl class="mob-letter__nums">${nums.map(([k, v]) => `<div><dd>${v}</dd><dt>${k}</dt></div>`).join('')}</dl>`}
       ${d.path.length ? `<h3>걸어온 길</h3><ol class="mob-letter__path">${d.path.map(p => `<li><b>${esc(p.stage)}</b><small>${esc(p.cat)} · ${esc(p.theme)}</small><span>${p.count}편</span></li>`).join('')}</ol>` : ''}
-      ${d.quotes.length ? `<h3>내가 남긴 문장</h3>${d.quotes.map(q => `<blockquote class="mob-letter__quote"><p>${esc(q.text)}</p><cite>${md(q.date)}${q.title ? ` · ${esc(q.title)}` : ''}</cite></blockquote>`).join('')}` : ''}
       ${d.scenes.length ? `<h3>장면</h3><div class="mob-letter__scenes">${d.scenes.map(s => `<figure>${s.photo ? `<img src="${esc(s.photo)}" alt="" loading="lazy">` : ''}
           <figcaption><time>${md(s.date)}</time>${s.location ? ` · ${esc(s.location)}` : ''}${s.text ? `<span>${esc(s.text)}</span>` : ''}</figcaption></figure>`).join('')}</div>` : ''}
-      <p class="mob-letter__foot">이 한 달도 당신의 역사로 쌓였어요.</p>
+      <p class="mob-letter__foot">이 시간도 당신의 역사로 쌓였어요.</p>
     </article>`;
   },
 

@@ -3629,6 +3629,7 @@ async function callClaude({ model = 'claude-haiku-4-5-20251001', maxTokens = 600
       hostname: 'api.anthropic.com', path: '/v1/messages', method: 'POST', headers
     }, res => {
       let raw = '';
+      res.setEncoding('utf8');   // 11-28: 청크마다 Buffer→문자열로 붙이면 한글이 청크 경계에서 깨졌다(편지에 '��'). 디코더가 경계를 이어 준다
       res.on('data', c => raw += c);
       res.on('end', () => {
         try {
@@ -6180,14 +6181,15 @@ app.get('/api/summary/:type/:period', async (req, res) => {
 });
 
 /**
- * GET /api/letter/monthly/:ym?mode= — 나의 역사 · 월간 편지(11-28, 설계 docs/superpowers/specs/2026-11-28-monthly-letter-design.md)
+ * GET /api/letter/:period?mode= — 나의 역사 · 편지(11-28, 설계 docs/superpowers/specs/2026-11-28-monthly-letter-design.md)
+ * period = YYYY-Qn(분기, 앱이 쓰는 것 — 사용자: 매달보다 분기로) 또는 YYYY-MM(달).
  * 내 기록(자동 배달 카드 제외) + 그달 받은 지식(배달 프로필)으로 "이번 달의 당신". 기록이 바뀔 때만 다시 쓴다(지문 캐시).
  * AI가 실패하거나 기록이 없는 달은 기록으로 만든 짧은 대체 편지.
  */
-app.get('/api/letter/monthly/:ym', async (req, res) => {
-  const ym = String(req.params.ym || '');
-  if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(ym)) return res.status(400).json({ success: false, error: '달 형식이 올바르지 않아요' });
-  if (ym > toDateStr().slice(0, 7)) return res.status(400).json({ success: false, error: '아직 오지 않은 달이에요' });
+app.get('/api/letter/:period', async (req, res) => {
+  const ym = String(req.params.period || '');
+  if (!/^\d{4}-(0[1-9]|1[0-2]|Q[1-4])$/.test(ym)) return res.status(400).json({ success: false, error: '기간 형식이 올바르지 않아요' });
+  if (MonthlyLetter.periodMonths(ym)[0] > toDateStr().slice(0, 7)) return res.status(400).json({ success: false, error: '아직 오지 않은 기간이에요' });
   const mode = normalizeMode(req.query.mode);
   try {
     const items = ItemsDB.getItemsByUser(req.userId, mode).filter(i => i.type !== 'daily_delivery');
@@ -6197,7 +6199,7 @@ app.get('/api/letter/monthly/:ym', async (req, res) => {
     buildQuest(req.userId, mode).categories.forEach(c => c.themes.forEach(t => t.stages.forEach(st => st.items.forEach(x => {
       if (x.id) where[x.id] = { cat: c.label, theme: t.label, stage: st.title };
     }))));
-    const facts = MonthlyLetter.letterFacts({ ym, items, got, stageOf: id => where[id] || where[aliases[id]] || null });
+    const facts = MonthlyLetter.letterFacts({ period: ym, items, got, stageOf: id => where[id] || where[aliases[id]] || null });
     const period = `${ym}@${MonthlyLetter.fingerprint(facts)}`;
     const cached = SummariesDB.getCachedSummary(req.userId, mode, 'letter-monthly', period);
     if (cached && req.query.force !== '1') return res.json(cached);

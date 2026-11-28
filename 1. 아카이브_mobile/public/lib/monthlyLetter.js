@@ -1,6 +1,6 @@
 /**
- * 나의 역사 — 월간 편지(11-28). 한 달의 내 기록에서 사실을 모으고, 편지 프롬프트·대체 편지를 만든다.
- * 서버 라우트 GET /api/letter/monthly/:ym 가 쓴다. 테스트: scripts/tests/monthly-letter.test.js
+ * 나의 역사 — 편지(11-28). 한 달(YYYY-MM) 또는 한 분기(YYYY-Qn, 11-28 사용자: 매달보다 분기로)의 내 기록에서 사실을 모으고, 편지 프롬프트·대체 편지를 만든다.
+ * 서버 라우트 GET /api/letter/:period 가 쓴다. 테스트: scripts/tests/monthly-letter.test.js
  * 원칙: 기록에 있는 것만 말한다. 기록이 적은 달도 꾸짖지 않는다.
  */
 
@@ -8,17 +8,32 @@ const dateOf = i => String(i.date || i.createdAt || '').slice(0, 10);
 const thoughtOf = i => { const t = String(i.myInsight || '').trim(); return t && !t.startsWith('[') ? t : ''; };
 const ownText = i => String(i.text || '').replace(/\s+/g, ' ').trim();
 
-/** 한 달의 사실 — items는 그 유저의 기록 전부, got은 {지식 id: 받은 날}, stageOf(id) → {cat, theme, stage} | null */
-function letterFacts({ ym, items = [], got = {}, stageOf = () => null }) {
-  const [y, m] = ym.split('-').map(Number);
-  const mine = items.filter(i => dateOf(i).startsWith(ym));
+/** 기간 → 달 목록 ('2026-Q4' → ['2026-10','2026-11','2026-12'], '2026-11' → ['2026-11']) */
+function periodMonths(period) {
+  const q = String(period).match(/^(\d{4})-Q([1-4])$/);
+  if (!q) return [String(period)];
+  return [0, 1, 2].map(k => `${q[1]}-${String((Number(q[2]) - 1) * 3 + 1 + k).padStart(2, '0')}`);
+}
+const periodLabel = period => {
+  const q = String(period).match(/^(\d{4})-Q([1-4])$/);
+  if (q) return `${q[1]}년 ${q[2]}분기`;
+  const [y, m] = String(period).split('-').map(Number);
+  return `${y}년 ${m}월`;
+};
+
+/** 기간의 사실 — items는 그 유저의 기록 전부, got은 {지식 id: 받은 날}, stageOf(id) → {cat, theme, stage} | null */
+function letterFacts({ period, ym, items = [], got = {}, stageOf = () => null }) {
+  period = period || ym;
+  const months = periodMonths(period);
+  const inPeriod = d => months.some(m => String(d).startsWith(m));
+  const mine = items.filter(i => inPeriod(dateOf(i)));
   const lifes = mine.filter(i => i.contentType === 'life').sort((a, b) => dateOf(a).localeCompare(dateOf(b)));
   const kept = mine.filter(i => i.contentType !== 'life');
   const quotes = mine.filter(thoughtOf)
     .sort((a, b) => dateOf(b).localeCompare(dateOf(a)))
     .slice(0, 3)
     .map(i => ({ text: thoughtOf(i), title: String(i.title || ''), date: dateOf(i) }));
-  const recIds = Object.keys(got).filter(id => String(got[id]).startsWith(ym));
+  const recIds = Object.keys(got).filter(id => inPeriod(got[id]));
   const byStage = {};
   let english = 0;
   recIds.forEach(id => {
@@ -34,7 +49,7 @@ function letterFacts({ ym, items = [], got = {}, stageOf = () => null }) {
     .slice(0, 4);
   const days = new Set(mine.map(dateOf)).size;
   return {
-    ym, label: `${y}년 ${m}월`, days, received: recIds.length, saved: kept.length,
+    period, ym: period, label: periodLabel(period), days, received: recIds.length, saved: kept.length,
     thoughts: mine.filter(thoughtOf).length, english, path, quotes, scenes,
     cover: (scenes.find(s => s.photo) || {}).photo || '',
     thin: !days && !recIds.length,
@@ -43,12 +58,13 @@ function letterFacts({ ym, items = [], got = {}, stageOf = () => null }) {
 
 /** 편지 프롬프트 — 입력은 실제 기록만 */
 function letterPrompt(f) {
-  const system = '너는 한 사람의 한 달 기록을 읽고 그 달을 돌려주는 짧은 편지를 쓰는 사람이다. ' +
-    '목적은 읽는 사람이 자기 기록으로 "이번 달도 의미 있게 살았다, 나는 가치 있는 사람이다"를 확인하게 하는 것이다. ' +
+  const system = '너는 한 사람의 한 기간(한 분기 또는 한 달) 기록을 읽고 그 기간을 돌려주는 짧은 편지를 쓰는 사람이다. ' +
+    '목적은 읽는 사람이 자기 기록으로 "이 시간도 의미 있게 살았다, 나는 가치 있는 사람이다"를 확인하게 하는 것이다. ' +
+    '읽는 사람이 직접 남긴 문장이 있으면 그 문장을 편지의 중심에 두고, 그 말이 그 사람에 대해 무엇을 보여 주는지 짚어라. ' +
     '기록에 실제로 있는 날짜·장소·문장·배운 내용을 구체적으로 짚어라. 기록에 없는 일을 지어내지 마라. ' +
-    '기록이 적은 달이면 꾸짖지 말고, 남긴 것이 무엇이었는지 담담하게 짚어 짧게 써라. ' +
-    '과장된 칭찬·자기계발 문구 대신 오래 알던 친구의 말투로. ' +
-    '출력 형식: 첫 줄에 20자 안쪽의 제목(따옴표·기호 없이), 빈 줄, 그다음 한국어 4~5문장 한 문단. 마크다운·목록을 쓰지 않는다.';
+    '기록이 적은 기간이면 꾸짖지 말고, 남긴 것이 무엇이었는지 담담하게 짚어 짧게 써라. ' +
+    '과장된 칭찬·자기계발 문구 없이, 반드시 존댓말(해요체)로 오래 알고 지낸 사람이 정중하고 따뜻하게 건네는 말투로 쓴다. ' +
+    '출력 형식: 첫 줄에 20자 안쪽의 제목(따옴표·기호 없이), 빈 줄, 그다음 한국어 3~4문장 한 문단. 마크다운·목록을 쓰지 않는다.';
   const lines = [
     `${f.label} 기록 — 기록한 날 ${f.days}일, 받은 지식 ${f.received}편(영어 ${f.english}), 서재에 담은 것 ${f.saved}개, 남긴 생각 ${f.thoughts}개.`,
     `## 걸어온 길(지식 지도)\n${f.path.map(p => `- ${p.cat} · ${p.theme} · ${p.stage}: ${p.count}편`).join('\n') || '(없음)'}`,
@@ -85,4 +101,4 @@ function fingerprint(f) {
   return (h >>> 0).toString(36);
 }
 
-module.exports = { letterFacts, letterPrompt, fallbackLetter, parseLetter, fingerprint };
+module.exports = { periodMonths, letterFacts, letterPrompt, fallbackLetter, parseLetter, fingerprint };

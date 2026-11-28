@@ -36,6 +36,20 @@ test('장면은 글이나 사진이 있는 일상 기록, 표지는 첫 사진',
   const f = facts();
   assert.equal(f.scenes.length, 1); assert.equal(f.scenes[0].location, '경주'); assert.equal(f.cover, '/uploads/a.jpg');
 });
+test('분기: 석 달을 묶어 센다', () => {
+  const f = ML.letterFacts({ period: '2026-Q4', items, got, stageOf });
+  assert.equal(f.label, '2026년 4분기'); assert.equal(f.days, 6); assert.equal(f.received, 5);
+});
+test('분기: 기간 밖 기록은 빠진다', () => {
+  assert.equal(ML.letterFacts({ period: '2026-Q3', items, got, stageOf }).thin, true);
+});
+test('periodMonths: 분기와 달', () => {
+  assert.deepEqual(ML.periodMonths('2026-Q4'), ['2026-10', '2026-11', '2026-12']);
+  assert.deepEqual(ML.periodMonths('2026-11'), ['2026-11']);
+});
+test('프롬프트는 존댓말을 요구한다', () => {
+  assert.match(ML.letterPrompt(facts()).system, /존댓말/);
+});
 test('빈 달은 thin', () => {
   const f = ML.letterFacts({ ym: '2026-09', items, got, stageOf });
   assert.equal(f.thin, true); assert.equal(f.label, '2026년 9월');

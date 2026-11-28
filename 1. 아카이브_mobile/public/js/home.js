@@ -17,12 +17,20 @@ Object.assign(Mob, {
   /* ────────────────────────────────────────────
      초기화
   ────────────────────────────────────────────── */
+  /* 수험생 모드 가림(11-28 사용자: "일단 마스킹, 본질적인 가치에 집중") — 코드는 그대로, 입구만 닫고 모두 직장인 모드로. 다시 열려면 false */
+  _EXAM_MASKED: true,
+
   async init() {
     const loginScreen = el('loginScreen');
     const ok = await this.checkAuth();
     if (!ok) {
       if (loginScreen) loginScreen.hidden = false;
       return;
+    }
+    /* 가림 중이면 모드 고르기 없이 직장인 모드로(수험생 모드였던 계정도 옮긴다) */
+    if (this._EXAM_MASKED && localStorage.getItem('userMode') !== 'work') {
+      localStorage.setItem('userMode', 'work');
+      this._syncMode('work');
     }
     this._enterAppEntrance();
 
@@ -239,6 +247,7 @@ Object.assign(Mob, {
   },
 
   setMode(mode) {
+    if (this._EXAM_MASKED && mode === 'exam') mode = 'work';   // 수험생 모드 가림 중
     const prevMode = localStorage.getItem('userMode');
     localStorage.setItem('userMode', mode);
     const switching = prevMode && prevMode !== mode;

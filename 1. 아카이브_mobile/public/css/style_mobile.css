@@ -1094,6 +1094,7 @@ body.tabs-hidden .mob-main { top: var(--topbar-h); }
   animation: fadein .15s;
 }
 .mob-modal[hidden] { display: none !important; }
+.mode-card[hidden], .mvw-mode-selector[hidden] { display: none !important; }   /* 수험생 모드 가림(11-28) */
 @keyframes fadein { from { opacity: 0 } to { opacity: 1 } }
 
 .mob-modal-sheet {

@@ -32,7 +32,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Noto+Serif+KR:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
-  <link rel="stylesheet" href="css/style_mobile.css?v=100"/>
+  <link rel="stylesheet" href="css/style_mobile.css?v=101"/>
   <link rel="stylesheet" href="css/exam.css?v=10"/>
 </head>
 <body>
@@ -533,22 +533,13 @@
         </div>
       </div>
 
-      <!-- ══ 지식 결산 ══ -->
+      <!-- ══ 나의 역사 · 월간 편지(11-28) — 옛 '지식 결산' 자리. 달을 고르면 잡지 한 편이 화면 가득 ══ -->
       <div class="mvw-section-block" id="summaryBlock">
         <div class="mvw-block-title">
-          <i class="ti ti-chart-pie"></i> 지식 결산
+          <i class="ti ti-feather"></i> 나의 역사
         </div>
-        <div class="mvw-summary-tabs">
-          <button class="mvw-summary-tab active"
-                  onclick="Mob.loadSummary('monthly',this)">이번 달</button>
-          <button class="mvw-summary-tab"
-                  onclick="Mob.loadSummary('half-year',this)">반기</button>
-          <button class="mvw-summary-tab"
-                  onclick="Mob.loadSummary('yearly',this)">연간</button>
-        </div>
-        <div id="summaryContent">
-          <div class="mob-loading" style="padding:16px 0"><span class="mob-spin"></span></div>
-        </div>
+        <p class="mvw-letter-lede">한 달의 기록을 편지 한 편으로 돌려드려요.</p>
+        <div class="mvw-letter-chips" id="letterMonths"></div>
       </div>
 
       <!-- ══ 라이프 기록 설정 ══ -->
@@ -940,11 +931,15 @@
 <script src="js/home.js?v=38"></script>
 <script src="js/feed.js?v=23"></script>
 <script src="js/library.js?v=10"></script>
-<script src="js/manage.js?v=6"></script>
+<script src="js/manage.js?v=7"></script>
 <script src="js/add.js?v=6"></script>
 <script src="js/app_exam.js?v=11"></script>
 <script src="js/pwa.js?v=3"></script>
 <!-- 인증 확인 → 스플래시/모드선택 진입 로직은 home.js의 Mob.init()이 전담
      (DOMContentLoaded 리스너가 home.js 파일 끝에 이미 등록되어 있음) -->
+<!-- 월간 편지 — 전체 화면 잡지 -->
+<div class="mob-letter" id="letterView" role="dialog" aria-modal="true" aria-label="월간 편지" hidden>
+  <div class="mob-letter__sheet" id="letterBody"></div>
+</div>
 </body>
 </html>

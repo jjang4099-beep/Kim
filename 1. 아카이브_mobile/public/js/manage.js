@@ -27,7 +27,7 @@ Object.assign(Mob, {
       this._initLifeOnHomeToggle();
       /* 카테고리 칩 + 결산 초기 로드 (병렬, 실패해도 무시) */
       this._renderCategoryChips().catch(() => {});
-      this.loadSummary('monthly', el('summaryBlock')?.querySelector('.mvw-summary-tab')).catch(() => {});
+      this._renderLetterMonths();   // 나의 역사 · 월간 편지(옛 지식 결산 자리)
     } catch {
       el('statTotal').textContent  = '—';
       el('statStreak').textContent = '—';
@@ -446,6 +446,53 @@ Object.assign(Mob, {
   /* ══════════════════════════════════════════
      결산
   ══════════════════════════════════════════ */
+  /* ── 나의 역사 · 월간 편지(11-28) ── 이번 달과 지난 5달. 누르면 "이번 달의 당신" 잡지 한 편이 화면 가득.
+     편지는 서버(GET /api/letter/monthly/:ym)가 내 기록으로만 쓴다. 설계: docs/superpowers/specs/2026-11-28-monthly-letter-design.md */
+  _renderLetterMonths() {
+    const box = el('letterMonths'); if (!box) return;
+    const now = new Date(), months = [];
+    for (let k = 0; k < 6; k++) { const d = new Date(now.getFullYear(), now.getMonth() - k, 1); months.push(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`); }
+    box.innerHTML = months.map((ym, k) => `<button type="button" class="mvw-letter-chip${k === 0 ? ' is-now' : ''}" onclick="Mob.openLetter('${ym}')">
+        <small>${ym.slice(0, 4)}</small><b>${Number(ym.slice(5))}월</b><span>${k === 0 ? '이번 달' : k === 1 ? '지난달' : ''}</span></button>`).join('');
+  },
+  async openLetter(ym) {
+    const view = el('letterView'), body = el('letterBody'); if (!view || !body) return;
+    const close = `<button type="button" class="mob-letter__close" onclick="Mob.closeLetter()" aria-label="편지 닫기"><i class="ti ti-x"></i></button>`;
+    view.hidden = false; view.scrollTop = 0; document.body.style.overflow = 'hidden';
+    body.innerHTML = `${close}<div class="mob-letter__wait"><span class="mob-spin"></span><p>편지를 쓰고 있어요</p></div>`;
+    try {
+      const d = await fetchJSON(`/api/letter/monthly/${ym}?mode=${this._modeEnum()}`, {}, 90000);
+      if (!d?.success) throw new Error(d?.error || '');
+      body.innerHTML = close + this._letterHTML(d);
+    } catch (e) {
+      body.innerHTML = `${close}<div class="mob-letter__wait"><p>편지를 열지 못했어요${e.message ? ` — ${e.message}` : ''}</p></div>`;
+    }
+  },
+  closeLetter() {
+    const view = el('letterView'); if (view) view.hidden = true;
+    document.body.style.overflow = '';
+  },
+  _letterHTML(d) {
+    const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const md = s => String(s || '').slice(5).replace('-', '.');
+    const nums = [['기록한 날', `${d.days}`], ['받은 지식', `${d.received}`], ['담은 것', `${d.saved}`], ['남긴 생각', `${d.thoughts}`], ['영어 표현', `${d.english}`]];
+    return `<article class="mob-letter__paper">
+      <header class="mob-letter__cover">
+        ${d.cover ? `<img class="mob-letter__photo" src="${esc(d.cover)}" alt="">` : ''}
+        <p class="mob-letter__kicker">나의 역사 · 월간 편지</p>
+        <h2 class="mob-letter__month">${esc(d.label)}의 당신</h2>
+        ${d.title ? `<p class="mob-letter__title">${esc(d.title)}</p>` : ''}
+      </header>
+      <section class="mob-letter__letter"><p>${esc(d.letter)}</p></section>
+      ${d.thin ? '' : `<dl class="mob-letter__nums">${nums.map(([k, v]) => `<div><dd>${v}</dd><dt>${k}</dt></div>`).join('')}</dl>`}
+      ${d.path.length ? `<h3>걸어온 길</h3><ol class="mob-letter__path">${d.path.map(p => `<li><b>${esc(p.stage)}</b><small>${esc(p.cat)} · ${esc(p.theme)}</small><span>${p.count}편</span></li>`).join('')}</ol>` : ''}
+      ${d.quotes.length ? `<h3>내가 남긴 문장</h3>${d.quotes.map(q => `<blockquote class="mob-letter__quote"><p>${esc(q.text)}</p><cite>${md(q.date)}${q.title ? ` · ${esc(q.title)}` : ''}</cite></blockquote>`).join('')}` : ''}
+      ${d.scenes.length ? `<h3>장면</h3><div class="mob-letter__scenes">${d.scenes.map(s => `<figure>${s.photo ? `<img src="${esc(s.photo)}" alt="" loading="lazy">` : ''}
+          <figcaption><time>${md(s.date)}</time>${s.location ? ` · ${esc(s.location)}` : ''}${s.text ? `<span>${esc(s.text)}</span>` : ''}</figcaption></figure>`).join('')}</div>` : ''}
+      <p class="mob-letter__foot">이 한 달도 당신의 역사로 쌓였어요.</p>
+    </article>`;
+  },
+
   async loadSummary(type, btn) {
     document.querySelectorAll('.mvw-summary-tab').forEach(t => t.classList.remove('active'));
     if (btn) btn.classList.add('active');
